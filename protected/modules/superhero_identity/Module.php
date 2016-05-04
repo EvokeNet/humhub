@@ -14,6 +14,12 @@ use yii\helpers\Url;
 class Module extends \humhub\components\Module
 {
 
+    public function init()
+        {
+            parent::init();
+            // custom initialization code goes here
+        }    
+
     /**
      * @inheritdoc
      */
