@@ -106,3 +106,344 @@ $_SERVER = [
     'REQUEST_TIME_FLOAT' => 1460802883.178
     'REQUEST_TIME' => 1460802883
 ]
+2016-05-05 05:21:47 [192.168.1.35][-][-][error][yii\base\ErrorException:2] exception 'yii\base\ErrorException' with message 'scandir(/srv/www/humhub/protected/modules): failed to open dir: No such file or directory' in /srv/www/humhub/protected/humhub/components/bootstrap/ModuleAutoLoader.php:33
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleError(2, 'scandir(/srv/ww...', '/srv/www/humhub...', 33, Array)
+#1 /srv/www/humhub/protected/humhub/components/bootstrap/ModuleAutoLoader.php(33): scandir('/srv/www/humhub...')
+#2 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(315): humhub\components\bootstrap\ModuleAutoLoader->bootstrap(Object(humhub\components\Application))
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/web/Application.php(63): yii\base\Application->bootstrap()
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(267): yii\web\Application->bootstrap()
+#5 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Object.php(107): yii\base\Application->init()
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(206): yii\base\Object->__construct(Array)
+#7 /srv/www/humhub/index.php(25): yii\base\Application->__construct(Array)
+#8 {main}
+2016-05-05 05:21:47 [192.168.1.35][-][-][info][application] $_SERVER = [
+    'HTTP_HOST' => '192.168.1.37'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; _csrf=fb42635d988d6c031aea0dac6230aa153e988cc2312414d88961863e2871903ea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22v79GsKjcK_MKPr-xUgb4xGQYZopZEN0_%22%3B%7D; PHPSESSID=rki8rl3anbd7qpvqp4u2rr8rq6; _identity=8854555c76fa821f44c095fb0c4ddaeca03b75a2361cedc86101e8720c89c813a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22867ac87f-0429-4329-8d12-5563bc5bf6e9%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at 192.168.1.37 Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => '192.168.1.37'
+    'SERVER_ADDR' => '192.168.1.37'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '192.168.1.35'
+    'DOCUMENT_ROOT' => '/srv/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+    'REMOTE_PORT' => '53582'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/humhub/'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1462436507.086
+    'REQUEST_TIME' => 1462436507
+]
+2016-05-05 05:21:47 [192.168.1.35][-][-][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\log\DbTarget: Exception (Database Exception) 'yii\db\Exception' with message 'SQLSTATE[28000] [1045] Access denied for user 'humhub'@'localhost' (using password: YES)' 
+
+in /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Connection.php:547
+
+Stack trace:
+#0 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Connection.php(858): yii\db\Connection->open()
+#1 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Connection.php(845): yii\db\Connection->getMasterPdo()
+#2 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Schema.php(477): yii\db\Connection->getSlavePdo()
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Connection.php(754): yii\db\Schema->quoteValue('yii\base\ErrorE...')
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Command.php(175): yii\db\Connection->quoteValue('yii\base\ErrorE...')
+#5 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Command.php(770): yii\db\Command->getRawSql()
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/log/DbTarget.php(83): yii\db\Command->execute()
+#7 /srv/www/humhub/protected/vendor/yiisoft/yii2/log/Target.php(111): yii\log\DbTarget->export()
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\log\Target->collect(Array, true)
+#9 /srv/www/humhub/protected/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
+#10 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
+#11 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\base\ErrorException))
+#12 {main}
+2016-05-05 05:21:47 [192.168.1.35][-][-][info][application] $_SERVER = [
+    'HTTP_HOST' => '192.168.1.37'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; _csrf=fb42635d988d6c031aea0dac6230aa153e988cc2312414d88961863e2871903ea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22v79GsKjcK_MKPr-xUgb4xGQYZopZEN0_%22%3B%7D; PHPSESSID=rki8rl3anbd7qpvqp4u2rr8rq6; _identity=8854555c76fa821f44c095fb0c4ddaeca03b75a2361cedc86101e8720c89c813a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22867ac87f-0429-4329-8d12-5563bc5bf6e9%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at 192.168.1.37 Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => '192.168.1.37'
+    'SERVER_ADDR' => '192.168.1.37'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '192.168.1.35'
+    'DOCUMENT_ROOT' => '/srv/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+    'REMOTE_PORT' => '53582'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/humhub/'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1462436507.086
+    'REQUEST_TIME' => 1462436507
+]
+2016-05-05 05:21:56 [192.168.1.35][-][-][error][yii\base\ErrorException:2] exception 'yii\base\ErrorException' with message 'scandir(/srv/www/humhub/protected/modules): failed to open dir: No such file or directory' in /srv/www/humhub/protected/humhub/components/bootstrap/ModuleAutoLoader.php:33
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleError(2, 'scandir(/srv/ww...', '/srv/www/humhub...', 33, Array)
+#1 /srv/www/humhub/protected/humhub/components/bootstrap/ModuleAutoLoader.php(33): scandir('/srv/www/humhub...')
+#2 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(315): humhub\components\bootstrap\ModuleAutoLoader->bootstrap(Object(humhub\components\Application))
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/web/Application.php(63): yii\base\Application->bootstrap()
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(267): yii\web\Application->bootstrap()
+#5 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Object.php(107): yii\base\Application->init()
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(206): yii\base\Object->__construct(Array)
+#7 /srv/www/humhub/index.php(25): yii\base\Application->__construct(Array)
+#8 {main}
+2016-05-05 05:21:56 [192.168.1.35][-][-][info][application] $_SERVER = [
+    'HTTP_HOST' => '192.168.1.37'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; _csrf=fb42635d988d6c031aea0dac6230aa153e988cc2312414d88961863e2871903ea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22v79GsKjcK_MKPr-xUgb4xGQYZopZEN0_%22%3B%7D; PHPSESSID=rki8rl3anbd7qpvqp4u2rr8rq6; _identity=8854555c76fa821f44c095fb0c4ddaeca03b75a2361cedc86101e8720c89c813a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22867ac87f-0429-4329-8d12-5563bc5bf6e9%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at 192.168.1.37 Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => '192.168.1.37'
+    'SERVER_ADDR' => '192.168.1.37'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '192.168.1.35'
+    'DOCUMENT_ROOT' => '/srv/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+    'REMOTE_PORT' => '53584'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/humhub/'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1462436516.973
+    'REQUEST_TIME' => 1462436516
+]
+2016-05-05 05:21:57 [192.168.1.35][-][-][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\log\DbTarget: Exception (Database Exception) 'yii\db\Exception' with message 'SQLSTATE[28000] [1045] Access denied for user 'humhub'@'localhost' (using password: YES)' 
+
+in /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Connection.php:547
+
+Stack trace:
+#0 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Connection.php(858): yii\db\Connection->open()
+#1 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Connection.php(845): yii\db\Connection->getMasterPdo()
+#2 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Schema.php(477): yii\db\Connection->getSlavePdo()
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Connection.php(754): yii\db\Schema->quoteValue('yii\base\ErrorE...')
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Command.php(175): yii\db\Connection->quoteValue('yii\base\ErrorE...')
+#5 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Command.php(770): yii\db\Command->getRawSql()
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/log/DbTarget.php(83): yii\db\Command->execute()
+#7 /srv/www/humhub/protected/vendor/yiisoft/yii2/log/Target.php(111): yii\log\DbTarget->export()
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\log\Target->collect(Array, true)
+#9 /srv/www/humhub/protected/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
+#10 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
+#11 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\base\ErrorException))
+#12 {main}
+2016-05-05 05:21:56 [192.168.1.35][-][-][info][application] $_SERVER = [
+    'HTTP_HOST' => '192.168.1.37'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; _csrf=fb42635d988d6c031aea0dac6230aa153e988cc2312414d88961863e2871903ea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22v79GsKjcK_MKPr-xUgb4xGQYZopZEN0_%22%3B%7D; PHPSESSID=rki8rl3anbd7qpvqp4u2rr8rq6; _identity=8854555c76fa821f44c095fb0c4ddaeca03b75a2361cedc86101e8720c89c813a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22867ac87f-0429-4329-8d12-5563bc5bf6e9%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at 192.168.1.37 Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => '192.168.1.37'
+    'SERVER_ADDR' => '192.168.1.37'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '192.168.1.35'
+    'DOCUMENT_ROOT' => '/srv/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+    'REMOTE_PORT' => '53584'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/humhub/'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1462436516.973
+    'REQUEST_TIME' => 1462436516
+]
+2016-05-05 05:23:48 [192.168.1.35][-][-][error][yii\db\Exception] exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'humhub'@'localhost' (using password: YES)' in /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Connection.php:600
+Stack trace:
+#0 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Connection.php(600): PDO->__construct('mysql:host=loca...', 'humhub', '1234', NULL)
+#1 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Connection.php(542): yii\db\Connection->createPdoInstance()
+#2 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Connection.php(858): yii\db\Connection->open()
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Connection.php(845): yii\db\Connection->getMasterPdo()
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Command.php(219): yii\db\Connection->getSlavePdo()
+#5 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Command.php(834): yii\db\Command->prepare('<span class="ke...')
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Command.php(362): yii\db\Command->queryInternal('<span class="st...', '<span class="ke...')
+#7 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Query.php(210): yii\db\Command->queryAll()
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/ActiveQuery.php(133): yii\db\Query->all('<span class="ke...')
+#9 /srv/www/humhub/protected/humhub/models/ModuleEnabled.php(63): yii\db\ActiveQuery->all()
+#10 /srv/www/humhub/protected/humhub/components/ModuleManager.php(71): humhub\models\ModuleEnabled::getEnabledIds()
+#11 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Object.php(107): humhub\components\ModuleManager->init()
+#12 [internal function]: yii\base\Object->__construct('[]')
+#13 /srv/www/humhub/protected/vendor/yiisoft/yii2/di/Container.php(368): ReflectionClass->newInstanceArgs('[[]]')
+#14 /srv/www/humhub/protected/vendor/yiisoft/yii2/di/Container.php(153): yii\di\Container->build('<span class="st...', '[]', '[]')
+#15 /srv/www/humhub/protected/vendor/yiisoft/yii2/BaseYii.php(344): yii\di\Container->get('<span class="st...', '[]', '[]')
+#16 /srv/www/humhub/protected/vendor/yiisoft/yii2/di/ServiceLocator.php(133): yii\BaseYii::createObject('[<span class="s...')
+#17 /srv/www/humhub/protected/vendor/yiisoft/yii2/di/ServiceLocator.php(71): yii\di\ServiceLocator->get('<span class="st...')
+#18 /srv/www/humhub/protected/humhub/components/bootstrap/ModuleAutoLoader.php(52): yii\di\ServiceLocator->__get('<span class="st...')
+#19 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(315): humhub\components\bootstrap\ModuleAutoLoader->bootstrap(Object(humhub\components\Application))
+#20 /srv/www/humhub/protected/vendor/yiisoft/yii2/web/Application.php(63): yii\base\Application->bootstrap()
+#21 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(267): yii\web\Application->bootstrap()
+#22 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Object.php(107): yii\base\Application->init()
+#23 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(206): yii\base\Object->__construct('[<span class="s...')
+#24 /srv/www/humhub/index.php(25): yii\base\Application->__construct('[<span class="s...')
+#25 {main}
+
+Next exception 'yii\db\Exception' with message 'SQLSTATE[28000] [1045] Access denied for user 'humhub'@'localhost' (using password: YES)' in /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Connection.php:547
+Stack trace:
+#0 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Connection.php(858): yii\db\Connection->open()
+#1 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Connection.php(845): yii\db\Connection->getMasterPdo()
+#2 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Command.php(219): yii\db\Connection->getSlavePdo()
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Command.php(834): yii\db\Command->prepare('<span class="ke...')
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Command.php(362): yii\db\Command->queryInternal('<span class="st...', '<span class="ke...')
+#5 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Query.php(210): yii\db\Command->queryAll()
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/ActiveQuery.php(133): yii\db\Query->all('<span class="ke...')
+#7 /srv/www/humhub/protected/humhub/models/ModuleEnabled.php(63): yii\db\ActiveQuery->all()
+#8 /srv/www/humhub/protected/humhub/components/ModuleManager.php(71): humhub\models\ModuleEnabled::getEnabledIds()
+#9 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Object.php(107): humhub\components\ModuleManager->init()
+#10 [internal function]: yii\base\Object->__construct('[]')
+#11 /srv/www/humhub/protected/vendor/yiisoft/yii2/di/Container.php(368): ReflectionClass->newInstanceArgs('[[]]')
+#12 /srv/www/humhub/protected/vendor/yiisoft/yii2/di/Container.php(153): yii\di\Container->build('<span class="st...', '[]', '[]')
+#13 /srv/www/humhub/protected/vendor/yiisoft/yii2/BaseYii.php(344): yii\di\Container->get('<span class="st...', '[]', '[]')
+#14 /srv/www/humhub/protected/vendor/yiisoft/yii2/di/ServiceLocator.php(133): yii\BaseYii::createObject('[<span class="s...')
+#15 /srv/www/humhub/protected/vendor/yiisoft/yii2/di/ServiceLocator.php(71): yii\di\ServiceLocator->get('<span class="st...')
+#16 /srv/www/humhub/protected/humhub/components/bootstrap/ModuleAutoLoader.php(52): yii\di\ServiceLocator->__get('<span class="st...')
+#17 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(315): humhub\components\bootstrap\ModuleAutoLoader->bootstrap(Object(humhub\components\Application))
+#18 /srv/www/humhub/protected/vendor/yiisoft/yii2/web/Application.php(63): yii\base\Application->bootstrap()
+#19 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(267): yii\web\Application->bootstrap()
+#20 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Object.php(107): yii\base\Application->init()
+#21 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(206): yii\base\Object->__construct('[<span class="s...')
+#22 /srv/www/humhub/index.php(25): yii\base\Application->__construct('[<span class="s...')
+#23 {main}
+Additional Information:
+
+2016-05-05 05:23:48 [192.168.1.35][-][-][info][application] $_SERVER = [
+    'HTTP_HOST' => '192.168.1.37'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; _csrf=fb42635d988d6c031aea0dac6230aa153e988cc2312414d88961863e2871903ea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22v79GsKjcK_MKPr-xUgb4xGQYZopZEN0_%22%3B%7D; PHPSESSID=rki8rl3anbd7qpvqp4u2rr8rq6; _identity=8854555c76fa821f44c095fb0c4ddaeca03b75a2361cedc86101e8720c89c813a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22867ac87f-0429-4329-8d12-5563bc5bf6e9%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at 192.168.1.37 Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => '192.168.1.37'
+    'SERVER_ADDR' => '192.168.1.37'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '192.168.1.35'
+    'DOCUMENT_ROOT' => '/srv/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+    'REMOTE_PORT' => '53606'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/humhub/'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1462436628.477
+    'REQUEST_TIME' => 1462436628
+]
+2016-05-05 05:23:48 [192.168.1.35][-][-][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\log\DbTarget: Exception (Database Exception) 'yii\db\Exception' with message 'SQLSTATE[28000] [1045] Access denied for user 'humhub'@'localhost' (using password: YES)' 
+
+in /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Connection.php:547
+
+Stack trace:
+#0 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Connection.php(858): yii\db\Connection->open()
+#1 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Connection.php(845): yii\db\Connection->getMasterPdo()
+#2 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Schema.php(477): yii\db\Connection->getSlavePdo()
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Connection.php(754): yii\db\Schema->quoteValue('yii\db\Exceptio...')
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Command.php(175): yii\db\Connection->quoteValue('yii\db\Exceptio...')
+#5 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Command.php(770): yii\db\Command->getRawSql()
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/log/DbTarget.php(83): yii\db\Command->execute()
+#7 /srv/www/humhub/protected/vendor/yiisoft/yii2/log/Target.php(111): yii\log\DbTarget->export()
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/log/Dispatcher.php(183): yii\log\Target->collect(Array, true)
+#9 /srv/www/humhub/protected/vendor/yiisoft/yii2/log/Logger.php(173): yii\log\Dispatcher->dispatch(Array, true)
+#10 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\log\Logger->flush(true)
+#11 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\db\Exception))
+#12 {main}
+2016-05-05 05:23:48 [192.168.1.35][-][-][info][application] $_SERVER = [
+    'HTTP_HOST' => '192.168.1.37'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; _csrf=fb42635d988d6c031aea0dac6230aa153e988cc2312414d88961863e2871903ea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22v79GsKjcK_MKPr-xUgb4xGQYZopZEN0_%22%3B%7D; PHPSESSID=rki8rl3anbd7qpvqp4u2rr8rq6; _identity=8854555c76fa821f44c095fb0c4ddaeca03b75a2361cedc86101e8720c89c813a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22867ac87f-0429-4329-8d12-5563bc5bf6e9%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at 192.168.1.37 Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => '192.168.1.37'
+    'SERVER_ADDR' => '192.168.1.37'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '192.168.1.35'
+    'DOCUMENT_ROOT' => '/srv/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+    'REMOTE_PORT' => '53606'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/humhub/'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1462436628.477
+    'REQUEST_TIME' => 1462436628
+]
