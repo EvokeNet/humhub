@@ -1,0 +1,11 @@
+{
+    "id": "missions",
+    "name": "Missions",
+    "description": "Evoke's Missions",
+    "keywords": ["missions"],
+    "version": "0.0.1",
+    "humhub": {
+        "minVersion": "0.20"
+    },
+    "screenshots": []
+}
