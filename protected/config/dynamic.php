@@ -16,14 +16,14 @@
     array (
       'transport' => 
       array (
-        'class' => 'Swift_MailTransport',
       ),
+      'useFileTransport' => true,
       'view' => 
       array (
         'theme' => 
         array (
-          'name' => 'HumHub',
-          'basePath' => '/srv/www/humhub/themes/HumHub',
+          'name' => 'Evoke',
+          'basePath' => '/srv/www/humhub/themes/Evoke',
         ),
       ),
     ),
@@ -31,9 +31,18 @@
     array (
       'theme' => 
       array (
-        'name' => 'HumHub',
-        'basePath' => '/srv/www/humhub/themes/HumHub',
+        'name' => 'Evoke',
+        'basePath' => '/srv/www/humhub/themes/Evoke',
       ),
+    ),
+    'formatter' => 
+    array (
+      'defaultTimeZone' => 'America/Sao_Paulo',
+    ),
+    'formatterApp' => 
+    array (
+      'defaultTimeZone' => 'America/Sao_Paulo',
+      'timeZone' => 'America/Sao_Paulo',
     ),
   ),
   'params' => 
@@ -50,21 +59,21 @@
     array (
       'core' => 
       array (
-        'colorDefault' => '#ededed',
+        'colorDefault' => '#3C454D',
         'colorPrimary' => '#708fa0',
         'colorInfo' => '#6fdbe8',
         'colorSuccess' => '#97d271',
         'colorWarning' => '#fdd198',
         'colorDanger' => '#ff8989',
         'oembedProviders' => '{"vimeo.com":"http:\\/\\/vimeo.com\\/api\\/oembed.json?scheme=https&url=%url%&format=json&maxwidth=450","youtube.com":"http:\\/\\/www.youtube.com\\/oembed?scheme=https&url=%url%&format=json&maxwidth=450","youtu.be":"http:\\/\\/www.youtube.com\\/oembed?scheme=https&url=%url%&format=json&maxwidth=450","soundcloud.com":"https:\\/\\/soundcloud.com\\/oembed?url=%url%&format=json&maxwidth=450","slideshare.net":"https:\\/\\/www.slideshare.net\\/api\\/oembed\\/2?url=%url%&format=json&maxwidth=450"}',
-        'name' => 'HumHub',
-        'baseUrl' => 'http://evoke.local.com/humhub',
+        'name' => 'Evoke',
+        'baseUrl' => 'http://192.168.1.37/humhub',
         'paginationSize' => '10',
         'displayNameFormat' => '{profile.firstname} {profile.lastname}',
-        'theme' => 'HumHub',
-        'defaultLanguage' => 'pt',
+        'theme' => 'Evoke',
+        'defaultLanguage' => 'es',
         'useCase' => 'other',
-        'secret' => 'b7a7f6ee-806d-47fa-b549-87d365c29c39',
+        'secret' => '7affb751-0cd0-4cd0-bf31-87b6a141835a',
         'timeZone' => 'America/Sao_Paulo',
       ),
       'space' => 
@@ -90,11 +99,17 @@
       ),
       'mailing' => 
       array (
-        'transportType' => 'php',
+        'transportType' => 'file',
         'systemEmailAddress' => 'social@example.com',
         'systemEmailName' => 'HumHub',
         'receive_email_activities' => '1',
         'receive_email_notifications' => '2',
+        'hostname' => '',
+        'username' => '',
+        'password' => '',
+        'port' => '',
+        'encryption' => '',
+        'allowSelfSignedCerts' => '0',
       ),
       'file' => 
       array (
@@ -110,7 +125,8 @@
       ),
       'admin' => 
       array (
-        'installationId' => 'b44d2dfe25817de352137597a3495088',
+        'installationId' => '04345044caca98e78559a440afd42b0d',
+        'defaultDateInputFormat' => '',
       ),
       'tour' => 
       array (
@@ -128,11 +144,20 @@
       array (
         'sampleData' => '1',
       ),
+      'dashboard' => 
+      array (
+        'showProfilePostForm' => '0',
+      ),
+      'birthday' => 
+      array (
+        'shownDays' => '2',
+      ),
     ),
-    'config_created_at' => 1460804048,
+    'config_created_at' => 1462565797,
     'databaseInstalled' => true,
     'installed' => true,
   ),
-  'name' => 'HumHub',
-  'language' => 'pt',
+  'name' => 'Evoke',
+  'language' => 'es',
+  'timeZone' => 'America/Sao_Paulo',
 ); ?>

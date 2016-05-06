@@ -1,0 +1,1411 @@
+Message-ID: <6afd4cfda011bb92d01acd85b72ca03c@192.168.1.37>
+Date: Fri, 06 May 2016 17:17:17 -0300
+Subject: Registration Link
+From: HumHub <social@example.com>
+To: rejapur@gmail.com
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="_=_swift_v4_1462565837_c04bea42133f287fcebd8b9372237286_=_"
+
+
+--_=_swift_v4_1462565837_c04bea42133f287fcebd8b9372237286_=_
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+BEM VINDO AO EVOKE
+
+Welcome to Evoke. Please click on the button below =
+to proceed with your registration.
+
+Sign up: http://192.168.1.37/humhub=
+/index.php?r=3Duser/auth/create-account&token=3D572cfa43dee93594274102
+=
+
+Powered by HumHub (http://www.humhub.org)
+
+--_=_swift_v4_1462565837_c04bea42133f287fcebd8b9372237286_=_
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "ht=
+tp://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns=3D"ht=
+tp://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv=3D"Con=
+tent-Type" content=3D"text/html; charset=3DUTF-8"/>
+        <meta name=3D=
+"viewport" content=3D"initial-scale=3D1.0"/>
+        <meta name=3D"format=
+-detection" content=3D"telephone=3Dno"/>
+
+        <title>Evoke</title>=
+
+        <link href=3D'http://fonts.googleapis.com/css?family=3DOpen+Sans=
+:300,100,400,600' rel=3D'stylesheet' type=3D'text/css'>
+            <styl=
+e type=3D"text/css">
+
+
+                .ReadMsgBody {
+             =
+       width: 100%;
+                    background-color: #ffffff;
+    =
+            }
+
+                .ExternalClass {
+                    w=
+idth: 100%;
+                    background-color: #ffffff;
+            =
+    }
+
+                .ExternalClass, .ExternalClass p, .ExternalClass=
+ span, .ExternalClass font, .ExternalClass td, .ExternalClass div {
+     =
+               line-height: 100%;
+                }
+
+                =
+html {
+                    width: 100%;
+                }
+
+        =
+        body {
+                    -webkit-text-size-adjust: none;
+    =
+                -ms-text-size-adjust: none;
+                }
+
+      =
+          body {
+                    margin: 0;
+                    pad=
+ding: 0;
+                }
+
+                table {
+               =
+     border-spacing: 0;
+                }
+
+                img {
+  =
+                  display: block !important;
+                }
+
+     =
+           table td {
+                    border-collapse: collapse;
+  =
+              }
+
+                .yshortcuts a {
+                    =
+border-bottom: none !important;
+                }
+
+                ht=
+ml, body {
+                    background-color: #ededed;
+             =
+       margin: 0;
+                    padding: 0;
+                }
+=
+
+                img {
+                    height: auto;
+            =
+        line-height: 100%;
+                    outline: none;
+         =
+           text-decoration: none;
+                    display: block;
+ =
+               }
+
+                br, strong br, b br, em br, i br {
+=
+                    line-height: 100%;
+                }
+
+           =
+     h1, h2, h3, h4, h5, h6 {
+                    line-height: 100% !impo=
+rtant;
+                    -webkit-font-smoothing: antialiased;
+       =
+         }
+
+                h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    =
+                color: #6fdbe8 !important;
+                }
+
+       =
+         h1 a:active, h2 a:active, h3 a:active, h4 a:active, h5 a:active, h=
+6 a:active {
+                    color: #6fdbe8!important;
+            =
+    }
+
+                h1 a:visited, h2 a:visited, h3 a:visited, h4 a:v=
+isited, h5 a:visited, h6 a:visited {
+                    color: #6fdbe8 !=
+important;
+                }
+
+                table td, table tr {
+=
+                    border-collapse: collapse;
+                }
+
+   =
+             .yshortcuts, .yshortcuts a, .yshortcuts a:link, .yshortcuts a:=
+visited, .yshortcuts a:hover, .yshortcuts a span {
+                    co=
+lor: black;
+                    text-decoration: none !important;
+     =
+               border-bottom: none !important;
+                    backgr=
+ound: none !important;
+                }
+
+                code {
+  =
+                  white-space: 300;
+                    word-break: break=
+-all;
+                }
+
+                span a {
+                 =
+   text-decoration: none !important;
+                }
+
+             =
+   a {
+                    text-decoration: none !important;
+          =
+      }
+
+                .default-edit-image {
+                    he=
+ight: 20px;
+                }
+
+                .nav-ul {
+          =
+          margin-left: -23px !important;
+                    margin-top: =
+0px !important;
+                    margin-bottom: 0px !important;
+    =
+            }
+
+                img {
+                    height: auto=
+ !important;
+                }
+
+                td[class=3D"image-270=
+px"] img {
+                    width: 270px !important;
+               =
+     height: auto !important;
+                    max-width: 270px !impor=
+tant;
+                }
+
+                td[class=3D"image-170px"] im=
+g {
+                    width: 170px !important;
+                    he=
+ight: auto !important;
+                    max-width: 170px !important;=
+
+                }
+
+                td[class=3D"image-185px"] img {=
+
+                    width: 185px !important;
+                    heigh=
+t: auto !important;
+                    max-width: 185px !important;
+  =
+              }
+
+                td[class=3D"image-124px"] img {
+    =
+                width: 124px !important;
+                    height: auto=
+ !important;
+                    max-width: 124px !important;
+         =
+       }
+
+                @media only screen and (max-width: 640px) {=
+
+                    body {
+                        width: auto !import=
+ant;
+                    }
+
+                    table[class=3D"contai=
+ner"] {
+                        width: 100% !important;
+               =
+         padding-left: 20px !important;
+                        padding-r=
+ight: 20px !important;
+                    }
+
+                    td[=
+class=3D"image-270px"] img {
+                        width: 100% !importa=
+nt;
+                        height: auto !important;
+                  =
+      max-width: 100% !important;
+                    }
+
+            =
+        td[class=3D"image-170px"] img {
+                        width: 10=
+0% !important;
+                        height: auto !important;
+       =
+                 max-width: 100% !important;
+                    }
+
+ =
+                   td[class=3D"image-185px"] img {
+                      =
+  width: 185px !important;
+                        height: auto !importan=
+t;
+                        max-width: 185px !important;
+               =
+     }
+
+                    td[class=3D"image-124px"] img {
+         =
+               width: 100% !important;
+                        height: au=
+to !important;
+                        max-width: 100% !important;
+    =
+                }
+
+                    td[class=3D"image-100-percent"] =
+img {
+                        width: 100% !important;
+                 =
+       height: auto !important;
+                        max-width: 100% !=
+important;
+                    }
+
+                    td[class=3D"sma=
+ll-image-100-percent"] img {
+                        width: 100% !importa=
+nt;
+                        height: auto !important;
+                  =
+  }
+
+                    table[class=3D"full-width"] {
+              =
+          width: 100% !important;
+                    }
+
+            =
+        table[class=3D"full-width-text"] {
+                        width:=
+ 100% !important;
+                        background-color: #ffffff;
+  =
+                      padding-left: 20px !important;
+                    =
+    padding-right: 20px !important;
+                    }
+
+          =
+          table[class=3D"full-width-text2"] {
+                        wid=
+th: 100% !important;
+                        background-color: #ffffff;=
+
+                        padding-left: 20px !important;
+               =
+         padding-right: 20px !important;
+                    }
+
+     =
+               table[class=3D"col-2-3img"] {
+                        widt=
+h: 50% !important;
+                        margin-right: 20px !important;=
+
+                    }
+
+                    table[class=3D"col-2-3img=
+-last"] {
+                        width: 50% !important;
+              =
+      }
+
+                    table[class=3D"col-2-footer"] {
+        =
+                width: 55% !important;
+                        margin-rig=
+ht: 20px !important;
+                    }
+
+                    table=
+[class=3D"col-2-footer-last"] {
+                        width: 40% !impor=
+tant;
+                    }
+
+                    table[class=3D"col-2=
+"] {
+                        width: 47% !important;
+                   =
+     margin-right: 20px !important;
+                    }
+
+          =
+          table[class=3D"col-2-last"] {
+                        width: 47=
+% !important;
+                    }
+
+                    table[class=
+=3D"col-3"] {
+                        width: 29% !important;
+          =
+              margin-right: 20px !important;
+                    }
+
+ =
+                   table[class=3D"col-3-last"] {
+                        =
+width: 29% !important;
+                    }
+
+                    tab=
+le[class=3D"row-2"] {
+                        width: 50% !important;
+  =
+                  }
+
+                    td[class=3D"text-center"] {
+=
+                        text-align: center !important;
+                  =
+  }
+
+                    table[class=3D"remove"] {
+                  =
+      display: none !important;
+                    }
+
+              =
+      td[class=3D"remove"] {
+                        display: none !impor=
+tant;
+                    }
+
+                    table[class=3D"fix-b=
+ox"] {
+                        padding-left: 20px !important;
+         =
+               padding-right: 20px !important;
+                    }
+=
+
+                    td[class=3D"fix-box"] {
+                        pa=
+dding-left: 20px !important;
+                        padding-right: 20px =
+!important;
+                    }
+
+                    td[class=3D"fo=
+nt-resize"] {
+                        font-size: 18px !important;
+     =
+                   line-height: 22px !important;
+                    }
+=
+
+                    table[class=3D"space-scale"] {
+                   =
+     width: 100% !important;
+                        float: none !importa=
+nt;
+                    }
+
+                    table[class=3D"clear-a=
+lign-640"] {
+                        float: none !important;
+          =
+          }
+
+                }
+
+                @media only screen =
+and (max-width: 479px) {
+                    body {
+                   =
+     font-size: 10px !important;
+                    }
+
+             =
+       table[class=3D"container"] {
+                        width: 100% !=
+important;
+                        padding-left: 10px !important;
+     =
+                   padding-right: 10px !important;
+                    }=
+
+
+                    table[class=3D"container2"] {
+                 =
+       width: 100% !important;
+                        float: none !impor=
+tant;
+
+                    }
+
+                    td[class=3D"full-=
+width"] img {
+                        width: 100% !important;
+         =
+               height: auto !important;
+                        max-width=
+: 100% !important;
+                        min-width: 124px !important;=
+
+                    }
+
+                    td[class=3D"image-270px"]=
+ img {
+                        width: 100% !important;
+                =
+        height: auto !important;
+                        max-width: 100% =
+!important;
+                        min-width: 124px !important;
+      =
+              }
+
+                    td[class=3D"image-170px"] img {
+=
+                        width: 100% !important;
+                        h=
+eight: auto !important;
+                        max-width: 100% !importan=
+t;
+                        min-width: 124px !important;
+               =
+     }
+
+                    td[class=3D"image-185px"] img {
+         =
+               width: 185px !important;
+                        height: a=
+uto !important;
+                        max-width: 185px !important;
+  =
+                      min-width: 124px !important;
+                    }=
+
+
+                    td[class=3D"image-124px"] img {
+               =
+         width: 100% !important;
+                        height: auto !im=
+portant;
+                        max-width: 100% !important;
+          =
+              min-width: 124px !important;
+                    }
+
+   =
+                 td[class=3D"image-100-percent"] img {
+                  =
+      width: 100% !important;
+                        height: auto !impor=
+tant;
+                        max-width: 100% !important;
+             =
+           min-width: 124px !important;
+                    }
+
+      =
+              td[class=3D"small-image-100-percent"] img {
+               =
+         width: 100% !important;
+                        height: auto !im=
+portant;
+                        max-width: 100% !important;
+          =
+              min-width: 124px !important;
+                    }
+
+   =
+                 table[class=3D"full-width"] {
+                        wi=
+dth: 100% !important;
+                    }
+
+                    tabl=
+e[class=3D"full-width-text"] {
+                        width: 100% !impor=
+tant;
+                        background-color: #ffffff;
+              =
+          padding-left: 20px !important;
+                        padding-=
+right: 20px !important;
+                    }
+
+                    ta=
+ble[class=3D"full-width-text2"] {
+                        width: 100% !im=
+portant;
+                        background-color: #ffffff;
+           =
+             padding-left: 20px !important;
+                        paddi=
+ng-right: 20px !important;
+                    }
+
+                   =
+ table[class=3D"col-2-footer"] {
+                        width: 100% !imp=
+ortant;
+                        margin-right: 0px !important;
+         =
+           }
+
+                    table[class=3D"col-2-footer-last"] {=
+
+                        width: 100% !important;
+                    }=
+
+
+                    table[class=3D"col-2"] {
+                      =
+  width: 100% !important;
+                        margin-right: 0px !impo=
+rtant;
+                    }
+
+                    table[class=3D"col-=
+2-last"] {
+                        width: 100% !important;
+
+         =
+           }
+
+                    table[class=3D"col-3"] {
+          =
+              width: 100% !important;
+                        margin-righ=
+t: 0px !important;
+                    }
+
+                    table[c=
+lass=3D"col-3-last"] {
+                        width: 100% !important;
+=
+
+                    }
+
+                    table[class=3D"row-2"] {=
+
+                        width: 100% !important;
+                    }=
+
+
+                    table[id=3D"col-underline"] {
+                 =
+       float: none !important;
+                        width: 100% !impor=
+tant;
+                        border-bottom: 1px solid #eee;
+          =
+          }
+
+                    td[id=3D"col-underline"] {
+         =
+               float: none !important;
+                        width: 100=
+% !important;
+                        border-bottom: 1px solid #eee;
+  =
+                  }
+
+                    td[class=3D"col-underline"] {=
+
+                        float: none !important;
+                      =
+  width: 100% !important;
+                        border-bottom: 1px soli=
+d #eee;
+                    }
+
+                    td[class=3D"text-c=
+enter"] {
+                        text-align: center !important;
+
+   =
+                 }
+
+                    div[class=3D"text-center"] {
+=
+                        text-align: center !important;
+                  =
+  }
+
+                    table[id=3D"clear-padding"] {
+              =
+          padding: 0 !important;
+                    }
+
+             =
+       td[id=3D"clear-padding"] {
+                        padding: 0 !imp=
+ortant;
+                    }
+
+                    td[class=3D"clear-=
+padding"] {
+                        padding: 0 !important;
+            =
+        }
+
+                    table[class=3D"remove-479"] {
+        =
+                display: none !important;
+                    }
+
+    =
+                td[class=3D"remove-479"] {
+                        displa=
+y: none !important;
+                    }
+
+                    table[=
+class=3D"clear-align"] {
+                        float: none !important;=
+
+                    }
+
+                    table[class=3D"width-smal=
+l"] {
+                        width: 100% !important;
+                 =
+   }
+
+                    table[class=3D"fix-box"] {
+                =
+        padding-left: 0px !important;
+                        padding-rig=
+ht: 0px !important;
+                    }
+
+                    td[cla=
+ss=3D"fix-box"] {
+                        padding-left: 0px !important;=
+
+                        padding-right: 0px !important;
+               =
+     }
+
+                    td[class=3D"font-resize"] {
+             =
+           font-size: 14px !important;
+                    }
+
+       =
+             td[class=3D"increase-Height"] {
+                        heig=
+ht: 10px !important;
+                    }
+
+                    td[cl=
+ass=3D"increase-Height-20"] {
+                        height: 20px !impor=
+tant;
+                    }
+
+                }
+
+                @=
+media only screen and (max-width: 320px) {
+                    table[clas=
+s=3D"width-small"] {
+                        width: 125px !important;
+ =
+                   }
+
+                    img[class=3D"image-100-percen=
+t"] {
+                        width: 100% !important;
+                 =
+       height: auto !important;
+                        max-width: 100% !=
+important;
+                        min-width: 124px !important;
+       =
+             }
+
+                }
+            </style>
+
+         =
+       </head>
+
+    <body style=3D"font-size:12px; font-family:Open San=
+s, Arial,Tahoma, Helvetica, sans-serif; background-color:#ededed; ">
+    =
+   =20
+        <!--start 100% wrapper (white background) -->
+        <tab=
+le width=3D"100%" id=3D"mainStructure" border=3D"0" cellspacing=3D"0" cellp=
+adding=3D"0" style=3D"background-color:#ededed;">
+
+
+            <!-- =
+START VIEW HEADER -->
+            <tr>
+                <td align=3D"cen=
+ter" valign=3D"top" style=3D"background-color: #708fa0; ">
+
+           =
+         <!-- start container 600 -->
+                    <table width=3D=
+"600" align=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" cla=
+ss=3D"container" bgcolor=3D"#708fa0"
+                           style=3D"=
+background-color: #708fa0; ">
+                        <tr>
+            =
+                <td valign=3D"top">
+
+                                <t=
+able width=3D"560" align=3D"center" border=3D"0" cellspacing=3D"0" cellpadd=
+ing=3D"0" class=3D"full-width"
+                                       bgc=
+olor=3D"#708fa0" style=3D"background-color: #708fa0; ">
+                 =
+                   <!-- start space -->
+                                 =
+   <tr>
+                                        <td valign=3D"top" height=
+=3D"10">
+                                        </td>
+                =
+                    </tr>
+                                    <!-- end sp=
+ace -->
+                                    <tr>
+                      =
+                  <td valign=3D"top">
+
+                                =
+            <!-- start container -->
+                                    =
+        <table width=3D"100%" align=3D"center" border=3D"0" cellspacing=3D"=
+0" cellpadding=3D"0">
+
+                                                =
+<tr>
+                                                    <td valign=3D"to=
+p">
+
+                                                        <!-- start=
+ view online -->
+                                                        =
+<table align=3D"left" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"
+  =
+                                                             class=3D"conta=
+iner2">
+                                                            <tr>=
+
+                                                                <td>
+ =
+                                                                   <table a=
+lign=3D"center" border=3D"0" cellspacing=3D"0"
+                          =
+                                                 cellpadding=3D"0">
+     =
+                                                                   <tr>
+ =
+                                                                           =
+<td style=3D"font-size: 12px; line-height: 27px; font-family:Open Sans, Ari=
+al,Tahoma, Helvetica, sans-serif; color:#ffffff; font-weight:300; text-alig=
+n:center;">
+                                                             =
+                   <span
+                                                =
+                                    style=3D"text-decoration: none; color: =
+#ffffff;"><a
+                                                            =
+                            href=3D"http://192.168.1.37/humhub/index.php?r=
+=3D"
+                                                                    =
+                    style=3D"font-size: 18px; line-height: 27px; font-famil=
+y:Open Sans, Arial,Tahoma, Helvetica, sans-serif; color:#ffffff; font-weigh=
+t:600; text-align:left;">Evoke</a></span>
+
+                            =
+                                                </td>
+                   =
+                                                     </tr>
+              =
+                                                      </table>
+          =
+                                                      </td>
+             =
+                                               </tr>
+                    =
+                                        <!-- start space -->
+            =
+                                                <tr>
+                    =
+                                            <td valign=3D"top" class=3D"inc=
+rease-Height">
+                                                          =
+      </td>
+                                                            <=
+/tr>
+                                                            <!-- end=
+ space -->
+                                                        </tabl=
+e>
+                                                        <!-- end view =
+online -->
+
+                                                    </td>=
+
+                                                </tr>
+                =
+                            </table>
+                                    =
+        <!-- end container  -->
+                                        <=
+/td>
+                                    </tr>
+
+                     =
+               <!-- start space -->
+                                    <=
+tr>
+                                        <td valign=3D"top" height=3D"=
+10">
+                                        </td>
+                    =
+                </tr>
+                                    <!-- end space =
+-->
+
+                                    <!-- start space -->
+       =
+                             <tr>
+                                       =
+ <td valign=3D"top" class=3D"increase-Height">
+                          =
+              </td>
+                                    </tr>
+         =
+                           <!-- end space -->
+
+                        =
+        </table>
+                                <!-- end container 600--=
+>
+                            </td>
+                        </tr>
+   =
+                 </table>
+
+                </td>
+            </tr>
+=
+            <!-- END VIEW HEADER -->
+
+
+            <!--START TOP NAVI=
+GATION =E2=80=8BLAYOUT-->
+            <tr>
+                <td valign=
+=3D"top">
+                    <table width=3D"100%" align=3D"center" bord=
+er=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+
+
+                     =
+   <!-- START CONTAINER NAVIGATION -->
+                        <tr>
+   =
+                         <td height=3D"30">
+
+                          =
+  </td>
+                        </tr>
+
+
+                        <!-=
+- END CONTAINER NAVIGATION -->
+
+                    </table>
+        =
+        </td>
+            </tr>
+            <!--END TOP NAVIGATION =
+=E2=80=8BLAYOUT-->
+
+
+            <!-- START HEIGHT SPACE 20PX LAYOUT-=
+1 -->
+            <tr>
+                <td valign=3D"top" align=3D"cent=
+er" class=3D"fix-box">
+                    <table width=3D"600" height=3D=
+"20" align=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"
+  =
+                         style=3D"background-color: #ffffff; border-top-lef=
+t-radius: 4px; border-top-right-radius: 4px;"
+                           =
+class=3D"full-width">
+                        <tr>
+                    =
+        <td valign=3D"top" height=3D"20">
+                        </tr>=
+
+                    </table>
+                </td>
+            </tr>=
+
+            <!-- END HEIGHT SPACE 20PX LAYOUT-1-->
+
+
+            <=
+!-- START EMAIL CONTENT -->
+
+            <tr>
+    <td align=3D"center=
+" valign=3D"top" class=3D"fix-box">
+
+        <!-- start  container widt=
+h 600px -->
+        <table width=3D"600" align=3D"center" border=3D"0" ce=
+llspacing=3D"0" cellpadding=3D"0" class=3D"container"
+               styl=
+e=3D"background-color: #ffffff; ">
+
+
+            <tr>
+             =
+   <td valign=3D"top">
+
+                    <!-- start container width =
+560px -->
+                    <table width=3D"540" align=3D"center" borde=
+r=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"full-width"
+        =
+                   bgcolor=3D"#ffffff" style=3D"background-color:#ffffff;">=
+
+
+
+                        <!-- start text content -->
+            =
+            <tr>
+                            <td valign=3D"top">
+      =
+                          <table width=3D"100%" border=3D"0" cellspacing=3D=
+"0" cellpadding=3D"0" align=3D"center">
+                                 =
+   <tr>
+                                        <td valign=3D"top" width=
+=3D"auto" align=3D"center">
+                                            <=
+!-- start button -->
+                                            <table b=
+order=3D"0" align=3D"center" cellpadding=3D"0" cellspacing=3D"0">
+       =
+                                         <tr>
+                           =
+                         <td width=3D"auto" align=3D"center" valign=3D"midd=
+le" height=3D"28"
+                                                       =
+ style=3D" background-color:#ffffff; background-clip: padding-box; font-siz=
+e:26px; font-family:Open Sans, Arial,Tahoma, Helvetica, sans-serif; text-al=
+ign:center;  color:#a3a2a2; font-weight: 300; padding-left:18px; padding-ri=
+ght:18px; ">
+
+                                                        <=
+span style=3D"color: #555555; font-weight: 300;">
+                       =
+                                     Bem vindo ao <strong>Evoke</strong>   =
+                                                     </span>
+            =
+                                        </td>
+                           =
+                     </tr>
+                                            </=
+table>
+                                            <!-- end button -->
+=
+                                        </td>
+                           =
+         </tr>
+
+
+                                </table>
+         =
+                   </td>
+                        </tr>
+                =
+        <!-- end text content -->
+
+
+                    </table>
+  =
+                  <!-- end  container width 560px -->
+                </t=
+d>
+            </tr>
+        </table>
+        <!-- end  container wid=
+th 600px -->
+    </td>
+</tr>
+
+
+<tr>
+    <td align=3D"center" va=
+lign=3D"top" class=3D"fix-box">
+
+        <!-- start  container width 60=
+0px -->
+        <table width=3D"600" align=3D"center" border=3D"0" cellsp=
+acing=3D"0" cellpadding=3D"0" class=3D"container"
+               style=3D=
+"background-color: #ffffff; ">
+
+
+            <tr>
+                <=
+td valign=3D"top">
+
+                    <!-- start container width 560p=
+x -->
+                    <table width=3D"540" align=3D"center" border=3D=
+"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"full-width"
+            =
+               bgcolor=3D"#ffffff" style=3D"background-color:#ffffff;">
+=
+
+
+                        <!-- start text content -->
+               =
+         <tr>
+                            <td valign=3D"top">
+         =
+                       <table width=3D"100%" border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0" align=3D"center">
+
+
+                              =
+      <!-- start text content -->
+                                    <tr=
+>
+                                        <td valign=3D"top">
+         =
+                                   <table border=3D"0" cellspacing=3D"0" ce=
+llpadding=3D"0" align=3D"center">
+
+
+                                 =
+               <!--start space height -->
+                               =
+                 <tr>
+                                                   =
+ <td height=3D"15"></td>
+                                                =
+</tr>
+                                                <!--end space heigh=
+t -->
+
+                                                <tr>
+         =
+                                           <td style=3D"font-size: 14px; li=
+ne-height: 22px; font-family:Open Sans,Arial,Tahoma, Helvetica, sans-serif;=
+ color:#777777; font-weight:300; text-align:center; ">
+
+               =
+                                         Welcome to Evoke. Please click on =
+the button below to proceed with your registration.
+                     =
+                               </td>
+                                    =
+            </tr>
+
+                                                <!--=
+start space height -->
+                                                <t=
+r>
+                                                    <td height=3D"15">=
+</td>
+                                                </tr>
+           =
+                                     <!--end space height -->
+
+
+     =
+                                       </table>
+                         =
+               </td>
+                                    </tr>
+        =
+                            <!-- end text content -->
+
+                =
+                    <tr>
+                                        <td vali=
+gn=3D"top" width=3D"auto" align=3D"center">
+                             =
+               <!-- start button -->
+                                    =
+        <table border=3D"0" align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0">
+                                                <tr>
+          =
+                                          <td width=3D"auto" align=3D"cente=
+r" valign=3D"middle" height=3D"32"
+                                      =
+                  style=3D" background-color:#708fa0;  border-radius:5px; b=
+ackground-clip: padding-box;font-size:14px; font-family:Open Sans, Arial,Ta=
+homa, Helvetica, sans-serif; text-align:center;  color:#ffffff; font-weight=
+: 600; padding-left:30px; padding-right:30px; padding-top: 5px; padding-bot=
+tom: 5px;">
+
+                                                        <s=
+pan style=3D"color: #ffffff; font-weight: 300;">
+                        =
+                                    <a href=3D"http://192.168.1.37/humhub/i=
+ndex.php?r=3Duser%2Fauth%2Fcreate-account&token=3D572cfa43dee93594274102"=
+
+                                                               style=3D"=
+text-decoration: none; color: #ffffff; font-weight: 300;">
+              =
+                                                  <strong>Sign up</strong>=
+
+                                                            </a>
+     =
+                                                   </span>
+              =
+                                      </td>
+
+                          =
+                      </tr>
+                                            <=
+/table>
+                                            <!-- end button -->=
+
+                                        </td>
+
+                     =
+               </tr>
+
+                                </table>
+      =
+                      </td>
+                        </tr>
+             =
+           <!-- end text content -->
+
+                        <!--start=
+ space height -->
+                        <tr>
+                        =
+    <td height=3D"20"></td>
+                        </tr>
+             =
+           <!--end space height -->
+
+
+                    </table>
+=
+                    <!-- end  container width 560px -->
+                <=
+/td>
+            </tr>
+        </table>
+        <!-- end  container w=
+idth 600px -->
+    </td>
+</tr>
+
+            <!-- END EMAIL CONTENT =
+-->
+
+
+            <!--START FOOTER LAYOUT-->
+            <tr>
+   =
+             <td valign=3D"top">
+                    <table width=3D"100%=
+" align=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+
+=
+
+                        <!-- START CONTAINER  -->
+                    =
+    <tr>
+                            <td align=3D"center" valign=3D"top">=
+
+
+                                <!-- start footer container -->
+   =
+                             <table width=3D"600" align=3D"center" border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"container">
+
+      =
+                              <tr>
+                                      =
+  <td valign=3D"top">
+
+
+                                            <=
+!-- start footer -->
+                                            <table w=
+idth=3D"560" align=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=3D=
+"0"
+                                                   class=3D"full-widt=
+h">
+
+                                                <!-- start space -=
+->
+                                                <tr>
+               =
+                                     <td valign=3D"top" height=3D"20">
+  =
+                                                  </td>
+                 =
+                               </tr>
+                                    =
+            <!-- end space -->
+
+                                       =
+         <tr>
+                                                    <td val=
+ign=3D"middle">
+
+                                                      =
+  <table align=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"=
+
+                                                               class=3D"=
+container2">
+
+                                                         =
+   <tr>
+                                                                <=
+td align=3D"center" valign=3D"top"
+                                      =
+                              style=3D"font-size: 11px;  line-height: 18px;=
+ font-weight:300; text-align: center; font-family:Open Sans,Arail,Tahoma, H=
+elvetica, Arial, sans-serif;">
+                                          =
+                          <span style=3D"text-decoration: none; color: #a3a=
+2a2;">Powered by <a
+                                                     =
+                       href=3D"http://www.humhub.org"
+                   =
+                                                         style=3D"text-deco=
+ration: none; color: #a3a2a2;">HumHub</a> </span>
+
+                    =
+                                            </td>
+
+                    =
+                                        </tr>
+
+                        =
+                                    <!-- start space -->
+                =
+                                            <tr>
+                        =
+                                        <td valign=3D"top" class=3D"increas=
+e-Height-20">
+                                                           =
+     </td>
+                                                            </=
+tr>
+                                                            <!-- end =
+space -->
+
+                                                        </ta=
+ble>
+
+                                                    </td>
+     =
+                                           </tr>
+
+                     =
+                           <!-- start space -->
+                         =
+                       <tr>
+                                             =
+       <td valign=3D"top" height=3D"20">
+                                =
+                    </td>
+                                               =
+ </tr>
+                                                <!-- end space -->=
+
+
+                                            </table>
+              =
+                              <!-- end footer -->
+                       =
+                 </td>
+                                    </tr>
+      =
+                          </table>
+                                <!-- e=
+nd footer container -->
+
+                            </td>
+          =
+              </tr>
+
+                        <!-- END CONTAINER  -->
+=
+
+                    </table>
+                </td>
+            </tr>=
+
+            <!--END FOOTER =E2=80=8BLAYOUT-->
+
+        </table>
+  =
+          </body>
+</html>
+
+
+--_=_swift_v4_1462565837_c04bea42133f287fcebd8b9372237286_=_--
