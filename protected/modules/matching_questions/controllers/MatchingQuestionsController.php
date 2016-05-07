@@ -1,18 +1,19 @@
 <?php
 
-namespace humhub\modules\missions\controllers;
+namespace app\modules\matching_questions\controllers;
 
 use Yii;
-use humhub\modules\missions\models\Missions;
-use humhub\modules\missions\models\MissionsSearch;
+use app\modules\matching_questions\models\MatchingAnswers;
+use app\modules\matching_questions\models\MatchingQuestions;
+use app\modules\matching_questions\models\MatchingQuestionsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * MissionsController implements the CRUD actions for Missions model.
+ * MatchingQuestionsController implements the CRUD actions for MatchingQuestions model.
  */
-class MissionsController extends Controller
+class MatchingQuestionsController extends Controller
 {
     /**
      * @inheritdoc
@@ -28,16 +29,29 @@ class MissionsController extends Controller
             ],
         ];
     }
-
+    
+    public function actionMatching()
+    {
+            //$projects = $this->findAll();
+            $questions = MatchingQuestions::find()->all();
+            
+            // $posts = MatchingQuestions::find()
+            // ->joinWith('matchingAnswers')
+            // ->all();
+            
+            return $this->render('matching', compact('questions'));
+   
+    }
+    
     /**
-     * Lists all Missions models.
+     * Lists all MatchingQuestions models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new MissionsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $searchModel = new MatchingQuestionsSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);   
+        
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -45,7 +59,7 @@ class MissionsController extends Controller
     }
 
     /**
-     * Displays a single Missions model.
+     * Displays a single MatchingQuestions model.
      * @param integer $id
      * @return mixed
      */
@@ -57,13 +71,13 @@ class MissionsController extends Controller
     }
 
     /**
-     * Creates a new Missions model.
+     * Creates a new MatchingQuestions model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Missions();
+        $model = new MatchingQuestions();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -75,7 +89,7 @@ class MissionsController extends Controller
     }
 
     /**
-     * Updates an existing Missions model.
+     * Updates an existing MatchingQuestions model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -94,7 +108,7 @@ class MissionsController extends Controller
     }
 
     /**
-     * Deletes an existing Missions model.
+     * Deletes an existing MatchingQuestions model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -107,15 +121,15 @@ class MissionsController extends Controller
     }
 
     /**
-     * Finds the Missions model based on its primary key value.
+     * Finds the MatchingQuestions model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Missions the loaded model
+     * @return MatchingQuestions the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Missions::findOne($id)) !== null) {
+        if (($model = MatchingQuestions::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

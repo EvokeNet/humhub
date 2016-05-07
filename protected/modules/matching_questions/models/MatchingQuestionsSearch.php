@@ -1,16 +1,16 @@
 <?php
 
-namespace humhub\modules\missions\models;
+namespace app\modules\matching_questions\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use humhub\modules\missions\models\Missions;
+use app\modules\matching_questions\models\MatchingQuestions;
 
 /**
- * MissionsSearch represents the model behind the search form about `app\modules\missions\models\Missions`.
+ * MatchingQuestionsSearch represents the model behind the search form about `app\modules\matching_questions\models\MatchingQuestions`.
  */
-class MissionsSearch extends Missions
+class MatchingQuestionsSearch extends MatchingQuestions
 {
     /**
      * @inheritdoc
@@ -19,7 +19,7 @@ class MissionsSearch extends Missions
     {
         return [
             [['id'], 'integer'],
-            [['title', 'description', 'created', 'modified'], 'safe'],
+            [['description', 'type', 'created', 'modified'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class MissionsSearch extends Missions
      */
     public function search($params)
     {
-        $query = Missions::find();
+        $query = MatchingQuestions::find();
 
         // add conditions that should always apply here
 
@@ -64,8 +64,8 @@ class MissionsSearch extends Missions
             'modified' => $this->modified,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'description', $this->description]);
+        $query->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere(['like', 'type', $this->type]);
 
         return $dataProvider;
     }

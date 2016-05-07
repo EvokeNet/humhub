@@ -1,0 +1,11 @@
+{
+    "id": "matching_questions",
+    "name": "Matching Questions",
+    "description": "Evoke's Matching",
+    "keywords": ["matching_questions"],
+    "version": "0.0.1",
+    "humhub": {
+        "minVersion": "0.20"
+    },
+    "screenshots": []
+}
