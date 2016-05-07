@@ -106,6 +106,7 @@ $_SERVER = [
     'REQUEST_TIME_FLOAT' => 1460802883.178
     'REQUEST_TIME' => 1460802883
 ]
+<<<<<<< HEAD
 2016-05-05 05:21:47 [192.168.1.35][-][-][error][yii\base\ErrorException:2] exception 'yii\base\ErrorException' with message 'scandir(/srv/www/humhub/protected/modules): failed to open dir: No such file or directory' in /srv/www/humhub/protected/humhub/components/bootstrap/ModuleAutoLoader.php:33
 Stack trace:
 #0 [internal function]: yii\base\ErrorHandler->handleError(2, 'scandir(/srv/ww...', '/srv/www/humhub...', 33, Array)
@@ -271,11 +272,34 @@ Stack trace:
     'HTTP_HOST' => '192.168.1.37'
     'HTTP_CONNECTION' => 'keep-alive'
     'HTTP_CACHE_CONTROL' => 'max-age=0'
+=======
+2016-05-03 19:22:02 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][error][yii\base\InvalidParamException] exception 'yii\base\InvalidParamException' with message 'The view file does not exist: /srv/www/humhub/protected/modules/superhero_identity/views/matching/index.php' in /srv/www/humhub/protected/vendor/yiisoft/yii2/base/View.php:226
+Stack trace:
+#0 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/View.php(149): yii\base\View->renderFile('/srv/www/humhub...', Array, Object(humhub\modules\superhero_identity\controllers\MatchingController))
+#1 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(377): yii\base\View->render('index', Array, Object(humhub\modules\superhero_identity\controllers\MatchingController))
+#2 /srv/www/humhub/protected/modules/superhero_identity/controllers/MatchingController.php(23): yii\base\Controller->render('index')
+#3 [internal function]: humhub\modules\superhero_identity\controllers\MatchingController->actionIndex()
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#5 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('', Array)
+#7 /srv/www/humhub/protected/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('superhero_ident...', Array)
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(humhub\components\Request))
+#9 /srv/www/humhub/index.php(25): yii\base\Application->run()
+#10 {main}
+2016-05-03 19:22:02 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][info][application] $_GET = [
+    'r' => 'superhero_identity/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+>>>>>>> origin/gf-superhero_identity
     'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
     'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
     'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
     'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+<<<<<<< HEAD
     'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; _csrf=fb42635d988d6c031aea0dac6230aa153e988cc2312414d88961863e2871903ea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22v79GsKjcK_MKPr-xUgb4xGQYZopZEN0_%22%3B%7D; PHPSESSID=rki8rl3anbd7qpvqp4u2rr8rq6; _identity=8854555c76fa821f44c095fb0c4ddaeca03b75a2361cedc86101e8720c89c813a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22867ac87f-0429-4329-8d12-5563bc5bf6e9%22%2C2592000%5D%22%3B%7D'
     'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at 192.168.1.37 Port 80</address>
@@ -285,12 +309,24 @@ Stack trace:
     'SERVER_ADDR' => '192.168.1.37'
     'SERVER_PORT' => '80'
     'REMOTE_ADDR' => '192.168.1.35'
+=======
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; pm_user-tags-panel=expanded; pm_user-spaces-panel=expanded; pm_new-people-panel=expanded; pm_user-statistics-panel=expanded; pm_space-members-panel=expanded; PHPSESSID=9mevo6nko9egdhotsnnhv02a45; _csrf=9e3936087ab9ce830dcb7bc27b4b0bd46ac842586dc43def563cf8aae9c591baa%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22edMU5BtUwhPTd2hbPITdOQxIx2WX_897%22%3B%7D; i18next=en; _identity=3ce52eb6731106f6fe61300e43d9a46f6378ffe4b437981fa5fa45981652edd4a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22d0e9b807-b1b3-4af4-b07f-ed111fc1c8be%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '172.16.2.210'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '172.16.3.211'
+>>>>>>> origin/gf-superhero_identity
     'DOCUMENT_ROOT' => '/srv/www'
     'REQUEST_SCHEME' => 'http'
     'CONTEXT_PREFIX' => ''
     'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
     'SERVER_ADMIN' => 'webmaster@localhost'
     'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+<<<<<<< HEAD
     'REMOTE_PORT' => '53584'
     'GATEWAY_INTERFACE' => 'CGI/1.1'
     'SERVER_PROTOCOL' => 'HTTP/1.1'
@@ -414,6 +450,42 @@ Stack trace:
 #12 {main}
 2016-05-05 05:23:48 [192.168.1.35][-][-][info][application] $_SERVER = [
     'HTTP_HOST' => '192.168.1.37'
+=======
+    'REMOTE_PORT' => '54955'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=superhero_identity%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=superhero_identity%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1462314122.045
+    'REQUEST_TIME' => 1462314122
+]
+2016-05-03 19:22:42 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][error][yii\base\UnknownMethodException] exception 'yii\base\UnknownMethodException' with message 'Calling unknown method: humhub\components\View::start()' in /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Component.php:285
+Stack trace:
+#0 /srv/www/humhub/protected/modules/superhero_identity/views/matching/index.php(3): yii\base\Component->__call('start', Array)
+#1 /srv/www/humhub/protected/modules/superhero_identity/views/matching/index.php(3): humhub\components\View->start('topbar')
+#2 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/View.php(325): require('/srv/www/humhub...')
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/View.php(247): yii\base\View->renderPhpFile('/srv/www/humhub...', Array)
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/View.php(149): yii\base\View->renderFile('/srv/www/humhub...', Array, Object(humhub\modules\superhero_identity\controllers\MatchingController))
+#5 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(377): yii\base\View->render('index', Array, Object(humhub\modules\superhero_identity\controllers\MatchingController))
+#6 /srv/www/humhub/protected/modules/superhero_identity/controllers/MatchingController.php(23): yii\base\Controller->render('index')
+#7 [internal function]: humhub\modules\superhero_identity\controllers\MatchingController->actionIndex()
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#9 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#10 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('', Array)
+#11 /srv/www/humhub/protected/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('superhero_ident...', Array)
+#12 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(humhub\components\Request))
+#13 /srv/www/humhub/index.php(25): yii\base\Application->run()
+#14 {main}
+2016-05-03 19:22:42 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][info][application] $_GET = [
+    'r' => 'superhero_identity/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+>>>>>>> origin/gf-superhero_identity
     'HTTP_CONNECTION' => 'keep-alive'
     'HTTP_CACHE_CONTROL' => 'max-age=0'
     'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
@@ -421,6 +493,7 @@ Stack trace:
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
     'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
     'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+<<<<<<< HEAD
     'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; _csrf=fb42635d988d6c031aea0dac6230aa153e988cc2312414d88961863e2871903ea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22v79GsKjcK_MKPr-xUgb4xGQYZopZEN0_%22%3B%7D; PHPSESSID=rki8rl3anbd7qpvqp4u2rr8rq6; _identity=8854555c76fa821f44c095fb0c4ddaeca03b75a2361cedc86101e8720c89c813a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22867ac87f-0429-4329-8d12-5563bc5bf6e9%22%2C2592000%5D%22%3B%7D'
     'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at 192.168.1.37 Port 80</address>
@@ -430,12 +503,24 @@ Stack trace:
     'SERVER_ADDR' => '192.168.1.37'
     'SERVER_PORT' => '80'
     'REMOTE_ADDR' => '192.168.1.35'
+=======
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; pm_user-tags-panel=expanded; pm_user-spaces-panel=expanded; pm_new-people-panel=expanded; pm_user-statistics-panel=expanded; pm_space-members-panel=expanded; PHPSESSID=9mevo6nko9egdhotsnnhv02a45; _csrf=9e3936087ab9ce830dcb7bc27b4b0bd46ac842586dc43def563cf8aae9c591baa%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22edMU5BtUwhPTd2hbPITdOQxIx2WX_897%22%3B%7D; i18next=en; _identity=3ce52eb6731106f6fe61300e43d9a46f6378ffe4b437981fa5fa45981652edd4a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22d0e9b807-b1b3-4af4-b07f-ed111fc1c8be%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '172.16.2.210'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '172.16.3.211'
+>>>>>>> origin/gf-superhero_identity
     'DOCUMENT_ROOT' => '/srv/www'
     'REQUEST_SCHEME' => 'http'
     'CONTEXT_PREFIX' => ''
     'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
     'SERVER_ADMIN' => 'webmaster@localhost'
     'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+<<<<<<< HEAD
     'REMOTE_PORT' => '53606'
     'GATEWAY_INTERFACE' => 'CGI/1.1'
     'SERVER_PROTOCOL' => 'HTTP/1.1'
@@ -671,11 +756,37 @@ Stack trace:
 $_SERVER = [
     'HTTP_HOST' => '192.168.1.37'
     'HTTP_CONNECTION' => 'keep-alive'
+=======
+    'REMOTE_PORT' => '54971'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=superhero_identity%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=superhero_identity%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1462314162.132
+    'REQUEST_TIME' => 1462314162
+]
+2016-05-03 19:23:08 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][error][yii\base\ErrorException:1] exception 'yii\base\ErrorException' with message 'Call to undefined function __()' in /srv/www/humhub/protected/modules/superhero_identity/views/matching/index.php:9
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2016-05-03 19:23:07 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][info][application] $_GET = [
+    'r' => 'superhero_identity/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+>>>>>>> origin/gf-superhero_identity
     'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
     'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
     'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
     'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+<<<<<<< HEAD
     'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; PHPSESSID=rki8rl3anbd7qpvqp4u2rr8rq6; _identity=8854555c76fa821f44c095fb0c4ddaeca03b75a2361cedc86101e8720c89c813a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22867ac87f-0429-4329-8d12-5563bc5bf6e9%22%2C2592000%5D%22%3B%7D; _csrf=a838ac4a43f42a2740041eed6679284dc48b8aa64c6b3b8bdc1b7618d3dfcad1a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22MKqxLODn1ZmxAelyRd-E2ikeg16Ufs8P%22%3B%7D'
     'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at 192.168.1.37 Port 80</address>
@@ -685,12 +796,24 @@ $_SERVER = [
     'SERVER_ADDR' => '192.168.1.37'
     'SERVER_PORT' => '80'
     'REMOTE_ADDR' => '192.168.1.35'
+=======
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; pm_user-tags-panel=expanded; pm_user-spaces-panel=expanded; pm_new-people-panel=expanded; pm_user-statistics-panel=expanded; pm_space-members-panel=expanded; PHPSESSID=9mevo6nko9egdhotsnnhv02a45; _csrf=9e3936087ab9ce830dcb7bc27b4b0bd46ac842586dc43def563cf8aae9c591baa%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22edMU5BtUwhPTd2hbPITdOQxIx2WX_897%22%3B%7D; i18next=en; _identity=3ce52eb6731106f6fe61300e43d9a46f6378ffe4b437981fa5fa45981652edd4a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22d0e9b807-b1b3-4af4-b07f-ed111fc1c8be%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '172.16.2.210'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '172.16.3.211'
+>>>>>>> origin/gf-superhero_identity
     'DOCUMENT_ROOT' => '/srv/www'
     'REQUEST_SCHEME' => 'http'
     'CONTEXT_PREFIX' => ''
     'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
     'SERVER_ADMIN' => 'webmaster@localhost'
     'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+<<<<<<< HEAD
     'REMOTE_PORT' => '58438'
     'GATEWAY_INTERFACE' => 'CGI/1.1'
     'SERVER_PROTOCOL' => 'HTTP/1.1'
@@ -721,11 +844,37 @@ Stack trace:
 $_SERVER = [
     'HTTP_HOST' => '192.168.1.37'
     'HTTP_CONNECTION' => 'keep-alive'
+=======
+    'REMOTE_PORT' => '54976'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=superhero_identity%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=superhero_identity%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1462314187.989
+    'REQUEST_TIME' => 1462314187
+]
+2016-05-03 19:23:22 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][error][yii\base\ErrorException:1] exception 'yii\base\ErrorException' with message 'Call to undefined function __()' in /srv/www/humhub/protected/modules/superhero_identity/views/matching/index.php:9
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2016-05-03 19:23:22 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][info][application] $_GET = [
+    'r' => 'superhero_identity/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+>>>>>>> origin/gf-superhero_identity
     'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
     'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
     'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
     'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+<<<<<<< HEAD
     'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; PHPSESSID=rki8rl3anbd7qpvqp4u2rr8rq6; _identity=8854555c76fa821f44c095fb0c4ddaeca03b75a2361cedc86101e8720c89c813a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22867ac87f-0429-4329-8d12-5563bc5bf6e9%22%2C2592000%5D%22%3B%7D; _csrf=a838ac4a43f42a2740041eed6679284dc48b8aa64c6b3b8bdc1b7618d3dfcad1a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22MKqxLODn1ZmxAelyRd-E2ikeg16Ufs8P%22%3B%7D'
     'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at 192.168.1.37 Port 80</address>
@@ -735,12 +884,24 @@ $_SERVER = [
     'SERVER_ADDR' => '192.168.1.37'
     'SERVER_PORT' => '80'
     'REMOTE_ADDR' => '192.168.1.35'
+=======
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; pm_user-tags-panel=expanded; pm_user-spaces-panel=expanded; pm_new-people-panel=expanded; pm_user-statistics-panel=expanded; pm_space-members-panel=expanded; PHPSESSID=9mevo6nko9egdhotsnnhv02a45; _csrf=9e3936087ab9ce830dcb7bc27b4b0bd46ac842586dc43def563cf8aae9c591baa%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22edMU5BtUwhPTd2hbPITdOQxIx2WX_897%22%3B%7D; i18next=en; _identity=3ce52eb6731106f6fe61300e43d9a46f6378ffe4b437981fa5fa45981652edd4a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22d0e9b807-b1b3-4af4-b07f-ed111fc1c8be%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '172.16.2.210'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '172.16.3.211'
+>>>>>>> origin/gf-superhero_identity
     'DOCUMENT_ROOT' => '/srv/www'
     'REQUEST_SCHEME' => 'http'
     'CONTEXT_PREFIX' => ''
     'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
     'SERVER_ADMIN' => 'webmaster@localhost'
     'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+<<<<<<< HEAD
     'REMOTE_PORT' => '58461'
     'GATEWAY_INTERFACE' => 'CGI/1.1'
     'SERVER_PROTOCOL' => 'HTTP/1.1'
@@ -822,11 +983,37 @@ Stack trace:
 $_SERVER = [
     'HTTP_HOST' => '192.168.1.37'
     'HTTP_CONNECTION' => 'keep-alive'
+=======
+    'REMOTE_PORT' => '54977'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=superhero_identity%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=superhero_identity%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1462314202.792
+    'REQUEST_TIME' => 1462314202
+]
+2016-05-03 19:24:08 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][error][yii\base\ErrorException:1] exception 'yii\base\ErrorException' with message 'Call to undefined function __()' in /srv/www/humhub/protected/modules/superhero_identity/views/matching/index.php:11
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2016-05-03 19:24:08 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][info][application] $_GET = [
+    'r' => 'superhero_identity/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+>>>>>>> origin/gf-superhero_identity
     'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
     'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
     'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
     'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+<<<<<<< HEAD
     'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; PHPSESSID=rki8rl3anbd7qpvqp4u2rr8rq6; _identity=8854555c76fa821f44c095fb0c4ddaeca03b75a2361cedc86101e8720c89c813a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22867ac87f-0429-4329-8d12-5563bc5bf6e9%22%2C2592000%5D%22%3B%7D; _csrf=a838ac4a43f42a2740041eed6679284dc48b8aa64c6b3b8bdc1b7618d3dfcad1a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22MKqxLODn1ZmxAelyRd-E2ikeg16Ufs8P%22%3B%7D'
     'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at 192.168.1.37 Port 80</address>
@@ -836,12 +1023,24 @@ $_SERVER = [
     'SERVER_ADDR' => '192.168.1.37'
     'SERVER_PORT' => '80'
     'REMOTE_ADDR' => '192.168.1.35'
+=======
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; pm_user-tags-panel=expanded; pm_user-spaces-panel=expanded; pm_new-people-panel=expanded; pm_user-statistics-panel=expanded; pm_space-members-panel=expanded; PHPSESSID=9mevo6nko9egdhotsnnhv02a45; _csrf=9e3936087ab9ce830dcb7bc27b4b0bd46ac842586dc43def563cf8aae9c591baa%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22edMU5BtUwhPTd2hbPITdOQxIx2WX_897%22%3B%7D; i18next=en; _identity=3ce52eb6731106f6fe61300e43d9a46f6378ffe4b437981fa5fa45981652edd4a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22d0e9b807-b1b3-4af4-b07f-ed111fc1c8be%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '172.16.2.210'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '172.16.3.211'
+>>>>>>> origin/gf-superhero_identity
     'DOCUMENT_ROOT' => '/srv/www'
     'REQUEST_SCHEME' => 'http'
     'CONTEXT_PREFIX' => ''
     'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
     'SERVER_ADMIN' => 'webmaster@localhost'
     'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+<<<<<<< HEAD
     'REMOTE_PORT' => '59983'
     'GATEWAY_INTERFACE' => 'CGI/1.1'
     'SERVER_PROTOCOL' => 'HTTP/1.1'
@@ -868,6 +1067,29 @@ Stack trace:
 
 $_SERVER = [
     'HTTP_HOST' => '192.168.1.37'
+=======
+    'REMOTE_PORT' => '54994'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=superhero_identity%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=superhero_identity%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1462314248.772
+    'REQUEST_TIME' => 1462314248
+]
+2016-05-03 19:25:03 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][error][yii\base\ErrorException:4] exception 'yii\base\ErrorException' with message 'syntax error, unexpected '<'' in /srv/www/humhub/protected/modules/superhero_identity/views/matching/index.php:15
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2016-05-03 19:25:03 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][info][application] $_GET = [
+    'r' => 'superhero_identity/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+>>>>>>> origin/gf-superhero_identity
     'HTTP_CONNECTION' => 'keep-alive'
     'HTTP_CACHE_CONTROL' => 'max-age=0'
     'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
@@ -875,6 +1097,7 @@ $_SERVER = [
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
     'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
     'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+<<<<<<< HEAD
     'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; PHPSESSID=rki8rl3anbd7qpvqp4u2rr8rq6; _identity=8854555c76fa821f44c095fb0c4ddaeca03b75a2361cedc86101e8720c89c813a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22867ac87f-0429-4329-8d12-5563bc5bf6e9%22%2C2592000%5D%22%3B%7D; _csrf=a838ac4a43f42a2740041eed6679284dc48b8aa64c6b3b8bdc1b7618d3dfcad1a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22MKqxLODn1ZmxAelyRd-E2ikeg16Ufs8P%22%3B%7D'
     'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at 192.168.1.37 Port 80</address>
@@ -884,12 +1107,24 @@ $_SERVER = [
     'SERVER_ADDR' => '192.168.1.37'
     'SERVER_PORT' => '80'
     'REMOTE_ADDR' => '192.168.1.35'
+=======
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; pm_user-tags-panel=expanded; pm_user-spaces-panel=expanded; pm_new-people-panel=expanded; pm_user-statistics-panel=expanded; pm_space-members-panel=expanded; PHPSESSID=9mevo6nko9egdhotsnnhv02a45; _csrf=9e3936087ab9ce830dcb7bc27b4b0bd46ac842586dc43def563cf8aae9c591baa%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22edMU5BtUwhPTd2hbPITdOQxIx2WX_897%22%3B%7D; i18next=en; _identity=3ce52eb6731106f6fe61300e43d9a46f6378ffe4b437981fa5fa45981652edd4a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22d0e9b807-b1b3-4af4-b07f-ed111fc1c8be%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '172.16.2.210'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '172.16.3.211'
+>>>>>>> origin/gf-superhero_identity
     'DOCUMENT_ROOT' => '/srv/www'
     'REQUEST_SCHEME' => 'http'
     'CONTEXT_PREFIX' => ''
     'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
     'SERVER_ADMIN' => 'webmaster@localhost'
     'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+<<<<<<< HEAD
     'REMOTE_PORT' => '60096'
     'GATEWAY_INTERFACE' => 'CGI/1.1'
     'SERVER_PROTOCOL' => 'HTTP/1.1'
@@ -916,6 +1151,29 @@ Stack trace:
 
 $_SERVER = [
     'HTTP_HOST' => '192.168.1.37'
+=======
+    'REMOTE_PORT' => '55021'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=superhero_identity%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=superhero_identity%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1462314303.763
+    'REQUEST_TIME' => 1462314303
+]
+2016-05-03 19:26:01 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][error][yii\base\ErrorException:4] exception 'yii\base\ErrorException' with message 'syntax error, unexpected '<'' in /srv/www/humhub/protected/modules/superhero_identity/views/matching/index.php:17
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2016-05-03 19:26:01 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][info][application] $_GET = [
+    'r' => 'superhero_identity/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+>>>>>>> origin/gf-superhero_identity
     'HTTP_CONNECTION' => 'keep-alive'
     'HTTP_CACHE_CONTROL' => 'max-age=0'
     'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
@@ -923,6 +1181,7 @@ $_SERVER = [
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
     'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
     'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+<<<<<<< HEAD
     'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; PHPSESSID=rki8rl3anbd7qpvqp4u2rr8rq6; _identity=8854555c76fa821f44c095fb0c4ddaeca03b75a2361cedc86101e8720c89c813a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22867ac87f-0429-4329-8d12-5563bc5bf6e9%22%2C2592000%5D%22%3B%7D; _csrf=a838ac4a43f42a2740041eed6679284dc48b8aa64c6b3b8bdc1b7618d3dfcad1a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22MKqxLODn1ZmxAelyRd-E2ikeg16Ufs8P%22%3B%7D'
     'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at 192.168.1.37 Port 80</address>
@@ -932,12 +1191,24 @@ $_SERVER = [
     'SERVER_ADDR' => '192.168.1.37'
     'SERVER_PORT' => '80'
     'REMOTE_ADDR' => '192.168.1.35'
+=======
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; pm_user-tags-panel=expanded; pm_user-spaces-panel=expanded; pm_new-people-panel=expanded; pm_user-statistics-panel=expanded; pm_space-members-panel=expanded; PHPSESSID=9mevo6nko9egdhotsnnhv02a45; _csrf=9e3936087ab9ce830dcb7bc27b4b0bd46ac842586dc43def563cf8aae9c591baa%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22edMU5BtUwhPTd2hbPITdOQxIx2WX_897%22%3B%7D; i18next=en; _identity=3ce52eb6731106f6fe61300e43d9a46f6378ffe4b437981fa5fa45981652edd4a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22d0e9b807-b1b3-4af4-b07f-ed111fc1c8be%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '172.16.2.210'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '172.16.3.211'
+>>>>>>> origin/gf-superhero_identity
     'DOCUMENT_ROOT' => '/srv/www'
     'REQUEST_SCHEME' => 'http'
     'CONTEXT_PREFIX' => ''
     'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
     'SERVER_ADMIN' => 'webmaster@localhost'
     'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+<<<<<<< HEAD
     'REMOTE_PORT' => '60100'
     'GATEWAY_INTERFACE' => 'CGI/1.1'
     'SERVER_PROTOCOL' => 'HTTP/1.1'
@@ -964,6 +1235,42 @@ Stack trace:
 
 $_SERVER = [
     'HTTP_HOST' => '192.168.1.37'
+=======
+    'REMOTE_PORT' => '55033'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=superhero_identity%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=superhero_identity%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1462314361.951
+    'REQUEST_TIME' => 1462314361
+]
+2016-05-03 19:26:35 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][error][yii\base\ErrorException:2] exception 'yii\base\ErrorException' with message 'Missing argument 2 for yii\BaseYii::t(), called in /srv/www/humhub/protected/modules/superhero_identity/views/matching/index.php on line 15 and defined' in /srv/www/humhub/protected/vendor/yiisoft/yii2/BaseYii.php:498
+Stack trace:
+#0 /srv/www/humhub/protected/vendor/yiisoft/yii2/BaseYii.php(498): yii\base\ErrorHandler->handleError(2, 'Missing argumen...', '/srv/www/humhub...', 498, Array)
+#1 /srv/www/humhub/protected/modules/superhero_identity/views/matching/index.php(15): yii\BaseYii::t('Congratulations...')
+#2 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/View.php(325): require('/srv/www/humhub...')
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/View.php(247): yii\base\View->renderPhpFile('/srv/www/humhub...', Array)
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/View.php(149): yii\base\View->renderFile('/srv/www/humhub...', Array, Object(humhub\modules\superhero_identity\controllers\MatchingController))
+#5 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(377): yii\base\View->render('index', Array, Object(humhub\modules\superhero_identity\controllers\MatchingController))
+#6 /srv/www/humhub/protected/modules/superhero_identity/controllers/MatchingController.php(23): yii\base\Controller->render('index')
+#7 [internal function]: humhub\modules\superhero_identity\controllers\MatchingController->actionIndex()
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#9 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#10 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('', Array)
+#11 /srv/www/humhub/protected/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('superhero_ident...', Array)
+#12 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(humhub\components\Request))
+#13 /srv/www/humhub/index.php(25): yii\base\Application->run()
+#14 {main}
+2016-05-03 19:26:35 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][info][application] $_GET = [
+    'r' => 'superhero_identity/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+>>>>>>> origin/gf-superhero_identity
     'HTTP_CONNECTION' => 'keep-alive'
     'HTTP_CACHE_CONTROL' => 'max-age=0'
     'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
@@ -971,6 +1278,7 @@ $_SERVER = [
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
     'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
     'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+<<<<<<< HEAD
     'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; PHPSESSID=rki8rl3anbd7qpvqp4u2rr8rq6; _identity=8854555c76fa821f44c095fb0c4ddaeca03b75a2361cedc86101e8720c89c813a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22867ac87f-0429-4329-8d12-5563bc5bf6e9%22%2C2592000%5D%22%3B%7D; _csrf=a838ac4a43f42a2740041eed6679284dc48b8aa64c6b3b8bdc1b7618d3dfcad1a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22MKqxLODn1ZmxAelyRd-E2ikeg16Ufs8P%22%3B%7D'
     'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at 192.168.1.37 Port 80</address>
@@ -980,12 +1288,24 @@ $_SERVER = [
     'SERVER_ADDR' => '192.168.1.37'
     'SERVER_PORT' => '80'
     'REMOTE_ADDR' => '192.168.1.35'
+=======
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; pm_user-tags-panel=expanded; pm_user-spaces-panel=expanded; pm_new-people-panel=expanded; pm_user-statistics-panel=expanded; pm_space-members-panel=expanded; PHPSESSID=9mevo6nko9egdhotsnnhv02a45; _csrf=9e3936087ab9ce830dcb7bc27b4b0bd46ac842586dc43def563cf8aae9c591baa%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22edMU5BtUwhPTd2hbPITdOQxIx2WX_897%22%3B%7D; i18next=en; _identity=3ce52eb6731106f6fe61300e43d9a46f6378ffe4b437981fa5fa45981652edd4a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22d0e9b807-b1b3-4af4-b07f-ed111fc1c8be%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '172.16.2.210'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '172.16.3.211'
+>>>>>>> origin/gf-superhero_identity
     'DOCUMENT_ROOT' => '/srv/www'
     'REQUEST_SCHEME' => 'http'
     'CONTEXT_PREFIX' => ''
     'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
     'SERVER_ADMIN' => 'webmaster@localhost'
     'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+<<<<<<< HEAD
     'REMOTE_PORT' => '60106'
     'GATEWAY_INTERFACE' => 'CGI/1.1'
     'SERVER_PROTOCOL' => 'HTTP/1.1'
@@ -1012,6 +1332,42 @@ Stack trace:
 
 $_SERVER = [
     'HTTP_HOST' => '192.168.1.37'
+=======
+    'REMOTE_PORT' => '55045'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=superhero_identity%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=superhero_identity%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1462314395.698
+    'REQUEST_TIME' => 1462314395
+]
+2016-05-03 19:26:59 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][error][yii\base\ErrorException:2] exception 'yii\base\ErrorException' with message 'Missing argument 2 for yii\BaseYii::t(), called in /srv/www/humhub/protected/modules/superhero_identity/views/matching/index.php on line 15 and defined' in /srv/www/humhub/protected/vendor/yiisoft/yii2/BaseYii.php:498
+Stack trace:
+#0 /srv/www/humhub/protected/vendor/yiisoft/yii2/BaseYii.php(498): yii\base\ErrorHandler->handleError(2, 'Missing argumen...', '/srv/www/humhub...', 498, Array)
+#1 /srv/www/humhub/protected/modules/superhero_identity/views/matching/index.php(15): yii\BaseYii::t('Congratulations...')
+#2 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/View.php(325): require('/srv/www/humhub...')
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/View.php(247): yii\base\View->renderPhpFile('/srv/www/humhub...', Array)
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/View.php(149): yii\base\View->renderFile('/srv/www/humhub...', Array, Object(humhub\modules\superhero_identity\controllers\MatchingController))
+#5 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(377): yii\base\View->render('index', Array, Object(humhub\modules\superhero_identity\controllers\MatchingController))
+#6 /srv/www/humhub/protected/modules/superhero_identity/controllers/MatchingController.php(23): yii\base\Controller->render('index')
+#7 [internal function]: humhub\modules\superhero_identity\controllers\MatchingController->actionIndex()
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#9 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#10 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('', Array)
+#11 /srv/www/humhub/protected/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('superhero_ident...', Array)
+#12 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(humhub\components\Request))
+#13 /srv/www/humhub/index.php(25): yii\base\Application->run()
+#14 {main}
+2016-05-03 19:26:59 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][info][application] $_GET = [
+    'r' => 'superhero_identity/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+>>>>>>> origin/gf-superhero_identity
     'HTTP_CONNECTION' => 'keep-alive'
     'HTTP_CACHE_CONTROL' => 'max-age=0'
     'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
@@ -1019,6 +1375,7 @@ $_SERVER = [
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
     'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
     'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+<<<<<<< HEAD
     'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; PHPSESSID=rki8rl3anbd7qpvqp4u2rr8rq6; _identity=8854555c76fa821f44c095fb0c4ddaeca03b75a2361cedc86101e8720c89c813a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22867ac87f-0429-4329-8d12-5563bc5bf6e9%22%2C2592000%5D%22%3B%7D; _csrf=a838ac4a43f42a2740041eed6679284dc48b8aa64c6b3b8bdc1b7618d3dfcad1a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22MKqxLODn1ZmxAelyRd-E2ikeg16Ufs8P%22%3B%7D'
     'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at 192.168.1.37 Port 80</address>
@@ -1028,12 +1385,24 @@ $_SERVER = [
     'SERVER_ADDR' => '192.168.1.37'
     'SERVER_PORT' => '80'
     'REMOTE_ADDR' => '192.168.1.35'
+=======
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; pm_user-tags-panel=expanded; pm_user-spaces-panel=expanded; pm_new-people-panel=expanded; pm_user-statistics-panel=expanded; pm_space-members-panel=expanded; PHPSESSID=9mevo6nko9egdhotsnnhv02a45; _csrf=9e3936087ab9ce830dcb7bc27b4b0bd46ac842586dc43def563cf8aae9c591baa%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22edMU5BtUwhPTd2hbPITdOQxIx2WX_897%22%3B%7D; i18next=en; _identity=3ce52eb6731106f6fe61300e43d9a46f6378ffe4b437981fa5fa45981652edd4a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22d0e9b807-b1b3-4af4-b07f-ed111fc1c8be%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '172.16.2.210'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '172.16.3.211'
+>>>>>>> origin/gf-superhero_identity
     'DOCUMENT_ROOT' => '/srv/www'
     'REQUEST_SCHEME' => 'http'
     'CONTEXT_PREFIX' => ''
     'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
     'SERVER_ADMIN' => 'webmaster@localhost'
     'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+<<<<<<< HEAD
     'REMOTE_PORT' => '60116'
     'GATEWAY_INTERFACE' => 'CGI/1.1'
     'SERVER_PROTOCOL' => 'HTTP/1.1'
@@ -1060,6 +1429,42 @@ Stack trace:
 
 $_SERVER = [
     'HTTP_HOST' => '192.168.1.37'
+=======
+    'REMOTE_PORT' => '55048'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=superhero_identity%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=superhero_identity%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1462314419.474
+    'REQUEST_TIME' => 1462314419
+]
+2016-05-03 19:27:08 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][error][yii\base\ErrorException:2] exception 'yii\base\ErrorException' with message 'Missing argument 2 for yii\BaseYii::t(), called in /srv/www/humhub/protected/modules/superhero_identity/views/matching/index.php on line 15 and defined' in /srv/www/humhub/protected/vendor/yiisoft/yii2/BaseYii.php:498
+Stack trace:
+#0 /srv/www/humhub/protected/vendor/yiisoft/yii2/BaseYii.php(498): yii\base\ErrorHandler->handleError(2, 'Missing argumen...', '/srv/www/humhub...', 498, Array)
+#1 /srv/www/humhub/protected/modules/superhero_identity/views/matching/index.php(15): yii\BaseYii::t('Congratulations...')
+#2 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/View.php(325): require('/srv/www/humhub...')
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/View.php(247): yii\base\View->renderPhpFile('/srv/www/humhub...', Array)
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/View.php(149): yii\base\View->renderFile('/srv/www/humhub...', Array, Object(humhub\modules\superhero_identity\controllers\MatchingController))
+#5 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(377): yii\base\View->render('index', Array, Object(humhub\modules\superhero_identity\controllers\MatchingController))
+#6 /srv/www/humhub/protected/modules/superhero_identity/controllers/MatchingController.php(23): yii\base\Controller->render('index')
+#7 [internal function]: humhub\modules\superhero_identity\controllers\MatchingController->actionIndex()
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#9 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#10 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('', Array)
+#11 /srv/www/humhub/protected/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('superhero_ident...', Array)
+#12 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(humhub\components\Request))
+#13 /srv/www/humhub/index.php(25): yii\base\Application->run()
+#14 {main}
+2016-05-03 19:27:08 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][info][application] $_GET = [
+    'r' => 'superhero_identity/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+>>>>>>> origin/gf-superhero_identity
     'HTTP_CONNECTION' => 'keep-alive'
     'HTTP_CACHE_CONTROL' => 'max-age=0'
     'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
@@ -1067,6 +1472,7 @@ $_SERVER = [
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
     'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
     'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+<<<<<<< HEAD
     'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; PHPSESSID=rki8rl3anbd7qpvqp4u2rr8rq6; _identity=8854555c76fa821f44c095fb0c4ddaeca03b75a2361cedc86101e8720c89c813a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22867ac87f-0429-4329-8d12-5563bc5bf6e9%22%2C2592000%5D%22%3B%7D; _csrf=a838ac4a43f42a2740041eed6679284dc48b8aa64c6b3b8bdc1b7618d3dfcad1a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22MKqxLODn1ZmxAelyRd-E2ikeg16Ufs8P%22%3B%7D'
     'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at 192.168.1.37 Port 80</address>
@@ -1076,12 +1482,24 @@ $_SERVER = [
     'SERVER_ADDR' => '192.168.1.37'
     'SERVER_PORT' => '80'
     'REMOTE_ADDR' => '192.168.1.35'
+=======
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; pm_user-tags-panel=expanded; pm_user-spaces-panel=expanded; pm_new-people-panel=expanded; pm_user-statistics-panel=expanded; pm_space-members-panel=expanded; PHPSESSID=9mevo6nko9egdhotsnnhv02a45; _csrf=9e3936087ab9ce830dcb7bc27b4b0bd46ac842586dc43def563cf8aae9c591baa%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22edMU5BtUwhPTd2hbPITdOQxIx2WX_897%22%3B%7D; i18next=en; _identity=3ce52eb6731106f6fe61300e43d9a46f6378ffe4b437981fa5fa45981652edd4a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22d0e9b807-b1b3-4af4-b07f-ed111fc1c8be%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '172.16.2.210'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '172.16.3.211'
+>>>>>>> origin/gf-superhero_identity
     'DOCUMENT_ROOT' => '/srv/www'
     'REQUEST_SCHEME' => 'http'
     'CONTEXT_PREFIX' => ''
     'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
     'SERVER_ADMIN' => 'webmaster@localhost'
     'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+<<<<<<< HEAD
     'REMOTE_PORT' => '60120'
     'GATEWAY_INTERFACE' => 'CGI/1.1'
     'SERVER_PROTOCOL' => 'HTTP/1.1'
@@ -1216,11 +1634,47 @@ Stack trace:
 
 $_SERVER = [
     'HTTP_HOST' => '192.168.1.37'
+=======
+    'REMOTE_PORT' => '55049'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=superhero_identity%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=superhero_identity%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1462314428.542
+    'REQUEST_TIME' => 1462314428
+]
+2016-05-03 19:27:26 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][error][yii\base\ErrorException:8] exception 'yii\base\ErrorException' with message 'Undefined variable: matching_questions' in /srv/www/humhub/protected/modules/superhero_identity/views/matching/index.php:28
+Stack trace:
+#0 /srv/www/humhub/protected/modules/superhero_identity/views/matching/index.php(28): yii\base\ErrorHandler->handleError(8, 'Undefined varia...', '/srv/www/humhub...', 28, Array)
+#1 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/View.php(325): require('/srv/www/humhub...')
+#2 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/View.php(247): yii\base\View->renderPhpFile('/srv/www/humhub...', Array)
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/View.php(149): yii\base\View->renderFile('/srv/www/humhub...', Array, Object(humhub\modules\superhero_identity\controllers\MatchingController))
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(377): yii\base\View->render('index', Array, Object(humhub\modules\superhero_identity\controllers\MatchingController))
+#5 /srv/www/humhub/protected/modules/superhero_identity/controllers/MatchingController.php(23): yii\base\Controller->render('index')
+#6 [internal function]: humhub\modules\superhero_identity\controllers\MatchingController->actionIndex()
+#7 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#9 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('', Array)
+#10 /srv/www/humhub/protected/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('superhero_ident...', Array)
+#11 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(humhub\components\Request))
+#12 /srv/www/humhub/index.php(25): yii\base\Application->run()
+#13 {main}
+2016-05-03 19:27:26 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][info][application] $_GET = [
+    'r' => 'superhero_identity/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+>>>>>>> origin/gf-superhero_identity
     'HTTP_CONNECTION' => 'keep-alive'
     'HTTP_CACHE_CONTROL' => 'max-age=0'
     'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
     'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+<<<<<<< HEAD
     'HTTP_REFERER' => 'http://192.168.1.37/humhub/'
     'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
     'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
@@ -1233,12 +1687,26 @@ $_SERVER = [
     'SERVER_ADDR' => '192.168.1.37'
     'SERVER_PORT' => '80'
     'REMOTE_ADDR' => '192.168.1.35'
+=======
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; pm_user-tags-panel=expanded; pm_user-spaces-panel=expanded; pm_new-people-panel=expanded; pm_user-statistics-panel=expanded; pm_space-members-panel=expanded; PHPSESSID=9mevo6nko9egdhotsnnhv02a45; _csrf=9e3936087ab9ce830dcb7bc27b4b0bd46ac842586dc43def563cf8aae9c591baa%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22edMU5BtUwhPTd2hbPITdOQxIx2WX_897%22%3B%7D; i18next=en; _identity=3ce52eb6731106f6fe61300e43d9a46f6378ffe4b437981fa5fa45981652edd4a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22d0e9b807-b1b3-4af4-b07f-ed111fc1c8be%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '172.16.2.210'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '172.16.3.211'
+>>>>>>> origin/gf-superhero_identity
     'DOCUMENT_ROOT' => '/srv/www'
     'REQUEST_SCHEME' => 'http'
     'CONTEXT_PREFIX' => ''
     'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
     'SERVER_ADMIN' => 'webmaster@localhost'
     'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+<<<<<<< HEAD
     'REMOTE_PORT' => '61132'
     'GATEWAY_INTERFACE' => 'CGI/1.1'
     'SERVER_PROTOCOL' => 'HTTP/1.1'
@@ -1311,6 +1779,36 @@ Stack trace:
 
 $_SERVER = [
     'HTTP_HOST' => '192.168.1.37'
+=======
+    'REMOTE_PORT' => '55057'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=superhero_identity%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=superhero_identity%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1462314446.038
+    'REQUEST_TIME' => 1462314446
+]
+2016-05-03 20:53:22 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][error][yii\base\UnknownPropertyException] exception 'yii\base\UnknownPropertyException' with message 'Getting unknown property: humhub\modules\superhero_identity\controllers\MatchingController::MatchingQuestion' in /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Component.php:143
+Stack trace:
+#0 /srv/www/humhub/protected/modules/superhero_identity/controllers/MatchingController.php(24): yii\base\Component->__get('MatchingQuestio...')
+#1 [internal function]: humhub\modules\superhero_identity\controllers\MatchingController->actionIndex()
+#2 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('', Array)
+#5 /srv/www/humhub/protected/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('superhero_ident...', Array)
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(humhub\components\Request))
+#7 /srv/www/humhub/index.php(25): yii\base\Application->run()
+#8 {main}
+2016-05-03 20:53:22 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][info][application] $_GET = [
+    'r' => 'superhero_identity/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+>>>>>>> origin/gf-superhero_identity
     'HTTP_CONNECTION' => 'keep-alive'
     'HTTP_CACHE_CONTROL' => 'max-age=0'
     'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
@@ -1318,6 +1816,7 @@ $_SERVER = [
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
     'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
     'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+<<<<<<< HEAD
     'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; PHPSESSID=rki8rl3anbd7qpvqp4u2rr8rq6; _identity=8854555c76fa821f44c095fb0c4ddaeca03b75a2361cedc86101e8720c89c813a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22867ac87f-0429-4329-8d12-5563bc5bf6e9%22%2C2592000%5D%22%3B%7D; _csrf=a838ac4a43f42a2740041eed6679284dc48b8aa64c6b3b8bdc1b7618d3dfcad1a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22MKqxLODn1ZmxAelyRd-E2ikeg16Ufs8P%22%3B%7D'
     'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at 192.168.1.37 Port 80</address>
@@ -1327,12 +1826,24 @@ $_SERVER = [
     'SERVER_ADDR' => '192.168.1.37'
     'SERVER_PORT' => '80'
     'REMOTE_ADDR' => '192.168.1.35'
+=======
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; pm_user-tags-panel=expanded; pm_user-spaces-panel=expanded; pm_new-people-panel=expanded; pm_user-statistics-panel=expanded; pm_space-members-panel=expanded; PHPSESSID=9mevo6nko9egdhotsnnhv02a45; _csrf=9e3936087ab9ce830dcb7bc27b4b0bd46ac842586dc43def563cf8aae9c591baa%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22edMU5BtUwhPTd2hbPITdOQxIx2WX_897%22%3B%7D; i18next=en; _identity=3ce52eb6731106f6fe61300e43d9a46f6378ffe4b437981fa5fa45981652edd4a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22d0e9b807-b1b3-4af4-b07f-ed111fc1c8be%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '172.16.2.210'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '172.16.3.211'
+>>>>>>> origin/gf-superhero_identity
     'DOCUMENT_ROOT' => '/srv/www'
     'REQUEST_SCHEME' => 'http'
     'CONTEXT_PREFIX' => ''
     'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
     'SERVER_ADMIN' => 'webmaster@localhost'
     'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+<<<<<<< HEAD
     'REMOTE_PORT' => '61145'
     'GATEWAY_INTERFACE' => 'CGI/1.1'
     'SERVER_PROTOCOL' => 'HTTP/1.1'
@@ -1354,6 +1865,29 @@ Stack trace:
 
 $_SERVER = [
     'HTTP_HOST' => '192.168.1.37'
+=======
+    'REMOTE_PORT' => '59009'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=superhero_identity%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=superhero_identity%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1462319602.728
+    'REQUEST_TIME' => 1462319602
+]
+2016-05-03 20:54:08 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][error][yii\base\ErrorException:1] exception 'yii\base\ErrorException' with message 'Class 'humhub\modules\superhero_identity\controllers\MatchingQuestion' not found' in /srv/www/humhub/protected/modules/superhero_identity/controllers/MatchingController.php:23
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2016-05-03 20:54:08 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][info][application] $_GET = [
+    'r' => 'superhero_identity/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+>>>>>>> origin/gf-superhero_identity
     'HTTP_CONNECTION' => 'keep-alive'
     'HTTP_CACHE_CONTROL' => 'max-age=0'
     'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
@@ -1361,6 +1895,7 @@ $_SERVER = [
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
     'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
     'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+<<<<<<< HEAD
     'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; PHPSESSID=rki8rl3anbd7qpvqp4u2rr8rq6; _identity=8854555c76fa821f44c095fb0c4ddaeca03b75a2361cedc86101e8720c89c813a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22867ac87f-0429-4329-8d12-5563bc5bf6e9%22%2C2592000%5D%22%3B%7D; _csrf=a838ac4a43f42a2740041eed6679284dc48b8aa64c6b3b8bdc1b7618d3dfcad1a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22MKqxLODn1ZmxAelyRd-E2ikeg16Ufs8P%22%3B%7D'
     'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at 192.168.1.37 Port 80</address>
@@ -1370,12 +1905,24 @@ $_SERVER = [
     'SERVER_ADDR' => '192.168.1.37'
     'SERVER_PORT' => '80'
     'REMOTE_ADDR' => '192.168.1.35'
+=======
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; pm_user-tags-panel=expanded; pm_user-spaces-panel=expanded; pm_new-people-panel=expanded; pm_user-statistics-panel=expanded; pm_space-members-panel=expanded; PHPSESSID=9mevo6nko9egdhotsnnhv02a45; _csrf=9e3936087ab9ce830dcb7bc27b4b0bd46ac842586dc43def563cf8aae9c591baa%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22edMU5BtUwhPTd2hbPITdOQxIx2WX_897%22%3B%7D; i18next=en; _identity=3ce52eb6731106f6fe61300e43d9a46f6378ffe4b437981fa5fa45981652edd4a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22d0e9b807-b1b3-4af4-b07f-ed111fc1c8be%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '172.16.2.210'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '172.16.3.211'
+>>>>>>> origin/gf-superhero_identity
     'DOCUMENT_ROOT' => '/srv/www'
     'REQUEST_SCHEME' => 'http'
     'CONTEXT_PREFIX' => ''
     'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
     'SERVER_ADMIN' => 'webmaster@localhost'
     'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+<<<<<<< HEAD
     'REMOTE_PORT' => '61166'
     'GATEWAY_INTERFACE' => 'CGI/1.1'
     'SERVER_PROTOCOL' => 'HTTP/1.1'
@@ -1397,6 +1944,29 @@ Stack trace:
 
 $_SERVER = [
     'HTTP_HOST' => '192.168.1.37'
+=======
+    'REMOTE_PORT' => '59021'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=superhero_identity%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=superhero_identity%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1462319648.073
+    'REQUEST_TIME' => 1462319648
+]
+2016-05-03 21:33:58 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][error][yii\base\ErrorException:1] exception 'yii\base\ErrorException' with message 'Class 'humhub\modules\superhero_identity\controllers\MatchingQuestion' not found' in /srv/www/humhub/protected/modules/superhero_identity/controllers/MatchingController.php:23
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2016-05-03 21:33:58 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][info][application] $_GET = [
+    'r' => 'superhero_identity/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+>>>>>>> origin/gf-superhero_identity
     'HTTP_CONNECTION' => 'keep-alive'
     'HTTP_CACHE_CONTROL' => 'max-age=0'
     'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
@@ -1404,6 +1974,7 @@ $_SERVER = [
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
     'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
     'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+<<<<<<< HEAD
     'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; PHPSESSID=rki8rl3anbd7qpvqp4u2rr8rq6; _identity=8854555c76fa821f44c095fb0c4ddaeca03b75a2361cedc86101e8720c89c813a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22867ac87f-0429-4329-8d12-5563bc5bf6e9%22%2C2592000%5D%22%3B%7D; _csrf=a838ac4a43f42a2740041eed6679284dc48b8aa64c6b3b8bdc1b7618d3dfcad1a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22MKqxLODn1ZmxAelyRd-E2ikeg16Ufs8P%22%3B%7D'
     'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at 192.168.1.37 Port 80</address>
@@ -1413,12 +1984,24 @@ $_SERVER = [
     'SERVER_ADDR' => '192.168.1.37'
     'SERVER_PORT' => '80'
     'REMOTE_ADDR' => '192.168.1.35'
+=======
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; pm_user-tags-panel=expanded; pm_user-spaces-panel=expanded; pm_new-people-panel=expanded; pm_user-statistics-panel=expanded; pm_space-members-panel=expanded; PHPSESSID=9mevo6nko9egdhotsnnhv02a45; _csrf=9e3936087ab9ce830dcb7bc27b4b0bd46ac842586dc43def563cf8aae9c591baa%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22edMU5BtUwhPTd2hbPITdOQxIx2WX_897%22%3B%7D; i18next=en; _identity=3ce52eb6731106f6fe61300e43d9a46f6378ffe4b437981fa5fa45981652edd4a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22d0e9b807-b1b3-4af4-b07f-ed111fc1c8be%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '172.16.2.210'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '172.16.3.211'
+>>>>>>> origin/gf-superhero_identity
     'DOCUMENT_ROOT' => '/srv/www'
     'REQUEST_SCHEME' => 'http'
     'CONTEXT_PREFIX' => ''
     'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
     'SERVER_ADMIN' => 'webmaster@localhost'
     'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+<<<<<<< HEAD
     'REMOTE_PORT' => '61222'
     'GATEWAY_INTERFACE' => 'CGI/1.1'
     'SERVER_PROTOCOL' => 'HTTP/1.1'
@@ -1440,6 +2023,29 @@ Stack trace:
 
 $_SERVER = [
     'HTTP_HOST' => '192.168.1.37'
+=======
+    'REMOTE_PORT' => '60464'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=superhero_identity%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=superhero_identity%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1462322038.123
+    'REQUEST_TIME' => 1462322038
+]
+2016-05-03 23:26:39 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][error][yii\base\ErrorException:1] exception 'yii\base\ErrorException' with message 'Class 'humhub\modules\superhero_identity\controllers\MatchingQuestion' not found' in /srv/www/humhub/protected/modules/superhero_identity/controllers/MatchingController.php:23
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2016-05-03 23:26:39 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][info][application] $_GET = [
+    'r' => 'superhero_identity/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+>>>>>>> origin/gf-superhero_identity
     'HTTP_CONNECTION' => 'keep-alive'
     'HTTP_CACHE_CONTROL' => 'max-age=0'
     'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
@@ -1447,6 +2053,7 @@ $_SERVER = [
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
     'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
     'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+<<<<<<< HEAD
     'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; PHPSESSID=rki8rl3anbd7qpvqp4u2rr8rq6; _identity=8854555c76fa821f44c095fb0c4ddaeca03b75a2361cedc86101e8720c89c813a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22867ac87f-0429-4329-8d12-5563bc5bf6e9%22%2C2592000%5D%22%3B%7D; _csrf=a838ac4a43f42a2740041eed6679284dc48b8aa64c6b3b8bdc1b7618d3dfcad1a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22MKqxLODn1ZmxAelyRd-E2ikeg16Ufs8P%22%3B%7D'
     'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at 192.168.1.37 Port 80</address>
@@ -1456,12 +2063,24 @@ $_SERVER = [
     'SERVER_ADDR' => '192.168.1.37'
     'SERVER_PORT' => '80'
     'REMOTE_ADDR' => '192.168.1.35'
+=======
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; pm_user-tags-panel=expanded; pm_user-spaces-panel=expanded; pm_new-people-panel=expanded; pm_user-statistics-panel=expanded; pm_space-members-panel=expanded; PHPSESSID=9mevo6nko9egdhotsnnhv02a45; _csrf=9e3936087ab9ce830dcb7bc27b4b0bd46ac842586dc43def563cf8aae9c591baa%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22edMU5BtUwhPTd2hbPITdOQxIx2WX_897%22%3B%7D; i18next=en; _identity=3ce52eb6731106f6fe61300e43d9a46f6378ffe4b437981fa5fa45981652edd4a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22d0e9b807-b1b3-4af4-b07f-ed111fc1c8be%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '172.16.2.210'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '172.16.3.211'
+>>>>>>> origin/gf-superhero_identity
     'DOCUMENT_ROOT' => '/srv/www'
     'REQUEST_SCHEME' => 'http'
     'CONTEXT_PREFIX' => ''
     'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
     'SERVER_ADMIN' => 'webmaster@localhost'
     'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+<<<<<<< HEAD
     'REMOTE_PORT' => '61224'
     'GATEWAY_INTERFACE' => 'CGI/1.1'
     'SERVER_PROTOCOL' => 'HTTP/1.1'
@@ -1483,6 +2102,29 @@ Stack trace:
 
 $_SERVER = [
     'HTTP_HOST' => '192.168.1.37'
+=======
+    'REMOTE_PORT' => '63429'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=superhero_identity%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=superhero_identity%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1462328799.965
+    'REQUEST_TIME' => 1462328799
+]
+2016-05-03 23:26:55 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][error][yii\base\ErrorException:1] exception 'yii\base\ErrorException' with message 'Class 'humhub\modules\superhero_identity\controllers\MatchingQuestion' not found' in /srv/www/humhub/protected/modules/superhero_identity/controllers/MatchingController.php:23
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2016-05-03 23:26:55 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][info][application] $_GET = [
+    'r' => 'superhero_identity/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+>>>>>>> origin/gf-superhero_identity
     'HTTP_CONNECTION' => 'keep-alive'
     'HTTP_CACHE_CONTROL' => 'max-age=0'
     'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
@@ -1490,6 +2132,7 @@ $_SERVER = [
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
     'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
     'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+<<<<<<< HEAD
     'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; PHPSESSID=rki8rl3anbd7qpvqp4u2rr8rq6; _identity=8854555c76fa821f44c095fb0c4ddaeca03b75a2361cedc86101e8720c89c813a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22867ac87f-0429-4329-8d12-5563bc5bf6e9%22%2C2592000%5D%22%3B%7D; _csrf=a838ac4a43f42a2740041eed6679284dc48b8aa64c6b3b8bdc1b7618d3dfcad1a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22MKqxLODn1ZmxAelyRd-E2ikeg16Ufs8P%22%3B%7D'
     'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at 192.168.1.37 Port 80</address>
@@ -1499,12 +2142,24 @@ $_SERVER = [
     'SERVER_ADDR' => '192.168.1.37'
     'SERVER_PORT' => '80'
     'REMOTE_ADDR' => '192.168.1.35'
+=======
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; pm_user-tags-panel=expanded; pm_user-spaces-panel=expanded; pm_new-people-panel=expanded; pm_user-statistics-panel=expanded; pm_space-members-panel=expanded; PHPSESSID=9mevo6nko9egdhotsnnhv02a45; _csrf=9e3936087ab9ce830dcb7bc27b4b0bd46ac842586dc43def563cf8aae9c591baa%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22edMU5BtUwhPTd2hbPITdOQxIx2WX_897%22%3B%7D; i18next=en; _identity=3ce52eb6731106f6fe61300e43d9a46f6378ffe4b437981fa5fa45981652edd4a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22d0e9b807-b1b3-4af4-b07f-ed111fc1c8be%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '172.16.2.210'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '172.16.3.211'
+>>>>>>> origin/gf-superhero_identity
     'DOCUMENT_ROOT' => '/srv/www'
     'REQUEST_SCHEME' => 'http'
     'CONTEXT_PREFIX' => ''
     'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
     'SERVER_ADMIN' => 'webmaster@localhost'
     'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+<<<<<<< HEAD
     'REMOTE_PORT' => '61246'
     'GATEWAY_INTERFACE' => 'CGI/1.1'
     'SERVER_PROTOCOL' => 'HTTP/1.1'
@@ -1526,6 +2181,29 @@ Stack trace:
 
 $_SERVER = [
     'HTTP_HOST' => '192.168.1.37'
+=======
+    'REMOTE_PORT' => '63431'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=superhero_identity%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=superhero_identity%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1462328815.214
+    'REQUEST_TIME' => 1462328815
+]
+2016-05-03 23:26:58 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][error][yii\base\ErrorException:1] exception 'yii\base\ErrorException' with message 'Class 'humhub\modules\superhero_identity\controllers\MatchingQuestion' not found' in /srv/www/humhub/protected/modules/superhero_identity/controllers/MatchingController.php:23
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2016-05-03 23:26:58 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][info][application] $_GET = [
+    'r' => 'superhero_identity/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+>>>>>>> origin/gf-superhero_identity
     'HTTP_CONNECTION' => 'keep-alive'
     'HTTP_CACHE_CONTROL' => 'max-age=0'
     'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
@@ -1533,6 +2211,7 @@ $_SERVER = [
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
     'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
     'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+<<<<<<< HEAD
     'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; PHPSESSID=rki8rl3anbd7qpvqp4u2rr8rq6; _identity=8854555c76fa821f44c095fb0c4ddaeca03b75a2361cedc86101e8720c89c813a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22867ac87f-0429-4329-8d12-5563bc5bf6e9%22%2C2592000%5D%22%3B%7D; _csrf=a838ac4a43f42a2740041eed6679284dc48b8aa64c6b3b8bdc1b7618d3dfcad1a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22MKqxLODn1ZmxAelyRd-E2ikeg16Ufs8P%22%3B%7D'
     'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at 192.168.1.37 Port 80</address>
@@ -1542,12 +2221,24 @@ $_SERVER = [
     'SERVER_ADDR' => '192.168.1.37'
     'SERVER_PORT' => '80'
     'REMOTE_ADDR' => '192.168.1.35'
+=======
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; pm_user-tags-panel=expanded; pm_user-spaces-panel=expanded; pm_new-people-panel=expanded; pm_user-statistics-panel=expanded; pm_space-members-panel=expanded; PHPSESSID=9mevo6nko9egdhotsnnhv02a45; _csrf=9e3936087ab9ce830dcb7bc27b4b0bd46ac842586dc43def563cf8aae9c591baa%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22edMU5BtUwhPTd2hbPITdOQxIx2WX_897%22%3B%7D; i18next=en; _identity=3ce52eb6731106f6fe61300e43d9a46f6378ffe4b437981fa5fa45981652edd4a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22d0e9b807-b1b3-4af4-b07f-ed111fc1c8be%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '172.16.2.210'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '172.16.3.211'
+>>>>>>> origin/gf-superhero_identity
     'DOCUMENT_ROOT' => '/srv/www'
     'REQUEST_SCHEME' => 'http'
     'CONTEXT_PREFIX' => ''
     'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
     'SERVER_ADMIN' => 'webmaster@localhost'
     'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+<<<<<<< HEAD
     'REMOTE_PORT' => '61248'
     'GATEWAY_INTERFACE' => 'CGI/1.1'
     'SERVER_PROTOCOL' => 'HTTP/1.1'
@@ -1569,6 +2260,29 @@ Stack trace:
 
 $_SERVER = [
     'HTTP_HOST' => '192.168.1.37'
+=======
+    'REMOTE_PORT' => '63432'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=superhero_identity%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=superhero_identity%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1462328818.589
+    'REQUEST_TIME' => 1462328818
+]
+2016-05-03 23:28:31 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][error][yii\base\ErrorException:1] exception 'yii\base\ErrorException' with message 'Class 'humhub\modules\superhero_identity\controllers\MatchingQuestion' not found' in /srv/www/humhub/protected/modules/superhero_identity/controllers/MatchingController.php:23
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2016-05-03 23:28:31 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][info][application] $_GET = [
+    'r' => 'superhero_identity/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+>>>>>>> origin/gf-superhero_identity
     'HTTP_CONNECTION' => 'keep-alive'
     'HTTP_CACHE_CONTROL' => 'max-age=0'
     'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
@@ -1576,6 +2290,7 @@ $_SERVER = [
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
     'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
     'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+<<<<<<< HEAD
     'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; PHPSESSID=rki8rl3anbd7qpvqp4u2rr8rq6; _identity=8854555c76fa821f44c095fb0c4ddaeca03b75a2361cedc86101e8720c89c813a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22867ac87f-0429-4329-8d12-5563bc5bf6e9%22%2C2592000%5D%22%3B%7D; _csrf=a838ac4a43f42a2740041eed6679284dc48b8aa64c6b3b8bdc1b7618d3dfcad1a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22MKqxLODn1ZmxAelyRd-E2ikeg16Ufs8P%22%3B%7D'
     'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at 192.168.1.37 Port 80</address>
@@ -1585,12 +2300,24 @@ $_SERVER = [
     'SERVER_ADDR' => '192.168.1.37'
     'SERVER_PORT' => '80'
     'REMOTE_ADDR' => '192.168.1.35'
+=======
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; pm_user-tags-panel=expanded; pm_user-spaces-panel=expanded; pm_new-people-panel=expanded; pm_user-statistics-panel=expanded; pm_space-members-panel=expanded; PHPSESSID=9mevo6nko9egdhotsnnhv02a45; _csrf=9e3936087ab9ce830dcb7bc27b4b0bd46ac842586dc43def563cf8aae9c591baa%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22edMU5BtUwhPTd2hbPITdOQxIx2WX_897%22%3B%7D; i18next=en; _identity=3ce52eb6731106f6fe61300e43d9a46f6378ffe4b437981fa5fa45981652edd4a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22d0e9b807-b1b3-4af4-b07f-ed111fc1c8be%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '172.16.2.210'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '172.16.3.211'
+>>>>>>> origin/gf-superhero_identity
     'DOCUMENT_ROOT' => '/srv/www'
     'REQUEST_SCHEME' => 'http'
     'CONTEXT_PREFIX' => ''
     'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
     'SERVER_ADMIN' => 'webmaster@localhost'
     'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+<<<<<<< HEAD
     'REMOTE_PORT' => '62135'
     'GATEWAY_INTERFACE' => 'CGI/1.1'
     'SERVER_PROTOCOL' => 'HTTP/1.1'
@@ -5692,6 +6419,29 @@ Stack trace:
 
 $_SERVER = [
     'HTTP_HOST' => '192.168.1.37'
+=======
+    'REMOTE_PORT' => '63448'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=superhero_identity%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=superhero_identity%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1462328911.372
+    'REQUEST_TIME' => 1462328911
+]
+2016-05-03 23:28:53 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][error][yii\base\ErrorException:1] exception 'yii\base\ErrorException' with message 'Class humhub\modules\superhero_identity\models\MatchingQuestion contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (humhub\modules\search\interfaces\Searchable::getSearchAttributes)' in /srv/www/humhub/protected/modules/superhero_identity/models/MatchingQuestion.php:22
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2016-05-03 23:28:53 [172.16.3.211][1][9mevo6nko9egdhotsnnhv02a45][info][application] $_GET = [
+    'r' => 'superhero_identity/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+>>>>>>> origin/gf-superhero_identity
     'HTTP_CONNECTION' => 'keep-alive'
     'HTTP_CACHE_CONTROL' => 'max-age=0'
     'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
@@ -5699,6 +6449,7 @@ $_SERVER = [
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
     'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
     'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+<<<<<<< HEAD
     'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; _csrf=a838ac4a43f42a2740041eed6679284dc48b8aa64c6b3b8bdc1b7618d3dfcad1a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22MKqxLODn1ZmxAelyRd-E2ikeg16Ufs8P%22%3B%7D; PHPSESSID=9g3lh9st14hbhvvligfcurkhh4; _identity=b7486fdf892dd6d5a29dd499d3fcf8913858a4f6aad04b1b60eaa3bcfe1c57bda%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22867ac87f-0429-4329-8d12-5563bc5bf6e9%22%2C2592000%5D%22%3B%7D'
     'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at 192.168.1.37 Port 80</address>
@@ -5708,12 +6459,24 @@ $_SERVER = [
     'SERVER_ADDR' => '192.168.1.37'
     'SERVER_PORT' => '80'
     'REMOTE_ADDR' => '192.168.1.35'
+=======
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; pm_user-tags-panel=expanded; pm_user-spaces-panel=expanded; pm_new-people-panel=expanded; pm_user-statistics-panel=expanded; pm_space-members-panel=expanded; PHPSESSID=9mevo6nko9egdhotsnnhv02a45; _csrf=9e3936087ab9ce830dcb7bc27b4b0bd46ac842586dc43def563cf8aae9c591baa%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22edMU5BtUwhPTd2hbPITdOQxIx2WX_897%22%3B%7D; i18next=en; _identity=3ce52eb6731106f6fe61300e43d9a46f6378ffe4b437981fa5fa45981652edd4a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22d0e9b807-b1b3-4af4-b07f-ed111fc1c8be%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '172.16.2.210'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '172.16.3.211'
+>>>>>>> origin/gf-superhero_identity
     'DOCUMENT_ROOT' => '/srv/www'
     'REQUEST_SCHEME' => 'http'
     'CONTEXT_PREFIX' => ''
     'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
     'SERVER_ADMIN' => 'webmaster@localhost'
     'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+<<<<<<< HEAD
     'REMOTE_PORT' => '54007'
     'GATEWAY_INTERFACE' => 'CGI/1.1'
     'SERVER_PROTOCOL' => 'HTTP/1.1'
@@ -5724,4 +6487,16 @@ $_SERVER = [
     'PHP_SELF' => '/humhub/index.php'
     'REQUEST_TIME_FLOAT' => 1462509207.338
     'REQUEST_TIME' => 1462509207
+=======
+    'REMOTE_PORT' => '63452'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=superhero_identity%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=superhero_identity%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1462328933.029
+    'REQUEST_TIME' => 1462328933
+>>>>>>> origin/gf-superhero_identity
 ]

@@ -160,4 +160,6 @@
   'name' => 'Evoke',
   'language' => 'es',
   'timeZone' => 'America/Sao_Paulo',
-); ?>
+); 
+
+?>

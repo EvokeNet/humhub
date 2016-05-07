@@ -1,0 +1,11 @@
+{
+    "id": "superhero_identity",
+    "name": "Superhero Identity Widget",
+    "description": "Evoke's superhero identity feature.",
+    "keywords": ["superhero_identity"],
+    "version": "0.0.1",
+    "humhub": {
+        "minVersion": "0.20"
+    },
+    "screenshots": []
+}
