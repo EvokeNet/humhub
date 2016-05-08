@@ -18,9 +18,9 @@
             //['class' => TopMenu::className(), 'event' => TopMenu::EVENT_INIT, 'callback' => ['humhub\modules\custom_pages\Events', 'onTopMenuInit']],
             ['class' => \humhub\widgets\TopMenu::className(), 'event' => TopMenu::EVENT_INIT, 'callback' => ['\humhub\modules\matching_questions\Events', 'onTopMenuInit']],
         ],
-        'urlManagerRules' => [
-            'matching_questions' => 'matching_questions/matching-questions'
-        ]
+        // 'urlManagerRules' => [
+        //     'matching_questions' => 'matching_questions/matching-questions'
+        // ]
     ];
 
 ?>

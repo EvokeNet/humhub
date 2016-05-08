@@ -2,7 +2,7 @@
     "id": "matching_questions",
     "name": "Evoke Matching Feature",
     "description": "System of matching users to Superhero Identities",
-    "keywords": ["matching_questions", "matching", "questions", "answers"],
+    "keywords": ["matching_questions", "matching", "questions", "answers", "superhero identity"],
     "version": "0.0.1",
     "humhub": {
         "minVersion": "0.20"

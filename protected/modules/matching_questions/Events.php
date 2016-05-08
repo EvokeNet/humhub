@@ -24,7 +24,7 @@ class Events extends \yii\base\Object
 
         // Is Module enabled on this workspace?
         $event->sender->addItem(array(
-            'label' => Yii::t('MatchingQuestionsModule.base', 'Matching Questions'),
+            'label' => Yii::t('MatchingQuestionsModule.base', 'Superhero Identity'),
             //'label' => 'Matching Questions',
             'id' => 'matching_questions',
             'icon' => '<i class="fa fa-th"></i>',

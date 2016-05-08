@@ -6,6 +6,11 @@ use Yii;
 use app\modules\matching_questions\models\MatchingAnswers;
 use app\modules\matching_questions\models\MatchingQuestions;
 use app\modules\matching_questions\models\MatchingQuestionsSearch;
+
+use app\modules\matching_questions\models\Qualities;
+use app\modules\matching_questions\models\SuperheroIdentities;
+use app\modules\matching_questions\models\User;
+
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -42,7 +47,97 @@ class MatchingQuestionsController extends Controller
             return $this->render('matching', compact('questions'));
    
     }
+
+    public function actionMatchingResults(){
+
+    }
     
+    public function actionMatching()
+    {
+
+        $request = Yii::$app->request;
+        $user = Yii::$app->user->getIdentity();
+
+        // if user has superhero id, redirect
+        if(isset($user->superhero_identity_id) && $user->superhero_identity_id >= 0){
+
+            $superhero_identity = SuperheroIdentities::findOne(['id' => $user->superhero_identity_id]);
+            $quality_1 = Qualities::findOne(['id' => $superhero_identity->quality_1]);
+            $quality_2 = Qualities::findOne(['id' => $superhero_identity->quality_2]);
+
+            return $this->render('matching-results', compact('quality_1', 'quality_2', 'superhero_identity'));
+        }
+
+        if ($request->isPost){
+            $qualities = $this->build_qualities_array(); // each position represents on of the social innovator qualities [0] is nothing
+            $user_answers = array();
+            $answers = MatchingAnswers::find()->All();
+            $weights = array( 1 => 3, 2 => 2, 3 => 1, 4 => 0);
+
+            foreach ($request->post() as $key => $answer)
+            {
+                // check if it is SINGLE CHOICE
+                if(strpos($key, 'matching_question', 0) === 0){
+                    // get matching question id
+                    $matching_question = (int) str_replace('matching_question_', '', $key); 
+
+                    //get matching answer id
+                    $matching_answer = $answer;
+
+                    // get quality id
+                    $quality_id = MatchingAnswers::findOne(['id' => $matching_answer])->quality_id;
+
+                    // add to calculation
+                    $qualities[$quality_id] = !isset($qualities[$quality_id]) ? 1 : $qualities[$quality_id] + 1;
+
+                // check if it is MULTIPLE CHOICE
+                }elseif(strpos($key, 'matching_answer', 0) === 0){
+                    // get matching answer id
+
+                    //remove matching answer tag
+                    $matching_answer = str_replace('matching_answer_', '', $key); 
+                    //remove matching question info
+                    $matching_answer = (int) substr($matching_answer, 0, strpos($matching_answer, "_"));
+
+                    // get matching question id
+                    $matching_question = (int) substr($key, strrpos($key, "_") + 1, strlen($key) - 1);  
+
+                    // get quality id
+                    $quality_id = MatchingAnswers::findOne(['id' => $matching_answer])->quality_id;
+
+                    // add to calculation
+                    $qualities[$quality_id] = !isset($qualities[$quality_id]) ? $weights[$answer] : $qualities[$quality_id] + $weights[$answer];
+                }
+            }
+
+            arsort($qualities);
+            $quality_1 = Qualities::findOne(['id' => array_keys($qualities)[0]]);
+            $quality_2 = Qualities::findOne(['id' => array_keys($qualities)[1]]);
+
+            $superhero_identity = SuperheroIdentities::findOne(['quality_1' => $quality_1->id, 'quality_2' => $quality_2->id]);
+
+            //TODO save user's superhero_identity
+            $user = User::findOne(['id' => $user->id]);
+            $user->superhero_identity_id = $superhero_identity->id;
+            //$user->attributes = array('superhero_identity_id' => $superhero_identity);
+            $user->save();
+            return $this->render('matching-results', compact('quality_1', 'quality_2', 'superhero_identity'));
+
+        }else{
+            $questions = MatchingQuestions::find()->all();    
+            return $this->render('matching', compact('questions'));
+        }
+    }
+    
+     private function build_qualities_array() {
+        $qualities = array();
+
+        for($i = 0; $i <= 6; $i++) {
+          $qualities[] = 0;
+        }
+        return $qualities;
+      }
+
     /**
      * Lists all MatchingQuestions models.
      * @return mixed
