@@ -4,17 +4,19 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\missions\models\Missions */
+/* @var $model app\modules\missions\models\Activities */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="missions-form">
+<div class="activities-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+
+    <?= $form->field($model, 'mission_id')->textInput() ?>
 
     <?= $form->field($model, 'created')->textInput() ?>
 

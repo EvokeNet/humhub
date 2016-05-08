@@ -1602,9 +1602,9 @@ a.list-group-item.active:focus {
   filter: alpha(opacity=100);
 }
 table th {
-  font-size: 11px;
+  font-size: 13px;
   color: #bebebe;
-  font-weight: normal;
+  font-weight: bold;
 }
 table thead tr th {
   border: none !important;
@@ -1622,6 +1622,7 @@ table td a:hover {
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
   padding: 10px 10px 10px 0;
+  vertical-align: middle;
 }
 .table > thead > tr > th select,
 .table > tbody > tr > th select,

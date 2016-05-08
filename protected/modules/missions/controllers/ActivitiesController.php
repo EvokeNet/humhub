@@ -3,16 +3,16 @@
 namespace humhub\modules\missions\controllers;
 
 use Yii;
-use humhub\modules\missions\models\Missions;
-use humhub\modules\missions\models\MissionsSearch;
+use app\modules\missions\models\Activities;
+use app\modules\missions\models\ActivitiesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * MissionsController implements the CRUD actions for Missions model.
+ * ActivitiesController implements the CRUD actions for Activities model.
  */
-class MissionsController extends Controller
+class ActivitiesController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,46 +30,40 @@ class MissionsController extends Controller
     }
 
     /**
-     * Lists all Missions models.
+     * Lists all Activities models.
      * @return mixed
      */
     public function actionIndex()
     {
-        // $searchModel = new MissionsSearch();
-        // $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $searchModel = new ActivitiesSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        // return $this->render('index', [
-        //     'searchModel' => $searchModel,
-        //     'dataProvider' => $dataProvider,
-        // ]);
-        
-        $missions = Missions::find()->all();
-        return $this->render('index', array('missions' => $missions));
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     /**
-     * Displays a single Missions model.
+     * Displays a single Activities model.
      * @param integer $id
      * @return mixed
      */
     public function actionView($id)
-    {   
-        $mission = Missions::findOne($id);
-        return $this->render('view', array('mission' => $mission));
-        
-        // return $this->render('view', [
-        //     'model' => $this->findModel($id),
-        // ]);
+    {
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
     }
 
     /**
-     * Creates a new Missions model.
+     * Creates a new Activities model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Missions();
+        $model = new Activities();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -81,7 +75,7 @@ class MissionsController extends Controller
     }
 
     /**
-     * Updates an existing Missions model.
+     * Updates an existing Activities model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -100,7 +94,7 @@ class MissionsController extends Controller
     }
 
     /**
-     * Deletes an existing Missions model.
+     * Deletes an existing Activities model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -113,15 +107,15 @@ class MissionsController extends Controller
     }
 
     /**
-     * Finds the Missions model based on its primary key value.
+     * Finds the Activities model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Missions the loaded model
+     * @return Activities the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Missions::findOne($id)) !== null) {
+        if (($model = Activities::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

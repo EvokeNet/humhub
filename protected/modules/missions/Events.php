@@ -49,5 +49,31 @@ class Events
             }
         }
     }
+    
+    public static function onAdminMenuInit($event)
+    {
+        $event->sender->addItem(array(
+            'label' => Yii::t('MissionsModule.base', 'Missions'),
+            'url' => Url::to(['/missions/admin']),
+            'group' => 'manage',
+            'icon' => '<i class="fa fa-th"></i>',
+            'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'admin'),
+            'sortOrder' => 300,
+        ));
+    }
+    
+    public static function onSpaceAdminMenuInit($event)
+    {
+        $space = $event->sender->space;
+        if ($space->isModuleEnabled('missions') && $space->isAdmin() && $space->isMember()) {
+            $event->sender->addItem(array(
+                'label' => Yii::t('MissionsModule.base', 'Missions'),
+                'group' => 'admin',
+                'url' => $space->createUrl('/missions/admin'),
+                'icon' => '<i class="fa fa-th"></i>',
+                'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'container' && Yii::$app->controller->action->id != 'view'),
+            ));
+        }
+    }
 
 }

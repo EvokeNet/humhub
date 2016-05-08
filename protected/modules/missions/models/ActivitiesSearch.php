@@ -1,16 +1,16 @@
 <?php
 
-namespace humhub\modules\missions\models;
+namespace app\modules\missions\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use humhub\modules\missions\models\Missions;
+use app\modules\missions\models\Activities;
 
 /**
- * MissionsSearch represents the model behind the search form about `app\modules\missions\models\Missions`.
+ * ActivitiesSearch represents the model behind the search form about `app\modules\missions\models\Activities`.
  */
-class MissionsSearch extends Missions
+class ActivitiesSearch extends Activities
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class MissionsSearch extends Missions
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['title', 'description', 'created_at', 'updated_at'], 'safe'],
+            [['id', 'mission_id'], 'integer'],
+            [['title', 'description', 'created', 'modified'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class MissionsSearch extends Missions
      */
     public function search($params)
     {
-        $query = Missions::find();
+        $query = Activities::find();
 
         // add conditions that should always apply here
 
@@ -60,8 +60,9 @@ class MissionsSearch extends Missions
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'mission_id' => $this->mission_id,
+            'created' => $this->created,
+            'modified' => $this->modified,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])

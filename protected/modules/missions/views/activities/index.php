@@ -4,19 +4,19 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\modules\psychometrics\models\MatchingQuestionsSearch */
+/* @var $searchModel app\modules\missions\models\ActivitiesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Matching Questions');
+$this->title = Yii::t('app', 'Activities');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="matching-questions-index">
+<div class="activities-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Matching Questions'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Activities'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -25,10 +25,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'description',
-            'type',
+            'title',
+            'description:ntext',
+            'mission_id',
             'created',
-            'modified',
+            // 'modified',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

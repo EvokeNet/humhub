@@ -1,11 +1,11 @@
 <?php
 
-namespace app\modules\matching_questions;
+namespace humhub\modules\matching_questions;
 
 /**
  * matching_questions module definition class
  */
-class MatchingQuestions extends \humhub\components\Module
+class Module extends \humhub\components\Module
 {
     /**
      * @inheritdoc

@@ -8,17 +8,18 @@ use yii\db\Expression;
 use yii\behaviors\TimestampBehavior;
 
 /**
- * This is the model class for table "missions".
+ * This is the model class for table "activities".
  *
  * @property integer $id
  * @property string $title
  * @property string $description
- * @property string $created_at
- * @property string $updated_at
+ * @property integer $mission_id
+ * @property string $created
+ * @property string $modified
  *
- * @property Activities[] $activities
+ * @property Missions $mission
  */
-class Missions extends ActiveRecord
+class Activities extends ActiveRecord
 {
     public function behaviors()
     {
@@ -40,7 +41,7 @@ class Missions extends ActiveRecord
      */
     public static function tableName()
     {
-        return 'missions';
+        return 'activities';
     }
 
     /**
@@ -49,10 +50,12 @@ class Missions extends ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'description'], 'required'],
+            [['title', 'description', 'mission_id'], 'required'],
             [['description'], 'string'],
+            [['mission_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['title'], 'string', 'max' => 255],
+            [['mission_id'], 'exist', 'skipOnError' => true, 'targetClass' => Missions::className(), 'targetAttribute' => ['mission_id' => 'id']],
         ];
     }
 
@@ -65,6 +68,7 @@ class Missions extends ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'title' => Yii::t('app', 'Title'),
             'description' => Yii::t('app', 'Description'),
+            'mission_id' => Yii::t('app', 'Mission ID'),
             'created_at' => Yii::t('app', 'Created'),
             'updated_at' => Yii::t('app', 'Updated'),
         ];
@@ -73,8 +77,9 @@ class Missions extends ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getActivities()
+    public function getMission()
     {
-        return $this->hasMany(Activities::className(), ['mission_id' => 'id']);
+        return $this->hasOne(Missions::className(), ['id' => 'mission_id']);
     }
+    
 }
