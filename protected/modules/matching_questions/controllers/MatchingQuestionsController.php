@@ -35,18 +35,18 @@ class MatchingQuestionsController extends Controller
         ];
     }
     
-    public function actionMatching()
-    {
-            //$projects = $this->findAll();
-            $questions = MatchingQuestions::find()->all();
+    // public function actionMatching()
+    // {
+    //         //$projects = $this->findAll();
+    //         $questions = MatchingQuestions::find()->all();
             
-            // $posts = MatchingQuestions::find()
-            // ->joinWith('matchingAnswers')
-            // ->all();
+    //         // $posts = MatchingQuestions::find()
+    //         // ->joinWith('matchingAnswers')
+    //         // ->all();
             
-            return $this->render('matching', compact('questions'));
+    //         return $this->render('matching', compact('questions'));
    
-    }
+    // }
 
     public function actionMatchingResults(){
 
