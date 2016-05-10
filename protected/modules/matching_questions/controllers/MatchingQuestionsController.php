@@ -35,23 +35,6 @@ class MatchingQuestionsController extends Controller
         ];
     }
     
-    // public function actionMatching()
-    // {
-    //         //$projects = $this->findAll();
-    //         $questions = MatchingQuestions::find()->all();
-            
-    //         // $posts = MatchingQuestions::find()
-    //         // ->joinWith('matchingAnswers')
-    //         // ->all();
-            
-    //         return $this->render('matching', compact('questions'));
-   
-    // }
-
-    public function actionMatchingResults(){
-
-    }
-    
     public function actionMatching()
     {
 
