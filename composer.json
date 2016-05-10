@@ -1,0 +1,6 @@
+{
+    "require": {
+        "lajax/yii2-translate-manager": "1.*",
+        "neam/yii-i18n-columns":"@dev"
+    }
+}

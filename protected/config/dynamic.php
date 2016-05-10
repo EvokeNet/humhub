@@ -16,7 +16,11 @@
     array (
       'transport' => 
       array (
-        'class' => 'Swift_MailTransport',
+        'class' => 'Swift_SmtpTransport',
+        'host' => 'ssl://email-smtp.us-east-1.amazonaws.com',
+        'username' => 'AKIAIBP4WIHBKXYOUB5A',
+        'password' => 'AjP2EotU1E7jxRfsAA4MWGnQvVRDEMqsmXWNp1FnBpJU',
+        'port' => '465',
       ),
       'view' => 
       array (
@@ -75,6 +79,8 @@
         'useCase' => 'other',
         'secret' => '7affb751-0cd0-4cd0-bf31-87b6a141835a',
         'timeZone' => 'America/Sao_Paulo',
+        'cronLastHourlyRun' => '1462890602',
+        'cronLastDailyRun' => '1462827605',
       ),
       'space' => 
       array (
@@ -99,15 +105,15 @@
       ),
       'mailing' => 
       array (
-        'transportType' => 'php',
-        'systemEmailAddress' => 'social@example.com',
-        'systemEmailName' => 'Evoke - HumHub',
+        'transportType' => 'smtp',
+        'systemEmailAddress' => 'no-reply@quanti.ca',
+        'systemEmailName' => 'Evoke',
         'receive_email_activities' => '1',
         'receive_email_notifications' => '2',
-        'hostname' => '',
-        'username' => '',
-        'password' => '',
-        'port' => '',
+        'hostname' => 'ssl://email-smtp.us-east-1.amazonaws.com',
+        'username' => 'AKIAIBP4WIHBKXYOUB5A',
+        'password' => 'AjP2EotU1E7jxRfsAA4MWGnQvVRDEMqsmXWNp1FnBpJU',
+        'port' => '465',
         'encryption' => '',
         'allowSelfSignedCerts' => '0',
       ),
@@ -127,6 +133,7 @@
       array (
         'installationId' => '04345044caca98e78559a440afd42b0d',
         'defaultDateInputFormat' => '',
+        'lastVersionNotify' => '1.0.1',
       ),
       'tour' => 
       array (
@@ -153,7 +160,7 @@
         'shownDays' => '2',
       ),
     ),
-    'config_created_at' => 1462702659,
+    'config_created_at' => 1462711768,
     'databaseInstalled' => true,
     'installed' => true,
   ),

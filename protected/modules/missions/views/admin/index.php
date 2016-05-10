@@ -35,6 +35,8 @@ echo Breadcrumbs::widget([
                         <td><?php echo $mission->title; ?></td>
                         <td><?php echo $mission->description; ?></td>
                         <td>
+                            <?php echo Html::a('Add Translations', ['index-mission-translations', 'id' => $mission->id], array('class' => 'btn btn-warning btn-sm')); ?>
+                            &nbsp;&nbsp;
                             <?php echo Html::a('View Activities', ['index-activities', 'id' => $mission->id], array('class' => 'btn btn-success btn-sm')); ?>
                             &nbsp;&nbsp;
                             <?php echo Html::a('Edit', ['edit', 'id' => $mission->id], array('class' => 'btn btn-primary btn-sm')); ?>

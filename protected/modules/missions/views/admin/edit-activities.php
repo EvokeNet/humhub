@@ -15,7 +15,7 @@ echo Breadcrumbs::widget([
 
 ?>
 <div class="panel panel-default">
-    <div class="panel-heading"><?php echo Yii::t('MissionsModule.views_admin_edit-activities', '<strong>Edit Activity</strong>'); ?></div>
+    <div class="panel-heading"><?php echo Yii::t('MissionsModule.views_admin_edit-activities', '<strong>Edit</strong> activity'); ?></div>
     <div class="panel-body">
         
         <div class="missions-create">

@@ -3,9 +3,6 @@
 namespace humhub\modules\missions\models;
 
 use Yii;
-use yii\db\ActiveRecord;
-use yii\db\Expression;
-use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "activities".
@@ -14,28 +11,15 @@ use yii\behaviors\TimestampBehavior;
  * @property string $title
  * @property string $description
  * @property integer $mission_id
- * @property string $created
- * @property string $modified
+ * @property string $created_at
+ * @property string $updated_at
+ * @property string $id_code
  *
  * @property Missions $mission
+ * @property ActivityTranslations[] $activityTranslations
  */
-class Activities extends ActiveRecord
+class Activities extends \yii\db\ActiveRecord
 {
-    public function behaviors()
-    {
-        return [
-            [
-                'class' => TimestampBehavior::className(),
-                'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
-                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
-                ],
-                // if you're using datetime instead of UNIX timestamp:
-                'value' => new Expression('NOW()'),
-            ],
-        ];
-    }
-    
     /**
      * @inheritdoc
      */
@@ -50,8 +34,8 @@ class Activities extends ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'description', 'mission_id'], 'required'],
-            [['description'], 'string'],
+            [['title', 'description'], 'required'],
+            [['description', 'id_code'], 'string'],
             [['mission_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['title'], 'string', 'max' => 255],
@@ -69,8 +53,9 @@ class Activities extends ActiveRecord
             'title' => Yii::t('app', 'Title'),
             'description' => Yii::t('app', 'Description'),
             'mission_id' => Yii::t('app', 'Mission ID'),
-            'created_at' => Yii::t('app', 'Created'),
-            'updated_at' => Yii::t('app', 'Updated'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
+            'id_code' => Yii::t('app', 'Id Code'),
         ];
     }
 
@@ -81,5 +66,12 @@ class Activities extends ActiveRecord
     {
         return $this->hasOne(Missions::className(), ['id' => 'mission_id']);
     }
-    
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getActivityTranslations()
+    {
+        return $this->hasMany(ActivityTranslations::className(), ['activity_id' => 'id']);
+    }
 }
