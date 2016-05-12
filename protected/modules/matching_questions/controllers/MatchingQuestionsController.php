@@ -32,17 +32,55 @@ class MatchingQuestionsController extends Controller
     
     public function actionMatching()
     {
-            //$projects = $this->findAll();
-            $questions = MatchingQuestions::find()->all();
-            
-            // $posts = MatchingQuestions::find()
-            // ->joinWith('matchingAnswers')
-            // ->all();
-            
+
+        $request = Yii::$app->request;
+
+        if ($request->isPost){
+            $qualities = $this->build_qualities_array(); // each position represents on of the social innovator qualities [0] is nothing
+            $user_answers = array();
+            $answers = MatchingAnswers::find()->All();
+            $weights = array( 1 => 3, 2 => 2, 3 => 1, 4 => 0);
+
+            foreach ($request->post() as $key => $answer)
+            {
+                // check if it is SINGLE CHOICE
+                if(strpos($key, 'matching_question', 0) === 0){
+                    // get matching question id
+
+                // check if it is MULTIPLE CHOICE
+                }elseif(strpos($key, 'matching_answer', 0) === 0){
+                    // get matching answer id
+
+                    //remove matching answer tag
+                    $matching_answer = str_replace('matching_answer_', '', $key); 
+                    //remove matching question info
+                    $matching_answer = (int) substr($matching_answer, 0, strpos($matching_answer, "_"));
+
+                    // get matching question id
+                    $matching_question = (int) substr($key, strrpos($key, "_") + 1, strlen($key) - 1);  
+
+
+                }
+            }
+
+
+            return $this->render('matching-results', compact('request', 'answers'));
+
+        }else{
+            $questions = MatchingQuestions::find()->all();    
             return $this->render('matching', compact('questions'));
-   
+        }
     }
     
+     private function build_qualities_array() {
+        $qualities = array();
+
+        for($i = 0; $i <= 6; $i++) {
+          $qualities[] = 0;
+        }
+        return $qualities;
+      }
+
     /**
      * Lists all MatchingQuestions models.
      * @return mixed

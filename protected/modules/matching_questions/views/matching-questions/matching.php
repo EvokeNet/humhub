@@ -17,10 +17,21 @@ foreach($questions as $question):
     	<div class="">
 
     		<?php foreach($question->matchingAnswers as $answer):  ?>
-    			<label>
-    				<input type="radio" name="matching_question_<?= $question->id ?>" value = <?= $answer->id ?> >
-    					<?= $answer->description ?>
-    			</label>
+                <?php $maxValue = count($question->matchingAnswers); ?>
+                <!-- MULTIPLE CHOICE -->
+                <?php if($maxValue > 2) :  ?>
+                    <label>
+                        <input type="number" min="1" max=<?= $maxValue ?> name="matching_answer_<?= $answer->id ?>_matching_question_<?= $question->id ?>" value = "" >
+                            <?= $answer->description ?>
+                    </label>   
+                <!-- SINGLE CHOICE -->     
+                <?php else: ?>    
+                    <label>
+                        <input type="radio" name="matching_question_<?= $question->id ?>" value = <?= $answer->id ?> >
+                            <?= $answer->description ?>
+                    </label>
+                <?php endif; ?>
+    			
     			<br>
 			<?php endforeach; ?>    
     	</div>
