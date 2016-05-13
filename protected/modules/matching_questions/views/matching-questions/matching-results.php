@@ -1,9 +1,3 @@
-<pre>
-    <?php //print_r($quality_1) ?>
-    <?php //print_r($quality_2) ?>
-</pre>
-
-
 <div class="superhero_identity">
 
     <h4>
