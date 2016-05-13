@@ -25,7 +25,7 @@ class Events
         // Is Module enabled on this workspace?
         $event->sender->addItem(array(
             // 'label' => Yii::t('MatchingQuestionsModule.base', 'Matching Questions'),
-            'label' => 'Matching Questions',
+            'label' => 'Superhero Identity',
             'id' => 'matching_questions',
             'icon' => '<i class="fa fa-th"></i>',
             'url' => Url::toRoute('/matching_questions/matching-questions/matching'),

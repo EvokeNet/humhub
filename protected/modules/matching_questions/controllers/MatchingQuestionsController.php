@@ -8,6 +8,7 @@ use app\modules\matching_questions\models\MatchingQuestions;
 use app\modules\matching_questions\models\MatchingQuestionsSearch;
 use app\modules\matching_questions\models\Qualities;
 use app\modules\matching_questions\models\SuperheroIdentities;
+use app\modules\matching_questions\models\User;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -31,12 +32,26 @@ class MatchingQuestionsController extends Controller
             ],
         ];
     }
+
+    public function actionMatchingResults(){
+
+    }
     
     public function actionMatching()
     {
 
         $request = Yii::$app->request;
-        $userId = Yii::$app->user->getIdentity()->id;
+        $user = Yii::$app->user->getIdentity();
+
+        // if user has superhero id, redirect
+        if(isset($user->superhero_identity_id) && $user->superhero_identity_id >= 0){
+
+            $superhero_identity = SuperheroIdentities::findOne(['id' => $user->superhero_identity_id]);
+            $quality_1 = Qualities::findOne(['id' => $superhero_identity->quality_1]);
+            $quality_2 = Qualities::findOne(['id' => $superhero_identity->quality_2]);
+
+            return $this->render('matching-results', compact('quality_1', 'quality_2', 'superhero_identity'));
+        }
 
         if ($request->isPost){
             $qualities = $this->build_qualities_array(); // each position represents on of the social innovator qualities [0] is nothing
@@ -86,6 +101,11 @@ class MatchingQuestionsController extends Controller
 
             $superhero_identity = SuperheroIdentities::findOne(['quality_1' => $quality_1->id, 'quality_2' => $quality_2->id]);
 
+            //TODO save user's superhero_identity
+            $user = User::findOne(['id' => $user->id]);
+            $user->superhero_identity_id = $superhero_identity->id;
+            //$user->attributes = array('superhero_identity_id' => $superhero_identity);
+            $user->save();
             return $this->render('matching-results', compact('quality_1', 'quality_2', 'superhero_identity'));
 
         }else{
