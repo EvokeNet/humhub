@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\superhero_identity\models;
+namespace app\modules\matching_questions\models;
 
 use Yii;
 
@@ -13,6 +13,10 @@ use Yii;
  * @property string $description
  * @property string $created
  * @property string $modified
+ *
+ * @property MatchingAnswers[] $matchingAnswers
+ * @property SuperheroIdentities[] $superheroIdentities
+ * @property SuperheroIdentities[] $superheroIdentities0
  */
 class Qualities extends \yii\db\ActiveRecord
 {
@@ -49,5 +53,29 @@ class Qualities extends \yii\db\ActiveRecord
             'created' => Yii::t('app', 'Created'),
             'modified' => Yii::t('app', 'Modified'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMatchingAnswers()
+    {
+        return $this->hasMany(MatchingAnswers::className(), ['quality_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSuperheroIdentities()
+    {
+        return $this->hasMany(SuperheroIdentities::className(), ['quality_2' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSuperheroIdentities0()
+    {
+        return $this->hasMany(SuperheroIdentities::className(), ['quality_1' => 'id']);
     }
 }

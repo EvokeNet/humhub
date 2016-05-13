@@ -6,6 +6,8 @@ use Yii;
 use app\modules\matching_questions\models\MatchingAnswers;
 use app\modules\matching_questions\models\MatchingQuestions;
 use app\modules\matching_questions\models\MatchingQuestionsSearch;
+use app\modules\matching_questions\models\Qualities;
+use app\modules\matching_questions\models\SuperheroIdentities;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -34,6 +36,7 @@ class MatchingQuestionsController extends Controller
     {
 
         $request = Yii::$app->request;
+        $userId = Yii::$app->user->getIdentity()->id;
 
         if ($request->isPost){
             $qualities = $this->build_qualities_array(); // each position represents on of the social innovator qualities [0] is nothing
@@ -46,6 +49,16 @@ class MatchingQuestionsController extends Controller
                 // check if it is SINGLE CHOICE
                 if(strpos($key, 'matching_question', 0) === 0){
                     // get matching question id
+                    $matching_question = (int) str_replace('matching_question_', '', $key); 
+
+                    //get matching answer id
+                    $matching_answer = $answer;
+
+                    // get quality id
+                    $quality_id = MatchingAnswers::findOne(['id' => $matching_answer])->quality_id;
+
+                    // add to calculation
+                    $qualities[$quality_id] = !isset($qualities[$quality_id]) ? 1 : $qualities[$quality_id] + 1;
 
                 // check if it is MULTIPLE CHOICE
                 }elseif(strpos($key, 'matching_answer', 0) === 0){
@@ -59,12 +72,21 @@ class MatchingQuestionsController extends Controller
                     // get matching question id
                     $matching_question = (int) substr($key, strrpos($key, "_") + 1, strlen($key) - 1);  
 
+                    // get quality id
+                    $quality_id = MatchingAnswers::findOne(['id' => $matching_answer])->quality_id;
 
+                    // add to calculation
+                    $qualities[$quality_id] = !isset($qualities[$quality_id]) ? $weights[$answer] : $qualities[$quality_id] + $weights[$answer];
                 }
             }
 
+            arsort($qualities);
+            $quality_1 = Qualities::findOne(['id' => array_keys($qualities)[0]]);
+            $quality_2 = Qualities::findOne(['id' => array_keys($qualities)[1]]);
 
-            return $this->render('matching-results', compact('request', 'answers'));
+            $superhero_identity = SuperheroIdentities::findOne(['quality_1' => $quality_1->id, 'quality_2' => $quality_2->id]);
+
+            return $this->render('matching-results', compact('quality_1', 'quality_2', 'superhero_identity'));
 
         }else{
             $questions = MatchingQuestions::find()->all();    

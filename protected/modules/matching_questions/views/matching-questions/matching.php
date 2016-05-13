@@ -10,11 +10,10 @@ $form = CActiveForm::begin();
 <?php 
 
 foreach($questions as $question):
-    echo $question->description;
-    echo "<br><br>";
+    echo "<p class='question'>".$question->description."</p><BR>";
     ?>
 
-    	<div class="">
+    	<div class="form">
 
     		<?php foreach($question->matchingAnswers as $answer):  ?>
                 <?php $maxValue = count($question->matchingAnswers); ?>
@@ -32,14 +31,11 @@ foreach($questions as $question):
                     </label>
                 <?php endif; ?>
     			
-    			<br>
+    			<BR>
 			<?php endforeach; ?>    
     	</div>
-    	<br>
-
+    	<HR>
     <?php
-
-    echo "<br>";
 
 endforeach;
 
@@ -55,5 +51,12 @@ endforeach;
 
 
 <style type="text/css">
+
+form{
+    margin-left: 20px;
+}
+.question{
+    font-size: 18px;
+}
 
 </style>

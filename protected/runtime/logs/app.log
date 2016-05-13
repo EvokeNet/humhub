@@ -5101,3 +5101,1031 @@ $_SERVER = [
     'REQUEST_TIME_FLOAT' => 1463089592.258
     'REQUEST_TIME' => 1463089592
 ]
+2016-05-12 20:31:06 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][error][yii\base\ErrorException:1] exception 'yii\base\ErrorException' with message 'Call to undefined method app\modules\matching_questions\models\MatchingAnswers::findByAttributes()' in /srv/www/humhub/protected/modules/matching_questions/controllers/MatchingQuestionsController.php:54
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2016-05-12 20:31:06 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][info][application] $_GET = [
+    'r' => 'matching_questions/matching-questions/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '530'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ORIGIN' => 'http://evoke.local.com'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded'
+    'HTTP_REFERER' => 'http://evoke.local.com/humhub/index.php?r=matching_questions%2Fmatching-questions%2Fmatching'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; _csrf=534e69b9bb23982d14b40ec7503878bdb772e582eb6270b5a453320c590bf827a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%222jpKF3tzlFt2-txT78nAJd0iYa1g04qo%22%3B%7D; i18next=en; PHPSESSID=8qclphb4gcopaqaqooomg7c243; _identity=2d49f04911ca00bbb1c49f283a6ab9ea03259a7959e64a3904e8761789d8d2b5a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%229d6dcfef-97bc-444c-9c84-8f40efd3d749%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '192.168.25.42'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '192.168.25.19'
+    'DOCUMENT_ROOT' => '/srv/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+    'REMOTE_PORT' => '57216'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'r=matching_questions%2Fmatching-questions%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=matching_questions%2Fmatching-questions%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1463095866.225
+    'REQUEST_TIME' => 1463095866
+]
+2016-05-12 20:32:43 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][error][yii\base\ErrorException:4096] exception 'yii\base\ErrorException' with message 'Object of class app\modules\matching_questions\models\MatchingAnswers could not be converted to string' in /srv/www/humhub/protected/modules/matching_questions/controllers/MatchingQuestionsController.php:55
+Stack trace:
+#0 /srv/www/humhub/protected/modules/matching_questions/controllers/MatchingQuestionsController.php(55): yii\base\ErrorHandler->handleError(4096, 'Object of class...', '/srv/www/humhub...', 55, Array)
+#1 [internal function]: app\modules\matching_questions\controllers\MatchingQuestionsController->actionMatching()
+#2 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('matching', Array)
+#5 /srv/www/humhub/protected/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('matching_questi...', Array)
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(humhub\components\Request))
+#7 /srv/www/humhub/index.php(25): yii\base\Application->run()
+#8 {main}
+2016-05-12 20:32:43 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][info][application] $_GET = [
+    'r' => 'matching_questions/matching-questions/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '530'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ORIGIN' => 'http://evoke.local.com'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded'
+    'HTTP_REFERER' => 'http://evoke.local.com/humhub/index.php?r=matching_questions%2Fmatching-questions%2Fmatching'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; _csrf=534e69b9bb23982d14b40ec7503878bdb772e582eb6270b5a453320c590bf827a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%222jpKF3tzlFt2-txT78nAJd0iYa1g04qo%22%3B%7D; i18next=en; PHPSESSID=8qclphb4gcopaqaqooomg7c243; _identity=2d49f04911ca00bbb1c49f283a6ab9ea03259a7959e64a3904e8761789d8d2b5a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%229d6dcfef-97bc-444c-9c84-8f40efd3d749%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '192.168.25.42'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '192.168.25.19'
+    'DOCUMENT_ROOT' => '/srv/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+    'REMOTE_PORT' => '57225'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'r=matching_questions%2Fmatching-questions%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=matching_questions%2Fmatching-questions%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1463095963.897
+    'REQUEST_TIME' => 1463095963
+]
+2016-05-12 20:34:37 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][error][yii\base\ErrorException:8] exception 'yii\base\ErrorException' with message 'Undefined variable: qualities' in /srv/www/humhub/protected/modules/matching_questions/views/matching-questions/matching-results.php:2
+Stack trace:
+#0 /srv/www/humhub/protected/modules/matching_questions/views/matching-questions/matching-results.php(2): yii\base\ErrorHandler->handleError(8, 'Undefined varia...', '/srv/www/humhub...', 2, Array)
+#1 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/View.php(325): require('/srv/www/humhub...')
+#2 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/View.php(247): yii\base\View->renderPhpFile('/srv/www/humhub...', Array)
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/View.php(149): yii\base\View->renderFile('/srv/www/humhub...', Array, Object(app\modules\matching_questions\controllers\MatchingQuestionsController))
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(377): yii\base\View->render('matching-result...', Array, Object(app\modules\matching_questions\controllers\MatchingQuestionsController))
+#5 /srv/www/humhub/protected/modules/matching_questions/controllers/MatchingQuestionsController.php(75): yii\base\Controller->render('matching-result...', Array)
+#6 [internal function]: app\modules\matching_questions\controllers\MatchingQuestionsController->actionMatching()
+#7 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#9 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('matching', Array)
+#10 /srv/www/humhub/protected/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('matching_questi...', Array)
+#11 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(humhub\components\Request))
+#12 /srv/www/humhub/index.php(25): yii\base\Application->run()
+#13 {main}
+2016-05-12 20:34:37 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][info][application] $_GET = [
+    'r' => 'matching_questions/matching-questions/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '530'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ORIGIN' => 'http://evoke.local.com'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded'
+    'HTTP_REFERER' => 'http://evoke.local.com/humhub/index.php?r=matching_questions%2Fmatching-questions%2Fmatching'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; _csrf=534e69b9bb23982d14b40ec7503878bdb772e582eb6270b5a453320c590bf827a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%222jpKF3tzlFt2-txT78nAJd0iYa1g04qo%22%3B%7D; i18next=en; PHPSESSID=8qclphb4gcopaqaqooomg7c243; _identity=2d49f04911ca00bbb1c49f283a6ab9ea03259a7959e64a3904e8761789d8d2b5a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%229d6dcfef-97bc-444c-9c84-8f40efd3d749%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '192.168.25.42'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '192.168.25.19'
+    'DOCUMENT_ROOT' => '/srv/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+    'REMOTE_PORT' => '57247'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'r=matching_questions%2Fmatching-questions%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=matching_questions%2Fmatching-questions%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1463096077.82
+    'REQUEST_TIME' => 1463096077
+]
+2016-05-12 21:28:10 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][error][yii\base\ErrorException:1] exception 'yii\base\ErrorException' with message 'Class 'app\modules\matching_questions\models\Qualities' not found' in /srv/www/humhub/protected/modules/matching_questions/controllers/MatchingQuestionsController.php:83
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2016-05-12 21:28:10 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][info][application] $_GET = [
+    'r' => 'matching_questions/matching-questions/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '529'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ORIGIN' => 'http://evoke.local.com'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded'
+    'HTTP_REFERER' => 'http://evoke.local.com/humhub/index.php?r=matching_questions%2Fmatching-questions%2Fmatching'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; _csrf=534e69b9bb23982d14b40ec7503878bdb772e582eb6270b5a453320c590bf827a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%222jpKF3tzlFt2-txT78nAJd0iYa1g04qo%22%3B%7D; i18next=en; PHPSESSID=8qclphb4gcopaqaqooomg7c243; _identity=2d49f04911ca00bbb1c49f283a6ab9ea03259a7959e64a3904e8761789d8d2b5a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%229d6dcfef-97bc-444c-9c84-8f40efd3d749%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '192.168.25.42'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '192.168.25.19'
+    'DOCUMENT_ROOT' => '/srv/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+    'REMOTE_PORT' => '58720'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'r=matching_questions%2Fmatching-questions%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=matching_questions%2Fmatching-questions%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1463099290.587
+    'REQUEST_TIME' => 1463099290
+]
+2016-05-12 21:28:36 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][error][yii\base\ErrorException:1] exception 'yii\base\ErrorException' with message 'Class 'app\modules\matching_questions\models\Qualities' not found' in /srv/www/humhub/protected/modules/matching_questions/controllers/MatchingQuestionsController.php:83
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2016-05-12 21:28:36 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][info][application] $_GET = [
+    'r' => 'matching_questions/matching-questions/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '529'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ORIGIN' => 'http://evoke.local.com'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded'
+    'HTTP_REFERER' => 'http://evoke.local.com/humhub/index.php?r=matching_questions%2Fmatching-questions%2Fmatching'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; _csrf=534e69b9bb23982d14b40ec7503878bdb772e582eb6270b5a453320c590bf827a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%222jpKF3tzlFt2-txT78nAJd0iYa1g04qo%22%3B%7D; i18next=en; PHPSESSID=8qclphb4gcopaqaqooomg7c243; _identity=2d49f04911ca00bbb1c49f283a6ab9ea03259a7959e64a3904e8761789d8d2b5a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%229d6dcfef-97bc-444c-9c84-8f40efd3d749%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '192.168.25.42'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '192.168.25.19'
+    'DOCUMENT_ROOT' => '/srv/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+    'REMOTE_PORT' => '58724'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'r=matching_questions%2Fmatching-questions%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=matching_questions%2Fmatching-questions%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1463099316.142
+    'REQUEST_TIME' => 1463099316
+]
+2016-05-12 21:44:46 [-][-][-][error][yii\base\UnknownClassException] exception 'yii\base\UnknownClassException' with message 'Unable to find 'humhub\modules\matching_questions\MatchingQuestions' in file: /srv/www/humhub/protected/modules/matching_questions/MatchingQuestions.php. Namespace missing?' in /srv/www/humhub/protected/vendor/yiisoft/yii2/BaseYii.php:291
+Stack trace:
+#0 [internal function]: yii\BaseYii::autoload('humhub\modules\...')
+#1 [internal function]: spl_autoload_call('humhub\modules\...')
+#2 /srv/www/humhub/protected/humhub/commands/MigrateController.php(149): ReflectionClass->__construct('humhub\modules\...')
+#3 /srv/www/humhub/protected/humhub/commands/MigrateController.php(98): humhub\commands\MigrateController->getMigrationPaths()
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(123): humhub\commands\MigrateController->getNewMigrations()
+#5 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#7 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Controller.php(108): yii\base\Controller->runAction('up', Array)
+#9 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('up', Array)
+#10 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Application.php(167): yii\base\Module->runAction('migrate/up', Array)
+#11 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Application.php(143): yii\console\Application->runAction('migrate/up', Array)
+#12 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#13 /srv/www/humhub/protected/yii(29): yii\base\Application->run()
+#14 {main}
+2016-05-12 21:44:46 [-][-][-][info][application] $_SERVER = [
+    'XDG_SESSION_ID' => '2'
+    'COMP_WORDBREAKS' => ' 	
+\"\'><;|&(:'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'SSH_CLIENT' => '192.168.25.19 56790 22'
+    'SSH_TTY' => '/dev/pts/1'
+    'USER' => 'guilherme'
+    'LS_COLORS' => 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:'
+    'MAIL' => '/var/mail/guilherme'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games'
+    'PWD' => '/srv/www/humhub/protected'
+    'LANG' => 'en_US.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/guilherme'
+    'LANGUAGE' => 'en_US:en'
+    'LOGNAME' => 'guilherme'
+    'SSH_CONNECTION' => '192.168.25.19 56790 192.168.25.42 22'
+    'LESSOPEN' => '| /usr/bin/lesspipe %s'
+    'XDG_RUNTIME_DIR' => '/run/user/1000'
+    'LESSCLOSE' => '/usr/bin/lesspipe %s %s'
+    'OLDPWD' => '/home/guilherme'
+    '_' => '/usr/bin/php'
+    'PHP_SELF' => 'yii'
+    'SCRIPT_NAME' => 'yii'
+    'SCRIPT_FILENAME' => 'yii'
+    'PATH_TRANSLATED' => 'yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1463100286.7538
+    'REQUEST_TIME' => 1463100286
+    'argv' => [
+        0 => 'yii'
+        1 => 'migrate/up'
+        2 => '--includeModuleMigrations=1'
+    ]
+    'argc' => 3
+]
+2016-05-12 21:46:39 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][warning][yii\gii\Module::checkAccess] Access to Gii is denied due to IP address restriction. The requested IP is 192.168.25.19
+2016-05-12 21:46:39 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][error][yii\web\HttpException:403] exception 'yii\web\ForbiddenHttpException' with message 'You are not allowed to access this page.' in /srv/www/humhub/protected/vendor/yiisoft/yii2-gii/Module.php:112
+Stack trace:
+#0 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(142): yii\gii\Module->beforeAction(Object(yii\base\InlineAction))
+#1 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('', Array)
+#2 /srv/www/humhub/protected/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('gii', Array)
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(humhub\components\Request))
+#4 /srv/www/humhub/index.php(25): yii\base\Application->run()
+#5 {main}
+2016-05-12 21:46:39 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][info][application] $_GET = [
+    'r' => 'gii'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; _csrf=534e69b9bb23982d14b40ec7503878bdb772e582eb6270b5a453320c590bf827a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%222jpKF3tzlFt2-txT78nAJd0iYa1g04qo%22%3B%7D; i18next=en; PHPSESSID=8qclphb4gcopaqaqooomg7c243; _identity=2d49f04911ca00bbb1c49f283a6ab9ea03259a7959e64a3904e8761789d8d2b5a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%229d6dcfef-97bc-444c-9c84-8f40efd3d749%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '192.168.25.42'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '192.168.25.19'
+    'DOCUMENT_ROOT' => '/srv/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+    'REMOTE_PORT' => '58930'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=gii'
+    'REQUEST_URI' => '/humhub/index.php?r=gii'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1463100399.303
+    'REQUEST_TIME' => 1463100399
+]
+2016-05-12 21:47:12 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][warning][yii\gii\Module::checkAccess] Access to Gii is denied due to IP address restriction. The requested IP is 192.168.25.19
+2016-05-12 21:47:12 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][error][yii\web\HttpException:403] exception 'yii\web\ForbiddenHttpException' with message 'You are not allowed to access this page.' in /srv/www/humhub/protected/vendor/yiisoft/yii2-gii/Module.php:112
+Stack trace:
+#0 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(142): yii\gii\Module->beforeAction(Object(yii\base\InlineAction))
+#1 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('', Array)
+#2 /srv/www/humhub/protected/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('gii', Array)
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(humhub\components\Request))
+#4 /srv/www/humhub/index.php(25): yii\base\Application->run()
+#5 {main}
+2016-05-12 21:47:12 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][info][application] $_GET = [
+    'r' => 'gii'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; _csrf=534e69b9bb23982d14b40ec7503878bdb772e582eb6270b5a453320c590bf827a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%222jpKF3tzlFt2-txT78nAJd0iYa1g04qo%22%3B%7D; i18next=en; PHPSESSID=8qclphb4gcopaqaqooomg7c243; _identity=2d49f04911ca00bbb1c49f283a6ab9ea03259a7959e64a3904e8761789d8d2b5a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%229d6dcfef-97bc-444c-9c84-8f40efd3d749%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '192.168.25.42'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '192.168.25.19'
+    'DOCUMENT_ROOT' => '/srv/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+    'REMOTE_PORT' => '58940'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=gii'
+    'REQUEST_URI' => '/humhub/index.php?r=gii'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1463100432.286
+    'REQUEST_TIME' => 1463100432
+]
+2016-05-12 21:53:48 [-][-][-][error][yii\base\UnknownClassException] exception 'yii\base\UnknownClassException' with message 'Unable to find 'humhub\modules\matching_questions\MatchingQuestions' in file: /srv/www/humhub/protected/modules/matching_questions/MatchingQuestions.php. Namespace missing?' in /srv/www/humhub/protected/vendor/yiisoft/yii2/BaseYii.php:291
+Stack trace:
+#0 [internal function]: yii\BaseYii::autoload('humhub\modules\...')
+#1 [internal function]: spl_autoload_call('humhub\modules\...')
+#2 /srv/www/humhub/protected/humhub/commands/MigrateController.php(149): ReflectionClass->__construct('humhub\modules\...')
+#3 /srv/www/humhub/protected/humhub/commands/MigrateController.php(98): humhub\commands\MigrateController->getMigrationPaths()
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(123): humhub\commands\MigrateController->getNewMigrations()
+#5 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#7 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Controller.php(108): yii\base\Controller->runAction('up', Array)
+#9 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('up', Array)
+#10 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Application.php(167): yii\base\Module->runAction('migrate/up', Array)
+#11 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Application.php(143): yii\console\Application->runAction('migrate/up', Array)
+#12 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#13 /srv/www/humhub/protected/yii(29): yii\base\Application->run()
+#14 {main}
+2016-05-12 21:53:48 [-][-][-][info][application] $_SERVER = [
+    'XDG_SESSION_ID' => '2'
+    'COMP_WORDBREAKS' => ' 	
+\"\'><;|&(:'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'SSH_CLIENT' => '192.168.25.19 56790 22'
+    'SSH_TTY' => '/dev/pts/1'
+    'USER' => 'guilherme'
+    'LS_COLORS' => 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:'
+    'MAIL' => '/var/mail/guilherme'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games'
+    'PWD' => '/srv/www/humhub/protected'
+    'LANG' => 'en_US.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/guilherme'
+    'LANGUAGE' => 'en_US:en'
+    'LOGNAME' => 'guilherme'
+    'SSH_CONNECTION' => '192.168.25.19 56790 192.168.25.42 22'
+    'LESSOPEN' => '| /usr/bin/lesspipe %s'
+    'XDG_RUNTIME_DIR' => '/run/user/1000'
+    'LESSCLOSE' => '/usr/bin/lesspipe %s %s'
+    'OLDPWD' => '/home/guilherme'
+    '_' => '/usr/bin/php'
+    'PHP_SELF' => 'yii'
+    'SCRIPT_NAME' => 'yii'
+    'SCRIPT_FILENAME' => 'yii'
+    'PATH_TRANSLATED' => 'yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1463100828.6243
+    'REQUEST_TIME' => 1463100828
+    'argv' => [
+        0 => 'yii'
+        1 => 'migrate/up'
+        2 => '--includeModuleMigrations=1'
+    ]
+    'argc' => 3
+]
+2016-05-12 21:54:06 [-][-][-][error][yii\base\UnknownClassException] exception 'yii\base\UnknownClassException' with message 'Unable to find 'humhub\modules\matching_questions\MatchingQuestions' in file: /srv/www/humhub/protected/modules/matching_questions/MatchingQuestions.php. Namespace missing?' in /srv/www/humhub/protected/vendor/yiisoft/yii2/BaseYii.php:291
+Stack trace:
+#0 [internal function]: yii\BaseYii::autoload('humhub\modules\...')
+#1 [internal function]: spl_autoload_call('humhub\modules\...')
+#2 /srv/www/humhub/protected/humhub/commands/MigrateController.php(149): ReflectionClass->__construct('humhub\modules\...')
+#3 /srv/www/humhub/protected/humhub/commands/MigrateController.php(98): humhub\commands\MigrateController->getMigrationPaths()
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(123): humhub\commands\MigrateController->getNewMigrations()
+#5 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#7 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Controller.php(108): yii\base\Controller->runAction('up', Array)
+#9 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('up', Array)
+#10 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Application.php(167): yii\base\Module->runAction('migrate/up', Array)
+#11 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Application.php(143): yii\console\Application->runAction('migrate/up', Array)
+#12 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#13 /srv/www/humhub/protected/yii(29): yii\base\Application->run()
+#14 {main}
+2016-05-12 21:54:06 [-][-][-][info][application] $_SERVER = [
+    'XDG_SESSION_ID' => '2'
+    'COMP_WORDBREAKS' => ' 	
+\"\'><;|&(:'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'SSH_CLIENT' => '192.168.25.19 56790 22'
+    'SSH_TTY' => '/dev/pts/1'
+    'USER' => 'guilherme'
+    'LS_COLORS' => 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:'
+    'MAIL' => '/var/mail/guilherme'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games'
+    'PWD' => '/srv/www/humhub/protected'
+    'LANG' => 'en_US.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/guilherme'
+    'LANGUAGE' => 'en_US:en'
+    'LOGNAME' => 'guilherme'
+    'SSH_CONNECTION' => '192.168.25.19 56790 192.168.25.42 22'
+    'LESSOPEN' => '| /usr/bin/lesspipe %s'
+    'XDG_RUNTIME_DIR' => '/run/user/1000'
+    'LESSCLOSE' => '/usr/bin/lesspipe %s %s'
+    'OLDPWD' => '/home/guilherme'
+    '_' => '/usr/bin/php'
+    'PHP_SELF' => 'yii'
+    'SCRIPT_NAME' => 'yii'
+    'SCRIPT_FILENAME' => 'yii'
+    'PATH_TRANSLATED' => 'yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1463100846.293
+    'REQUEST_TIME' => 1463100846
+    'argv' => [
+        0 => 'yii'
+        1 => 'migrate/up'
+        2 => '--includeModuleMigrations=1'
+    ]
+    'argc' => 3
+]
+2016-05-12 21:54:15 [-][-][-][error][yii\base\UnknownClassException] exception 'yii\base\UnknownClassException' with message 'Unable to find 'humhub\modules\matching_questions\MatchingQuestions' in file: /srv/www/humhub/protected/modules/matching_questions/MatchingQuestions.php. Namespace missing?' in /srv/www/humhub/protected/vendor/yiisoft/yii2/BaseYii.php:291
+Stack trace:
+#0 [internal function]: yii\BaseYii::autoload('humhub\modules\...')
+#1 [internal function]: spl_autoload_call('humhub\modules\...')
+#2 /srv/www/humhub/protected/humhub/commands/MigrateController.php(149): ReflectionClass->__construct('humhub\modules\...')
+#3 /srv/www/humhub/protected/humhub/commands/MigrateController.php(98): humhub\commands\MigrateController->getMigrationPaths()
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(123): humhub\commands\MigrateController->getNewMigrations()
+#5 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#7 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Controller.php(108): yii\base\Controller->runAction('up', Array)
+#9 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('up', Array)
+#10 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Application.php(167): yii\base\Module->runAction('migrate/up', Array)
+#11 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Application.php(143): yii\console\Application->runAction('migrate/up', Array)
+#12 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#13 /srv/www/humhub/protected/yii(29): yii\base\Application->run()
+#14 {main}
+2016-05-12 21:54:14 [-][-][-][info][application] $_SERVER = [
+    'XDG_SESSION_ID' => '2'
+    'COMP_WORDBREAKS' => ' 	
+\"\'><;|&(:'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'SSH_CLIENT' => '192.168.25.19 56790 22'
+    'SSH_TTY' => '/dev/pts/1'
+    'USER' => 'guilherme'
+    'LS_COLORS' => 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:'
+    'MAIL' => '/var/mail/guilherme'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games'
+    'PWD' => '/srv/www/humhub/protected'
+    'LANG' => 'en_US.UTF-8'
+    'SHLVL' => '1'
+    'HOME' => '/home/guilherme'
+    'LANGUAGE' => 'en_US:en'
+    'LOGNAME' => 'guilherme'
+    'SSH_CONNECTION' => '192.168.25.19 56790 192.168.25.42 22'
+    'LESSOPEN' => '| /usr/bin/lesspipe %s'
+    'XDG_RUNTIME_DIR' => '/run/user/1000'
+    'LESSCLOSE' => '/usr/bin/lesspipe %s %s'
+    'OLDPWD' => '/home/guilherme'
+    '_' => '/usr/bin/php'
+    'PHP_SELF' => 'yii'
+    'SCRIPT_NAME' => 'yii'
+    'SCRIPT_FILENAME' => 'yii'
+    'PATH_TRANSLATED' => 'yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1463100854.9518
+    'REQUEST_TIME' => 1463100854
+    'argv' => [
+        0 => 'yii'
+        1 => 'migrate/up'
+        2 => '--includeModuleMigrations=1'
+    ]
+    'argc' => 3
+]
+2016-05-12 22:50:49 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][error][yii\base\ErrorException:8] exception 'yii\base\ErrorException' with message 'Trying to get property of non-object' in /srv/www/humhub/protected/modules/matching_questions/controllers/MatchingQuestionsController.php:84
+Stack trace:
+#0 /srv/www/humhub/protected/modules/matching_questions/controllers/MatchingQuestionsController.php(84): yii\base\ErrorHandler->handleError(8, 'Trying to get p...', '/srv/www/humhub...', 84, Array)
+#1 [internal function]: app\modules\matching_questions\controllers\MatchingQuestionsController->actionMatching()
+#2 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('matching', Array)
+#5 /srv/www/humhub/protected/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('matching_questi...', Array)
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(humhub\components\Request))
+#7 /srv/www/humhub/index.php(25): yii\base\Application->run()
+#8 {main}
+2016-05-12 22:50:49 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][info][application] $_GET = [
+    'r' => 'matching_questions/matching-questions/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '529'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ORIGIN' => 'http://evoke.local.com'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded'
+    'HTTP_REFERER' => 'http://evoke.local.com/humhub/index.php?r=matching_questions%2Fmatching-questions%2Fmatching'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; _csrf=534e69b9bb23982d14b40ec7503878bdb772e582eb6270b5a453320c590bf827a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%222jpKF3tzlFt2-txT78nAJd0iYa1g04qo%22%3B%7D; i18next=en; PHPSESSID=8qclphb4gcopaqaqooomg7c243; _identity=2d49f04911ca00bbb1c49f283a6ab9ea03259a7959e64a3904e8761789d8d2b5a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%229d6dcfef-97bc-444c-9c84-8f40efd3d749%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '192.168.25.42'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '192.168.25.19'
+    'DOCUMENT_ROOT' => '/srv/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+    'REMOTE_PORT' => '60216'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'r=matching_questions%2Fmatching-questions%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=matching_questions%2Fmatching-questions%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1463104249.866
+    'REQUEST_TIME' => 1463104249
+]
+2016-05-12 22:51:23 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][error][yii\base\ErrorException:2] exception 'yii\base\ErrorException' with message 'Missing argument 1 for yii\db\BaseActiveRecord::findAll(), called in /srv/www/humhub/protected/modules/matching_questions/controllers/MatchingQuestionsController.php on line 83 and defined' in /srv/www/humhub/protected/vendor/yiisoft/yii2/db/BaseActiveRecord.php:109
+Stack trace:
+#0 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/BaseActiveRecord.php(109): yii\base\ErrorHandler->handleError(2, 'Missing argumen...', '/srv/www/humhub...', 109, Array)
+#1 /srv/www/humhub/protected/modules/matching_questions/controllers/MatchingQuestionsController.php(83): yii\db\BaseActiveRecord::findAll()
+#2 [internal function]: app\modules\matching_questions\controllers\MatchingQuestionsController->actionMatching()
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#5 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('matching', Array)
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('matching_questi...', Array)
+#7 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(humhub\components\Request))
+#8 /srv/www/humhub/index.php(25): yii\base\Application->run()
+#9 {main}
+2016-05-12 22:51:23 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][info][application] $_GET = [
+    'r' => 'matching_questions/matching-questions/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '529'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ORIGIN' => 'http://evoke.local.com'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded'
+    'HTTP_REFERER' => 'http://evoke.local.com/humhub/index.php?r=matching_questions%2Fmatching-questions%2Fmatching'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; _csrf=534e69b9bb23982d14b40ec7503878bdb772e582eb6270b5a453320c590bf827a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%222jpKF3tzlFt2-txT78nAJd0iYa1g04qo%22%3B%7D; i18next=en; PHPSESSID=8qclphb4gcopaqaqooomg7c243; _identity=2d49f04911ca00bbb1c49f283a6ab9ea03259a7959e64a3904e8761789d8d2b5a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%229d6dcfef-97bc-444c-9c84-8f40efd3d749%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '192.168.25.42'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '192.168.25.19'
+    'DOCUMENT_ROOT' => '/srv/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+    'REMOTE_PORT' => '60222'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'r=matching_questions%2Fmatching-questions%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=matching_questions%2Fmatching-questions%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1463104283.72
+    'REQUEST_TIME' => 1463104283
+]
+2016-05-12 22:56:24 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][error][yii\base\ErrorException:4] exception 'yii\base\ErrorException' with message 'syntax error, unexpected ';'' in /srv/www/humhub/protected/modules/matching_questions/controllers/MatchingQuestionsController.php:83
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2016-05-12 22:56:24 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][info][application] $_GET = [
+    'r' => 'matching_questions/matching-questions/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; _csrf=534e69b9bb23982d14b40ec7503878bdb772e582eb6270b5a453320c590bf827a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%222jpKF3tzlFt2-txT78nAJd0iYa1g04qo%22%3B%7D; i18next=en; PHPSESSID=8qclphb4gcopaqaqooomg7c243; _identity=2d49f04911ca00bbb1c49f283a6ab9ea03259a7959e64a3904e8761789d8d2b5a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%229d6dcfef-97bc-444c-9c84-8f40efd3d749%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '192.168.25.42'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '192.168.25.19'
+    'DOCUMENT_ROOT' => '/srv/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+    'REMOTE_PORT' => '60288'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=matching_questions%2Fmatching-questions%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=matching_questions%2Fmatching-questions%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1463104584.707
+    'REQUEST_TIME' => 1463104584
+]
+2016-05-12 22:59:26 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][error][yii\base\ErrorException:4] exception 'yii\base\ErrorException' with message 'syntax error, unexpected '?>'' in /srv/www/humhub/protected/modules/matching_questions/views/matching-questions/matching-results.php:16
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2016-05-12 22:59:26 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][info][application] $_GET = [
+    'r' => 'matching_questions/matching-questions/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '531'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ORIGIN' => 'http://evoke.local.com'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded'
+    'HTTP_REFERER' => 'http://evoke.local.com/humhub/index.php?r=matching_questions%2Fmatching-questions%2Fmatching'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; _csrf=534e69b9bb23982d14b40ec7503878bdb772e582eb6270b5a453320c590bf827a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%222jpKF3tzlFt2-txT78nAJd0iYa1g04qo%22%3B%7D; i18next=en; PHPSESSID=8qclphb4gcopaqaqooomg7c243; _identity=2d49f04911ca00bbb1c49f283a6ab9ea03259a7959e64a3904e8761789d8d2b5a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%229d6dcfef-97bc-444c-9c84-8f40efd3d749%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '192.168.25.42'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '192.168.25.19'
+    'DOCUMENT_ROOT' => '/srv/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+    'REMOTE_PORT' => '60314'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'r=matching_questions%2Fmatching-questions%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=matching_questions%2Fmatching-questions%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1463104766.042
+    'REQUEST_TIME' => 1463104766
+]
+2016-05-12 23:00:22 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][error][yii\base\ErrorException:8] exception 'yii\base\ErrorException' with message 'Undefined variable: superhero' in /srv/www/humhub/protected/modules/matching_questions/views/matching-questions/matching-results.php:17
+Stack trace:
+#0 /srv/www/humhub/protected/modules/matching_questions/views/matching-questions/matching-results.php(17): yii\base\ErrorHandler->handleError(8, 'Undefined varia...', '/srv/www/humhub...', 17, Array)
+#1 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/View.php(325): require('/srv/www/humhub...')
+#2 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/View.php(247): yii\base\View->renderPhpFile('/srv/www/humhub...', Array)
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/View.php(149): yii\base\View->renderFile('/srv/www/humhub...', Array, Object(app\modules\matching_questions\controllers\MatchingQuestionsController))
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(377): yii\base\View->render('matching-result...', Array, Object(app\modules\matching_questions\controllers\MatchingQuestionsController))
+#5 /srv/www/humhub/protected/modules/matching_questions/controllers/MatchingQuestionsController.php(85): yii\base\Controller->render('matching-result...', Array)
+#6 [internal function]: app\modules\matching_questions\controllers\MatchingQuestionsController->actionMatching()
+#7 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#9 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('matching', Array)
+#10 /srv/www/humhub/protected/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('matching_questi...', Array)
+#11 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(humhub\components\Request))
+#12 /srv/www/humhub/index.php(25): yii\base\Application->run()
+#13 {main}
+2016-05-12 23:00:22 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][info][application] $_GET = [
+    'r' => 'matching_questions/matching-questions/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '531'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ORIGIN' => 'http://evoke.local.com'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded'
+    'HTTP_REFERER' => 'http://evoke.local.com/humhub/index.php?r=matching_questions%2Fmatching-questions%2Fmatching'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; _csrf=534e69b9bb23982d14b40ec7503878bdb772e582eb6270b5a453320c590bf827a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%222jpKF3tzlFt2-txT78nAJd0iYa1g04qo%22%3B%7D; i18next=en; PHPSESSID=8qclphb4gcopaqaqooomg7c243; _identity=2d49f04911ca00bbb1c49f283a6ab9ea03259a7959e64a3904e8761789d8d2b5a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%229d6dcfef-97bc-444c-9c84-8f40efd3d749%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '192.168.25.42'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '192.168.25.19'
+    'DOCUMENT_ROOT' => '/srv/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+    'REMOTE_PORT' => '60321'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'r=matching_questions%2Fmatching-questions%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=matching_questions%2Fmatching-questions%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1463104822.876
+    'REQUEST_TIME' => 1463104822
+]
+2016-05-12 23:00:34 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][error][yii\base\ErrorException:4] exception 'yii\base\ErrorException' with message 'syntax error, unexpected '?>'' in /srv/www/humhub/protected/modules/matching_questions/views/matching-questions/matching-results.php:17
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2016-05-12 23:00:34 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][info][application] $_GET = [
+    'r' => 'matching_questions/matching-questions/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '529'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ORIGIN' => 'http://evoke.local.com'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded'
+    'HTTP_REFERER' => 'http://evoke.local.com/humhub/index.php?r=matching_questions%2Fmatching-questions%2Fmatching'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; _csrf=534e69b9bb23982d14b40ec7503878bdb772e582eb6270b5a453320c590bf827a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%222jpKF3tzlFt2-txT78nAJd0iYa1g04qo%22%3B%7D; i18next=en; PHPSESSID=8qclphb4gcopaqaqooomg7c243; _identity=2d49f04911ca00bbb1c49f283a6ab9ea03259a7959e64a3904e8761789d8d2b5a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%229d6dcfef-97bc-444c-9c84-8f40efd3d749%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '192.168.25.42'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '192.168.25.19'
+    'DOCUMENT_ROOT' => '/srv/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+    'REMOTE_PORT' => '60327'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'r=matching_questions%2Fmatching-questions%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=matching_questions%2Fmatching-questions%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1463104834.039
+    'REQUEST_TIME' => 1463104834
+]
+2016-05-12 23:00:42 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][error][yii\base\UnknownPropertyException] exception 'yii\base\UnknownPropertyException' with message 'Getting unknown property: app\modules\matching_questions\models\Qualities::Power' in /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Component.php:143
+Stack trace:
+#0 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/BaseActiveRecord.php(247): yii\base\Component->__get('Power')
+#1 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Model.php(984): yii\db\BaseActiveRecord->__get('Power')
+#2 /srv/www/humhub/protected/modules/matching_questions/views/matching-questions/matching-results.php(24): yii\base\Model->offsetGet('Power')
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/View.php(325): require('/srv/www/humhub...')
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/View.php(247): yii\base\View->renderPhpFile('/srv/www/humhub...', Array)
+#5 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/View.php(149): yii\base\View->renderFile('/srv/www/humhub...', Array, Object(app\modules\matching_questions\controllers\MatchingQuestionsController))
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(377): yii\base\View->render('matching-result...', Array, Object(app\modules\matching_questions\controllers\MatchingQuestionsController))
+#7 /srv/www/humhub/protected/modules/matching_questions/controllers/MatchingQuestionsController.php(85): yii\base\Controller->render('matching-result...', Array)
+#8 [internal function]: app\modules\matching_questions\controllers\MatchingQuestionsController->actionMatching()
+#9 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#10 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#11 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('matching', Array)
+#12 /srv/www/humhub/protected/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('matching_questi...', Array)
+#13 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(humhub\components\Request))
+#14 /srv/www/humhub/index.php(25): yii\base\Application->run()
+#15 {main}
+2016-05-12 23:00:42 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][info][application] $_GET = [
+    'r' => 'matching_questions/matching-questions/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '529'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ORIGIN' => 'http://evoke.local.com'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded'
+    'HTTP_REFERER' => 'http://evoke.local.com/humhub/index.php?r=matching_questions%2Fmatching-questions%2Fmatching'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; _csrf=534e69b9bb23982d14b40ec7503878bdb772e582eb6270b5a453320c590bf827a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%222jpKF3tzlFt2-txT78nAJd0iYa1g04qo%22%3B%7D; i18next=en; PHPSESSID=8qclphb4gcopaqaqooomg7c243; _identity=2d49f04911ca00bbb1c49f283a6ab9ea03259a7959e64a3904e8761789d8d2b5a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%229d6dcfef-97bc-444c-9c84-8f40efd3d749%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '192.168.25.42'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '192.168.25.19'
+    'DOCUMENT_ROOT' => '/srv/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+    'REMOTE_PORT' => '60328'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'r=matching_questions%2Fmatching-questions%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=matching_questions%2Fmatching-questions%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1463104842.232
+    'REQUEST_TIME' => 1463104842
+]
+2016-05-12 23:23:04 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][error][yii\base\ErrorException:1] exception 'yii\base\ErrorException' with message 'Class 'app\modules\matching_questions\controllers\SuperHeroIdentities' not found' in /srv/www/humhub/protected/modules/matching_questions/controllers/MatchingQuestionsController.php:85
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2016-05-12 23:23:04 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][info][application] $_GET = [
+    'r' => 'matching_questions/matching-questions/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '529'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ORIGIN' => 'http://evoke.local.com'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded'
+    'HTTP_REFERER' => 'http://evoke.local.com/humhub/index.php?r=matching_questions%2Fmatching-questions%2Fmatching'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; _csrf=534e69b9bb23982d14b40ec7503878bdb772e582eb6270b5a453320c590bf827a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%222jpKF3tzlFt2-txT78nAJd0iYa1g04qo%22%3B%7D; i18next=en; PHPSESSID=8qclphb4gcopaqaqooomg7c243; _identity=2d49f04911ca00bbb1c49f283a6ab9ea03259a7959e64a3904e8761789d8d2b5a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%229d6dcfef-97bc-444c-9c84-8f40efd3d749%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '192.168.25.42'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '192.168.25.19'
+    'DOCUMENT_ROOT' => '/srv/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+    'REMOTE_PORT' => '60670'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'r=matching_questions%2Fmatching-questions%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=matching_questions%2Fmatching-questions%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1463106184.41
+    'REQUEST_TIME' => 1463106184
+]
+2016-05-12 23:23:16 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][error][yii\base\ErrorException:1] exception 'yii\base\ErrorException' with message 'Class 'app\modules\matching_questions\models\SuperHeroIdentities' not found' in /srv/www/humhub/protected/modules/matching_questions/controllers/MatchingQuestionsController.php:86
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2016-05-12 23:23:16 [192.168.25.19][1][8qclphb4gcopaqaqooomg7c243][info][application] $_GET = [
+    'r' => 'matching_questions/matching-questions/matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'evoke.local.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '529'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ORIGIN' => 'http://evoke.local.com'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded'
+    'HTTP_REFERER' => 'http://evoke.local.com/humhub/index.php?r=matching_questions%2Fmatching-questions%2Fmatching'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; _csrf=534e69b9bb23982d14b40ec7503878bdb772e582eb6270b5a453320c590bf827a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%222jpKF3tzlFt2-txT78nAJd0iYa1g04qo%22%3B%7D; i18next=en; PHPSESSID=8qclphb4gcopaqaqooomg7c243; _identity=2d49f04911ca00bbb1c49f283a6ab9ea03259a7959e64a3904e8761789d8d2b5a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%229d6dcfef-97bc-444c-9c84-8f40efd3d749%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at evoke.local.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'evoke.local.com'
+    'SERVER_ADDR' => '192.168.25.42'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '192.168.25.19'
+    'DOCUMENT_ROOT' => '/srv/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+    'REMOTE_PORT' => '60671'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'r=matching_questions%2Fmatching-questions%2Fmatching'
+    'REQUEST_URI' => '/humhub/index.php?r=matching_questions%2Fmatching-questions%2Fmatching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1463106196.554
+    'REQUEST_TIME' => 1463106196
+]

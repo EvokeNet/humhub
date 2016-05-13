@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\superhero_identity\models;
+namespace app\modules\matching_questions\models;
 
 use Yii;
 
@@ -16,6 +16,9 @@ use Yii;
  * @property integer $secondary_power
  * @property string $created
  * @property string $modified
+ *
+ * @property Qualities $quality2
+ * @property Qualities $quality1
  */
 class SuperheroIdentities extends \yii\db\ActiveRecord
 {
@@ -37,6 +40,8 @@ class SuperheroIdentities extends \yii\db\ActiveRecord
             [['quality_1', 'quality_2', 'primary_power', 'secondary_power'], 'integer'],
             [['created', 'modified'], 'safe'],
             [['name', 'description'], 'string', 'max' => 255],
+            [['quality_2'], 'exist', 'skipOnError' => true, 'targetClass' => Qualities::className(), 'targetAttribute' => ['quality_2' => 'id']],
+            [['quality_1'], 'exist', 'skipOnError' => true, 'targetClass' => Qualities::className(), 'targetAttribute' => ['quality_1' => 'id']],
         ];
     }
 
@@ -56,5 +61,21 @@ class SuperheroIdentities extends \yii\db\ActiveRecord
             'created' => Yii::t('app', 'Created'),
             'modified' => Yii::t('app', 'Modified'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getQuality2()
+    {
+        return $this->hasOne(Qualities::className(), ['id' => 'quality_2']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getQuality1()
+    {
+        return $this->hasOne(Qualities::className(), ['id' => 'quality_1']);
     }
 }
