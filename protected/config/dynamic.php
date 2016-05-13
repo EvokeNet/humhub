@@ -16,8 +16,8 @@
     array (
       'transport' => 
       array (
+        'class' => 'Swift_MailTransport',
       ),
-      'useFileTransport' => true,
       'view' => 
       array (
         'theme' => 
@@ -99,9 +99,9 @@
       ),
       'mailing' => 
       array (
-        'transportType' => 'file',
+        'transportType' => 'php',
         'systemEmailAddress' => 'social@example.com',
-        'systemEmailName' => 'HumHub',
+        'systemEmailName' => 'Evoke - HumHub',
         'receive_email_activities' => '1',
         'receive_email_notifications' => '2',
         'hostname' => '',
@@ -153,13 +153,11 @@
         'shownDays' => '2',
       ),
     ),
-    'config_created_at' => 1462565797,
+    'config_created_at' => 1462702659,
     'databaseInstalled' => true,
     'installed' => true,
   ),
   'name' => 'Evoke',
   'language' => 'es',
   'timeZone' => 'America/Sao_Paulo',
-); 
-
-?>
+); ?>
