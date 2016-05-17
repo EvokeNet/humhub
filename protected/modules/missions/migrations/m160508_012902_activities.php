@@ -27,9 +27,9 @@ class m160508_012902_activities extends Migration
 
     public function down()
     {
-        echo "m160508_012902_activities cannot be reverted.\n";
+        $this->dropTable('activities');
 
-        return false;
+        return true;
     }
 
     /*

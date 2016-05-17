@@ -17,9 +17,9 @@ class m160505_192218_initial extends Migration
 
     public function down()
     {
-        echo "m160505_192218_initial cannot be reverted.\n";
+        $this->dropTable('missions');
 
-        return false;
+        return true;
     }
 
     /*

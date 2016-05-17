@@ -11,6 +11,7 @@ namespace humhub\modules\missions;
 use Yii;
 use yii\helpers\Url;
 use humhub\models\Setting;
+use humhub\modules\missions\widgets\EvidenceWidget;
 // use humhub\modules\dashboard\widgets\ShareWidget;
 
 /**
@@ -37,17 +38,26 @@ class Events
             'icon' => '<i class="fa fa-th"></i>',
             'url' => Url::toRoute('/missions/missions'),
             'sortOrder' => 100,
-            'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions'),
+            'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'missions'),
+        ));
+
+         $event->sender->addItem(array(
+            'label' => Yii::t('MissionsModule.base', 'Evidence'),
+            'id' => 'evidence',
+            'icon' => '<i class="fa fa-th"></i>',
+            'url' => Url::toRoute('/missions/evidence'),
+            'sortOrder' => 100,
+            'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'evidence'),
         ));
     }
 
     public static function onSidebarInit($event)
     {
-        if (Setting::Get('enable', 'share') == 1) {
-            if (Yii::$app->user->isGuest || Yii::$app->user->getIdentity()->getSetting("hideSharePanel", "share") != 1) {
-                $event->sender->addWidget(ShareWidget::className(), array(), array('sortOrder' => 150));
-            }
+        if (Yii::$app->user->isGuest || Yii::$app->user->getIdentity()->getSetting("hideSharePanel", "share") != 1) {
+            //$event->sender->addWidget(ShareWidget::className(), array(), array('sortOrder' => 150));
+            $event->sender->addWidget(EvidenceWidget::className(), array(), array('sortOrder' => 9));
         }
+        
     }
     
     public static function onAdminMenuInit($event)
