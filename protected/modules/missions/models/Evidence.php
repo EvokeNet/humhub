@@ -31,8 +31,9 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
 
     const SCENARIO_CREATE = 'create';
     const SCENARIO_EDIT = 'edit';
+    const SCENARIO_CLOSE = 'close';
     public $autoAddToWall = true;
-    //public $wallEntryClass = 'humhub\modules\polls\widgets\WallEntry';
+    public $wallEntryClass = 'humhub\modules\missions\widgets\WallEntry';
 
     /**
      * @inheritdoc
@@ -42,20 +43,28 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
         return 'evidence';
     }
 
+    public function scenarios()
+    {
+        return [
+            self::SCENARIO_CLOSE => [],
+            self::SCENARIO_CREATE => ['title', 'text'],
+            self::SCENARIO_EDIT => ['title', 'text']
+        ];
+    }
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return array(
-            [['title', 'type', 'main_content', 'content', 'user_id', 'activities_id', 'space_id', 'created', 'modified'], 'required'],
-            [['main_content', 'content'], 'string'],
-            [['user_id', 'activities_id', 'space_id'], 'integer'],
-            [['created', 'modified'], 'safe'],
+            [['title', 'text'], 'required'],
+            [['text'], 'string'],
+            //[['user_id', 'activities_id', 'space_id'], 'integer'],
             [['title'], 'string', 'max' => 120],
-            [['type'], 'string', 'max' => 255],
+            //[['type'], 'string', 'max' => 255],
             //[['activities_id'], 'exist', 'skipOnError' => true, 'targetClass' => Activities::className(), 'targetAttribute' => ['activities_id' => 'id']],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            //[['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         );
     }
 
@@ -67,13 +76,13 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
         return array(
             'id' => Yii::t('app', 'ID'),
             'title' => Yii::t('app', 'Title'),
-            'type' => Yii::t('app', 'Type'),
-            'main_content' => Yii::t('app', 'Main Content'),
-            'content' => Yii::t('app', 'Content'),
-            'user_id' => Yii::t('app', 'User ID'),
+            //'type' => Yii::t('app', 'Type'),
+            //'main_content' => Yii::t('app', 'Main Content'),
+            'text' => Yii::t('app', 'Text'),
+            //'user_id' => Yii::t('app', 'User ID'),
             //'activities_id' => Yii::t('app', 'Activities ID'),
-            'created' => Yii::t('app', 'Created'),
-            'modified' => Yii::t('app', 'Modified'),
+            //'created' => Yii::t('app', 'Created'),
+            //'modified' => Yii::t('app', 'Modified'),
         );
     }
 
@@ -114,7 +123,7 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
      */
     public function getContentDescription()
     {
-        return $this->main_content;
+        return $this->text;
     }
 
     /**
@@ -123,15 +132,8 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
     public function getSearchAttributes()
     {
 
-        $itemAnswers = "";
-
-        foreach ($this->answers as $answer) {
-            $itemAnswers .= $answer->answer;
-        }
-
         return array(
-            'question' => $this->question,
-            'itemAnswers' => $itemAnswers
+            'title' => $this->title
         );
     }    
 

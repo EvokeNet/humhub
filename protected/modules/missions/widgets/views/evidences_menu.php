@@ -13,15 +13,19 @@ use yii\helpers\Url;
     </div>
     <div class="list-group submit-body">
     	<div class= "list-group-item">
-    		<a href='<?= $space->createUrl('/missions/evidence/create'); ?>'>
+    		<a href='<?= $space->createUrl('/missions/evidence/show'); ?>'>
         		Submit Evidence
         	</a>
         </div>
         <div class= "list-group-item">
-        	Read Missions
+            <a href='#'>
+        	   Read Missions
+            </a>
         </div>
         <div class= "list-group-item">
-            Rate Evidence
+            <a href='#'>
+                Rate Evidence
+            </a>
         </div>
     </div>
 </div>

@@ -14,6 +14,6 @@ echo \humhub\widgets\RichTextEditor::widget(array(
 
 <div class="contentForm_options">
     
-    <?php echo Html::textArea("content", '', array('id' => 'contentForm_question', 'class' => 'form-control autosize contentForm', 'rows' => '10', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.widgets_views_evidenceForm', "Content"))); ?>
+    <?php echo Html::textArea("text", '', array('id' => 'contentForm_question', 'class' => 'form-control autosize contentForm', 'rows' => '10', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.widgets_views_evidenceForm', "Content"))); ?>
 
 </div>
