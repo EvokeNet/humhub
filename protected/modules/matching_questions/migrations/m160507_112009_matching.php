@@ -77,7 +77,7 @@ class m160507_112009_matching extends Migration
             'fk-user_matching_answers-matching_answer_id',
             'user_matching_answers',
             'matching_aswer_id',
-            'user_matching_answers',
+            'matching_answers',
             'id',
             'CASCADE'
         );
@@ -122,8 +122,11 @@ class m160507_112009_matching extends Migration
 
     public function down()
     {
-        echo "m160507_112009_matching cannot be reverted.\n";
-
-        return false;
+        $this->dropTable('user_matching_answers');
+        $this->dropTable('matching_answers');
+        $this->dropTable('matching_questions');
+        $this->dropTable('superhero_identities');
+        $this->dropTable('qualities');
+        return true;
     }
 }

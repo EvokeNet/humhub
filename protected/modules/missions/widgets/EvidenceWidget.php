@@ -8,18 +8,14 @@ class EvidenceWidget extends Widget
 {
 
 
-    /**
-     * @var \humhub\modules\space\models\Space
-     */
-    public $space;
+	public $space;
 
     /**
      * @inheritdoc
      */
     public function run()
     {
-
-        return $this->render('evidence', []);
+        return $this->render('evidences_menu', array('space' => $this->space));
     }
 
 }

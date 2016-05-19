@@ -20,9 +20,13 @@ class m160513_030118_user extends Migration
 
     public function down()
     {
-        echo "m160513_030118_user cannot be reverted.\n";
+        $this->dropForeignKey(
+            'fk-user-super_hero_id',
+            'user'
+        );
+        $this->dropColumn('user', 'superhero_identity_id');
 
-        return false;
+        return true;
     }
 
     /*

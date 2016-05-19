@@ -14,8 +14,7 @@ class m160516_215224_evidences extends Migration
             'main_content' => 'text NOT NULL',
             'content' => 'text NOT NULL',
             'user_id' => 'int(11) NOT NULL',
-            'activities_id' => 'int(11) NOT NULL',
-            'space_id' => 'int(11) NOT NULL',
+            //'activities_id' => 'int(11) NOT NULL',
             'created' => 'datetime NOT NULL',
             'modified' => 'datetime NOT NULL',
                 ), '');
@@ -29,7 +28,7 @@ class m160516_215224_evidences extends Migration
             'CASCADE'
         );
 
-        $this->addForeignKey(
+        /*$this->addForeignKey(
             'fk-evidence-activities_id',
             'evidence',
             'activities_id',
@@ -37,16 +36,7 @@ class m160516_215224_evidences extends Migration
             'id',
             'CASCADE'
         );
-
-        $this->addForeignKey(
-            'fk-evidence-space_id',
-            'evidence',
-            'space_id',
-            'space',
-            'id',
-            'CASCADE'
-        );
-
+        */
 
     }
 

@@ -12,6 +12,7 @@ use Yii;
 use yii\helpers\Url;
 use humhub\models\Setting;
 use humhub\modules\missions\widgets\EvidenceWidget;
+use humhub\modules\space\models\Space;
 // use humhub\modules\dashboard\widgets\ShareWidget;
 
 /**
@@ -40,22 +41,14 @@ class Events
             'sortOrder' => 100,
             'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'missions'),
         ));
-
-         $event->sender->addItem(array(
-            'label' => Yii::t('MissionsModule.base', 'Evidence'),
-            'id' => 'evidence',
-            'icon' => '<i class="fa fa-th"></i>',
-            'url' => Url::toRoute('/missions/evidence'),
-            'sortOrder' => 100,
-            'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'evidence'),
-        ));
     }
 
     public static function onSidebarInit($event)
     {
         if (Yii::$app->user->isGuest || Yii::$app->user->getIdentity()->getSetting("hideSharePanel", "share") != 1) {
             //$event->sender->addWidget(ShareWidget::className(), array(), array('sortOrder' => 150));
-            $event->sender->addWidget(EvidenceWidget::className(), array(), array('sortOrder' => 9));
+            $space = $event->sender->space;
+            $event->sender->addWidget(EvidenceWidget::className(), array('space' => $space), array('sortOrder' => 9));
         }
         
     }
@@ -84,6 +77,24 @@ class Events
                 'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'container' && Yii::$app->controller->action->id != 'view'),
             ));
         }
+    }
+
+
+     /**
+     * Create installer sample data
+     * 
+     * @param \yii\base\Event $event
+     */
+    public static function onSampleDataInstall($event)
+    {
+        $space = Space::find()->where(['id' => 1])->one();
+
+        // activate module at space
+        if (!$space->isModuleEnabled("missions")) {
+            $space->enableModule("missions");
+        }
+
+
     }
 
 }

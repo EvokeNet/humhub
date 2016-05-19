@@ -10,8 +10,8 @@ class m160505_192218_initial extends Migration
             'id' => 'pk',
             'title' => 'varchar(255) NOT NULL',
             'description' => 'text DEFAULT NULL',
-            'created' => 'datetime NOT NULL',
-            'modified' => 'datetime NOT NULL',
+            'created_at' => 'datetime NOT NULL',
+            'modified_at' => 'datetime NOT NULL',
                 ), '');
     }
 
