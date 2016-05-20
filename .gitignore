@@ -1,5 +1,5 @@
 protected/config/*
+
 protected/runtime/logs/*
-protected/runtime/searchdb/*
-assets/*
+
 protected/modules/polls/*
