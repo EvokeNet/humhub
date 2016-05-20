@@ -4,7 +4,7 @@ namespace humhub\modules\missions\components;
 
 use Yii;
 use humhub\modules\content\components\actions\ContentContainerStream;
-use humhub\modules\missions\models\Evidence;
+use app\modules\missions\models\Evidence;
 
 class StreamAction extends ContentContainerStream
 {

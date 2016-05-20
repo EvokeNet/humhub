@@ -30,9 +30,49 @@
     /**
      * @inheritdoc
      */
+    public function enable()
+    {
+        $module = \humhub\modules\space\models\Module::find()->where(['module_id' => 'missions', 'space_id' => 0])->one();
+
+        if(isset($module)){
+
+            $module->state = \humhub\modules\space\models\Module::STATE_FORCE_ENABLED;
+            $module->save();
+
+        }else{
+
+            $module = new \humhub\modules\space\models\Module();
+            $module->space_id = \humhub\modules\space\models\Module::STATE_FORCE_ENABLED;
+            $module->module_id = 'missions';
+            $module->state = 0;
+            $module->save();
+        }
+
+        parent::enable();
+    }   
+
+    /**
+     * @inheritdoc
+     */
     public function disable()
     {
-        //TODO
+        $module = \humhub\modules\space\models\Module::find()->where(['module_id' => 'missions', 'space_id' => 0])->one();
+
+        if(isset($module)){
+
+            $module->state = \humhub\modules\space\models\Module::STATE_DISABLED;
+            $module->save();
+
+        }else{
+
+            $module = new \humhub\modules\space\models\Module();
+            $module->space_id = \humhub\modules\space\models\Module::STATE_DISABLED;
+            $module->module_id = 'missions';
+            $module->state = 0;
+            $module->save();
+        }
+
+        parent::disable();
     }
 
     /**
@@ -56,6 +96,16 @@
 
         return [];
     }
+
+        /**
+     * @inheritdoc
+     */
+    public function getConfigUrl()
+    {
+        return Url::to(['/missions/config']);
+    }
+
+
 }
 
 ?>

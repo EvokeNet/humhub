@@ -3,3 +3,4 @@ protected/config/*
 protected/runtime/logs/*
 
 protected/modules/polls/*
+protected/modules/birthday/*
