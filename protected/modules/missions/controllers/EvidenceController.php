@@ -55,4 +55,39 @@ class EvidenceController extends ContentContainerController
         return \humhub\modules\missions\widgets\WallCreateForm::create($evidence, $this->contentContainer);
     }
 
+
+   public function actionEdit()
+    {
+
+        $request = Yii::$app->request;
+        $id = $request->get('id');
+
+        $edited = false;
+        $model = Evidence::findOne(['id' => $id]);
+        $model->scenario = Evidence::SCENARIO_EDIT;
+
+        if (!$model->content->canWrite()) {
+            throw new HttpException(403, Yii::t('MissionsModule.controllers_PollController', 'Access denied!'));
+        }
+
+
+        if ($model->load($request->post())) {
+
+            Yii::$app->response->format = 'json';
+            $result = [];
+            if ($model->validate() && $model->save()) {
+                // Reload record to get populated updated_at field
+                $model = Evidence::findOne(['id' => $id]);
+                $result['success'] = true;
+                $result['output'] = $this->renderAjaxContent($model->getWallOut(['justEdited' => true]));
+            } else {
+                $result['errors'] = $model->getErrors();
+            }
+            return $result;
+        }
+
+        return $this->renderAjax('edit', ['evidence' => $model, 'edited' => $edited]);
+    }
+
+
 }
