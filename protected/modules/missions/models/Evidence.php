@@ -89,25 +89,9 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSpace()
-    {
-        return $this->hasOne(Space::className(), ['id' => 'space_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getActivities()
     {
         return $this->hasOne(Activities::className(), ['id' => 'activities_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getUser()
-    {
-        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
     /**
@@ -135,6 +119,37 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
         return array(
             'title' => $this->title
         );
+    }    
+
+    /**
+     * After Saving of comments, fire an activity
+     *
+     * @return type
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+
+
+        
+        $activity = new  \humhub\modules\missions\activities\NewEvidence();
+        $activity->source = $this;
+        $activity->originator = Yii::$app->user->getIdentity();
+        $activity->create();
+        
+
+        // Handle mentioned users
+        // Execute before NewCommentNotification to avoid double notification when mentioned.
+        \humhub\modules\user\models\Mentioning::parse($this, $this->text);
+        
+        if ($insert) {
+            $notification = new \humhub\modules\missions\notifications\NewEvidence();
+            $notification->source = $this;
+            $notification->originator = Yii::$app->user->getIdentity();
+            $notification->sendBulk($this->content->getPolymorphicRelation()->getFollowers(null, true, true));
+        }
+
+        return parent::afterSave($insert, $changedAttributes);
+
     }    
 
 }
