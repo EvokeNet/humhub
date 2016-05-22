@@ -36,7 +36,7 @@ class SuperheroIdentities extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'description', 'quality_1', 'quality_2', 'primary_power', 'secondary_power', 'created', 'modified'], 'required'],
+            [['name', 'description', 'quality_1', 'quality_2', 'primary_power', 'secondary_power'], 'required'],
             [['quality_1', 'quality_2', 'primary_power', 'secondary_power'], 'integer'],
             [['created', 'modified'], 'safe'],
             [['name', 'description'], 'string', 'max' => 255],

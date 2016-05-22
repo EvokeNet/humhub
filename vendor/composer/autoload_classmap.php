@@ -6,6 +6,4 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Yii' => $vendorDir . '/yiisoft/yii/framework/yii.php',
-    'YiiBase' => $vendorDir . '/yiisoft/yii/framework/YiiBase.php',
 );

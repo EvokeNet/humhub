@@ -5,10 +5,11 @@ use yii\grid\GridView;
 use humhub\modules\missions\models\Missions;
 use yii\widgets\Breadcrumbs;
 
-$this->title = Yii::t('MissionsModule.views_admin_add-mission-translations', 'Translations');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Missions'), 'url' => ['index']];
+$this->title = Yii::t('MissionsModule.base', 'Translations');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.base', 'Missions'), 'url' => ['index']];
 // $this->params['breadcrumbs'][] = ['label' => $mission->title, 'url' => ['view', 'id' => $mission->id]];
-$this->params['breadcrumbs'][] = $mission->title.' - '.$this->title;
+$this->params['breadcrumbs'][] = Yii::t('MissionsModule.base', 'Mission').' '.$mission->id_code;
+$this->params['breadcrumbs'][] = $this->title;
 
 echo Breadcrumbs::widget([
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
@@ -17,11 +18,11 @@ echo Breadcrumbs::widget([
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3><?php echo Yii::t('MissionsModule.views_admin_add-mission-translations', 'Mission Translations'); ?></h3>
+        <h3><?php echo Yii::t('MissionsModule.base', 'Translations'); ?></h3>
     </div>
     <div class="panel-body">
 
-        <?php echo Html::a(Yii::t('MissionsModule.views_admin_add-mission-translations', 'Create new Translation'), ['add-mission-translations', 'id' => $mission->id], array('class' => 'btn btn-success')); ?>
+        <?php echo Html::a(Yii::t('MissionsModule.base', 'Create new Translation'), ['create-mission-translations', 'id' => $mission->id], array('class' => 'btn btn-success')); ?>
         
         <br><br>
         
@@ -29,23 +30,27 @@ echo Breadcrumbs::widget([
         
             <table class="table">
                 <tr>
-                    <th><?php echo Yii::t('MissionsModule.views_admin_add-mission-translations', 'Title'); ?></th>
-                    <th><?php echo Yii::t('MissionsModule.views_admin_add-mission-translations', 'Description'); ?></th>
-                    <th><?php echo Yii::t('MissionsModule.views_admin_add-mission-translations', 'Language'); ?></th>
+                    <th><?php echo Yii::t('MissionsModule.base', 'Title'); ?></th>
+                    <th><?php echo Yii::t('MissionsModule.base', 'Description'); ?></th>
+                    <th><?php echo Yii::t('MissionsModule.base', 'Language'); ?></th>
                     <th>&nbsp;</th>
                 </tr>
-                <?php foreach ($mission_translations as $mission): ?>
+                <?php foreach ($mission_translations as $m): ?>
                     <tr>
-                        <td><?php echo $mission->title; ?></td>
-                        <td><?php echo $mission->description; ?></td>
-                        <td><?php echo $mission->language->code; ?></td>
+                        <td><?php echo $m->title; ?></td>
+                        <td><?php echo $m->description; ?></td>
+                        <td><?php echo $m->language->language; ?></td>
                         <td>
-                            <?php echo Html::a('Edit', ['edit-mission-translations', 'id' => $mission->id], array('class' => 'btn btn-primary btn-sm')); ?>
+                            <?php echo Html::a(
+                                Yii::t('MissionsModule.base', 'Update'),
+                                ['update-mission-translations', 'id' => $m->id], array('class' => 'btn btn-primary btn-sm')); ?>
                             &nbsp;&nbsp;
-                            <?php echo Html::a('Delete', ['delete-mission-translations', 'id' => $mission->id], array(
+                            <?php echo Html::a(
+                                Yii::t('MissionsModule.base', 'Delete'),
+                                ['delete-mission-translations', 'id' => $m->id], array(
                                 'class' => 'btn btn-danger btn-sm',
                                 'data' => [
-                                    'confirm' => Yii::t('MissionsModule.views_admin_add-mission-translations', 'Are you sure you want to delete this item?'),
+                                    'confirm' => Yii::t('MissionsModule.base', 'Are you sure you want to delete this translation?'),
                                     'method' => 'post',
                                 ],
                                 )); ?>
@@ -56,7 +61,7 @@ echo Breadcrumbs::widget([
 
         <?php else: ?>
 
-            <p><?php echo Yii::t('MissionsModule.views_admin_add-mission-translations', 'No mission translations created yet!'); ?></p>
+            <p><?php echo Yii::t('MissionsModule.base', 'No mission translations created yet!'); ?></p>
 
 
         <?php endif; ?>

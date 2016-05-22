@@ -18,10 +18,10 @@ class AdminController extends \humhub\modules\admin\components\Controller
     public function actionIndex()
     {
         $missions = Missions::find()->all();
-        return $this->render('index', array('missions' => $missions));
+        return $this->render('missions/index', array('missions' => $missions));
     }
 
-    public function actionAdd()
+    public function actionCreate()
     {
         $model = new Missions();
 
@@ -29,10 +29,10 @@ class AdminController extends \humhub\modules\admin\components\Controller
             return $this->redirect(['index']);
         } 
         
-        return $this->render('add', array('model' => $model));
+        return $this->render('missions/create', array('model' => $model));
     }
 
-    public function actionEdit($id)
+    public function actionUpdate($id)
     {
         $model = Missions::findOne(['id' => Yii::$app->request->get('id')]);
 
@@ -40,7 +40,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
             return $this->redirect(['index']);
         }
 
-        return $this->render('edit', array('model' => $model));
+        return $this->render('missions/update', array('model' => $model));
     }
 
     public function actionDelete()
@@ -69,28 +69,32 @@ class AdminController extends \humhub\modules\admin\components\Controller
         return $this->render('activities/index', array('activities' => $activities, 'mission' => $mission));
     }
     
-    public function actionAddActivities($id)
+    public function actionCreateActivities($id)
     {
         $model = new Activities();
         $model->mission_id = $id;
-
+        
+        $mission = Missions::findOne(['id' => Yii::$app->request->get('id')]);
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             //return $this->redirect(['index-activities', 'id' => $model->mission_id]);
             return $this->redirect(['index-activities', 'id' => $model->mission_id]);
         } 
         
-        return $this->render('activities/add', array('model' => $model));
+        return $this->render('activities/create', array('model' => $model, 'mission' => $mission));
     }
     
-    public function actionEditActivities($id)
+    public function actionUpdateActivities($id)
     {
         $model = Activities::findOne(['id' => Yii::$app->request->get('id')]);
+        
+        $mission = Missions::findOne(['id' => $model->mission_id]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index-activities', 'id' => $model->mission_id]);
         }
 
-        return $this->render('activities/edit', array('model' => $model));
+        return $this->render('activities/update', array('model' => $model, 'mission' => $mission));
     }
     
     public function actionDeleteActivities()
@@ -128,28 +132,32 @@ class AdminController extends \humhub\modules\admin\components\Controller
         return $this->render('mission-translations/index', array('mission_translations' => $mission_translations, 'mission' => $mission));
     }
     
-    public function actionAddMissionTranslations($id)
+    public function actionCreateMissionTranslations($id)
     {
         $model = new MissionTranslations();
         $model->mission_id = $id;
+        
+        $mission = Missions::findOne(['id' => Yii::$app->request->get('id')]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             //return $this->redirect(['index-activities', 'id' => $model->mission_id]);
             return $this->redirect(['index-mission-translations', 'id' => $model->mission_id]);
         } 
         
-        return $this->render('mission-translations/create', array('model' => $model));
+        return $this->render('mission-translations/create', array('model' => $model, 'mission' => $mission));
     }
     
-    public function actionEditMissionTranslations($id)
+    public function actionUpdateMissionTranslations($id)
     {
         $model = MissionTranslations::findOne(['id' => Yii::$app->request->get('id')]);
+        
+        $mission = Missions::findOne(['id' => $model->mission_id]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index-mission-translations', 'id' => $model->mission_id]);
         }
 
-        return $this->render('mission-translations/update', array('model' => $model));
+        return $this->render('mission-translations/update', array('model' => $model, 'mission' => $mission));
     }
     
     public function actionDeleteMissionTranslations()
@@ -187,28 +195,32 @@ class AdminController extends \humhub\modules\admin\components\Controller
         return $this->render('activity-translations/index', array('activity_translations' => $activity_translations, 'activity' => $activity));
     }
     
-    public function actionAddActivityTranslations($id)
+    public function actionCreateActivityTranslations($id)
     {
         $model = new ActivityTranslations();
         $model->activity_id = $id;
+        
+        $activity = Activities::findOne(['id' => Yii::$app->request->get('id')]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             //return $this->redirect(['index-activities', 'id' => $model->mission_id]);
             return $this->redirect(['index-activity-translations', 'id' => $model->activity_id]);
         } 
         
-        return $this->render('activity-translations/create', array('model' => $model));
+        return $this->render('activity-translations/create', array('model' => $model, 'activity' => $activity));
     }
     
-    public function actionEditActivityTranslations($id)
+    public function actionUpdateActivityTranslations($id)
     {
         $model = ActivityTranslations::findOne(['id' => Yii::$app->request->get('id')]);
 
+        $activity = Activities::findOne(['id' => $id]);
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index-activity-translations', 'id' => $model->activity_id]);
         }
 
-        return $this->render('activity-translations/update', array('model' => $model));
+        return $this->render('activity-translations/update', array('model' => $model, 'activity' => $activity));
     }
     
     public function actionDeleteActivityTranslations()

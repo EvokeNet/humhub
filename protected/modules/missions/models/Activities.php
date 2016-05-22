@@ -55,7 +55,7 @@ class Activities extends \yii\db\ActiveRecord
             'mission_id' => Yii::t('app', 'Mission ID'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
-            'id_code' => Yii::t('app', 'Id Code'),
+            'id_code' => Yii::t('app', 'ID Code'),
         ];
     }
 

@@ -6,9 +6,10 @@ use yii\widgets\Breadcrumbs;
 /* @var $this yii\web\View */
 /* @var $model app\modules\missions\models\MissionTranslations */
 
-$this->title = Yii::t('MissionsModule.views_admin_add-mission-translations', 'Create Mission Translation');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.views_admin_add-mission-translations', 'Missions'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.views_admin_add-mission-translations', 'Mission Translation'), 'url' => ['index-mission-translations', 'id' => $model->mission_id]];
+$this->title = Yii::t('MissionsModule.base', 'Create new Translation');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.base', 'Missions'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = Yii::t('MissionsModule.base', 'Mission').' '.$mission->id_code;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.base', 'Translations'), 'url' => ['index-mission-translations', 'id' => $mission->id]];
 $this->params['breadcrumbs'][] = $this->title;
 
 echo Breadcrumbs::widget([
@@ -17,10 +18,10 @@ echo Breadcrumbs::widget([
 
 ?>
 <div class="panel panel-default">
-    <div class="panel-heading"><?php echo Yii::t('MissionsModule.views_admin_add-mission-translations', '<strong>Add</strong> new Mission Translation'); ?></div>
+    <div class="panel-heading"><strong><?php echo $this->title; ?></strong></div>
     <div class="panel-body">
 
-        <div class="activities-create">
+        <div class="mission-translations-create">
 
             <?= $this->render('_form', [
                 'model' => $model

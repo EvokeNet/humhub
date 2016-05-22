@@ -5,6 +5,7 @@ namespace humhub\modules\missions\controllers;
 use Yii;
 use humhub\modules\missions\models\Missions;
 use humhub\modules\missions\models\MissionsSearch;
+use app\modules\languages\models\Languages;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -43,8 +44,18 @@ class MissionsController extends Controller
         //     'dataProvider' => $dataProvider,
         // ]);
         
-        $missions = Missions::find()->all();
-        return $this->render('index', array('missions' => $missions));
+        //$missions = Missions::find()->all();
+        
+        $lang = Yii::$app->language;
+        
+        $missions = Missions::find()->with([
+            'missionTranslations' => function ($query) {
+                $lang = Languages::findOne(['code' => Yii::$app->language]);
+                $query->andWhere(['language_id' => $lang->id]);
+            },
+        ])->all();
+        
+        return $this->render('index', array('missions' => $missions, 'lang' => $lang));
     }
 
     /**

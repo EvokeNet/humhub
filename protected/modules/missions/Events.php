@@ -16,7 +16,6 @@ use humhub\models\Setting;
 /**
  * Description of Events
  *
- * @author luke
  */
 class Events
 {
@@ -37,7 +36,7 @@ class Events
             'icon' => '<i class="fa fa-th"></i>',
             'url' => Url::toRoute('/missions/missions'),
             'sortOrder' => 100,
-            'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions'),
+            'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id != 'admin'),
         ));
     }
 
@@ -58,22 +57,21 @@ class Events
             'group' => 'manage',
             'icon' => '<i class="fa fa-th"></i>',
             'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'admin'),
-            'sortOrder' => 300,
         ));
     }
     
-    public static function onSpaceAdminMenuInit($event)
-    {
-        $space = $event->sender->space;
-        if ($space->isModuleEnabled('missions') && $space->isAdmin() && $space->isMember()) {
-            $event->sender->addItem(array(
-                'label' => Yii::t('MissionsModule.base', 'Missions'),
-                'group' => 'admin',
-                'url' => $space->createUrl('/missions/admin'),
-                'icon' => '<i class="fa fa-th"></i>',
-                'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'container' && Yii::$app->controller->action->id != 'view'),
-            ));
-        }
-    }
+    // public static function onSpaceAdminMenuInit($event)
+    // {
+    //     $space = $event->sender->space;
+    //     if ($space->isModuleEnabled('missions') && $space->isAdmin() && $space->isMember()) {
+    //         $event->sender->addItem(array(
+    //             'label' => Yii::t('MissionsModule.base', 'Missions'),
+    //             'group' => 'admin',
+    //             'url' => $space->createUrl('/missions/admin'),
+    //             'icon' => '<i class="fa fa-th"></i>',
+    //             'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'container' && Yii::$app->controller->action->id != 'view'),
+    //         ));
+    //     }
+    // }
 
 }

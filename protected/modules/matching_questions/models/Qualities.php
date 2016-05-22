@@ -14,9 +14,7 @@ use Yii;
  * @property string $created
  * @property string $modified
  *
- * @property MatchingAnswers[] $matchingAnswers
- * @property SuperheroIdentities[] $superheroIdentities
- * @property SuperheroIdentities[] $superheroIdentities0
+ * @property QualityTranslations[] $qualityTranslations
  */
 class Qualities extends \yii\db\ActiveRecord
 {
@@ -34,7 +32,7 @@ class Qualities extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'short_name', 'description', 'created', 'modified'], 'required'],
+            [['name', 'short_name', 'description'], 'required'],
             [['created', 'modified'], 'safe'],
             [['name', 'short_name', 'description'], 'string', 'max' => 255],
         ];
@@ -58,24 +56,8 @@ class Qualities extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMatchingAnswers()
+    public function getQualityTranslations()
     {
-        return $this->hasMany(MatchingAnswers::className(), ['quality_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getSuperheroIdentities()
-    {
-        return $this->hasMany(SuperheroIdentities::className(), ['quality_2' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getSuperheroIdentities0()
-    {
-        return $this->hasMany(SuperheroIdentities::className(), ['quality_1' => 'id']);
+        return $this->hasMany(QualityTranslations::className(), ['quality_id' => 'id']);
     }
 }

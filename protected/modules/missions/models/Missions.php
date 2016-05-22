@@ -52,7 +52,7 @@ class Missions extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'created_at', 'updated_at'], 'required'],
+            [['title', 'description'], 'required'],
             [['description', 'id_code'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['title'], 'string', 'max' => 255],
@@ -70,7 +70,7 @@ class Missions extends \yii\db\ActiveRecord
             'description' => Yii::t('app', 'Description'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
-            'id_code' => Yii::t('app', 'Id Code'),
+            'id_code' => Yii::t('app', 'ID Code'),
         ];
     }
 

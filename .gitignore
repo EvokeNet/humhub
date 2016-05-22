@@ -1,2 +1,11 @@
 protected/config/*
 protected/runtime/logs/*
+uploads/*
+protected/modules/polls/*
+protected/modules/birthday/*
+protected/modules/books
+protected/modules/custom_pages
+protected/modules/mail
+protected/modules/books/*
+protected/modules/custom_pages/*
+protected/modules/mail/*

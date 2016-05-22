@@ -6,10 +6,4 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'yii\\jui\\' => array($vendorDir . '/yiisoft/yii2-jui'),
-    'yii\\composer\\' => array($vendorDir . '/yiisoft/yii2-composer'),
-    'yii\\bootstrap\\' => array($vendorDir . '/yiisoft/yii2-bootstrap'),
-    'yii\\' => array($vendorDir . '/yiisoft/yii2'),
-    'lajax\\translatemanager\\' => array($vendorDir . '/lajax/yii2-translate-manager'),
-    'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
 );
