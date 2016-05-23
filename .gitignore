@@ -1,3 +1,9 @@
+assets/*
+!assets/.gitignore
+protected/runtime/*
+!protected/runtime/.gitignore
+protected/data/*.db
+
 protected/config/*
 protected/runtime/logs/*
 uploads/*
