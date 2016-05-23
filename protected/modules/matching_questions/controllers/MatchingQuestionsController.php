@@ -99,7 +99,6 @@ class MatchingQuestionsController extends Controller
 
             $superhero_identity = SuperheroIdentities::findOne(['quality_1' => $quality_1->id, 'quality_2' => $quality_2->id]);
 
-            //TODO save user's superhero_identity
             $user = User::findOne(['id' => $user->id]);
             $user->superhero_identity_id = $superhero_identity->id;
             //$user->attributes = array('superhero_identity_id' => $superhero_identity);

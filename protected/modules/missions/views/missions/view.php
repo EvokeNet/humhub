@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = Yii::t('MissionsModule.base', 'Mission'). ': ' 
                                     <td><?php echo $activity->activityTranslations[0]->title; ?></td>
                                     <td><?php echo $activity->activityTranslations[0]->description; ?></td>
                                     <td>
-                                        <?php echo Html::a('Post Evidence', '', array('class' => 'btn btn-success')); ?>
+                                        <?php //echo Html::a('Post Evidence', '', array('class' => 'btn btn-success')); ?>
                                         <?php //echo Html::a('View Mission', ['view', 'id' => $mission->id], array('class' => 'btn btn-success btn-xs')); ?>
                                     </td>
                                 </tr>

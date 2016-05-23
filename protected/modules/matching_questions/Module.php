@@ -74,6 +74,7 @@ class Module extends \humhub\components\Module
         parent::disable();
     }
     
+
 }
 
 ?>

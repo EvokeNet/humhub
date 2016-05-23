@@ -7,9 +7,11 @@ class uninstall extends Migration
 
     public function up()
     {
+        $this->dropTable('user_matching_answers');^M
+        $this->dropTable('matching_answers');^M
         $this->dropTable('matching_questions');
-        $this->dropTable('matching_answers');
-        $this->dropTable('user_matching_answers');
+ 
+      
         $this->dropTable('qualities');
         $this->dropTable('superhero_identities');
         
@@ -18,12 +20,17 @@ class uninstall extends Migration
         $this->dropTable('quality_translations');
         $this->dropTable('superhero_identity_translations');
         
+
+        
+
         $this->dropColumn('user','superhero_identity_id');
         
         $this->dropForeignKey(
             'fk-user-super_hero_id',
             'user'
         );
+        $this->dropTable('superhero_identities');
+        $this->dropTable('qualities');
     }
 
     public function down()

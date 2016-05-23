@@ -2,6 +2,7 @@ protected/config/*
 protected/runtime/logs/*
 uploads/*
 
+
 protected/modules/books
 protected/modules/custom_pages
 protected/modules/mail
@@ -18,3 +19,4 @@ protected/modules/birthday/*
 protected/modules/birthday/*
 protected/modules/breakingnews/*
 protected/modules/wiki/*
+

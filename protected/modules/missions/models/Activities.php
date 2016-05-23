@@ -64,7 +64,8 @@ class Activities extends \yii\db\ActiveRecord
      */
     public function getMission()
     {
-        return $this->hasOne(Missions::className(), ['id' => 'mission_id']);
+        $mission = Missions::findOne($this->mission_id);
+        return $mission;
     }
 
     /**

@@ -1,11 +1,19 @@
 <?php
 
+
 namespace app\modules\matching_questions\models;
+
+
+
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+
 use app\modules\matching_questions\models\Qualities;
+
+
+
 
 /**
  * QualitiesSearch represents the model behind the search form about `app\modules\matching_questions\models\Qualities`.
