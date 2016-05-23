@@ -1,6 +1,5 @@
 protected/config/*
-
 protected/runtime/logs/*
-uploads/profile_image/*
+uploads/*
 protected/modules/polls/*
 protected/modules/birthday/*
