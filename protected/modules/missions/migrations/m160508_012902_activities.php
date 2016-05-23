@@ -12,7 +12,7 @@ class m160508_012902_activities extends Migration
             'description' => 'text NOT NULL',
             'mission_id' => 'int(11) NOT NULL',
             'created_at' => 'datetime NOT NULL',
-            'modified_at' => 'datetime NOT NULL',
+            'updated_at' => 'datetime NOT NULL',
                 ), '');
                 
         $this->addForeignKey(

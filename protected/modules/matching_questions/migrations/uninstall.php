@@ -12,12 +12,12 @@ class uninstall extends Migration
         $this->dropTable('matching_questions');
         $this->dropTable('user_matching_answers');
         $this->dropTable('qualities');
-        $this->dropTable('superhero_identities');
         $this->dropColumn('user','superhero_identity_id');
         $this->dropForeignKey(
             'fk-user-super_hero_id',
             'user'
         );
+        $this->dropTable('superhero_identities');
     }
 
     public function down()

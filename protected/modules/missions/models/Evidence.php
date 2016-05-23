@@ -5,8 +5,8 @@ namespace app\modules\missions\models;
 use Yii;
 use humhub\modules\content\components\ContentActiveRecord;
 use yii\db\ActiveRecord;
-use humhub\modules\space\models\Space;
-use humhub\modules\user\models\User;
+use app\modules\space\models\Space;
+use app\modules\user\models\User;
 
 /**
  * This is the model class for table "evidence".
@@ -63,7 +63,7 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
             //[['user_id', 'activities_id', 'space_id'], 'integer'],
             [['title'], 'string', 'max' => 120],
             //[['type'], 'string', 'max' => 255],
-            //[['activities_id'], 'exist', 'skipOnError' => true, 'targetClass' => Activities::className(), 'targetAttribute' => ['activities_id' => 'id']],
+            [['activities_id'], 'exist', 'skipOnError' => true, 'targetClass' => Activities::className(), 'targetAttribute' => ['activities_id' => 'id']],
             //[['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         );
     }
@@ -80,7 +80,7 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
             //'main_content' => Yii::t('app', 'Main Content'),
             'text' => Yii::t('app', 'Text'),
             //'user_id' => Yii::t('app', 'User ID'),
-            //'activities_id' => Yii::t('app', 'Activities ID'),
+            'activities_id' => Yii::t('app', 'Activities ID'),
             //'created' => Yii::t('app', 'Created'),
             //'modified' => Yii::t('app', 'Modified'),
         );
@@ -91,7 +91,8 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
      */
     public function getActivities()
     {
-        return $this->hasOne(Activities::className(), ['id' => 'activities_id']);
+        $activity = Activities::findOne($this->activities_id);
+        return $activity;
     }
 
     /**

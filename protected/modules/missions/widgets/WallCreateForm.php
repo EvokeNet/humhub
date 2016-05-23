@@ -9,13 +9,14 @@ class WallCreateForm extends \humhub\modules\content\widgets\WallCreateContentFo
      * @inheritdoc
      */
     public $submitUrl = '/missions/evidence/create';
+    public $activity;
 
     /**
      * @inheritdoc
      */
     public function renderForm()
     {
-        return $this->render('form', array());
+        return $this->render('form', array('activity' => $this->activity));
     }
 
     /**

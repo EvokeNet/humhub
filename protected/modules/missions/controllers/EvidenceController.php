@@ -9,6 +9,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use humhub\modules\content\components\ContentContainerController;
+use app\modules\missions\models\Missions;
+use app\modules\missions\models\Activities;
 
 class EvidenceController extends ContentContainerController
 {
@@ -25,15 +27,31 @@ class EvidenceController extends ContentContainerController
     }	
 
    
+    public function actionActivities($missionId)
+    {   
+        $mission = Missions::findOne($missionId);
+        return $this->render('activities', array('mission' => $mission, 'contentContainer' => $this->contentContainer));
+    }
+
+    public function actionMissions()
+    {   
+
+        $missions = Missions::find()->all();
+        return $this->render('missions', array('missions' => $missions, 'contentContainer' => $this->contentContainer));
+    }
+
     /**
      * Posts a new question  throu the question form
      *
      * @return type
      */
-    public function actionShow()
+    public function actionShow($activityId)
     {	
-      return $this->render('show', array(
-                    'contentContainer' => $this->contentContainer
+        $activity = Activities::findOne($activityId);
+
+        return $this->render('show', array(
+                    'contentContainer' => $this->contentContainer,
+                    'activity' => $activity,
         ));
     }
 
@@ -52,6 +70,7 @@ class EvidenceController extends ContentContainerController
         $evidence->scenario = Evidence::SCENARIO_CREATE;
         $evidence->title = Yii::$app->request->post('title');
        	$evidence->text = Yii::$app->request->post('text');
+        $evidence->activities_id = Yii::$app->request->post('activityId');
         return \humhub\modules\missions\widgets\WallCreateForm::create($evidence, $this->contentContainer);
     }
 

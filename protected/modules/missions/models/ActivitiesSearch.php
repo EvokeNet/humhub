@@ -1,11 +1,11 @@
 <?php
 
-namespace app\modules\missions\models;
+namespace humhub\modules\missions\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\missions\models\Activities;
+use humhub\modules\missions\models\Activities;
 
 /**
  * ActivitiesSearch represents the model behind the search form about `app\modules\missions\models\Activities`.
