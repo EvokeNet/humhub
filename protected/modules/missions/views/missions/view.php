@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <td><?php echo $activity->title; ?></td>
                                     <td><?php echo $activity->description; ?></td>
                                     <td>
-                                        <?php echo Html::a('Post Evidence', '', array('class' => 'btn btn-success')); ?>
+                                        <?php //echo Html::a('Post Evidence', '', array('class' => 'btn btn-success')); ?>
                                         <?php //echo Html::a('View Mission', ['view', 'id' => $mission->id], array('class' => 'btn btn-success btn-xs')); ?>
                                     </td>
                                 </tr>
