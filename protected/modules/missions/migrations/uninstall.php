@@ -6,13 +6,11 @@ class uninstall extends Migration
 {
     public function up()
     {
-        $this->dropTable('evidence');
-        $this->dropTable('activities');
-        $this->dropTable('missions');
-        $this->dropTable('activities');
         $this->dropTable('mission_translations');
         $this->dropTable('activity_translations');
         $this->dropTable('evidence');
+        $this->dropTable('activities');
+        $this->dropTable('missions');
     }
 
     public function down()

@@ -10,7 +10,7 @@ use app\modules\matching_questions\models\MatchingAnswerTranslations;
 use app\modules\matching_questions\models\Qualities;
 use app\modules\matching_questions\models\QualityTranslations;
 use app\modules\matching_questions\models\SuperheroIdentities;
-use app\modules\matching_questions\models\SuperheroIdentityTranslations;
+use app\modules\matching_questions\models\SuperheroIdentityTranslations; 
 
 /**
  * AdminController

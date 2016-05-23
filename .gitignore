@@ -2,7 +2,6 @@ protected/config/*
 protected/runtime/logs/*
 uploads/*
 
-
 protected/modules/books
 protected/modules/custom_pages
 protected/modules/mail
