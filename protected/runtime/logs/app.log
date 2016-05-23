@@ -30473,3 +30473,786 @@ $_SERVER = [
     'REQUEST_TIME_FLOAT' => 1463947134.061
     'REQUEST_TIME' => 1463947134
 ]
+2016-05-23 00:15:14 [-][-][-][error][yii\base\Exception] exception 'yii\base\Exception' with message 'Could not find/load requested module: matchingquestions' in /srv/www/humhub/protected/humhub/components/ModuleManager.php:233
+Stack trace:
+#0 /srv/www/humhub/protected/humhub/commands/MessageController.php(124): humhub\components\ModuleManager->getModule('matchingquestio...', true)
+#1 /srv/www/humhub/protected/humhub/commands/MessageController.php(62): humhub\commands\MessageController->getModuleByCategory('MatchingQuestio...')
+#2 [internal function]: humhub\commands\MessageController->actionExtractModule('matching_questi...')
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#5 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Controller.php(108): yii\base\Controller->runAction('extract-module', Array)
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('extract-module', Array)
+#7 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Application.php(167): yii\base\Module->runAction('message/extract...', Array)
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Application.php(143): yii\console\Application->runAction('message/extract...', Array)
+#9 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#10 /srv/www/humhub/protected/yii(29): yii\base\Application->run()
+#11 {main}
+2016-05-23 00:15:12 [-][-][-][info][application] $_SERVER = [
+    'XDG_SESSION_ID' => '4'
+    'COMP_WORDBREAKS' => ' 	
+\"\'><;|&(:'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'SSH_CLIENT' => '192.168.1.35 53036 22'
+    'OLDPWD' => '/srv/www/humhub'
+    'SSH_TTY' => '/dev/pts/1'
+    'NVM_DIR' => '/home/rjapur/.nvm'
+    'USER' => 'rjapur'
+    'LS_COLORS' => 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:'
+    'MAIL' => '/var/mail/rjapur'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games'
+    'NVM_NODEJS_ORG_MIRROR' => 'http://nodejs.org/dist'
+    'PWD' => '/srv/www/humhub/protected'
+    'LANG' => 'pt_BR.UTF-8'
+    'NODE_PATH' => '/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript'
+    'SHLVL' => '1'
+    'HOME' => '/home/rjapur'
+    'LANGUAGE' => 'pt_BR:pt:en'
+    'LOGNAME' => 'rjapur'
+    'SSH_CONNECTION' => '192.168.1.35 53036 192.168.1.37 22'
+    'LESSOPEN' => '| /usr/bin/lesspipe %s'
+    'XDG_RUNTIME_DIR' => '/run/user/1000'
+    'LESSCLOSE' => '/usr/bin/lesspipe %s %s'
+    '_' => '/usr/bin/php'
+    'PHP_SELF' => 'yii'
+    'SCRIPT_NAME' => 'yii'
+    'SCRIPT_FILENAME' => 'yii'
+    'PATH_TRANSLATED' => 'yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1463973312.461
+    'REQUEST_TIME' => 1463973312
+    'argv' => [
+        0 => 'yii'
+        1 => 'message/extract-module'
+        2 => 'matching_questions'
+    ]
+    'argc' => 3
+]
+2016-05-23 00:39:42 [192.168.1.35][1][8rd8aivaq0ep6g58cb04upin87][error][yii\db\Exception] exception 'PDOException' with message 'SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'matching_questions' already exists' in /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Command.php:784
+Stack trace:
+#0 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Command.php(784): PDOStatement->execute()
+#1 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Migration.php(260): yii\db\Command->execute()
+#2 /srv/www/humhub/protected/modules/matching_questions/migrations/m160507_112009_matching.php(15): yii\db\Migration->createTable('<span class="st...', '[<span class="s...', '<span class="st...')
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(562): m160507_112009_matching->up()
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(151): yii\console\controllers\BaseMigrateController->migrateUp('<span class="st...')
+#5 [internal function]: yii\console\controllers\BaseMigrateController->actionUp('<span class="nu...')
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array('[<span class="t...', '[<span class="n...')
+#7 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams('[]')
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Controller.php(108): yii\base\Controller->runAction('<span class="st...', '[]')
+#9 /srv/www/humhub/protected/humhub/commands/MigrateController.php(190): yii\console\Controller->runAction('<span class="st...')
+#10 /srv/www/humhub/protected/humhub/components/Module.php(204): humhub\commands\MigrateController::webMigrateUp('<span class="st...')
+#11 /srv/www/humhub/protected/humhub/components/Module.php(127): humhub\components\Module->migrate()
+#12 /srv/www/humhub/protected/modules/matching_questions/Module.php(26): humhub\components\Module->enable()
+#13 /srv/www/humhub/protected/humhub/modules/admin/controllers/ModuleController.php(58): humhub\modules\matching_questions\Module->enable()
+#14 [internal function]: humhub\modules\admin\controllers\ModuleController->actionEnable()
+#15 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array('[<span class="t...', '[]')
+#16 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams('[<span class="s...')
+#17 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('<span class="st...', '[<span class="s...')
+#18 /srv/www/humhub/protected/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('<span class="st...', '[<span class="s...')
+#19 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(humhub\components\Request))
+#20 /srv/www/humhub/index.php(25): yii\base\Application->run()
+#21 {main}
+
+Next exception 'yii\db\Exception' with message 'SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'matching_questions' already exists
+The SQL being executed was: CREATE TABLE `matching_questions` (
+	`id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`description` varchar(1000) NOT NULL,
+	`type` varchar(255) NOT NULL,
+	`created` datetime NOT NULL,
+	`modified` datetime NOT NULL
+) ' in /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Schema.php:628
+Stack trace:
+#0 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Command.php(794): yii\db\Schema->convertException(Object(PDOException), 'CREATE TABLE `m...')
+#1 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Migration.php(260): yii\db\Command->execute()
+#2 /srv/www/humhub/protected/modules/matching_questions/migrations/m160507_112009_matching.php(15): yii\db\Migration->createTable('<span class="st...', '[<span class="s...', '<span class="st...')
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(562): m160507_112009_matching->up()
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(151): yii\console\controllers\BaseMigrateController->migrateUp('<span class="st...')
+#5 [internal function]: yii\console\controllers\BaseMigrateController->actionUp('<span class="nu...')
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array('[<span class="t...', '[<span class="n...')
+#7 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams('[]')
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Controller.php(108): yii\base\Controller->runAction('<span class="st...', '[]')
+#9 /srv/www/humhub/protected/humhub/commands/MigrateController.php(190): yii\console\Controller->runAction('<span class="st...')
+#10 /srv/www/humhub/protected/humhub/components/Module.php(204): humhub\commands\MigrateController::webMigrateUp('<span class="st...')
+#11 /srv/www/humhub/protected/humhub/components/Module.php(127): humhub\components\Module->migrate()
+#12 /srv/www/humhub/protected/modules/matching_questions/Module.php(26): humhub\components\Module->enable()
+#13 /srv/www/humhub/protected/humhub/modules/admin/controllers/ModuleController.php(58): humhub\modules\matching_questions\Module->enable()
+#14 [internal function]: humhub\modules\admin\controllers\ModuleController->actionEnable()
+#15 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array('[<span class="t...', '[]')
+#16 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams('[<span class="s...')
+#17 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('<span class="st...', '[<span class="s...')
+#18 /srv/www/humhub/protected/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('<span class="st...', '[<span class="s...')
+#19 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(humhub\components\Request))
+#20 /srv/www/humhub/index.php(25): yii\base\Application->run()
+#21 {main}
+Additional Information:
+Array
+(
+    [0] => 42S01
+    [1] => 1050
+    [2] => Table 'matching_questions' already exists
+)
+
+2016-05-23 00:39:42 [192.168.1.35][1][8rd8aivaq0ep6g58cb04upin87][info][application] $_GET = [
+    'r' => 'admin/module/enable'
+    'moduleId' => 'matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => '192.168.1.37'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '68'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ORIGIN' => 'http://192.168.1.37'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded'
+    'HTTP_REFERER' => 'http://192.168.1.37/humhub/index.php?r=admin%2Fmodule%2Flist'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; pm_new-people-panel=expanded; pm_user-statistics-panel=expanded; pm_user-tags-panel=expanded; pm_user-spaces-panel=expanded; pm_space-members-panel=expanded; _csrf=b8b44ab985e6663c0539c57bd72e12f8fd3588ad3f73c148916504d41c5ad005a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22DRGXXc8Hq_prenCAYfUqL7--ZIzuxBfc%22%3B%7D; language=6cb6204808fc846a38a2c8c7f7f7739c70a9f25b6b230b1eb966f9432ba6117da%3A2%3A%7Bi%3A0%3Bs%3A8%3A%22language%22%3Bi%3A1%3Bs%3A2%3A%22en%22%3B%7D; PHPSESSID=8rd8aivaq0ep6g58cb04upin87; _identity=8854555c76fa821f44c095fb0c4ddaeca03b75a2361cedc86101e8720c89c813a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22867ac87f-0429-4329-8d12-5563bc5bf6e9%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at 192.168.1.37 Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => '192.168.1.37'
+    'SERVER_ADDR' => '192.168.1.37'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '192.168.1.35'
+    'DOCUMENT_ROOT' => '/srv/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+    'REMOTE_PORT' => '58842'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'r=admin%2Fmodule%2Fenable&moduleId=matching'
+    'REQUEST_URI' => '/humhub/index.php?r=admin%2Fmodule%2Fenable&moduleId=matching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1463974782.03
+    'REQUEST_TIME' => 1463974782
+]
+2016-05-23 00:39:56 [192.168.1.35][1][8rd8aivaq0ep6g58cb04upin87][error][yii\base\InvalidConfigException] exception 'yii\base\InvalidConfigException' with message 'Unable to locate message source for category 'MatchingQuestionsModule.base'.' in /srv/www/humhub/protected/vendor/yiisoft/yii2/i18n/I18N.php:200
+Stack trace:
+#0 /srv/www/humhub/protected/humhub/components/i18n/I18N.php(56): yii\i18n\I18N->getMessageSource('MatchingQuestio...')
+#1 /srv/www/humhub/protected/vendor/yiisoft/yii2/i18n/I18N.php(88): humhub\components\i18n\I18N->getMessageSource('MatchingQuestio...')
+#2 /srv/www/humhub/protected/humhub/components/i18n/I18N.php(29): yii\i18n\I18N->translate('MatchingQuestio...', 'Matching Questi...', Array, 'en-US')
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/BaseYii.php(501): humhub\components\i18n\I18N->translate('MatchingQuestio...', 'Matching Questi...', Array, 'en-US')
+#4 /srv/www/humhub/protected/modules/matching_questions/views/admin/matching-questions/index.php(8): yii\BaseYii::t('MatchingQuestio...', 'Matching Questi...')
+#5 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/View.php(325): require('/srv/www/humhub...')
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/View.php(247): yii\base\View->renderPhpFile('/srv/www/humhub...', Array)
+#7 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/View.php(149): yii\base\View->renderFile('/srv/www/humhub...', Array, Object(app\modules\matching_questions\controllers\AdminController))
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(377): yii\base\View->render('matching-questi...', Array, Object(app\modules\matching_questions\controllers\AdminController))
+#9 /srv/www/humhub/protected/modules/matching_questions/controllers/AdminController.php(25): yii\base\Controller->render('matching-questi...', Array)
+#10 [internal function]: app\modules\matching_questions\controllers\AdminController->actionIndex()
+#11 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#12 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#13 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('', Array)
+#14 /srv/www/humhub/protected/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('matching_questi...', Array)
+#15 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(humhub\components\Request))
+#16 /srv/www/humhub/index.php(25): yii\base\Application->run()
+#17 {main}
+2016-05-23 00:39:56 [192.168.1.35][1][8rd8aivaq0ep6g58cb04upin87][info][application] $_GET = [
+    'r' => 'matching_questions/admin'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => '192.168.1.37'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
+    'HTTP_REFERER' => 'http://192.168.1.37/humhub/index.php?r=admin%2Fmodule%2Flist'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; pm_new-people-panel=expanded; pm_user-statistics-panel=expanded; pm_user-tags-panel=expanded; pm_user-spaces-panel=expanded; pm_space-members-panel=expanded; _csrf=b8b44ab985e6663c0539c57bd72e12f8fd3588ad3f73c148916504d41c5ad005a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22DRGXXc8Hq_prenCAYfUqL7--ZIzuxBfc%22%3B%7D; language=6cb6204808fc846a38a2c8c7f7f7739c70a9f25b6b230b1eb966f9432ba6117da%3A2%3A%7Bi%3A0%3Bs%3A8%3A%22language%22%3Bi%3A1%3Bs%3A2%3A%22en%22%3B%7D; PHPSESSID=8rd8aivaq0ep6g58cb04upin87; _identity=8854555c76fa821f44c095fb0c4ddaeca03b75a2361cedc86101e8720c89c813a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22867ac87f-0429-4329-8d12-5563bc5bf6e9%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at 192.168.1.37 Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => '192.168.1.37'
+    'SERVER_ADDR' => '192.168.1.37'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '192.168.1.35'
+    'DOCUMENT_ROOT' => '/srv/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+    'REMOTE_PORT' => '58862'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=matching_questions%2Fadmin'
+    'REQUEST_URI' => '/humhub/index.php?r=matching_questions%2Fadmin'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1463974796.441
+    'REQUEST_TIME' => 1463974796
+]
+2016-05-23 00:40:08 [-][-][-][error][yii\base\Exception] exception 'yii\base\Exception' with message 'Could not find/load requested module: matchingquestions' in /srv/www/humhub/protected/humhub/components/ModuleManager.php:233
+Stack trace:
+#0 /srv/www/humhub/protected/humhub/commands/MessageController.php(124): humhub\components\ModuleManager->getModule('matchingquestio...', true)
+#1 /srv/www/humhub/protected/humhub/commands/MessageController.php(62): humhub\commands\MessageController->getModuleByCategory('MatchingQuestio...')
+#2 [internal function]: humhub\commands\MessageController->actionExtractModule('matching')
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#5 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Controller.php(108): yii\base\Controller->runAction('extract-module', Array)
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('extract-module', Array)
+#7 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Application.php(167): yii\base\Module->runAction('message/extract...', Array)
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Application.php(143): yii\console\Application->runAction('message/extract...', Array)
+#9 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#10 /srv/www/humhub/protected/yii(29): yii\base\Application->run()
+#11 {main}
+2016-05-23 00:40:07 [-][-][-][info][application] $_SERVER = [
+    'XDG_SESSION_ID' => '4'
+    'COMP_WORDBREAKS' => ' 	
+\"\'><;|&(:'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'SSH_CLIENT' => '192.168.1.35 53036 22'
+    'OLDPWD' => '/srv/www/humhub'
+    'SSH_TTY' => '/dev/pts/1'
+    'NVM_DIR' => '/home/rjapur/.nvm'
+    'USER' => 'rjapur'
+    'LS_COLORS' => 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:'
+    'MAIL' => '/var/mail/rjapur'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games'
+    'NVM_NODEJS_ORG_MIRROR' => 'http://nodejs.org/dist'
+    'PWD' => '/srv/www/humhub/protected'
+    'LANG' => 'pt_BR.UTF-8'
+    'NODE_PATH' => '/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript'
+    'SHLVL' => '1'
+    'HOME' => '/home/rjapur'
+    'LANGUAGE' => 'pt_BR:pt:en'
+    'LOGNAME' => 'rjapur'
+    'SSH_CONNECTION' => '192.168.1.35 53036 192.168.1.37 22'
+    'LESSOPEN' => '| /usr/bin/lesspipe %s'
+    'XDG_RUNTIME_DIR' => '/run/user/1000'
+    'LESSCLOSE' => '/usr/bin/lesspipe %s %s'
+    '_' => '/usr/bin/php'
+    'PHP_SELF' => 'yii'
+    'SCRIPT_NAME' => 'yii'
+    'SCRIPT_FILENAME' => 'yii'
+    'PATH_TRANSLATED' => 'yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1463974807.4585
+    'REQUEST_TIME' => 1463974807
+    'argv' => [
+        0 => 'yii'
+        1 => 'message/extract-module'
+        2 => 'matching'
+    ]
+    'argc' => 3
+]
+2016-05-23 01:01:18 [192.168.1.35][1][8rd8aivaq0ep6g58cb04upin87][error][yii\db\Exception] exception 'PDOException' with message 'SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'matching_questions' already exists' in /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Command.php:784
+Stack trace:
+#0 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Command.php(784): PDOStatement->execute()
+#1 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Migration.php(260): yii\db\Command->execute()
+#2 /srv/www/humhub/protected/modules/matching_questions/migrations/m160507_112009_matching.php(15): yii\db\Migration->createTable('<span class="st...', '[<span class="s...', '<span class="st...')
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(562): m160507_112009_matching->up()
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(151): yii\console\controllers\BaseMigrateController->migrateUp('<span class="st...')
+#5 [internal function]: yii\console\controllers\BaseMigrateController->actionUp('<span class="nu...')
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array('[<span class="t...', '[<span class="n...')
+#7 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams('[]')
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Controller.php(108): yii\base\Controller->runAction('<span class="st...', '[]')
+#9 /srv/www/humhub/protected/humhub/commands/MigrateController.php(190): yii\console\Controller->runAction('<span class="st...')
+#10 /srv/www/humhub/protected/humhub/components/Module.php(204): humhub\commands\MigrateController::webMigrateUp('<span class="st...')
+#11 /srv/www/humhub/protected/humhub/components/Module.php(127): humhub\components\Module->migrate()
+#12 /srv/www/humhub/protected/modules/matching_questions/Module.php(26): humhub\components\Module->enable()
+#13 /srv/www/humhub/protected/humhub/modules/admin/controllers/ModuleController.php(58): humhub\modules\matching_questions\Module->enable()
+#14 [internal function]: humhub\modules\admin\controllers\ModuleController->actionEnable()
+#15 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array('[<span class="t...', '[]')
+#16 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams('[<span class="s...')
+#17 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('<span class="st...', '[<span class="s...')
+#18 /srv/www/humhub/protected/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('<span class="st...', '[<span class="s...')
+#19 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(humhub\components\Request))
+#20 /srv/www/humhub/index.php(25): yii\base\Application->run()
+#21 {main}
+
+Next exception 'yii\db\Exception' with message 'SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'matching_questions' already exists
+The SQL being executed was: CREATE TABLE `matching_questions` (
+	`id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`description` varchar(1000) NOT NULL,
+	`type` varchar(255) NOT NULL,
+	`created` datetime NOT NULL,
+	`modified` datetime NOT NULL
+) ' in /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Schema.php:628
+Stack trace:
+#0 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Command.php(794): yii\db\Schema->convertException(Object(PDOException), 'CREATE TABLE `m...')
+#1 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Migration.php(260): yii\db\Command->execute()
+#2 /srv/www/humhub/protected/modules/matching_questions/migrations/m160507_112009_matching.php(15): yii\db\Migration->createTable('<span class="st...', '[<span class="s...', '<span class="st...')
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(562): m160507_112009_matching->up()
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(151): yii\console\controllers\BaseMigrateController->migrateUp('<span class="st...')
+#5 [internal function]: yii\console\controllers\BaseMigrateController->actionUp('<span class="nu...')
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array('[<span class="t...', '[<span class="n...')
+#7 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams('[]')
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Controller.php(108): yii\base\Controller->runAction('<span class="st...', '[]')
+#9 /srv/www/humhub/protected/humhub/commands/MigrateController.php(190): yii\console\Controller->runAction('<span class="st...')
+#10 /srv/www/humhub/protected/humhub/components/Module.php(204): humhub\commands\MigrateController::webMigrateUp('<span class="st...')
+#11 /srv/www/humhub/protected/humhub/components/Module.php(127): humhub\components\Module->migrate()
+#12 /srv/www/humhub/protected/modules/matching_questions/Module.php(26): humhub\components\Module->enable()
+#13 /srv/www/humhub/protected/humhub/modules/admin/controllers/ModuleController.php(58): humhub\modules\matching_questions\Module->enable()
+#14 [internal function]: humhub\modules\admin\controllers\ModuleController->actionEnable()
+#15 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array('[<span class="t...', '[]')
+#16 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams('[<span class="s...')
+#17 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('<span class="st...', '[<span class="s...')
+#18 /srv/www/humhub/protected/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('<span class="st...', '[<span class="s...')
+#19 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(humhub\components\Request))
+#20 /srv/www/humhub/index.php(25): yii\base\Application->run()
+#21 {main}
+Additional Information:
+Array
+(
+    [0] => 42S01
+    [1] => 1050
+    [2] => Table 'matching_questions' already exists
+)
+
+2016-05-23 01:01:18 [192.168.1.35][1][8rd8aivaq0ep6g58cb04upin87][info][application] $_GET = [
+    'r' => 'admin/module/enable'
+    'moduleId' => 'matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => '192.168.1.37'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '66'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ORIGIN' => 'http://192.168.1.37'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded'
+    'HTTP_REFERER' => 'http://192.168.1.37/humhub/index.php?r=admin%2Fmodule%2Flist'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; pm_new-people-panel=expanded; pm_user-statistics-panel=expanded; pm_user-tags-panel=expanded; pm_user-spaces-panel=expanded; pm_space-members-panel=expanded; _csrf=b8b44ab985e6663c0539c57bd72e12f8fd3588ad3f73c148916504d41c5ad005a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22DRGXXc8Hq_prenCAYfUqL7--ZIzuxBfc%22%3B%7D; language=6cb6204808fc846a38a2c8c7f7f7739c70a9f25b6b230b1eb966f9432ba6117da%3A2%3A%7Bi%3A0%3Bs%3A8%3A%22language%22%3Bi%3A1%3Bs%3A2%3A%22en%22%3B%7D; PHPSESSID=8rd8aivaq0ep6g58cb04upin87; _identity=8854555c76fa821f44c095fb0c4ddaeca03b75a2361cedc86101e8720c89c813a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22867ac87f-0429-4329-8d12-5563bc5bf6e9%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at 192.168.1.37 Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => '192.168.1.37'
+    'SERVER_ADDR' => '192.168.1.37'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '192.168.1.35'
+    'DOCUMENT_ROOT' => '/srv/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+    'REMOTE_PORT' => '59182'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'r=admin%2Fmodule%2Fenable&moduleId=matching'
+    'REQUEST_URI' => '/humhub/index.php?r=admin%2Fmodule%2Fenable&moduleId=matching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1463976078.493
+    'REQUEST_TIME' => 1463976078
+]
+2016-05-23 01:18:04 [-][-][-][error][yii\db\Exception] exception 'PDOException' with message 'SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'matching_questions' already exists' in /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Command.php:784
+Stack trace:
+#0 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Command.php(784): PDOStatement->execute()
+#1 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Migration.php(260): yii\db\Command->execute()
+#2 /srv/www/humhub/protected/modules/matching_questions/migrations/m160507_112009_matching.php(15): yii\db\Migration->createTable('matching_questi...', Array, '')
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(562): m160507_112009_matching->up()
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(151): yii\console\controllers\BaseMigrateController->migrateUp('m160507_112009_...')
+#5 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#7 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Controller.php(108): yii\base\Controller->runAction('up', Array)
+#9 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('up', Array)
+#10 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Application.php(167): yii\base\Module->runAction('migrate/up', Array)
+#11 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Application.php(143): yii\console\Application->runAction('migrate/up', Array)
+#12 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#13 /srv/www/humhub/protected/yii(29): yii\base\Application->run()
+#14 {main}
+
+Next exception 'yii\db\Exception' with message 'SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'matching_questions' already exists
+The SQL being executed was: CREATE TABLE `matching_questions` (
+	`id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`description` varchar(1000) NOT NULL,
+	`type` varchar(255) NOT NULL,
+	`created` datetime NOT NULL,
+	`modified` datetime NOT NULL
+) ' in /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Schema.php:628
+Stack trace:
+#0 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Command.php(794): yii\db\Schema->convertException(Object(PDOException), 'CREATE TABLE `m...')
+#1 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Migration.php(260): yii\db\Command->execute()
+#2 /srv/www/humhub/protected/modules/matching_questions/migrations/m160507_112009_matching.php(15): yii\db\Migration->createTable('matching_questi...', Array, '')
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(562): m160507_112009_matching->up()
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(151): yii\console\controllers\BaseMigrateController->migrateUp('m160507_112009_...')
+#5 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#7 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Controller.php(108): yii\base\Controller->runAction('up', Array)
+#9 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('up', Array)
+#10 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Application.php(167): yii\base\Module->runAction('migrate/up', Array)
+#11 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Application.php(143): yii\console\Application->runAction('migrate/up', Array)
+#12 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#13 /srv/www/humhub/protected/yii(29): yii\base\Application->run()
+#14 {main}
+Additional Information:
+Array
+(
+    [0] => 42S01
+    [1] => 1050
+    [2] => Table 'matching_questions' already exists
+)
+
+2016-05-23 01:17:52 [-][-][-][info][application] $_SERVER = [
+    'XDG_SESSION_ID' => '4'
+    'COMP_WORDBREAKS' => ' 	
+\"\'><;|&(:'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'SSH_CLIENT' => '192.168.1.35 53036 22'
+    'OLDPWD' => '/srv/www/humhub'
+    'SSH_TTY' => '/dev/pts/1'
+    'NVM_DIR' => '/home/rjapur/.nvm'
+    'USER' => 'rjapur'
+    'LS_COLORS' => 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:'
+    'MAIL' => '/var/mail/rjapur'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games'
+    'NVM_NODEJS_ORG_MIRROR' => 'http://nodejs.org/dist'
+    'PWD' => '/srv/www/humhub/protected'
+    'LANG' => 'pt_BR.UTF-8'
+    'NODE_PATH' => '/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript'
+    'SHLVL' => '1'
+    'HOME' => '/home/rjapur'
+    'LANGUAGE' => 'pt_BR:pt:en'
+    'LOGNAME' => 'rjapur'
+    'SSH_CONNECTION' => '192.168.1.35 53036 192.168.1.37 22'
+    'LESSOPEN' => '| /usr/bin/lesspipe %s'
+    'XDG_RUNTIME_DIR' => '/run/user/1000'
+    'LESSCLOSE' => '/usr/bin/lesspipe %s %s'
+    '_' => '/usr/bin/php'
+    'PHP_SELF' => 'yii'
+    'SCRIPT_NAME' => 'yii'
+    'SCRIPT_FILENAME' => 'yii'
+    'PATH_TRANSLATED' => 'yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1463977072.8539
+    'REQUEST_TIME' => 1463977072
+    'argv' => [
+        0 => 'yii'
+        1 => 'migrate/up'
+        2 => '--includeModuleMigrations=1'
+    ]
+    'argc' => 3
+]
+2016-05-23 01:19:05 [192.168.1.35][1][8rd8aivaq0ep6g58cb04upin87][error][yii\db\Exception] exception 'PDOException' with message 'SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'matching_questions' already exists' in /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Command.php:784
+Stack trace:
+#0 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Command.php(784): PDOStatement->execute()
+#1 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Migration.php(260): yii\db\Command->execute()
+#2 /srv/www/humhub/protected/modules/matching_questions/migrations/m160507_112009_matching.php(15): yii\db\Migration->createTable('<span class="st...', '[<span class="s...', '<span class="st...')
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(562): m160507_112009_matching->up()
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(151): yii\console\controllers\BaseMigrateController->migrateUp('<span class="st...')
+#5 [internal function]: yii\console\controllers\BaseMigrateController->actionUp('<span class="nu...')
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array('[<span class="t...', '[<span class="n...')
+#7 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams('[]')
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Controller.php(108): yii\base\Controller->runAction('<span class="st...', '[]')
+#9 /srv/www/humhub/protected/humhub/commands/MigrateController.php(190): yii\console\Controller->runAction('<span class="st...')
+#10 /srv/www/humhub/protected/humhub/components/Module.php(204): humhub\commands\MigrateController::webMigrateUp('<span class="st...')
+#11 /srv/www/humhub/protected/humhub/components/Module.php(127): humhub\components\Module->migrate()
+#12 /srv/www/humhub/protected/modules/matching_questions/Module.php(34): humhub\components\Module->enable()
+#13 /srv/www/humhub/protected/humhub/modules/admin/controllers/ModuleController.php(58): humhub\modules\matching_questions\Module->enable()
+#14 [internal function]: humhub\modules\admin\controllers\ModuleController->actionEnable()
+#15 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array('[<span class="t...', '[]')
+#16 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams('[<span class="s...')
+#17 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('<span class="st...', '[<span class="s...')
+#18 /srv/www/humhub/protected/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('<span class="st...', '[<span class="s...')
+#19 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(humhub\components\Request))
+#20 /srv/www/humhub/index.php(25): yii\base\Application->run()
+#21 {main}
+
+Next exception 'yii\db\Exception' with message 'SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'matching_questions' already exists
+The SQL being executed was: CREATE TABLE `matching_questions` (
+	`id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`description` varchar(1000) NOT NULL,
+	`type` varchar(255) NOT NULL,
+	`created` datetime NOT NULL,
+	`modified` datetime NOT NULL
+) ' in /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Schema.php:628
+Stack trace:
+#0 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Command.php(794): yii\db\Schema->convertException(Object(PDOException), 'CREATE TABLE `m...')
+#1 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Migration.php(260): yii\db\Command->execute()
+#2 /srv/www/humhub/protected/modules/matching_questions/migrations/m160507_112009_matching.php(15): yii\db\Migration->createTable('<span class="st...', '[<span class="s...', '<span class="st...')
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(562): m160507_112009_matching->up()
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(151): yii\console\controllers\BaseMigrateController->migrateUp('<span class="st...')
+#5 [internal function]: yii\console\controllers\BaseMigrateController->actionUp('<span class="nu...')
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array('[<span class="t...', '[<span class="n...')
+#7 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams('[]')
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Controller.php(108): yii\base\Controller->runAction('<span class="st...', '[]')
+#9 /srv/www/humhub/protected/humhub/commands/MigrateController.php(190): yii\console\Controller->runAction('<span class="st...')
+#10 /srv/www/humhub/protected/humhub/components/Module.php(204): humhub\commands\MigrateController::webMigrateUp('<span class="st...')
+#11 /srv/www/humhub/protected/humhub/components/Module.php(127): humhub\components\Module->migrate()
+#12 /srv/www/humhub/protected/modules/matching_questions/Module.php(34): humhub\components\Module->enable()
+#13 /srv/www/humhub/protected/humhub/modules/admin/controllers/ModuleController.php(58): humhub\modules\matching_questions\Module->enable()
+#14 [internal function]: humhub\modules\admin\controllers\ModuleController->actionEnable()
+#15 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array('[<span class="t...', '[]')
+#16 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams('[<span class="s...')
+#17 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('<span class="st...', '[<span class="s...')
+#18 /srv/www/humhub/protected/vendor/yiisoft/yii2/web/Application.php(84): yii\base\Module->runAction('<span class="st...', '[<span class="s...')
+#19 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(humhub\components\Request))
+#20 /srv/www/humhub/index.php(25): yii\base\Application->run()
+#21 {main}
+Additional Information:
+Array
+(
+    [0] => 42S01
+    [1] => 1050
+    [2] => Table 'matching_questions' already exists
+)
+
+2016-05-23 01:19:05 [192.168.1.35][1][8rd8aivaq0ep6g58cb04upin87][info][application] $_GET = [
+    'r' => 'admin/module/enable'
+    'moduleId' => 'matching'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => '192.168.1.37'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '66'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ORIGIN' => 'http://192.168.1.37'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded'
+    'HTTP_REFERER' => 'http://192.168.1.37/humhub/index.php?r=admin%2Fmodule%2Flist'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_share-panel=expanded; pm_new-people-panel=expanded; pm_user-statistics-panel=expanded; pm_user-tags-panel=expanded; pm_user-spaces-panel=expanded; pm_space-members-panel=expanded; _csrf=b8b44ab985e6663c0539c57bd72e12f8fd3588ad3f73c148916504d41c5ad005a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22DRGXXc8Hq_prenCAYfUqL7--ZIzuxBfc%22%3B%7D; language=6cb6204808fc846a38a2c8c7f7f7739c70a9f25b6b230b1eb966f9432ba6117da%3A2%3A%7Bi%3A0%3Bs%3A8%3A%22language%22%3Bi%3A1%3Bs%3A2%3A%22en%22%3B%7D; PHPSESSID=8rd8aivaq0ep6g58cb04upin87; _identity=8854555c76fa821f44c095fb0c4ddaeca03b75a2361cedc86101e8720c89c813a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%22867ac87f-0429-4329-8d12-5563bc5bf6e9%22%2C2592000%5D%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at 192.168.1.37 Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => '192.168.1.37'
+    'SERVER_ADDR' => '192.168.1.37'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '192.168.1.35'
+    'DOCUMENT_ROOT' => '/srv/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/srv/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/srv/www/humhub/index.php'
+    'REMOTE_PORT' => '59468'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'r=admin%2Fmodule%2Fenable&moduleId=matching'
+    'REQUEST_URI' => '/humhub/index.php?r=admin%2Fmodule%2Fenable&moduleId=matching'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1463977145.708
+    'REQUEST_TIME' => 1463977145
+]
+2016-05-23 01:21:03 [-][-][-][error][yii\console\Exception] exception 'yii\console\Exception' with message 'Unable to find the version 'm160523_041522'.' in /srv/www/humhub/protected/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php:670
+Stack trace:
+#0 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(317): yii\console\controllers\BaseMigrateController->migrateToVersion('m160523_041522')
+#1 [internal function]: yii\console\controllers\BaseMigrateController->actionTo('m160523_041522_...')
+#2 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Controller.php(108): yii\base\Controller->runAction('to', Array)
+#5 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('to', Array)
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Application.php(167): yii\base\Module->runAction('migrate/to', Array)
+#7 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Application.php(143): yii\console\Application->runAction('migrate/to', Array)
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#9 /srv/www/humhub/protected/yii(29): yii\base\Application->run()
+#10 {main}
+2016-05-23 01:21:03 [-][-][-][info][application] $_SERVER = [
+    'XDG_SESSION_ID' => '4'
+    'COMP_WORDBREAKS' => ' 	
+\"\'><;|&(:'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'SSH_CLIENT' => '192.168.1.35 53036 22'
+    'OLDPWD' => '/srv/www/humhub'
+    'SSH_TTY' => '/dev/pts/1'
+    'NVM_DIR' => '/home/rjapur/.nvm'
+    'USER' => 'rjapur'
+    'LS_COLORS' => 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:'
+    'MAIL' => '/var/mail/rjapur'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games'
+    'NVM_NODEJS_ORG_MIRROR' => 'http://nodejs.org/dist'
+    'PWD' => '/srv/www/humhub/protected'
+    'LANG' => 'pt_BR.UTF-8'
+    'NODE_PATH' => '/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript'
+    'SHLVL' => '1'
+    'HOME' => '/home/rjapur'
+    'LANGUAGE' => 'pt_BR:pt:en'
+    'LOGNAME' => 'rjapur'
+    'SSH_CONNECTION' => '192.168.1.35 53036 192.168.1.37 22'
+    'LESSOPEN' => '| /usr/bin/lesspipe %s'
+    'XDG_RUNTIME_DIR' => '/run/user/1000'
+    'LESSCLOSE' => '/usr/bin/lesspipe %s %s'
+    '_' => '/usr/bin/php'
+    'PHP_SELF' => 'yii'
+    'SCRIPT_NAME' => 'yii'
+    'SCRIPT_FILENAME' => 'yii'
+    'PATH_TRANSLATED' => 'yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1463977263.4031
+    'REQUEST_TIME' => 1463977263
+    'argv' => [
+        0 => 'yii'
+        1 => 'migrate/to'
+        2 => 'm160523_041522_insert'
+    ]
+    'argc' => 3
+]
+2016-05-23 01:22:38 [-][-][-][error][yii\console\Exception] exception 'yii\console\Exception' with message 'Unable to find the version 'm160523_041522'.' in /srv/www/humhub/protected/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php:670
+Stack trace:
+#0 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(317): yii\console\controllers\BaseMigrateController->migrateToVersion('m160523_041522')
+#1 [internal function]: yii\console\controllers\BaseMigrateController->actionTo('m160523_041522_...')
+#2 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Controller.php(108): yii\base\Controller->runAction('to', Array)
+#5 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('to', Array)
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Application.php(167): yii\base\Module->runAction('migrate/to', Array)
+#7 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Application.php(143): yii\console\Application->runAction('migrate/to', Array)
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#9 /srv/www/humhub/protected/yii(29): yii\base\Application->run()
+#10 {main}
+2016-05-23 01:22:38 [-][-][-][info][application] $_SERVER = [
+    'XDG_SESSION_ID' => '4'
+    'COMP_WORDBREAKS' => ' 	
+\"\'><;|&(:'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'SSH_CLIENT' => '192.168.1.35 53036 22'
+    'OLDPWD' => '/srv/www/humhub'
+    'SSH_TTY' => '/dev/pts/1'
+    'NVM_DIR' => '/home/rjapur/.nvm'
+    'USER' => 'rjapur'
+    'LS_COLORS' => 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:'
+    'MAIL' => '/var/mail/rjapur'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games'
+    'NVM_NODEJS_ORG_MIRROR' => 'http://nodejs.org/dist'
+    'PWD' => '/srv/www/humhub/protected'
+    'LANG' => 'pt_BR.UTF-8'
+    'NODE_PATH' => '/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript'
+    'SHLVL' => '1'
+    'HOME' => '/home/rjapur'
+    'LANGUAGE' => 'pt_BR:pt:en'
+    'LOGNAME' => 'rjapur'
+    'SSH_CONNECTION' => '192.168.1.35 53036 192.168.1.37 22'
+    'LESSOPEN' => '| /usr/bin/lesspipe %s'
+    'XDG_RUNTIME_DIR' => '/run/user/1000'
+    'LESSCLOSE' => '/usr/bin/lesspipe %s %s'
+    '_' => '/usr/bin/php'
+    'PHP_SELF' => 'yii'
+    'SCRIPT_NAME' => 'yii'
+    'SCRIPT_FILENAME' => 'yii'
+    'PATH_TRANSLATED' => 'yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1463977358.6814
+    'REQUEST_TIME' => 1463977358
+    'argv' => [
+        0 => 'yii'
+        1 => 'migrate/to'
+        2 => 'm160523_041522_insert'
+    ]
+    'argc' => 3
+]
+2016-05-23 01:23:23 [-][-][-][error][yii\db\Exception] exception 'PDOException' with message 'SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'matching_questions' already exists' in /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Command.php:784
+Stack trace:
+#0 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Command.php(784): PDOStatement->execute()
+#1 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Migration.php(260): yii\db\Command->execute()
+#2 /srv/www/humhub/protected/modules/matching_questions/migrations/m160507_112009_matching.php(15): yii\db\Migration->createTable('matching_questi...', Array, '')
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(562): m160507_112009_matching->up()
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(151): yii\console\controllers\BaseMigrateController->migrateUp('m160507_112009_...')
+#5 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#7 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Controller.php(108): yii\base\Controller->runAction('up', Array)
+#9 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('up', Array)
+#10 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Application.php(167): yii\base\Module->runAction('migrate/up', Array)
+#11 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Application.php(143): yii\console\Application->runAction('migrate/up', Array)
+#12 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#13 /srv/www/humhub/protected/yii(29): yii\base\Application->run()
+#14 {main}
+
+Next exception 'yii\db\Exception' with message 'SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'matching_questions' already exists
+The SQL being executed was: CREATE TABLE `matching_questions` (
+	`id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`description` varchar(1000) NOT NULL,
+	`type` varchar(255) NOT NULL,
+	`created` datetime NOT NULL,
+	`modified` datetime NOT NULL
+) ' in /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Schema.php:628
+Stack trace:
+#0 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Command.php(794): yii\db\Schema->convertException(Object(PDOException), 'CREATE TABLE `m...')
+#1 /srv/www/humhub/protected/vendor/yiisoft/yii2/db/Migration.php(260): yii\db\Command->execute()
+#2 /srv/www/humhub/protected/modules/matching_questions/migrations/m160507_112009_matching.php(15): yii\db\Migration->createTable('matching_questi...', Array, '')
+#3 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(562): m160507_112009_matching->up()
+#4 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(151): yii\console\controllers\BaseMigrateController->migrateUp('m160507_112009_...')
+#5 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#6 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#7 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#8 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Controller.php(108): yii\base\Controller->runAction('up', Array)
+#9 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\console\Controller->runAction('up', Array)
+#10 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Application.php(167): yii\base\Module->runAction('migrate/up', Array)
+#11 /srv/www/humhub/protected/vendor/yiisoft/yii2/console/Application.php(143): yii\console\Application->runAction('migrate/up', Array)
+#12 /srv/www/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#13 /srv/www/humhub/protected/yii(29): yii\base\Application->run()
+#14 {main}
+Additional Information:
+Array
+(
+    [0] => 42S01
+    [1] => 1050
+    [2] => Table 'matching_questions' already exists
+)
+
+2016-05-23 01:22:41 [-][-][-][info][application] $_SERVER = [
+    'XDG_SESSION_ID' => '4'
+    'COMP_WORDBREAKS' => ' 	
+\"\'><;|&(:'
+    'TERM' => 'xterm'
+    'SHELL' => '/bin/bash'
+    'SSH_CLIENT' => '192.168.1.35 53036 22'
+    'OLDPWD' => '/srv/www/humhub'
+    'SSH_TTY' => '/dev/pts/1'
+    'NVM_DIR' => '/home/rjapur/.nvm'
+    'USER' => 'rjapur'
+    'LS_COLORS' => 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:'
+    'MAIL' => '/var/mail/rjapur'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games'
+    'NVM_NODEJS_ORG_MIRROR' => 'http://nodejs.org/dist'
+    'PWD' => '/srv/www/humhub/protected'
+    'LANG' => 'pt_BR.UTF-8'
+    'NODE_PATH' => '/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript'
+    'SHLVL' => '1'
+    'HOME' => '/home/rjapur'
+    'LANGUAGE' => 'pt_BR:pt:en'
+    'LOGNAME' => 'rjapur'
+    'SSH_CONNECTION' => '192.168.1.35 53036 192.168.1.37 22'
+    'LESSOPEN' => '| /usr/bin/lesspipe %s'
+    'XDG_RUNTIME_DIR' => '/run/user/1000'
+    'LESSCLOSE' => '/usr/bin/lesspipe %s %s'
+    '_' => '/usr/bin/php'
+    'PHP_SELF' => 'yii'
+    'SCRIPT_NAME' => 'yii'
+    'SCRIPT_FILENAME' => 'yii'
+    'PATH_TRANSLATED' => 'yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1463977361.399
+    'REQUEST_TIME' => 1463977361
+    'argv' => [
+        0 => 'yii'
+        1 => 'migrate/up'
+        2 => '--includeModuleMigrations=1'
+    ]
+    'argc' => 3
+]

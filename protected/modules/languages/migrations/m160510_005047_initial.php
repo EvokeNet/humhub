@@ -12,12 +12,17 @@ class m160510_005047_initial extends Migration
             'code' => 'varchar(255) NOT NULL',
             'created_at' => 'datetime NOT NULL',
             'updated_at' => 'datetime NOT NULL',
-                ), '');
+        ), '');
+                
+        $this->insert('languages', array('language' => 'English', 'code' => 'en-US'));
+        $this->insert('languages', array('language' => 'Espanol', 'code' => 'es'));
     }
 
     public function down()
     {
-        echo "m160510_005047_initial cannot be reverted.\n";
+        // echo "m160510_005047_initial cannot be reverted.\n";
+        
+        $this->dropTable('languages');
 
         return false;
     }

@@ -79,7 +79,7 @@
         'useCase' => 'other',
         'secret' => '7affb751-0cd0-4cd0-bf31-87b6a141835a',
         'timeZone' => 'America/Sao_Paulo',
-        'cronLastHourlyRun' => '1463956203',
+        'cronLastHourlyRun' => '1463981402',
         'cronLastDailyRun' => '1463950806',
       ),
       'space' => 

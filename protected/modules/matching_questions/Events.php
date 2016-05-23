@@ -31,7 +31,7 @@ class Events extends \yii\base\Object
 
         // Is Module enabled on this workspace?
         $event->sender->addItem(array(
-            'label' => Yii::t('MatchingQuestionsModule.base', 'Superhero Identity'),
+            'label' => Yii::t('MatchingModule.base', 'Superhero Identity'),
             'id' => 'matching_questions',
             'icon' => '<i class="fa fa-th"></i>',
             'url' => Url::toRoute('/matching_questions/matching-questions/matching'),
@@ -52,7 +52,7 @@ class Events extends \yii\base\Object
     public static function onAdminMenuInit($event)
     {
         $event->sender->addItem(array(
-            'label' => Yii::t('MatchingQuestionsModule.base', 'Matching Questions'),
+            'label' => Yii::t('MatchingModule.base', 'Matching Questions'),
             'url' => Url::to(['/matching_questions/admin']),
             'group' => 'manage',
             'icon' => '<i class="fa fa-th"></i>',
@@ -84,7 +84,7 @@ class Events extends \yii\base\Object
     //     $space = $event->sender->space;
     //     if ($space->isModuleEnabled('matching_questions') && $space->isAdmin() && $space->isMember()) {
     //         $event->sender->addItem(array(
-    //             'label' => Yii::t('MatchingQuestionsModule.base', 'Matching Questions'),
+    //             'label' => Yii::t('MatchingModule.base', 'Matching Questions'),
     //             'group' => 'admin',
     //             'url' => $space->createUrl('/matching_questions/admin'),
     //             'icon' => '<i class="fa fa-th"></i>',
@@ -96,7 +96,7 @@ class Events extends \yii\base\Object
     public static function onQualityAdminMenuInit($event)
     {
         $event->sender->addItem(array(
-            'label' => Yii::t('MatchingQuestionsModule.base', 'Qualities'),
+            'label' => Yii::t('MatchingModule.base', 'Qualities'),
             'url' => Url::to(['/matching_questions/admin/index-qualities']),
             'group' => 'manage',
             'icon' => '<i class="fa fa-th"></i>',
@@ -132,7 +132,7 @@ class Events extends \yii\base\Object
     public static function onSuperheroAdminMenuInit($event)
     {
         $event->sender->addItem(array(
-            'label' => Yii::t('MatchingQuestionsModule.base', 'Superhero Identity'),
+            'label' => Yii::t('MatchingModule.base', 'Superhero Identity'),
             'url' => Url::to(['/matching_questions/admin/index-superhero-identities']),
             'group' => 'manage',
             'icon' => '<i class="fa fa-th"></i>',
@@ -140,25 +140,46 @@ class Events extends \yii\base\Object
                 
                 Yii::$app->controller->module && Yii::$app->controller->module->id == 'matching_questions' 
                 && Yii::$app->controller->id == 'admin' 
-                && 
-                (
-                    Yii::$app->controller->action->id != 'index-qualities'
-                    && Yii::$app->controller->action->id != 'create-qualities'
-                    && Yii::$app->controller->action->id != 'update-qualities'
+                // && 
+                // (
+                //     Yii::$app->controller->action->id != 'index-qualities'
+                //     && Yii::$app->controller->action->id != 'create-qualities'
+                //     && Yii::$app->controller->action->id != 'update-qualities'
                     
-                    || Yii::$app->controller->action->id == 'index-quality-translations'
-                    || Yii::$app->controller->action->id == 'create-quality-translations'
-                    || Yii::$app->controller->action->id == 'update-quality-translations'
+                //     || Yii::$app->controller->action->id == 'index-quality-translations'
+                //     || Yii::$app->controller->action->id == 'create-quality-translations'
+                //     || Yii::$app->controller->action->id == 'update-quality-translations'
                     
-                    || Yii::$app->controller->action->id == 'index-superhero-identities'
-                    || Yii::$app->controller->action->id == 'create-superhero-identities'
-                    || Yii::$app->controller->action->id == 'update-superhero-identities'
+                //     || Yii::$app->controller->action->id == 'index-superhero-identities'
+                //     || Yii::$app->controller->action->id == 'create-superhero-identities'
+                //     || Yii::$app->controller->action->id == 'update-superhero-identities'
                     
-                    || Yii::$app->controller->action->id == 'index-superhero-identity-translations'
-                    || Yii::$app->controller->action->id == 'create-superhero-identity-translations'
-                    || Yii::$app->controller->action->id == 'update-superhero-identity-translations'
+                //     || Yii::$app->controller->action->id == 'index-superhero-identity-translations'
+                //     || Yii::$app->controller->action->id == 'create-superhero-identity-translations'
+                //     || Yii::$app->controller->action->id == 'update-superhero-identity-translations'
                 
-                )
+                // )
+                && 
+                    (
+                        Yii::$app->controller->action->id != 'index-qualities'
+                        || Yii::$app->controller->action->id != 'create-qualities'
+                        || Yii::$app->controller->action->id != 'update-qualities'
+                        
+                        || Yii::$app->controller->action->id != 'index-quality-translations'
+                        || Yii::$app->controller->action->id != 'create-quality-translations'
+                        || Yii::$app->controller->action->id != 'update-quality-translations'
+                
+                    )
+                    
+                    && (
+                        Yii::$app->controller->action->id == 'index-superhero-identities'
+                        || Yii::$app->controller->action->id == 'create-superhero-identities'
+                        || Yii::$app->controller->action->id == 'update-superhero-identities'
+                        
+                        || Yii::$app->controller->action->id == 'index-superhero-identity-translations'
+                        || Yii::$app->controller->action->id == 'create-superhero-identity-translations'
+                        || Yii::$app->controller->action->id == 'update-superhero-identity-translations'
+                    )
             ),
         ));
     }
