@@ -5,6 +5,10 @@ namespace app\modules\missions\models;
 use Yii;
 use app\modules\languages\models\Languages;
 
+use yii\db\ActiveRecord;
+use yii\db\Expression;
+use yii\behaviors\TimestampBehavior;
+
 /**
  * This is the model class for table "mission_translations".
  *
@@ -21,6 +25,21 @@ use app\modules\languages\models\Languages;
  */
 class MissionTranslations extends \yii\db\ActiveRecord
 {
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+                // if you're using datetime instead of UNIX timestamp:
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
+    
     /**
      * @inheritdoc
      */

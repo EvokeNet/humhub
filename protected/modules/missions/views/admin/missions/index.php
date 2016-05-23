@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use humhub\modules\missions\models\Missions;
+// use humhub\modules\missions\models\Missions;
 use yii\widgets\Breadcrumbs;
 
 $this->title = Yii::t('MissionsModule.base', 'Missions');

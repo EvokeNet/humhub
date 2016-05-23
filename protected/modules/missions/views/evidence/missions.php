@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use app\modules\missions\models\Missions;
 use yii\widgets\Breadcrumbs;
 
-$this->title = Yii::t('MissionsModule.views_admin_index', 'Missions');
+$this->title = Yii::t('MissionsModule.base', 'Missions');
 $this->params['breadcrumbs'][] = $this->title;
 
 echo Breadcrumbs::widget([
@@ -14,34 +14,38 @@ echo Breadcrumbs::widget([
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3><?php echo Yii::t('MissionsModule.views_admin_index', 'Missions'); ?></h3>
+        <h2><strong><?php echo Yii::t('MissionsModule.base', 'Missions'); ?></strong></h2>
     </div>
     <div class="panel-body">
 
         <?php 
             $x = 0;
             if (count($missions) != 0): ?>
-        
-            <table class="table">
-                <?php foreach ($missions as $mission): ?>
-                    <tr>
-                        <td>
-                            <strong>
-                                <?php echo $mission->title; ?>
-                            </strong>
-                            <BR>
-                            <p class="description">
-                                <?php echo $mission->description; ?>
-                            </p>
-                            <?php echo Html::a('Enter Mission', ['activities', 'missionId' => $mission->id, 'sguid' => $contentContainer->guid], array('class' => 'btn btn-success')); ?>
-                        </td>
-                    </tr>
-
-                <?php endforeach; ?>
-            </table>
-
+            
+            <?php foreach ($missions as $mission): ?>
+            
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        
+                        <h4>
+                            <strong><?= isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title ?></strong>
+                        </h4>
+                        
+                        <p class="description">
+                            <?= isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->description : $mission->description ?>
+                        </p>
+                        
+                        <br>
+                        <?php echo Html::a(
+                            Yii::t('MissionsModule.base', 'Enter Mission'),
+                            ['activities', 'missionId' => $mission->id, 'sguid' => $contentContainer->guid], array('class' => 'btn btn-success')); ?>
+                    </div>
+                </div>
+                
+            <?php endforeach; ?>
+            
         <?php else: ?>
-            <p><?php echo Yii::t('MissionsModule.views_admin_index', 'No missions created yet!'); ?></p>
+            <p><?php echo Yii::t('MissionsModule.base', 'No missions created yet!'); ?></p>
         <?php endif; ?>
     </div>
 </div>

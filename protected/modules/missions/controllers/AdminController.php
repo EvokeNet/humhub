@@ -83,6 +83,8 @@ class AdminController extends \humhub\modules\admin\components\Controller
         } 
         
         return $this->render('activities/create', array('model' => $model, 'mission' => $mission));
+        
+        // return $this->render('activities/test', array('model' => $model, 'mission' => $mission));
     }
     
     public function actionUpdateActivities($id)

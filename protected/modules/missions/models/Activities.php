@@ -3,6 +3,9 @@
 namespace app\modules\missions\models;
 
 use Yii;
+use yii\db\ActiveRecord;
+use yii\db\Expression;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "activities".
@@ -20,6 +23,21 @@ use Yii;
  */
 class Activities extends \yii\db\ActiveRecord
 {
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+                // if you're using datetime instead of UNIX timestamp:
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
+    
     /**
      * @inheritdoc
      */
@@ -55,7 +73,7 @@ class Activities extends \yii\db\ActiveRecord
             'mission_id' => Yii::t('app', 'Mission ID'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
-            'id_code' => Yii::t('app', 'ID Code'),
+            'id_code' => Yii::t('app', 'Id Code'),
         ];
     }
 
@@ -64,8 +82,7 @@ class Activities extends \yii\db\ActiveRecord
      */
     public function getMission()
     {
-        $mission = Missions::findOne($this->mission_id);
-        return $mission;
+        return $this->hasOne(Missions::className(), ['id' => 'mission_id']);
     }
 
     /**

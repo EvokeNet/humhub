@@ -5,9 +5,9 @@ use yii\widgets\Breadcrumbs;
 use humhub\compat\CActiveForm;
 
 $this->title = Yii::t('MissionsModule.base', 'Create new Activity');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.base', 'Missions'), 'url' => ['index', 'id' => $mission->id]];
-$this->params['breadcrumbs'][] = Yii::t('MissionsModule.base', 'Mission').' '.$mission->id_code;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.base', 'Activities'), 'url' => ['index-activities', 'id' => $mission->id]];
+// $this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.base', 'Missions'), 'url' => ['index', 'id' => $mission->id]];
+// $this->params['breadcrumbs'][] = Yii::t('MissionsModule.base', 'Mission').' '.$mission->id_code;
+// $this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.base', 'Activities'), 'url' => ['index-activities', 'id' => $mission->id]];
 $this->params['breadcrumbs'][] = $this->title;
         
 echo Breadcrumbs::widget([

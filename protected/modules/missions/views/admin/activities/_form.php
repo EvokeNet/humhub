@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
-use humhub\modules\missions\models\Missions
+use app\modules\missions\models\Missions
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\missions\models\Objectives */

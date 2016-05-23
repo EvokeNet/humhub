@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use humhub\modules\content\components\ContentContainerController;
 use app\modules\missions\models\Missions;
 use app\modules\missions\models\Activities;
+use app\modules\languages\models\Languages;
 
 class EvidenceController extends ContentContainerController
 {
@@ -36,7 +37,15 @@ class EvidenceController extends ContentContainerController
     public function actionMissions()
     {   
 
-        $missions = Missions::find()->all();
+        //$missions = Missions::find()->all();
+        
+        $missions = Missions::find()->with([
+            'missionTranslations' => function ($query) {
+                $lang = Languages::findOne(['code' => Yii::$app->language]);
+                $query->andWhere(['language_id' => $lang->id]);
+            },
+        ])->all();
+        
         return $this->render('missions', array('missions' => $missions, 'contentContainer' => $this->contentContainer));
     }
 

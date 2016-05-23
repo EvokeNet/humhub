@@ -8,6 +8,9 @@ use yii\db\ActiveRecord;
 use app\modules\space\models\Space;
 use app\modules\user\models\User;
 
+use yii\db\Expression;
+use yii\behaviors\TimestampBehavior;
+
 /**
  * This is the model class for table "evidence".
  *
@@ -34,7 +37,22 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
     const SCENARIO_CLOSE = 'close';
     public $autoAddToWall = true;
     public $wallEntryClass = 'humhub\modules\missions\widgets\WallEntry';
-
+    
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+                // if you're using datetime instead of UNIX timestamp:
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
+    
     /**
      * @inheritdoc
      */

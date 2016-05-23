@@ -3,8 +3,8 @@
 namespace humhub\modules\missions\controllers;
 
 use Yii;
-use humhub\modules\missions\models\Activities;
-use humhub\modules\missions\models\ActivitiesSearch;
+use app\modules\missions\models\Activities;
+//use humhub\modules\missions\models\ActivitiesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

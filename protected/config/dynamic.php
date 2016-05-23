@@ -64,7 +64,7 @@
       'core' => 
       array (
         'colorDefault' => '#3C454D',
-        'colorPrimary' => '#2A2E32',
+        'colorPrimary' => '#708fa0',
         'colorInfo' => '#6fdbe8',
         'colorSuccess' => '#97d271',
         'colorWarning' => '#fdd198',
@@ -75,12 +75,12 @@
         'paginationSize' => '10',
         'displayNameFormat' => '{profile.firstname} {profile.lastname}',
         'theme' => 'Evoke',
-        'defaultLanguage' => 'en',
+        'defaultLanguage' => 'es',
         'useCase' => 'other',
         'secret' => '7affb751-0cd0-4cd0-bf31-87b6a141835a',
         'timeZone' => 'America/Sao_Paulo',
-        'cronLastHourlyRun' => '1463995801',
-        'cronLastDailyRun' => '1463950806',
+        'cronLastHourlyRun' => '1464035402',
+        'cronLastDailyRun' => '1464037205',
       ),
       'space' => 
       array (
@@ -160,11 +160,11 @@
         'shownDays' => '2',
       ),
     ),
-    'config_created_at' => 1462923095,
+    'config_created_at' => 1462711768,
     'databaseInstalled' => true,
     'installed' => true,
   ),
   'name' => 'Evoke',
-  'language' => 'en',
+  'language' => 'es',
   'timeZone' => 'America/Sao_Paulo',
 ); ?>

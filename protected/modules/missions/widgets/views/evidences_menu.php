@@ -7,24 +7,24 @@ use yii\helpers\Url;
 <div class="panel panel-default">
     <div class="panel-heading">
         <strong>
-            Evidences
+            <?= Yii::t('MissionsModule.base', 'Missions') ?>
         </strong>
     menu
     </div>
     <div class="list-group submit-body">
     	<div class= "list-group-item">
-    		<a href='<?= $space->createUrl('/missions/evidence/missions'); ?>'>
-        		Submit Evidence
+    		<a class = "btn btn-primary" href='<?= $space->createUrl('/missions/evidence/missions'); ?>'>
+        		<?= Yii::t('MissionsModule.base', 'Choose Mission') ?>
         	</a>
         </div>
         <div class= "list-group-item">
-            <a href='' class="unavailable">
-        	   Unavailable - Read Missions
+            <a href='#' class="btn btn-primary disabled">
+        	   <?= Yii::t('MissionsModule.base', 'Unavailable - Read Missions') ?>
             </a>
         </div>
         <div class= "list-group-item">
-            <a href='' class="unavailable">
-                Unavailable - Rate Evidence
+            <a href='#' class="btn btn-primary disabled">
+                <?= Yii::t('MissionsModule.base', 'Unavailable - Rate Evidence') ?>
             </a>
         </div>
     </div>

@@ -122,7 +122,7 @@ h4 {
   color: #555;
   background-color: white;
   border: none;
-  padding: 10px;
+  padding: 10px 15px;
 }
 .text-center {
   text-align: center !important;
@@ -675,7 +675,7 @@ input[type=select] {
   color: #555;
   background-color: white;
   border: none;
-  padding: 10px;
+  padding: 10px 15px;
   border-radius: 4px;
 }
 .panel .panel-body {
@@ -2473,4 +2473,7 @@ img.bounceIn {
 }
 #share-panel .share-icon-linkedin {
   color: #0177b5;
+}
+.font-weight-bold {
+  font-weight: bold;
 }

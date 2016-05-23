@@ -70,7 +70,7 @@ class Missions extends \yii\db\ActiveRecord
             'description' => Yii::t('app', 'Description'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
-            'id_code' => Yii::t('app', 'ID Code'),
+            'id_code' => Yii::t('app', 'Id Code'),
         ];
     }
 
