@@ -1,12 +1,18 @@
 <?php
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/gf-evidences
 namespace app\modules\matching_questions\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/gf-evidences
 use app\modules\matching_questions\models\Qualities;
 
 /**

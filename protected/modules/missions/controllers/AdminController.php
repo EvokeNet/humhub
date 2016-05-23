@@ -3,7 +3,10 @@
 namespace humhub\modules\missions\controllers;
 
 use Yii;
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/gf-evidences
 use app\modules\missions\models\Missions;
 use app\modules\missions\models\MissionTranslations;
 use app\modules\missions\models\Activities;

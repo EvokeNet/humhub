@@ -74,7 +74,11 @@ class Module extends \humhub\components\Module
         parent::disable();
     }
     
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> origin/gf-evidences
 }
 
 ?>

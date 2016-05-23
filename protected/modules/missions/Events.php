@@ -38,9 +38,13 @@ class Events
             'icon' => '<i class="fa fa-th"></i>',
             'url' => Url::toRoute('/missions/missions'),
             'sortOrder' => 100,
+<<<<<<< HEAD
 
             'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id != 'admin'),
 
+=======
+            'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id != 'admin'),
+>>>>>>> origin/gf-evidences
         ));
     }
 
