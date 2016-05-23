@@ -41,8 +41,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?php foreach ($missions as $mission): ?>
                                 <tr>
                                     <td><?php echo $mission->id; ?></td>
-                                    <td><?php echo $mission->missionTranslations[0]->title; ?></td>
-                                    <td><?php echo $mission->missionTranslations[0]->description; ?></td>
+                                    <td><?php echo $mission->title; ?></td>
+                                    <td><?php echo $mission->description; ?></td>
                                     <?php //foreach ($mission->missionTranslations as $m): ?>
                                         <!--<td><?php //echo $m->title; ?></td>-->
                                         <!--<td><?php //echo $m->description; ?></td>-->

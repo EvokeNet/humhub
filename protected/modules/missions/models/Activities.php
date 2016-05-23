@@ -1,6 +1,6 @@
 <?php
 
-namespace humhub\modules\missions\models;
+namespace app\modules\missions\models;
 
 use Yii;
 
