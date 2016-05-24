@@ -9,7 +9,6 @@ use yii\helpers\Url;
 use humhub\modules\content\components\ContentContainerActiveRecord;
 use humhub\modules\content\components\ContentContainerModule;
 use humhub\modules\space\models\Space;
-
 use app\modules\missions\models\Missions;
 use app\modules\missions\models\MissionTranslations;
 use app\modules\missions\models\Activities;
