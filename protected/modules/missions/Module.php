@@ -9,18 +9,11 @@ use yii\helpers\Url;
 use humhub\modules\content\components\ContentContainerActiveRecord;
 use humhub\modules\content\components\ContentContainerModule;
 use humhub\modules\space\models\Space;
-<<<<<<< HEAD
 
-use humhub\modules\missions\models\Missions;
-use humhub\modules\missions\models\MissionTranslations;
-use humhub\modules\missions\models\Activities;
-use humhub\modules\missions\models\ActivityTranslations;
-=======
 use app\modules\missions\models\Missions;
 use app\modules\missions\models\MissionTranslations;
 use app\modules\missions\models\Activities;
 use app\modules\missions\models\ActivityTranslations;
->>>>>>> origin/gf-evidences
 
 class Module extends ContentContainerModule
 {

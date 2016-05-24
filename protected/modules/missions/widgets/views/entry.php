@@ -18,9 +18,9 @@ $activity = $evidence->getActivities();
 
 <hr>
 <div class="activity_area">
-	<?php echo $activity->getMission()->title; ?>
+	<?= isset($activity->mission->missionTranslations[0]) ? $activity->mission->missionTranslations[0]->title : $activity->mission->title ?>
 	<br>
-	<?php echo $activity->title; ?>
+	<?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title ?>
 </div>
 
 <?php echo Html::endForm(); ?>

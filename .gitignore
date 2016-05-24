@@ -1,10 +1,15 @@
-!assets/.gitignore
+protected/runtime/*
 !protected/runtime/.gitignore
+!protected/runtime/searchdb
 
 protected/config/*
-protected/runtime/*
+!protected/config/.gitignore
+
 protected/data/*.db
+
 assets/*
+!assets/.gitignore
+
 uploads/*
 
 protected/modules/books

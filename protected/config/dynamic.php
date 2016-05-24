@@ -5,8 +5,8 @@
     array (
       'class' => 'yii\\db\\Connection',
       'dsn' => 'mysql:host=localhost;dbname=humhub',
-      'username' => 'guilherme',
-      'password' => '1234',
+      'username' => 'root',
+      'password' => '6907388',
       'charset' => 'utf8',
     ),
     'user' => 
@@ -64,7 +64,7 @@
       'core' => 
       array (
         'colorDefault' => '#3C454D',
-        'colorPrimary' => '#2A2E32',
+        'colorPrimary' => '#708fa0',
         'colorInfo' => '#6fdbe8',
         'colorSuccess' => '#97d271',
         'colorWarning' => '#fdd198',
@@ -75,17 +75,12 @@
         'paginationSize' => '10',
         'displayNameFormat' => '{profile.firstname} {profile.lastname}',
         'theme' => 'Evoke',
-        'defaultLanguage' => 'en',
+        'defaultLanguage' => 'es',
         'useCase' => 'other',
         'secret' => '7affb751-0cd0-4cd0-bf31-87b6a141835a',
         'timeZone' => 'America/Sao_Paulo',
-<<<<<<< HEAD
-        'cronLastHourlyRun' => '1464035402',
-        'cronLastDailyRun' => '1464037205',
-=======
-        'cronLastHourlyRun' => '1463985002',
-        'cronLastDailyRun' => '1463950806',
->>>>>>> origin/gf-evidences
+        'cronLastHourlyRun' => '1462890602',
+        'cronLastDailyRun' => '1462827605',
       ),
       'space' => 
       array (
@@ -165,15 +160,11 @@
         'shownDays' => '2',
       ),
     ),
-<<<<<<< HEAD
     'config_created_at' => 1462711768,
-=======
-    'config_created_at' => 1462923095,
->>>>>>> origin/gf-evidences
     'databaseInstalled' => true,
     'installed' => true,
   ),
   'name' => 'Evoke',
-  'language' => 'en',
+  'language' => 'es',
   'timeZone' => 'America/Sao_Paulo',
 ); ?>
