@@ -7,6 +7,8 @@ use app\modules\missions\models\Missions;
 use app\modules\missions\models\MissionTranslations;
 use app\modules\missions\models\Activities;
 use app\modules\missions\models\ActivityTranslations;
+use app\modules\missions\models\ActivityPowers;
+use app\modules\missions\models\DifficultyLevels;
 
 /**
  * AdminController
@@ -19,6 +21,16 @@ class AdminController extends \humhub\modules\admin\components\Controller
     {
         $missions = Missions::find()->all();
         return $this->render('missions/index', array('missions' => $missions));
+    }
+    
+    public function actionView($id)
+    {   
+        $model = Missions::findOne(['id' => Yii::$app->request->get('id')]);
+        return $this->render('missions/view', array('model' => $model));
+        
+        // return $this->render('view', [
+        //     'model' => $this->findModel($id),
+        // ]);
     }
 
     public function actionCreate()
@@ -235,6 +247,70 @@ class AdminController extends \humhub\modules\admin\components\Controller
         }
 
         return $this->redirect(['index-activity-translations', 'id' => $mid]);
+    }
+    
+    /**
+    * Activity Powers Actions
+    *
+    **/
+    public function actionIndexActivityPowers($id)
+    {
+        $activity_powers = ActivityPowers::find()
+        ->where(['activity_id' => Yii::$app->request->get('id')])
+        ->all();
+        
+        // $customers = Books::find()->with([
+        //     'bookTranslations' => function ($query) {
+        //         $lang = Languages::findOne(['code' => Yii::$app->language]);
+        //         $query->andWhere(['language_id' => $lang->id]);
+        //     },
+        // ])->all();
+        
+        $activity = Activities::findOne(['id' => Yii::$app->request->get('id')]);
+        
+        return $this->render('activity-powers/index', array('activity_powers' => $activity_powers, 'activity' => $activity));
+    }
+    
+    public function actionCreateActivityPowers($id)
+    {
+        $model = new ActivityPowers();
+        $model->activity_id = $id;
+        
+        $activity = Activities::findOne(['id' => Yii::$app->request->get('id')]);
+        
+        $model->value = $activity->difficultyLevel->points;
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            //return $this->redirect(['index-activities', 'id' => $model->mission_id]);
+            return $this->redirect(['index-activity-powers', 'id' => $model->activity_id]);
+        } 
+        
+        return $this->render('activity-powers/create', array('model' => $model, 'activity' => $activity));
+    }
+    
+    // public function actionUpdateActivityPowers($id)
+    // {
+    //     $model = ActivityPowers::findOne(['id' => Yii::$app->request->get('id')]);
+
+    //     $activity = Activities::findOne(['id' => $id]);
+        
+    //     if ($model->load(Yii::$app->request->post()) && $model->save()) {
+    //         return $this->redirect(['index-activity-powers', 'id' => $model->activity_id]);
+    //     }
+
+    //     return $this->render('activity-powers/update', array('model' => $model, 'activity' => $activity));
+    // }
+    
+    public function actionDeleteActivityPowers()
+    {
+        $model = ActivityPowers::findOne(['id' => Yii::$app->request->get('id')]);
+        $mid = $model->activity_id;
+        
+        if ($model !== null) {
+            $model->delete();
+        }
+
+        return $this->redirect(['index-activity-powers', 'id' => $mid]);
     }
     
 }

@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
     echo $form->field($model, 'type')->dropDownList([
         'order' => Yii::t('MatchingModule.base', 'Order'), 
         'single-choice' => Yii::t('MatchingModule.base', 'Single Choice')
-        ],['prompt'=>'Select Option']); ?>
+        ],['prompt' => Yii::t('MatchingModule.base', 'Select Option')]); ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('MatchingModule.base', 'Create') : Yii::t('MatchingModule.base', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

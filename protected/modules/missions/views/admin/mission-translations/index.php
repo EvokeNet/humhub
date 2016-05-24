@@ -31,16 +31,20 @@ echo Breadcrumbs::widget([
             <table class="table">
                 <tr>
                     <th><?php echo Yii::t('MissionsModule.base', 'Title'); ?></th>
-                    <th><?php echo Yii::t('MissionsModule.base', 'Description'); ?></th>
+                    <!--<th><?php //echo Yii::t('MissionsModule.base', 'Description'); ?></th>-->
                     <th><?php echo Yii::t('MissionsModule.base', 'Language'); ?></th>
                     <th>&nbsp;</th>
                 </tr>
                 <?php foreach ($mission_translations as $m): ?>
                     <tr>
                         <td><?php echo $m->title; ?></td>
-                        <td><?php echo $m->description; ?></td>
+                        <!--<td><?php //echo $m->description; ?></td>-->
                         <td><?php echo $m->language->language; ?></td>
                         <td>
+                            <?php echo Html::a(
+                                Yii::t('MissionsModule.base', 'View'),
+                                ['view-mission-translations', 'id' => $m->id], array('class' => 'btn btn-warning btn-sm')); ?>
+                            &nbsp;&nbsp;
                             <?php echo Html::a(
                                 Yii::t('MissionsModule.base', 'Update'),
                                 ['update-mission-translations', 'id' => $m->id], array('class' => 'btn btn-primary btn-sm')); ?>

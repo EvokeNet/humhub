@@ -1151,34 +1151,34 @@ input[type=select] {
   background: #363b40 !important;
 }
 .btn-info {
-  background: #6fdbe8;
+  background: #8A84E2;
   color: white !important;
 }
 .btn-info:hover,
 .btn-info:focus {
-  background: #59d6e4 !important;
+  background: #766fdd !important;
   text-decoration: none;
 }
 .btn-info:active,
 .btn-info.active {
   outline: 0;
-  background: #59d6e4;
+  background: #766fdd;
 }
 .btn-info[disabled],
 .btn-info.disabled {
-  background: #85e0ec;
+  background: #9e99e7;
 }
 .btn-info[disabled]:hover,
 .btn-info.disabled:hover,
 .btn-info[disabled]:focus,
 .btn-info.disabled:focus {
-  background: #85e0ec;
+  background: #9e99e7;
 }
 .btn-info[disabled]:active,
 .btn-info.disabled:active,
 .btn-info[disabled].active,
 .btn-info.disabled.active {
-  background: #85e0ec !important;
+  background: #9e99e7 !important;
 }
 .btn-danger {
   background: #ff8989;
@@ -1621,7 +1621,7 @@ table td a:hover {
 .table > thead > tr > td,
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
-  padding: 10px 10px 10px 0;
+  padding: 10px 10px 10px 10px;
   vertical-align: middle;
 }
 .table > thead > tr > th select,

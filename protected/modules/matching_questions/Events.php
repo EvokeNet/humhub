@@ -55,7 +55,7 @@ class Events extends \yii\base\Object
             'label' => Yii::t('MatchingModule.base', 'Matching Questions'),
             'url' => Url::to(['/matching_questions/admin']),
             'group' => 'manage',
-            'icon' => '<i class="fa fa-th"></i>',
+            'icon' => '<i class="fa fa-question"></i>',
             'isActive' => (
                 Yii::$app->controller->module && Yii::$app->controller->module->id == 'matching_questions'
                 && Yii::$app->controller->action->id != 'view'
@@ -99,7 +99,7 @@ class Events extends \yii\base\Object
             'label' => Yii::t('MatchingModule.base', 'Qualities'),
             'url' => Url::to(['/matching_questions/admin/index-qualities']),
             'group' => 'manage',
-            'icon' => '<i class="fa fa-th"></i>',
+            'icon' => '<i class="fa fa-navicon"></i>',
             'isActive' => (
                     Yii::$app->controller->module && Yii::$app->controller->module->id == 'matching_questions' 
                     && Yii::$app->controller->id == 'admin' 
@@ -135,7 +135,7 @@ class Events extends \yii\base\Object
             'label' => Yii::t('MatchingModule.base', 'Superhero Identity'),
             'url' => Url::to(['/matching_questions/admin/index-superhero-identities']),
             'group' => 'manage',
-            'icon' => '<i class="fa fa-th"></i>',
+            'icon' => '<i class="fa fa-male"></i>',
             'isActive' => (
                 
                 Yii::$app->controller->module && Yii::$app->controller->module->id == 'matching_questions' 

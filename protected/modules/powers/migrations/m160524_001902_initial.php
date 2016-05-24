@@ -22,16 +22,6 @@ class m160524_001902_initial extends Migration
             'created_at' => 'datetime NULL',
             'modified_at' => 'datetime NULL',
                 ), '');
-                
-         $this->createTable('activity_powers', array(
-            'id' => 'pk',
-            'activity_id' => 'int(16) NOT NULL',
-            'power_id' => 'int(16) NOT NULL',
-            'flag' => 'int(16) NOT NULL', // flag to indicate if it's primary power or secondary power
-            'value' => 'int(32) NOT NULL',
-            'created_at' => 'datetime NULL',
-            'modified_at' => 'datetime NULL',
-                ), '');
           
           $this->createTable('user_qualities', array(
             'id' => 'pk',
@@ -62,24 +52,6 @@ class m160524_001902_initial extends Migration
           $this->addForeignKey(
             'fk-user_powers-power_id',
             'user_powers',
-            'power_id',
-            'powers',
-            'id',
-            'CASCADE'
-          );
-          
-          $this->addForeignKey(
-            'fk-activity_powers-activity_id',
-            'activity_powers',
-            'activity_id',
-            'activity',
-            'id',
-            'CASCADE'
-          );
-          
-          $this->addForeignKey(
-            'fk-activity_powers-power_id',
-            'activity_powers',
             'power_id',
             'powers',
             'id',
@@ -130,16 +102,14 @@ class m160524_001902_initial extends Migration
         
         $this->dropForeignKey('fk-user_powers-user_id', 'user_powers');
         $this->dropForeignKey('fk-user_powers-power_id', 'user_powers');
-        $this->dropForeignKey('fk-activity_powers-activity_id', 'activity_powers');
-        $this->dropForeignKey('fk-activity_powers-power_id', 'activity_powers');
         
-         $this->dropForeignKey('fk-user_qualities-user_id', 'user_qualities');
+        $this->dropForeignKey('fk-user_qualities-user_id', 'user_qualities');
         $this->dropForeignKey('fk-user_qualities-quality_id', 'user_qualities');
+        
         $this->dropForeignKey('fk-quality_powers-power_id', 'quality_powers');
         $this->dropForeignKey('fk-quality_powers-quality_id', 'quality_powers');
         
         $this->dropTable('user_powers');
-        $this->dropTable('activity_powers');
         $this->dropTable('user_qualities');
         $this->dropTable('quality_powers');
         $this->dropTable('powers');
