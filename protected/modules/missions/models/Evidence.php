@@ -60,11 +60,10 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
         return array(
             [['title', 'text'], 'required'],
             [['text'], 'string'],
-            //[['user_id', 'activities_id', 'space_id'], 'integer'],
             [['title'], 'string', 'max' => 120],
-            //[['type'], 'string', 'max' => 255],
+            [['created_at', 'updated_at'], 'safe'],
+            [['created_by', 'updated_by'], 'integer'],
             [['activities_id'], 'exist', 'skipOnError' => true, 'targetClass' => Activities::className(), 'targetAttribute' => ['activities_id' => 'id']],
-            //[['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         );
     }
 
@@ -81,8 +80,10 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
             'text' => Yii::t('app', 'Text'),
             //'user_id' => Yii::t('app', 'User ID'),
             'activities_id' => Yii::t('app', 'Activities ID'),
-            //'created' => Yii::t('app', 'Created'),
-            //'modified' => Yii::t('app', 'Modified'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'created_by' => Yii::t('app', 'Created By'),
+            'updated_at' => Yii::t('app', 'Updated At'),
+            'updated_by' => Yii::t('app', 'Updated By'),
         );
     }
 

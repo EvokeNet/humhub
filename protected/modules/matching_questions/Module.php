@@ -26,6 +26,15 @@ class Module extends \humhub\components\Module
         parent::enable();
     }
 
+    /**
+     * @inheritdoc
+     */
+    public function disable()
+    {
+
+        parent::disable();
+    }
+
 }
 
 ?>
