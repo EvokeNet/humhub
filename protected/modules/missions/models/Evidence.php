@@ -76,7 +76,7 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
     public function rules()
     {
         return array(
-            // [['title', 'text'], 'required'],
+            [['title', 'text'], 'required'],
             [['text'], 'string'],
             [['title'], 'string', 'max' => 120],
             [['created_at', 'updated_at'], 'safe'],
