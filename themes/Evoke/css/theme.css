@@ -2382,9 +2382,6 @@ img.bounceIn {
     background: #2A2E32 !important;
     color: #fff !important;
   }
-  .layout-sidebar-container {
-    display: none;
-  }
 }
 .onoffswitch-inner:before {
   background-color: #6fdbe8;
