@@ -13,6 +13,9 @@ use yii\helpers\Url;
 use humhub\models\Setting;
 use humhub\modules\missions\widgets\EvidenceWidget;
 use humhub\modules\space\models\Space;
+use app\modules\missions\models\Evidence;
+use app\modules\missions\models\ActivityPowers;
+use app\modules\powers\models\UserPowers;
 // use humhub\modules\dashboard\widgets\ShareWidget;
 
 /**
@@ -92,6 +95,34 @@ class Events
             $space->enableModule("missions");
         }
 
+    }
+
+    public static function onUserLike($event){
+
+        $like = $event->action->id === 'like' ? true : false;
+
+        $content_user_id = $event->action->controller->parentContent->content->user_id;
+
+        //check if user isn't liking its own evidence and if it's like/unlike action
+        if(($event->action->id === 'like' || $event->action->id === 'unlike') && Yii::$app->user->getIdentity()->id != $content_user_id){
+            $evidence = $event->action->controller->parentContent;
+
+            //ACTIVITY POWER POINTS
+            $activityPowers = ActivityPowers::findAll(['activity_id' => $evidence->activities_id]);
+
+            //USER POWER POINTS
+            foreach($activityPowers as $activity_power){
+                if($activity_power->flag){
+                    $userPower = UserPowers::findOne(['power_id' => $activity_power->power_id, 'user_id' => $content_user_id]);
+                    if($like){
+                        $userPower->value += $activity_power->value;
+                    }else{
+                        $userPower->value -= $activity_power->value;
+                    }
+                    $userPower->save();
+                }
+            }
+        }
 
     }
 

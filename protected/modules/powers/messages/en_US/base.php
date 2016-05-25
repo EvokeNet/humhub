@@ -28,7 +28,9 @@ return [
     'No power translations created yet!' => '',
     'Power Translations' => '',
     'Powers' => '',
+    'This user must answer psychometric questionnaire first.' => '',
     'Title' => '',
     'Update' => '',
     'View translations' => '',
+    'points' => '',
 ];
