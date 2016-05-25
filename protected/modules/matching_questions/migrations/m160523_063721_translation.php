@@ -141,7 +141,7 @@ class m160523_063721_translation extends Migration
         $this->dropTable('quality_translations');
         $this->dropTable('superhero_identity_translations');
 
-        return false;
+        return true;
     }
 
     /*

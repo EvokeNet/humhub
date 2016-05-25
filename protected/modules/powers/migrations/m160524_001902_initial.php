@@ -114,7 +114,7 @@ class m160524_001902_initial extends Migration
         $this->dropTable('quality_powers');
         $this->dropTable('powers');
 
-        return false;
+        return true;
     }
 
     /*

@@ -11,6 +11,9 @@ namespace humhub\modules\matching_questions;
 use Yii;
 use yii\helpers\Url;
 use humhub\models\Setting;
+use app\modules\matching_questions\models\SuperheroIdentities;
+use app\modules\matching_questions\models\User;
+use humhub\modules\matching_questions\widgets\SuperHeroWidget;
 // use humhub\modules\matching_questions\models\MatchingQuestions;
 
 /**
@@ -38,6 +41,19 @@ class Events extends \yii\base\Object
             'sortOrder' => 200,
             'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'matching_questions' && Yii::$app->controller->id != 'admin'),
         ));
+    }
+
+    public static function onProfileSidebarInit($event)
+    {
+        if (Yii::$app->user->isGuest || Yii::$app->user->getIdentity()->getSetting("hideSharePanel", "share") != 1) {
+            
+            $user = $event->sender->user;
+
+            $superhero_id = SuperheroIdentities::findOne([$user->superhero_identity_id]);
+
+            $event->sender->addWidget(SuperHeroWidget::className(), array('superhero_id' => $superhero_id), array('sortOrder' => 8));
+        }
+        
     }
 
     public static function onSidebarInit($event)

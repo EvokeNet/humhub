@@ -82,7 +82,7 @@ class ActivityPowers extends \yii\db\ActiveRecord
      */
     public function getPower()
     {
-        return $this->hasOne(Powers::className(), ['id' => 'power_id']);
+        return Powers::findOne($this->power_id);
     }
 
     /**

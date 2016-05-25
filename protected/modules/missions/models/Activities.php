@@ -104,7 +104,8 @@ class Activities extends \yii\db\ActiveRecord
      */
     public function getActivityPowers()
     {
-        return $this->hasMany(ActivityPowers::className(), ['activity_id' => 'id']);
+        $powers = ActivityPowers::findAll(['activity_id' => $this->id]);
+        return $powers;
     }
 
     /**

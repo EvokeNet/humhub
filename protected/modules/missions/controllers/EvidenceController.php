@@ -12,6 +12,9 @@ use humhub\modules\content\components\ContentContainerController;
 use app\modules\missions\models\Missions;
 use app\modules\missions\models\Activities;
 use app\modules\languages\models\Languages;
+use app\modules\powers\models\UserPowers;
+use app\modules\powers\models\Powers;
+use app\modules\missions\models\ActivityPowers;
 
 class EvidenceController extends ContentContainerController
 {
@@ -80,6 +83,18 @@ class EvidenceController extends ContentContainerController
         $evidence->title = Yii::$app->request->post('title');
        	$evidence->text = Yii::$app->request->post('text');
         $evidence->activities_id = Yii::$app->request->post('activityId');
+
+        //ACTIVITY POWER POINTS
+        $activityPowers = ActivityPowers::findAll(['activity_id' => $evidence->activities_id]);
+        $user = Yii::$app->user->getIdentity();
+
+        //USER POWER POINTS
+        foreach($activityPowers as $activity_power){
+            $userPower = UserPowers::findOne(['power_id' => $activity_power->power_id, 'user_id' => $user->id]);
+            $userPower->value += $activity_power->value;
+            $userPower->save();
+        }
+
         return \humhub\modules\missions\widgets\WallCreateForm::create($evidence, $this->contentContainer);
     }
 

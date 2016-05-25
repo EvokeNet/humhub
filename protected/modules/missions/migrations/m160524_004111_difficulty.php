@@ -56,7 +56,7 @@ class m160524_004111_difficulty extends Migration
         
         $this->dropTable('difficulty_levels');
 
-        return false;
+        return true;
     }
 
     /*
