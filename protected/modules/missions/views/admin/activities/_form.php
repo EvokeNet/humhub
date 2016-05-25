@@ -3,8 +3,8 @@
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
-use app\modules\missions\models\Missions
-use app\modules\missions\models\DifficultyLevels
+use app\modules\missions\models\Missions;
+use app\modules\missions\models\DifficultyLevels;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\missions\models\Objectives */
