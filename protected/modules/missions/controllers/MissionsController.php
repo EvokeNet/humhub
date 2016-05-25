@@ -3,8 +3,7 @@
 namespace humhub\modules\missions\controllers;
 
 use Yii;
-use humhub\modules\missions\models\Missions;
-use humhub\modules\missions\models\MissionsSearch;
+use app\modules\missions\models\Missions;
 use app\modules\languages\models\Languages;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;

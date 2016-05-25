@@ -1,11 +1,6 @@
 protected/config/*
 protected/runtime/logs/*
 uploads/*
-<<<<<<< HEAD
-protected/modules/polls/*
-protected/modules/birthday/*
-=======
-
 protected/modules/books
 protected/modules/custom_pages
 protected/modules/mail
@@ -13,7 +8,6 @@ protected/modules/polls
 protected/modules/birthday
 protected/modules/breakingnews
 protected/modules/wiki
-
 protected/modules/books/*
 protected/modules/custom_pages/*
 protected/modules/mail/*
@@ -22,4 +16,3 @@ protected/modules/birthday/*
 protected/modules/birthday/*
 protected/modules/breakingnews/*
 protected/modules/wiki/*
->>>>>>> rj-multilanguage

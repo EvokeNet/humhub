@@ -9,10 +9,10 @@ class uninstall extends Migration
     {
 
        $this->dropTable('user_matching_answers');
-       $this->dropTable('matching_questions');
+       $this->dropTable('matching_answer_translations');
        $this->dropTable('matching_answers');
        $this->dropTable('matching_question_translations');
-       $this->dropTable('matching_answer_translations');
+       $this->dropTable('matching_questions');
        $this->dropTable('quality_translations');
        $this->dropTable('superhero_identity_translations');
        $this->dropColumn('user','superhero_identity_id');

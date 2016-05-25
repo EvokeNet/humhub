@@ -3,10 +3,10 @@
 namespace humhub\modules\missions\controllers;
 
 use Yii;
-use humhub\modules\missions\models\Missions;
-use humhub\modules\missions\models\MissionTranslations;
-use humhub\modules\missions\models\Activities;
-use humhub\modules\missions\models\ActivityTranslations;
+use app\modules\missions\models\Missions;
+use app\modules\missions\models\MissionTranslations;
+use app\modules\missions\models\Activities;
+use app\modules\missions\models\ActivityTranslations;
 
 /**
  * AdminController
