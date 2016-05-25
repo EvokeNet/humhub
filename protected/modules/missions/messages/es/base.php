@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Select Difficulty Level' => 'Seleccione el nivel de dificultad',
+    'Type (Primary/Secondary)' => 'Tipo (Primario/Secundario)',
     'Activities' => 'Actividades',
     'Activity' => 'Actividad',
     'Activity Powers' => 'Poderes de Actividades',
@@ -58,6 +58,7 @@ return [
     'Reset' => 'Reiniciar',
     'Search' => 'Buscar',
     'Secondary Power' => 'Poder Secundario',
+    'Select Difficulty Level' => 'Seleccione el nivel de dificultad',
     'Select Language' => 'Seleccionar idioma',
     'Select Mission' => 'Seleccionar Misión',
     'Select Option' => 'Seleccionar opción',

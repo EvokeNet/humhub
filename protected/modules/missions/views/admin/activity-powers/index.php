@@ -52,6 +52,10 @@ echo Breadcrumbs::widget([
                         <td><?php echo $power->value; ?></td>
                         <td>
                             <?php echo Html::a(
+                                Yii::t('MissionsModule.base', 'Update'),
+                                ['update-activity-powers', 'id' => $power->id], array('class' => 'btn btn-warning btn-sm')); ?>
+                            &nbsp;&nbsp;
+                            <?php echo Html::a(
                                 Yii::t('MissionsModule.base', 'Delete'),
                                 ['delete-activity-powers', 'id' => $power->id], array(
                                 'class' => 'btn btn-danger btn-sm',

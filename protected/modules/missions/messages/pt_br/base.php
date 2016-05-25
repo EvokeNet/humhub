@@ -65,6 +65,7 @@ return [
     'Title' => '',
     'Translation' => '',
     'Translations' => '',
+    'Type (Primary/Secondary)' => '',
     'Unavailable - Rate Evidence' => '',
     'Unavailable - Read Missions' => '',
     'Update' => '',

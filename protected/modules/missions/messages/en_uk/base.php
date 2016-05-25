@@ -37,6 +37,7 @@ return [
     'Select Difficulty Level' => '',
     'Select Option' => '',
     'Select Power' => '',
+    'Type (Primary/Secondary)' => '',
     'Unavailable - Rate Evidence' => '',
     'Unavailable - Read Missions' => '',
     'View' => '',
