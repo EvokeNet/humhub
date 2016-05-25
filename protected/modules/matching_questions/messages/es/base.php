@@ -17,16 +17,17 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Answer the following and find out what type of Super Hero is hiding inside you!' => 'Responde a la siguiente y averigua qué tipo de superhéroe que se esconde dentro de ti!',
-    'Congratulations, you have ventured further than most by answering this call.' => 'Felicitaciones, ha aventurado más allá de la mayoría de responder a esta llamada.',
-    'Now, it is time to find out what type of Evoke agent are you. What do you know?' => 'Ahora, es el momento de descubrir qué tipo de agente Evoque es usted . ¿Que sabes?',
-    'What are the strengths, passions, and abilities you will bring to the Evoke network?' => '¿Cuáles son las fuerzas, pasiones, habilidades que traerá a la red Evoke?',
+    'Qualities:' => 'Cualidades:',
+    'Submit' => 'Enviar',
+    'Your Superhero Identity is:' => 'Su Identidad de Superhéroe es:',
     'Answer all the order questions from 1 to 4.' => 'Responde a todas las preguntas de la orden de 1 a 4',
+    'Answer the following and find out what type of Super Hero is hiding inside you!' => 'Responde a la siguiente y averigua qué tipo de superhéroe que se esconde dentro de ti!',
     'Are you sure you want to delete this item?' => 'Está seguro que quiere eliminar este item?',
     'Are you sure you want to delete this quality?' => 'Está seguro que quiere eliminar esta cualidad?',
     'Are you sure you want to delete this superhero identity?' => 'stá seguro que quiere eliminar esta identidad de super héroe?',
     'Are you sure you want to delete this translation?' => 'Está seguro que quiere eliminar esta traducción?',
     'Choose one answer for each single-choice question.' => 'Elija una respuesta para cada pregunta de selección simple',
+    'Congratulations, you have ventured further than most by answering this call.' => 'Felicitaciones, ha aventurado más allá de la mayoría de responder a esta llamada.',
     'Create' => 'Crear',
     'Create Matching Answer Translation' => 'Crear nueva Traducción de Respuesta Asociada',
     'Create Matching Question Translation' => 'Crear la Traducción de la pregunta asociada',
@@ -55,6 +56,7 @@ return [
     'No superhero identity created yet!' => 'No hay una identidad de Superhéroe creada aún!',
     'No superhero identity translations created yet!' => 'No hay traducciones de la identidad de Superhéroe creadas aún!',
     'Not Defined Yet' => 'Aún sin definir',
+    'Now, it is time to find out what type of Evoke agent are you. What do you know?' => 'Ahora, es el momento de descubrir qué tipo de agente Evoque es usted . ¿Que sabes?',
     'Order' => 'Ordenar',
     'Order questions from 1 to 4. Do not repeat numbers.' => 'Ordene esas preguntas de 1 a 4. No repetir los números',
     'Primary Power' => 'Poder Primario',
@@ -77,4 +79,5 @@ return [
     'Update {modelClass}: ' => 'Actualizar {modelClass}',
     'View Matching Answers' => 'Ver Respuestas Asociadas',
     'View translations' => 'Ver traducciones',
+    'What are the strengths, passions, and abilities you will bring to the Evoke network?' => '¿Cuáles son las fuerzas, pasiones, habilidades que traerá a la red Evoke?',
 ];

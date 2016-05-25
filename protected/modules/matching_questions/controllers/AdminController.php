@@ -274,7 +274,9 @@ class AdminController extends \humhub\modules\admin\components\Controller
     
     public function actionIndexQualityTranslations($id)
     {
-        $translations = QualityTranslations::find()->all();
+        $translations = QualityTranslations::find()
+        ->where(['quality_id' => Yii::$app->request->get('id')])
+        ->all();
         
         $quality = Qualities::findOne(['id' => Yii::$app->request->get('id')]);
         
