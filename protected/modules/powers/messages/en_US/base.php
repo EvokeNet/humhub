@@ -17,5 +17,18 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    '%displayName% posted %contentTitle%.' => '%displayName% publicó %contentTitle%.',
+    'Are you sure you want to delete this item?' => '',
+    'Create Power Translation' => '',
+    'Create Powers' => '',
+    'Create new Power' => '',
+    'Create new Power Translation' => '',
+    'Delete' => '',
+    'Description' => '',
+    'No matching questions created yet!' => '',
+    'No power translations created yet!' => '',
+    'Power Translations' => '',
+    'Powers' => '',
+    'Title' => '',
+    'Update' => '',
+    'View translations' => '',
 ];

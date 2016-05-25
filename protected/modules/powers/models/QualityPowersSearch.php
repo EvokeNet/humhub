@@ -5,6 +5,10 @@ namespace app\modules\powers\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use yii\db\ActiveRecord;
+use yii\db\Expression;
+use yii\behaviors\TimestampBehavior;
+
 use app\modules\powers\models\QualityPowers;
 
 /**
@@ -12,6 +16,21 @@ use app\modules\powers\models\QualityPowers;
  */
 class QualityPowersSearch extends QualityPowers
 {
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'modified_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['modified_at'],
+                ],
+                // if you're using datetime instead of UNIX timestamp:
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
+    
     /**
      * @inheritdoc
      */

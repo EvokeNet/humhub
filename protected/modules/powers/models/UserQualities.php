@@ -4,6 +4,9 @@ namespace app\modules\powers\models;
 
 use Yii;
 use humhub\modules\user\models\User;
+use yii\db\ActiveRecord;
+use yii\db\Expression;
+use yii\behaviors\TimestampBehavior;
 use app\modules\matching_questions\models\Qualities;
 
 /**
@@ -21,6 +24,21 @@ use app\modules\matching_questions\models\Qualities;
  */
 class UserQualities extends \yii\db\ActiveRecord
 {
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'modified_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['modified_at'],
+                ],
+                // if you're using datetime instead of UNIX timestamp:
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
+    
     /**
      * @inheritdoc
      */

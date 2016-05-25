@@ -17,8 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Content' => '',
-    'Edit your Evidence content...' => '',
-    'Edit your Evidence title...' => '',
-    'Page Title' => '',
+    'Content' => 'Contenido',
+    'Edit your Evidence content...' => 'Editar el contenido de su Evidencia...',
+    'Edit your Evidence title...' => 'Editar el título de su Evidencia...',
+    'Page Title' => 'Título de Página',
 ];
