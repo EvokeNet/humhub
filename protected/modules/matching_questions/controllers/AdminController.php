@@ -8,6 +8,7 @@ use app\modules\matching_questions\models\MatchingQuestionTranslations;
 use app\modules\matching_questions\models\MatchingAnswers;
 use app\modules\matching_questions\models\MatchingAnswerTranslations;
 use app\modules\matching_questions\models\Qualities;
+use app\modules\powers\models\QualityPowers;
 use app\modules\matching_questions\models\QualityTranslations;
 use app\modules\matching_questions\models\SuperheroIdentities;
 use app\modules\matching_questions\models\SuperheroIdentityTranslations; 
@@ -411,6 +412,68 @@ class AdminController extends \humhub\modules\admin\components\Controller
         }
 
         return $this->redirect(['index-superhero-identity-translations', 'id' => $id]);
+    }
+    
+    /**
+    * Quality Powers Actions
+    *
+    **/
+    public function actionIndexQualityPowers($id)
+    {
+        $quality_powers = QualityPowers::find()
+        ->where(['quality_id' => Yii::$app->request->get('id')])
+        ->all();
+        
+        // $customers = Books::find()->with([
+        //     'bookTranslations' => function ($query) {
+        //         $lang = Languages::findOne(['code' => Yii::$app->language]);
+        //         $query->andWhere(['language_id' => $lang->id]);
+        //     },
+        // ])->all();
+        
+        $quality = Qualities::findOne(['id' => Yii::$app->request->get('id')]);
+        
+        return $this->render('quality-powers/index', array('quality_powers' => $quality_powers, 'quality' => $quality));
+    }
+    
+    public function actionCreateQualityPowers($id)
+    {
+        $model = new QualityPowers();
+        $model->quality_id = $id;
+        
+        $quality = Qualities::findOne(['id' => Yii::$app->request->get('id')]);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            //return $this->redirect(['index-activities', 'id' => $model->mission_id]);
+            return $this->redirect(['index-quality-powers', 'id' => $model->quality_id]);
+        } 
+        
+        return $this->render('quality-powers/create', array('model' => $model, 'quality' => $quality));
+    }
+    
+    public function actionUpdateQualityPowers($id)
+    {
+        $model = QualityPowers::findOne(['id' => Yii::$app->request->get('id')]);
+
+        $quality = Qualities::findOne(['id' => $model->quality_id]);
+        
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index-quality-powers', 'id' => $model->quality_id]);
+        }
+
+        return $this->render('quality-powers/update', array('model' => $model, 'quality' => $quality));
+    }
+    
+    public function actionDeleteQualityPowers()
+    {
+        $model = QualityPowers::findOne(['id' => Yii::$app->request->get('id')]);
+        $mid = $model->quality_id;
+        
+        if ($model !== null) {
+            $model->delete();
+        }
+
+        return $this->redirect(['index-quality-powers', 'id' => $mid]);
     }
     
 }
