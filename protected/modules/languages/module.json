@@ -1,0 +1,11 @@
+{
+    "id": "languages",
+    "name": "Multilanguage",
+    "description": "Languages manager for multilanguage content",
+    "keywords": ["languages"],
+    "version": "0.0.1",
+    "humhub": {
+        "minVersion": "0.20"
+    },
+    "screenshots": []
+}

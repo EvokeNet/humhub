@@ -3,6 +3,7 @@
 namespace app\modules\missions\models;
 
 use Yii;
+
 use yii\db\ActiveRecord;
 use yii\db\Expression;
 use yii\behaviors\TimestampBehavior;
@@ -15,10 +16,12 @@ use yii\behaviors\TimestampBehavior;
  * @property string $description
  * @property string $created_at
  * @property string $updated_at
+ * @property string $id_code
  *
  * @property Activities[] $activities
+ * @property MissionTranslations[] $missionTranslations
  */
-class Missions extends ActiveRecord
+class Missions extends \yii\db\ActiveRecord
 {
     public function behaviors()
     {
@@ -50,7 +53,7 @@ class Missions extends ActiveRecord
     {
         return [
             [['title', 'description'], 'required'],
-            [['description'], 'string'],
+            [['description', 'id_code'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['title'], 'string', 'max' => 255],
         ];
@@ -65,8 +68,9 @@ class Missions extends ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'title' => Yii::t('app', 'Title'),
             'description' => Yii::t('app', 'Description'),
-            'created_at' => Yii::t('app', 'Created'),
-            'updated_at' => Yii::t('app', 'Updated'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
+            'id_code' => Yii::t('app', 'ID Code'),
         ];
     }
 
@@ -76,5 +80,13 @@ class Missions extends ActiveRecord
     public function getActivities()
     {
         return $this->hasMany(Activities::className(), ['mission_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMissionTranslations()
+    {
+        return $this->hasMany(MissionTranslations::className(), ['mission_id' => 'id']);
     }
 }

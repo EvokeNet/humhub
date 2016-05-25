@@ -9,11 +9,15 @@ class uninstall extends Migration
         $this->dropTable('evidence');
         $this->dropTable('activities');
         $this->dropTable('missions');
+        $this->dropTable('activities');
+        $this->dropTable('mission_translations');
+        $this->dropTable('activity_translations');
+        $this->dropTable('evidence');
     }
 
     public function down()
     {
-        echo "m160505_192218_initial does not support migration down.\n";
+        echo "uninstall does not support migration down.\n";
 
         return false;
     }
