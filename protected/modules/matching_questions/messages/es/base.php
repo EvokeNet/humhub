@@ -20,11 +20,7 @@ return [
     'Congratulations, you have ventured further than most by answering this call. 
     Now, it\'s time to find out what type of Evoke agent are you. What do you know? 
     What are the strengths, passions, and abilities you will bring to the Evoke network?
-    Answer the following and find out what type of Super Hero is hiding inside you!' => 
-    'Felicitaciones, ha aventurado más allá de la mayoría de responder a esta llamada.
-    Ahora , es el momento de descubrir qué tipo de agente Evoque es usted . ¿Que sabes?
-    ¿Cuáles son las fuerzas, pasiones y habilidades que traerá a la red Evoke?
-    Responde a la siguiente y averigua qué tipo de superhéroe que se esconde dentro de ti!',
+    Answer the following and find out what type of Super Hero is hiding inside you!' => 'Felicitaciones, ha aventurado más allá de la mayoría de responder a esta llamada. Ahora, es el momento de descubrir qué tipo de agente Evoque es usted . ¿Que sabes? ¿Cuáles son las fuerzas, pasiones, habilidades que traerá a la red Evoke? Responde a la siguiente y averigua qué tipo de superhéroe que se esconde dentro de ti!',
     'Not Defined Yet' => 'Aún sin definir',
     'Answer all the order questions from 1 to 4.' => 'Responde a todas las preguntas de la orden de 1 a 4',
     'Are you sure you want to delete this item?' => 'Está seguro que quiere eliminar este item?',
