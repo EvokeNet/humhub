@@ -3,9 +3,6 @@
 namespace app\modules\missions\models;
 
 use Yii;
-use yii\db\ActiveRecord;
-use yii\db\Expression;
-use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "difficulty_levels".
@@ -14,27 +11,12 @@ use yii\behaviors\TimestampBehavior;
  * @property string $title
  * @property integer $points
  * @property string $created_at
- * @property string $modified_at
+ * @property string $updated_at
  *
  * @property Activities[] $activities
  */
 class DifficultyLevels extends \yii\db\ActiveRecord
 {
-    public function behaviors()
-    {
-        return [
-            [
-                'class' => TimestampBehavior::className(),
-                'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'modified_at'],
-                    ActiveRecord::EVENT_BEFORE_UPDATE => ['modified_at'],
-                ],
-                // if you're using datetime instead of UNIX timestamp:
-                'value' => new Expression('NOW()'),
-            ],
-        ];
-    }
-    
     /**
      * @inheritdoc
      */
@@ -51,7 +33,7 @@ class DifficultyLevels extends \yii\db\ActiveRecord
         return [
             [['title', 'points'], 'required'],
             [['points'], 'integer'],
-            [['created_at', 'modified_at'], 'safe'],
+            [['created_at', 'updated_at'], 'safe'],
             [['title'], 'string', 'max' => 256],
         ];
     }
@@ -66,7 +48,7 @@ class DifficultyLevels extends \yii\db\ActiveRecord
             'title' => Yii::t('app', 'Title'),
             'points' => Yii::t('app', 'Points'),
             'created_at' => Yii::t('app', 'Created At'),
-            'modified_at' => Yii::t('app', 'Modified At'),
+            'updated_at' => Yii::t('app', 'Modified At'),
         ];
     }
 

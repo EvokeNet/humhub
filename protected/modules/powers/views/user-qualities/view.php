@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'quality_id',
             'total_value',
             'created_at',
-            'modified_at',
+            'updated_at',
         ],
     ]) ?>
 

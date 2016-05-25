@@ -17,7 +17,7 @@ use app\modules\powers\models\Powers;
  * @property integer $flag
  * @property integer $value
  * @property string $created_at
- * @property string $modified_at
+ * @property string $updated_at
  *
  * @property Powers $power
  * @property Activities $activity
@@ -30,8 +30,8 @@ class ActivityPowers extends \yii\db\ActiveRecord
             [
                 'class' => TimestampBehavior::className(),
                 'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'modified_at'],
-                    ActiveRecord::EVENT_BEFORE_UPDATE => ['modified_at'],
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
                 ],
                 // if you're using datetime instead of UNIX timestamp:
                 'value' => new Expression('NOW()'),
@@ -55,7 +55,7 @@ class ActivityPowers extends \yii\db\ActiveRecord
         return [
             [['activity_id', 'power_id', 'flag', 'value'], 'required'],
             [['activity_id', 'power_id', 'flag', 'value'], 'integer'],
-            [['created_at', 'modified_at'], 'safe'],
+            [['created_at', 'updated_at'], 'safe'],
             [['power_id'], 'exist', 'skipOnError' => true, 'targetClass' => Powers::className(), 'targetAttribute' => ['power_id' => 'id']],
             [['activity_id'], 'exist', 'skipOnError' => true, 'targetClass' => Activities::className(), 'targetAttribute' => ['activity_id' => 'id']],
         ];
@@ -73,7 +73,7 @@ class ActivityPowers extends \yii\db\ActiveRecord
             'flag' => Yii::t('app', 'Flag'),
             'value' => Yii::t('app', 'Value'),
             'created_at' => Yii::t('app', 'Created At'),
-            'modified_at' => Yii::t('app', 'Modified At'),
+            'updated_at' => Yii::t('app', 'Modified At'),
         ];
     }
 

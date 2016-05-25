@@ -5,9 +5,6 @@ namespace app\modules\powers\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use yii\db\ActiveRecord;
-use yii\db\Expression;
-use yii\behaviors\TimestampBehavior;
 use app\modules\powers\models\UserPowers;
 
 /**
@@ -15,21 +12,6 @@ use app\modules\powers\models\UserPowers;
  */
 class UserPowersSearch extends UserPowers
 {
-    public function behaviors()
-    {
-        return [
-            [
-                'class' => TimestampBehavior::className(),
-                'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'modified_at'],
-                    ActiveRecord::EVENT_BEFORE_UPDATE => ['modified_at'],
-                ],
-                // if you're using datetime instead of UNIX timestamp:
-                'value' => new Expression('NOW()'),
-            ],
-        ];
-    }
-    
     /**
      * @inheritdoc
      */
@@ -37,7 +19,7 @@ class UserPowersSearch extends UserPowers
     {
         return [
             [['id', 'user_id', 'power_id', 'value'], 'integer'],
-            [['created_at', 'modified_at'], 'safe'],
+            [['created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -82,7 +64,7 @@ class UserPowersSearch extends UserPowers
             'power_id' => $this->power_id,
             'value' => $this->value,
             'created_at' => $this->created_at,
-            'modified_at' => $this->modified_at,
+            'updated_at' => $this->updated_at,
         ]);
 
         return $dataProvider;

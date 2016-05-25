@@ -4,9 +4,6 @@ namespace app\modules\powers\models;
 
 use Yii;
 use humhub\modules\user\models\User;
-use yii\db\ActiveRecord;
-use yii\db\Expression;
-use yii\behaviors\TimestampBehavior;
 use app\modules\matching_questions\models\Qualities;
 
 /**
@@ -17,28 +14,13 @@ use app\modules\matching_questions\models\Qualities;
  * @property integer $quality_id
  * @property integer $total_value
  * @property string $created_at
- * @property string $modified_at
+ * @property string $updated_at
  *
  * @property Qualities $quality
  * @property User $user
  */
 class UserQualities extends \yii\db\ActiveRecord
 {
-    public function behaviors()
-    {
-        return [
-            [
-                'class' => TimestampBehavior::className(),
-                'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'modified_at'],
-                    ActiveRecord::EVENT_BEFORE_UPDATE => ['modified_at'],
-                ],
-                // if you're using datetime instead of UNIX timestamp:
-                'value' => new Expression('NOW()'),
-            ],
-        ];
-    }
-    
     /**
      * @inheritdoc
      */
@@ -55,7 +37,7 @@ class UserQualities extends \yii\db\ActiveRecord
         return [
             [['user_id', 'quality_id', 'total_value'], 'required'],
             [['user_id', 'quality_id', 'total_value'], 'integer'],
-            [['created_at', 'modified_at'], 'safe'],
+            [['created_at', 'updated_at'], 'safe'],
             [['quality_id'], 'exist', 'skipOnError' => true, 'targetClass' => Qualities::className(), 'targetAttribute' => ['quality_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
@@ -72,7 +54,7 @@ class UserQualities extends \yii\db\ActiveRecord
             'quality_id' => Yii::t('app', 'Quality ID'),
             'total_value' => Yii::t('app', 'Total Value'),
             'created_at' => Yii::t('app', 'Created At'),
-            'modified_at' => Yii::t('app', 'Modified At'),
+            'updated_at' => Yii::t('app', 'Modified At'),
         ];
     }
 

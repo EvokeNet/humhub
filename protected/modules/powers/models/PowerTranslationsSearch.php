@@ -5,9 +5,6 @@ namespace app\modules\powers\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use yii\db\ActiveRecord;
-use yii\db\Expression;
-use yii\behaviors\TimestampBehavior;
 use app\modules\powers\models\PowerTranslations;
 
 /**
@@ -15,21 +12,6 @@ use app\modules\powers\models\PowerTranslations;
  */
 class PowerTranslationsSearch extends PowerTranslations
 {
-    public function behaviors()
-    {
-        return [
-            [
-                'class' => TimestampBehavior::className(),
-                'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
-                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
-                ],
-                // if you're using datetime instead of UNIX timestamp:
-                'value' => new Expression('NOW()'),
-            ],
-        ];
-    }
-    
     /**
      * @inheritdoc
      */

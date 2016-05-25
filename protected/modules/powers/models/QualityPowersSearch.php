@@ -5,10 +5,6 @@ namespace app\modules\powers\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use yii\db\ActiveRecord;
-use yii\db\Expression;
-use yii\behaviors\TimestampBehavior;
-
 use app\modules\powers\models\QualityPowers;
 
 /**
@@ -16,21 +12,6 @@ use app\modules\powers\models\QualityPowers;
  */
 class QualityPowersSearch extends QualityPowers
 {
-    public function behaviors()
-    {
-        return [
-            [
-                'class' => TimestampBehavior::className(),
-                'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'modified_at'],
-                    ActiveRecord::EVENT_BEFORE_UPDATE => ['modified_at'],
-                ],
-                // if you're using datetime instead of UNIX timestamp:
-                'value' => new Expression('NOW()'),
-            ],
-        ];
-    }
-    
     /**
      * @inheritdoc
      */
@@ -38,7 +19,7 @@ class QualityPowersSearch extends QualityPowers
     {
         return [
             [['id', 'quality_id', 'power_id'], 'integer'],
-            [['created_at', 'modified_at'], 'safe'],
+            [['created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -82,7 +63,7 @@ class QualityPowersSearch extends QualityPowers
             'quality_id' => $this->quality_id,
             'power_id' => $this->power_id,
             'created_at' => $this->created_at,
-            'modified_at' => $this->modified_at,
+            'updated_at' => $this->updated_at,
         ]);
 
         return $dataProvider;

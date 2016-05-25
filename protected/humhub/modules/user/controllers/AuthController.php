@@ -286,7 +286,7 @@ class AuthController extends Controller
                 // Autologin user
                 if (!$needApproval) {
                     Yii::$app->user->switchIdentity($form->models['User']);
-                    return $this->redirect(Url::to(['/matching_questions/matching_questions/matching']));
+                    return $this->redirect(Url::to(['/dashboard/dashboard']));
                 }
 
                 return $this->render('createAccount_success', array(

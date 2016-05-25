@@ -16,7 +16,7 @@ use humhub\modules\user\models\User;
  * @property integer $power_id
  * @property integer $value
  * @property string $created_at
- * @property string $modified_at
+ * @property string $updated_at
  *
  * @property Powers $power
  * @property User $user
@@ -29,8 +29,8 @@ class UserPowers extends \yii\db\ActiveRecord
             [
                 'class' => TimestampBehavior::className(),
                 'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'modified_at'],
-                    ActiveRecord::EVENT_BEFORE_UPDATE => ['modified_at'],
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
                 ],
                 // if you're using datetime instead of UNIX timestamp:
                 'value' => new Expression('NOW()'),
@@ -54,7 +54,7 @@ class UserPowers extends \yii\db\ActiveRecord
         return [
             [['user_id', 'power_id', 'value'], 'required'],
             [['user_id', 'power_id', 'value'], 'integer'],
-            [['created_at', 'modified_at'], 'safe'],
+            [['created_at', 'updated_at'], 'safe'],
             [['power_id'], 'exist', 'skipOnError' => true, 'targetClass' => Powers::className(), 'targetAttribute' => ['power_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
@@ -71,7 +71,7 @@ class UserPowers extends \yii\db\ActiveRecord
             'power_id' => Yii::t('app', 'Power ID'),
             'value' => Yii::t('app', 'Value'),
             'created_at' => Yii::t('app', 'Created At'),
-            'modified_at' => Yii::t('app', 'Modified At'),
+            'updated_at' => Yii::t('app', 'Modified At'),
         ];
     }
 

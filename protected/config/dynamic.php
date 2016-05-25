@@ -5,8 +5,8 @@
     array (
       'class' => 'yii\\db\\Connection',
       'dsn' => 'mysql:host=localhost;dbname=humhub',
-      'username' => 'guilherme',
-      'password' => '1234',
+      'username' => 'root',
+      'password' => '6907388',
       'charset' => 'utf8',
     ),
     'user' => 
@@ -79,7 +79,7 @@
         'useCase' => 'other',
         'secret' => '7affb751-0cd0-4cd0-bf31-87b6a141835a',
         'timeZone' => 'America/Sao_Paulo',
-        'cronLastHourlyRun' => '1464143403',
+        'cronLastHourlyRun' => '1464150603',
         'cronLastDailyRun' => '1464123606',
       ),
       'space' => 
