@@ -57,6 +57,7 @@ return [
     'Reset' => '',
     'Search' => '',
     'Secondary Power' => '',
+    'Select Difficulty Level' => '',
     'Select Language' => '',
     'Select Mission' => '',
     'Select Option' => '',

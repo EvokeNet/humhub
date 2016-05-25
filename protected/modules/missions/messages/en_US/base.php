@@ -34,6 +34,7 @@ return [
     'Points' => '',
     'Primary Power' => '',
     'Secondary Power' => '',
+    'Select Difficulty Level' => '',
     'Select Option' => '',
     'Select Power' => '',
     'Unavailable - Rate Evidence' => '',

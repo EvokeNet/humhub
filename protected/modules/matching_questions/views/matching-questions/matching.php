@@ -10,10 +10,10 @@ use app\modules\matching_questions\models\MatchingQuestions;
 
 
 <div class="intro">
-    <?= Yii::t('MatchingModule.base', "Congratulations, you have ventured further than most by answering this call. 
-    Now, it's time to find out what type of Evoke agent are you. What do you know? 
-    What are the strengths, passions, and abilities you will bring to the Evoke network?
-    Answer the following and find out what type of Super Hero is hiding inside you!") ?>
+    <?= Yii::t('MatchingModule.base', "Congratulations, you have ventured further than most by answering this call.") ?> 
+    <br><?= Yii::t('MatchingModule.base', "Now, it is time to find out what type of Evoke agent are you. What do you know?") ?> 
+    <br><?= Yii::t('MatchingModule.base', "What are the strengths, passions, and abilities you will bring to the Evoke network?") ?>
+    <br><?= Yii::t('MatchingModule.base', "Answer the following and find out what type of Super Hero is hiding inside you!") ?>
     <p id="warning" class="warning"><?= Yii::t('MatchingModule.base', 'In case of redirect, please make sure to answer all questions') ?></p>
 </div>
 

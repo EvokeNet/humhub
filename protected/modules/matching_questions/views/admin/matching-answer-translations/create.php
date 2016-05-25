@@ -7,7 +7,7 @@ use yii\widgets\Breadcrumbs;
 /* @var $this yii\web\View */
 /* @var $model humhub\modules\matching_questions\models\MatchingAnswerTranslations */
 
-$this->title = Yii::t('MatchingQuestion.base', 'Create Matching Answer Translation');
+$this->title = Yii::t('MatchingModule.base', 'Create Matching Answer Translation');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('MatchingModule.base', 'Matching Questions'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = Yii::t('MatchingModule.base', 'Matching Question').' '.$matching_answer->matchingQuestion->id_code;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('MatchingModule.base', 'Matching Answers'), 'url' => ['index-matching-answers', 'id' => $matching_answer->matching_question_id]];
