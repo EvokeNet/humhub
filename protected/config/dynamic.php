@@ -133,7 +133,7 @@
       array (
         'installationId' => '04345044caca98e78559a440afd42b0d',
         'defaultDateInputFormat' => '',
-        'lastVersionNotify' => '1.0.1',
+        'lastVersionNotify' => '1.1.0-beta.1',
       ),
       'tour' => 
       array (

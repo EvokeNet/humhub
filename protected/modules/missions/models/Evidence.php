@@ -91,17 +91,17 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
     public function attributeLabels()
     {
         return array(
-            'id' => Yii::t('app', 'ID'),
-            'title' => Yii::t('app', 'Title'),
-            //'type' => Yii::t('app', 'Type'),
-            //'main_content' => Yii::t('app', 'Main Content'),
-            'text' => Yii::t('app', 'Text'),
-            //'user_id' => Yii::t('app', 'User ID'),
-            'activities_id' => Yii::t('app', 'Activities ID'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'created_by' => Yii::t('app', 'Created By'),
-            'updated_at' => Yii::t('app', 'Updated At'),
-            'updated_by' => Yii::t('app', 'Updated By'),
+            'id' => Yii::t('MissionsModule.model', 'ID'),
+            'title' => Yii::t('MissionsModule.model', 'Title'),
+            //'type' => Yii::t('MissionsModule.model', 'Type'),
+            //'main_content' => Yii::t('MissionsModule.model', 'Main Content'),
+            'text' => Yii::t('MissionsModule.model', 'Text'),
+            //'user_id' => Yii::t('MissionsModule.model', 'User ID'),
+            'activities_id' => Yii::t('MissionsModule.model', 'Activities ID'),
+            'created_at' => Yii::t('MissionsModule.model', 'Created At'),
+            'created_by' => Yii::t('MissionsModule.model', 'Created By'),
+            'updated_at' => Yii::t('MissionsModule.model', 'Updated At'),
+            'updated_by' => Yii::t('MissionsModule.model', 'Updated By'),
         );
     }
 

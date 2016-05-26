@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\modules\powers\models\ActivityPowersSearchmissions */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Activity Powers');
+$this->title = Yii::t('MissionsModule.model', 'Activity Powers');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="activity-powers-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Activity Powers'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('MissionsModule.model', 'Create Activity Powers'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

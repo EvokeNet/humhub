@@ -53,7 +53,7 @@ echo Breadcrumbs::widget([
                                 ['delete', 'id' => $matching_question->id], array(
                                 'class' => 'btn btn-danger btn-sm',
                                 'data' => [
-                                    'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                                    'confirm' => Yii::t('MatchingModule.base', 'Are you sure you want to delete this item?'),
                                     'method' => 'post',
                                 ],
                                 )); ?>

@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\modules\matching_questions\models\QualitiesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Qualities');
+$this->title = Yii::t('MatchingModule.base', 'Qualities');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="qualities-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Qualities'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('MatchingModule.base', 'Create Qualities'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

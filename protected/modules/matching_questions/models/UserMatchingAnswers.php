@@ -53,14 +53,14 @@ class UserMatchingAnswers extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'user_id' => Yii::t('app', 'User ID'),
-            'matching_question_id' => Yii::t('app', 'Matching Question ID'),
-            'matching_aswer_id' => Yii::t('app', 'Matching Aswer ID'),
-            'description' => Yii::t('app', 'Description'),
-            'order' => Yii::t('app', 'Order'),
-            'created' => Yii::t('app', 'Created'),
-            'modified' => Yii::t('app', 'Modified'),
+            'id' => Yii::t('MatchingModule.base', 'ID'),
+            'user_id' => Yii::t('MatchingModule.base', 'User ID'),
+            'matching_question_id' => Yii::t('MatchingModule.base', 'Matching Question ID'),
+            'matching_aswer_id' => Yii::t('MatchingModule.base', 'Matching Aswer ID'),
+            'description' => Yii::t('MatchingModule.base', 'Description'),
+            'order' => Yii::t('MatchingModule.base', 'Order'),
+            'created' => Yii::t('MatchingModule.base', 'Created'),
+            'modified' => Yii::t('MatchingModule.base', 'Modified'),
         ];
     }
 

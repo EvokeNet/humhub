@@ -4,9 +4,17 @@ use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 use humhub\compat\CActiveForm;
 
+// $this->title = Yii::t('MissionsModule.base', 'Update Mission');
+// $this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.base', 'Missions'), 'url' => ['index']];
+// $this->params['breadcrumbs'][] = Yii::t('MissionsModule.base', 'Mission').' '.$model->id_code;
+// $this->params['breadcrumbs'][] = $this->title;
+
+// $this->title = Yii::t('MissionsModule.base', 'Update {modelClass}: ', [
+//     'modelClass' => 'Missions',
+// ]) . $model->id_code;
 $this->title = Yii::t('MissionsModule.base', 'Update Mission');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.base', 'Missions'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = Yii::t('MissionsModule.base', 'Mission').' '.$model->id_code;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.base', 'Mission: {alias}', ['alias' => $model->id_code]), 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = $this->title;
         
 echo Breadcrumbs::widget([

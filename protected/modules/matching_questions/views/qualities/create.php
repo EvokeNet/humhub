@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\matching_questions\models\Qualities */
 
-$this->title = Yii::t('app', 'Create Qualities');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Qualities'), 'url' => ['index']];
+$this->title = Yii::t('MatchingModule.base', 'Create Qualities');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('MatchingModule.base', 'Qualities'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="qualities-create">

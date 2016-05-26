@@ -5,12 +5,12 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\powers\models\UserPowers */
 
-$this->title = Yii::t('app', 'Update {modelClass}: ', [
+$this->title = Yii::t('PowersModule.base', 'Update {modelClass}: ', [
     'modelClass' => 'User Powers',
 ]) . $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'User Powers'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('PowersModule.base', 'User Powers'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
+$this->params['breadcrumbs'][] = Yii::t('PowersModule.base', 'Update');
 ?>
 <div class="user-powers-update">
 

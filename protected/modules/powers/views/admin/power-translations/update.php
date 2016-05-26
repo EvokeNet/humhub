@@ -6,14 +6,14 @@ use yii\widgets\Breadcrumbs;
 /* @var $this yii\web\View */
 /* @var $model app\modules\powers\models\PowerTranslations */
 
-$this->title = Yii::t('app', 'Update {modelClass}: ', [
+$this->title = Yii::t('PowersModule.base', 'Update {modelClass}: ', [
     'modelClass' => 'Power Translations',
 ]) . $model->title;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('PowersModule.base', 'Powers'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $power->title;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Power Translations'), 'url' => ['index-power-translations', 'id' => $power->id]];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('PowersModule.base', 'Power Translations'), 'url' => ['index-power-translations', 'id' => $power->id]];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
+$this->params['breadcrumbs'][] = Yii::t('PowersModule.base', 'Update');
 
 echo Breadcrumbs::widget([
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],

@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\modules\missions\models\ActivityPowers */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Activity Powers'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.model', 'Activity Powers'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="activity-powers-view">
@@ -15,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+        <?= Html::a(Yii::t('MissionsModule.model', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('MissionsModule.model', 'Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                'confirm' => Yii::t('MissionsModule.model', 'Are you sure you want to delete this item?'),
                 'method' => 'post',
             ],
         ]) ?>

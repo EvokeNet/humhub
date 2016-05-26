@@ -71,13 +71,13 @@ class ActivityTranslations extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'activity_id' => Yii::t('app', 'Activity ID'),
-            'title' => Yii::t('app', 'Title'),
-            'description' => Yii::t('app', 'Description'),
-            'language_id' => Yii::t('app', 'Language ID'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
+            'id' => Yii::t('MissionsModule.model', 'ID'),
+            'activity_id' => Yii::t('MissionsModule.model', 'Activity ID'),
+            'title' => Yii::t('MissionsModule.model', 'Title'),
+            'description' => Yii::t('MissionsModule.model', 'Description'),
+            'language_id' => Yii::t('MissionsModule.model', 'Language ID'),
+            'created_at' => Yii::t('MissionsModule.model', 'Created At'),
+            'updated_at' => Yii::t('MissionsModule.model', 'Updated At'),
         ];
     }
 

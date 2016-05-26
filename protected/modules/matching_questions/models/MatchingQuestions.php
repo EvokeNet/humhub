@@ -50,12 +50,12 @@ class MatchingQuestions extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'description' => Yii::t('app', 'Description'),
-            'type' => Yii::t('app', 'Type'),
-            'created_at' => Yii::t('app', 'Created'),
-            'updated_at' => Yii::t('app', 'Updated'),
-            'id_code' => Yii::t('app', 'ID Code'),
+            'id' => Yii::t('MatchingModule.base', 'ID'),
+            'description' => Yii::t('MatchingModule.base', 'Description'),
+            'type' => Yii::t('MatchingModule.base', 'Type'),
+            'created_at' => Yii::t('MatchingModule.base', 'Created'),
+            'updated_at' => Yii::t('MatchingModule.base', 'Updated'),
+            'id_code' => Yii::t('MatchingModule.base', 'ID Code'),
         ];
     }
 

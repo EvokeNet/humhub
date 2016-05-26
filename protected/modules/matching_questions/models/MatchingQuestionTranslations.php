@@ -49,12 +49,12 @@ class MatchingQuestionTranslations extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'matching_question_id' => Yii::t('app', 'Matching Question ID'),
-            'language_id' => Yii::t('app', 'Language ID'),
-            'description' => Yii::t('app', 'Description'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
+            'id' => Yii::t('MatchingModule.base', 'ID'),
+            'matching_question_id' => Yii::t('MatchingModule.base', 'Matching Question ID'),
+            'language_id' => Yii::t('MatchingModule.base', 'Language ID'),
+            'description' => Yii::t('MatchingModule.base', 'Description'),
+            'created_at' => Yii::t('MatchingModule.base', 'Created At'),
+            'updated_at' => Yii::t('MatchingModule.base', 'Updated At'),
         ];
     }
 

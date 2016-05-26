@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\modules\powers\models\UserQualitiesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'User Qualities');
+$this->title = Yii::t('PowersModule.base', 'User Qualities');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-qualities-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create User Qualities'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('PowersModule.base', 'Create User Qualities'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

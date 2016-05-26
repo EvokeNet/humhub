@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\powers\models\UserQualities */
 
-$this->title = Yii::t('app', 'Create User Qualities');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'User Qualities'), 'url' => ['index']];
+$this->title = Yii::t('PowersModule.base', 'Create User Qualities');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('PowersModule.base', 'User Qualities'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-qualities-create">
