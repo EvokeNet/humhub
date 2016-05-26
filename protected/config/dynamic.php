@@ -79,13 +79,9 @@
         'useCase' => 'other',
         'secret' => '7affb751-0cd0-4cd0-bf31-87b6a141835a',
         'timeZone' => 'America/Sao_Paulo',
-<<<<<<< HEAD
-        'cronLastHourlyRun' => '1464035402',
-        'cronLastDailyRun' => '1464037205',
-=======
+
         'cronLastHourlyRun' => '1463985002',
         'cronLastDailyRun' => '1463950806',
->>>>>>> origin/gf-evidences
       ),
       'space' => 
       array (
@@ -165,11 +161,8 @@
         'shownDays' => '2',
       ),
     ),
-<<<<<<< HEAD
-    'config_created_at' => 1462711768,
-=======
+
     'config_created_at' => 1462923095,
->>>>>>> origin/gf-evidences
     'databaseInstalled' => true,
     'installed' => true,
   ),
