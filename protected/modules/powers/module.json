@@ -1,0 +1,11 @@
+{
+    "id": "powers",
+    "name": "Evoke's Powers",
+    "description": "Powers",
+    "keywords": ["powers"],
+    "version": "0.0.1",
+    "humhub": {
+        "minVersion": "0.20"
+    },
+    "screenshots": []
+}
