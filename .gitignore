@@ -4,8 +4,6 @@ protected/runtime/*
 
 protected/config/*
 protected/config/dynamic.php
-app\config\dynamic.php
-app/config/dynamic.php
 !protected/config/.gitignore
 
 protected/data/*.db
