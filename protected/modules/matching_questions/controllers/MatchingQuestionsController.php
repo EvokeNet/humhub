@@ -85,6 +85,10 @@ class MatchingQuestionsController extends Controller
                     // get matching question id
                     $matching_question = (int) substr($key, strrpos($key, "_") + 1, strlen($key) - 1);  
 
+                    if(!$answer){
+                        return $this->redirectQuestionnaire();
+                    }
+
                     // get quality id
                     $quality_id = MatchingAnswers::findOne(['id' => $matching_answer])->quality_id;
 
@@ -102,13 +106,18 @@ class MatchingQuestionsController extends Controller
             $user = User::findOne(['id' => $user->id]);
             $user->superhero_identity_id = $superhero_identity->id;
             //$user->attributes = array('superhero_identity_id' => $superhero_identity);
-            $user->save();
+            //$user->save();
             return $this->render('matching-results', compact('quality_1', 'quality_2', 'superhero_identity'));
 
         }else{
-            $questions = MatchingQuestions::find()->all();    
-            return $this->render('matching', compact('questions'));
+            return $this->redirectQuestionnaire();
         }
+    }
+
+
+    private function redirectQuestionnaire(){
+        $questions = MatchingQuestions::find()->all(); 
+        return $this->render('matching', compact('questions'));
     }
     
      private function build_qualities_array() {

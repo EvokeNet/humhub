@@ -1,6 +1,7 @@
 <?php
 
 use humhub\compat\CActiveForm;
+use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 use app\modules\matching_questions\models\MatchingQuestions;
 
@@ -13,11 +14,15 @@ use app\modules\matching_questions\models\MatchingQuestions;
         <BR>Now, it's time to find out what type of Evoke agent are you? What do you know? 
         <BR>What are the strengths, passions, and abilities you will bring to the Evoke network? 
         <BR>Answer the following and find out what type of Super Hero is hiding inside you!
+        <p id="warning" class="warning">In case of redirect, please answer appropriately all questions.</p>
     </div>
+
 
 <div class="questionnaire">
 <?php
-    $form = CActiveForm::begin();
+    $form = CActiveForm::begin([
+        'id' => 'questionnaire',
+    ]);
 ?>              
 
 <?php 
@@ -74,6 +79,12 @@ endforeach;
     width: 75%;
 }
 
+.warning{
+    padding-top: 10px;
+    color: red;
+    font-size: 12px;
+}
+
 form{
     margin-left: 20px;
 }
@@ -88,3 +99,81 @@ form{
 }
 
 </style>
+
+
+<script type="text/javascript">
+
+
+    function warningMessage(warning){
+        alert(warning);
+    }
+
+    function validateQuestionnaire(){
+        var form = document.getElementById('questionnaire');
+        var forms = form.getElementsByClassName('form');
+
+        //for each question
+        for(var i=0; i < forms.length ;i++){
+            var labels = forms[i].getElementsByTagName('label');
+            var order = [];
+            var checked = false;
+            var singleChoice = false;
+
+            for(var j=0;j < labels.length;j++){
+                var inputs = labels[j].getElementsByTagName('input');
+
+                //for each input
+                for(x=0; x < inputs.length ; x++){
+                    var inputName = inputs[x].getAttribute("name");
+                    var inputValue = inputs[x].value;
+
+                    if(inputName.startsWith("matching_question")){
+                    //SINGLE CHOICE
+                        singleChoice = true;
+
+                        if (checked == false){ 
+                            checked = inputs[x].checked 
+                        }
+
+                    }else{
+
+                    // ORDER QUESTION
+                        if(inputValue >= 1 && inputValue <= 4){
+
+                            if($.inArray(inputValue, order) >= 0){
+                                warningMessage("Order questions from 1 to 4. Don't repeat numbers.");
+                                return false;
+                            }
+                            order.push(inputValue);
+
+                        }else{
+                            warningMessage("Answer all the order questions from 1 to 4.");
+                            return false;
+                        }
+                    }
+
+                }
+                
+            }
+
+            if(singleChoice && !checked){
+                warningMessage("Choose one answer for each single-choice question.");
+                return false;
+            }
+            
+        };
+
+        return true;
+
+    }
+
+    jQuery(document).ready(function () {
+        $('#questionnaire').submit(
+            function(){
+                return validateQuestionnaire();
+            }
+        );
+    });
+
+
+</script>

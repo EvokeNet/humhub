@@ -1,5 +1,6 @@
 protected/config/*
-protected/runtime/logs/*
+protected/runtime/*
+protected/data/*.db
 assets/*
 uploads/*
 protected/modules/books
