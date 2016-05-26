@@ -3,7 +3,6 @@ protected/runtime/*
 !protected/runtime/searchdb
 
 protected/config/*
-protected/config/dynamic.php
 !protected/config/.gitignore
 
 protected/data/*.db
