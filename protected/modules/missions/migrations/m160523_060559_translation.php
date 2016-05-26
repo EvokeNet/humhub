@@ -80,7 +80,7 @@ class m160523_060559_translation extends Migration
         $this->dropTable('mission_translations');
         $this->dropTable('activity_translations');
 
-        return false;
+        return true;
     }
 
     /*

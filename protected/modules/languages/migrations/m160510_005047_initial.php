@@ -24,7 +24,7 @@ class m160510_005047_initial extends Migration
         
         $this->dropTable('languages');
 
-        return false;
+        return true;
     }
 
     /*
