@@ -1,5 +1,6 @@
 protected/config/*
 protected/runtime/logs/*
+assets/*
 uploads/*
 protected/modules/books
 protected/modules/custom_pages
