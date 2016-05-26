@@ -28,7 +28,7 @@ class EvidenceController extends ContentContainerController
                 'contentContainer' => $this->contentContainer
             ),
         );
-    }	
+    }   
 
    
     public function actionActivities($missionId)
@@ -58,7 +58,7 @@ class EvidenceController extends ContentContainerController
      * @return type
      */
     public function actionShow($activityId)
-    {	
+    {   
         $activity = Activities::findOne($activityId);
 
         return $this->render('show', array(
@@ -81,7 +81,7 @@ class EvidenceController extends ContentContainerController
         $evidence = new Evidence();
         $evidence->scenario = Evidence::SCENARIO_CREATE;
         $evidence->title = Yii::$app->request->post('title');
-       	$evidence->text = Yii::$app->request->post('text');
+        $evidence->text = Yii::$app->request->post('text');
         $evidence->activities_id = Yii::$app->request->post('activityId');
 
         //ACTIVITY POWER POINTS
@@ -91,8 +91,20 @@ class EvidenceController extends ContentContainerController
         //USER POWER POINTS
         foreach($activityPowers as $activity_power){
             $userPower = UserPowers::findOne(['power_id' => $activity_power->power_id, 'user_id' => $user->id]);
-            $userPower->value += $activity_power->value;
-            $userPower->save();
+            if(isset($userPower)){
+                if(!isset($userPower->value)){
+                    $userPower->value = 0;
+                }
+                $userPower->value += $activity_power->value;
+                $userPower->save();
+            }else{
+                $userPower = new UserPowers();
+                $userPower->user_id = $user->id;
+                $userPower->power_id = $activity_power->power_id;
+                $userPower->value = $activity_power->value;
+                $userPower->save();
+            }
+            
         }
 
         return \humhub\modules\missions\widgets\WallCreateForm::create($evidence, $this->contentContainer);

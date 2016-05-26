@@ -110,6 +110,18 @@ class Activities extends \yii\db\ActiveRecord
         return $this->hasMany(ActivityPowers::className(), ['activity_id' => 'id']);
     }
 
+    public function getPrimaryPowers()
+    {
+        $powers = ActivityPowers::findAll(['activity_id' => $this->id, 'flag' => 0]);
+        return $powers;
+    }
+
+    public function getSecondaryPowers()
+    {
+        $powers = ActivityPowers::findAll(['activity_id' => $this->id, 'flag' => 1]);
+        return $powers;
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

@@ -99,20 +99,22 @@ class Events
 
     public static function onUserLike($event){
 
+        $evidenceModel = 'app\modules\missions\models\Evidence';
+
         $like = $event->action->id === 'like' ? true : false;
 
         $content_user_id = $event->action->controller->parentContent->content->user_id;
+        $evidence = $event->action->controller->parentContent;
 
-        //check if user isn't liking its own evidence and if it's like/unlike action
-        if(($event->action->id === 'like' || $event->action->id === 'unlike') && Yii::$app->user->getIdentity()->id != $content_user_id){
-            $evidence = $event->action->controller->parentContent;
+        //check if user isn't liking its own evidence and if it's like/unlike action and content is an evidence.
+        if(($event->action->id === 'like' || $event->action->id === 'unlike') && Yii::$app->user->getIdentity()->id != $content_user_id && $event->action->controller->contentModel == $evidenceModel && isset($evidence->activities_id)){
 
             //ACTIVITY POWER POINTS
             $activityPowers = ActivityPowers::findAll(['activity_id' => $evidence->activities_id]);
 
             //USER POWER POINTS
             foreach($activityPowers as $activity_power){
-                if($activity_power->flag){
+                if(!$activity_power->flag){
                     $userPower = UserPowers::findOne(['power_id' => $activity_power->power_id, 'user_id' => $content_user_id]);
                     if($like){
                         $userPower->value += $activity_power->value;

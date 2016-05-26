@@ -5,8 +5,8 @@
     array (
       'class' => 'yii\\db\\Connection',
       'dsn' => 'mysql:host=localhost;dbname=humhub',
-      'username' => 'root',
-      'password' => '6907388',
+      'username' => 'guilherme',
+      'password' => '1234',
       'charset' => 'utf8',
     ),
     'user' => 
