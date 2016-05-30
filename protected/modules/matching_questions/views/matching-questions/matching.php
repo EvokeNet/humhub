@@ -57,7 +57,7 @@ use app\modules\matching_questions\models\MatchingQuestions;
 <?php endforeach; ?>
 
 <div class="form-group">
-    <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
+    <?= Html::submitButton(Yii::t('MatchingModule.base', "Submit"), ['class' => 'btn btn-primary']) ?>
 </div>
 
 <?php

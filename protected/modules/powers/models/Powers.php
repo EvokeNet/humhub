@@ -14,6 +14,7 @@ use Yii;
  * @property string $updated_at
  *
  * @property ActivityPowers[] $activityPowers
+ * @property PowerTranslations[] $powerTranslations
  * @property QualityPowers[] $qualityPowers
  * @property UserPowers[] $userPowers
  */
@@ -50,7 +51,7 @@ class Powers extends \yii\db\ActiveRecord
             'title' => Yii::t('app', 'Title'),
             'description' => Yii::t('app', 'Description'),
             'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Modified At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
 
@@ -60,6 +61,14 @@ class Powers extends \yii\db\ActiveRecord
     public function getActivityPowers()
     {
         return $this->hasMany(ActivityPowers::className(), ['power_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPowerTranslations()
+    {
+        return $this->hasMany(PowerTranslations::className(), ['power_id' => 'id']);
     }
 
     /**

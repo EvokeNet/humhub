@@ -38,7 +38,7 @@ class MatchingQuestions extends \yii\db\ActiveRecord
     {
         return [
             [['description', 'type'], 'required'],
-            [['created', 'modified'], 'safe'],
+            [['created_at', 'updated_at'], 'safe'],
             [['id_code'], 'string'],
             [['description', 'type'], 'string', 'max' => 255],
         ];
@@ -53,8 +53,8 @@ class MatchingQuestions extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'description' => Yii::t('app', 'Description'),
             'type' => Yii::t('app', 'Type'),
-            'created' => Yii::t('app', 'Created'),
-            'modified' => Yii::t('app', 'Modified'),
+            'created_at' => Yii::t('app', 'Created'),
+            'updated_at' => Yii::t('app', 'Updated'),
             'id_code' => Yii::t('app', 'ID Code'),
         ];
     }
