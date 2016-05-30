@@ -44,6 +44,10 @@ echo Breadcrumbs::widget([
                         <td><?php echo $quality->description; ?></td>
                         <td>
                             <?php echo Html::a(
+                                Yii::t('MatchingModule.base', 'View Powers'),
+                                ['index-quality-powers', 'id' => $quality->id], array('class' => 'btn btn-info btn-sm')); ?>
+                            &nbsp;&nbsp;
+                            <?php echo Html::a(
                                 Yii::t('MatchingModule.base', 'View translations'),
                                 ['index-quality-translations', 'id' => $quality->id], array('class' => 'btn btn-warning btn-sm')); ?>
                             &nbsp;&nbsp;

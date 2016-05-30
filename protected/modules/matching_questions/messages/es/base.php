@@ -17,9 +17,15 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Qualities:' => 'Cualidades:',
-    'Submit' => 'Enviar',
-    'Your Superhero Identity is:' => 'Su Identidad de Superhéroe es:',
+    'Add new Power' => 'Añadir nuevo Poder',
+    'Are you sure you want to delete this power?' => 'Está seguro que quiere eliminar este poder?',
+    'Create Quality Powers' => 'Crear Poderes de Cualidad',
+    'No quality powers created yet!' => 'No hay poderes de cualidad creados aún!',
+    'Quality' => 'Cualidad',
+    'Quality Powers' => 'Poderes de Cualidad',
+    'Select Power' => 'Seleccionar Poder',
+    'Title' => 'Título',
+    'View Powers' => 'Ver Poderes',
     'Answer all the order questions from 1 to 4.' => 'Responde a todas las preguntas de la orden de 1 a 4',
     'Answer the following and find out what type of Super Hero is hiding inside you!' => 'Responde a la siguiente y averigua qué tipo de superhéroe que se esconde dentro de ti!',
     'Are you sure you want to delete this item?' => 'Está seguro que quiere eliminar este item?',
@@ -62,11 +68,13 @@ return [
     'Primary Power' => 'Poder Primario',
     'Primary Quality' => 'Cualidad Primaria',
     'Qualities' => 'Cualidades',
+    'Qualities:' => 'Cualidades:',
     'Secondary Power' => 'Poder Secundario',
     'Secondary Quality' => 'Cualidad Secundaria',
     'Select Option' => 'Seleccionar opción',
     'Short Name' => 'Nombre Corto',
     'Single Choice' => 'Selección Simple',
+    'Submit' => 'Enviar',
     'Superhero Identities' => 'Identidades de Superhéroe',
     'Superhero Identity' => 'Identidad de Superhéroe',
     'Superhero Identity Translation' => 'Traducción de Identidad de Superhéroe',
@@ -80,4 +88,5 @@ return [
     'View Matching Answers' => 'Ver Respuestas Asociadas',
     'View translations' => 'Ver traducciones',
     'What are the strengths, passions, and abilities you will bring to the Evoke network?' => '¿Cuáles son las fuerzas, pasiones, habilidades que traerá a la red Evoke?',
+    'Your Superhero Identity is:' => 'Su Identidad de Superhéroe es:',
 ];
