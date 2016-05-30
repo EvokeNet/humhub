@@ -69,6 +69,7 @@ class QualityPowers extends \yii\db\ActiveRecord
      */
     public function getPower()
     {
-        return $this->hasOne(Powers::className(), ['id' => 'power_id']);
+        $power = Powers::findOne($this->power_id);
+        return $power;
     }
 }

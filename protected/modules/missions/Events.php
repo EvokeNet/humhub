@@ -35,7 +35,7 @@ class Events
         $event->sender->addItem(array(
             'label' => Yii::t('MissionsModule.base', 'Missions'),
             'id' => 'missions',
-            'icon' => '<i class="fa fa-th"></i>',
+            'icon' => '<i class="fa fa-sitemap"></i>',
             'url' => Url::toRoute('/missions/missions'),
             'sortOrder' => 100,
             'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id != 'admin'),
@@ -58,7 +58,7 @@ class Events
             'label' => Yii::t('MissionsModule.base', 'Missions'),
             'url' => Url::to(['/missions/admin']),
             'group' => 'manage',
-            'icon' => '<i class="fa fa-th"></i>',
+            'icon' => '<i class="fa fa-sitemap"></i>',
             'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'admin'),
         ));
     }

@@ -7,6 +7,7 @@
 @success: #97d271;
 @warning: #fdd198;
 @danger: #ff8989;
+@btn_info: #8A84E2;
 @font1: #bac2c7;
 @font2: #7a7a7a;
 @font3: #555;
@@ -1314,30 +1315,30 @@ input[type=select] {
 }
 
 .btn-info {
-  background: @info;
+  background: @btn_info;
   color: white !important;
   &:hover,
   &:focus {
-    background: darken(@info, 5%) !important;
+    background: darken(@btn_info, 5%) !important;
     text-decoration: none;
   }
   &:active,
   &.active {
     outline: 0;
-    background: darken(@info, 5%);
+    background: darken(@btn_info, 5%);
   }
 }
 
 .btn-info[disabled],
 .btn-info.disabled {
-  background: lighten(@info, 5%);
+  background: lighten(@btn_info, 5%);
   &:hover,
   &:focus {
-    background: lighten(@info, 5%);
+    background: lighten(@btn_info, 5%);
   }
   &:active,
   &.active {
-    background: lighten(@info, 5%) !important;
+    background: lighten(@btn_info, 5%) !important;
   }
 }
 
@@ -1875,7 +1876,7 @@ table {
 .table > thead > tr > td,
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
-  padding: 10px 10px 10px 0;
+  padding: 10px 10px 10px 10px;
   vertical-align: middle;
 
   select {

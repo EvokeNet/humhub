@@ -25,6 +25,27 @@ class m160524_004111_difficulty extends Migration
             'CASCADE'
           );
           
+        $this->insert('difficulty_levels', [
+            'title' => 'Easy',
+            'points' => 1,
+            'created_at' => 'NOW()',
+            'modified_at' => 'NOW()',
+        ]);
+        
+        $this->insert('difficulty_levels', [
+            'title' => 'Medium',
+            'points' => 5,
+            'created_at' => 'NOW()',
+            'modified_at' => 'NOW()',
+        ]);
+        
+        $this->insert('difficulty_levels', [
+            'title' => 'Hard',
+            'points' => 10,
+            'created_at' => 'NOW()',
+            'modified_at' => 'NOW()',
+        ]);
+          
     }
 
     public function down()

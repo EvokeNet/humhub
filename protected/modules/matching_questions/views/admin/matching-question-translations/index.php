@@ -40,7 +40,7 @@ echo Breadcrumbs::widget([
                 <?php foreach ($matching_questions as $matching): ?>
                     <tr>
                         <td><?php echo $matching->description; ?></td>
-                        <td><?php echo $matching->language->code; ?></td>
+                        <td><?php echo $matching->language->language; ?></td>
                         <td>
                             <?php echo Html::a(
                                 Yii::t('MatchingModule.base', 'Update'),

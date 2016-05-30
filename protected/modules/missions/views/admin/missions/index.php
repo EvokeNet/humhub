@@ -28,14 +28,14 @@ echo Breadcrumbs::widget([
                 <tr>
                     <th><?php echo Yii::t('MissionsModule.base', 'ID Code'); ?></th>
                     <th><?php echo Yii::t('MissionsModule.base', 'Title'); ?></th>
-                    <th><?php echo Yii::t('MissionsModule.base', 'Description'); ?></th>
+                    <!--<th><?php //echo Yii::t('MissionsModule.base', 'Description'); ?></th>-->
                     <th>&nbsp;</th>
                 </tr>
                 <?php foreach ($missions as $mission): ?>
                     <tr>
                         <td><?php echo $mission->id_code; ?></td>
                         <td><?php echo $mission->title; ?></td>
-                        <td><?php echo $mission->description; ?></td>
+                        <!--<td><?php //echo $mission->description; ?></td>-->
                         <td>
                             <?php echo Html::a(
                                 Yii::t('MissionsModule.base', 'View translations'), 
@@ -44,6 +44,10 @@ echo Breadcrumbs::widget([
                             <?php echo Html::a(
                                 Yii::t('MissionsModule.base', 'View Activities'), 
                                 ['index-activities', 'id' => $mission->id], array('class' => 'btn btn-success btn-sm')); ?>
+                            &nbsp;&nbsp;
+                            <?php echo Html::a(
+                                Yii::t('MissionsModule.base', 'View'),
+                                ['view', 'id' => $mission->id], array('class' => 'btn btn-info btn-sm')); ?>
                             &nbsp;&nbsp;
                             <?php echo Html::a(
                                 Yii::t('MissionsModule.base', 'Update'),

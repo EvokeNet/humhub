@@ -9,55 +9,52 @@ use app\modules\matching_questions\models\MatchingQuestions;
 ?>
 
 
-    <div class="intro">
-        Congratulations, you have ventured further than most by answering this call. 
-        <BR>Now, it's time to find out what type of Evoke agent are you? What do you know? 
-        <BR>What are the strengths, passions, and abilities you will bring to the Evoke network? 
-        <BR>Answer the following and find out what type of Super Hero is hiding inside you!
-        <p id="warning" class="warning">In case of redirect, please answer appropriately all questions.</p>
-    </div>
-
+<div class="intro">
+    <?= Yii::t('MatchingModule.base', "Congratulations, you have ventured further than most by answering this call. 
+    Now, it's time to find out what type of Evoke agent are you. What do you know? 
+    What are the strengths, passions, and abilities you will bring to the Evoke network?
+    Answer the following and find out what type of Super Hero is hiding inside you!") ?>
+    <p id="warning" class="warning"><?= Yii::t('MatchingModule.base', 'In case of redirect, please make sure to answer all questions') ?></p>
+</div>
 
 <div class="questionnaire">
+    
 <?php
     $form = CActiveForm::begin([
         'id' => 'questionnaire',
     ]);
 ?>              
 
-<?php 
+<?php foreach($questions as $question): ?>
+   
+    <p class = "question"><?= isset($question->matchingQuestionTranslations[0]) ? $question->matchingQuestionTranslations[0]->description : $question->description ?></p>
+    
+    <br>
+    
+    <div class="form">
 
-foreach($questions as $question):
-    echo "<p class='question'>".$question->description."</p><BR>";
-    ?>
+        <?php foreach($question->matchingAnswers as $answer):  ?>
+            <?php $maxValue = count($question->matchingAnswers); ?>
+            <!-- MULTIPLE CHOICE -->
+            <?php if($maxValue > 2) :  ?>
+                <label>
+                    <input type="number" min="1" max=<?= $maxValue ?> name="matching_answer_<?= $answer->id ?>_matching_question_<?= $question->id ?>" value = "" >
+                        <?= isset($answer->matchingAnswerTranslations[0]) ? $answer->matchingAnswerTranslations[0]->description : $answer->description ?>
+                </label>   
+            <!-- SINGLE CHOICE -->     
+            <?php else: ?>    
+                <label>
+                    <input type="radio" name="matching_question_<?= $question->id ?>" value = <?= $answer->id ?> >
+                        <?= isset($answer->matchingAnswerTranslations[0]) ? $answer->matchingAnswerTranslations[0]->description : $answer->description ?>
+                </label>
+            <?php endif; ?>
+            
+            <BR>
+        <?php endforeach; ?>    
+    </div>
+    <HR>
 
-        <div class="form">
-
-            <?php foreach($question->matchingAnswers as $answer):  ?>
-                <?php $maxValue = count($question->matchingAnswers); ?>
-                <!-- MULTIPLE CHOICE -->
-                <?php if($maxValue > 2) :  ?>
-                    <label>
-                        <input type="number" min="1" max=<?= $maxValue ?> name="matching_answer_<?= $answer->id ?>_matching_question_<?= $question->id ?>" value = "" >
-                            <?= $answer->description ?>
-                    </label>   
-                <!-- SINGLE CHOICE -->     
-                <?php else: ?>    
-                    <label>
-                        <input type="radio" name="matching_question_<?= $question->id ?>" value = <?= $answer->id ?> >
-                            <?= $answer->description ?>
-                    </label>
-                <?php endif; ?>
-                
-                <BR>
-            <?php endforeach; ?>    
-        </div>
-        <HR>
-    <?php
-
-endforeach;
-
-?>
+<?php endforeach; ?>
 
 <div class="form-group">
     <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
@@ -141,13 +138,13 @@ form{
                         if(inputValue >= 1 && inputValue <= 4){
 
                             if($.inArray(inputValue, order) >= 0){
-                                warningMessage("Order questions from 1 to 4. Don't repeat numbers.");
+                                warningMessage("<?= Yii::t('MatchingModule.base', 'Order questions from 1 to 4. Do not repeat numbers.') ?>");
                                 return false;
                             }
                             order.push(inputValue);
 
                         }else{
-                            warningMessage("Answer all the order questions from 1 to 4.");
+                            warningMessage("<?= Yii::t('MatchingModule.base', 'Answer all the order questions from 1 to 4.') ?>");
                             return false;
                         }
                     }
@@ -157,7 +154,7 @@ form{
             }
 
             if(singleChoice && !checked){
-                warningMessage("Choose one answer for each single-choice question.");
+                warningMessage("<?= Yii::t('MatchingModule.base', 'Choose one answer for each single-choice question.') ?>");
                 return false;
             }
             

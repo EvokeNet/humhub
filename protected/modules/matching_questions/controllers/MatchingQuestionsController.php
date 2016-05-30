@@ -14,6 +14,9 @@ use app\modules\matching_questions\models\User;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\modules\powers\models\QualityPowers;
+use app\modules\powers\models\UserPowers;
+use app\modules\powers\models\Powers;
 
 /**
  * MatchingQuestionsController implements the CRUD actions for MatchingQuestions model.
@@ -103,10 +106,43 @@ class MatchingQuestionsController extends Controller
 
             $superhero_identity = SuperheroIdentities::findOne(['quality_1' => $quality_1->id, 'quality_2' => $quality_2->id]);
 
+            // SAVE SUPER HERO ID
             $user = User::findOne(['id' => $user->id]);
             $user->superhero_identity_id = $superhero_identity->id;
             //$user->attributes = array('superhero_identity_id' => $superhero_identity);
-            //$user->save();
+            $user->save();
+
+            //CREATE USER'S POWERS
+            $powers = Powers::find()->all();
+
+            foreach($powers as $power){
+                $userPower = UserPowers::findOne(['power_id' => $power->id, 'user_id' => $user->id]);
+                if(!isset($userPower)){
+                    $userPower = new UserPowers();
+                    $userPower->user_id = $user->id;
+                    $userPower->power_id = $power->id;
+                    $userPower->value = 0;
+                    $userPower->save();
+                }
+            }
+
+            //SET USER'S FIRST POWER POINTS
+
+            $powers_quality_1 = QualityPowers::findAll(['quality_id' => $quality_1->id]);
+            $powers_quality_2 = QualityPowers::findAll(['quality_id' => $quality_2->id]);
+
+            foreach($powers_quality_1 as $power_quality_1){
+                $userPower = UserPowers::findOne(['power_id' => $power_quality_1->power_id, 'user_id' => $user->id]);
+                $userPower->value = 10;
+                $userPower->save();
+            }
+
+            foreach($powers_quality_2 as $power_quality_2){
+                $userPower = UserPowers::findOne(['power_id' => $power_quality_2->power_id, 'user_id' => $user->id]);
+                $userPower->value = 5;
+                $userPower->save();
+            }
+
             return $this->render('matching-results', compact('quality_1', 'quality_2', 'superhero_identity'));
 
         }else{

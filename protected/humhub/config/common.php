@@ -10,6 +10,7 @@ $config = [
     'version' => '1.0.0',
     'basePath' => dirname(__DIR__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR,
     'bootstrap' => ['log', 'humhub\components\bootstrap\ModuleAutoLoader'],
+    'language' => 'es',
     'sourceLanguage' => 'en',
     'components' => [
         'moduleManager' => [

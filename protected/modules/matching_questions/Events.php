@@ -11,6 +11,9 @@ namespace humhub\modules\matching_questions;
 use Yii;
 use yii\helpers\Url;
 use humhub\models\Setting;
+use app\modules\matching_questions\models\SuperheroIdentities;
+use app\modules\matching_questions\models\User;
+use humhub\modules\matching_questions\widgets\SuperHeroWidget;
 // use humhub\modules\matching_questions\models\MatchingQuestions;
 
 /**
@@ -40,6 +43,19 @@ class Events extends \yii\base\Object
         ));
     }
 
+    public static function onProfileSidebarInit($event)
+    {
+        if (Yii::$app->user->isGuest || Yii::$app->user->getIdentity()->getSetting("hideSharePanel", "share") != 1) {
+            
+            $user = $event->sender->user;
+
+            $superhero_id = SuperheroIdentities::findOne([$user->superhero_identity_id]);
+
+            $event->sender->addWidget(SuperHeroWidget::className(), array('superhero_id' => $superhero_id), array('sortOrder' => 8));
+        }
+        
+    }
+
     public static function onSidebarInit($event)
     {
         if (Setting::Get('enable', 'share') == 1) {
@@ -55,7 +71,7 @@ class Events extends \yii\base\Object
             'label' => Yii::t('MatchingModule.base', 'Matching Questions'),
             'url' => Url::to(['/matching_questions/admin']),
             'group' => 'manage',
-            'icon' => '<i class="fa fa-th"></i>',
+            'icon' => '<i class="fa fa-question"></i>',
             'isActive' => (
                 Yii::$app->controller->module && Yii::$app->controller->module->id == 'matching_questions'
                 && Yii::$app->controller->action->id != 'view'
@@ -99,7 +115,7 @@ class Events extends \yii\base\Object
             'label' => Yii::t('MatchingModule.base', 'Qualities'),
             'url' => Url::to(['/matching_questions/admin/index-qualities']),
             'group' => 'manage',
-            'icon' => '<i class="fa fa-th"></i>',
+            'icon' => '<i class="fa fa-navicon"></i>',
             'isActive' => (
                     Yii::$app->controller->module && Yii::$app->controller->module->id == 'matching_questions' 
                     && Yii::$app->controller->id == 'admin' 
@@ -135,7 +151,7 @@ class Events extends \yii\base\Object
             'label' => Yii::t('MatchingModule.base', 'Superhero Identity'),
             'url' => Url::to(['/matching_questions/admin/index-superhero-identities']),
             'group' => 'manage',
-            'icon' => '<i class="fa fa-th"></i>',
+            'icon' => '<i class="fa fa-male"></i>',
             'isActive' => (
                 
                 Yii::$app->controller->module && Yii::$app->controller->module->id == 'matching_questions' 

@@ -43,7 +43,11 @@ echo Breadcrumbs::widget([
                         <td><?php echo $activity->mission->id_code; ?></td>
                         <td>
                             <?php echo Html::a(
-                                Yii::t('MissionsModule.base', 'Add Translations'),
+                                Yii::t('MissionsModule.base', 'View Powers'),
+                                ['index-activity-powers', 'id' => $activity->id], array('class' => 'btn btn-info btn-sm')); ?>
+                            &nbsp;&nbsp;
+                            <?php echo Html::a(
+                                Yii::t('MissionsModule.base', 'View Translations'),
                                 ['index-activity-translations', 'id' => $activity->id], array('class' => 'btn btn-warning btn-sm')); ?>
                             &nbsp;&nbsp;
                             <?php echo Html::a(
