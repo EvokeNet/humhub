@@ -127,7 +127,7 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
      */
     public function getContentDescription()
     {
-        return $this->text;
+        return $this->title;
     }
 
     /**
@@ -141,6 +141,10 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
         );
     }    
 
+    public function getId(){
+        return $this->id;
+    }
+
     /**
      * After Saving of comments, fire an activity
      *
@@ -148,8 +152,6 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
      */
     public function afterSave($insert, $changedAttributes)
     {
-
-
         
         $activity = new  \humhub\modules\missions\activities\NewEvidence();
         $activity->source = $this;

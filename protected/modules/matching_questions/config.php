@@ -5,6 +5,7 @@
     use humhub\modules\user\widgets\ProfileSidebar;
     use humhub\widgets\BaseMenu;
     use humhub\widgets\TopMenu;
+    use humhub\modules\user\controllers\AuthController;
 
     return [
         'id' => 'matching',
@@ -15,6 +16,7 @@
         // ),
         'events' => [
             ['class' => \humhub\modules\admin\widgets\AdminMenu::className(), 'event' => AdminMenu::EVENT_INIT, 'callback' => ['humhub\modules\matching_questions\Events', 'onAdminMenuInit']],
+            ['class' => AuthController::className(), 'event' => AuthController::EVENT_AFTER_ACTION, 'callback' => ['humhub\modules\matching_questions\Events', 'onAuthUser']],
             ['class' => \humhub\modules\admin\widgets\AdminMenu::className(), 'event' => AdminMenu::EVENT_INIT, 'callback' => ['humhub\modules\matching_questions\Events', 'onQualityAdminMenuInit']],
             ['class' => \humhub\modules\admin\widgets\AdminMenu::className(), 'event' => AdminMenu::EVENT_INIT, 'callback' => ['humhub\modules\matching_questions\Events', 'onSuperheroAdminMenuInit']],
             ['class' => \humhub\widgets\TopMenu::className(), 'event' => TopMenu::EVENT_INIT, 'callback' => ['\humhub\modules\matching_questions\Events', 'onTopMenuInit']],
