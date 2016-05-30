@@ -45,7 +45,8 @@ class MatchingQuestionsController extends Controller
         $user = Yii::$app->user->getIdentity();
 
         // if user has superhero id, redirect
-        if(isset($user->superhero_identity_id) && $user->superhero_identity_id >= 0){
+        //admin may re-answer it
+        if($user->super_admin != 1 && isset($user->superhero_identity_id) && $user->superhero_identity_id >= 0){
 
             $superhero_identity = SuperheroIdentities::findOne(['id' => $user->superhero_identity_id]);
             $quality_1 = Qualities::findOne(['id' => $superhero_identity->quality_1]);
