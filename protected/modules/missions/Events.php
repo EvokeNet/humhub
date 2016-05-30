@@ -104,7 +104,7 @@ class Events
         $content_user_id = $event->action->controller->parentContent->content->user_id;
 
         //check if user isn't liking its own evidence and if it's like/unlike action
-        if(($event->action->id === 'like' || $event->action->id === 'unlike') && Yii::$app->user->getIdentity()->id != $content_user_id){
+        if(($event->action->id === 'like' || $event->action->id === 'unlike') && Yii::$app->user->getIdentity()->id != $content_user_id && isset($event->action->controller->parentContent->activities_id)){
             $evidence = $event->action->controller->parentContent;
 
             //ACTIVITY POWER POINTS
