@@ -112,7 +112,7 @@ class Events
 
             //USER POWER POINTS
             foreach($activityPowers as $activity_power){
-                if($activity_power->flag){
+                if(!$activity_power->flag){
                     $userPower = UserPowers::findOne(['power_id' => $activity_power->power_id, 'user_id' => $content_user_id]);
                     if($like){
                         $userPower->value += $activity_power->value;
