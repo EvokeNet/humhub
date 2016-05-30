@@ -18,16 +18,15 @@
  */
 return [
     'Answer all the order questions from 1 to 4.' => '',
+    'Answer the following and find out what type of Super Hero is hiding inside you!' => '',
     'Are you sure you want to delete this item?' => '',
     'Are you sure you want to delete this quality?' => '',
     'Are you sure you want to delete this superhero identity?' => '',
     'Are you sure you want to delete this translation?' => '',
     'Choose one answer for each single-choice question.' => '',
-    'Congratulations, you have ventured further than most by answering this call. 
-    Now, it\'s time to find out what type of Evoke agent are you. What do you know? 
-    What are the strengths, passions, and abilities you will bring to the Evoke network?
-    Answer the following and find out what type of Super Hero is hiding inside you!' => '',
+    'Congratulations, you have ventured further than most by answering this call.' => '',
     'Create' => '',
+    'Create Matching Answer Translation' => '',
     'Create Matching Question Translation' => '',
     'Create Qualities' => '',
     'Create Superhero Identity Translations' => '',
@@ -54,6 +53,7 @@ return [
     'No superhero identity created yet!' => '',
     'No superhero identity translations created yet!' => '',
     'Not Defined Yet' => '',
+    'Now, it is time to find out what type of Evoke agent are you. What do you know?' => '',
     'Order' => '',
     'Order questions from 1 to 4. Do not repeat numbers.' => '',
     'Primary Power' => '',
@@ -76,4 +76,5 @@ return [
     'Update {modelClass}: ' => '',
     'View Matching Answers' => '',
     'View translations' => '',
+    'What are the strengths, passions, and abilities you will bring to the Evoke network?' => '',
 ];

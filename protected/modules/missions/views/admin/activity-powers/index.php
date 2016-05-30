@@ -32,6 +32,7 @@ echo Breadcrumbs::widget([
                 <tr>
                     <th><?php echo Yii::t('MissionsModule.base', 'Title'); ?></th>
                     <th><?php echo Yii::t('MissionsModule.base', 'Description'); ?></th>
+                    <th><?php echo Yii::t('MissionsModule.base', 'Type (Primary/Secondary)'); ?></th>
                     <th><?php echo Yii::t('MissionsModule.base', 'Points'); ?></th>
                     <th>&nbsp;</th>
                 </tr>
@@ -39,8 +40,21 @@ echo Breadcrumbs::widget([
                     <tr>
                         <td><?php echo $power->power->title; ?></td>
                         <td><?php echo $power->power->description; ?></td>
+                        <td><?php 
+                            
+                            if($power->flag == 0){
+                                echo "Primary Power";
+                            } else {
+                                echo "Secondary Power";
+                            } 
+                            
+                            ?></td>
                         <td><?php echo $power->value; ?></td>
                         <td>
+                            <?php echo Html::a(
+                                Yii::t('MissionsModule.base', 'Update'),
+                                ['update-activity-powers', 'id' => $power->id], array('class' => 'btn btn-warning btn-sm')); ?>
+                            &nbsp;&nbsp;
                             <?php echo Html::a(
                                 Yii::t('MissionsModule.base', 'Delete'),
                                 ['delete-activity-powers', 'id' => $power->id], array(

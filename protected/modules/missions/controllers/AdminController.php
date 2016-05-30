@@ -288,18 +288,18 @@ class AdminController extends \humhub\modules\admin\components\Controller
         return $this->render('activity-powers/create', array('model' => $model, 'activity' => $activity));
     }
     
-    // public function actionUpdateActivityPowers($id)
-    // {
-    //     $model = ActivityPowers::findOne(['id' => Yii::$app->request->get('id')]);
+    public function actionUpdateActivityPowers($id)
+    {
+        $model = ActivityPowers::findOne(['id' => Yii::$app->request->get('id')]);
 
-    //     $activity = Activities::findOne(['id' => $id]);
+        $activity = Activities::findOne(['id' => $model->activity_id]);
         
-    //     if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    //         return $this->redirect(['index-activity-powers', 'id' => $model->activity_id]);
-    //     }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index-activity-powers', 'id' => $model->activity_id]);
+        }
 
-    //     return $this->render('activity-powers/update', array('model' => $model, 'activity' => $activity));
-    // }
+        return $this->render('activity-powers/update', array('model' => $model, 'activity' => $activity));
+    }
     
     public function actionDeleteActivityPowers()
     {

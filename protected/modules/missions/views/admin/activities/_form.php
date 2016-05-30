@@ -3,7 +3,8 @@
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
-use app\modules\missions\models\Missions
+use app\modules\missions\models\Missions;
+use app\modules\missions\models\DifficultyLevels;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\missions\models\Objectives */
@@ -26,6 +27,11 @@ use app\modules\missions\models\Missions
             ['prompt' => Yii::t('MissionsModule.base', 'Select Mission')]
         ) ?>
    </div>-->
+   
+        <?= $form->field($model, 'difficulty_level_id')->dropdownList(
+            ArrayHelper::map(DifficultyLevels::find()->all(), 'id', 'title'),
+            ['prompt' => Yii::t('MissionsModule.base', 'Select Difficulty Level')]
+        ) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('MissionsModule.base', 'Create') : Yii::t('MissionsModule.base', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
