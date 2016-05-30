@@ -53,6 +53,7 @@ return [
     'No quality translations created yet!' => '',
     'No superhero identity created yet!' => '',
     'No superhero identity translations created yet!' => '',
+    'Not Defined Yet' => '',
     'Order' => '',
     'Order questions from 1 to 4. Do not repeat numbers.' => '',
     'Primary Power' => '',

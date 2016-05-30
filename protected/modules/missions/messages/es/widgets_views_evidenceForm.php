@@ -17,6 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Primary power:' => 'Poder primario:',
+    'Secondary power:' => 'Poder secundario:',
+    'points' => 'pontos',
     'Content' => 'Contenido',
     'Edit your Evidence content...' => 'Editar el contenido de su Evidencia...',
     'Edit your Evidence title...' => 'Editar el título de su Evidencia...',

@@ -17,6 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'This user must answer psychometric questionnaire first.' => 'Este usuario debe responder el cuestionario psicométrico primero.',
+    'points' => 'pontos',
     'Are you sure you want to delete this item?' => 'Estás seguro que quieres eliminar este ítem?',
     'Create Power Translation' => 'Crear traducción de poder',
     'Create Powers' => 'Crear Poderes',

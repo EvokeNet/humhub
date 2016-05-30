@@ -14,13 +14,13 @@ use yii\helpers\Url;
     	<?php foreach($powers as $userPower): ?>
     	<?php $power = $userPower->getPower(); ?>
 	    	<div class="list-group-item">
-	    		<?php print_r($power->title) ?> - <?php print_r($userPower->value) ?> <?= Yii::t('PowersModule.base', 'points') ?>
+	    		<?= isset($power->powerTranslations[0]) ? print_r($power->powerTranslations[0]->title) : print_r($power->title) ?> - <?php print_r($userPower->value) ?> <?= Yii::t('PowersModule.base', 'points') ?>
 	    	</div>
     	<?php endforeach; ?>
         <?php 
             if (empty($powers)){
                 echo "<div class='list-group-item'>";
-                echo Yii::t('app', 'This user must answer psychometric questionnaire first.');
+                echo Yii::t('PowersModule.base', 'This user must answer psychometric questionnaire first.');
                 echo "</div>";
             }
         ?>

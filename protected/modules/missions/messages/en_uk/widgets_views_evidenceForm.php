@@ -21,4 +21,7 @@ return [
     'Edit your Evidence content...' => '',
     'Edit your Evidence title...' => '',
     'Page Title' => '',
+    'Primary power:' => '',
+    'Secondary power:' => '',
+    'points' => '',
 ];

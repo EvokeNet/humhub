@@ -17,25 +17,21 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Answer all the order questions from 1 to 4.' => 'Responde a todas las preguntas de la orden de 1 a 4',
-    'Choose one answer for each single-choice question.' => 'Elija una respuesta para cada pregunta de selección simple',
-    
     'Congratulations, you have ventured further than most by answering this call. 
     Now, it\'s time to find out what type of Evoke agent are you. What do you know? 
     What are the strengths, passions, and abilities you will bring to the Evoke network?
     Answer the following and find out what type of Super Hero is hiding inside you!' => 
-    'Enhorabuena, ha aventurado más allá de la mayoría de responder a esta llamada.
+    'Felicitaciones, ha aventurado más allá de la mayoría de responder a esta llamada.
     Ahora , es el momento de descubrir qué tipo de agente Evoque es usted . ¿Que sabes?
     ¿Cuáles son las fuerzas, pasiones y habilidades que traerá a la red Evoke?
     Responde a la siguiente y averigua qué tipo de superhéroe que se esconde dentro de ti!',
-    
-    'In case of redirect, please make sure to answer all questions' => 'En caso de redirección, por favor asegúrese de responder a todas las preguntas',
-    'Order questions from 1 to 4. Do not repeat numbers.' => 'Ordene esas preguntas de 1 a 4. No repetir los números',
-    'Select Option' => 'Seleccionar opción',
+    'Not Defined Yet' => 'Aún sin definir',
+    'Answer all the order questions from 1 to 4.' => 'Responde a todas las preguntas de la orden de 1 a 4',
     'Are you sure you want to delete this item?' => 'Está seguro que quiere eliminar este item?',
     'Are you sure you want to delete this quality?' => 'Está seguro que quiere eliminar esta cualidad?',
     'Are you sure you want to delete this superhero identity?' => 'stá seguro que quiere eliminar esta identidad de super héroe?',
     'Are you sure you want to delete this translation?' => 'Está seguro que quiere eliminar esta traducción?',
+    'Choose one answer for each single-choice question.' => 'Elija una respuesta para cada pregunta de selección simple',
     'Create' => 'Crear',
     'Create Matching Question Translation' => 'Crear la Traducción de la pregunta asociada',
     'Create Qualities' => 'Crear Cualidades',
@@ -48,6 +44,7 @@ return [
     'Delete' => 'Eliminar',
     'Description' => 'Descripción',
     'ID Code' => 'Código ID',
+    'In case of redirect, please make sure to answer all questions' => 'En caso de redirección, por favor asegúrese de responder a todas las preguntas',
     'Language' => 'Idioma',
     'Matching Answer' => 'Respuesta Asociada',
     'Matching Answers' => 'Respuestas Asociadas',
@@ -62,11 +59,13 @@ return [
     'No superhero identity created yet!' => 'No hay una identidad de Superhéroe creada aún!',
     'No superhero identity translations created yet!' => 'No hay traducciones de la identidad de Superhéroe creadas aún!',
     'Order' => 'Ordenar',
+    'Order questions from 1 to 4. Do not repeat numbers.' => 'Ordene esas preguntas de 1 a 4. No repetir los números',
     'Primary Power' => 'Poder Primario',
     'Primary Quality' => 'Cualidad Primaria',
     'Qualities' => 'Cualidades',
     'Secondary Power' => 'Poder Secundario',
     'Secondary Quality' => 'Cualidad Secundaria',
+    'Select Option' => 'Seleccionar opción',
     'Short Name' => 'Nombre Corto',
     'Single Choice' => 'Selección Simple',
     'Superhero Identities' => 'Identidades de Superhéroe',
