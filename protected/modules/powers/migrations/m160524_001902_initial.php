@@ -11,7 +11,7 @@ class m160524_001902_initial extends Migration
             'title' => 'varchar(256) NOT NULL',
             'description' => 'text NOT NULL',
             'created_at' => 'datetime NULL',
-            'modified_at' => 'datetime NULL',
+            'updated_at' => 'datetime NULL',
                 ), '');
                 
         $this->createTable('user_powers', array(
@@ -20,7 +20,7 @@ class m160524_001902_initial extends Migration
             'power_id' => 'int(16) NOT NULL',
             'value' => 'int(32) NOT NULL',
             'created_at' => 'datetime NULL',
-            'modified_at' => 'datetime NULL',
+            'updated_at' => 'datetime NULL',
                 ), '');
           
           $this->createTable('user_qualities', array(
@@ -29,7 +29,7 @@ class m160524_001902_initial extends Migration
             'quality_id' => 'int(11) NOT NULL',
             'total_value' => 'int(11) NOT NULL',
             'created_at' => 'datetime NULL',
-            'modified_at' => 'datetime NULL',
+            'updated_at' => 'datetime NULL',
                 ), '');
                 
           $this->createTable('quality_powers', array(
@@ -37,7 +37,7 @@ class m160524_001902_initial extends Migration
             'quality_id' => 'int(11) NOT NULL',
             'power_id' => 'int(11) NOT NULL',
             'created_at' => 'datetime NULL',
-            'modified_at' => 'datetime NULL',
+            'updated_at' => 'datetime NULL',
                 ), '');
          
           $this->addForeignKey(

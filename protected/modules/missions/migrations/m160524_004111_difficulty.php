@@ -11,7 +11,7 @@ class m160524_004111_difficulty extends Migration
             'title' => 'varchar(256) NOT NULL',
             'points' => 'int(32) NOT NULL',
             'created_at' => 'datetime NULL',
-            'modified_at' => 'datetime NULL',
+            'updated_at' => 'datetime NULL',
                 ), '');
         
         $this->addColumn('activities', 'difficulty_level_id', $this->integer('16'));
@@ -29,21 +29,21 @@ class m160524_004111_difficulty extends Migration
             'title' => 'Easy',
             'points' => 1,
             'created_at' => 'NOW()',
-            'modified_at' => 'NOW()',
+            'updated_at' => 'NOW()',
         ]);
         
         $this->insert('difficulty_levels', [
             'title' => 'Medium',
             'points' => 5,
             'created_at' => 'NOW()',
-            'modified_at' => 'NOW()',
+            'updated_at' => 'NOW()',
         ]);
         
         $this->insert('difficulty_levels', [
             'title' => 'Hard',
             'points' => 10,
             'created_at' => 'NOW()',
-            'modified_at' => 'NOW()',
+            'updated_at' => 'NOW()',
         ]);
           
     }

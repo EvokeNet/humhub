@@ -13,7 +13,7 @@ class m160524_133221_skills extends Migration
             'title' => 'varchar(255) NOT NULL',
             'description' => 'text DEFAULT NULL',
             'created_at' => 'datetime NULL',
-            'modified_at' => 'datetime NULL',
+            'updated_at' => 'datetime NULL',
                 ), '');
                 
         $this->addForeignKey(

@@ -17,6 +17,6 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'There are no evidences yet!' => '',
-    'There are no evidences yet! Be the first and create one...' => '',
+    'There are no evidences yet!' => 'No hay Evidencias todavía!',
+    'There are no evidences yet! Be the first and create one...' => 'No hay Evidencias todavía! Sea el primero y cree una...',
 ];

@@ -13,7 +13,7 @@ class m160524_113645_powers extends Migration
             'flag' => 'int(16) NOT NULL', // flag to indicate if it's primary power or secondary power
             'value' => 'int(32) NOT NULL',
             'created_at' => 'datetime NULL',
-            'modified_at' => 'datetime NULL',
+            'updated_at' => 'datetime NULL',
                 ), '');
                 
         $this->addForeignKey(

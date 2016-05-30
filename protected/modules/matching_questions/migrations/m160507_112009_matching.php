@@ -11,7 +11,7 @@ class m160507_112009_matching extends Migration
             'description' => 'text NOT NULL',
             'type' => 'varchar(255) NOT NULL',
             'created_at' => 'datetime NULL',
-            'modified_at' => 'datetime NULL',
+            'updated_at' => 'datetime NULL',
                 ), '');
                 
         $this->createTable('matching_answers', array(
@@ -20,7 +20,7 @@ class m160507_112009_matching extends Migration
             'matching_question_id' => 'int(11) NOT NULL',
             'quality_id' => 'int(11) NOT NULL',
             'created_at' => 'datetime NULL',
-            'modified_at' => 'datetime NULL',
+            'updated_at' => 'datetime NULL',
                 ), '');
 
         $this->createTable('user_matching_answers', array(
@@ -31,7 +31,7 @@ class m160507_112009_matching extends Migration
             'description' => 'varchar(255) NOT NULL',
             'order' => 'int(11) NOT NULL',
             'created_at' => 'datetime NOT NULL',
-            'modified_at' => 'datetime NOT NULL',
+            'updated_at' => 'datetime NOT NULL',
                 ), '');
 
         $this->createTable('qualities', array(
@@ -40,7 +40,7 @@ class m160507_112009_matching extends Migration
             'short_name' => 'varchar(255) NOT NULL',
             'description' => 'varchar(255) NOT NULL',
             'created_at' => 'datetime NULL',
-            'modified_at' => 'datetime NULL',
+            'updated_at' => 'datetime NULL',
                 ), '');
 
         $this->createTable('superhero_identities', array(
@@ -52,7 +52,7 @@ class m160507_112009_matching extends Migration
             'primary_power' => 'int(11) NOT NULL',
             'secondary_power' => 'int(11) NOT NULL',
             'created_at' => 'datetime NULL',
-            'modified_at' => 'datetime  NULL',
+            'updated_at' => 'datetime  NULL',
                 ), '');
                 
         $this->addForeignKey(
@@ -124,7 +124,7 @@ class m160507_112009_matching extends Migration
                 <p class="text-color-highlight">What will you do? Input these answers in order of how you are most likely to respond (1 - 4) </p>',
             'type' => 'order',
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);
 
         $this->insert('matching_questions', [
@@ -136,7 +136,7 @@ class m160507_112009_matching extends Migration
                 </p>',
             'type' => 'order',
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);
 
         $this->insert('matching_questions', [
@@ -144,7 +144,7 @@ class m160507_112009_matching extends Migration
             'description' => 'Are you best described as:',
             'type' => 'single-choice',
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);
 
         $this->insert('matching_questions', [
@@ -152,7 +152,7 @@ class m160507_112009_matching extends Migration
             'description' => 'Are you best described as:',
             'type' => 'single-choice',
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);
 
         $this->insert('matching_questions', [
@@ -160,7 +160,7 @@ class m160507_112009_matching extends Migration
             'description' => 'Are you best described as:',
             'type' => 'single-choice',
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);
 
         $this->insert('matching_questions', [
@@ -168,7 +168,7 @@ class m160507_112009_matching extends Migration
             'description' => 'Are you best described as:',
             'type' => 'single-choice',
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);
 
         $this->insert('matching_questions', [
@@ -176,7 +176,7 @@ class m160507_112009_matching extends Migration
             'description' => 'Are you best described as:',
             'type' => 'single-choice',
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);
 
         $this->insert('matching_questions', [
@@ -184,7 +184,7 @@ class m160507_112009_matching extends Migration
             'description' => 'Are you best described as:',
             'type' => 'single-choice',
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);
 
         $this->insert('qualities', [
@@ -193,7 +193,7 @@ class m160507_112009_matching extends Migration
             'short_name' => 'CV',
             'description' => 'Creative Visionary',
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);
 
         $this->insert('qualities', [
@@ -202,7 +202,7 @@ class m160507_112009_matching extends Migration
             'short_name' => 'DC',
             'description' => 'Deep Collaborator',
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);
 
         $this->insert('qualities', [
@@ -211,7 +211,7 @@ class m160507_112009_matching extends Migration
             'short_name' => 'ST',
             'description' => 'Systems Thinker',
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);
 
         $this->insert('qualities', [
@@ -220,7 +220,7 @@ class m160507_112009_matching extends Migration
             'short_name' => 'EA',
             'description' => 'Empathetic Activist',
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);
      
 
@@ -230,7 +230,7 @@ class m160507_112009_matching extends Migration
             'matching_question_id' => 6,
             'quality_id' => 1,
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);
 
         $this->insert('matching_answers', [
@@ -239,7 +239,7 @@ class m160507_112009_matching extends Migration
             'matching_question_id' => 6,
             'quality_id' => 4,
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);
 
         $this->insert('matching_answers', [
@@ -248,7 +248,7 @@ class m160507_112009_matching extends Migration
             'matching_question_id' => 7,
             'quality_id' => 2,
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);
 
         $this->insert('matching_answers', [
@@ -257,7 +257,7 @@ class m160507_112009_matching extends Migration
             'matching_question_id' => 7,
             'quality_id' => 3,
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);
 
         $this->insert('matching_answers', [
@@ -266,7 +266,7 @@ class m160507_112009_matching extends Migration
             'matching_question_id' => 8,
             'quality_id' => 1,
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);
 
         $this->insert('matching_answers', [
@@ -275,7 +275,7 @@ class m160507_112009_matching extends Migration
             'matching_question_id' => 8,
             'quality_id' => 3,
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);
 
         $this->insert('matching_answers', [
@@ -284,7 +284,7 @@ class m160507_112009_matching extends Migration
             'matching_question_id' => 9,
             'quality_id' => 2,
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);
 
         $this->insert('matching_answers', [
@@ -293,7 +293,7 @@ class m160507_112009_matching extends Migration
             'matching_question_id' => 9,
             'quality_id' => 1,
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);
           
 
@@ -303,7 +303,7 @@ class m160507_112009_matching extends Migration
             'matching_question_id' => 10,
             'quality_id' => 3,
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);
 
         $this->insert('matching_answers', [
@@ -312,7 +312,7 @@ class m160507_112009_matching extends Migration
             'matching_question_id' => 10,
             'quality_id' => 4,
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);           
 
         $this->insert('matching_answers', [
@@ -321,7 +321,7 @@ class m160507_112009_matching extends Migration
             'matching_question_id' => 11,
             'quality_id' => 2,
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);
 
         $this->insert('matching_answers', [
@@ -330,7 +330,7 @@ class m160507_112009_matching extends Migration
             'matching_question_id' => 11,
             'quality_id' => 4,
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);
 
         $this->insert('matching_answers', [
@@ -339,7 +339,7 @@ class m160507_112009_matching extends Migration
             'matching_question_id' => 4,
             'quality_id' => 2,
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);
 
         $this->insert('matching_answers', [
@@ -348,7 +348,7 @@ class m160507_112009_matching extends Migration
             'matching_question_id' => 4,
             'quality_id' => 4,
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);        
 
         $this->insert('matching_answers', [
@@ -357,7 +357,7 @@ class m160507_112009_matching extends Migration
             'matching_question_id' => 4,
             'quality_id' => 1,
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);
 
         $this->insert('matching_answers', [
@@ -366,7 +366,7 @@ class m160507_112009_matching extends Migration
             'matching_question_id' => 4,
             'quality_id' => 3,
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);
 
         $this->insert('matching_answers', [
@@ -375,7 +375,7 @@ class m160507_112009_matching extends Migration
             'matching_question_id' => 5,
             'quality_id' => 2,
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);
 
         $this->insert('matching_answers', [
@@ -384,7 +384,7 @@ class m160507_112009_matching extends Migration
             'matching_question_id' => 5,
             'quality_id' => 4,
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);
 
         $this->insert('matching_answers', [
@@ -393,7 +393,7 @@ class m160507_112009_matching extends Migration
             'matching_question_id' => 5,
             'quality_id' => 1,
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);
 
         $this->insert('matching_answers', [
@@ -402,7 +402,7 @@ class m160507_112009_matching extends Migration
             'matching_question_id' => 5,
             'quality_id' => 3,
             'created_at' => NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);   
 
         $this->insert('superhero_identities', [
@@ -414,7 +414,7 @@ class m160507_112009_matching extends Migration
             'primary_power' => 0,
             'secondary_power' => 0,
             'created_at' =>  NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);  
 
         $this->insert('superhero_identities', [
@@ -426,7 +426,7 @@ class m160507_112009_matching extends Migration
             'primary_power' => 0,
             'secondary_power' => 0,
             'created_at' =>  NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);  
 
         $this->insert('superhero_identities', [
@@ -438,7 +438,7 @@ class m160507_112009_matching extends Migration
             'primary_power' => 0,
             'secondary_power' => 0,
             'created_at' =>  NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);  
 
         $this->insert('superhero_identities', [
@@ -450,7 +450,7 @@ class m160507_112009_matching extends Migration
             'primary_power' => 0,
             'secondary_power' => 0,
             'created_at' =>  NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);  
 
         $this->insert('superhero_identities', [
@@ -462,7 +462,7 @@ class m160507_112009_matching extends Migration
             'primary_power' => 0,
             'secondary_power' => 0,
             'created_at' =>  NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);  
 
         $this->insert('superhero_identities', [
@@ -474,7 +474,7 @@ class m160507_112009_matching extends Migration
             'primary_power' => 0,
             'secondary_power' => 0,
             'created_at' =>  NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);  
 
         $this->insert('superhero_identities', [
@@ -486,7 +486,7 @@ class m160507_112009_matching extends Migration
             'primary_power' => 0,
             'secondary_power' => 0,
             'created_at' =>  NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);  
 
         $this->insert('superhero_identities', [
@@ -498,7 +498,7 @@ class m160507_112009_matching extends Migration
             'primary_power' => 0,
             'secondary_power' => 0,
             'created_at' =>  NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);        
 
         $this->insert('superhero_identities', [
@@ -510,7 +510,7 @@ class m160507_112009_matching extends Migration
             'primary_power' => 0,
             'secondary_power' => 0,
             'created_at' =>  NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);  
 
         $this->insert('superhero_identities', [
@@ -522,7 +522,7 @@ class m160507_112009_matching extends Migration
             'primary_power' => 0,
             'secondary_power' => 0,
             'created_at' =>  NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);  
 
         $this->insert('superhero_identities', [
@@ -534,7 +534,7 @@ class m160507_112009_matching extends Migration
             'primary_power' => 0,
             'secondary_power' => 0,
             'created_at' =>  NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);  
 
         $this->insert('superhero_identities', [
@@ -546,7 +546,7 @@ class m160507_112009_matching extends Migration
             'primary_power' => 0,
             'secondary_power' => 0,
             'created_at' =>  NULL,
-            'modified_at' => NULL,
+            'updated_at' => NULL,
         ]);  
 
 

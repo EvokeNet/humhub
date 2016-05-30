@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'power_id',
             'value',
             'created_at',
-            'modified_at',
+            'updated_at',
         ],
     ]) ?>
 

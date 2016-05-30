@@ -19,7 +19,7 @@ class UserPowersSearch extends UserPowers
     {
         return [
             [['id', 'user_id', 'power_id', 'value'], 'integer'],
-            [['created_at', 'modified_at'], 'safe'],
+            [['created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -64,7 +64,7 @@ class UserPowersSearch extends UserPowers
             'power_id' => $this->power_id,
             'value' => $this->value,
             'created_at' => $this->created_at,
-            'modified_at' => $this->modified_at,
+            'updated_at' => $this->updated_at,
         ]);
 
         return $dataProvider;

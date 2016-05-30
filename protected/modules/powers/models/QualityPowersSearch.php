@@ -19,7 +19,7 @@ class QualityPowersSearch extends QualityPowers
     {
         return [
             [['id', 'quality_id', 'power_id'], 'integer'],
-            [['created_at', 'modified_at'], 'safe'],
+            [['created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -63,7 +63,7 @@ class QualityPowersSearch extends QualityPowers
             'quality_id' => $this->quality_id,
             'power_id' => $this->power_id,
             'created_at' => $this->created_at,
-            'modified_at' => $this->modified_at,
+            'updated_at' => $this->updated_at,
         ]);
 
         return $dataProvider;

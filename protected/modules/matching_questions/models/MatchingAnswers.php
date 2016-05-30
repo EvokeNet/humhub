@@ -10,13 +10,9 @@ use Yii;
  * @property integer $id
  * @property string $description
  * @property integer $matching_question_id
- * @property integer $social_innovator_quality_id
- * @property string $created
- * @property string $modified
- * @property string $id_code
- *
- * @property MatchingAnswerTranslations[] $matchingAnswerTranslations
- * @property MatchingQuestions $matchingQuestion
+ * @property integer $quality_id
+ * @property string $created_at
+ * @property string $updated_at
  */
 class MatchingAnswers extends \yii\db\ActiveRecord
 {
@@ -34,12 +30,10 @@ class MatchingAnswers extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['description', 'matching_question_id', 'social_innovator_quality_id'], 'required'],
-            [['matching_question_id', 'social_innovator_quality_id'], 'integer'],
-            [['created', 'modified'], 'safe'],
-            [['id_code'], 'string'],
-            [['description'], 'string', 'max' => 255],
-            [['matching_question_id'], 'exist', 'skipOnError' => true, 'targetClass' => MatchingQuestions::className(), 'targetAttribute' => ['matching_question_id' => 'id']],
+            [['description', 'matching_question_id', 'quality_id'], 'required'],
+            [['description'], 'string'],
+            [['matching_question_id', 'quality_id'], 'integer'],
+            [['created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -52,13 +46,12 @@ class MatchingAnswers extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'description' => Yii::t('app', 'Description'),
             'matching_question_id' => Yii::t('app', 'Matching Question ID'),
-            'social_innovator_quality_id' => Yii::t('app', 'Social Innovator Quality ID'),
-            'created' => Yii::t('app', 'Created'),
-            'modified' => Yii::t('app', 'Modified'),
-            'id_code' => Yii::t('app', 'Id Code'),
+            'quality_id' => Yii::t('app', 'Quality ID'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
-
+    
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -73,5 +66,13 @@ class MatchingAnswers extends \yii\db\ActiveRecord
     public function getMatchingQuestion()
     {
         return $this->hasOne(MatchingQuestions::className(), ['id' => 'matching_question_id']);
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getQuality()
+    {
+        return $this->hasOne(Qualities::className(), ['id' => 'quality_id']);
     }
 }

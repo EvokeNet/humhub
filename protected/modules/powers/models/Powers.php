@@ -11,7 +11,7 @@ use Yii;
  * @property string $title
  * @property string $description
  * @property string $created_at
- * @property string $modified_at
+ * @property string $updated_at
  *
  * @property ActivityPowers[] $activityPowers
  * @property QualityPowers[] $qualityPowers
@@ -35,7 +35,7 @@ class Powers extends \yii\db\ActiveRecord
         return [
             [['title', 'description'], 'required'],
             [['description'], 'string'],
-            [['created_at', 'modified_at'], 'safe'],
+            [['created_at', 'updated_at'], 'safe'],
             [['title'], 'string', 'max' => 256],
         ];
     }
@@ -50,7 +50,7 @@ class Powers extends \yii\db\ActiveRecord
             'title' => Yii::t('app', 'Title'),
             'description' => Yii::t('app', 'Description'),
             'created_at' => Yii::t('app', 'Created At'),
-            'modified_at' => Yii::t('app', 'Modified At'),
+            'updated_at' => Yii::t('app', 'Modified At'),
         ];
     }
 

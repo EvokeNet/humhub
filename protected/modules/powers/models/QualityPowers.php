@@ -3,6 +3,9 @@
 namespace app\modules\powers\models;
 
 use Yii;
+use yii\db\ActiveRecord;
+use yii\db\Expression;
+use yii\behaviors\TimestampBehavior;
 
 use app\modules\matching_questions\models\Qualities;
 
@@ -13,13 +16,28 @@ use app\modules\matching_questions\models\Qualities;
  * @property integer $quality_id
  * @property integer $power_id
  * @property string $created_at
- * @property string $modified_at
+ * @property string $updated_at
  *
  * @property Qualities $quality
  * @property Powers $power
  */
 class QualityPowers extends \yii\db\ActiveRecord
 {
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+                // if you're using datetime instead of UNIX timestamp:
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
+    
     /**
      * @inheritdoc
      */
@@ -36,7 +54,7 @@ class QualityPowers extends \yii\db\ActiveRecord
         return [
             [['quality_id', 'power_id'], 'required'],
             [['quality_id', 'power_id'], 'integer'],
-            [['created_at', 'modified_at'], 'safe'],
+            [['created_at', 'updated_at'], 'safe'],
             [['quality_id'], 'exist', 'skipOnError' => true, 'targetClass' => Qualities::className(), 'targetAttribute' => ['quality_id' => 'id']],
             [['power_id'], 'exist', 'skipOnError' => true, 'targetClass' => Powers::className(), 'targetAttribute' => ['power_id' => 'id']],
         ];
@@ -52,7 +70,7 @@ class QualityPowers extends \yii\db\ActiveRecord
             'quality_id' => Yii::t('app', 'Quality ID'),
             'power_id' => Yii::t('app', 'Power ID'),
             'created_at' => Yii::t('app', 'Created At'),
-            'modified_at' => Yii::t('app', 'Modified At'),
+            'updated_at' => Yii::t('app', 'Modified At'),
         ];
     }
 

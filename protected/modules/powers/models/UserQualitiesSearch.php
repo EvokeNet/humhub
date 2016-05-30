@@ -19,7 +19,7 @@ class UserQualitiesSearch extends UserQualities
     {
         return [
             [['id', 'user_id', 'quality_id', 'total_value'], 'integer'],
-            [['created_at', 'modified_at'], 'safe'],
+            [['created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -64,7 +64,7 @@ class UserQualitiesSearch extends UserQualities
             'quality_id' => $this->quality_id,
             'total_value' => $this->total_value,
             'created_at' => $this->created_at,
-            'modified_at' => $this->modified_at,
+            'updated_at' => $this->updated_at,
         ]);
 
         return $dataProvider;

@@ -19,7 +19,7 @@ class PowersSearch extends Powers
     {
         return [
             [['id'], 'integer'],
-            [['title', 'description', 'created_at', 'modified_at'], 'safe'],
+            [['title', 'description', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -61,7 +61,7 @@ class PowersSearch extends Powers
         $query->andFilterWhere([
             'id' => $this->id,
             'created_at' => $this->created_at,
-            'modified_at' => $this->modified_at,
+            'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])

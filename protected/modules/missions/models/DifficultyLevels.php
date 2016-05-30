@@ -11,7 +11,7 @@ use Yii;
  * @property string $title
  * @property integer $points
  * @property string $created_at
- * @property string $modified_at
+ * @property string $updated_at
  *
  * @property Activities[] $activities
  */
@@ -33,7 +33,7 @@ class DifficultyLevels extends \yii\db\ActiveRecord
         return [
             [['title', 'points'], 'required'],
             [['points'], 'integer'],
-            [['created_at', 'modified_at'], 'safe'],
+            [['created_at', 'updated_at'], 'safe'],
             [['title'], 'string', 'max' => 256],
         ];
     }
@@ -48,7 +48,7 @@ class DifficultyLevels extends \yii\db\ActiveRecord
             'title' => Yii::t('app', 'Title'),
             'points' => Yii::t('app', 'Points'),
             'created_at' => Yii::t('app', 'Created At'),
-            'modified_at' => Yii::t('app', 'Modified At'),
+            'updated_at' => Yii::t('app', 'Modified At'),
         ];
     }
 

@@ -19,7 +19,7 @@ class ActivityPowersSearchmissions extends ActivityPowers
     {
         return [
             [['id', 'activity_id', 'power_id', 'flag', 'value'], 'integer'],
-            [['created_at', 'modified_at'], 'safe'],
+            [['created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -65,7 +65,7 @@ class ActivityPowersSearchmissions extends ActivityPowers
             'flag' => $this->flag,
             'value' => $this->value,
             'created_at' => $this->created_at,
-            'modified_at' => $this->modified_at,
+            'updated_at' => $this->updated_at,
         ]);
 
         return $dataProvider;
