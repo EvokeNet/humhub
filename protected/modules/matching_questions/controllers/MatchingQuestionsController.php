@@ -128,7 +128,6 @@ class MatchingQuestionsController extends Controller
             }
 
             //SET USER'S FIRST POWER POINTS
-
             $powers_quality_1 = QualityPowers::findAll(['quality_id' => $quality_1->id]);
             $powers_quality_2 = QualityPowers::findAll(['quality_id' => $quality_2->id]);
 
