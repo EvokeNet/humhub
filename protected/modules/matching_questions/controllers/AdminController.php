@@ -70,6 +70,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
         ->where(['matching_question_id' => Yii::$app->request->get('id')])
         ->all();
         
+        
         $matching_question = MatchingQuestions::findOne(['id' => Yii::$app->request->get('id')]);
         
         return $this->render('matching-answers/index', array('matching_answers' => $matching_answers, 'matching_question' => $matching_question));
