@@ -7,7 +7,7 @@ use yii\helpers\Url;
 <div class="panel panel-default">
     <div class="panel-heading">
         <strong>
-            <?= Yii::t('MatchingModule.base', 'Superhero Identity') ?>
+            <?= Yii::t('MatchingModule.base', 'Agent Type') ?>
         </strong>
     </div>
     <div class="panel-body">
