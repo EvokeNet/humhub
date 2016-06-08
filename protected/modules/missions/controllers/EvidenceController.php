@@ -107,6 +107,7 @@ class EvidenceController extends ContentContainerController
             
         }
 
+
         return \humhub\modules\missions\widgets\WallCreateForm::create($evidence, $this->contentContainer);
     }
 
