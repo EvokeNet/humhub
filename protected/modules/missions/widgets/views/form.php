@@ -5,9 +5,6 @@ use yii\helpers\ArrayHelper;
 $firstPrimary = true;
 $firstSecondary = true;
 
-?>
-
-<?php
     echo Html::tag('h3', Html::encode(isset($activity->activityTranslations[0]) ? Yii::t('MissionsModule.base', 'Activity:').' '.$activity->activityTranslations[0]->title : Yii::t('MissionsModule.base', 'Activity:').' '.$activity->title), ['class' => 'font-weight-bold']);
     echo Html::tag('p', Html::encode(isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description), ['class' => 'description']);
     echo Html::tag('hr');
@@ -52,7 +49,6 @@ $firstSecondary = true;
 .text-margin{
     margin-top: 5px;
 }
-
 </style>
     
 

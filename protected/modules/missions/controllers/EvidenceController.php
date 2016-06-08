@@ -61,9 +61,35 @@ class EvidenceController extends ContentContainerController
     {   
         $activity = Activities::findOne($activityId);
 
+        $message = null;
+
+        if (Yii::$app->session->getFlash('evidence_created')) {
+           $message = "You just gained ";
+           $activityPowers = Yii::$app->session->getFlash('evidence_created');
+
+           $count = 0;
+           $powersTotal = count($activityPowers);
+
+           foreach($activityPowers as $activity_power){
+                $count++;
+
+                if($count == $powersTotal - 1){
+                    $separator = " and ";
+                }elseif($count < $powersTotal - 1){
+                    $separator = ", ";
+                }else{
+                    $separator = ".";
+                }
+
+                $message = $message . $activity_power->value . " points in " . $activity_power->getPower()->title . $separator;
+           }
+
+        }
+
         return $this->render('show', array(
                     'contentContainer' => $this->contentContainer,
                     'activity' => $activity,
+                    'message' => $message
         ));
     }
 
@@ -107,6 +133,8 @@ class EvidenceController extends ContentContainerController
             
         }
 
+
+        Yii::$app->session->setFlash('evidence_created', $activityPowers);
 
         return \humhub\modules\missions\widgets\WallCreateForm::create($evidence, $this->contentContainer);
     }
