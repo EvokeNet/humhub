@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\modules\matching_questions\models\MatchingAnswerTranslationsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Matching Answer Translations');
+$this->title = Yii::t('MatchingModule.base', 'Matching Answer Translations');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="matching-answer-translations-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Matching Answer Translations'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('MatchingModule.base', 'Create Matching Answer Translations'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

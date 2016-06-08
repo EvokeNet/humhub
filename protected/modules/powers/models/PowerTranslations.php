@@ -49,13 +49,13 @@ class PowerTranslations extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'power_id' => Yii::t('app', 'Power ID'),
-            'language_id' => Yii::t('app', 'Language ID'),
-            'title' => Yii::t('app', 'Title'),
-            'description' => Yii::t('app', 'Description'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
+            'id' => Yii::t('PowersModule.base', 'ID'),
+            'power_id' => Yii::t('PowersModule.base', 'Power ID'),
+            'language_id' => Yii::t('PowersModule.base', 'Language ID'),
+            'title' => Yii::t('PowersModule.base', 'Title'),
+            'description' => Yii::t('PowersModule.base', 'Description'),
+            'created_at' => Yii::t('PowersModule.base', 'Created At'),
+            'updated_at' => Yii::t('PowersModule.base', 'Updated At'),
         ];
     }
 

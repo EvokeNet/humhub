@@ -53,15 +53,15 @@ class SuperheroIdentities extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'name' => Yii::t('app', 'Name'),
-            'description' => Yii::t('app', 'Description'),
-            'quality_1' => Yii::t('app', 'Quality 1'),
-            'quality_2' => Yii::t('app', 'Quality 2'),
-            'primary_power' => Yii::t('app', 'Primary Power'),
-            'secondary_power' => Yii::t('app', 'Secondary Power'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
+            'id' => Yii::t('MatchingModule.base', 'ID'),
+            'name' => Yii::t('MatchingModule.base', 'Name'),
+            'description' => Yii::t('MatchingModule.base', 'Description'),
+            'quality_1' => Yii::t('MatchingModule.base', 'Quality 1'),
+            'quality_2' => Yii::t('MatchingModule.base', 'Quality 2'),
+            'primary_power' => Yii::t('MatchingModule.base', 'Primary Power'),
+            'secondary_power' => Yii::t('MatchingModule.base', 'Secondary Power'),
+            'created_at' => Yii::t('MatchingModule.base', 'Created At'),
+            'updated_at' => Yii::t('MatchingModule.base', 'Updated At'),
         ];
     }
 

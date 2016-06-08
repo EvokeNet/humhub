@@ -66,11 +66,11 @@ class QualityPowers extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'quality_id' => Yii::t('app', 'Quality ID'),
-            'power_id' => Yii::t('app', 'Power ID'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Modified At'),
+            'id' => Yii::t('PowersModule.base', 'ID'),
+            'quality_id' => Yii::t('PowersModule.base', 'Quality ID'),
+            'power_id' => Yii::t('PowersModule.base', 'Power ID'),
+            'created_at' => Yii::t('PowersModule.base', 'Created At'),
+            'updated_at' => Yii::t('PowersModule.base', 'Modified At'),
         ];
     }
 

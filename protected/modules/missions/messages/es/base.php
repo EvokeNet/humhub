@@ -17,7 +17,6 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Type (Primary/Secondary)' => 'Tipo (Primario/Secundario)',
     'Activities' => 'Actividades',
     'Activity' => 'Actividad',
     'Activity Powers' => 'Poderes de Actividades',
@@ -66,6 +65,7 @@ return [
     'Title' => 'Título',
     'Translation' => 'Traducción',
     'Translations' => 'Traducciones',
+    'Type (Primary/Secondary)' => 'Tipo (Primario/Secundario)',
     'Unavailable - Rate Evidence' => 'No disponible – Evaluar Evidencia',
     'Unavailable - Read Missions' => 'No disponible – Lea las Misiones',
     'Update' => 'Actualizar',

@@ -6,7 +6,7 @@ use yii\grid\GridView;
 use yii\widgets\Breadcrumbs;
 
 $this->title = Yii::t('PowersModule.base', 'Power Translations');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Powers'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('PowersModule.base', 'Powers'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $power->title;
 $this->params['breadcrumbs'][] = $this->title;
 

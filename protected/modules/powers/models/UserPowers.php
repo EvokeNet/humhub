@@ -66,12 +66,12 @@ class UserPowers extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'user_id' => Yii::t('app', 'User ID'),
-            'power_id' => Yii::t('app', 'Power ID'),
-            'value' => Yii::t('app', 'Value'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Modified At'),
+            'id' => Yii::t('PowersModule.base', 'ID'),
+            'user_id' => Yii::t('PowersModule.base', 'User ID'),
+            'power_id' => Yii::t('PowersModule.base', 'Power ID'),
+            'value' => Yii::t('PowersModule.base', 'Value'),
+            'created_at' => Yii::t('PowersModule.base', 'Created At'),
+            'updated_at' => Yii::t('PowersModule.base', 'Modified At'),
         ];
     }
 

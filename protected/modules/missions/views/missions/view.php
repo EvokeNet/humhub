@@ -2,67 +2,39 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-use yii\widgets\Breadcrumbs;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\missions\models\Missions */
 
-$this->title = $mission->missionTranslations[0]->title;
+$this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Missions'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = Yii::t('MissionsModule.base', 'Mission'). ': ' .$this->title;;
+$this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="missions-view">
 
-<div class="row">
+    <h1><?= Html::encode($this->title) ?></h1>
 
-        <div class="col-md-8 col-md-offset-2">
-            
-            <?php
-                echo Breadcrumbs::widget([
-                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                ]);   
-            ?>
-            
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h2><?php echo Yii::t('MissionsModule.base', 'Mission'). ': ' .$mission->missionTranslations[0]->title; ?></h2>
-                    <p><?php echo $mission->missionTranslations[0]->description; ?></p>
-                </div>
-                <div class="panel-body">
-                    
-                    <h4><strong><?php echo Yii::t('MissionsModule.base', 'Activities'); ?></strong></h4>
-                    
-                    <br>
-                    
-                    <?php if (count($mission->activities) != 0): ?>
-                    
-                        <table class="table">
-                            <tr>
-                                <th><?php echo Yii::t('MissionsModule.base', 'ID'); ?></th>
-                                <th><?php echo Yii::t('MissionsModule.base', 'Title'); ?></th>
-                                <th><?php echo Yii::t('MissionsModule.base', 'Description'); ?></th>
-                                <th>&nbsp;</th>
-                            </tr>
-                            <?php foreach ($mission->activities as $activity): ?>
-                                <tr>
-                                    <td><?php echo $activity->id; ?></td>
-                                    <td><?php echo $activity->activityTranslations[0]->title; ?></td>
-                                    <td><?php echo $activity->activityTranslations[0]->description; ?></td>
-                                    <td>
-                                        <?php //echo Html::a('Post Evidence', '', array('class' => 'btn btn-success')); ?>
-                                        <?php //echo Html::a('View Mission', ['view', 'id' => $mission->id], array('class' => 'btn btn-success btn-xs')); ?>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </table>
+    <p>
+        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+            'class' => 'btn btn-danger',
+            'data' => [
+                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                'method' => 'post',
+            ],
+        ]) ?>
+    </p>
 
-                    <?php else: ?>
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            'id',
+            'title',
+            'description:ntext',
+            'created_at',
+            'updated_at',
+            'id_code:ntext',
+        ],
+    ]) ?>
 
-                        <p><?php echo Yii::t('MissionsModule.base', 'No missions created yet!'); ?></p>
-
-                    <?php endif; ?>
-
-                </div>
-            </div>
-
-    </div>
 </div>

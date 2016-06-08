@@ -18,12 +18,14 @@ use yii\behaviors\TimestampBehavior;
  * @property string $updated_at
  * @property string $id_code
  * @property integer $difficulty_level_id
+ * @property string $rubric
  *
  * @property DifficultyLevels $difficultyLevel
  * @property Missions $mission
  * @property ActivityPowers[] $activityPowers
  * @property ActivityTranslations[] $activityTranslations
  * @property Evidence[] $evidences
+ * @property Skills[] $skills
  */
 class Activities extends \yii\db\ActiveRecord
 {
@@ -56,8 +58,8 @@ class Activities extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'description', 'mission_id'], 'required'],
-            [['description', 'id_code'], 'string'],
+            [['title', 'description', 'mission_id', 'created_at', 'updated_at'], 'required'],
+            [['description', 'id_code', 'rubric'], 'string'],
             [['mission_id', 'difficulty_level_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['title'], 'string', 'max' => 255],
@@ -72,14 +74,15 @@ class Activities extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'title' => Yii::t('app', 'Title'),
-            'description' => Yii::t('app', 'Description'),
-            'mission_id' => Yii::t('app', 'Mission ID'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
-            'id_code' => Yii::t('app', 'Id Code'),
-            'difficulty_level_id' => Yii::t('app', 'Difficulty Level ID'),
+            'id' => Yii::t('MissionsModule.model', 'ID'),
+            'title' => Yii::t('MissionsModule.model', 'Title'),
+            'description' => Yii::t('MissionsModule.model', 'Description'),
+            'mission_id' => Yii::t('MissionsModule.model', 'Mission ID'),
+            'created_at' => Yii::t('MissionsModule.model', 'Created At'),
+            'updated_at' => Yii::t('MissionsModule.model', 'Updated At'),
+            'id_code' => Yii::t('MissionsModule.model', 'Id Code'),
+            'difficulty_level_id' => Yii::t('MissionsModule.model', 'Difficulty Level ID'),
+            'rubric' => Yii::t('MissionsModule.model', 'Rubric'),
         ];
     }
 
@@ -104,8 +107,7 @@ class Activities extends \yii\db\ActiveRecord
      */
     public function getActivityPowers()
     {
-        $powers = ActivityPowers::findAll(['activity_id' => $this->id]);
-        return $powers;
+        return $this->hasMany(ActivityPowers::className(), ['activity_id' => 'id']);
     }
 
     public function getPrimaryPowers()
@@ -134,5 +136,13 @@ class Activities extends \yii\db\ActiveRecord
     public function getEvidences()
     {
         return $this->hasMany(Evidence::className(), ['activities_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSkills()
+    {
+        return $this->hasMany(Skills::className(), ['activity_id' => 'id']);
     }
 }

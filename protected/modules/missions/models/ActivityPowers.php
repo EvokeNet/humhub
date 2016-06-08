@@ -67,13 +67,13 @@ class ActivityPowers extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'activity_id' => Yii::t('app', 'Activity ID'),
-            'power_id' => Yii::t('app', 'Power ID'),
-            'flag' => Yii::t('app', 'Flag'),
-            'value' => Yii::t('app', 'Value'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Modified At'),
+            'id' => Yii::t('MissionsModule.model', 'ID'),
+            'activity_id' => Yii::t('MissionsModule.model', 'Activity ID'),
+            'power_id' => Yii::t('MissionsModule.model', 'Power ID'),
+            'flag' => Yii::t('MissionsModule.model', 'Flag'),
+            'value' => Yii::t('MissionsModule.model', 'Value'),
+            'created_at' => Yii::t('MissionsModule.model', 'Created At'),
+            'updated_at' => Yii::t('MissionsModule.model', 'Modified At'),
         ];
     }
 

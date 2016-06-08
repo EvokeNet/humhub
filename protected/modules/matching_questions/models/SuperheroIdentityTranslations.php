@@ -50,13 +50,13 @@ class SuperheroIdentityTranslations extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'superhero_identity_id' => Yii::t('app', 'Superhero Identity ID'),
-            'name' => Yii::t('app', 'Name'),
-            'description' => Yii::t('app', 'Description'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
-            'language_id' => Yii::t('app', 'Language ID'),
+            'id' => Yii::t('MatchingModule.base', 'ID'),
+            'superhero_identity_id' => Yii::t('MatchingModule.base', 'Superhero Identity ID'),
+            'name' => Yii::t('MatchingModule.base', 'Name'),
+            'description' => Yii::t('MatchingModule.base', 'Description'),
+            'created_at' => Yii::t('MatchingModule.base', 'Created At'),
+            'updated_at' => Yii::t('MatchingModule.base', 'Updated At'),
+            'language_id' => Yii::t('MatchingModule.base', 'Language ID'),
         ];
     }
 

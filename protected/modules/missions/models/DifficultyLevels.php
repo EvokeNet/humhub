@@ -44,11 +44,11 @@ class DifficultyLevels extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'title' => Yii::t('app', 'Title'),
-            'points' => Yii::t('app', 'Points'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Modified At'),
+            'id' => Yii::t('MissionsModule.model', 'ID'),
+            'title' => Yii::t('MissionsModule.model', 'Title'),
+            'points' => Yii::t('MissionsModule.model', 'Points'),
+            'created_at' => Yii::t('MissionsModule.model', 'Created At'),
+            'updated_at' => Yii::t('MissionsModule.model', 'Modified At'),
         ];
     }
 

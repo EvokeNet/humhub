@@ -6,12 +6,12 @@ use yii\widgets\Breadcrumbs;
 /* @var $this yii\web\View */
 /* @var $model app\modules\matching_questions\models\QualityTranslations */
 
-$this->title = Yii::t('app', 'Update {modelClass}: ', [
+$this->title = Yii::t('MatchingModule.base', 'Update {modelClass}: ', [
     'modelClass' => 'Quality Translations',
 ]) . $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Quality Translations'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('MatchingModule.base', 'Quality Translations'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
+$this->params['breadcrumbs'][] = Yii::t('MatchingModule.base', 'Update');
 
 echo Breadcrumbs::widget([
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],

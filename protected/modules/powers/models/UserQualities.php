@@ -49,12 +49,12 @@ class UserQualities extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'user_id' => Yii::t('app', 'User ID'),
-            'quality_id' => Yii::t('app', 'Quality ID'),
-            'total_value' => Yii::t('app', 'Total Value'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Modified At'),
+            'id' => Yii::t('PowersModule.base', 'ID'),
+            'user_id' => Yii::t('PowersModule.base', 'User ID'),
+            'quality_id' => Yii::t('PowersModule.base', 'Quality ID'),
+            'total_value' => Yii::t('PowersModule.base', 'Total Value'),
+            'created_at' => Yii::t('PowersModule.base', 'Created At'),
+            'updated_at' => Yii::t('PowersModule.base', 'Modified At'),
         ];
     }
 

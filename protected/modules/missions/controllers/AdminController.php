@@ -228,7 +228,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
     {
         $model = ActivityTranslations::findOne(['id' => Yii::$app->request->get('id')]);
 
-        $activity = Activities::findOne(['id' => $id]);
+        $activity = Activities::findOne(['id' => $model->activity_id]);
         
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index-activity-translations', 'id' => $model->activity_id]);

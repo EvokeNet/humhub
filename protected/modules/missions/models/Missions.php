@@ -64,12 +64,12 @@ class Missions extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'title' => Yii::t('app', 'Title'),
-            'description' => Yii::t('app', 'Description'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
-            'id_code' => Yii::t('app', 'Id Code'),
+            'id' => Yii::t('MissionsModule.model', 'ID'),
+            'title' => Yii::t('MissionsModule.model', 'Title'),
+            'description' => Yii::t('MissionsModule.model', 'Description'),
+            'created_at' => Yii::t('MissionsModule.model', 'Created At'),
+            'updated_at' => Yii::t('MissionsModule.model', 'Updated At'),
+            'id_code' => Yii::t('MissionsModule.model', 'Id Code'),
         ];
     }
 

@@ -44,12 +44,12 @@ class Qualities extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'name' => Yii::t('app', 'Name'),
-            'short_name' => Yii::t('app', 'Short Name'),
-            'description' => Yii::t('app', 'Description'),
-            'created' => Yii::t('app', 'Created'),
-            'modified' => Yii::t('app', 'Modified'),
+            'id' => Yii::t('MatchingModule.base', 'ID'),
+            'name' => Yii::t('MatchingModule.base', 'Name'),
+            'short_name' => Yii::t('MatchingModule.base', 'Short Name'),
+            'description' => Yii::t('MatchingModule.base', 'Description'),
+            'created' => Yii::t('MatchingModule.base', 'Created'),
+            'modified' => Yii::t('MatchingModule.base', 'Modified'),
         ];
     }
 

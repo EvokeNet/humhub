@@ -680,10 +680,10 @@ input[type=select] {
 }
 .panel .panel-body {
   padding: 10px;
-  font-size: 13px;
 }
 .panel .panel-body p {
   color: #555;
+  font-size: 16px;
 }
 .panel .statistics .entry {
   margin-left: 20px;

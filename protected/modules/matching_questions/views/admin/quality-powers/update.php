@@ -6,12 +6,12 @@ use yii\widgets\Breadcrumbs;
 /* @var $this yii\web\View */
 /* @var $model app\modules\powers\models\QualityPowers */
 
-$this->title = Yii::t('app', 'Update {modelClass}: ', [
+$this->title = Yii::t('MatchingModule.base', 'Update {modelClass}: ', [
     'modelClass' => 'Quality Powers',
 ]) . $model->id;
-// $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Quality Powers'), 'url' => ['index']];
+// $this->params['breadcrumbs'][] = ['label' => Yii::t('MatchingModule.base', 'Quality Powers'), 'url' => ['index']];
 // $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-// $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
+// $this->params['breadcrumbs'][] = Yii::t('MatchingModule.base', 'Update');
 
 $this->params['breadcrumbs'][] = ['label' => Yii::t('MatchingModule.base', 'Qualities'), 'url' => ['index-qualities']];
 $this->params['breadcrumbs'][] = Yii::t('MatchingModule.base', 'Quality').' '.$quality->name;

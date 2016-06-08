@@ -52,14 +52,14 @@ class QualityTranslations extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'quality_id' => Yii::t('app', 'Quality ID'),
-            'language_id' => Yii::t('app', 'Language ID'),
-            'name' => Yii::t('app', 'Name'),
-            'short_name' => Yii::t('app', 'Short Name'),
-            'description' => Yii::t('app', 'Description'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
+            'id' => Yii::t('MatchingModule.base', 'ID'),
+            'quality_id' => Yii::t('MatchingModule.base', 'Quality ID'),
+            'language_id' => Yii::t('MatchingModule.base', 'Language ID'),
+            'name' => Yii::t('MatchingModule.base', 'Name'),
+            'short_name' => Yii::t('MatchingModule.base', 'Short Name'),
+            'description' => Yii::t('MatchingModule.base', 'Description'),
+            'created_at' => Yii::t('MatchingModule.base', 'Created At'),
+            'updated_at' => Yii::t('MatchingModule.base', 'Updated At'),
         ];
     }
 

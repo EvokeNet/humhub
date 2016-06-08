@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\modules\powers\models\QualityPowersSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Quality Powers');
+$this->title = Yii::t('PowersModule.base', 'Quality Powers');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="quality-powers-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Quality Powers'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('PowersModule.base', 'Create Quality Powers'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

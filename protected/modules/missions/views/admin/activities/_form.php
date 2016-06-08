@@ -20,6 +20,8 @@ use app\modules\missions\models\DifficultyLevels;
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+    
+    <?= $form->field($model, 'rubric')->textarea(['rows' => 6]) ?>
 
     <!--<div class="form-group">
         <?= $form->field($model, 'mission_id')->dropdownList(
