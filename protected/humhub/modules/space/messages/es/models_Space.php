@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Color' => '',
+    'Color' => 'Color',
     'Created At' => 'Creado hace',
     'Created By' => 'Creado por',
     'Description' => 'Descripción',

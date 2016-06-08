@@ -5,6 +5,7 @@ namespace app\modules\missions\models;
 use Yii;
 use humhub\modules\content\components\ContentActiveRecord;
 use yii\db\ActiveRecord;
+use app\modules\languages\models\Languages;
 use app\modules\space\models\Space;
 use app\modules\user\models\User;
 
@@ -110,7 +111,21 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
      */
     public function getActivities()
     {
-        $activity = Activities::findOne($this->activities_id);
+        // $activity = Activities::findOne($this->activities_id);
+        
+        $activity = Activities::find()
+        ->where(['=', 'id', $this->activities_id])
+        ->with([
+            'activityTranslations' => function ($query) {
+                $lang = Languages::findOne(['code' => Yii::$app->language]);
+                $query->andWhere(['language_id' => $lang->id]);
+            },
+            'mission.missionTranslations' => function ($query) {
+                $lang = Languages::findOne(['code' => Yii::$app->language]);
+                $query->andWhere(['language_id' => $lang->id]);
+            },
+        ])->one();
+        
         return $activity;
     }
 

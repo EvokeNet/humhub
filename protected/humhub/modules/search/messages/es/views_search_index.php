@@ -17,12 +17,13 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    '<strong>Search </strong> results' => '',
-    'Advanced search settings' => '',
-    'All' => '',
-    'Content' => '',
-    'Search for user, spaces and content' => '',
-    'Search only in certain spaces:' => '',
-    'Spaces' => '',
-    'Users' => '',
+    '<strong>Search </strong> results' => '<strong>Buscar </strong> resultados',
+    'Advanced search settings' => 'Configuración de búsqueda avanzada',
+    'All' => 'Todos',
+    'Add spaces' => 'Añadir espacios',
+    'Content' => 'Contenido',
+    'Search for user, spaces and content' => 'Búsqueda de usuarios, espacios y contenidos',
+    'Search only in certain spaces:' => 'Buscar sólo en ciertos espacios:',
+    'Spaces' => 'Espacios',
+    'Users' => 'Usuarios',
 ];

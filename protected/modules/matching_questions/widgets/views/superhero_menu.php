@@ -25,7 +25,7 @@ use yii\helpers\Url;
                 
         <br><br><br>
         
-        <h5><strong><?= Yii::t('MatchingModule.base', 'Qualities:') ?></strong><h5>
+        <h5><strong><?= Yii::t('MatchingModule.base', 'Super Powers:') ?></strong></h5>
         <br>
         
         <strong><?= isset($superhero_id->quality1->qualityTranslations[0]) ? $superhero_id->quality1->qualityTranslations[0]->name : $superhero_id->quality1->name ?></strong><br><br>
