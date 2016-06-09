@@ -328,10 +328,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
     
     public function actionIndexSuperheroIdentities()
     {
-        $identities = SuperheroIdentities::find()
-        ->where(['superhero_identity_id' => Yii::$app->request->get('id')])
-        ->all();
-        
+        $identities = SuperheroIdentities::find()->all();
         return $this->render('superhero-identities/index', array('identities' => $identities));
     }
     
@@ -374,7 +371,9 @@ class AdminController extends \humhub\modules\admin\components\Controller
     
     public function actionIndexSuperheroIdentityTranslations($id)
     {
-        $translations = SuperheroIdentityTranslations::find()->all();
+        $translations = SuperheroIdentityTranslations::find()
+        ->where(['superhero_identity_id' => Yii::$app->request->get('id')])
+        ->all();
         
         $superhero_identity = SuperheroIdentities::findOne(['id' => Yii::$app->request->get('id')]);
         
