@@ -7,6 +7,7 @@ use app\modules\missions\models\Evidence;
 use app\modules\missions\models\EvidenceSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\HttpException;
 use yii\filters\VerbFilter;
 use humhub\modules\content\components\ContentContainerController;
 use app\modules\missions\models\Missions;
@@ -52,16 +53,12 @@ class EvidenceController extends ContentContainerController
         return $this->render('missions', array('missions' => $missions, 'contentContainer' => $this->contentContainer));
     }
 
-    /**
-     * Posts a new question  throu the question form
-     *
-     * @return type
-     */
-    public function actionShow($activityId)
-    {   
-        $activity = Activities::findOne($activityId);
-
+    public function actionAlert(){
         $message = null;
+
+        if (!Yii::$app->request->isAjax) {
+            //throw new HttpException('403', 'Forbidden access.');
+        }
 
         if (Yii::$app->session->getFlash('evidence_created')) {
            $message = "You just gained ";
@@ -84,12 +81,27 @@ class EvidenceController extends ContentContainerController
                 $message = $message . $activity_power->value . " points in " . $activity_power->getPower()->title . $separator;
            }
 
+            header('Content-Type: application/json; charset="UTF-8"');
+            echo $message;
+            Yii::$app->end();
+
         }
+
+    }
+
+    /**
+     * Posts a new question  throu the question form
+     *
+     * @return type
+     */
+    public function actionShow($activityId)
+    {   
+        $activity = Activities::findOne($activityId);
 
         return $this->render('show', array(
                     'contentContainer' => $this->contentContainer,
                     'activity' => $activity,
-                    'message' => $message
+                    'space' => $this->space,
         ));
     }
 

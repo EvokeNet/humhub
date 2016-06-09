@@ -2,12 +2,14 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+
+
 ?>
 
 <div class="panel panel-default">
     <div class="panel-heading">
         <strong>
-            <?= Yii::t('PowersModule.base', 'Powers') ?>
+            <?= $powers[0]->getPower()->getQualityPowers()[0]->getQualityObject()->name ?>
         </strong>
     </div>
     <div class="list-group submit-body">

@@ -1,21 +1,33 @@
 <?php
-
-if(isset($message)):
+use Yii;
+use \yii\helpers\Url;
 ?>
 
-    <div id="light" class="white_content">
-        <?php
-            echo $message;
-        ?>
-        <BR>
-        <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
+<!-- POPUP -->
+
+<div id="popup-message" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">
+            Congratulations!
+        </h4>
+      </div>
+      <div id="message-content" class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">
             Close
-        </a>
+        </button>
+      </div>
     </div>
-    <div id="fade" class="black_overlay"></div>
+
+  </div>
+</div>
 
 <?php
-    endif;
 
 echo \humhub\modules\missions\widgets\WallCreateForm::widget([
     'contentContainer' => $contentContainer,
@@ -41,36 +53,24 @@ echo \humhub\modules\content\widgets\Stream::widget(array(
 
 ?>
 
+<script type="text/javascript">
 
-<style type="text/css">
+setInterval(function() {
+    loadPopUps();
+}, 2000); 
 
-    .black_overlay{
-        display: block;
-        position: absolute;
-        top: 0%;
-        left: 0%;
-        width: 100%;
-        height: 100%;
-        background-color: black;
-        z-index:1001;
-        -moz-opacity: 0.8;
-        opacity:.80;
-        filter: alpha(opacity=80);
-    }
-    .white_content {
-        display: block;
-        position: absolute;
-        top: 25%;
-        left: 25%;
-        width: 50%;
-        height: 50%;
-        padding: 16px;
-        border: 16px solid orange;
-        background-color: white;
-        z-index:1002;
-        overflow: auto;
-        text-align: center;
-        padding-top: 5%;
-    }
+function loadPopUps(){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            if(xhttp.responseText){
+                document.getElementById("message-content").innerHTML = xhttp.responseText;
+                $("#popup-message   ").modal("show");
+            }
+        }
+    };
+    xhttp.open("GET", "<?= $space->createUrl('/missions/evidence/alert'); ?>" , true);
+    xhttp.send();
+}
 
-</style>
+</script>
