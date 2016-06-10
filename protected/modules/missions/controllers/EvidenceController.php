@@ -91,7 +91,7 @@ class EvidenceController extends ContentContainerController
                 $pointString = Yii::t('MissionsModule.base', 'point');
             }
 
-            $message = $message . $activity_power->value . ' '. $pointString . ' in '. $activity_power->getPower()->title . $separator;
+            $message = $message . $activity_power->value . ' '. $pointString . Yii::t('MissionsModule.base', 'in'). $activity_power->getPower()->title . $separator;
        }
 
        return $message;

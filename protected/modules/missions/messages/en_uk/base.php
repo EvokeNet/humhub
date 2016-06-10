@@ -58,6 +58,7 @@ return [
     'You just gained 10 points in {message}' => '',
     'Your review was updated!' => '',
     'and' => '',
+    'in' => '',
     'point' => '',
     'points' => '',
     '{message}. <BR>Thank you for your review.' => '',

@@ -17,8 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'point' => 'punto',
-    'points' => 'puntos',
+    'in' => 'en',
     'Activities' => 'Actividades',
     'Activity' => 'Actividad',
     'Activity Powers' => 'Poderes de Actividades',
@@ -93,5 +92,7 @@ return [
     'You just gained 10 points in {message}' => 'Has ganado 10 puntos en {mensaje}',
     'Your review was updated!' => 'Su revisión fue actualizado!',
     'and' => 'y',
+    'point' => 'punto',
+    'points' => 'puntos',
     '{message}. <BR>Thank you for your review.' => '{message}. <BR>Gracias por su opinión.',
 ];
