@@ -10,7 +10,7 @@ class m160609_053643_vote extends Migration
             'id' => 'pk',
             'activity_id' => 'int(16) NOT NULL',
             'evidence_id' => 'int(16) NOT NULL',
-            'power_id' => 'int(16) NOT NULL',
+            'user_id' => 'int(16) NOT NULL',
             'flag' => 'int(16) NOT NULL', // flag to indicate if it's a yes/no vote
             'value' => 'int(32) NOT NULL', // 0 to 5 value
             'created_at' => 'datetime NULL',
@@ -36,10 +36,10 @@ class m160609_053643_vote extends Migration
         );
         
         $this->addForeignKey(
-            'fk-votes-power_id',
+            'fk-votes-user_id',
             'votes',
-            'power_id',
-            'powers',
+            'user_id',
+            'user',
             'id',
             'CASCADE'
         );
@@ -51,7 +51,7 @@ class m160609_053643_vote extends Migration
         
         $this->dropForeignKey('fk-votes-activity_id', 'votes');
         $this->dropForeignKey('fk-votes-evidence_id', 'votes');
-        $this->dropForeignKey('fk-votes-power_id', 'votes');
+        $this->dropForeignKey('fk-votes-user_id', 'votes');
 
         $this->dropTable('votes');
         
