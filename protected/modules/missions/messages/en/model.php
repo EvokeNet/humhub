@@ -40,7 +40,6 @@ return [
     'Language ID' => '',
     'Mission ID' => '',
     'Mission Translations' => '',
-    'Missions' => '',
     'Modified At' => '',
     'Points' => '',
     'Power ID' => '',

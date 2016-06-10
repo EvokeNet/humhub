@@ -1,6 +1,6 @@
 {
     "id": "matching",
-    "name": "Evoke's Matching Feature",
+    "name": "Evoke Matching",
     "description": "System of matching users to Superhero Identities",
     "keywords": ["matching_questions", "matching", "questions", "answers", "superhero identity"],
     "version": "0.0.1",

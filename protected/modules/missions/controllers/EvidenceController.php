@@ -227,8 +227,9 @@ class EvidenceController extends ContentContainerController
                 $vote->value = $grade;
                 $vote->save();
 
-                AlertController::createAlert("Congratulations!", "Your review was updated!");
-
+                // AlertController::createAlert("Congratulations!", "Your review was updated!");
+                AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', 'Your review was updated!'));
+                
             }else{
                 //SAVE VOTE
                 $vote = new Votes();
@@ -249,7 +250,9 @@ class EvidenceController extends ContentContainerController
 
                 $message = "You just gained 10 points in ".$activityPower->getPower()->title;
 
-                AlertController::createAlert("Congratulations!", $message.".<BR>Thank you for your review.");
+                //AlertController::createAlert("Congratulations!", $message.".<BR>Thank you for your review.");
+                
+                AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', '{message}. <BR>Thank you for your review.', array('message' => $message)));
             }
         }else{
             AlertController::createAlert("Error", "Oops! Something's wrong.");

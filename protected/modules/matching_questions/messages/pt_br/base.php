@@ -18,6 +18,7 @@
  */
 return [
     'Add new Power' => '',
+    'Agent Type' => '',
     'Answer all the order questions from 1 to 4.' => '',
     'Answer the following and find out what type of Super Hero is hiding inside you!' => '',
     'Are you sure you want to delete this item?' => '',
@@ -131,5 +132,5 @@ return [
     'Visibility' => '',
     'Wall ID' => '',
     'What are the strengths, passions, and abilities you will bring to the Evoke network?' => '',
-    'Your Superhero Identity is:' => '',
+    'Your Agent Type is:' => '',
 ];

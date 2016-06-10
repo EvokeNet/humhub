@@ -32,7 +32,7 @@ $activity = $evidence->getActivities();
     <div class="panel-heading">
       <h4 class="panel-title">
         <a data-toggle="collapse" href="#collapseEvidence<?= $evidence->id ?>">
-        	Review
+        	<?= Yii::t('MissionsModule.base', 'Review') ?>
         </a>
       </h4>
     </div>
@@ -53,9 +53,10 @@ $activity = $evidence->getActivities();
         ?>
         <div>
           <?php $primaryPowerTitle = $activity->getPrimaryPowers()[0]->getPower()->title ?>
-        	<h2>Distribute points for <?= $primaryPowerTitle ?></h2>
+        	<h2><?= Yii::t('MissionsModule.base', 'Distribute points for {title}', array('title' => $primaryPowerTitle)) ?></h2>
         	<p>
-        		<?= $activity->rubric ?>
+        		<?php //$activity->rubric ?>
+            <?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric ?>
         	</p>
         	<form id = "review<?= $evidence->id ?>" class="review">
         		<div class="radio">
@@ -71,7 +72,7 @@ $activity = $evidence->getActivities();
       					</label>
       					<?php endfor; ?>
       					<p>
-      						How many points will you award this evidence?
+                  <?= Yii::t('MissionsModule.base', 'How many points will you award this evidence?') ?>
       					</p>
       				</div>
     			  </div>
@@ -83,10 +84,10 @@ $activity = $evidence->getActivities();
     			  </div>
     			  <br>
     			  <br>
-    			  For every piece of evidence you review, you receive 10 points in <?= $primaryPowerTitle ?>.
+            <?= Yii::t('MissionsModule.base', 'For every piece of evidence you review, you receive 10 points in {title}', array('title' => $primaryPowerTitle)) ?>
     			  <br>
     			  <button type="submit" id="post_submit_review" class="btn btn-info">
-    				  Submit Review
+              <?= Yii::t('MissionsModule.base', 'Submit Review') ?>
     			  </button>
         	</form>
         </div>
@@ -137,12 +138,14 @@ function validateReview<?= $evidence->id ?>(id){
 			return review(id, opt, grade);
 		}
 
-		showMessage("Error", "Choose how many points you will award this evidence.");
+		// showMessage("Error", "Choose how many points you will award this evidence.");
+    showMessage("Error", <?= Yii::t('MissionsModule.base', 'Choose how many points you will award this evidence.') ?>);
 		
-	}else if(opt == "no"){
+	} else if(opt == "no"){
 		return review(id, opt);
-	}else{
-    showMessage("Error", "Please, Answer yes or no.");
+	} else{
+    // showMessage("Error", "Please, Answer yes or no.");
+    showMessage("Error", <?= Yii::t('MissionsModule.base', 'Please, Answer yes or no.') ?>);
   }
 
 	return false;
