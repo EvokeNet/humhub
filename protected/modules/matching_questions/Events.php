@@ -31,16 +31,18 @@ class Events extends \yii\base\Object
      */
     public static function onTopMenuInit($event)
     {
+        if(Yii::$app->user->getIdentity()->super_admin == 1){
 
-        // Is Module enabled on this workspace?
-        $event->sender->addItem(array(
+            $event->sender->addItem(array(
             'label' => Yii::t('MatchingModule.base', 'Superhero Identity'),
             'id' => 'matching_questions',
             'icon' => '<i class="fa fa-th"></i>',
             'url' => Url::toRoute('/matching_questions/matching-questions/matching'),
             'sortOrder' => 200,
             'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'matching_questions' && Yii::$app->controller->id != 'admin'),
-        ));
+            ));
+        }
+        
     }
 
     public static function onProfileSidebarInit($event)
