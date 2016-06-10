@@ -41,6 +41,7 @@ return [
     'Mission ID' => '',
     'Mission Translations' => '',
     'Modified At' => '',
+    'No, it does not meet the activity\'s requirement' => '',
     'Points' => '',
     'Power ID' => '',
     'Reset' => '',

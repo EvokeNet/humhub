@@ -248,13 +248,13 @@ class EvidenceController extends ContentContainerController
                     UserPowers::addPowerPoint($activityPower->getPower(), User::findOne($evidence->content->user_id), $grade);
                 }
 
-                $message = "You just gained 10 points in ".$activityPower->getPower()->title;
+                $message = Yii::t('MissionsModule.base', 'You just gained 10 points in {message}', array('message' => $activityPower->getPower()->title));
 
                 //AlertController::createAlert("Congratulations!", $message.".<BR>Thank you for your review.");
                 
                 AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', '{message}. <BR>Thank you for your review.', array('message' => $message)));
             }
-        }else{
+        } else{
             AlertController::createAlert("Error", "Oops! Something's wrong.");
         }
         
