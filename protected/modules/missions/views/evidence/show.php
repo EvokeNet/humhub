@@ -11,11 +11,11 @@ use \yii\helpers\Url;
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">
-            Congratulations!
-        </h4>
+        <h2 class="modal-title" style = "font-weight:bold">
+            <?= Yii::t('MissionsModule.widgets_EvidenceFormWidget', 'Congratulations!') ?>
+        </h2>
       </div>
-      <div id="message-content" class="modal-body">
+      <div id="message-content" class="modal-body" style = "text-align:center">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">
@@ -34,6 +34,9 @@ echo \humhub\modules\missions\widgets\WallCreateForm::widget([
     'submitButtonText' => Yii::t('MissionsModule.widgets_EvidenceFormWidget', 'Submit Evidence'),
     'activity' => $activity,
 ]);
+
+$this->pageTitle = Yii::t('MissionsModule.base', 'Activity {activity}', array('activity' => $activity->title));
+
 ?>
 
 <?php

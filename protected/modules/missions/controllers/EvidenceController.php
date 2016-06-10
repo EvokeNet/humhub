@@ -73,7 +73,7 @@ class EvidenceController extends ContentContainerController
         }
 
         if (Yii::$app->session->getFlash('evidence_created')) {
-           $message = "You just gained ";
+           $message = Yii::t('MissionsModule.base', 'You just gained').' ';
            $activityPowers = Yii::$app->session->getFlash('evidence_created');
 
            $count = 0;
@@ -83,14 +83,14 @@ class EvidenceController extends ContentContainerController
                 $count++;
 
                 if($count == $powersTotal - 1){
-                    $separator = " and ";
+                    $separator = ' '.Yii::t('MissionsModule.base', 'and').' ';
                 }elseif($count < $powersTotal - 1){
                     $separator = ", ";
                 }else{
                     $separator = ".";
                 }
 
-                $message = $message . $activity_power->value . " points in " . $activity_power->getPower()->title . $separator;
+                $message = $message . $activity_power->value . ' '. Yii::t('MissionsModule.base', 'and') . ' '. $activity_power->getPower()->title . $separator;
            }
 
             header('Content-Type: application/json; charset="UTF-8"');

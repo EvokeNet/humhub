@@ -11,6 +11,8 @@ echo Breadcrumbs::widget([
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
 ]);
 
+$this->pageTitle = Yii::t('MissionsModule.base', 'Missions');
+
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">

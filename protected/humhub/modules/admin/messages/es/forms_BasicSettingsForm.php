@@ -17,9 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Date input format' => '',
-    'Server Timezone' => '',
-    'Show sharing panel on dashboard' => '',
+    'Date input format' => 'Formato de fecha de entrada',
+    'Server Timezone' => 'Zona horaria del servidor',
+    'Show sharing panel on dashboard' => 'Mostrar panel de intercambio',
     'Base URL' => 'URL Base',
     'Default language' => 'Idioma por defecto',
     'Default space' => 'Espacio por defecto',

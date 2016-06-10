@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Purchases' => '',
+    'Purchases' => 'Las compras',
     'Available updates' => 'Actualizaciones disponibles',
     'Browse online' => 'Explorar en línea',
     'Installed' => 'Instalado',

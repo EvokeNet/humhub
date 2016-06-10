@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Enable module...' => '',
+    'Enable module...' => 'Habilitar el módulo',
     '<strong>Modules</strong> directory' => 'Directorio de <strong>módulos</strong>',
     'Are you sure? *ALL* module data will be lost!' => '¿Estás seguro? ¡*TODOS* los datos del módulo se perderán!',
     'Are you sure? *ALL* module related data and files will be lost!' => '¿Estás seguro? ¡*TODOS* los archivos y datos relacionados con el módulo se perderán!',
