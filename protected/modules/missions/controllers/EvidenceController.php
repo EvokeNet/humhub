@@ -7,6 +7,7 @@ use app\modules\missions\models\Evidence;
 use app\modules\missions\models\EvidenceSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\HttpException;
 use yii\filters\VerbFilter;
 use humhub\modules\content\components\ContentContainerController;
 use app\modules\missions\models\Missions;
@@ -52,6 +53,42 @@ class EvidenceController extends ContentContainerController
         return $this->render('missions', array('missions' => $missions, 'contentContainer' => $this->contentContainer));
     }
 
+    public function actionAlert(){
+        $message = null;
+
+        if (!Yii::$app->request->isAjax) {
+            //throw new HttpException('403', 'Forbidden access.');
+        }
+
+        if (Yii::$app->session->getFlash('evidence_created')) {
+           $message = "You just gained ";
+           $activityPowers = Yii::$app->session->getFlash('evidence_created');
+
+           $count = 0;
+           $powersTotal = count($activityPowers);
+
+           foreach($activityPowers as $activity_power){
+                $count++;
+
+                if($count == $powersTotal - 1){
+                    $separator = " and ";
+                }elseif($count < $powersTotal - 1){
+                    $separator = ", ";
+                }else{
+                    $separator = ".";
+                }
+
+                $message = $message . $activity_power->value . " points in " . $activity_power->getPower()->title . $separator;
+           }
+
+            header('Content-Type: application/json; charset="UTF-8"');
+            echo $message;
+            Yii::$app->end();
+
+        }
+
+    }
+
     /**
      * Posts a new question  throu the question form
      *
@@ -64,6 +101,7 @@ class EvidenceController extends ContentContainerController
         return $this->render('show', array(
                     'contentContainer' => $this->contentContainer,
                     'activity' => $activity,
+                    'space' => $this->space,
         ));
     }
 
@@ -108,6 +146,11 @@ class EvidenceController extends ContentContainerController
         }
 
 
+<<<<<<< HEAD
+=======
+        Yii::$app->session->setFlash('evidence_created', $activityPowers);
+
+>>>>>>> f8e31d77086118306eae747de33e55b407eb4921
         return \humhub\modules\missions\widgets\WallCreateForm::create($evidence, $this->contentContainer);
     }
 
