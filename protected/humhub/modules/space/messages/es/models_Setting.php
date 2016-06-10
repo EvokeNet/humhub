@@ -17,10 +17,10 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Created At' => '',
-    'Created By' => '',
-    'Name' => '',
-    'Updated At' => '',
-    'Updated by' => '',
-    'Value' => '',
+    'Created At' => 'Creado en',
+    'Created By' => 'Creado por',
+    'Name' => 'Nombre',
+    'Updated At' => 'Actualizado en',
+    'Updated by' => 'Actualizado por',
+    'Value' => 'Valor',
 ];

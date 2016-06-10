@@ -24,6 +24,5 @@ use yii\helpers\Url;
         </h5>
         
         <?= isset($superhero_id->superheroIdentityTranslations[0]) ? $superhero_id->superheroIdentityTranslations[0]->description : $superhero_id->description ?>
-
     </div>
 </div>

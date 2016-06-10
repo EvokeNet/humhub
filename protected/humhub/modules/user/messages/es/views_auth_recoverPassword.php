@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Password recovery' => '',
+    'Password recovery' => 'Recuperación de contraseña',
     '<strong>Password</strong> recovery' => 'Recuperar <strong>contraseña</strong>',
     'Back' => 'Atrás',
     'Just enter your e-mail address. We´ll send you recovery instructions!' => 'Escribe tu dirección de correo electrónico. ¡Ahí te enviaremos las instrucciones de recuperación!',

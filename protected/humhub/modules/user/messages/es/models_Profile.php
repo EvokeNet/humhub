@@ -1,5 +1,7 @@
 <?php
 return array (
+  'First name' => 'Primer nombre',
+  'Last name' => 'Apellido',
   'Birthday' => 'Fecha de nacimiento',
   'Custom' => 'Personalizado',
   'Female' => 'Mujer',
@@ -8,7 +10,7 @@ return array (
   'Male' => 'Hombre',
   'About' => 'Acerca de',
   'City' => 'Ciudad',
-  'Country' => 'País',
+  'Country' => 'País', 
   'Facebook URL' => 'Enlace de Facebook ',
   'Fax' => 'Fax',
   'Firstname' => 'Nombre',

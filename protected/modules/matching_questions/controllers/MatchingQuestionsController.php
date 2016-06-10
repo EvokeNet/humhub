@@ -17,6 +17,7 @@ use yii\filters\VerbFilter;
 use app\modules\powers\models\QualityPowers;
 use app\modules\powers\models\UserPowers;
 use app\modules\powers\models\Powers;
+use app\modules\languages\models\Languages;
 
 /**
  * MatchingQuestionsController implements the CRUD actions for MatchingQuestions model.
@@ -145,14 +146,26 @@ class MatchingQuestionsController extends Controller
 
             return $this->render('matching-results', compact('quality_1', 'quality_2', 'superhero_identity'));
 
-        }else{
+        } else{
             return $this->redirectQuestionnaire();
         }
     }
 
 
     private function redirectQuestionnaire(){
-        $questions = MatchingQuestions::find()->all(); 
+        $questions = MatchingQuestions::find()->with([
+            'matchingQuestionTranslations' => function ($query) {
+                $lang = Languages::findOne(['code' => Yii::$app->language]);
+                $query->andWhere(['language_id' => $lang->id]);
+            },
+            'matchingAnswers.matchingAnswerTranslations' => function ($query) {
+                $lang = Languages::findOne(['code' => Yii::$app->language]);
+                $query->andWhere(['language_id' => $lang->id]);
+            },
+        ])->all(); 
+        
+        //$customers = Customers::model()->with('municipality','municipality.franchisesMunicipalities')->findAll($criteria);
+
         return $this->render('matching', compact('questions'));
     }
     

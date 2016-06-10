@@ -7,79 +7,88 @@ use app\modules\matching_questions\models\MatchingQuestions;
 
 
 ?>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-default">
+            <!--<div class="panel-heading"><strong><?php echo $this->title; ?></strong></div>-->
+            <div class="panel-body">
 
+                <div class="intro">
+                    <?= Yii::t('MatchingModule.base', "Congratulations, you have ventured further than most by answering this call.") ?> 
+                    <br><?= Yii::t('MatchingModule.base', "Now, it is time to find out what type of Evoke agent are you. What do you know?") ?> 
+                    <br><?= Yii::t('MatchingModule.base', "What are the strengths, passions, and abilities you will bring to the Evoke network?") ?>
+                    <br><?= Yii::t('MatchingModule.base', "Answer the following and find out what type of Super Hero is hiding inside you!") ?>
+                    <br><span id="warning" class="warning"><?= Yii::t('MatchingModule.base', 'In case of redirect, please make sure to answer all questions') ?></span>
+                </div>
 
-<div class="intro">
-    <?= Yii::t('MatchingModule.base', "Congratulations, you have ventured further than most by answering this call.") ?> 
-    <br><?= Yii::t('MatchingModule.base', "Now, it is time to find out what type of Evoke agent are you. What do you know?") ?> 
-    <br><?= Yii::t('MatchingModule.base', "What are the strengths, passions, and abilities you will bring to the Evoke network?") ?>
-    <br><?= Yii::t('MatchingModule.base', "Answer the following and find out what type of Super Hero is hiding inside you!") ?>
-    <p id="warning" class="warning"><?= Yii::t('MatchingModule.base', 'In case of redirect, please make sure to answer all questions') ?></p>
-</div>
+                <div class="questionnaire">
+                    
+                <?php
+                    $form = CActiveForm::begin([
+                        'id' => 'questionnaire',
+                    ]);
+                ?>              
 
-<div class="questionnaire">
-    
-<?php
-    $form = CActiveForm::begin([
-        'id' => 'questionnaire',
-    ]);
-?>              
+                <?php foreach($questions as $question): ?>
+                
+                    <p class = "question"><?= isset($question->matchingQuestionTranslations[0]) ? $question->matchingQuestionTranslations[0]->description : $question->description ?></p>
+                    
+                    <br>
+                    
+                    <div class="form">
 
-<?php foreach($questions as $question): ?>
-   
-    <p class = "question"><?= isset($question->matchingQuestionTranslations[0]) ? $question->matchingQuestionTranslations[0]->description : $question->description ?></p>
-    
-    <br>
-    
-    <div class="form">
+                        <?php foreach($question->matchingAnswers as $answer):  ?>
+                            <?php $maxValue = count($question->matchingAnswers); ?>
+                            <!-- MULTIPLE CHOICE -->
+                            <?php if($maxValue > 2) :  ?>
+                                <label>
+                                    <input type="number" min="1" max=<?= $maxValue ?> name="matching_answer_<?= $answer->id ?>_matching_question_<?= $question->id ?>" value = "" >
+                                        <?= isset($answer->matchingAnswerTranslations[0]) ? $answer->matchingAnswerTranslations[0]->description : $answer->description ?>
+                                </label>   
+                            <!-- SINGLE CHOICE -->     
+                            <?php else: ?>    
+                                <label>
+                                    <input type="radio" name="matching_question_<?= $question->id ?>" value = <?= $answer->id ?> >
+                                        <?= isset($answer->matchingAnswerTranslations[0]) ? $answer->matchingAnswerTranslations[0]->description : $answer->description ?>
+                                </label>
+                            <?php endif; ?>
+                            
+                            <BR>
+                        <?php endforeach; ?>    
+                    </div>
+                    <HR>
 
-        <?php foreach($question->matchingAnswers as $answer):  ?>
-            <?php $maxValue = count($question->matchingAnswers); ?>
-            <!-- MULTIPLE CHOICE -->
-            <?php if($maxValue > 2) :  ?>
-                <label>
-                    <input type="number" min="1" max=<?= $maxValue ?> name="matching_answer_<?= $answer->id ?>_matching_question_<?= $question->id ?>" value = "" >
-                        <?= isset($answer->matchingAnswerTranslations[0]) ? $answer->matchingAnswerTranslations[0]->description : $answer->description ?>
-                </label>   
-            <!-- SINGLE CHOICE -->     
-            <?php else: ?>    
-                <label>
-                    <input type="radio" name="matching_question_<?= $question->id ?>" value = <?= $answer->id ?> >
-                        <?= isset($answer->matchingAnswerTranslations[0]) ? $answer->matchingAnswerTranslations[0]->description : $answer->description ?>
-                </label>
-            <?php endif; ?>
-            
-            <BR>
-        <?php endforeach; ?>    
+                <?php endforeach; ?>
+
+                <div class="form-group">
+                    <?= Html::submitButton(Yii::t('MatchingModule.base', "Submit"), ['class' => 'btn btn-primary']) ?>
+                </div>
+
+                <?php
+                    CActiveForm::end(); 
+                ?>
+                </div>
+
+            </div>
+        </div>
     </div>
-    <HR>
-
-<?php endforeach; ?>
-
-<div class="form-group">
-    <?= Html::submitButton(Yii::t('MatchingModule.base', "Submit"), ['class' => 'btn btn-primary']) ?>
 </div>
-
-<?php
-    CActiveForm::end(); 
-?>
-</div>
-
 
 <style type="text/css">
 
 .intro{
-    margin-left: 20px;
+    /*margin-left: 20px;*/
     font-size: 22px;
     text-align: center;
-    margin: auto;
-    width: 75%;
+    /*margin: auto;*/
+    /*width: 75%;*/
+    padding-top:20px;
 }
 
 .warning{
     padding-top: 10px;
-    color: red;
-    font-size: 12px;
+    color: red!important;
+    font-size: 12px!important;
 }
 
 form{
@@ -91,8 +100,9 @@ form{
 
 .questionnaire{
     margin: auto;
-    width: 75%;
-    padding-top: 30px;
+    /*width: 75%;*/
+    /*padding-top: 30px;*/
+    padding: 50px 30px 0px;
 }
 
 </style>

@@ -34,7 +34,19 @@ class EvidenceController extends ContentContainerController
    
     public function actionActivities($missionId)
     {   
-        $mission = Missions::findOne($missionId);
+        $mission = Missions::find()
+        ->where(['=', 'id', $missionId])
+        ->with([
+            'missionTranslations' => function ($query) {
+                $lang = Languages::findOne(['code' => Yii::$app->language]);
+                $query->andWhere(['language_id' => $lang->id]);
+            },
+            'activities.activityTranslations' => function ($query) {
+                $lang = Languages::findOne(['code' => Yii::$app->language]);
+                $query->andWhere(['language_id' => $lang->id]);
+            },
+        ])->one();
+                
         return $this->render('activities', array('mission' => $mission, 'contentContainer' => $this->contentContainer));
     }
 
@@ -95,8 +107,15 @@ class EvidenceController extends ContentContainerController
      * @return type
      */
     public function actionShow($activityId)
-    {   
-        $activity = Activities::findOne($activityId);
+    {           
+        $activity = Activities::find()
+        ->where(['=', 'id', $activityId])
+        ->with([
+            'activityTranslations' => function ($query) {
+                $lang = Languages::findOne(['code' => Yii::$app->language]);
+                $query->andWhere(['language_id' => $lang->id]);
+            },
+        ])->one();
 
         return $this->render('show', array(
                     'contentContainer' => $this->contentContainer,
@@ -144,13 +163,7 @@ class EvidenceController extends ContentContainerController
             }
             
         }
-
-
-<<<<<<< HEAD
-=======
         Yii::$app->session->setFlash('evidence_created', $activityPowers);
-
->>>>>>> f8e31d77086118306eae747de33e55b407eb4921
         return \humhub\modules\missions\widgets\WallCreateForm::create($evidence, $this->contentContainer);
     }
 
