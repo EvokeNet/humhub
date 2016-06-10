@@ -86,9 +86,9 @@ class EvidenceController extends ContentContainerController
             }
 
             if($activity_power->value > 1){
-                $pointString = "points";
+                $pointString = Yii::t('MissionsModule.base', 'points');
             }else{
-                $pointString = "point";
+                $pointString = Yii::t('MissionsModule.base', 'point');
             }
 
             $message = $message . $activity_power->value . ' '. $pointString . ' in '. $activity_power->getPower()->title . $separator;
