@@ -3,6 +3,9 @@
 namespace app\modules\missions\models;
 
 use Yii;
+use humhub\modules\user\models\User;
+use app\modules\missions\models\Evidence;
+use humhub\modules\content\components\ContentActiveRecord;
 
 /**
  * This is the model class for table "votes".
@@ -11,18 +14,16 @@ use Yii;
  * @property integer $activity_id
  * @property integer $evidence_id
  * @property integer $power_id
- * @property integer $rubric_vote_id
  * @property integer $flag
  * @property integer $value
  * @property string $created_at
  * @property string $updated_at
  *
- * @property RubricVotes $rubricVote
  * @property Activities $activity
  * @property Evidence $evidence
  * @property Powers $power
  */
-class Votes extends \yii\db\ActiveRecord
+class Votes extends ContentActiveRecord
 {
     /**
      * @inheritdoc
@@ -38,13 +39,12 @@ class Votes extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['activity_id', 'evidence_id', 'power_id', 'rubric_vote_id', 'flag', 'value'], 'required'],
-            [['activity_id', 'evidence_id', 'power_id', 'rubric_vote_id', 'flag', 'value'], 'integer'],
+            [['activity_id', 'evidence_id', 'user_id', 'flag', 'value'], 'required'],
+            [['activity_id', 'evidence_id', 'user_id', 'flag', 'value'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['rubric_vote_id'], 'exist', 'skipOnError' => true, 'targetClass' => RubricVotes::className(), 'targetAttribute' => ['rubric_vote_id' => 'id']],
             [['activity_id'], 'exist', 'skipOnError' => true, 'targetClass' => Activities::className(), 'targetAttribute' => ['activity_id' => 'id']],
             [['evidence_id'], 'exist', 'skipOnError' => true, 'targetClass' => Evidence::className(), 'targetAttribute' => ['evidence_id' => 'id']],
-            [['power_id'], 'exist', 'skipOnError' => true, 'targetClass' => Powers::className(), 'targetAttribute' => ['power_id' => 'id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -57,8 +57,7 @@ class Votes extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'activity_id' => Yii::t('app', 'Activity ID'),
             'evidence_id' => Yii::t('app', 'Evidence ID'),
-            'power_id' => Yii::t('app', 'Power ID'),
-            'rubric_vote_id' => Yii::t('app', 'Rubric Vote ID'),
+            'user_id' => Yii::t('app', 'User ID'),
             'flag' => Yii::t('app', 'Flag'),
             'value' => Yii::t('app', 'Value'),
             'created_at' => Yii::t('app', 'Created At'),
@@ -66,13 +65,6 @@ class Votes extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getRubricVote()
-    {
-        return $this->hasOne(RubricVotes::className(), ['id' => 'rubric_vote_id']);
-    }
 
     /**
      * @return \yii\db\ActiveQuery
@@ -93,8 +85,39 @@ class Votes extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPower()
+    public function getUser()
     {
-        return $this->hasOne(Powers::className(), ['id' => 'power_id']);
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }    
+
+    public function beforeSave($insert){
+        $this->content->user_id = $this->user_id;
+        $this->content->object_model = Votes::class;
+        $this->content->object_id = $this->id;
+        return parent::beforeSave($insert);
     }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        
+        if ($insert && !$this->flag) {
+            $evidence = Evidence::findOne($this->evidence_id);
+            $author = User::findOne($this->evidence->content->user_id);
+
+            $notification = new \humhub\modules\missions\notifications\RejectedEvidence();
+            $notification->source = $this;
+            $notification->originator = Yii::$app->user->getIdentity();
+            $notification->send($author);
+        }
+
+        return parent::afterSave($insert, $changedAttributes);
+
+    }   
+
+    public function getUrl(){
+        $evidence = Evidence::findOne($this->evidence_id);
+        return $evidence->content->getUrl();
+    }
+
+
 }

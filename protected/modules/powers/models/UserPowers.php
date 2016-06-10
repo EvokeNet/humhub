@@ -99,4 +99,25 @@ class UserPowers extends \yii\db\ActiveRecord
     {
         return $this->hasMany(QualityPowers::className(), ['power_id' => 'power_id']);
     }
+
+
+    public function addPowerPoint($power, $user, $value){
+        $userPower = UserPowers::findOne(['power_id' => $power->id, 'user_id' => $user->id]);
+
+        if(isset($userPower)){
+            if(!isset($userPower->value)){
+                $userPower->value = 0;
+            }
+            $userPower->value += $value;
+            $userPower->save();
+        }else{
+            $userPower = new UserPowers();
+            $userPower->user_id = $user->id;
+            $userPower->power_id = $power->id;
+            $userPower->value = $value;
+            $userPower->save();
+        }  
+
+    }
+
 }
