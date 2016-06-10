@@ -256,7 +256,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
     public function actionIndexActivityPowers($id)
     {
         $activity_powers = ActivityPowers::find()
-        ->where(['activity_id' => Yii::$app->request->get('id')])
+        ->where(['activity_id' => Yii::$app->request->get('id')]) 
         ->all();
         
         // $customers = Books::find()->with([

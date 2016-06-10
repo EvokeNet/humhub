@@ -118,9 +118,9 @@ class EvidenceController extends ContentContainerController
         ])->one();
 
         return $this->render('show', array(
-                    'contentContainer' => $this->contentContainer,
-                    'activity' => $activity,
-                    'space' => $this->space,
+            'contentContainer' => $this->contentContainer,
+            'activity' => $activity,
+            'space' => $this->space,
         ));
     }
 

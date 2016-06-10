@@ -36,6 +36,12 @@ class DefaultMenu extends \humhub\widgets\BaseMenu
             'isActive' => (Yii::$app->controller->id == 'default' && Yii::$app->controller->action->id == 'index'),
         ));
         $this->addItem(array(
+            'label' => Yii::t('AdminModule.manage', 'Translations'),
+            'url' => $this->space->createUrl('/space/manage/default/translations'),
+            'sortOrder' => 100,
+            'isActive' => (Yii::$app->controller->id == 'default' && Yii::$app->controller->action->id == 'translations'),
+        ));
+        $this->addItem(array(
             'label' => Yii::t('AdminModule.manage', 'Security'),
             'url' => $this->space->createUrl('/space/manage/default/security'),
             'sortOrder' => 200,

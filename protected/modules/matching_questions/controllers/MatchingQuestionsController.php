@@ -153,14 +153,28 @@ class MatchingQuestionsController extends Controller
 
 
     private function redirectQuestionnaire(){
+        
+        // var_dump(Yii::$app->language);
+        // die();
         $questions = MatchingQuestions::find()->with([
             'matchingQuestionTranslations' => function ($query) {
                 $lang = Languages::findOne(['code' => Yii::$app->language]);
-                $query->andWhere(['language_id' => $lang->id]);
+                
+                if(isset($lang))
+                    $query->andWhere(['language_id' => $lang->id]);
+                else{
+                    $lang = Languages::findOne(['code' => 'en-US']);
+                    $query->andWhere(['language_id' => $lang->id]);
+                }
             },
             'matchingAnswers.matchingAnswerTranslations' => function ($query) {
                 $lang = Languages::findOne(['code' => Yii::$app->language]);
-                $query->andWhere(['language_id' => $lang->id]);
+                if(isset($lang))
+                    $query->andWhere(['language_id' => $lang->id]);
+                else{
+                    $lang = Languages::findOne(['code' => 'en-US']);
+                    $query->andWhere(['language_id' => $lang->id]);
+                }
             },
         ])->all(); 
         

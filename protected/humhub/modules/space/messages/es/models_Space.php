@@ -22,6 +22,7 @@ return [
     'Created By' => 'Creado por',
     'Description' => 'Descripción',
     'Join Policy' => 'Política de acceso',
+    'Default Content Visibility' => 'Visibilidad de Contenido por Defecto',
     'Name' => 'Nombre',
     'Owner' => 'Propietario',
     'Status' => 'Estado',

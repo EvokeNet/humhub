@@ -35,7 +35,7 @@ class DefaultController extends Controller
         }
         return $this->render('index', array('model' => $space));
     }
-
+    
     /**
      * Security settings
      */
