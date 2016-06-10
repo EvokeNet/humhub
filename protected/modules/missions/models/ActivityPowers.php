@@ -83,8 +83,10 @@ class ActivityPowers extends \yii\db\ActiveRecord
      */
     public function getPower()
     {        
+        //return Powers::findOne($this->power_id);
+        
         $power = Powers::find()
-        ->where(['=', 'id', $this->activities_id])
+        ->where(['=', 'id', $this->power_id])
         ->with([
             'powerTranslations' => function ($query) {
                 // $lang = Languages::findOne(['code' => Yii::$app->language]);
