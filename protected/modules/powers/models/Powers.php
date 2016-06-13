@@ -76,7 +76,8 @@ class Powers extends \yii\db\ActiveRecord
      */
     public function getQualityPowers()
     {
-        return $this->hasMany(QualityPowers::className(), ['power_id' => 'id']);
+        $powers = QualityPowers::find()->where(['power_id' => $this->id])->all();
+        return $powers;
     }
 
     /**

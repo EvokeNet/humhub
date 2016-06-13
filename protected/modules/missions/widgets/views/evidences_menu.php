@@ -17,7 +17,7 @@ use yii\helpers\Url;
         		<?= Yii::t('MissionsModule.base', 'Choose Mission') ?>
         	</a>
         </div>
-        <div class= "list-group-item">
+        <!--<div class= "list-group-item">
             <a href='#' class="btn btn-primary disabled">
         	   <?= Yii::t('MissionsModule.base', 'Unavailable - Read Missions') ?>
             </a>
@@ -26,7 +26,7 @@ use yii\helpers\Url;
             <a href='#' class="btn btn-primary disabled">
                 <?= Yii::t('MissionsModule.base', 'Unavailable - Rate Evidence') ?>
             </a>
-        </div>
+        </div>-->
     </div>
 </div>
 

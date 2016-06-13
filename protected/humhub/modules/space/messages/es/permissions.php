@@ -17,12 +17,12 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Allows the user to create public content' => '',
-    'Allows the user to invite new members to the space' => '',
-    'Can create hidden (private) spaces.' => '',
-    'Can create public visible spaces. (Listed in directory)' => '',
-    'Create private space' => '',
-    'Create public content' => '',
-    'Create public space' => '',
-    'Invite users' => '',
+    'Allows the user to create public content' => 'Permite al usuario crear contenido público',
+    'Allows the user to invite new members to the space' => 'Permite al usuario invitar a nuevos miembros al espacio',
+    'Can create hidden (private) spaces.' => 'Puede crear espacios ocultos (privados).',
+    'Can create public visible spaces. (Listed in directory)' => 'Pueden crear espacios públicos visibles. (Figura en el directorio)',
+    'Create private space' => 'Crear espacio privado',
+    'Create public content' => 'Crear contenido público',
+    'Create public space' => 'Crear espacio público',
+    'Invite users' => 'Invitar a los usuarios',
 ];

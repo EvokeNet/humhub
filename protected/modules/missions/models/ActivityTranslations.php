@@ -3,9 +3,7 @@
 namespace app\modules\missions\models;
 
 use Yii;
-
 use app\modules\languages\models\Languages;
-
 use yii\db\ActiveRecord;
 use yii\db\Expression;
 use yii\behaviors\TimestampBehavior;
@@ -20,6 +18,7 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $language_id
  * @property string $created_at
  * @property string $updated_at
+ * @property string $rubric
  *
  * @property Activities $activity
  * @property Languages $language
@@ -55,9 +54,9 @@ class ActivityTranslations extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'description', 'language_id'], 'required'],
+            [['activity_id', 'title', 'description', 'language_id', 'created_at', 'updated_at'], 'required'],
             [['activity_id', 'language_id'], 'integer'],
-            [['description'], 'string'],
+            [['description', 'rubric'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['title'], 'string', 'max' => 256],
             [['activity_id'], 'exist', 'skipOnError' => true, 'targetClass' => Activities::className(), 'targetAttribute' => ['activity_id' => 'id']],
@@ -71,13 +70,14 @@ class ActivityTranslations extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('MissionsModule.model', 'ID'),
-            'activity_id' => Yii::t('MissionsModule.model', 'Activity ID'),
-            'title' => Yii::t('MissionsModule.model', 'Title'),
-            'description' => Yii::t('MissionsModule.model', 'Description'),
-            'language_id' => Yii::t('MissionsModule.model', 'Language ID'),
-            'created_at' => Yii::t('MissionsModule.model', 'Created At'),
-            'updated_at' => Yii::t('MissionsModule.model', 'Updated At'),
+            'id' => Yii::t('app', 'ID'),
+            'activity_id' => Yii::t('app', 'Activity ID'),
+            'title' => Yii::t('app', 'Title'),
+            'description' => Yii::t('app', 'Description'),
+            'language_id' => Yii::t('app', 'Language ID'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
+            'rubric' => Yii::t('app', 'Rubric'),
         ];
     }
 

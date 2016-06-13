@@ -22,7 +22,7 @@ return [
     'Deny' => '',
     'Next' => '',
     'Please type at least 3 characters' => '',
-    'Save' => '',
+    'Save' => 'Salvar',
     '<strong>Latest</strong> updates' => '<strong>Últimas</strong> actualizaciones',
     'Account settings' => 'Configuración de la cuenta',
     'Administration' => 'Administración',

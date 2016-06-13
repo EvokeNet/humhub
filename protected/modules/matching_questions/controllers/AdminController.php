@@ -328,7 +328,10 @@ class AdminController extends \humhub\modules\admin\components\Controller
     
     public function actionIndexSuperheroIdentities()
     {
-        $identities = SuperheroIdentities::find()->all();
+        $identities = SuperheroIdentities::find()
+        ->where(['superhero_identity_id' => Yii::$app->request->get('id')])
+        ->all();
+        
         return $this->render('superhero-identities/index', array('identities' => $identities));
     }
     

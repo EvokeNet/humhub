@@ -82,6 +82,10 @@ class QualityPowers extends \yii\db\ActiveRecord
         return $this->hasOne(Qualities::className(), ['id' => 'quality_id']);
     }
 
+    public function getQualityObject(){
+        return  Qualities::findOne($this->quality_id);
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
