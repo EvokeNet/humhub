@@ -201,5 +201,30 @@ class EvidenceController extends ContentContainerController
         return $this->renderAjax('edit', ['evidence' => $model, 'edited' => $edited]);
     }
 
+    /**
+     * Reloads a single entry
+     */
+    public function actionReload()
+    {
+        $id = Yii::$app->request->get('id');
+        $model = Evidence::findOne(['id' => $id]);
+
+        if (!$model->content->canRead()) {
+            throw new HttpException(403, Yii::t('MissionsModule.controllers_PollController', 'Access denied!'));
+        }
+
+        return $this->renderAjaxContent($model->getWallOut(['justEdited' => true]));
+    }
+
+    public function actionReview(){
+        if (!Yii::$app->request->isAjax) {
+        }
+
+        echo "<pre>";
+        print_r(Yii::$app->request->get());
+        echo "</pre>";
+    }
+
+
 
 }

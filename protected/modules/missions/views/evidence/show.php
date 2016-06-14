@@ -65,7 +65,7 @@ function loadPopUps(){
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             if(xhttp.responseText){
                 document.getElementById("message-content").innerHTML = xhttp.responseText;
-                $("#popup-message   ").modal("show");
+                $("#popup-message").modal("show");
             }
         }
     };
