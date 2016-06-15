@@ -39,7 +39,7 @@ class m160609_053643_vote extends Migration
             'fk-votes-user_id',
             'votes',
             'user_id',
-            'users',
+            'user',
             'id',
             'CASCADE'
         );
