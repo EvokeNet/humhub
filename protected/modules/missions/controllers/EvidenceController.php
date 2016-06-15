@@ -16,6 +16,7 @@ use app\modules\languages\models\Languages;
 use app\modules\powers\models\UserPowers;
 use app\modules\powers\models\Powers;
 use app\modules\missions\models\ActivityPowers;
+use app\modules\missions\models\Votes;
 
 class EvidenceController extends ContentContainerController
 {
@@ -73,7 +74,7 @@ class EvidenceController extends ContentContainerController
         }
 
         if (Yii::$app->session->getFlash('evidence_created')) {
-           $message = "You just gained ";
+           $message = Yii::t('MissionsModule.base', 'You just gained').' ';
            $activityPowers = Yii::$app->session->getFlash('evidence_created');
 
            $count = 0;
@@ -83,14 +84,14 @@ class EvidenceController extends ContentContainerController
                 $count++;
 
                 if($count == $powersTotal - 1){
-                    $separator = " and ";
+                    $separator = ' '.Yii::t('MissionsModule.base', 'and').' ';
                 }elseif($count < $powersTotal - 1){
                     $separator = ", ";
                 }else{
                     $separator = ".";
                 }
 
-                $message = $message . $activity_power->value . " points in " . $activity_power->getPower()->title . $separator;
+                $message = $message . $activity_power->value . ' '. Yii::t('MissionsModule.base', 'and') . ' '. $activity_power->getPower()->title . $separator;
            }
 
             header('Content-Type: application/json; charset="UTF-8"');
@@ -217,12 +218,23 @@ class EvidenceController extends ContentContainerController
     }
 
     public function actionReview(){
-        if (!Yii::$app->request->isAjax) {
-        }
 
-        echo "<pre>";
-        print_r(Yii::$app->request->get());
-        echo "</pre>";
+        $flag = Yii::$app->request->get("opt") == "no" ? 0 : 1;
+        $grade = Yii::$app->request->get("grade");
+        $evidenceId = Yii::$app->request->get("evidenceId");
+
+        //If review is valid 
+        if(($flag == 0 || $grade >= 1) && $evidenceId){
+
+            $vote = new Votes();
+            $vote->activity_id = Evidence::findOne($evidenceId)->activities_id;
+            $vote->evidence_id = $evidenceId;
+            $vote->flag = $flag;
+            $vote->value = $grade;
+        }else{
+
+        }
+        
     }
 
 

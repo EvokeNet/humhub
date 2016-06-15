@@ -6,7 +6,7 @@
 
                 <div class="superhero_identity">
 
-                    <h3><?= Yii::t('MatchingModule.base', "Your Superhero Identity is:") ?>&nbsp;<strong><?= isset($superhero_identity->superheroIdentityTranslations[0]) ? $superhero_identity->superheroIdentityTranslations[0]->name : $superhero_identity->name ?></strong></h3>
+                    <h3><?= Yii::t('MatchingModule.base', "Your Agent Type is:") ?>&nbsp;<strong><?= isset($superhero_identity->superheroIdentityTranslations[0]) ? $superhero_identity->superheroIdentityTranslations[0]->name : $superhero_identity->name ?></strong></h3>
                     
                     <br>
                     

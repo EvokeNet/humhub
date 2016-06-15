@@ -17,9 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'APC' => '',
-    'File' => '',
-    'No caching (Testing only!)' => '',
+    'APC' => 'APC',
+    'File' => 'Archivo',
+    'No caching (Testing only!)' => 'Sin almacenamiento en caché (sólo prueba!)',
     'Cache Backend' => 'Modo de caché',
     'Default Expire Time (in seconds)' => 'Tiempo de expiración por defecto (en segundos)',
     'PHP APC Extension missing - Type not available!' => '¡Falta la extensión PHP APC - El tipo no está disponible!',

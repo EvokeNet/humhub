@@ -13,13 +13,17 @@ echo Breadcrumbs::widget([
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
 ]);
 
+$mission_title = isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title;
+
+$this->pageTitle = Yii::t('MissionsModule.base', 'Mission {mission}: Activities', array('mission' => $mission_title));
+
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
         
         <h2>
             <strong>
-                <?php echo Yii::t('MissionsModule.base', 'Mission:'); ?>&nbsp;<?= isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title ?>
+                <?php echo Yii::t('MissionsModule.base', 'Mission:'); ?>&nbsp;<?= $mission_title ?>
             </strong>
         </h2>
         

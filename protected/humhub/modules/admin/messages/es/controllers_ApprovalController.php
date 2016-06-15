@@ -25,13 +25,26 @@ return [
    <a href=\'{loginURL}\'>{loginURL}</a><br><br>
 
    Kind Regards<br>
-   {AdminName}<br><br>' => '',
+   {AdminName}<br><br>' => 'Hola {displayName},<br><br>
+
+   Tu cuenta ha sido activada.<br><br>
+
+   Haga clic aquí para ingresar:<br>
+   <a href=\'{loginURL}\'>{loginURL}</a><br><br>
+
+   Saludos cordiales<br>
+   {AdminName}<br><br>',
     'Hello {displayName},<br><br>
 
    your account request has been declined.<br><br>
 
    Kind Regards<br>
-   {AdminName}<br><br>' => '',
+   {AdminName}<br><br>' => 'Hola {displayName},<br><br>
+
+   La solicitud de cuenta ha sido rechazada.<br><br>
+
+   Saludos cordiales<br>
+   {AdminName}<br><br>',
     'Account Request for \'{displayName}\' has been approved.' => 'La solicitud de cuenta para \'{displayName}\' ha sido aprobada.',
     'Account Request for \'{displayName}\' has been declined.' => 'La solicitud de cuenta para \'{displayName}\' ha sido denegada.',
     'User not found!' => '¡Usuario no encontrado!',

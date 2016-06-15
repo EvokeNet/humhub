@@ -1500,7 +1500,7 @@ a.list-group-item.active:focus {
   margin-top: 0;
 }
 .modal-title {
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 200;
   color: #555;
 }
@@ -1527,7 +1527,7 @@ a.list-group-item.active:focus {
 }
 .modal-content .modal-body {
   padding: 20px;
-  font-size: 13px;
+  font-size: 17px;
 }
 .modal-content .modal-footer {
   margin-top: 0;

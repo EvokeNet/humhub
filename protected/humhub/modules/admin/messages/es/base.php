@@ -17,5 +17,5 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Add purchased module by licence key' => '',
+    'Add purchased module by licence key' => 'Añadir módulo adquiridos por clave de licencia',
 ];

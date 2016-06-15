@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Initializing database...' => '',
+    'Initializing database...' => 'La inicialización de la base de datos...',
     '<strong>Database</strong> Configuration' => 'Configuración de la <strong>base de datos</strong>',
     'Below you have to enter your database connection details. If you’re not sure about these, please contact your system administrator.' => 'Debajo tendrás que escribir la configuración de la base de datos. Si no estás seguro de ello, por favor, contacta con el administrador del sistema.',
     'Hostname of your MySQL Database Server (e.g. localhost if MySQL is running on the same machine)' => 'Servidor de la base de datos (ej. localhost si MySQL está corriendo en la misma máquina)',

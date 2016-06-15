@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'E-Mail Address Attribute' => '',
+    'E-Mail Address Attribute' => 'Atributo del Correo Electronico',
     'Base DN' => 'DN de base',
     'Enable LDAP Support' => 'Activar soporte LDAP',
     'Encryption' => 'Cifrado',
