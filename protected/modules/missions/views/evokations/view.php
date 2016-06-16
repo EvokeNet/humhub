@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <h5><?= Yii::t('MissionsModule.base', 'Google Drive Link: ') ?>&nbsp;<a href="//<?= $model->gdrive_url ?>"><?= $model->gdrive_url ?></a></h5><br>
             <h5><?= Yii::t('MissionsModule.base', 'Elevator Pitch:') ?></h5><br>
             
-            <iframe width="620" height="420" src="http://www.youtube.com/embed/<?php echo $model->getYouTubeCode($model->youtube_url)?>" frameborder="0" allowfullscreen></iframe>
+            <iframe width="640" height="420" src="http://www.youtube.com/embed/<?php echo $model->getYouTubeCode($model->youtube_url)?>" frameborder="0" allowfullscreen></iframe>
             <!--<iframe width="620" height="420" src="http://www.youtube.com/embed/<?php //echo $model->getYouTubeCode('https://www.youtube.com/watch?v=w12kbScuayI')?>" frameborder="0" allowfullscreen></iframe>-->
             <!--<iframe width="620" height="420" src="https://www.youtube.com/embed/nVWX67mWZGE" frameborder="0" allowfullscreen></iframe>-->
             <!--<iframe width="420" height="315" src="https://www.youtube.com/embed/watch?v=nVWX67mWZGE" frameborder="0" allowfullscreen></iframe>-->
