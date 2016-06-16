@@ -95,7 +95,7 @@ class Votes extends ContentActiveRecord
 
     public function beforeSave($insert){
         $this->content->user_id = $this->user_id;
-        $this->content->object_model = Votes::class;
+        $this->content->object_model = Votes::classname();
         $this->content->object_id = $this->id;
         return parent::beforeSave($insert);
     }
