@@ -41,7 +41,7 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
             <div>
                 <div class="col-xs-8">
                     <div class="padding-fromtop-5px margin-toleft-10">
-                        <a href="<?= $evokation_investment->getEvokationObject()->content->getUrl() ?>">
+                        <a href='<?= Url::to(['/missions/evokations/view', 'id' => $evokation_investment->getEvokationObject()->id, 'sguid' => $evokation_investment->getEvokationObject()->content->container->guid]); ?>'>
                             <?= $evokation_investment->getEvokationObject()->title ?>
                         </a>
                     </div>
@@ -50,7 +50,7 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                 <div class="col-xs-4">
                     <div class="container margin-toleft-25">
                         <div class="input-group spinner">
-                            <input id = "evokation_<?= $evokation_investment->evokation_id ?>" type="text" class="form-control" value="<?= $evokation_investment->investment ?>">
+                            <input id = "evokation_<?= $evokation_investment->evokation_id ?>" type="text" class="form-control investment_input" value="<?= $evokation_investment->investment ?>">
                             <input id = "oldvalue" type="hidden" value="<?= $evokation_investment->investment ?>">
                             <div class="input-group-btn-vertical">
                                 <button class="btn btn-default" type="button">
@@ -84,22 +84,53 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                     <?= Yii::t('MissionsModule.base', 'Total') ?>:  
                 </strong>
                 <div id="totalAmount" style="display: inline-block;">
-                  <?= $totalAmount ?>
+                    <?= $totalAmount ?>
                 </div>
                 <BR>
                 <strong>
                     <?= Yii::t('MissionsModule.base', 'Remaining') ?>:  
                 </strong>
                 <div id="remainingAmount" style="display: inline-block;">
-                  <?= $wallet->amount - $totalAmount ?>
+                    <?= $wallet->amount - $totalAmount ?>
                 </div>
             </div>
         </div>
     </div>
 
+    <div id="portfolio_status" class="panel-body">
+        Updating Portfolio
+    </div>
+
 </div>
 
 <style type="text/css">
+
+#portfolio_status{
+    color: red;
+    display: none;
+}
+
+#portfolio_status:after {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+  -webkit-animation: ellipsis steps(4,end) 900ms infinite;      
+  animation: ellipsis steps(4,end) 900ms infinite;
+  content: "\2026"; /* ascii code for the ellipsis character */
+  width: 0px;
+}
+
+@keyframes ellipsis {
+  to {
+    width: 20px;    
+  }
+}
+
+@-webkit-keyframes ellipsis {
+  to {
+    width: 20px;    
+  }
+}
 
 .padding-fromtop-5px{
     padding-top: 5px;
@@ -157,47 +188,105 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
 
 
 <script type="text/javascript">
-  var totalAmount = document.getElementById('totalAmount');
-  var remainingAmount = document.getElementById('remainingAmount');
+    var totalAmount = document.getElementById('totalAmount');
+    var remainingAmount = document.getElementById('remainingAmount');
+    var raiseInvestmentInterval, decreaseInvestmentInterval;
 
-    (function ($) {
+
+    function updatePortfolio() {
+        var evok_id, evok_value;
+        var evokations = {};
+
+        var evokation_array = document.getElementsByClassName('investment_input');
+
+        for(var x = 0; x < evokation_array.length; x++){
+            evok_value = evokation_array[x].value;
+            evok_id = evokation_array[x].id.slice(10);
+            evokations[evok_id] = evok_value;
+        }
+
+        $.ajax({
+            url: '/test/PersonSubmit',
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                $('#portfolio_status').hide();
+            },
+            data: evokations
+        });
+    }
+
+    function ($) {
       $('.spinner .btn:first-of-type').on('click', function(e) {
-        var inputInvestment = e.target.parentElement.parentElement.parentElement.getElementsByClassName('form-control');
-        inputInvestment[0].value = parseInt(inputInvestment[0].value) + 1;
-        totalAmount.innerHTML = parseInt(totalAmount.innerHTML) + 1;
-        remainingAmount.innerHTML = parseInt(remainingAmount.innerHTML) - 1;
+            var inputInvestment = e.target.parentElement.parentElement.parentElement.getElementsByClassName('form-control');
+            raiseInvestment(inputInvestment[0]);
+      });
+
+      $('.spinner .btn:first-of-type').mousedown(function(e) {
+            var inputInvestment = e.target.parentElement.parentElement.parentElement.getElementsByClassName('form-control');
+        
+            raiseInvestmentInterval = setInterval(function(){
+                raiseInvestment(inputInvestment[0]);
+            }, 150);
+      });
+
+      $('.spinner .btn:first-of-type').mouseup(function(e) {
+            var inputInvestment = e.target.parentElement.parentElement.parentElement.getElementsByClassName('form-control');
+            clearInterval(raiseInvestmentInterval);
       });
 
       $('.spinner .btn:last-of-type').on('click', function(e) {
-        var inputInvestment = e.target.parentElement.parentElement.parentElement.getElementsByClassName('form-control');
-        inputInvestment[0].value = parseInt(inputInvestment[0].value) - 1;
-        totalAmount.innerHTML = parseInt(totalAmount.innerHTML) - 1;
-        remainingAmount.innerHTML = parseInt(remainingAmount.innerHTML) + 1;
+            var inputInvestment = e.target.parentElement.parentElement.parentElement.getElementsByClassName('form-control');
+            decreaseInvestment(inputInvestment[0]);
       });
 
-      $('.form-control').change (function(e) {
-        var inputInvestment = e.target.value;
-        var oldInputInvestment = $(e.target).parent().find('#oldvalue');
-        var diff = 0;
-
-        //if new value is integer and >= 0
-        if (isInt(inputInvestment) && inputInvestment >= 0){
-            diff = parseInt(inputInvestment) - parseInt(oldInputInvestment.val());
-            oldInputInvestment.val(inputInvestment);
-            totalAmount.innerHTML = parseInt(totalAmount.innerHTML) + diff;
-            remainingAmount.innerHTML = parseInt(remainingAmount.innerHTML) - diff;
-        }
-
+      $('.spinner .btn:last-of-type').mousedown(function(e) {
+            var inputInvestment = e.target.parentElement.parentElement.parentElement.getElementsByClassName('form-control');
+        
+            decreaseInvestmentInterval = setInterval(function(){
+                decreaseInvestment(inputInvestment[0]);
+            }, 150);
       });
 
+      $('.spinner .btn:last-of-type').mouseup(function(e) {
+            var inputInvestment = e.target.parentElement.parentElement.parentElement.getElementsByClassName('form-control');
+            clearInterval(decreaseInvestmentInterval);
+      });
 
-
+      $('.form-control').change(function(e) {
+            var inputInvestment = e.target.value;
+            change(e.target, inputInvestment);
+      });
 
     })(jQuery);
 
-    function change(inputInvestment, diff){
-        var oldInputInvestment = $(e.target).parent().find('#oldvalue');
+    function raiseInvestment(target){
+        target.value = parseInt(target.value) + 1;
+        change(target, target.value)
+    }
 
+    function decreaseInvestment(target){
+        if(target.value > 0){
+            target.value = parseInt(target.value) - 1;
+            change(target, target.value)
+        }
+    }
+
+    function change(target, inputInvestment){
+        var oldInputInvestment = $(target).parent().find('#oldvalue');
+
+        if (isInt(inputInvestment) && inputInvestment >= 0){
+            diff = parseInt(inputInvestment) - parseInt(oldInputInvestment.val());
+            newRemainingValue = parseInt(remainingAmount.innerHTML) - diff;
+
+            if(newRemainingValue >=0){
+              oldInputInvestment.val(inputInvestment);
+              totalAmount.innerHTML = parseInt(totalAmount.innerHTML) + diff;
+              remainingAmount.innerHTML = newRemainingValue;
+            }else{
+              target.value = oldInputInvestment.val();
+            }          
+        }
     }
 
     function isInt(value) {
