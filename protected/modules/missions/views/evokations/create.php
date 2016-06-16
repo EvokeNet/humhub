@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?php
 
-$canCreateEvokations = $contentContainer->permissionManager->can(new \humhub\modules\missions\permissions\CreateEvidence());
+$canCreateEvokations = $contentContainer->permissionManager->can(new \humhub\modules\missions\permissions\CreateEvokation());
 
 echo \app\modules\missions\widgets\EvokationStream::widget(array(
     'contentContainer' => $contentContainer,
