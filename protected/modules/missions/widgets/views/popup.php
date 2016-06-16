@@ -1,3 +1,4 @@
+<?php use yii\helpers\Url; ?>
 <!-- POPUP -->
 
 <div id="popup-message" class="modal fade" role="dialog">
@@ -34,14 +35,18 @@ function loadPopUps(){
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             if(xhttp.responseText){
               var message = JSON.parse(xhttp.responseText);
-              document.getElementById("message-title").innerHTML = message['title'];
-              document.getElementById("message-content").innerHTML = message['message'];
-              $("#popup-message").modal("show");
+              showMessage(message['title'], message['message']);
             }
         }
     };
-    xhttp.open("GET", "<?= $space->createUrl('/missions/alert/alert'); ?>" , true);
+    xhttp.open("GET", "<?= Url::toRoute('/missions/alert/alert'); ?>" , true);
     xhttp.send();
+}
+
+function showMessage(title, message){
+  document.getElementById("message-title").innerHTML = title;
+  document.getElementById("message-content").innerHTML = message;
+  $("#popup-message").modal("show");
 }
 
 </script>

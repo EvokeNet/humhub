@@ -4,6 +4,8 @@ namespace app\modules\missions\models;
 
 use Yii;
 use humhub\modules\user\models\User;
+use app\modules\missions\models\Evidence;
+use humhub\modules\content\components\ContentActiveRecord;
 
 /**
  * This is the model class for table "votes".
@@ -21,7 +23,7 @@ use humhub\modules\user\models\User;
  * @property Evidence $evidence
  * @property Powers $power
  */
-class Votes extends \yii\db\ActiveRecord
+class Votes extends ContentActiveRecord
 {
     /**
      * @inheritdoc
@@ -87,6 +89,35 @@ class Votes extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }    
+
+    public function beforeSave($insert){
+        $this->content->user_id = $this->user_id;
+        $this->content->object_model = Votes::class;
+        $this->content->object_id = $this->id;
+        return parent::beforeSave($insert);
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        
+        if ($insert && !$this->flag) {
+            $evidence = Evidence::findOne($this->evidence_id);
+            $author = User::findOne($this->evidence->content->user_id);
+
+            $notification = new \humhub\modules\missions\notifications\RejectedEvidence();
+            $notification->source = $this;
+            $notification->originator = Yii::$app->user->getIdentity();
+            $notification->send($author);
+        }
+
+        return parent::afterSave($insert, $changedAttributes);
+
+    }   
+
+    public function getUrl(){
+        $evidence = Evidence::findOne($this->evidence_id);
+        return $evidence->content->getUrl();
+    }
 
 
 }

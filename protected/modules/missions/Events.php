@@ -26,13 +26,16 @@ use app\modules\powers\models\UserPowers;
 class Events
 {
 
+    public static function onDashboardSidebarInit($event){
+        $event->sender->addWidget(PopUpWidget::className(), []);
+    }
 
     public static function onSidebarInit($event)
     {
         
         if (Yii::$app->user->isGuest || Yii::$app->user->getIdentity()->getSetting("hideSharePanel", "share") != 1) {
             $space = $event->sender->space;
-            $event->sender->addWidget(PopUpWidget::className(), array('space' => $space));
+            $event->sender->addWidget(PopUpWidget::className(), []);
             $event->sender->addWidget(EvidenceWidget::className(), array('space' => $space), array('sortOrder' => 9));
         }
         

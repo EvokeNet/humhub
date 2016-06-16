@@ -8,7 +8,6 @@ use yii\db\ActiveRecord;
 use app\modules\languages\models\Languages;
 use app\modules\space\models\Space;
 use app\modules\user\models\User;
-
 use yii\db\Expression;
 use yii\behaviors\TimestampBehavior;
 

@@ -26,6 +26,7 @@ $activity = $evidence->getActivities();
 <?php echo Html::endForm(); ?>
 
 <BR>
+<?php if($evidence->content->user_id != Yii::$app->user->getIdentity()->id): ?>  
 <div class="panel-group">
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -92,6 +93,7 @@ $activity = $evidence->getActivities();
     </div>
   </div>
 </div>
+<?php endif; ?> 
 
 
 <style type="text/css">
@@ -103,11 +105,6 @@ $activity = $evidence->getActivities();
 </style>
 
 <script>
-
-function updateReview(id, opt, grade){
-  //deprecated
-  //$("#collapseEvidence" + id).empty();
-}
 
 function review(id, opt, grade){
     grade = grade? grade : 0;
@@ -140,12 +137,12 @@ function validateReview<?= $evidence->id ?>(id){
 			return review(id, opt, grade);
 		}
 
-		//message("Error", "Choose how many points you will award this evidence.");
+		showMessage("Error", "Choose how many points you will award this evidence.");
 		
 	}else if(opt == "no"){
 		return review(id, opt);
 	}else{
-    //message("Error", "Please, Answer yes or no.");
+    showMessage("Error", "Please, Answer yes or no.");
   }
 
 	return false;

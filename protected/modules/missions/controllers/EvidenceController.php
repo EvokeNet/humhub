@@ -18,6 +18,7 @@ use app\modules\powers\models\Powers;
 use app\modules\missions\models\ActivityPowers;
 use app\modules\missions\models\Votes;
 use humhub\modules\missions\controllers\AlertController;
+use humhub\modules\user\models\User;
 
 class EvidenceController extends ContentContainerController
 {
@@ -143,21 +144,7 @@ class EvidenceController extends ContentContainerController
 
         //USER POWER POINTS
         foreach($activityPowers as $activity_power){
-            $userPower = UserPowers::findOne(['power_id' => $activity_power->power_id, 'user_id' => $user->id]);
-            if(isset($userPower)){
-                if(!isset($userPower->value)){
-                    $userPower->value = 0;
-                }
-                $userPower->value += $activity_power->value;
-                $userPower->save();
-            }else{
-                $userPower = new UserPowers();
-                $userPower->user_id = $user->id;
-                $userPower->power_id = $activity_power->power_id;
-                $userPower->value = $activity_power->value;
-                $userPower->save();
-            }
-            
+            UserPowers::addPowerPoint($activity_power->getPower(), $user, $activity_power->value);
         }
 
         $message = $this->getEvidenceCreatedMessage($activityPowers);
@@ -221,11 +208,17 @@ class EvidenceController extends ContentContainerController
         $flag = Yii::$app->request->get("opt") == "no" ? 0 : 1;
         $grade = Yii::$app->request->get("grade");
         $evidenceId = Yii::$app->request->get("evidenceId");
+        $evidence = $evidenceId ? Evidence::findOne($evidenceId) : null;
 
         $vote = Votes::findOne(['user_id' => $user->id, 'evidence_id' => $evidenceId]);
 
-        //If review is valid 
-        if(($flag == 0 || $grade >= 1) && $evidenceId){
+        /*
+            Check if review is valid:
+            *** - it has a 'no' vote or a 1-5 'yes' vote
+            *** - it has an evidence id associated
+            *** - evidence author isn't the same user who's reviewing
+        */
+        if(($flag == 0 || $grade >= 1) && $evidenceId && $evidence->content->user_id != $user->id){
 
             //if user's editing vote
             if($vote){
@@ -240,30 +233,21 @@ class EvidenceController extends ContentContainerController
                 //SAVE VOTE
                 $vote = new Votes();
                 $vote->user_id = $user->id;
-                $vote->activity_id = Evidence::findOne($evidenceId)->activities_id;
+                $vote->activity_id = $evidence->activities_id;
                 $vote->evidence_id = $evidenceId;
                 $vote->flag = $flag;
                 $vote->value = $grade;
                 $vote->save();
 
-                //SAVE POWER POINTS
-                $power = Activities::findOne($vote->activity_id)->getPrimaryPowers()[0]->getPower();
-                $userPower = UserPowers::findOne(['power_id' => $power->id, 'user_id' => $user->id]);
-                if(isset($userPower)){
-                    if(!isset($userPower->value)){
-                        $userPower->value = 0;
-                    }
-                    $userPower->value += 10;
-                    $userPower->save();
-                }else{
-                    $userPower = new UserPowers();
-                    $userPower->user_id = $user->id;
-                    $userPower->power_id = $power->id;
-                    $userPower->value = 10;
-                    $userPower->save();
-                }       
+                //Reward reviewer
+                $activityPower = Activities::findOne($vote->activity_id)->getPrimaryPowers()[0];
+                UserPowers::addPowerPoint($activityPower->getPower(), $user, 10);
+                //Reward evidence author
+                if($flag){
+                    UserPowers::addPowerPoint($activityPower->getPower(), User::findOne($evidence->content->user_id), $grade);
+                }
 
-                $message = "You just gained 10 points in ".$power->title;
+                $message = "You just gained 10 points in ".$activityPower->getPower()->title;
 
                 AlertController::createAlert("Congratulations!", $message.".<BR>Thank you for your review.");
             }

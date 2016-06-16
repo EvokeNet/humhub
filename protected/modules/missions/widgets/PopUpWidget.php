@@ -7,14 +7,13 @@ use \yii\base\Widget;
 class PopUpWidget extends \yii\base\Widget
 {
 
-	public $space;
 
     /**
      * @inheritdoc
      */
     public function run()
     {
-        return $this->render('popup', array('space' => $this->space));
+        return $this->render('popup', []);
     }
 
 }
