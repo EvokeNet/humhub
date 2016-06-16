@@ -1,0 +1,22 @@
+<?php
+
+namespace humhub\modules\missions\widgets;
+
+use \yii\base\Widget;
+
+class PopUpWidget extends \yii\base\Widget
+{
+
+	public $space;
+
+    /**
+     * @inheritdoc
+     */
+    public function run()
+    {
+        return $this->render('popup', array('space' => $this->space));
+    }
+
+}
+
+?>

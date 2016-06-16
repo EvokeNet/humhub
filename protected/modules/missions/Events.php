@@ -12,6 +12,7 @@ use Yii;
 use yii\helpers\Url;
 use humhub\models\Setting;
 use humhub\modules\missions\widgets\EvidenceWidget;
+use humhub\modules\missions\widgets\PopUpWidget;
 use humhub\modules\space\models\Space;
 use app\modules\missions\models\Evidence;
 use app\modules\missions\models\ActivityPowers;
@@ -25,31 +26,13 @@ use app\modules\powers\models\UserPowers;
 class Events
 {
 
-    /**
-     * On build of the TopMenu, check if module is enabled
-     * When enabled add a menu item
-     *
-     * @param type $event
-     */
-    public static function onTopMenuInit($event)
-    {
-
-        // Is Module enabled on this workspace?
-        $event->sender->addItem(array(
-            'label' => Yii::t('MissionsModule.base', 'Missions'),
-            'id' => 'missions',
-            'icon' => '<i class="fa fa-sitemap"></i>',
-            'url' => Url::toRoute('/missions/missions'),
-            'sortOrder' => 100,
-            'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id != 'admin'),
-        ));
-    }
 
     public static function onSidebarInit($event)
     {
+        
         if (Yii::$app->user->isGuest || Yii::$app->user->getIdentity()->getSetting("hideSharePanel", "share") != 1) {
-            //$event->sender->addWidget(ShareWidget::className(), array(), array('sortOrder' => 150));
             $space = $event->sender->space;
+            $event->sender->addWidget(PopUpWidget::className(), array('space' => $space));
             $event->sender->addWidget(EvidenceWidget::className(), array('space' => $space), array('sortOrder' => 9));
         }
         
@@ -65,20 +48,6 @@ class Events
             'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'admin'),
         ));
     }
-    
-    // public static function onSpaceAdminMenuInit($event)
-    // {
-    //     $space = $event->sender->space;
-    //     if ($space->isModuleEnabled('missions') && $space->isAdmin() && $space->isMember()) {
-    //         $event->sender->addItem(array(
-    //             'label' => Yii::t('MissionsModule.base', 'Missions'),
-    //             'group' => 'admin',
-    //             'url' => $space->createUrl('/missions/admin'),
-    //             'icon' => '<i class="fa fa-th"></i>',
-    //             'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'container' && Yii::$app->controller->action->id != 'view'),
-    //         ));
-    //     }
-    // }
 
 
      /**

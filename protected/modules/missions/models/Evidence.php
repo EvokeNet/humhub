@@ -160,6 +160,30 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
         return $this->id;
     }
 
+    public function hasUserVoted($userId = "")
+    {
+
+        if ($userId == "")
+            $userId = Yii::$app->user->id;
+
+        $vote = Votes::findOne(array('user_id' => $userId, 'evidence_id' => $this->id));
+
+        if ($vote == null)
+            return false;
+
+        return true;
+    }    
+
+
+    public function getUserVote($userId = "")
+    {
+
+        if ($userId == "")
+            $userId = Yii::$app->user->id;
+
+        return Votes::findOne(array('user_id' => $userId, 'evidence_id' => $this->id));
+    }    
+
     /**
      * After Saving of comments, fire an activity
      *

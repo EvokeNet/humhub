@@ -3,6 +3,7 @@
 namespace app\modules\missions\models;
 
 use Yii;
+use humhub\modules\user\models\User;
 
 /**
  * This is the model class for table "votes".
@@ -36,12 +37,12 @@ class Votes extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['activity_id', 'evidence_id', 'power_id', 'flag', 'value'], 'required'],
-            [['activity_id', 'evidence_id', 'power_id', 'flag', 'value'], 'integer'],
+            [['activity_id', 'evidence_id', 'user_id', 'flag', 'value'], 'required'],
+            [['activity_id', 'evidence_id', 'user_id', 'flag', 'value'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['activity_id'], 'exist', 'skipOnError' => true, 'targetClass' => Activities::className(), 'targetAttribute' => ['activity_id' => 'id']],
             [['evidence_id'], 'exist', 'skipOnError' => true, 'targetClass' => Evidence::className(), 'targetAttribute' => ['evidence_id' => 'id']],
-            [['power_id'], 'exist', 'skipOnError' => true, 'targetClass' => Powers::className(), 'targetAttribute' => ['power_id' => 'id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -54,7 +55,7 @@ class Votes extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'activity_id' => Yii::t('app', 'Activity ID'),
             'evidence_id' => Yii::t('app', 'Evidence ID'),
-            'power_id' => Yii::t('app', 'Power ID'),
+            'user_id' => Yii::t('app', 'User ID'),
             'flag' => Yii::t('app', 'Flag'),
             'value' => Yii::t('app', 'Value'),
             'created_at' => Yii::t('app', 'Created At'),
@@ -82,8 +83,10 @@ class Votes extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPower()
+    public function getUser()
     {
-        return $this->hasOne(Powers::className(), ['id' => 'power_id']);
-    }
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }    
+
+
 }

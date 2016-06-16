@@ -6,28 +6,6 @@ echo Html::beginForm();
 $activity = $evidence->getActivities();
 ?>
 
-<div id="error-message" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 id="error-message-title" class="modal-title">
-            Error
-        </h4>
-      </div>
-      <div id="error-message-content" class="modal-body">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">
-            Close
-        </button>
-      </div>
-    </div>
-
-  </div>
-</div>
-
 <strong>
    <?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?>
 </strong>
@@ -59,45 +37,58 @@ $activity = $evidence->getActivities();
     </div>
 
     <div id="collapseEvidence<?= $evidence->id ?>" class="panel-collapse collapse">
-    	<h2>Distribute points for Curiosity</h2>
-    	<p>
-    		Here is  the question that confirms whether or not the evidence is sufficient.
-    		Here is  the question that confirms whether or not the evidence is sufficient.
-    		Here is  the question that confirms whether or not the evidence is sufficient.
-    	</p>
-    	<form id = "review<?= $evidence->id ?>" class="review">
-    		<div class="radio">
-  				<label>
-  					<input type="radio" name="yes-no-opt<?= $evidence->id ?>" class="btn-show<?= $evidence->id ?>" value="yes">
-  					Yes
-  				</label>
-  				<div id="yes-opt<?= $evidence->id ?>" class="collapse">
-  					<?php for ($x=1; $x <= 5; $x++): ?> 
-  					<label class="radio-inline">
-  						<input type="radio" name="grade<?= $evidence->id ?>" value="<?= $x?>">
-  						<?php echo $x; ?>
-  					</label>
-  					<?php endfor; ?>
-  					<p>
-  						How many points will you award this evidence?
-  					</p>
-  				</div>
-			  </div>
-			  <div class="radio">
-				  <label>
-					 <input type="radio" name="yes-no-opt<?= $evidence->id ?>" class="btn-hide<?= $evidence->id ?>" value="no">
-					 No
-				  </label>
-			  </div>
-			  <br>
-			  <br>
-			  For every piece of evidence you review, you receive 10 points.
-			  <br>
-
-			  <button type="submit" id="post_submit_review" class="btn btn-info">
-				  Submit Review
-			  </button>
-    	</form>
+        <?php
+          $collapse = "";
+          $yes = "";
+          $no = "";
+          $grade = 0;
+          $vote = $evidence->getUserVote();
+          if($vote){
+            $yes = $vote->flag ? "checked" : "";
+            $collapse = $yes ? "in" : "";
+            $no = !$vote->flag ? "checked" : "";
+            $grade = $vote->value;
+          }        
+        ?>
+        <div>
+          <?php $primaryPowerTitle = $activity->getPrimaryPowers()[0]->getPower()->title ?>
+        	<h2>Distribute points for <?= $primaryPowerTitle ?></h2>
+        	<p>
+        		<?= $activity->rubric ?>
+        	</p>
+        	<form id = "review<?= $evidence->id ?>" class="review">
+        		<div class="radio">
+      				<label>
+      					<input type="radio" name="yes-no-opt<?= $evidence->id ?>" class="btn-show<?= $evidence->id ?>" value="yes" <?= $yes ?> >
+      					Yes
+      				</label>
+      				<div id="yes-opt<?= $evidence->id ?>" class="collapse <?= $collapse ?>">
+      					<?php for ($x=1; $x <= 5; $x++): ?> 
+      					<label class="radio-inline">
+      						<input type="radio" name="grade<?= $evidence->id ?>" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> >
+      						<?php echo $x; ?>
+      					</label>
+      					<?php endfor; ?>
+      					<p>
+      						How many points will you award this evidence?
+      					</p>
+      				</div>
+    			  </div>
+    			  <div class="radio">
+    				  <label>
+    					<input type="radio" name="yes-no-opt<?= $evidence->id ?>" class="btn-hide<?= $evidence->id ?>" value="no" <?= $no ?>>
+    					 No
+    				  </label>
+    			  </div>
+    			  <br>
+    			  <br>
+    			  For every piece of evidence you review, you receive 10 points in <?= $primaryPowerTitle ?>.
+    			  <br>
+    			  <button type="submit" id="post_submit_review" class="btn btn-info">
+    				  Submit Review
+    			  </button>
+        	</form>
+        </div>
     </div>
   </div>
 </div>
@@ -113,10 +104,9 @@ $activity = $evidence->getActivities();
 
 <script>
 
-function message(title, message){
-	document.getElementById("error-message-content").innerHTML = message;
-	document.getElementById("error-message-title").innerHTML = title;
-  $("#error-message").modal("show");
+function updateReview(id, opt, grade){
+  //deprecated
+  //$("#collapseEvidence" + id).empty();
 }
 
 function review(id, opt, grade){
@@ -125,8 +115,9 @@ function review(id, opt, grade){
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             if(xhttp.responseText){
-              document.getElementById("error-message-content").innerHTML = xhttp.responseText;
-              $("#error-message").modal("show");
+              if(xhttp.responseText == "success"){
+                updateReview(id, opt, grade);
+              }
             }
         }
     };
@@ -149,12 +140,12 @@ function validateReview<?= $evidence->id ?>(id){
 			return review(id, opt, grade);
 		}
 
-		message("Error", "Choose how many points you will award this evidence.");
+		//message("Error", "Choose how many points you will award this evidence.");
 		
 	}else if(opt == "no"){
 		return review(id, opt);
 	}else{
-    message("Error", "Please, Answer yes or no.");
+    //message("Error", "Please, Answer yes or no.");
   }
 
 	return false;
