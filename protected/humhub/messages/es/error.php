@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'An internal server error occurred.' => '',
-    'You are not allowed to perform this action.' => '',
+    'An internal server error occurred.' => 'Ocorrió un error interno del servidor',
+    'You are not allowed to perform this action.' => 'No se le permite llevar a cabo esta acción',
     '<strong>Login</strong> required' => 'Es necesario <strong>iniciar sesión</strong>',
 ];

@@ -17,9 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    '<strong>Share</strong> your opinion with others' => '',
-    'Post a message on Facebook' => '',
-    'Share on Google+' => '',
-    'Share with people on LinkedIn ' => '',
-    'Tweet about HumHub' => '',
+    '<strong>Share</strong> your opinion with others' => '<strong>Comparte</strong> tu opinión con otras personas',
+    'Post a message on Facebook' => 'Publicar un mensaje en Facebook',
+    'Share on Google+' => 'Compartir en Google+',
+    'Share with people on LinkedIn ' => 'Compartir en LinkedIn',
+    'Tweet about HumHub' => 'Tweet acerca de HumHub',
 ];

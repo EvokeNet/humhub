@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'LDAP Attribute for E-Mail Address. Default: &quotmail&quot;' => '',
+    'LDAP Attribute for E-Mail Address. Default: &quotmail&quot;' => 'Atributo LDAP para la dirección de correo electrónico. Defecto: &quotmail&quot;',
     '<strong>Authentication</strong> - LDAP' => '<strong>Autenticación</strong> - LDAP',
     'A TLS/SSL is strongly favored in production environments to prevent passwords from be transmitted in clear text.' => 'Una conexión TLS/SSL es altamente recomendada en entornos de producción para evitar que las contraseñas se transmitan en texto claro.',
     'Basic' => 'Básica',

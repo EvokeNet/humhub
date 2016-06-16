@@ -17,11 +17,11 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Allow' => '',
-    'Default' => '',
-    'Deny' => '',
-    'Next' => '',
-    'Please type at least 3 characters' => '',
+    'Allow' => 'Permitir',
+    'Default' => 'Por Defecto',
+    'Deny' => 'Negar',
+    'Next' => 'Siguiente',
+    'Please type at least 3 characters' => 'Por favor, escriba al menos 3 caracteres',
     'Save' => 'Salvar',
     '<strong>Latest</strong> updates' => '<strong>Últimas</strong> actualizaciones',
     'Account settings' => 'Configuración de la cuenta',

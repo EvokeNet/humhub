@@ -8,7 +8,6 @@ use yii\db\ActiveRecord;
 use app\modules\languages\models\Languages;
 use app\modules\space\models\Space;
 use app\modules\user\models\User;
-
 use yii\db\Expression;
 use yii\behaviors\TimestampBehavior;
 
@@ -159,6 +158,30 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
     public function getId(){
         return $this->id;
     }
+
+    public function hasUserVoted($userId = "")
+    {
+
+        if ($userId == "")
+            $userId = Yii::$app->user->id;
+
+        $vote = Votes::findOne(array('user_id' => $userId, 'evidence_id' => $this->id));
+
+        if ($vote == null)
+            return false;
+
+        return true;
+    }    
+
+
+    public function getUserVote($userId = "")
+    {
+
+        if ($userId == "")
+            $userId = Yii::$app->user->id;
+
+        return Votes::findOne(array('user_id' => $userId, 'evidence_id' => $this->id));
+    }    
 
     /**
      * After Saving of comments, fire an activity

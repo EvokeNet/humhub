@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Default Content Visiblity' => '',
+    'Default Content Visiblity' => 'Visiblidad de contenido predeterminado',
     'Default Join Policy' => 'Política de unión por defecto',
     'Default Visibility' => 'Visibilidad por defecto',
 ];
