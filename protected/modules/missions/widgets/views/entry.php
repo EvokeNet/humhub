@@ -139,13 +139,13 @@ function validateReview<?= $evidence->id ?>(id){
 		}
 
 		// showMessage("Error", "Choose how many points you will award this evidence.");
-    showMessage("Error", <?= Yii::t('MissionsModule.base', 'Choose how many points you will award this evidence.') ?>);
+    showMessage("Error", "<?= Yii::t('MissionsModule.base', 'Choose how many points you will award this evidence.') ?>");
 		
 	} else if(opt == "no"){
 		return review(id, opt);
 	} else{
     // showMessage("Error", "Please, Answer yes or no.");
-    showMessage("Error", <?= Yii::t('MissionsModule.base', 'Please, Answer yes or no.') ?>);
+    showMessage("Error", "<?= Yii::t('MissionsModule.base', 'Please, Answer yes or no.') ?>");
   }
 
 	return false;
