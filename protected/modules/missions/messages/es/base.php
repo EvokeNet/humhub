@@ -89,7 +89,7 @@ return [
     'View Translations' => 'Ver Traducciones',
     'View translations' => 'Ver traducciones',
     'You just gained' => 'Has ganado',
-    'You just gained 10 points in {message}' => 'Has ganado 10 puntos en {mensaje}',
+    'You just gained 10 points in {message}' => 'Has ganado 10 puntos en {message}',
     'Your review was updated!' => 'Su revisión fue actualizado!',
     'and' => 'y',
     'point' => 'punto',

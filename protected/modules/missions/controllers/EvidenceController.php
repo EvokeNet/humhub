@@ -91,7 +91,7 @@ class EvidenceController extends ContentContainerController
                 $pointString = Yii::t('MissionsModule.base', 'point');
             }
 
-            $message = $message . $activity_power->value . ' '. $pointString . Yii::t('MissionsModule.base', 'in'). $activity_power->getPower()->title . $separator;
+            $message = $message . $activity_power->value . ' '. $pointString .' '. Yii::t('MissionsModule.base', 'in').' '. $activity_power->getPower()->title . $separator;
        }
 
        return $message;
@@ -222,10 +222,15 @@ class EvidenceController extends ContentContainerController
 
             //if user's editing vote
             if($vote){
+                $pointChange = $grade - $vote->value;
 
                 $vote->flag = $flag;
                 $vote->value = $grade;
                 $vote->save();
+
+                //updated evidence author's reward
+                $activityPower = Activities::findOne($vote->activity_id)->getPrimaryPowers()[0];
+                UserPowers::addPowerPoint($activityPower->getPower(), User::findOne($evidence->content->user_id), $pointChange);
 
                 // AlertController::createAlert("Congratulations!", "Your review was updated!");
                 AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', 'Your review was updated!'));
