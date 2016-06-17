@@ -88,6 +88,7 @@ return [
     'View Translations' => '',
     'View translations' => '',
     'You just gained' => '',
+    'You just gained 10 points in {message}' => '',
     'Your review was updated!' => '',
     'and' => '',
     '{message}. <BR>Thank you for your review.' => '',

@@ -17,6 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'No, it does not meet the activity\'s requirement' => 'No, no cumple con el requisito de la actividad',
     'Activities' => 'Actividades',
     'Activities ID' => 'Identificación de Actividades',
     'Activity ID' => 'Identificación de Actividad',
