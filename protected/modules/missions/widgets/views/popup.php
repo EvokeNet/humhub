@@ -15,7 +15,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">
-            Close
+            <?= Yii::t('MissionsModule.base', 'Close') ?>
         </button>
       </div>
     </div>

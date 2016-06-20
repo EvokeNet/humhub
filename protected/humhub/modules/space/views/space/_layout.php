@@ -25,8 +25,8 @@ $space = $this->context->contentContainer;
             <div class="col-md-3 layout-sidebar-container">
                 <?php
                 echo \humhub\modules\space\widgets\Sidebar::widget(['space' => $space, 'widgets' => [
-                        [\humhub\modules\activity\widgets\Stream::className(), ['streamAction' => '/space/space/stream', 'contentContainer' => $space], ['sortOrder' => 10]],
-                        [\humhub\modules\space\modules\manage\widgets\PendingApprovals::className(), ['space' => $space], ['sortOrder' => 20]],
+                        [\humhub\modules\space\modules\manage\widgets\PendingApprovals::className(), ['space' => $space], ['sortOrder' => 10]],
+                        [\humhub\modules\activity\widgets\Stream::className(), ['streamAction' => '/space/space/stream', 'contentContainer' => $space], ['sortOrder' => 20]],
                         [\humhub\modules\space\widgets\Members::className(), ['space' => $space], ['sortOrder' => 30]]
                 ]]);
                 ?>

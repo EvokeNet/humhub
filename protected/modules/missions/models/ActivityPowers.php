@@ -7,6 +7,7 @@ use yii\db\ActiveRecord;
 use yii\db\Expression;
 use yii\behaviors\TimestampBehavior;
 use app\modules\powers\models\Powers;
+use app\modules\languages\models\Languages;
 
 /**
  * This is the model class for table "activity_powers".
@@ -81,8 +82,28 @@ class ActivityPowers extends \yii\db\ActiveRecord
      * @return \yii\db\ActiveQuery
      */
     public function getPower()
-    {
-        return Powers::findOne($this->power_id);
+    {        
+        //return Powers::findOne($this->power_id);
+        
+        $power = Powers::find()
+        ->where(['=', 'id', $this->power_id])
+        ->with([
+            'powerTranslations' => function ($query) {
+                // $lang = Languages::findOne(['code' => Yii::$app->language]);
+                // $query->andWhere(['language_id' => $lang->id]);
+                
+                $lang = Languages::findOne(['code' => Yii::$app->language]);
+                
+                if(isset($lang))
+                    $query->andWhere(['language_id' => $lang->id]);
+                else{
+                    $lang = Languages::findOne(['code' => 'en-US']);
+                    $query->andWhere(['language_id' => $lang->id]);
+                }
+            },
+        ])->one();
+        
+        return $power;
     }
 
     /**

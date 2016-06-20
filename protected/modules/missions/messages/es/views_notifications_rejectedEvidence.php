@@ -17,12 +17,5 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Content' => '',
-    'Edit your Evidence content...' => '',
-    'Edit your Evidence title...' => '',
-    'Page Title' => '',
-    'Primary power:' => '',
-    'Rubric:' => '',
-    'Secondary power:' => '',
-    'points' => '',
+    '%displayName% marked %contentTitle% as: ' => '%displayName% marcado %contentTitle% como: ',
 ];
