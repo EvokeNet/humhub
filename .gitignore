@@ -1,6 +1,8 @@
 protected/runtime/*
 !protected/runtime/.gitignore
-!protected/runtime/searchdb
+
+protected/runtime/searchdb/*
+!protected/runtime/searchdb/.gitignore
 
 protected/config/*
 !protected/config/.gitignore
