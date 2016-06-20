@@ -1,27 +1,32 @@
-protected/runtime/*
-!protected/runtime/.gitignore
-!protected/runtime/searchdb
+assets/*
+!assets/.gitignore
 
 protected/config/*
 !protected/config/.gitignore
 
 protected/data/*.db
 
-assets/*
-!assets/.gitignore
+protected/runtime/*
+!protected/runtime/.gitignore
+
+protected/runtime/searchdb/*
+!protected/runtime/searchdb/.gitignore
 
 uploads/*
 ​
 protected/modules/books
 protected/modules/custom_pages
 protected/modules/mail
+protected/modules/notes
 protected/modules/polls
 protected/modules/birthday
 protected/modules/breakingnews
 protected/modules/wiki
+
 protected/modules/books/*
 protected/modules/custom_pages/*
 protected/modules/mail/*
+protected/modules/notes/*
 protected/modules/polls/*
 protected/modules/birthday/*
 protected/modules/birthday/*
