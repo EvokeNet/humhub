@@ -1,6 +1,8 @@
 assets/*
 !assets/.gitignore
 
+etherpad/
+
 protected/config/*
 !protected/config/.gitignore
 
