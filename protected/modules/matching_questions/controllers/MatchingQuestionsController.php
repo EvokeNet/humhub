@@ -91,6 +91,7 @@ class MatchingQuestionsController extends Controller
                     $matching_question = (int) substr($key, strrpos($key, "_") + 1, strlen($key) - 1);  
 
                     if(!$answer){
+                        Yii::$app->session->setFlash('matching_questions_incomplete_answers');
                         return $this->redirectQuestionnaire();
                     }
 

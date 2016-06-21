@@ -30,7 +30,7 @@ class EvidenceController extends ContentContainerController
                 'class' => \humhub\modules\missions\components\StreamAction::className(),
                 'mode' => \humhub\modules\missions\components\StreamAction::MODE_NORMAL,
                 'contentContainer' => $this->contentContainer
-            ),
+             ),
         );
     }   
 
@@ -91,7 +91,7 @@ class EvidenceController extends ContentContainerController
                 $pointString = Yii::t('MissionsModule.base', 'point');
             }
 
-            $message = $message . $activity_power->value . ' '. $pointString . Yii::t('MissionsModule.base', 'in'). $activity_power->getPower()->title . $separator;
+            $message = $message . $activity_power->value . ' '. $pointString .' '. Yii::t('MissionsModule.base', 'in').' '. $activity_power->getPower()->title . $separator;
        }
 
        return $message;
@@ -207,6 +207,7 @@ class EvidenceController extends ContentContainerController
 
         $flag = Yii::$app->request->get("opt") == "no" ? 0 : 1;
         $grade = Yii::$app->request->get("grade");
+        $comment = Yii::$app->request->get("comment");
         $evidenceId = Yii::$app->request->get("evidenceId");
         $evidence = $evidenceId ? Evidence::findOne($evidenceId) : null;
 
@@ -222,10 +223,16 @@ class EvidenceController extends ContentContainerController
 
             //if user's editing vote
             if($vote){
+                $pointChange = $grade - $vote->value;
 
                 $vote->flag = $flag;
+                $vote->comment = $comment;
                 $vote->value = $grade;
                 $vote->save();
+
+                //updated evidence author's reward
+                $activityPower = Activities::findOne($vote->activity_id)->getPrimaryPowers()[0];
+                UserPowers::addPowerPoint($activityPower->getPower(), User::findOne($evidence->content->user_id), $pointChange);
 
                 // AlertController::createAlert("Congratulations!", "Your review was updated!");
                 AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', 'Your review was updated!'));
@@ -236,6 +243,7 @@ class EvidenceController extends ContentContainerController
                 $vote->user_id = $user->id;
                 $vote->activity_id = $evidence->activities_id;
                 $vote->evidence_id = $evidenceId;
+                $vote->comment = $comment;
                 $vote->flag = $flag;
                 $vote->value = $grade;
                 $vote->save();
