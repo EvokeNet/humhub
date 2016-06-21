@@ -17,10 +17,19 @@ $activity = $evidence->getActivities();
 <div class="clearFloats"></div>
 
 <hr>
+
 <div class="activity_area">
 	<?= isset($activity->mission->missionTranslations[0]) ? $activity->mission->missionTranslations[0]->title : $activity->mission->title ?>
 	<br>
 	<?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title ?>
+</div>
+
+<div class="statistics">
+  Votes: 
+  <?= $evidence->getVoteCount()? $evidence->getVoteCount() : "0" ?>
+  <br>
+  Average Rating: 
+  <?= $evidence->getAverageRating()? number_format((float)$evidence->getAverageRating(), 1, '.', '') : "-" ?>
 </div>
 
 <?php echo Html::endForm(); ?>
@@ -44,15 +53,19 @@ $activity = $evidence->getActivities();
           $no = "";
           $grade = 0;
           $vote = $evidence->getUserVote();
+          $comment = "";
           if($vote){
             $yes = $vote->flag ? "checked" : "";
             $collapse = $yes ? "in" : "";
             $no = !$vote->flag ? "checked" : "";
             $grade = $vote->value;
+            $comment = $vote->comment;
           }        
         ?>
         <div>
-          <?php $primaryPowerTitle = $activity->getPrimaryPowers()[0]->getPower()->title ?>
+          <?php 
+            $primaryPowerTitle = $activity->getPrimaryPowers()[0]->getPower()->title; 
+          ?>
         	<h2><?= Yii::t('MissionsModule.base', 'Distribute points for {title}', array('title' => $primaryPowerTitle)) ?></h2>
         	<p>
         		<?php //$activity->rubric ?>
@@ -83,6 +96,7 @@ $activity = $evidence->getActivities();
     				  </label>
     			  </div>
     			  <br>
+            <?php echo Html::textArea("text", $comment , array('id' => 'review_comment_'.$evidence->id, 'class' => 'text-margin form-control ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.widgets_views_entryForm', "Comment"))); ?>  
     			  <br>
             <?= Yii::t('MissionsModule.base', 'For every piece of evidence you review, you receive 10 points in {title}', array('title' => $primaryPowerTitle)) ?>
     			  <br>
@@ -99,6 +113,12 @@ $activity = $evidence->getActivities();
 
 <style type="text/css">
 
+.statistics{
+  font-size: 12px;
+  text-align: right;
+  margin-right: 2%;
+}
+
 .activity_area{
 	font-size: 12px;
 }
@@ -107,7 +127,7 @@ $activity = $evidence->getActivities();
 
 <script>
 
-function review(id, opt, grade){
+function review(id, comment, opt, grade){
     grade = grade? grade : 0;
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -119,7 +139,7 @@ function review(id, opt, grade){
             }
         }
     };
-    xhttp.open("GET", "<?= $contentContainer->createUrl('/missions/evidence/review'); ?>&opt="+opt+"&grade="+grade+"&evidenceId="+id , true);
+    xhttp.open("GET", "<?= $contentContainer->createUrl('/missions/evidence/review'); ?>&opt="+opt+"&grade="+grade+"&evidenceId="+id+"&comment="+comment , true);
     xhttp.send();
 
     return false;
@@ -129,20 +149,26 @@ function validateReview<?= $evidence->id ?>(id){
 
 	var opt = document.querySelector('input[name="yes-no-opt'+id+'"]:checked');
 	var grade = document.querySelector('input[name="grade'+id+'"]:checked');
+  var comment = document.getElementById("review_comment_"+id).value;
 	opt = opt? opt.value : null;
 	grade = grade? grade.value : null;
+
+if(comment == ""){
+  showMessage("Error", "<?= Yii::t('MissionsModule.base', 'You must submit a comment.') ?>");
+  return false;
+}
 
 	if(opt == "yes"){
 
 		if(grade >= 1){
-			return review(id, opt, grade);
+			return review(id, comment, opt, grade);
 		}
 
 		// showMessage("Error", "Choose how many points you will award this evidence.");
     showMessage("Error", "<?= Yii::t('MissionsModule.base', 'Choose how many points you will award this evidence.') ?>");
 		
 	} else if(opt == "no"){
-		return review(id, opt);
+		return review(id, comment, opt);
 	} else{
     // showMessage("Error", "Please, Answer yes or no.");
     showMessage("Error", "<?= Yii::t('MissionsModule.base', 'Please, Answer yes or no.') ?>");
