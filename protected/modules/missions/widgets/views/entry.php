@@ -25,10 +25,10 @@ $activity = $evidence->getActivities();
 </div>
 
 <div class="statistics">
-  Votes: 
+  <?= Yii::t('MissionsModule.base', 'Votes:') ?> 
   <?= $evidence->getVoteCount()? $evidence->getVoteCount() : "0" ?>
   <br>
-  Average Rating: 
+  <?= Yii::t('MissionsModule.base', 'Average Rating:') ?> 
   <?= $evidence->getAverageRating()? number_format((float)$evidence->getAverageRating(), 1, '.', '') : "-" ?>
 </div>
 
@@ -96,7 +96,7 @@ $activity = $evidence->getActivities();
     				  </label>
     			  </div>
     			  <br>
-            <?php echo Html::textArea("text", $comment , array('id' => 'review_comment_'.$evidence->id, 'class' => 'text-margin form-control ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.widgets_views_entryForm', "Comment"))); ?>  
+            <?php echo Html::textArea("text", $comment , array('id' => 'review_comment_'.$evidence->id, 'class' => 'text-margin form-control ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Comment"))); ?>  
     			  <br>
             <?= Yii::t('MissionsModule.base', 'For every piece of evidence you review, you receive 10 points in {title}', array('title' => $primaryPowerTitle)) ?>
     			  <br>
