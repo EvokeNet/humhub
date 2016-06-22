@@ -9,7 +9,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PowersController implements the CRUD actions for Powers model.
+ * Coin Controller implements the CRUD actions for Coin model.
  */
 class CoinController extends Controller
 {
@@ -29,22 +29,16 @@ class CoinController extends Controller
     }
 
     /**
-     * Lists all Powers models.
+     * Lists all Coin models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PowersSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
     }
 
     /**
-     * Displays a single Powers model.
+     * Displays a single Coin model.
      * @param integer $id
      * @return mixed
      */
@@ -56,13 +50,13 @@ class CoinController extends Controller
     }
 
     /**
-     * Creates a new Powers model.
+     * Creates a new Coin model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Powers();
+        $model = new Coin();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -74,7 +68,7 @@ class CoinController extends Controller
     }
 
     /**
-     * Updates an existing Powers model.
+     * Updates an existing Coin model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -93,7 +87,7 @@ class CoinController extends Controller
     }
 
     /**
-     * Deletes an existing Powers model.
+     * Deletes an existing Coin model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -106,15 +100,15 @@ class CoinController extends Controller
     }
 
     /**
-     * Finds the Powers model based on its primary key value.
+     * Finds the Coin model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Powers the loaded model
+     * @return the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Powers::findOne($id)) !== null) {
+        if (($model = Coin::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
