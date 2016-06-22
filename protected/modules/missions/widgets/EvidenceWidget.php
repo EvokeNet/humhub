@@ -13,10 +13,10 @@ class EvidenceWidget extends Widget
     /**
      * @inheritdoc
      */
-    public function run()
-    {
-        return $this->render('evidences_menu', array('space' => $this->space));
-    }
+    // public function run()
+    // {
+    //     return $this->render('evidences_menu', array('space' => $this->space));
+    // }
 
 }
 

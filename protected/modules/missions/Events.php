@@ -99,5 +99,33 @@ class Events
         }
 
     }
+    
+    public static function onMissionSpaceMenuInit($event)
+    {
+        $space = $event->sender->space;
+        if ($space->isModuleEnabled('missions')) {
+            $event->sender->addItem(array(
+                'label' => Yii::t('MissionsModule.base', 'Mission'),
+                'group' => 'modules',
+                'url' => $space->createUrl('/missions/evidence/missions'),
+                'icon' => '<i class="fa fa-file-text"></i>',
+                'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->action->id != 'evokations'),
+            ));
+        }
+    }
+    
+    public static function onEvokationSpaceMenuInit($event)
+    {
+        $space = $event->sender->space;
+        if ($space->isModuleEnabled('missions')) {
+            $event->sender->addItem(array(
+                'label' => Yii::t('MissionsModule.base', 'Evokation Home'),
+                'group' => 'modules',
+                'url' => $space->createUrl('/missions/evokation/index'),
+                'icon' => '<i class="fa fa-file-text"></i>',
+                'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->action->id == 'evokations'),
+            ));
+        }
+    }
 
 }

@@ -6,6 +6,7 @@
     use humhub\modules\like\controllers\LikeController;
     use humhub\widgets\BaseMenu;
     use humhub\widgets\TopMenu;
+    use humhub\modules\space\widgets\Menu;
     
     return [
         'id' => 'missions',
@@ -20,6 +21,9 @@
             ['class' => \humhub\modules\space\widgets\Sidebar::className(), 'event' => Sidebar::EVENT_INIT, 'callback' => ['\humhub\modules\missions\Events', 'onSidebarInit']],
             ['class' => \humhub\modules\dashboard\widgets\Sidebar::className(), 'event' => \humhub\modules\dashboard\widgets\Sidebar::EVENT_INIT, 'callback' => ['\humhub\modules\missions\Events', 'onDashboardSidebarInit']],
             ['class' => '\humhub\modules\installer\controllers\ConfigController', 'event' => 'install_sample_data', 'callback' => ['humhub\modules\missions\Events', 'onSampleDataInstall']],
+            
+            ['class' => Menu::className(), 'event' => Menu::EVENT_INIT, 'callback' => ['\humhub\modules\missions\Events', 'onMissionSpaceMenuInit']],
+            ['class' => Menu::className(), 'event' => Menu::EVENT_INIT, 'callback' => ['\humhub\modules\missions\Events', 'onEvokationSpaceMenuInit']],
 
         ],
         'urlManagerRules' => [
