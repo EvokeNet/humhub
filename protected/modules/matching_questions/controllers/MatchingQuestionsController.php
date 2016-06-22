@@ -121,11 +121,7 @@ class MatchingQuestionsController extends Controller
             foreach($powers as $power){
                 $userPower = UserPowers::findOne(['power_id' => $power->id, 'user_id' => $user->id]);
                 if(!isset($userPower)){
-                    $userPower = new UserPowers();
-                    $userPower->user_id = $user->id;
-                    $userPower->power_id = $power->id;
-                    $userPower->value = 0;
-                    $userPower->save();
+                    UserPowers::addPowerPoint($power, $user, 0);
                 }
             }
 
@@ -134,15 +130,11 @@ class MatchingQuestionsController extends Controller
             $powers_quality_2 = QualityPowers::findAll(['quality_id' => $quality_2->id]);
 
             foreach($powers_quality_1 as $power_quality_1){
-                $userPower = UserPowers::findOne(['power_id' => $power_quality_1->power_id, 'user_id' => $user->id]);
-                $userPower->value = 10;
-                $userPower->save();
+                UserPowers::addPowerPoint($power_quality_1->getPower(), $user, 10);
             }
 
             foreach($powers_quality_2 as $power_quality_2){
-                $userPower = UserPowers::findOne(['power_id' => $power_quality_2->power_id, 'user_id' => $user->id]);
-                $userPower->value = 5;
-                $userPower->save();
+                UserPowers::addPowerPoint($power_quality_2->getPower(), $user, 5);
             }
 
             return $this->render('matching-results', compact('quality_1', 'quality_2', 'superhero_identity'));

@@ -10,6 +10,13 @@ use yii\helpers\Url;
     <div class="panel-heading">
         <strong>
             <?= $powers[0]->getPower()->getQualityPowers()[0]->getQualityObject()->name ?>
+            <?php
+                $userQuality = $powers[0]->getUserQuality();
+                if(null != $userQuality){
+                    echo "<div class='btn-default btn-circle'>" . $userQuality->getLevel() . "</div>";
+                }
+                
+            ?>
         </strong>
     </div>
     <div class="list-group submit-body">
@@ -28,3 +35,19 @@ use yii\helpers\Url;
         ?>
     </div>
 </div>
+
+
+<style type="text/css">
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.42;
+  border-radius: 15px;
+  display: inline-block;
+}
+
+</style>

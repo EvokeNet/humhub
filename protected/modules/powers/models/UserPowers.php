@@ -7,6 +7,7 @@ use yii\db\ActiveRecord;
 use yii\db\Expression;
 use yii\behaviors\TimestampBehavior;
 use humhub\modules\user\models\User;
+use app\modules\powers\models\QualityPowers;
 
 /**
  * This is the model class for table "user_powers".
@@ -100,6 +101,12 @@ class UserPowers extends \yii\db\ActiveRecord
         return $this->hasMany(QualityPowers::className(), ['power_id' => 'power_id']);
     }
 
+    public function getUserQuality()
+    {
+        $quality_power = QualityPowers::findOne(['power_id' => $this->power_id]);
+        return UserQualities::findOne(['user_id' => $this->user_id, 'quality_id' => $quality_power->quality_id]);
+    }
+
 
     public function addPowerPoint($power, $user, $value){
         $userPower = UserPowers::findOne(['power_id' => $power->id, 'user_id' => $user->id]);
@@ -109,15 +116,17 @@ class UserPowers extends \yii\db\ActiveRecord
                 $userPower->value = 0;
             }
             $userPower->value += $value;
-            $userPower->save();
         }else{
             $userPower = new UserPowers();
             $userPower->user_id = $user->id;
             $userPower->power_id = $power->id;
             $userPower->value = $value;
-            $userPower->save();
         }  
 
+        $userPower->save();
+
+        $quality_power = QualityPowers::findOne(['power_id' => $power->id]);
+        UserQualities::updatedQualityPoints($quality_power->quality_id, $user);
     }
 
 }

@@ -73,4 +73,31 @@ class UserQualities extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
+
+    public function getLevel(){
+        return floor($this->total_value / 100);
+    }
+
+    public function updatedQualityPoints($quality_id, $user){
+        $query = (new \yii\db\Query())
+        ->select(['sum(value) as sum'])
+        ->from('user_powers p')
+        ->join('INNER JOIN', 'quality_powers q', 'q.power_id = p.power_id')
+        ->where(['user_id' => $user->id, 'quality_id' => $quality_id])
+        ->one();
+
+        $value = $query['sum'] ? $query['sum'] : 0;
+
+        $userQuality = UserQualities::findOne(['quality_id' => $quality_id, 'user_id' => $user->id]);
+
+        if(!isset($userQuality)){
+            $userQuality = new UserQualities();
+            $userQuality->user_id = $user->id;
+            $userQuality->quality_id = $quality_id;
+        }  
+
+        $userQuality->total_value = $value;
+        $userQuality->save();
+
+    }
 }

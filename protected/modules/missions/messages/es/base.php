@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Average Rating:' => 'untuación media:',
+    'Average Rating:' => 'Puntuación media:',
     'Comment' => 'Comentario:',
     'Votes:' => 'Votos:',
     'You must submit a comment.' => 'Debe presentar un comentario',
