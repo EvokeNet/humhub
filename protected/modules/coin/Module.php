@@ -1,6 +1,6 @@
 <?php
 
-namespace humhub\modules\coins;
+namespace humhub\modules\coin;
 
 use Yii;
 use humhub\models\Setting;
@@ -13,7 +13,7 @@ class Module extends \humhub\components\Module
      */
     public function getConfigUrl()
     {
-        return Url::to(['/coins/config']);
+        return Url::to(['/coin/config']);
     }
 
     /**
