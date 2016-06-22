@@ -109,7 +109,9 @@ class Events
                 'group' => 'modules',
                 'url' => $space->createUrl('/missions/evidence/missions'),
                 'icon' => '<i class="fa fa-file-text"></i>',
-                'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->action->id != 'evokations'),
+                'isActive' => (Yii::$app->controller->module 
+                && Yii::$app->controller->module->id == 'missions' 
+                && Yii::$app->controller->id != 'evokation'),
             ));
         }
     }
@@ -123,7 +125,9 @@ class Events
                 'group' => 'modules',
                 'url' => $space->createUrl('/missions/evokation/index'),
                 'icon' => '<i class="fa fa-file-text"></i>',
-                'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->action->id == 'evokations'),
+                'isActive' => (Yii::$app->controller->module 
+                && Yii::$app->controller->module->id == 'missions' 
+                && Yii::$app->controller->id == 'evokation'),
             ));
         }
     }
