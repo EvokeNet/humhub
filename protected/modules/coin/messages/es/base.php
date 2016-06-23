@@ -18,7 +18,8 @@
  */
 
 return [
-  'Create' => 'Coin',
+  'Create' => '',
+  'Create Coin' => '',
   'Coin'   => '',
   'Name'   => '',
   'ID'     => '',
@@ -28,4 +29,8 @@ return [
   'Amount' => '',
   'Created At' => '',
   'Modified At' => '',
+  'Update' => '',
+  'Delete' => '',
+  'Are you sure you want to delete this item?' => '',
+  'No coins created yet!' => '',
 ];

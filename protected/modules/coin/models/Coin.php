@@ -39,7 +39,7 @@ use Yii;
         return [
           'id' => Yii::t('CoinModule.base', 'ID'),
           'name' => Yii::t('CoinModule.base', 'Name')
-        ]
+        ];
       }
 
       /**
