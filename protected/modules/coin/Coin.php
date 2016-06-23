@@ -2,6 +2,7 @@
 
 namespace app\modules\coin;
 
+use app\modules\coin\models\coin
 /**
  * Coin Module Definition Class
  */
@@ -16,7 +17,5 @@ namespace app\modules\coin;
    public function init()
    {
      parent::init();
-
-     // anything else that needs to be inited here
    }
  }

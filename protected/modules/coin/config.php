@@ -3,6 +3,7 @@
     use humhub\modules\user\widgets\AccountMenu;
     use humhub\modules\admin\widgets\AdminMenu;
     use humhub\modules\user\widgets\ProfileSidebar;
+    use app\modules\coin\models\Coin;
     use humhub\widgets\BaseMenu;
     use humhub\widgets\TopMenu;
 

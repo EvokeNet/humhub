@@ -4,6 +4,7 @@ namespace humhub\modules\coin\controllers;
 
 use Yii;
 use app\modules\coin\models\Coin;
+use app\modules\coin\models\Wallet;
 
 /**
  * AdminController
@@ -15,6 +16,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
     public function actionIndex()
     {
         $coins = Coin::find()->all();
+
         return $this->render('coin/index', array('coins' => $coins));
     }
 
@@ -51,4 +53,9 @@ class AdminController extends \humhub\modules\admin\components\Controller
         return $this->redirect(['index']);
     }
 
+    public function actionWallet()
+    {
+      $wallets = Wallet::find()->all();
+      return $this->render('wallet/index', array('wallets' => $wallets));
+    }
 }
