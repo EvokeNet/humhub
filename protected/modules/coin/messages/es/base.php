@@ -18,7 +18,7 @@
  */
 
 return [
-  'Create' => '',
+  'Create' => 'Coin',
   'Coin'   => '',
   'Name'   => '',
   'ID'     => '',
@@ -28,4 +28,4 @@ return [
   'Amount' => '',
   'Created At' => '',
   'Modified At' => '',
-]
+];

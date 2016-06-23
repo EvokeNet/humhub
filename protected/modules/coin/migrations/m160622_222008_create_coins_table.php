@@ -9,7 +9,7 @@ class m160622_222008_create_coins_table extends Migration
       $this->createTable('coin', [
         'id'   => $this->primaryKey(),
         'name' => $this->string()->notNull()
-      ])
+      ]);
     }
 
     public function down()

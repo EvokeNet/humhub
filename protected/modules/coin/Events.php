@@ -8,7 +8,7 @@ namespace humhub\modules\coin;
 
 use Yii;
 use yii\helpers\Url;
-use humhub\models\Setting;\
+use humhub\models\Setting;
 use humhub\modules\coin\widget\WalletWidget;
 use app\modules\coin\models\Wallet;
 use app\modules\coin\models\Coin;

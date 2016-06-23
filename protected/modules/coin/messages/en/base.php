@@ -28,4 +28,4 @@
    'Amount' => '',
    'Created At' => '',
    'Modified At' => '',
- ]
+ ];
