@@ -27,7 +27,12 @@ class Events extends \yii\base\Object
       'icon' => '<i class="fa fa-coin"></i>',
       'isActive' => (
         Yii::$app->controller->module && Yii::$app->controller->module->id == 'coin'
-      )
+      ),
     ));
   }
+
+  // public static function onProfileSidebarInit($event)
+  // {
+  //
+  // }
 }

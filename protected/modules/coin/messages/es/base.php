@@ -19,7 +19,13 @@
 
 return [
   'Create' => '',
-  'Coin' => '',
-  'Name' => '',
-  'Wallet' => ''
+  'Coin'   => '',
+  'Name'   => '',
+  'ID'     => '',
+  'Wallet' => '',
+  'Owner ID' => '',
+  'Coin ID' => '',
+  'Amount' => '',
+  'Created At' => '',
+  'Modified At' => '',
 ]

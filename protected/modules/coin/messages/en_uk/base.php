@@ -17,9 +17,15 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 
-return [
-  'Create' => '',
-  'Coin' => '',
-  'Name' => '',
-  'Wallet' => ''
-]
+ return [
+   'Create' => '',
+   'Coin'   => '',
+   'Name'   => '',
+   'ID'     => '',
+   'Wallet' => '',
+   'Owner ID' => '',
+   'Coin ID' => '',
+   'Amount' => '',
+   'Created At' => '',
+   'Modified At' => '',
+ ]
