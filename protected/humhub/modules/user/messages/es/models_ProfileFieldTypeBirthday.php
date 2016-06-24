@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Hide age per default' => '',
+    'Hide age per default' => 'Esconder edad por defecto',
     '%y Years' => '%y Años',
     'Birthday field options' => 'Opciones del campo Cumpleaños',
 ];

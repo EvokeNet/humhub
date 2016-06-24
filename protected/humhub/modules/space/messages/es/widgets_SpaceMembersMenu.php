@@ -17,9 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Members' => '',
-    'Owner' => '',
-    'Pending Approvals' => '',
-    'Pending Invites' => '',
-    'Permissions' => '',
+    'Members' => 'Miembros',
+    'Owner' => 'Proprietario',
+    'Pending Approvals' => 'Aprobaciones Pendientes',
+    'Pending Invites' => 'Invitaciones Pendientes',
+    'Permissions' => 'Permisos',
 ];

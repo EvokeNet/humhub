@@ -17,12 +17,12 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    '<i class="fa fa-cog"></i>' => '',
-    'Cancel Membership' => '',
-    'Hide posts on dashboard' => '',
-    'Show posts on dashboard' => '',
-    'This option will hide new content from this space at your dashboard' => '',
-    'This option will show new content from this space at your dashboard' => '',
+    '<i class="fa fa-cog"></i>' => '<i class="fa fa-cog"></i>',
+    'Cancel Membership' => 'Cancelar Membresia',
+    'Hide posts on dashboard' => 'Ocultar Mensaje en dashboard',
+    'Show posts on dashboard' => 'Mostrar Mensaje en dashboard',
+    'This option will hide new content from this space at your dashboard' => 'Esta opción ocultará nuevos contenidos de este espacio en su dashboard',
+    'This option will hide new content from this space at your dashboard' => 'Esta opción mostrará nuevos contenidos de este espacio en su dashboard',
     'General' => 'General',
     'Members' => 'Miembros',
     'Modules' => 'Módulos',

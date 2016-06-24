@@ -17,7 +17,7 @@ return [
         'manage' => [
             'class' => 'humhub\modules\space\modules\manage\Module'
         ],
-    ],
+    ], 
     'events' => array(
         array('class' => User::className(), 'event' => User::EVENT_BEFORE_DELETE, 'callback' => array(Events::className(), 'onUserDelete')),
         array('class' => Search::className(), 'event' => Search::EVENT_ON_REBUILD, 'callback' => array(Events::className(), 'onSearchRebuild')),

@@ -17,9 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'No purchased modules found!' => '',
-    'Register' => '',
-    'search for available modules online' => '',
+    'No purchased modules found!' => 'No se encontraron módulos comprados!',
+    'Register' => 'Registro',
+    'search for available modules online' => 'buscar los módulos disponibles en línea',
     'Installed' => 'Instalado',
     'No modules found!' => '¡¡No se han encontrado módulos!',
     'Search' => 'Buscar',

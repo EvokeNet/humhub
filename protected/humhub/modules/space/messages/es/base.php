@@ -17,9 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Default' => '',
-    'Private' => '',
-    'Public' => '',
+    'Default' => 'Defecto',
+    'Private' => 'Privado',
+    'Public' => 'Público',
     'Could not delete user who is a space owner! Name of Space: {spaceName}' => '¡No puedo borrar un usuario que es dueño de un espacio! Nombre del espacio: {spaceName}',
     'Everyone can enter' => 'Todo el mundo puede entrar',
     'Invite and request' => 'Invitar y enviar una solicitud',

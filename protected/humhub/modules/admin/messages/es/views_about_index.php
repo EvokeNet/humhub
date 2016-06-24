@@ -17,8 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'HumHub is currently in debug mode. Disable it when running on production!' => '',
-    'See installation manual for more details.' => '',
+    'HumHub is currently in debug mode. Disable it when running on production!' => 'HumHub está actualmente en modo de depuración. Desactivarlo cuando se ejecuta en la producción!',
+    'See installation manual for more details.' => 'Ver manual de instalación para más detalles',
     '<strong>About</strong> HumHub' => '<strong>Acerca de</strong> HumHub',
     'Currently installed version: %currentVersion%' => 'Versión instalada actualmente: %currentVersion%',
     'Licences' => 'Licencias',

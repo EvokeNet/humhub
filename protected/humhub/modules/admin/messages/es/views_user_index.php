@@ -17,9 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Actions' => '',
-    'Last login' => '',
-    'never' => '',
+    'Actions' => 'Acciones',
+    'Last login' => 'Último acceso',
+    'never' => 'nunca',
     '<strong>Manage</strong> users' => '<strong>Gestionar</strong> usuarios',
     'Add new user' => 'Añadir nuevo usuario',
     'In this overview you can find every registered user and manage him.' => 'En esta vista podrás encontrar cada usuario registrado y gestionarlo.',

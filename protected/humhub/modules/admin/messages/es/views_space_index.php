@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Actions' => '',
+    'Actions' => 'Acciones',
     '<strong>Manage</strong> spaces' => '<strong>Gestionar</strong> espacios',
     'Define here default settings for new spaces.' => 'Define aquí la configuració por defecto para los nuevos espacios.',
     'In this overview you can find every space and manage it.' => 'En esta vista puedes ver cada espacio y gestionarlo.',

@@ -8,6 +8,7 @@
 
 namespace humhub\modules\admin\components;
 
+use Yii;
 use humhub\components\behaviors\AccessControl;
 
 /**
@@ -19,7 +20,7 @@ class Controller extends \humhub\components\Controller
 {
 
     public $subLayout = "@humhub/modules/admin/views/layouts/main";
-
+    
     public function behaviors()
     {
         return [
@@ -28,6 +29,21 @@ class Controller extends \humhub\components\Controller
                 'adminOnly' => true
             ]
         ];
+    }
+    
+    public function beforeAction($action)
+    {
+        if(!parent::beforeAction($action))
+            return false;
+
+        // $session = Yii::$app->session;
+        // !$session->isActive ? $session->open() : $session->close();
+        // Yii::$app->language = $session->get('language');
+        // $session->close();
+        
+        // Yii::$app->language = 'es';
+
+        return true ;
     }
 
 }

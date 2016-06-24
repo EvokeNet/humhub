@@ -35,7 +35,7 @@ class View extends \yii\web\View
      */
     public function getPageTitle()
     {
-        return (($this->_pageTitle) ? $this->_pageTitle . " - " : '') . Yii::$app->name;
+        return Yii::$app->name.(($this->_pageTitle) ? " - " . $this->_pageTitle : '');
     }
 
     /**

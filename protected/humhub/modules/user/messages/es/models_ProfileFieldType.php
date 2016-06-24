@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Date' => '',
+    'Date' => 'Fecha',
     'Birthday' => 'Cumpleaños',
     'Datetime' => 'Fecha y hora',
     'Number' => 'Número',
