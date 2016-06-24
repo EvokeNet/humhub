@@ -21,7 +21,8 @@ class CTAPostEvidenceWidget extends Widget
         // ->select(['s.space_id as space_id'])
         // ->from('space_membership as s')
         ->where(['user_id' => Yii::$app->user->getIdentity()->id])
-        ->andWhere(['!=', 'space_id', 1])
+        ->orderBy('space_id DESC')
+        // ->andWhere(['!=', 'space_id', 1])
         ->one();
         
         // $user_space_id = $query['space_id'];

@@ -4,6 +4,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
+var_dump($member->space->name);
 ?>
 
 <div class="panel panel-default">

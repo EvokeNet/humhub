@@ -19,13 +19,17 @@ use yii\behaviors\TimestampBehavior;
  * @property string $id_code
  * @property integer $difficulty_level_id
  * @property string $rubric
+ * @property integer $evokation_category_id
  *
+ * @property EvokationCategories $evokationCategory
  * @property DifficultyLevels $difficultyLevel
  * @property Missions $mission
  * @property ActivityPowers[] $activityPowers
  * @property ActivityTranslations[] $activityTranslations
  * @property Evidence[] $evidences
+ * @property RubricVotes[] $rubricVotes
  * @property Skills[] $skills
+ * @property Votes[] $votes
  */
 class Activities extends \yii\db\ActiveRecord
 {
@@ -58,11 +62,12 @@ class Activities extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'description', 'mission_id', 'created_at', 'updated_at'], 'required'],
+            [['title', 'description', 'mission_id'], 'required'],
             [['description', 'id_code', 'rubric'], 'string'],
-            [['mission_id', 'difficulty_level_id'], 'integer'],
+            [['mission_id', 'difficulty_level_id', 'evokation_category_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['title'], 'string', 'max' => 255],
+            [['evokation_category_id'], 'exist', 'skipOnError' => true, 'targetClass' => EvokationCategories::className(), 'targetAttribute' => ['evokation_category_id' => 'id']],
             [['difficulty_level_id'], 'exist', 'skipOnError' => true, 'targetClass' => DifficultyLevels::className(), 'targetAttribute' => ['difficulty_level_id' => 'id']],
             [['mission_id'], 'exist', 'skipOnError' => true, 'targetClass' => Missions::className(), 'targetAttribute' => ['mission_id' => 'id']],
         ];
@@ -83,7 +88,16 @@ class Activities extends \yii\db\ActiveRecord
             'id_code' => Yii::t('MissionsModule.model', 'Id Code'),
             'difficulty_level_id' => Yii::t('MissionsModule.model', 'Difficulty Level ID'),
             'rubric' => Yii::t('MissionsModule.model', 'Rubric'),
+            'evokation_category_id' => Yii::t('MissionsModule.model', 'Evokation Category ID'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEvokationCategory()
+    {
+        return $this->hasOne(EvokationCategories::className(), ['id' => 'evokation_category_id']);
     }
 
     /**
@@ -110,6 +124,22 @@ class Activities extends \yii\db\ActiveRecord
         return $this->hasMany(ActivityPowers::className(), ['activity_id' => 'id']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getActivityTranslations()
+    {
+        return $this->hasMany(ActivityTranslations::className(), ['activity_id' => 'id']);
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEvidences()
+    {
+        return $this->hasMany(Evidence::className(), ['activities_id' => 'id']);
+    }
+    
     public function getPrimaryPowers()
     {
         $powers = ActivityPowers::findAll(['activity_id' => $this->id, 'flag' => 0]);
@@ -121,21 +151,13 @@ class Activities extends \yii\db\ActiveRecord
         $powers = ActivityPowers::findAll(['activity_id' => $this->id, 'flag' => 1]);
         return $powers;
     }
-
+    
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getActivityTranslations()
+    public function getRubricVotes()
     {
-        return $this->hasMany(ActivityTranslations::className(), ['activity_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getEvidences()
-    {
-        return $this->hasMany(Evidence::className(), ['activities_id' => 'id']);
+        return $this->hasMany(RubricVotes::className(), ['activity_id' => 'id']);
     }
 
     /**
@@ -144,5 +166,13 @@ class Activities extends \yii\db\ActiveRecord
     public function getSkills()
     {
         return $this->hasMany(Skills::className(), ['activity_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVotes()
+    {
+        return $this->hasMany(Votes::className(), ['activity_id' => 'id']);
     }
 }
