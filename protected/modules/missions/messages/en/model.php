@@ -23,6 +23,7 @@ return [
     'Activity Powers' => '',
     'Activity Translations' => '',
     'Are you sure you want to delete this item?' => '',
+    'Comment' => '',
     'Create' => '',
     'Create Activities' => '',
     'Create Activity Powers' => '',

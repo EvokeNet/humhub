@@ -18,7 +18,9 @@ use app\modules\matching_questions\models\MatchingQuestions;
                     <br><?= Yii::t('MatchingModule.base', "Now, it is time to find out what type of Evoke agent are you. What do you know?") ?> 
                     <br><?= Yii::t('MatchingModule.base', "What are the strengths, passions, and abilities you will bring to the Evoke network?") ?>
                     <br><?= Yii::t('MatchingModule.base', "Answer the following and find out what type of Super Hero is hiding inside you!") ?>
-                    <br><span id="warning" class="warning"><?= Yii::t('MatchingModule.base', 'In case of redirect, please make sure to answer all questions') ?></span>
+                    <?php if(Yii::$app->session->getFlash('matching_questions_incomplete_answers')): ?>
+                        <br><span id="warning" class="warning"><?= Yii::t('MatchingModule.base', 'In case of redirect, please make sure to answer all questions') ?></span>
+                    <?php endif; ?>
                 </div>
 
                 <div class="questionnaire">

@@ -17,6 +17,13 @@ use yii\helpers\Url;
         		<?= Yii::t('MissionsModule.base', 'Choose Mission') ?>
         	</a>
         </div>
+        
+        <div class= "list-group-item">
+    		<a class = "btn btn-primary" href='<?= $space->createUrl('/missions/evokation/index'); ?>'>
+        		<?= Yii::t('MissionsModule.base', "Evokation's Page") ?>
+        	</a>
+        </div>
+        
         <!--<div class= "list-group-item">
             <a href='#' class="btn btn-primary disabled">
         	   <?= Yii::t('MissionsModule.base', 'Unavailable - Read Missions') ?>

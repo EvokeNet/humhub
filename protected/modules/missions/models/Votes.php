@@ -39,9 +39,10 @@ class Votes extends ContentActiveRecord
     public function rules()
     {
         return [
-            [['activity_id', 'evidence_id', 'user_id', 'flag', 'value'], 'required'],
+            [['activity_id', 'evidence_id', 'user_id', 'flag', 'value', 'comment'], 'required'],
             [['activity_id', 'evidence_id', 'user_id', 'flag', 'value'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
+            [['comment'], 'string'],
             [['activity_id'], 'exist', 'skipOnError' => true, 'targetClass' => Activities::className(), 'targetAttribute' => ['activity_id' => 'id']],
             [['evidence_id'], 'exist', 'skipOnError' => true, 'targetClass' => Evidence::className(), 'targetAttribute' => ['evidence_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
@@ -62,6 +63,7 @@ class Votes extends ContentActiveRecord
             'value' => Yii::t('app', 'Value'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
+            'comment' => Yii::t('MissionsModule.model', 'Comment')
         ];
     }
 

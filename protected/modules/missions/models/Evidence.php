@@ -181,6 +181,33 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
             $userId = Yii::$app->user->id;
 
         return Votes::findOne(array('user_id' => $userId, 'evidence_id' => $this->id));
+    } 
+
+    public function getAverageRating()   {
+
+        $query = (new \yii\db\Query())
+
+        ->select(['sum(value) / count(id) as average'])
+        ->from('votes')
+        ->where(['evidence_id' => $this->id])
+        ->one();
+
+        return $query['average'];
+
+    }
+
+
+    public function getVoteCount()   {
+
+        $query = (new \yii\db\Query())
+
+        ->select(['count(id) as count'])
+        ->from('votes')
+        ->where(['evidence_id' => $this->id])
+        ->one();
+
+        return $query['count'];
+
     }    
 
     /**
