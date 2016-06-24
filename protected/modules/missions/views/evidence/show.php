@@ -19,7 +19,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Activity {activity}', array('a
 
 $canCreateEvidences = $contentContainer->permissionManager->can(new \humhub\modules\missions\permissions\CreateEvidence());
 
-echo \humhub\modules\content\widgets\Stream::widget(array(
+echo \app\modules\missions\widgets\EvidenceStream::widget(array(
     'contentContainer' => $contentContainer,
     'streamAction' => '/missions/evidence/stream',
     'messageStreamEmpty' => ($canCreateEvidences) ?
@@ -27,7 +27,8 @@ echo \humhub\modules\content\widgets\Stream::widget(array(
             Yii::t('MissionsModule.widgets_views_stream', 'There are no evidences yet!'),
     'messageStreamEmptyCss' => ($canCreateEvidences) ? 'placeholder-empty-stream' : '',
     'filters' => [
-    ]
+    ],
+    'activity_id' => $activity->id,
 ));
 
 ?>

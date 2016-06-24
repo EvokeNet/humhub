@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'No, it does not meet the activity\'s requirement' => 'No, no cumple con el requisito de la actividad',
+    'Comment' => 'Comentario',
     'Activities' => 'Actividades',
     'Activities ID' => 'Identificación de Actividades',
     'Activity ID' => 'Identificación de Actividad',
@@ -42,6 +42,7 @@ return [
     'Mission ID' => 'Identificación de misión',
     'Mission Translations' => 'Traducciones de misión',
     'Modified At' => 'Modificado en',
+    'No, it does not meet the activity\'s requirement' => 'No, no cumple con el requisito de la actividad',
     'Points' => 'Puntos',
     'Power ID' => 'Identificación de poder',
     'Reset' => 'Reiniciar',
