@@ -56,6 +56,7 @@ use humhub\modules\user\models\User;
          [['owner_id', 'coin_id'], 'required'],
          [['owner_id', 'coin_id'], 'integer'],
          [['created_at', 'updated_at'], 'safe'],
+         [['amount'], 'integer'],
          [['owner_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['owner_id' => 'id']],
          [['coin_id'], 'exist', 'skipOnError' => true, 'targetClass' => Coin::className(), 'targetAttribute' => ['coin_id' => 'id']],
        ];
@@ -82,7 +83,7 @@ use humhub\modules\user\models\User;
        */
        public function getOwner()
        {
-         return $this->hasOne(User::className(), ['id' => 'owner_id']);
+         return User::find()->where(['id' => $this->owner_id])->one();
        }
 
        /**
@@ -90,7 +91,7 @@ use humhub\modules\user\models\User;
         */
         public function getCoin()
         {
-          return $this->hasOne(Coin::className(), ['id' => 'coin_id']);
+          return Coin::find()->where(['id' => $this->coin_id])->one();
         }
 
         /**

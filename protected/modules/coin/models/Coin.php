@@ -51,31 +51,4 @@ use humhub\modules\user\models\User;
        {
          return $this->name;
        }
-
-       /**
-        * Init wallets after save
-        */
-       public function afterSave($insert, $changedAttributes)
-       {
-         parent::afterSave($insert, $changedAttributes);
-
-           $coin_id = $this->id;
-           $users = User::find()->all();
-
-           foreach ($users as $user) {
-
-             // check if user has wallet
-             $wallet = Wallet::find()->where(['owner_id' => $user->id, 'coin_id' => $coin_id])->one();
-
-             if (is_null($wallet)) {
-               $wallet = new Wallet();
-
-               $wallet->coin_id  = $coin_id;
-               $wallet->owner_id = $user->id;
-               $wallet->amount   = 0;
-
-               $wallet->save();
-             }
-           }
-       }
  }

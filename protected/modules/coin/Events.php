@@ -22,18 +22,8 @@ class Events extends \yii\base\Object
   public static function onAdminMenuInit($event)
   {
     $event->sender->addItem(array(
-      'label' => Yii::t('CoinModule.base', 'Coin'),
-      'url' => Url::to(['/coin/admin']),
-      'group' => 'manage',
-      'icon' => '<i class="fa fa-pied-piper"></i>',
-      'isActive' => (
-        Yii::$app->controller->module && Yii::$app->controller->module->id == 'coin'
-      )
-    ));
-
-    $event->sender->addItem(array(
       'label' => Yii::t('CoinModule.base', 'Wallet'),
-      'url' => Url::to(['/coin/admin/wallet']),
+      'url' => Url::to(['/coin/admin/']),
       'group' => 'manage',
       'icon' => '<i class="fa fa-money"></i>',
       'isActive' => (

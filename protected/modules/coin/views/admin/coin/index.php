@@ -18,36 +18,23 @@ echo Breadcrumbs::widget([
         <h3><?php echo $this->title; ?></h3>
     </div>
     <div class="panel-body">
-
-        <?php echo Html::a(Yii::t('CoinModule.base', 'Create'), ['create'], array('class' => 'btn btn-success')); ?>
-
-        <br><br>
-
-        <?php if (count($coins) != 0): ?>
+        <?php if (count($wallets) != 0): ?>
 
             <table class="table">
                 <tr>
-                    <th><?php echo Yii::t('CoinModule.base', 'Name'); ?></th>
+                    <th><?php echo Yii::t('CoinModule.base', 'Owner'); ?></th>
+                    <th><?php echo Yii::t('CoinModule.base', 'Amount') ?></th>
                     <th>&nbsp;</th>
                 </tr>
-                <?php foreach ($coins as $coin): ?>
+                <?php foreach ($wallets as $wallet): ?>
                     <tr>
                         <!--<td><?php //echo $coin->id_code; ?></td>-->
-                        <td><?php echo $coin->name; ?></td>
+                        <td><?php echo $wallet->getOwner()->username; ?></td>
+                        <td><?php echo $wallet->amount; ?></td>
                         <td>
                             <?php echo Html::a(
-                                Yii::t('CoinModule.base', 'Update'),
-                                ['update', 'id' => $coin->id], array('class' => 'btn btn-primary btn-sm')); ?>
-                            &nbsp;&nbsp;
-                            <?php echo Html::a(
-                                Yii::t('CoinModule.base', 'Delete'),
-                                ['delete', 'id' => $coin->id], array(
-                                'class' => 'btn btn-danger btn-sm',
-                                'data' => [
-                                    'confirm' => Yii::t('CoinModule.base', 'Are you sure you want to delete this item?'),
-                                    'method' => 'post',
-                                ],
-                                )); ?>
+                                Yii::t('CoinModule.base', 'Change'),
+                                ['update', 'id' => $wallet->id], array('class' => 'btn btn-primary btn-sm')); ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -55,6 +42,7 @@ echo Breadcrumbs::widget([
         <?php else: ?>
 
             <p><?php echo Yii::t('CoinModule.base', 'No coins created yet!'); ?></p>
+            <?php echo Html::a(Yii::t('CoinModule.base', 'Create'), ['create'], array('class' => 'btn btn-success')); ?>
 
 
         <?php endif; ?>
