@@ -12,6 +12,7 @@ use yii\filters\VerbFilter;
 use humhub\modules\content\components\ContentContainerController;
 use app\modules\missions\models\Missions;
 use app\modules\missions\models\Activities;
+use app\modules\missions\models\EvokationCategories;
 use app\modules\languages\models\Languages;
 use app\modules\powers\models\UserPowers;
 use app\modules\powers\models\Powers;
@@ -40,9 +41,24 @@ class EvokationController extends ContentContainerController
         // $evidence->content->contentContainer = espaço atual
         // $evidence->activity_id = atividade atual
 
-        $missions = Missions::find()
+        // $missions = Missions::find()
+        // ->with([
+        //     'missionTranslations' => function ($query) {
+        //         $lang = Languages::findOne(['code' => Yii::$app->language]);
+        //         $query->andWhere(['language_id' => $lang->id]);
+        //     },
+        //     'activities.activityTranslations' => function ($query) {
+        //         $lang = Languages::findOne(['code' => Yii::$app->language]);
+        //         $query->andWhere(['language_id' => $lang->id]);
+        //     },
+        //     // 'activities.evidences' => function($query){
+        //     //     $query->andWhere([$this->contentContainer->id]);
+        //     // }
+        // ])->all();
+        
+        $categories = EvokationCategories::find()
         ->with([
-            'missionTranslations' => function ($query) {
+            'activities.mission.missionTranslations' => function ($query) {
                 $lang = Languages::findOne(['code' => Yii::$app->language]);
                 $query->andWhere(['language_id' => $lang->id]);
             },
@@ -54,8 +70,11 @@ class EvokationController extends ContentContainerController
             //     $query->andWhere([$this->contentContainer->id]);
             // }
         ])->all();
+        
+        $missions = Missions::find()
+        ->all();
                 
-        return $this->render('index', array('missions' => $missions, 'contentContainer' => $this->contentContainer));
+        return $this->render('index', array('categories' => $categories, 'missions' => $missions, 'contentContainer' => $this->contentContainer));
     }
 
     public function actionMissions()

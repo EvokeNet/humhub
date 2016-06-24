@@ -29,7 +29,8 @@ class EvidenceController extends ContentContainerController
             'stream' => array(
                 'class' => \humhub\modules\missions\components\StreamAction::className(),
                 'mode' => \humhub\modules\missions\components\StreamAction::MODE_NORMAL,
-                'contentContainer' => $this->contentContainer
+                'contentContainer' => $this->contentContainer,
+                'activity_id' => Yii::$app->request->get('activity_id'),
              ),
         );
     }   
@@ -42,11 +43,21 @@ class EvidenceController extends ContentContainerController
         ->with([
             'missionTranslations' => function ($query) {
                 $lang = Languages::findOne(['code' => Yii::$app->language]);
-                $query->andWhere(['language_id' => $lang->id]);
+                if(isset($lang))
+                    $query->andWhere(['language_id' => $lang->id]);
+                else{
+                    $lang = Languages::findOne(['code' => 'en-US']);
+                    $query->andWhere(['language_id' => $lang->id]);
+                }
             },
             'activities.activityTranslations' => function ($query) {
                 $lang = Languages::findOne(['code' => Yii::$app->language]);
-                $query->andWhere(['language_id' => $lang->id]);
+                if(isset($lang))
+                    $query->andWhere(['language_id' => $lang->id]);
+                else{
+                    $lang = Languages::findOne(['code' => 'en-US']);
+                    $query->andWhere(['language_id' => $lang->id]);
+                }
             },
         ])->one();
                 
@@ -61,7 +72,12 @@ class EvidenceController extends ContentContainerController
         $missions = Missions::find()->with([
             'missionTranslations' => function ($query) {
                 $lang = Languages::findOne(['code' => Yii::$app->language]);
-                $query->andWhere(['language_id' => $lang->id]);
+                if(isset($lang))
+                    $query->andWhere(['language_id' => $lang->id]);
+                else{
+                    $lang = Languages::findOne(['code' => 'en-US']);
+                    $query->andWhere(['language_id' => $lang->id]);
+                }
             },
         ])->all();
         

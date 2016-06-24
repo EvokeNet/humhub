@@ -9,6 +9,8 @@ use app\modules\missions\models\Activities;
 use app\modules\missions\models\ActivityTranslations;
 use app\modules\missions\models\ActivityPowers;
 use app\modules\missions\models\DifficultyLevels;
+use app\modules\missions\models\EvokationCategories;
+use app\modules\missions\models\EvokationCategoryTranslations;
 
 /**
  * AdminController
@@ -16,7 +18,46 @@ use app\modules\missions\models\DifficultyLevels;
  */
 class AdminController extends \humhub\modules\admin\components\Controller
 {
+    
+    public function actionIndexCategories()
+    {
+        $categories = EvokationCategories::find()->all();
+        return $this->render('evokation-categories/index', array('categories' => $categories));
+    }
+    
+    public function actionCreateCategories()
+    {
+        $model = new EvokationCategories();
 
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index-categories']);
+        } 
+        
+        return $this->render('evokation-categories/create', array('model' => $model));
+    }
+    
+    public function actionEditCategories()
+    {
+        $model = EvokationCategories::findOne(['id' => Yii::$app->request->get('id')]);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index-categories']);
+        }
+
+        return $this->render('evokation-categories/update', array('model' => $model));
+    }
+    
+    public function actionDeleteCategories()
+    {
+        $model = EvokationCategories::findOne(['id' => Yii::$app->request->get('id')]);
+
+        if ($model !== null) {
+            $model->delete();
+        }
+
+        return $this->redirect(['evokation-categories/index']);
+    }
+    
     public function actionIndex()
     {
         $missions = Missions::find()->all();

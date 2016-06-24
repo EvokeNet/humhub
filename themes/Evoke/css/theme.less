@@ -19,6 +19,127 @@
 @background4: #b2b2b2;
 
 //
+// Colors and fonts variables
+// --------------------------------------------------
+@import 'https://fonts.googleapis.com/css?family=Ubuntu|Vollkorn';
+@heading_font: 'Ubuntu', sans-serif;
+@text_font: 'Vollkorn', serif;
+
+@primary1: #254054;
+@primary2: #3399E1;
+@primary3: #1ECCCC;
+
+@secondary1: #9013FE;
+@secondary2: #FB656F;
+@secondary3: #ECE046;
+
+@tertiary1: #28C503;
+@tertiary2: #E831BE;
+
+@background_grey1: #8E99A2;
+@background_grey2: #F6F7F9;
+@background_grey3: #EAEAEA;
+
+//mixin
+.header-font(){
+  font-family: @heading_font;
+  font-weight: 500;
+}
+
+h1{
+  font-family: @heading_font;
+  font-size: 30pt;
+  font-weight: 700;
+}
+
+h2{
+  font-size: 30pt;
+  .header-font
+}
+
+h3{
+  font-size: 26pt;
+  .header-font
+}
+
+h4{
+  font-size: 20pt;
+  .header-font
+}
+
+h5{
+  font-size: 16pt;
+  .header-font
+}
+
+h6{
+  font-size: 14pt;
+  .header-font
+}
+
+p{
+  font-family: @text_font;
+  font-weight: 400;
+}
+
+body {
+  padding-top: 130px;
+  background-color: @background2;
+  color: #777;
+  font-family: @text_font;
+  a,
+  a:hover,
+  a:focus,
+  a:active,
+  a.active {
+    font-family: @heading_font;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  a{
+    color: #3399E1;
+  }
+
+  a:hover{
+    color: #3399E1;
+  }
+
+  a:focus,
+  a:active,
+  a.active {
+    color: #2887BA;
+  }
+}
+
+a,
+a:hover,
+a:focus,
+a:active,
+a.active {
+  font-family: @heading_font;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+a{
+  color: #3399E1;
+}
+
+a:hover{
+  color: #3399E1;
+}
+
+a:focus,
+a:active,
+a.active {
+  color: #2887BA;
+}
+
+// END
+// --------------------------------------------------
+
+//
 // Theme color classes
 // (Add this classes to the html elements from your
 // modules to adopt the colors from currently
@@ -126,24 +247,24 @@
 //
 // General
 // --------------------------------------------------
-body {
-  padding-top: 130px;
-  background-color: @background2;
-  color: #777;
-  font-family: 'Open Sans', sans-serif;
-  a,
-  a:hover,
-  a:focus,
-  a:active,
-  a.active {
-    color: @font3;
-    text-decoration: none;
-  }
-}
+// body {
+//   padding-top: 130px;
+//   background-color: @background2;
+//   color: #777;
+//   font-family: 'Open Sans', sans-serif;
+//   a,
+//   a:hover,
+//   a:focus,
+//   a:active,
+//   a.active {
+//     color: @font3;
+//     text-decoration: none;
+//   }
+// }
 
-a:hover {
-  text-decoration: none;
-}
+// a:hover {
+//   text-decoration: none;
+// }
 
 hr {
   margin-top: 10px;
@@ -170,20 +291,23 @@ textarea {
   height: 1.5em;
 }
 
-h4 {
-  font-weight: 300;
-  font-size: 150%;
-}
+// h4 {
+//   font-weight: 300;
+//   font-size: 150%;
+// }
 
 // Mixins
 .heading {
-  font-size: 16px;
-  font-weight: 300;
+  // font-size: 16px;
+  font-weight: 500;
+  font-family: @heading_font;
+  // text-transform: uppercase;
+  font-size: 14pt;
   color: @font3;
   background-color: white;
   border: none;
   // padding: 10px;
-  padding: 10px 15px;
+  padding: 15px 10px 5px;
 }
 
 .text-center {
@@ -197,6 +321,10 @@ input[type=select] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+}
+
+.breadcrumb > li{
+  font-family:@heading_font;
 }
 
 //
@@ -781,6 +909,9 @@ input[type=select] {
     color: @font3;
   }
   .panel-heading {
+    // font-family:@heading_font;
+    // text-transform: uppercase;
+    // font-size: 14pt;
     .heading;
     border-radius: 4px;
   }
@@ -795,7 +926,8 @@ input[type=select] {
   .statistics {
     .entry {
       margin-left: 20px;
-      font-size: 12px;
+      // font-size: 12px;
+      font-size: 12pt;
       .count {
         color: @info;
         font-weight: 600;
@@ -1621,7 +1753,7 @@ a.label-warning:hover {
   padding: 3px 5px;
   border-radius: 2px;
   font-weight: normal;
-  font-family: Arial, sans-serif;
+  font-family: @text_font;
   font-size: 10px !important;
   text-transform: uppercase;
   color: #fff;

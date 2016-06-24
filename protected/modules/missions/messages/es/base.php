@@ -19,7 +19,11 @@
 return [
     'Evokation Home' => 'Página de inicio de la Evokation',
     'Evokation\'s Page' => 'Página de la Evokation',
+<<<<<<< HEAD
     'Evokations' => 'Evokations'.
+=======
+    'Evokations' => 'Evokations',
+>>>>>>> origin/dev
     'Activities' => 'Actividades',
     'Activity' => 'Actividad',
     'Activity Powers' => 'Poderes de Actividades',

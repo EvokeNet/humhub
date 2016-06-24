@@ -12,11 +12,13 @@ use Yii;
 use yii\helpers\Url;
 use humhub\models\Setting;
 use humhub\modules\missions\widgets\EvidenceWidget;
+use humhub\modules\missions\widgets\CTAPostEvidenceWidget;
 use humhub\modules\missions\widgets\PopUpWidget;
 use humhub\modules\space\models\Space;
 use app\modules\missions\models\Evidence;
 use app\modules\missions\models\ActivityPowers;
 use app\modules\powers\models\UserPowers;
+use humhub\modules\user\models\User;
 // use humhub\modules\dashboard\widgets\ShareWidget;
 
 /**
@@ -28,6 +30,7 @@ class Events
 
     public static function onDashboardSidebarInit($event){
         $event->sender->addWidget(PopUpWidget::className(), []);
+        $event->sender->addWidget(CTAPostEvidenceWidget::className(), []);
     }
 
     public static function onSidebarInit($event)
@@ -37,6 +40,7 @@ class Events
             $space = $event->sender->space;
             $event->sender->addWidget(PopUpWidget::className(), []);
             $event->sender->addWidget(EvidenceWidget::className(), array('space' => $space), array('sortOrder' => 9));
+            // $event->sender->addWidget(CTAPostEvidenceWidget::className(), array('space' => $space), array('sortOrder' => 9));
         }
         
     }
@@ -48,11 +52,43 @@ class Events
             'url' => Url::to(['/missions/admin']),
             'group' => 'manage',
             'icon' => '<i class="fa fa-sitemap"></i>',
-            'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'admin'),
+            'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'admin' 
+            && 
+                (
+                    Yii::$app->controller->action->id != 'index-categories'
+                    || Yii::$app->controller->action->id != 'create-categories'
+                    || Yii::$app->controller->action->id != 'update-categories'
+                    
+                    || Yii::$app->controller->action->id != 'index-category-translations'
+                    || Yii::$app->controller->action->id != 'create-category-translations'
+                    || Yii::$app->controller->action->id != 'update-category-translations'
+                )
+            ),
         ));
     }
-
-
+    
+    public static function onCategoriesAdminMenuInit($event)
+    {
+        $event->sender->addItem(array(
+            'label' => Yii::t('MissionsModule.base', 'Evokation Categories'),
+            'url' => Url::to(['/missions/admin/index-categories']),
+            'group' => 'manage',
+            'icon' => '<i class="fa fa-sort-amount-asc"></i>',
+            'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'admin'
+            && 
+                (
+                    Yii::$app->controller->action->id == 'index-categories'
+                    || Yii::$app->controller->action->id == 'create-categories'
+                    || Yii::$app->controller->action->id == 'update-categories'
+                    
+                    || Yii::$app->controller->action->id == 'index-category-translations'
+                    || Yii::$app->controller->action->id == 'create-category-translations'
+                    || Yii::$app->controller->action->id == 'update-category-translations'
+                )
+            ),
+        ));
+    }
+    
      /**
      * Create installer sample data
      * 
@@ -87,13 +123,12 @@ class Events
             //USER POWER POINTS
             foreach($activityPowers as $activity_power){
                 if(!$activity_power->flag){
-                    $userPower = UserPowers::findOne(['power_id' => $activity_power->power_id, 'user_id' => $content_user_id]);
+                    $user = User::findOne($content_user_id);
                     if($like){
-                        $userPower->value += $activity_power->value;
+                        UserPowers::addPowerPoint($activity_power->getPower(), $user, $activity_power->value);
                     }else{
-                        $userPower->value -= $activity_power->value;
+                        UserPowers::addPowerPoint($activity_power->getPower(), $user, - $activity_power->value);
                     }
-                    $userPower->save();
                 }
             }
         }
@@ -108,7 +143,7 @@ class Events
                 'label' => Yii::t('MissionsModule.base', 'Mission'),
                 'group' => 'modules',
                 'url' => $space->createUrl('/missions/evidence/missions'),
-                'icon' => '<i class="fa fa-file-text"></i>',
+                'icon' => '<i class="fa fa-sitemap"></i>',
                 'isActive' => (Yii::$app->controller->module 
                 && Yii::$app->controller->module->id == 'missions' 
                 && Yii::$app->controller->id != 'evokation'),
@@ -124,7 +159,7 @@ class Events
                 'label' => Yii::t('MissionsModule.base', 'Evokation Home'),
                 'group' => 'modules',
                 'url' => $space->createUrl('/missions/evokation/index'),
-                'icon' => '<i class="fa fa-file-text"></i>',
+                'icon' => '<i class="fa fa-users"></i>',
                 'isActive' => (Yii::$app->controller->module 
                 && Yii::$app->controller->module->id == 'missions' 
                 && Yii::$app->controller->id == 'evokation'),

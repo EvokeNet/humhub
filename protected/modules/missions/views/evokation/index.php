@@ -5,7 +5,7 @@ use app\modules\missions\models\Missions;
 use yii\widgets\Breadcrumbs;
 
 $this->title = Yii::t('MissionsModule.base', 'Evokations');
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = Yii::t('MissionsModule.base', "{name}'s Evokation Page", array('name' => $contentContainer->name));
 
 echo Breadcrumbs::widget([
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
@@ -13,10 +13,37 @@ echo Breadcrumbs::widget([
 
 $this->pageTitle = Yii::t('MissionsModule.base', 'Evokations');
 
+$total = 0;
+$done = 0;
+
+foreach($missions as $m):
+
+    foreach($m->activities as $activity):
+        $total++;
+        foreach ($activity->evidences as $evidence):                     
+            if($evidence->content->space_id==$contentContainer->id) 
+                $done++;    
+        endforeach;
+    endforeach;
+                                
+endforeach;
+
 ?>
+
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h2><strong><?php echo Yii::t('MissionsModule.base', 'Evokations'); ?></strong></h2>
+        
+        <div style = "margin-top:20px; float:right">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?= floor(($done/$total)*100) ?>%;">
+                    <span class="sr-only"></span>
+                </div>
+            </div>
+            <span><?= Yii::t('MissionsModule.base', 'Team Progress: {number}%', array('number' => floor(($done/$total)*100))) ?></span>
+        </div>
+        
+        <h2><strong><?php echo Yii::t('MissionsModule.base', "{name}'s Evokation", array('name' => $contentContainer->name)); ?></strong></h2>
+
     </div>
     <div class="panel-body">
         
@@ -26,24 +53,24 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Evokations');
         
         <?php 
         $x = 0;
-        if (count($missions) != 0): ?>
+        if (count($categories) != 0): 
         
-        <?php foreach ($missions as $mission): $x++;?>
-                
+        foreach ($categories as $category): $x++;?>
+
         <div class="panel-group" role="tablist"> 
             <div class="panel panel-default"> 
                 
                 <div class="panel-heading" role="tab" id="collapseListGroupHeading1"> 
                     <h4 class="panel-title"> 
                         <a class="" role="button" data-toggle="collapse" href="#collapseListGroup<?=$x?>" aria-expanded="true" aria-controls="collapseListGroup1"> 
-                            <?= isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title ?> 
+                            <?= isset($category->evokationCategoryTranslations[0]) ? $category->evokationCategoryTranslations[0]->title : $category->title ?> 
                         </a> 
                     </h4> 
                 </div> 
                 
                 <div id="collapseListGroup<?=$x?>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="true"> 
                     <ul class="list-group"> 
-                        <?php foreach ($mission->activities as $activity): ?>
+                        <?php foreach ($category->activities as $activity): ?>
                             <li class="list-group-item">
                                 
                                 <?php 
@@ -51,7 +78,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Evokations');
                                 $a = isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title;
                                 //echo Html::a(
                                 //$a,
-                                //['evidences', 'activities', 'missionId' => $mission->id, 'sguid' => $contentContainer->guid]); 
+                                //['evidences', 'activities', 'categoryId' => $mission->id, 'sguid' => $contentContainer->guid]); 
                                                                 
                                 echo Html::a($a, ['evidence/show', 'activityId' => $activity->id, 'sguid' => $contentContainer->guid], ['class' => 'profile-link']);
                                 
@@ -68,7 +95,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Evokations');
                                     <span style = "float:left; margin-right:10px"><i class="fa fa-circle-o" aria-hidden="true"></i></span>                          
                                 <?php endif;  ?>
                                 
-                                <span class="label label-default" style = "margin-left:10px"><?= isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title ?></span> 
+                                <span class="label label-default" style = "margin-left:10px"><?= isset($activity->mission->missionTranslations[0]) ? $activity->mission->missionTranslations[0]->title : $activity->mission->title ?></span> 
                                 
                             </li>
                         <?php endforeach; ?>
@@ -85,7 +112,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Evokations');
         <?php endforeach; ?>
             
                 <?php else: ?>
-                    <p><?php echo Yii::t('MissionsModule.base', 'No missions created yet!'); ?></p>
+                    <p><?php echo Yii::t('MissionsModule.base', 'No categories created yet!'); ?></p>
                 <?php endif; ?>
         
     </div>

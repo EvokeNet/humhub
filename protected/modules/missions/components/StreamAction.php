@@ -9,6 +9,8 @@ use app\modules\missions\models\Evidence;
 class StreamAction extends ContentContainerStream
 {
 
+    public $activity_id;
+
     public function setupFilters()
     {
 
@@ -22,6 +24,12 @@ class StreamAction extends ContentContainerStream
         $this->activeQuery->leftJoin('evidence', 'content.object_id=evidence.id AND content.object_model=:evidenceClass', [':evidenceClass' => Evidence::className()]);
         $this->activeQuery->leftJoin('activities', 'evidence.activities_id = activities.id');
         */
+
+        if(isset($this->activity_id)){
+            $this->activeQuery->leftJoin('evidence', 'content.object_id=evidence.id AND content.object_model=:evidenceClass', [':evidenceClass' => Evidence::className()]);
+            $this->activeQuery->leftJoin('activities', 'evidence.activities_id = activities.id');
+            $this->activeQuery->andWhere(['activities.id' => $this->activity_id]);
+        }
 
     }
 

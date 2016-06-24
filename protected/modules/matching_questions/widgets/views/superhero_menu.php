@@ -11,18 +11,25 @@ use yii\helpers\Url;
         </strong>
     </div>
     <div class="panel-body">
-            
-        <h5>
-            <strong>
-                <?php 
-                    if(isset($superhero_id->name))
-                        echo isset($superhero_id->superheroIdentityTranslations[0]) ? $superhero_id->superheroIdentityTranslations[0]->name : $superhero_id->name;
-                    else 
-                        Yii::t('MatchingModule.base', 'Not Defined Yet');               
-                ?>
-            </strong>
-        </h5>
         
-        <?= isset($superhero_id->superheroIdentityTranslations[0]) ? $superhero_id->superheroIdentityTranslations[0]->description : $superhero_id->description ?>
+        <?php if(isset($superhero_id)): ?>
+            <h6>
+                <strong>
+                    <?php echo isset($superhero_id->superheroIdentityTranslations[0]) ? $superhero_id->superheroIdentityTranslations[0]->name : $superhero_id->name; ?>
+                </strong>
+            </h6>
+            
+            <p>
+                <?php echo isset($superhero_id->superheroIdentityTranslations[0]) ? $superhero_id->superheroIdentityTranslations[0]->description : $superhero_id->description; ?>
+            </p>
+        
+        <?php else: ?>
+            <p>
+                <strong>
+                    <?php echo Yii::t('MatchingModule.base', 'Not Defined Yet'); ?>
+                </strong>
+            </p>
+        <?php endif; ?>
+                
     </div>
 </div>

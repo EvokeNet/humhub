@@ -5,6 +5,7 @@ use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use app\modules\missions\models\Missions;
 use app\modules\missions\models\DifficultyLevels;
+use app\modules\missions\models\EvokationCategories;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\missions\models\Objectives */
@@ -29,6 +30,11 @@ use app\modules\missions\models\DifficultyLevels;
             ['prompt' => Yii::t('MissionsModule.base', 'Select Mission')]
         ) ?>
    </div>-->
+   
+        <?= $form->field($model, 'evokation_category_id')->dropdownList(
+            ArrayHelper::map(EvokationCategories::find()->all(), 'id', 'title'),
+            ['prompt' => Yii::t('MissionsModule.base', 'Select Category')]
+        ) ?>
    
         <?= $form->field($model, 'difficulty_level_id')->dropdownList(
             ArrayHelper::map(DifficultyLevels::find()->all(), 'id', 'title'),

@@ -11,9 +11,10 @@ $firstSecondary = true;
     echo Html::tag('br');
 
     $rubric = Html::tag('p', Html::encode(isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric), ['class' => 'description']);
-    $rubric_title = Html::tag('b', Yii::t('MissionsModule.widgets_views_evidenceForm', "Rubric:"));
+    $rubric_title = Html::tag('b', Yii::t('MissionsModule.widgets_views_evidenceForm', "Rubric: {rubric}", array('rubric' => $rubric)));
     
-    echo $rubric_title.$rubric;
+    // echo $rubric_title.$rubric;
+    echo $rubric_title;
     
     echo Html::tag('br');
     echo Html::tag('hr');
