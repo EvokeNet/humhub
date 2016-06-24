@@ -30,6 +30,9 @@ class Events
 
     public static function onDashboardSidebarInit($event){
         $event->sender->addWidget(PopUpWidget::className(), []);
+        
+        // $space = $event->sender->space;
+        var_dump($event);
         $event->sender->addWidget(CTAPostEvidenceWidget::className(), []);
     }
 

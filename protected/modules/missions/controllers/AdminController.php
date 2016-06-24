@@ -55,7 +55,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
             $model->delete();
         }
 
-        return $this->redirect(['evokation-categories/index']);
+        return $this->redirect(['index-categories']);
     }
     
     public function actionIndex()

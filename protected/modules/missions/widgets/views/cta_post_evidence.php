@@ -4,7 +4,6 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-var_dump($member->space->name);
 ?>
 
 <div class="panel panel-default">
@@ -16,7 +15,7 @@ var_dump($member->space->name);
     		<a class = "btn btn-primary" href='<?= Url::to(['/missions/evidence/missions', 'sguid' => $member->space->guid]); ?>'>
         		<?= Yii::t('MissionsModule.base', 'Choose a mission') ?>
         	</a>
-            <a class = "btn btn-primary" href='<?= Url::to(['/missions/review/index', 'sguid' => $member->space->guid]); ?>'>
+            <a class = "btn btn-primary" href='<?= Url::to(['/missions/review/index', 'sguid' => $member->space->guid]) ?>'>
         		<?= Yii::t('MissionsModule.base', 'Review evidences') ?>
         	</a>
         </div>
