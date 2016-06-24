@@ -1,7 +1,8 @@
 assets/*
 !assets/.gitignore
 
-etherpad/
+etherpad-lite/*
+!etherpad-lite/.gitignore
 
 protected/runtime/*
 !protected/runtime/.gitignore
