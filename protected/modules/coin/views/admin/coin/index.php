@@ -5,7 +5,7 @@ use yii\grid\GridView;
 
 use yii\widgets\Breadcrumbs;
 
-$this->title = Yii::t('CoinModule.base', 'Coin');
+$this->title = Yii::t('CoinModule.base', 'Wallets');
 $this->params['breadcrumbs'][] = $this->title;
 
 echo Breadcrumbs::widget([
@@ -33,7 +33,7 @@ echo Breadcrumbs::widget([
                         <td><?php echo $wallet->amount; ?></td>
                         <td>
                             <?php echo Html::a(
-                                Yii::t('CoinModule.base', 'Change'),
+                                Yii::t('CoinModule.base', 'Update'),
                                 ['update', 'id' => $wallet->id], array('class' => 'btn btn-primary btn-sm')); ?>
                         </td>
                     </tr>
