@@ -1,0 +1,11 @@
+{
+    "id": "coin",
+    "name": "Coin",
+    "description": "Coins for HumHub",
+    "keywords": ["coin"],
+    "version": "0.0.1",
+    "humhub": {
+        "minVersion": "0.20"
+    },
+    "screenshots": []
+}
