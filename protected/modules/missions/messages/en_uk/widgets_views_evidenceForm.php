@@ -22,7 +22,7 @@ return [
     'Edit your Evidence title...' => '',
     'Page Title' => '',
     'Primary power:' => '',
-    'Rubric:' => '',
+    'Rubric: {rubric}' => '',
     'Secondary power:' => '',
     'points' => '',
 ];

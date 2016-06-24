@@ -4,6 +4,7 @@ namespace app\modules\missions\models;
 
 use Yii;
 use humhub\modules\user\models\User;
+use humhub\modules\notification\models\Notification;
 use app\modules\missions\models\Evidence;
 use humhub\modules\content\components\ContentActiveRecord;
 
@@ -39,7 +40,7 @@ class Votes extends ContentActiveRecord
     public function rules()
     {
         return [
-            [['activity_id', 'evidence_id', 'user_id', 'flag', 'value', 'comment'], 'required'],
+            [['activity_id', 'evidence_id', 'user_id', 'flag', 'value'], 'required'],
             [['activity_id', 'evidence_id', 'user_id', 'flag', 'value'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['comment'], 'string'],
@@ -120,6 +121,20 @@ class Votes extends ContentActiveRecord
         $evidence = Evidence::findOne($this->evidence_id);
         return $evidence->content->getUrl();
     }
+
+
+    public function afterDelete()
+    {
+
+        $notifications = Notification::findAll(['source_pk' => $this->id, 'source_class' => Votes::classname()]);
+
+        foreach($notifications as $notification){
+            $notification->delete();
+        }
+
+        return parent::afterDelete();
+
+    }     
 
 
 }

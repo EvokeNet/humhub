@@ -17,13 +17,28 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Evokation Home' => 'Página de inicio de la Evokation',
-    'Evokation\'s Page' => 'Página de la Evokation',
-<<<<<<< HEAD
-    'Evokations' => 'Evokations'.
-=======
-    'Evokations' => 'Evokations',
->>>>>>> origin/dev
+    'Are you sure you want to delete this category?' => '¿Seguro que quiere borrar esta categoría?',
+    'By' => 'Por',
+    'By Anonymous, {time}' => 'Por Anónimo, {time}',
+    'Choose a mission' => 'Elija una misión',
+    'Create Evokation Categories' => 'Crear Categorías de Evokation',
+    'Create new Evokation Category' => 'Crear nueva Categoría de Evokation',
+    'Evokation Categories' => 'Categorías de Evokation',
+    'Next Evidence' => 'Siguiente Evidencia',
+    'No categories created yet!' => 'No hay categorías creadas aún!',
+    'Review Evidence' => 'Revisas la evidencia',
+    'Review evidences' => 'Revisas las evidencias',
+    'Select Category' => 'Selecciona una categoría',
+    'Submit Evidence' => 'Enviar evidencia',
+    'Team Progress: {number}%' => 'Progreso del equipo: {number}%',
+    'Text cannot be blank.' => 'El texto no puede estar en blanco.',
+    'There are no more evidences left to review.' => 'No hay más evidencias que dejan a opinar',
+    'Title cannot be blank.' => 'El título no puede estar en blanco.',
+    'Update Review' => 'Actualizar Revisión',
+    'Update {modelClass}: ' => 'Actualizar {modelClass}: ',
+    '{first} of {total}' => '{first} de {total}',
+    '{name}\'s Evokation' => 'Evokation de {name}',
+    '{name}\'s Evokation Page' => 'Página de Evokation de {name}',
     'Activities' => 'Actividades',
     'Activity' => 'Actividad',
     'Activity Powers' => 'Poderes de Actividades',
@@ -52,6 +67,9 @@ return [
     'Edit' => 'Editar',
     'Enter Activity' => 'Entrar en la actividad',
     'Enter Mission' => 'Entrar en la misión',
+    'Evokation Home' => 'Página de inicio de la Evokation',
+    'Evokation\'s Page' => 'Página de la Evokation',
+    'Evokations' => 'Evokations',
     'For every piece of evidence you review, you receive 10 points in {title}' => 'Por cada pieza de evidencia que revise, recibe 10 puntos en {title}',
     'How many points will you award this evidence?' => '¿Cuántos puntos se le concederá esta evidencia?',
     'ID Code' => 'Código ID',

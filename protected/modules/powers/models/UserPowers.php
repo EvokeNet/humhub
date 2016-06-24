@@ -126,7 +126,9 @@ class UserPowers extends \yii\db\ActiveRecord
         $userPower->save();
 
         $quality_power = QualityPowers::findOne(['power_id' => $power->id]);
-        UserQualities::updatedQualityPoints($quality_power->quality_id, $user);
+        if($quality_power){
+            UserQualities::updatedQualityPoints($quality_power->quality_id, $user);
+        }
     }
 
 }

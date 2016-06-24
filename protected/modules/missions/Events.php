@@ -146,7 +146,7 @@ class Events
                 'icon' => '<i class="fa fa-sitemap"></i>',
                 'isActive' => (Yii::$app->controller->module 
                 && Yii::$app->controller->module->id == 'missions' 
-                && Yii::$app->controller->id != 'evokation'),
+                && Yii::$app->controller->id == 'evidence'),
             ));
         }
     }
@@ -163,6 +163,22 @@ class Events
                 'isActive' => (Yii::$app->controller->module 
                 && Yii::$app->controller->module->id == 'missions' 
                 && Yii::$app->controller->id == 'evokation'),
+            ));
+        }
+    }
+
+    public static function onReviewSpaceMenuInit($event)
+    {
+        $space = $event->sender->space;
+        if ($space->isModuleEnabled('missions')) {
+            $event->sender->addItem(array(
+                'label' => Yii::t('MissionsModule.base', 'Review Evidence'),
+                'group' => 'modules',
+                'url' => $space->createUrl('/missions/review/index'),
+                'icon' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i>',
+                'isActive' => (Yii::$app->controller->module 
+                && Yii::$app->controller->module->id == 'missions' 
+                && Yii::$app->controller->id == 'review'),
             ));
         }
     }

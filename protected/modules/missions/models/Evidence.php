@@ -237,6 +237,6 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
 
         return parent::afterSave($insert, $changedAttributes);
 
-    }    
+    }         
 
 }
