@@ -24,6 +24,7 @@
             
             ['class' => Menu::className(), 'event' => Menu::EVENT_INIT, 'callback' => ['\humhub\modules\missions\Events', 'onMissionSpaceMenuInit']],
             ['class' => Menu::className(), 'event' => Menu::EVENT_INIT, 'callback' => ['\humhub\modules\missions\Events', 'onEvokationSpaceMenuInit']],
+            ['class' => Menu::className(), 'event' => Menu::EVENT_INIT, 'callback' => ['\humhub\modules\missions\Events', 'onReviewSpaceMenuInit']],
 
         ],
         'urlManagerRules' => [
