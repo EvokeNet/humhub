@@ -239,4 +239,24 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
 
     }    
 
+
+    /**
+     * After Saving of comments, fire an activity
+     *
+     * @return type
+     */
+    public function afterDelete()
+    {
+
+        $votes = Votes::findAll(['evidence_id' => $this->id]);
+
+
+        foreach($votes as $vote){
+            $vote->delete();
+        }
+
+        return parent::afterDelete();
+
+    }       
+
 }

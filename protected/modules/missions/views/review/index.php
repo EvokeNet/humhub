@@ -1,8 +1,13 @@
 <?php
 
 use yii\helpers\Html;
+$activity = null;
+$evidence_id = null;
 
-$activity = $evidence->getActivities();
+if($evidence){
+    $activity = $evidence->getActivities();  
+    $evidence_id = $evidence->id;
+}
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -12,6 +17,7 @@ $activity = $evidence->getActivities();
             </strong>
         </h2>
     </div>
+<?php if($activity): ?>
     <div class="panel-body">
 
         <div class="activity_area">
@@ -129,6 +135,12 @@ $activity = $evidence->getActivities();
         <?php endif; ?> 
         </div>
     </div>
+<?php else: ?>
+    <div class="panel-body">
+        There are no evidences left.
+    </div>
+<?php endif; ?>
+
 </div>
 
 
@@ -183,7 +195,7 @@ function review(id, comment, opt, grade){
     return false;
 }
 
-function validateReview<?= $evidence->id ?>(id){
+function validateReview<?= $evidence_id ?>(id){
 
 	var opt = document.querySelector('input[name="yes-no-opt'+id+'"]:checked');
 	var grade = document.querySelector('input[name="grade'+id+'"]:checked');
@@ -218,20 +230,20 @@ function validateReview<?= $evidence->id ?>(id){
 }
 
 jQuery(document).ready(function () {
-        $('#review<?= $evidence->id ?>').submit(
+        $('#review<?= $evidence_id ?>').submit(
             function(){
-                return validateReview<?= $evidence->id ?>(<?= $evidence->id ?>);
+                return validateReview<?= $evidence_id ?>(<?= $evidence_id ?>);
             }
         );
     });
 
 
 $(document).ready(function(){
-    $(".btn-hide<?= $evidence->id ?>").click(function(){
-        $("#yes-opt<?= $evidence->id ?>").collapse('hide');
+    $(".btn-hide<?= $evidence_id ?>").click(function(){
+        $("#yes-opt<?= $evidence_id ?>").collapse('hide');
     });
-    $(".btn-show<?= $evidence->id ?>").click(function(){
-        $("#yes-opt<?= $evidence->id ?>").collapse('show');
+    $(".btn-show<?= $evidence_id ?>").click(function(){
+        $("#yes-opt<?= $evidence_id ?>").collapse('show');
     });
 });
 </script>
