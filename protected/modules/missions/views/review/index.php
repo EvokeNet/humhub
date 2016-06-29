@@ -14,6 +14,13 @@ if($evidence){
                 <?php echo Yii::t('MissionsModule.base', 'Review Evidence'); ?>
             </strong>
         </h2>
+        <?php if($activity): ?>
+        <div style="float:right">
+            <?= ($evidence_count - $evidence_to_review_count + 1) ?>
+            of 
+            <?= $evidence_count ?>
+        </div>
+        <?php endif; ?>
     </div>
 <?php if($activity): ?>
     <div class="panel-body">
