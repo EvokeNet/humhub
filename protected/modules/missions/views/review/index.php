@@ -2,11 +2,9 @@
 
 use yii\helpers\Html;
 $activity = null;
-$evidence_id = null;
 
 if($evidence){
     $activity = $evidence->getActivities();  
-    $evidence_id = $evidence->id;
 }
 ?>
 <div class="panel panel-default">
@@ -97,16 +95,17 @@ if($evidence){
                 		<?php //$activity->rubric ?>
                     <?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric ?>
                 	</p>
-                	<form id = "review<?= $evidence->id ?>" class="review">
+                	<form id = "review" class="review">
+                        <input type="hidden" id="evidence_id" value="<?= $evidence->id ?>">
                 		<div class="radio">
               				<label>
-              					<input type="radio" name="yes-no-opt<?= $evidence->id ?>" class="btn-show<?= $evidence->id ?>" value="yes" <?= $yes ?> >
+              					<input type="radio" name="yes-no-opt" class="btn-show" value="yes" <?= $yes ?> >
               					Yes
               				</label>
-              				<div id="yes-opt<?= $evidence->id ?>" class="collapse <?= $collapse ?>">
+              				<div id="yes-opt" class="collapse <?= $collapse ?>">
               					<?php for ($x=1; $x <= 5; $x++): ?> 
               					<label class="radio-inline">
-              						<input type="radio" name="grade<?= $evidence->id ?>" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> >
+              						<input type="radio" name="grade" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> >
               						<?php echo $x; ?>
               					</label>
               					<?php endfor; ?>
@@ -117,12 +116,12 @@ if($evidence){
             			  </div>
             			  <div class="radio">
             				  <label>
-            					<input type="radio" name="yes-no-opt<?= $evidence->id ?>" class="btn-hide<?= $evidence->id ?>" value="no" <?= $no ?>>
+            					<input type="radio" name="yes-no-opt" class="btn-hide" value="no" <?= $no ?>>
             					 No
             				  </label>
             			  </div>
             			  <br>
-                    <?php echo Html::textArea("text", $comment , array('id' => 'review_comment_'.$evidence->id, 'class' => 'text-margin form-control ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Comment"))); ?>  
+                    <?php echo Html::textArea("text", $comment , array('id' => 'review_comment', 'class' => 'text-margin form-control ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Comment"))); ?>  
             			  <br>
                     <?= Yii::t('MissionsModule.base', 'For every piece of evidence you review, you receive 10 points in {title}', array('title' => $primaryPowerTitle)) ?>
             			  <br>
@@ -133,6 +132,10 @@ if($evidence){
                 </div>
             </div>
         <?php endif; ?> 
+            <hr>
+            <a id="next_evidence" class="btn btn-info" disabled="disabled" style="float: right;" onClick="return false" href="<?= $contentContainer->createUrl('/missions/review/index') ?>">
+                Next Evidence
+            </a>
         </div>
     </div>
 <?php else: ?>
@@ -177,16 +180,15 @@ if($evidence){
 
 <script>
 
+
 function review(id, comment, opt, grade){
     grade = grade? grade : 0;
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
-            if(xhttp.responseText){
-              if(xhttp.responseText == "success"){
-                updateReview(id, opt, grade);
-              }
-            }
+            next_element = document.getElementById("next_evidence");
+            next_element.removeAttribute("disabled");
+            next_element.removeAttribute("onClick");
         }
     };
     xhttp.open("GET", "<?= $contentContainer->createUrl('/missions/evidence/review'); ?>&opt="+opt+"&grade="+grade+"&evidenceId="+id+"&comment="+comment , true);
@@ -195,11 +197,11 @@ function review(id, comment, opt, grade){
     return false;
 }
 
-function validateReview<?= $evidence_id ?>(id){
+function validateReview(id){
 
-	var opt = document.querySelector('input[name="yes-no-opt'+id+'"]:checked');
-	var grade = document.querySelector('input[name="grade'+id+'"]:checked');
-    var comment = document.getElementById("review_comment_"+id).value;
+	var opt = document.querySelector('input[name="yes-no-opt"]:checked');
+	var grade = document.querySelector('input[name="grade"]:checked');
+    var comment = document.getElementById("review_comment").value;
 	opt = opt? opt.value : null;
 	grade = grade? grade.value : null;
 
@@ -230,20 +232,20 @@ function validateReview<?= $evidence_id ?>(id){
 }
 
 jQuery(document).ready(function () {
-        $('#review<?= $evidence_id ?>').submit(
+        $('#review').submit(
             function(){
-                return validateReview<?= $evidence_id ?>(<?= $evidence_id ?>);
+                return validateReview(document.getElementById("evidence_id").value);
             }
         );
     });
 
 
 $(document).ready(function(){
-    $(".btn-hide<?= $evidence_id ?>").click(function(){
-        $("#yes-opt<?= $evidence_id ?>").collapse('hide');
+    $(".btn-hide").click(function(){
+        $("#yes-opt").collapse('hide');
     });
-    $(".btn-show<?= $evidence_id ?>").click(function(){
-        $("#yes-opt<?= $evidence_id ?>").collapse('show');
+    $(".btn-show").click(function(){
+        $("#yes-opt").collapse('show');
     });
 });
 </script>

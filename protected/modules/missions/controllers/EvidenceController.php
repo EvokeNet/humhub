@@ -258,8 +258,6 @@ class EvidenceController extends ContentContainerController
                 }
 
                 $message = Yii::t('MissionsModule.base', 'You just gained 10 points in {message}', array('message' => $activityPower->getPower()->title));
-
-                //AlertController::createAlert("Congratulations!", $message.".<BR>Thank you for your review.");
                 
                 AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', '{message}. <BR>Thank you for your review.', array('message' => $message)));
             }

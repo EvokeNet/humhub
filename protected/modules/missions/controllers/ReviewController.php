@@ -5,22 +5,8 @@ namespace humhub\modules\missions\controllers;
 use Yii;
 use app\modules\missions\models\Evidence;
 use humhub\modules\file\models\File;
-
-use app\modules\missions\models\EvidenceSearch;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\web\HttpException;
-use yii\filters\VerbFilter;
+use yii\helpers\Json;
 use humhub\modules\content\components\ContentContainerController;
-use app\modules\missions\models\Missions;
-use app\modules\missions\models\Activities;
-use app\modules\languages\models\Languages;
-use app\modules\powers\models\UserPowers;
-use app\modules\powers\models\Powers;
-use app\modules\missions\models\ActivityPowers;
-use app\modules\missions\models\Votes;
-use humhub\modules\missions\controllers\AlertController;
-use humhub\modules\user\models\User;
 
 class ReviewController extends ContentContainerController
 {
@@ -30,9 +16,8 @@ class ReviewController extends ContentContainerController
 
     }   
 
-   
-    public function actionIndex()
-    {   
+    public function getNextEvidence(){
+        $nextEvidence = array();
         $evidence = null;
         $files = null;
 
@@ -63,6 +48,28 @@ class ReviewController extends ContentContainerController
             $evidence = Evidence::findOne($evidence_id);
             $files = File::findAll(array('object_model' => Evidence::classname(), 'object_id' => $evidence_id));
         }
+        $nextEvidence['evidence'] = $evidence;
+        $nextEvidence['files'] = $files;
+
+        return $nextEvidence;
+    }
+
+    public function actionQueue(){
+
+        $nextEvidence = $this->getNextEvidence();
+        $nextEvidence['activity'] =  $nextEvidence['evidence']->getActivities();  
+
+        header('Content-Type: application/json; charset="UTF-8"');
+        $nextEvidence = Json::encode($nextEvidence);
+        echo $nextEvidence;
+        Yii::$app->end();
+    }
+   
+    public function actionIndex()
+    {   
+        $nextEvidence = $this->getNextEvidence();
+        $evidence = $nextEvidence['evidence'];
+        $files = $nextEvidence['files'];
 
         return $this->render('index', array('contentContainer' => $this->contentContainer, 'evidence' => $evidence, 'files' => $files));
     }
