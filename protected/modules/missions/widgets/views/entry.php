@@ -153,10 +153,13 @@ function validateReview<?= $evidence->id ?>(id){
 	opt = opt? opt.value : null;
 	grade = grade? grade.value : null;
 
-if(comment == ""){
-  showMessage("Error", "<?= Yii::t('MissionsModule.base', 'You must submit a comment.') ?>");
-  return false;
-}
+/* 
+***Comment isn't required anymore.***
+    if(comment == ""){
+        showMessage("Error", "<?= Yii::t('MissionsModule.base', 'You must submit a comment.') ?>");
+        return false;
+    }
+*/
 
 	if(opt == "yes"){
 

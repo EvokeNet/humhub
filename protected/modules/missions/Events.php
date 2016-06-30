@@ -140,7 +140,7 @@ class Events
                 'label' => Yii::t('MissionsModule.base', 'Review Evidence'),
                 'group' => 'modules',
                 'url' => $space->createUrl('/missions/review/index'),
-                'icon' => '<i class="fa fa-file-text"></i>',
+                'icon' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i>',
                 'isActive' => (Yii::$app->controller->module 
                 && Yii::$app->controller->module->id == 'missions' 
                 && Yii::$app->controller->id == 'review'),
