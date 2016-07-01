@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use humhub\modules\user\models\User;
 use humhub\modules\space\models\Space;
+use humhub\modules\coin\widgets\UserWallet;
 
 if ($isProfileOwner) {
     $this->registerJsFile('@web/resources/user/profileHeaderImageUpload.js');
@@ -205,6 +206,10 @@ if ($isProfileOwner) {
                             <span class="count"><?php echo count($user->spaces); ?></span><br>
                             <span
                                 class="title"><?php echo Yii::t('UserModule.widgets_views_profileHeader', 'Spaces'); ?></span>
+                        </div>
+
+                        <div class="pull-left entry">
+                          <?php echo \humhub\modules\coin\widgets\UserWallet::widget(array('user' => $user)); ?>
                         </div>
 
                     </div>
