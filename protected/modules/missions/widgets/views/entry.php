@@ -35,7 +35,7 @@ $activity = $evidence->getActivities();
 <?php echo Html::endForm(); ?>
 
 <BR>
-<?php if($evidence->content->user_id != Yii::$app->user->getIdentity()->id): ?>  
+<?php if($evidence->content->user_id != Yii::$app->user->getIdentity()->id && Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>  
 <div class="panel-group">
   <div class="panel panel-default">
     <div class="panel-heading">
