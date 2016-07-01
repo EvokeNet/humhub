@@ -15,7 +15,10 @@ class SuperHeroWidget extends Widget
      */
     public function run()
     {
+      if ($this->superhero_id !== NULL) {
         return $this->render('superhero_menu', array('superhero_id' => $this->superhero_id));
+      }
+      return;
     }
 
 }
