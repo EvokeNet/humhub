@@ -21,8 +21,10 @@ foreach($missions as $m):
     foreach($m->activities as $activity):
         $total++;
         foreach ($activity->evidences as $evidence):                     
-            if($evidence->content->space_id==$contentContainer->id) 
+            if($evidence->content->space_id==$contentContainer->id){ 
                 $done++;    
+                break;
+            }
         endforeach;
     endforeach;
                                 
