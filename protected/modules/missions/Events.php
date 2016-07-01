@@ -19,7 +19,7 @@ use app\modules\missions\models\Evidence;
 use app\modules\missions\models\ActivityPowers;
 use app\modules\powers\models\UserPowers;
 use humhub\modules\user\models\User;
-// use humhub\modules\dashboard\widgets\ShareWidget;
+use humhub\modules\space\models\Membership;
 
 /**
  * Description of Events
@@ -181,6 +181,36 @@ class Events
                 && Yii::$app->controller->id == 'review'),
             ));
         }
+    }
+
+    /**
+     * On build of the TopMenu, check if module is enabled
+     * When enabled add a menu item
+     *
+     * @param type $event
+     */
+    public static function onTopMenuInit($event)
+    {
+        $member = Membership::find()
+        // (new \yii\db\Query())
+        // ->select(['s.space_id as space_id'])
+        // ->from('space_membership as s')
+        ->where(['user_id' => Yii::$app->user->getIdentity()->id])
+        ->orderBy('space_id DESC')
+        // ->andWhere(['!=', 'space_id', 1])
+        ->one();
+
+        $event->sender->addItem(array(
+        'label' => Yii::t('MissionsModule.base', 'Review Evidence'),
+        'id' => 'review_evidence',
+        'icon' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i>',
+        'url' => Url::to(['/missions/review/index', 'sguid' => $member->space->guid]),
+        'sortOrder' => 200,
+        'isActive' => (Yii::$app->controller->module 
+            && Yii::$app->controller->module->id == 'missions' 
+            && Yii::$app->controller->id == 'review'),
+        ));
+        
     }
 
 }
