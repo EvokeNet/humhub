@@ -11,9 +11,12 @@ namespace humhub\modules\missions;
 use Yii;
 use yii\helpers\Url;
 use humhub\models\Setting;
+
 use humhub\modules\missions\widgets\EvidenceWidget;
-use humhub\modules\missions\widgets\CTAPostEvidenceWidget;
+use humhub\modules\missions\widgets\CTAPostEvidence;
 use humhub\modules\missions\widgets\PopUpWidget;
+use humhub\modules\missions\widgets\PlayerStats;
+
 use humhub\modules\space\models\Space;
 use app\modules\missions\models\Evidence;
 use app\modules\missions\models\ActivityPowers;
@@ -30,7 +33,8 @@ class Events
 
     public static function onDashboardSidebarInit($event){
         $event->sender->addWidget(PopUpWidget::className(), []);
-        $event->sender->addWidget(CTAPostEvidenceWidget::className(), []);
+        $event->sender->addWidget(CTAPostEvidence::className(), []);
+        $event->sender->addWidget(PlayerStats::className(), []);
     }
 
     public static function onSidebarInit($event)

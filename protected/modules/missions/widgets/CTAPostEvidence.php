@@ -6,7 +6,7 @@ use Yii;
 use \yii\base\Widget;
 use humhub\modules\space\models\Membership;
 
-class CTAPostEvidenceWidget extends Widget
+class CTAPostEvidence extends Widget
 {
 
 	public $space;
