@@ -116,6 +116,32 @@ class UserPowers extends \yii\db\ActiveRecord
         return $this->level;
     }
 
+    public function getNextLevelPoints(){
+        $level = $this->getLevel() + 1;
+
+        if($level >= 1){
+            $power = Powers::findOne($this->power_id);
+            $improve_multiplier = $power->improve_multiplier;
+            $improve_offset = $power->improve_offset;
+            return floor(floatval($improve_multiplier) * pow( $level , 1.95 ) + floatval($improve_offset));
+        }else{
+            return 0;
+        }
+    }
+
+    public function getCurrentLevelPoints(){
+        $level = $this->getLevel();
+
+        if($level >= 1){
+            $power = Powers::findOne($this->power_id);
+            $improve_multiplier = $power->improve_multiplier;
+            $improve_offset = $power->improve_offset;
+            return $this->value - floor(floatval($improve_multiplier) * pow( $level , 1.95 ) + floatval($improve_offset));
+        }else{
+            return $this->value;
+        }
+    }
+
     public function updateLevel(){
         $power = Powers::findOne($this->power_id);
         $improve_multiplier = $power->improve_multiplier;
@@ -163,6 +189,39 @@ class UserPowers extends \yii\db\ActiveRecord
 
         $userPower->save();
         $userPower->updateLevel();
+    }
+
+    public function getUserPowers($user_id){
+     $powers = UserPowers::find()
+        ->where(['user_id' => $user_id])
+        ->joinWith('qualityPowers', true, 'INNER JOIN')
+        ->orderBy('quality_powers.quality_id')
+        ->all();
+
+        $quality_id = -1;
+        $qualities = array();
+        $quality_powers = array();
+
+        foreach($powers as $power){                
+
+            if($power->getPower()->getQualityPowers()[0]->quality_id != $quality_id){
+                $quality_id = $power->getPower()->getQualityPowers()[0]->quality_id;
+
+                if(!empty($quality_powers)){
+                    array_push($qualities, $quality_powers);
+                }
+
+                $quality_powers = array();
+            }
+
+            array_push($quality_powers, $power);
+        }
+
+        if(!empty($quality_powers)){
+            array_push($qualities, $quality_powers);
+        }
+
+        return $qualities;
     }
 
 }

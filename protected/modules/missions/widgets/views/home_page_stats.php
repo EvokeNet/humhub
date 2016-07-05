@@ -47,39 +47,47 @@ use yii\helpers\Url;
         </div>
 
         <div class="panel-body">
-            <?php for($x = 1; $x <= 4; $x++): ?>
+            <?php foreach($userPowers as $userQuality): ?>
                 <div class="col-xs-3">
                     <i class="fa fa-eye fa-5x" aria-hidden="true"></i>
-                    <BR>Creative Visionary
-                    <BR>Level 2
-
+                    <BR>
+                        <?= $userQuality[0]->getPower()->getQualityPowers()[0]->getQualityObject()->name; ?>
+                    <BR>
+                        Level 
+                        <?= $userQuality[0]->getUserQuality()->getLevel() ?>
                     <p style="padding-top: 15px;">
                         <strong>
                             Power
                         </strong>
                     </p>
-                    <?php for($y = 1; $y <= 5; $y++): ?>
+                    <?php foreach($userQuality as $userPower): ?>
                         <div class="power">
-                            Imagination
+                            <?php 
+                                $power = $userPower->getPower(); 
+                                $percentage = floor($userPower->getCurrentLevelPoints() / $userPower->getNextLevelPoints() * 100) ;
+                            ?>
+                            <?= isset($power->powerTranslations[0]) ? $power->powerTranslations[0]->title : $power->title ?>
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?= $percentage ?>%;">
                                     <span class="sr-only"></span>
                                 </div>
                                 <span>
                                 </span>
                             </div>     
                             <div class="level">
-                                Level 2
+                                Level <?= $userPower->getLevel() ?>
                             </div>
                             <div class="points">
-                                24/50
+                                <?= $userPower->getCurrentLevelPoints() ?>
+                                /
+                                <?= $userPower->getNextLevelPoints() ?>
                             </div> 
                         </div>
-                    <?php endfor; ?>
+                    <?php endforeach; ?>
 
 
                 </div>
-            <?php endfor; ?>
+            <?php endforeach; ?>
 
         </div>
 
