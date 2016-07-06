@@ -1,11 +1,16 @@
 <?php
+
+use app\modules\powers\models\UserPowers;
+
+$userPowers = UserPowers::getUserPowers(Yii::$app->user->getIdentity()->id);
+
 $this->pageTitle = Yii::t('DashboardModule.views_dashboard_index', 'Dashboard X');
 ?>
 <div class="container">
     <div class="row">
         <div class="col-md-8 layout-content-container">
             <?php
-            echo \humhub\modules\missions\widgets\HomePageStats::widget([]);
+            echo \humhub\modules\missions\widgets\HomePageStats::widget(['powers' => $userPowers]);
             ?>
             <?php
             if ($showProfilePostForm) {

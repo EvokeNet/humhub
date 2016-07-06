@@ -8,6 +8,7 @@ use yii\db\Expression;
 use yii\behaviors\TimestampBehavior;
 use humhub\modules\user\models\User;
 use app\modules\powers\models\QualityPowers;
+use app\modules\powers\models\Powers;
 
 /**
  * This is the model class for table "user_powers".
@@ -53,8 +54,8 @@ class UserPowers extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'power_id', 'value'], 'required'],
-            [['user_id', 'power_id', 'value'], 'integer'],
+            [['user_id', 'power_id', 'value', 'level'], 'required'],
+            [['user_id', 'power_id', 'value', 'level'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['power_id'], 'exist', 'skipOnError' => true, 'targetClass' => Powers::className(), 'targetAttribute' => ['power_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
@@ -71,6 +72,7 @@ class UserPowers extends \yii\db\ActiveRecord
             'user_id' => Yii::t('PowersModule.base', 'User ID'),
             'power_id' => Yii::t('PowersModule.base', 'Power ID'),
             'value' => Yii::t('PowersModule.base', 'Value'),
+            'level' => Yii::t('PowersModule.base', 'Level'),
             'created_at' => Yii::t('PowersModule.base', 'Created At'),
             'updated_at' => Yii::t('PowersModule.base', 'Modified At'),
         ];
@@ -83,6 +85,14 @@ class UserPowers extends \yii\db\ActiveRecord
     {
         $power = Powers::findOne($this->power_id);
         return $power;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPowers()
+    {
+        return $this->hasOne(Powers::className(), ['id' => 'power_id']);
     }
 
     /**
@@ -107,6 +117,86 @@ class UserPowers extends \yii\db\ActiveRecord
         return UserQualities::findOne(['user_id' => $this->user_id, 'quality_id' => $quality_power->quality_id]);
     }
 
+    public function getLevel(){
+        if(!$this->level){
+            $this->updateLevel();
+        }
+        return $this->level;
+    }
+
+    public function getNextLevelPoints(){
+
+        $level = $this->getLevel() + 1;
+
+        if($level >= 1){
+            $power = Powers::findOne($this->power_id);
+            $improve_multiplier = $power->improve_multiplier;
+            $improve_offset = $power->improve_offset;
+
+            if(!$improve_multiplier || !$improve_offset){
+                return 1;
+            }
+
+            return floor(floatval($improve_multiplier) * pow( $level , 1.95 ) + floatval($improve_offset));
+        }else{
+            return 1;
+        }
+    }
+
+    public function getCurrentLevelPoints(){
+
+        $level = $this->getLevel();
+
+        if($level >= 1){
+            $power = Powers::findOne($this->power_id);
+            $improve_multiplier = $power->improve_multiplier;
+            $improve_offset = $power->improve_offset;
+
+            if(!$improve_multiplier || !$improve_offset){
+                return 0;
+            }
+
+            return $this->value - floor(floatval($improve_multiplier) * pow( $level , 1.95 ) + floatval($improve_offset));
+        }else{
+            return $this->value;
+        }
+    }
+
+    public function updateLevel(){
+        $power = Powers::findOne($this->power_id);
+        $improve_multiplier = $power->improve_multiplier;
+        $improve_offset = $power->improve_offset;
+        $value_aux = 0;
+        $level_aux = 0;
+        $old_level = $this->level;
+
+        if(!$improve_multiplier || !$improve_offset){
+            return;
+        }
+
+        while($value_aux < $this->value){
+            $level_aux++;
+            $value_aux = floor(floatval($improve_multiplier) * pow( $level_aux , 1.95 ) + floatval($improve_offset));            
+        } 
+
+        if($value_aux > $this->value){
+            $level_aux--;
+        }
+
+        $level_aux;
+
+        $this->level = $level_aux;
+        $this->save();
+
+        if($this->level != $old_level){
+
+            $quality_power = QualityPowers::findOne(['power_id' => $this->power_id]);
+            if($quality_power){
+                UserQualities::updateQualityLevel($quality_power->quality_id, $this->user_id);
+            }
+
+        }
+    }
 
     public function addPowerPoint($power, $user, $value){
         $userPower = UserPowers::findOne(['power_id' => $power->id, 'user_id' => $user->id]);
@@ -124,11 +214,41 @@ class UserPowers extends \yii\db\ActiveRecord
         }  
 
         $userPower->save();
+        $userPower->updateLevel();
+    }
 
-        $quality_power = QualityPowers::findOne(['power_id' => $power->id]);
-        if($quality_power){
-            UserQualities::updatedQualityPoints($quality_power->quality_id, $user);
+    public function getUserPowers($user_id){
+     $powers = UserPowers::find()
+        ->where(['user_id' => $user_id])
+        ->joinWith('qualityPowers', true, 'INNER JOIN')
+        ->joinWith('powers', true, 'INNER JOIN')
+        ->orderBy('quality_powers.quality_id, powers.title')
+        ->all();
+
+        $quality_id = -1;
+        $qualities = array();
+        $quality_powers = array();
+
+        foreach($powers as $power){                
+
+            if($power->getPower()->getQualityPowers()[0]->quality_id != $quality_id){
+                $quality_id = $power->getPower()->getQualityPowers()[0]->quality_id;
+
+                if(!empty($quality_powers)){
+                    array_push($qualities, $quality_powers);
+                }
+
+                $quality_powers = array();
+            }
+
+            array_push($quality_powers, $power);
         }
+
+        if(!empty($quality_powers)){
+            array_push($qualities, $quality_powers);
+        }
+
+        return $qualities;
     }
 
 }

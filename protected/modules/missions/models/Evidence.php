@@ -183,7 +183,8 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
         return Votes::findOne(array('user_id' => $userId, 'evidence_id' => $this->id));
     } 
 
-    public function getAverageRating()   {
+    public function getAverageRating()
+    {
 
         $query = (new \yii\db\Query())
 
@@ -195,6 +196,20 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
         return $query['average'];
 
     }
+
+    public function getUserAverageRating($user_id)
+    {
+
+        $query = (new \yii\db\Query())
+
+        ->select(['sum(v.value) / count(v.id) as average'])
+        ->from('votes as v')
+        ->join('INNER JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `v`.`evidence_id`')
+        ->one();
+
+        return $query['average'];
+
+    }    
 
 
     public function getVoteCount()   {
