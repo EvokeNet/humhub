@@ -62,7 +62,7 @@ class Powers extends \yii\db\ActiveRecord
             'created_at' => Yii::t('PowersModule.base', 'Created At'),
             'updated_at' => Yii::t('PowersModule.base', 'Updated At'),
             'improve_multiplier' => Yii::t('PowersModule.base', 'Improve Multiplier'),
-            'improve_offset' => Yii::t('PowersModule.baseapp', 'Improve Offset'),
+            'improve_offset' => Yii::t('PowersModule.base', 'Improve Offset'),
             'image' => Yii::t('PowersModule.base', 'Image'),
         ];
     }

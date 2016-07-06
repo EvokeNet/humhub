@@ -8,7 +8,7 @@ use yii\helpers\Html;
 if ($space->isAdmin()) {
     $this->registerJsFile('@web/resources/space/spaceHeaderImageUpload.js');
     $this->registerJsVar('profileImageUploaderUrl', $space->createUrl('/space/manage/image/upload'));
-    $this->registerJsVar('profileHeaderUploaderUrl', $space->createUrl('/space/manage/image/banner-upload'));
+    $this->registerJsVar('spaceHeaderUploaderUrl', $space->createUrl('/space/manage/image/banner-upload'));
 }
 ?>
 
@@ -112,7 +112,7 @@ if ($space->isAdmin()) {
 
                 <!-- profile image output-->
                 <a data-toggle="lightbox" data-gallery="" href="<?php echo $profileImageOrig; ?>#.jpeg"
-                   data-footer='<button type="button" class="btn btn-primary" data-dismiss="modal"><?php echo Yii::t('SpaceModule.widgets_views_profileHeader', 'Close'); ?></button>'>
+                   data-footer='<button type="button" class="btn btn-primary" data-dismiss="modal"><?php echo Yii::t('SpaceModule.widgets_views_spaceHeader', 'Close'); ?></button>'>
                     <?php echo \humhub\modules\space\widgets\Image::widget(['space' => $space, 'width' => 140]); ?>
                 </a>
 
@@ -187,38 +187,38 @@ if ($space->isAdmin()) {
                             <span class="count"><?php echo $postCount; ?></span></a>
                             <br>
                             <span
-                                class="title"><?php echo Yii::t('SpaceModule.widgets_views_profileHeader', 'Posts'); ?></span>
+                                class="title"><?php echo Yii::t('SpaceModule.widgets_views_spaceHeader', 'Posts'); ?></span>
                         </div>
 
                         <div class="pull-left entry">
                             <span class="count"><?php echo count($space->memberships); ?></span>
                             <br>
                             <span
-                                class="title"><?php echo Yii::t('SpaceModule.widgets_views_profileHeader', 'Members'); ?></span>
+                                class="title"><?php echo Yii::t('SpaceModule.widgets_views_spaceHeader', 'Members'); ?></span>
                         </div>
 
                         <div class="pull-left entry">
                             <span class="count"><?php echo $space->getFollowerCount(); ?></span><br>
                             <span
-                                class="title"><?php echo Yii::t('SpaceModule.widgets_views_profileHeader', 'Followers'); ?></span>
+                                class="title"><?php echo Yii::t('SpaceModule.widgets_views_spaceHeader', 'Followers'); ?></span>
                         </div>
                         
                         <div class="pull-left entry">
                             <span class="count"><?php echo $evidencesTotal; ?></span><br>
                             <span
-                                class="title"><?php echo Yii::t('StatsModule.widgets_views_profileHeader', '# Evidences'); ?></span>
+                                class="title"><?php echo Yii::t('StatsModule.widgets_views_spaceHeader', '# Evidences'); ?></span>
                         </div>
                         
                         <div class="pull-left entry">
                             <span class="count"><?php echo $done.'/'.$total; ?></span><br>
                             <span
-                                class="title"><?php echo Yii::t('StatsModule.widgets_views_profileHeader', 'Activities Completed'); ?></span>
+                                class="title"><?php echo Yii::t('StatsModule.widgets_views_spaceHeader', 'Activities Completed'); ?></span>
                         </div>
                         
                         <div class="pull-left entry">
                             <span class="count"><?php echo floor(($done/$total)*100).'%'; ?></span><br>
                             <span
-                                class="title"><?php echo Yii::t('StatsModule.widgets_views_profileHeader', 'Evokation Progress'); ?></span>
+                                class="title"><?php echo Yii::t('StatsModule.widgets_views_spaceHeader', 'Evokation Progress'); ?></span>
                         </div>
                         
                     </div>
@@ -253,14 +253,14 @@ if ($space->isAdmin()) {
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title"
-                    id="myModalLabel"><?php echo Yii::t('SpaceModule.widgets_views_profileHeader', '<strong>Something</strong> went wrong'); ?></h4>
+                    id="myModalLabel"><?php echo Yii::t('SpaceModule.widgets_views_spaceHeader', '<strong>Something</strong> went wrong'); ?></h4>
             </div>
             <div class="modal-body text-center">
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary"
-                        data-dismiss="modal"><?php echo Yii::t('SpaceModule.widgets_views_profileHeader', 'Ok'); ?></button>
+                        data-dismiss="modal"><?php echo Yii::t('SpaceModule.widgets_views_spaceHeader', 'Ok'); ?></button>
             </div>
         </div>
     </div>

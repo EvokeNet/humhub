@@ -17,12 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Rubric: {rubric}' => 'Rubrica: {rubric}',
-    'Content' => 'Contenido',
-    'Edit your Evidence content...' => 'Editar el contenido de su Evidencia...',
-    'Edit your Evidence title...' => 'Editar el título de su Evidencia...',
-    'Page Title' => 'Título de Página',
-    'Primary power:' => 'Poder primario:',
-    'Secondary power:' => 'Poder secundario:',
-    'points' => 'pontos',
+    '<strong>Confirm</strong> image deleting' => '<strong>Confirmar</strong> la eliminación de imágenes',
+    'Cancel' => 'Cancelar',
+    'Delete' => 'Borrar',
+    'Do you really want to delete your title image?' => 'Quieres eliminar su imagen de título?',
 ];
