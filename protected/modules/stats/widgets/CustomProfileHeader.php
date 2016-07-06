@@ -23,7 +23,7 @@ class CustomProfileHeader extends ProfileHeader
         
         $wallet = Wallet::findOne(['owner_id' => $this->user->id]);
         
-        return $this->render('custom_profile_header', array(
+        return $this->render('customProfileHeader', array(
             'user' => $this->user,
             'evidences' => $evidences,
             'isProfileOwner' => $this->isProfileOwner,
