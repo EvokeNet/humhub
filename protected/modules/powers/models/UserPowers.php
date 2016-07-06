@@ -90,6 +90,14 @@ class UserPowers extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getPowers()
+    {
+        return $this->hasOne(Powers::className(), ['id' => 'power_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
@@ -117,25 +125,37 @@ class UserPowers extends \yii\db\ActiveRecord
     }
 
     public function getNextLevelPoints(){
+
         $level = $this->getLevel() + 1;
 
         if($level >= 1){
             $power = Powers::findOne($this->power_id);
             $improve_multiplier = $power->improve_multiplier;
             $improve_offset = $power->improve_offset;
+
+            if(!$improve_multiplier || !$improve_offset){
+                return 1;
+            }
+
             return floor(floatval($improve_multiplier) * pow( $level , 1.95 ) + floatval($improve_offset));
         }else{
-            return 0;
+            return 1;
         }
     }
 
     public function getCurrentLevelPoints(){
+
         $level = $this->getLevel();
 
         if($level >= 1){
             $power = Powers::findOne($this->power_id);
             $improve_multiplier = $power->improve_multiplier;
             $improve_offset = $power->improve_offset;
+
+            if(!$improve_multiplier || !$improve_offset){
+                return 0;
+            }
+
             return $this->value - floor(floatval($improve_multiplier) * pow( $level , 1.95 ) + floatval($improve_offset));
         }else{
             return $this->value;
@@ -150,14 +170,20 @@ class UserPowers extends \yii\db\ActiveRecord
         $level_aux = 0;
         $old_level = $this->level;
 
+        if(!$improve_multiplier || !$improve_offset){
+            return;
+        }
+
         while($value_aux < $this->value){
             $level_aux++;
-            $value_aux = (floatval($improve_multiplier) * pow( $level_aux , 1.95 ) + floatval($improve_offset));
+            $value_aux = floor(floatval($improve_multiplier) * pow( $level_aux , 1.95 ) + floatval($improve_offset));            
         } 
 
         if($value_aux > $this->value){
             $level_aux--;
         }
+
+        $level_aux;
 
         $this->level = $level_aux;
         $this->save();
@@ -195,7 +221,8 @@ class UserPowers extends \yii\db\ActiveRecord
      $powers = UserPowers::find()
         ->where(['user_id' => $user_id])
         ->joinWith('qualityPowers', true, 'INNER JOIN')
-        ->orderBy('quality_powers.quality_id')
+        ->joinWith('powers', true, 'INNER JOIN')
+        ->orderBy('quality_powers.quality_id, powers.title')
         ->all();
 
         $quality_id = -1;

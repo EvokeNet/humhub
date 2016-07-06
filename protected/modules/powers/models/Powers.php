@@ -97,15 +97,17 @@ class Powers extends \yii\db\ActiveRecord
     public function afterSave($insert, $changedAttributes)
     {
         $user_powers = UserPowers::findAll(['power_id' => $this->id]);
-        $quality_id = QualityPowers::findOne(['power_id' => $this->id])->quality_id;
+        $quality = QualityPowers::findOne(['power_id' => $this->id]);
 
-        //update power and quality levels
-        foreach($user_powers as $user_power){
-            $user_power->updateLevel();
-            $user_quality = UserQualities::findOne(['quality_id' => $quality_id]);    
-            $user_quality->updateLevel();
+        if($quality && $quality->quality_id){
+
+            //update power and quality levels
+            foreach($user_powers as $user_power){
+                $user_power->updateLevel();
+                $user_quality = UserQualities::findOne(['quality_id' => $quality->quality_id]);    
+                $user_quality->updateLevel();
+            }
         }
-
         return parent::afterSave($insert, $changedAttributes);
 
     }      
