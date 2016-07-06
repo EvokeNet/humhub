@@ -69,7 +69,8 @@ class EvidenceController extends ContentContainerController
 
         //$missions = Missions::find()->all();
         
-        $missions = Missions::find()->with([
+        $missions = Missions::find()
+        ->with([
             'missionTranslations' => function ($query) {
                 $lang = Languages::findOne(['code' => Yii::$app->language]);
                 if(isset($lang))
@@ -79,7 +80,9 @@ class EvidenceController extends ContentContainerController
                     $query->andWhere(['language_id' => $lang->id]);
                 }
             },
-        ])->all();
+        ])
+        ->where(['locked' => 0])
+        ->all();
         
         return $this->render('missions', array('missions' => $missions, 'contentContainer' => $this->contentContainer));
     }

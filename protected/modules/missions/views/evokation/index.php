@@ -21,7 +21,7 @@ foreach($missions as $m):
     foreach($m->activities as $activity):
         $total++;
         foreach ($activity->evidences as $evidence):                     
-            if($evidence->content->space_id==$contentContainer->id){ 
+            if($evidence->content->space_id == $contentContainer->id){ 
                 $done++;    
                 break;
             }
@@ -72,7 +72,8 @@ endforeach;
                 
                 <div id="collapseListGroup<?=$x?>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="true"> 
                     <ul class="list-group"> 
-                        <?php foreach ($category->activities as $activity): ?>
+                        <?php foreach ($category->activities as $activity): 
+                            if($activity->mission->locked == 0): ?>
                             <li class="list-group-item">
                                 
                                 <?php 
@@ -100,7 +101,7 @@ endforeach;
                                 <span class="label label-default" style = "margin-left:10px"><?= isset($activity->mission->missionTranslations[0]) ? $activity->mission->missionTranslations[0]->title : $activity->mission->title ?></span> 
                                 
                             </li>
-                        <?php endforeach; ?>
+                        <?php endif; endforeach; ?>
                         <!--<li class="list-group-item">Bootply</li> 
                         <li class="list-group-item">One itmus ac facilin</li> 
                         <li class="list-group-item">Second eros</li> -->

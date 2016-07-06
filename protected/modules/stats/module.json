@@ -1,0 +1,11 @@
+{
+    "id": "stats",
+    "name": "Evoke Stats",
+    "description": "Auxiliar module to help insert player/team stats in default humhub areas",
+    "keywords": ["stats"],
+    "version": "0.0.1",
+    "humhub": {
+        "minVersion": "0.20"
+    },
+    "screenshots": []
+}

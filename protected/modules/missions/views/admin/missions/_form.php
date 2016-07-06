@@ -18,10 +18,8 @@ use yii\helpers\ArrayHelper;
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
-    
-    <?= $form->field($model, 'locked')->dropdownList(
-            array('0' => 'Unlocked', '1' => 'Locked')
-        ) ?>
+
+    <?= $form->field($model, 'locked')->dropDownList(['0' => 'Unlocked', '1' => 'Locked'], ['prompt' => 'Select Option']) ?>
                  
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('MissionsModule.base', 'Create') : Yii::t('MissionsModule.base', 'Edit'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

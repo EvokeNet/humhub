@@ -72,6 +72,7 @@ class EvokationController extends ContentContainerController
         ])->all();
         
         $missions = Missions::find()
+        ->where(['locked' => 0])
         ->all();
                 
         return $this->render('index', array('categories' => $categories, 'missions' => $missions, 'contentContainer' => $this->contentContainer));
