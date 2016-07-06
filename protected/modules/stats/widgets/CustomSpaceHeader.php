@@ -43,7 +43,7 @@ class CustomSpaceHeader extends Header
                                         
         endforeach;
 
-        return $this->render('custom_space_header', array(
+        return $this->render('customSpaceHeader', array(
                     'mission' => $missions,
                     'total' => $total,
                     'done' => $done,
