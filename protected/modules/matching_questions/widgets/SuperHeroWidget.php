@@ -7,8 +7,9 @@ use \yii\base\Widget;
 class SuperHeroWidget extends Widget
 {
 
-
 	public $superhero_id;
+
+  public $user;
 
     /**
      * @inheritdoc
@@ -16,7 +17,7 @@ class SuperHeroWidget extends Widget
     public function run()
     {
       if ($this->superhero_id !== NULL) {
-        return $this->render('superhero_menu', array('superhero_id' => $this->superhero_id));
+        return $this->render('superhero_menu', ['superhero_id' => $this->superhero_id, 'user' => $this->user]);
       }
       return;
     }

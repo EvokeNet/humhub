@@ -81,7 +81,9 @@ class UserQualities extends \yii\db\ActiveRecord
 
             foreach($quality_powers as $quality_power){
                 $user_power = UserPowers::findOne(['power_id' => $quality_power->power_id, 'user_id' => $this->user_id]);
-                $user_power->updateLevel();
+                
+                if($user_power)
+                    $user_power->updateLevel();
             }
 
             return $this->updateLevel();

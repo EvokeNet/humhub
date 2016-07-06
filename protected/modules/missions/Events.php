@@ -32,9 +32,11 @@ class Events
 {
 
     public static function onDashboardSidebarInit($event){
+        $userPowers = UserPowers::getUserPowers(Yii::$app->user->getIdentity()->id);
+
         $event->sender->addWidget(PopUpWidget::className(), []);
         $event->sender->addWidget(CTAPostEvidence::className(), []);
-        $event->sender->addWidget(PlayerStats::className(), []);
+        $event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers]);
     }
 
     public static function onSidebarInit($event)
@@ -44,7 +46,10 @@ class Events
             $space = $event->sender->space;
             $event->sender->addWidget(PopUpWidget::className(), []);
             $event->sender->addWidget(EvidenceWidget::className(), array('space' => $space), array('sortOrder' => 9));
-            // $event->sender->addWidget(CTAPostEvidenceWidget::className(), array('space' => $space), array('sortOrder' => 9));
+
+            $userPowers = UserPowers::getUserPowers(Yii::$app->user->getIdentity()->id);
+
+            $event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers], array('sortOrder' => 9));
         }
         
     }
@@ -214,5 +219,16 @@ class Events
         ));
         
     }
+
+    public static function onProfileSidebarInit($event)
+    {
+        if (Yii::$app->user->isGuest || Yii::$app->user->getIdentity()->getSetting("hideSharePanel", "share") != 1) {
+           
+            $userPowers = UserPowers::getUserPowers(Yii::$app->user->getIdentity()->id);
+            $event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers], array('sortOrder' => 9));
+
+        }
+        
+    }    
 
 }

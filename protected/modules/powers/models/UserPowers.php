@@ -220,9 +220,10 @@ class UserPowers extends \yii\db\ActiveRecord
     public function getUserPowers($user_id){
      $powers = UserPowers::find()
         ->where(['user_id' => $user_id])
-        ->joinWith('qualityPowers', true, 'INNER JOIN')
-        ->joinWith('powers', true, 'INNER JOIN')
-        ->orderBy('quality_powers.quality_id, powers.title')
+        ->joinWith('qualityPowers', false, 'INNER JOIN')
+        ->joinWith('powers', false, 'INNER JOIN')
+        ->joinWith('qualityPowers.quality', false, "INNER JOIN")
+        ->orderBy('qualities.name, powers.title')
         ->all();
 
         $quality_id = -1;

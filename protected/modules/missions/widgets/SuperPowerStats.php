@@ -4,7 +4,7 @@ namespace humhub\modules\missions\widgets;
 
 use \yii\base\Widget;
 
-class HomePageStats extends \yii\base\Widget
+class SuperPowerStats extends \yii\base\Widget
 {
 
 	public $powers;
@@ -14,7 +14,7 @@ class HomePageStats extends \yii\base\Widget
      */
     public function run()
     {
-        return $this->render('home_page_stats', []);
+        return $this->render('super_power_stats', ['userPowers' => $this->powers]);
     }
 
 }

@@ -1,13 +1,19 @@
 <?php
-
 use yii\helpers\Html;
 use yii\helpers\Url;
+
+$language = Yii::$app->language;
+
 ?>
 
 <div class="panel panel-default">
     <div class="panel-heading">
         <strong>
-            <?= Yii::t('MatchingModule.base', 'Agent Type') ?>
+            <?php if((substr($language, 0, 2) === 'en')): ?>
+                <?= $user->username ?>'s <?= Yii::t('MatchingModule.base', 'Agent Type') ?>
+            <?php else: ?>
+                <?= Yii::t('MatchingModule.base', 'Agent Type') ?> de <?= $user->username ?>
+            <?php endif; ?>
         </strong>
     </div>
     <div class="panel-body">
