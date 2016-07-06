@@ -14,6 +14,8 @@ $member = Membership::find()
 
 $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
 
+$avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->getIdentity()->id), 1, '.', '');
+
 ?>
 
 <div class="panel panel-default">
@@ -27,22 +29,22 @@ $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
                     <?php echo Yii::t('MissionsModule.base', 'Submit Evidence'); ?>
                 </a>
                 <div>
-                    Your average rating: <?= number_format((float) Evidence::getUserAverageRating(Yii::$app->user->getIdentity()->id), 1, '.', '') ?>
+                    <?= Yii::t('MissionsModule.base', 'Your average rating: {avg}', array('avg' => $avg)) ?>
                 </div>
             </div>
             <div class="panel-body">
-                Every time you submit evidence, your overall rating will improve.
+               <?= Yii::t('MissionsModule.base', 'Every time you submit evidence, your overall rating will improve.') ?>
             </div>
         </div>
         <div class="col-xs-5" style="text-align: center;">
             <div class="col-xs-9">
                 <div class="panel-heading"  style="text-align: left;">
                     <strong>
-                        Your Evocoins
+                        <?= Yii::t('MissionsModule.base', 'Your Evocoins') ?>
                     </strong>  
                 </div>
                 <div class="panel-body"  style="text-align: justify;">
-                    Earn Evocoins by reviewing evidence.
+                    <?= Yii::t('MissionsModule.base', 'Earn Evocoins by reviewing evidence.') ?>
                 </div>
             </div>
 
