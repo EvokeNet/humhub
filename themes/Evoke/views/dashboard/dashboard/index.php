@@ -9,9 +9,13 @@ $this->pageTitle = Yii::t('DashboardModule.views_dashboard_index', 'Dashboard X'
 <div class="container">
     <div class="row">
         <div class="col-md-8 layout-content-container">
-            <?php
-            echo \humhub\modules\missions\widgets\HomePageStats::widget(['powers' => $userPowers]);
-            ?>
+            <div class="panel-group">
+                <?php
+                echo \humhub\modules\missions\widgets\HomePageStats::widget();
+                echo "<br>";
+                echo \humhub\modules\missions\widgets\SuperPowerStats::widget(['powers' => $userPowers]);
+                ?>
+            </div>
             <?php
             if ($showProfilePostForm) {
                 echo \humhub\modules\post\widgets\Form::widget(['contentContainer' => \Yii::$app->user->getIdentity()]);

@@ -32,6 +32,11 @@ class EvidenceController extends ContentContainerController
                 'contentContainer' => $this->contentContainer,
                 'activity_id' => Yii::$app->request->get('activity_id'),
              ),
+            'userfeed' => array(
+                'class' => \humhub\modules\missions\components\StreamAction::className(),
+                'mode' => \humhub\modules\missions\components\StreamAction::MODE_NORMAL,
+                'contentContainer' => $this->contentContainer
+            ),
         );
     }   
 

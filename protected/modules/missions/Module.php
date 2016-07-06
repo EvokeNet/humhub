@@ -32,20 +32,36 @@ class Module extends ContentContainerModule
      */
     public function enable()
     {
-        $module = \humhub\modules\space\models\Module::find()->where(['module_id' => 'missions', 'space_id' => 0])->one();
+        $module_space_permission = \humhub\modules\space\models\Module::find()->where(['module_id' => 'missions', 'space_id' => 0])->one();
+        $module_user_permission = \humhub\modules\user\models\Module::find()->where(['module_id' => 'missions', 'user_id' => 0])->one();
 
-        if(isset($module)){
+        if(isset($module_space_permission)){
 
-            $module->state = \humhub\modules\space\models\Module::STATE_FORCE_ENABLED;
-            $module->save();
+            $module_space_permission->state = \humhub\modules\space\models\Module::STATE_FORCE_ENABLED;
+            $module_space_permission->save();
 
         }else{
 
-            $module = new \humhub\modules\space\models\Module();
-            $module->space_id = \humhub\modules\space\models\Module::STATE_FORCE_ENABLED;
-            $module->module_id = 'missions';
-            $module->state = 0;
-            $module->save();
+            $module_space_permission = new \humhub\modules\space\models\Module();
+            $module_space_permission->space_id = 0;
+            $module_space_permission->module_id = 'missions';
+            $module_space_permission->state = \humhub\modules\space\models\Module::STATE_FORCE_ENABLED;
+            $module_space_permission->save();
+        }
+
+
+        if(isset($module_user_permission)){
+
+            $module_user_permission->state = \humhub\modules\user\models\Module::STATE_FORCE_ENABLED;
+            $module_user_permission->save();
+
+        }else{
+
+            $module_user_permission = new \humhub\modules\user\models\Module();
+            $module_user_permission->user_id = 0;
+            $module_user_permission->module_id = 'missions';
+            $module_user_permission->state = \humhub\modules\user\models\Module::STATE_FORCE_ENABLED;
+            $module_user_permission->save();
         }
 
         parent::enable();
