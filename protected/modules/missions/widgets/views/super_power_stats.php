@@ -24,7 +24,7 @@ use app\modules\missions\models\Evidence;
                     <?= $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->name; ?>
                 <BR>
                     Level 
-                    <?= $userQuality[0]->getUserQuality()->getLevel() ?>
+                    <?= null != $userQuality[0]->getUserQuality() ? $userQuality[0]->getUserQuality()->getLevel() : 0 ?>
                 <p style="padding-top: 15px;">
                     <strong>
                         Power

@@ -35,7 +35,7 @@ $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
                     </strong>
                     <BR>
                     <div class="level" style="font-size: 14px;">
-                        <?= Yii::t('MissionsModule.base', 'Level {level}', array('level' => $userQuality[0]->getUserQuality()->getLevel())) ?>
+                        <?= Yii::t('MissionsModule.base', 'Level {level}', array('level' => null != $userQuality[0]->getUserQuality() ? $userQuality[0]->getUserQuality()->getLevel() : 0)) ?>
                     </div>
                 </div>
             <?php endforeach; ?>
