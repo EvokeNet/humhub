@@ -8,7 +8,7 @@ use yii\widgets\Breadcrumbs;
 /* @var $model app\modules\matching_questions\models\Qualities */
 
 $this->title = Yii::t('MatchingModule.base', 'Create Qualities');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('MatchingModule.base', 'Qualities'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('MatchingModule.base', 'Qualities'), 'url' => ['index-qualities']];
 $this->params['breadcrumbs'][] = $this->title;
 
 echo Breadcrumbs::widget([
