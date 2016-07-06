@@ -74,10 +74,10 @@ $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
                 <div class="col-xs-3">
                     <i class="fa fa-eye fa-5x" aria-hidden="true"></i>
                     <BR>
-                        <?= $userQuality[0]->getPower()->getQualityPowers()[0]->getQualityObject()->name; ?>
+                        <?php // $userQuality[0]->getPower()->getQualityPowers()[0]->getQualityObject()->name; ?>
                     <BR>
                         Level 
-                        <?= $userQuality[0]->getUserQuality()->getLevel() ?>
+                        <?php // $userQuality[0]->getUserQuality()->getLevel() ?>
                     <p style="padding-top: 15px;">
                         <strong>
                             Power
@@ -85,6 +85,7 @@ $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
                     </p>
                     <?php foreach($userQuality as $userPower): ?>
                         <div class="power">
+                            <img src = "<?php echo $userPower->getPower()->image; ?>" width=100></img>
                             <?php 
                                 $power = $userPower->getPower(); 
                                 $percentage = floor($userPower->getCurrentLevelPoints() / $userPower->getNextLevelPoints() * 100) ;

@@ -57,16 +57,14 @@ class Events
             'group' => 'manage',
             'icon' => '<i class="fa fa-sitemap"></i>',
             'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'admin' 
-            && 
-                (
-                    Yii::$app->controller->action->id != 'index-categories'
-                    || Yii::$app->controller->action->id != 'create-categories'
-                    || Yii::$app->controller->action->id != 'update-categories'
+            && Yii::$app->controller->action->id != 'index-categories'
+            && Yii::$app->controller->action->id != 'create-categories'
+            && Yii::$app->controller->action->id != 'update-categories'
                     
-                    || Yii::$app->controller->action->id != 'index-category-translations'
-                    || Yii::$app->controller->action->id != 'create-category-translations'
-                    || Yii::$app->controller->action->id != 'update-category-translations'
-                )
+            && Yii::$app->controller->action->id != 'index-category-translations'
+            && Yii::$app->controller->action->id != 'create-category-translations'
+            && Yii::$app->controller->action->id != 'update-category-translations'
+
             ),
         ));
     }

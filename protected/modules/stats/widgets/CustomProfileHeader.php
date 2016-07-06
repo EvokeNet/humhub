@@ -19,12 +19,15 @@ class CustomProfileHeader extends ProfileHeader
         ->where(['created_by' => $this->user->id])
         ->count();
         
+        $avg_rating = Evidence::getUserAverageRating($this->user->id);
+        
         $wallet = Wallet::findOne(['owner_id' => $this->user->id]);
-    
+        
         return $this->render('custom_profile_header', array(
             'user' => $this->user,
             'evidences' => $evidences,
             'isProfileOwner' => $this->isProfileOwner,
+            'avg_rating' => $avg_rating,
             'wallet' => $wallet
         ));
     }

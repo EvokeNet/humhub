@@ -15,10 +15,14 @@ use app\modules\powers\models\UserQualities;
  * @property string $description
  * @property string $created_at
  * @property string $updated_at
+ * @property double $improve_multiplier
+ * @property double $improve_offset
+ * @property string $image
  *
  * @property ActivityPowers[] $activityPowers
  * @property PowerTranslations[] $powerTranslations
  * @property QualityPowers[] $qualityPowers
+ * @property RubricVotes[] $rubricVotes
  * @property UserPowers[] $userPowers
  */
 class Powers extends \yii\db\ActiveRecord
@@ -39,9 +43,10 @@ class Powers extends \yii\db\ActiveRecord
         return [
             [['title', 'description', 'improve_multiplier', 'improve_offset'], 'required'],
             [['description'], 'string'],
-            [['improve_multiplier', 'improve_offset'],  'double', 'min' => 0],
             [['created_at', 'updated_at'], 'safe'],
+            [['improve_multiplier', 'improve_offset'], 'number'],
             [['title'], 'string', 'max' => 256],
+            // [['image'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
         ];
     }
 
@@ -54,10 +59,11 @@ class Powers extends \yii\db\ActiveRecord
             'id' => Yii::t('PowersModule.base', 'ID'),
             'title' => Yii::t('PowersModule.base', 'Title'),
             'description' => Yii::t('PowersModule.base', 'Description'),
-            'improve_multiplier' => Yii::t('PowersModule.base', 'Improve Multiplier'),
-            'improve_offset' => Yii::t('PowersModule.base', 'Improve Offset'),
             'created_at' => Yii::t('PowersModule.base', 'Created At'),
             'updated_at' => Yii::t('PowersModule.base', 'Updated At'),
+            'improve_multiplier' => Yii::t('PowersModule.base', 'Improve Multiplier'),
+            'improve_offset' => Yii::t('PowersModule.baseapp', 'Improve Offset'),
+            'image' => Yii::t('PowersModule.base', 'Image'),
         ];
     }
 
@@ -82,8 +88,15 @@ class Powers extends \yii\db\ActiveRecord
      */
     public function getQualityPowers()
     {
-        $powers = QualityPowers::find()->where(['power_id' => $this->id])->all();
-        return $powers;
+        return $this->hasMany(QualityPowers::className(), ['power_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRubricVotes()
+    {
+        return $this->hasMany(RubricVotes::className(), ['power_id' => 'id']);
     }
 
     /**
@@ -93,7 +106,7 @@ class Powers extends \yii\db\ActiveRecord
     {
         return $this->hasMany(UserPowers::className(), ['power_id' => 'id']);
     }
-
+    
     public function afterSave($insert, $changedAttributes)
     {
         $user_powers = UserPowers::findAll(['power_id' => $this->id]);
@@ -110,6 +123,16 @@ class Powers extends \yii\db\ActiveRecord
         }
         return parent::afterSave($insert, $changedAttributes);
 
-    }      
-
+    }
+    
+    public function upload()
+    {
+        if ($this->validate()) {
+            $this->image->saveAs('uploads/' . $this->image->baseName . '.' . $this->image->extension);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
 }
