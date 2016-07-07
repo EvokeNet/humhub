@@ -53,7 +53,7 @@ class Events extends \yii\base\Object
 
             $superhero_id = SuperheroIdentities::findOne([$user->superhero_identity_id]);
 
-            $event->sender->addWidget(SuperHeroWidget::className(), array('superhero_id' => $superhero_id), array('sortOrder' => 8));
+            $event->sender->addWidget(SuperHeroWidget::className(), ['superhero_id' => $superhero_id, 'user' => $user], array('sortOrder' => 8));
         }
         
     }
