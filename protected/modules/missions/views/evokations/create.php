@@ -17,9 +17,26 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= \humhub\modules\missions\widgets\WallCreateEvokationForm::widget([
     'contentContainer' => $contentContainer,
     'submitButtonText' => Yii::t('MissionsModule.widgets_EvokationFormWidget', 'Submit Evokation'),
-    // 'activity' => $activity,
+    'mission' => $mission,
         ]) ?>
     
-    <?php $canCreateEvidences = $contentContainer->permissionManager->can(new \humhub\modules\missions\permissions\CreateEvokation()); ?>
-    
+
+<?php
+
+$canCreateEvokations = $contentContainer->permissionManager->can(new \humhub\modules\missions\permissions\CreateEvidence());
+
+echo \app\modules\missions\widgets\EvokationStream::widget(array(
+    'contentContainer' => $contentContainer,
+    'streamAction' => '/missions/evokations/stream',
+    'messageStreamEmpty' => ($canCreateEvokations) ?
+            Yii::t('MissionsModule.widgets_views_stream', 'There are no evokations yet! Be the first and create one...') :
+            Yii::t('MissionsModule.widgets_views_stream', 'There are no evokations yet!'),
+    'messageStreamEmptyCss' => ($canCreateEvokations) ? 'placeholder-empty-stream' : '',
+    'filters' => [
+    ],
+    'mission_id' => $mission->id,
+));
+
+?>
+
 </div>

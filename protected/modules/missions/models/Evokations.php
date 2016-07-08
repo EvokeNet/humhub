@@ -75,10 +75,9 @@ class Evokations extends ContentActiveRecord implements \humhub\modules\search\i
         return [
             [['title', 'description', 'youtube_url', 'gdrive_url'], 'required'],
             [['description', 'youtube_url', 'gdrive_url'], 'string'],
-            [['mission_id', 'created_by', 'updated_by'], 'integer'],
+            [['created_by', 'updated_by'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['title'], 'string', 'max' => 120],
-            [['mission_id'], 'exist', 'skipOnError' => true, 'targetClass' => Missions::className(), 'targetAttribute' => ['mission_id' => 'id']],
+            [['title'], 'string', 'max' => 120]
         ];
     }
 
@@ -93,7 +92,6 @@ class Evokations extends ContentActiveRecord implements \humhub\modules\search\i
             'description' => Yii::t('MissionsModule.model', 'Description'),
             'youtube_url' => Yii::t('MissionsModule.model', 'Youtube Url'),
             'gdrive_url' => Yii::t('MissionsModule.model', 'Gdrive Url'),
-            'mission_id' => Yii::t('MissionsModule.model', 'Mission ID'),
             'created_at' => Yii::t('MissionsModule.model', 'Created At'),
             'created_by' => Yii::t('MissionsModule.model', 'Created By'),
             'updated_at' => Yii::t('MissionsModule.model', 'Updated At'),
@@ -102,17 +100,33 @@ class Evokations extends ContentActiveRecord implements \humhub\modules\search\i
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @inheritdoc
      */
-    public function getMission()
+    public function getContentName()
     {
-        return $this->hasOne(Missions::className(), ['id' => 'mission_id']);
+        return Yii::t('MissionsModule.models_Missions', "Evokation");
     }
-    
+
+    /**
+     * @inheritdoc
+     */
+    public function getContentDescription()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function getSearchAttributes()
     {
         return array(
             'title' => $this->title
         );
-    } 
+    }    
+
+    public function getId(){
+        return $this->id;
+    }
+
 }
