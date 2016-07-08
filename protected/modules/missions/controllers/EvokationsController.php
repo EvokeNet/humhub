@@ -123,7 +123,10 @@ class EvokationsController extends ContentContainerController //extends Controll
             // $activityPowers = ActivityPowers::findAll(['activity_id' => $evidence->activities_id]);
             $user = Yii::$app->user->getIdentity();
             
-            if($evokation->load(Yii::$app->request->post()) && $evokation->save()){
+            echo "foi 2";
+            
+            if($evokation->save()){
+                echo "foi";
                 return;
             }
             

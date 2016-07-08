@@ -154,15 +154,13 @@ class EvidenceController extends ContentContainerController
     {
         if (!$this->contentContainer->permissionManager->can(new \humhub\modules\missions\permissions\CreateEvidence())) {
             throw new HttpException(400, 'Access denied!');
-        }
+        } 
 
-        
-
-            $evidence = new Evidence();
-            $evidence->scenario = Evidence::SCENARIO_CREATE;
-            $evidence->title = Yii::$app->request->post('title');
-            $evidence->text = Yii::$app->request->post('text');
-            $evidence->activities_id = Yii::$app->request->post('activityId');
+        $evidence = new Evidence();
+        $evidence->scenario = Evidence::SCENARIO_CREATE;
+        $evidence->title = Yii::$app->request->post('title');
+        $evidence->text = Yii::$app->request->post('text');
+        $evidence->activities_id = Yii::$app->request->post('activityId');
 
         if(!Yii::$app->request->post('title')){
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Title cannot be blank.'));
