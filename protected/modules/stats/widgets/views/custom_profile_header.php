@@ -215,7 +215,7 @@ if ($isProfileOwner) {
                         </div>
                         
                         <div class="pull-left entry">
-                            <span class="count"><?php echo isset($avg_rating) ? $avg_rating : '0'; ?></span><br>
+                            <span class="count"><?php echo isset($avg_rating) ? number_format((float) $avg_rating, 1, '.', '') : '0'; ?></span><br>
                             <span
                                 class="title"><?php echo Yii::t('StatsModule.widgets_views_profileHeader', 'Avg Rating'); ?></span>
                         </div>
