@@ -205,6 +205,7 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
         ->select(['sum(v.value) / count(v.id) as average'])
         ->from('votes as v')
         ->join('INNER JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `v`.`evidence_id`')
+        ->where(['c.user_ida' => $user_id])
         ->one();
 
         return $query['average'];
