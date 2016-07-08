@@ -16,9 +16,10 @@ echo Breadcrumbs::widget([
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3><?php echo $this->title; ?></h3>
+        <?php echo Html::a(Yii::t('CoinModule.base', 'Create Wallets'), ['imburse'], array('class' => 'btn btn-success')); ?>
     </div>
     <div class="panel-body">
-        <?php if (count($wallets) != 0): ?>
+        <?php if (count($coins) != 0): ?>
 
             <table class="table">
                 <tr>
