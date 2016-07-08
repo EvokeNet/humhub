@@ -13,6 +13,7 @@ use Yii;
  * @property string $description
  * @property string $created
  * @property string $modified
+ * @property string $image
  *
  * @property QualityTranslations[] $qualityTranslations
  */
@@ -35,7 +36,7 @@ class Qualities extends \yii\db\ActiveRecord
             [['name', 'short_name', 'description'], 'required'],
             [['created', 'modified'], 'safe'],
             [['name', 'short_name', 'description'], 'string', 'max' => 255],
-            [['image'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
+            //[['image'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
         ];
     }
 
@@ -62,4 +63,15 @@ class Qualities extends \yii\db\ActiveRecord
     {
         return $this->hasMany(QualityTranslations::className(), ['quality_id' => 'id']);
     }
+
+    public function upload()
+    {
+        if ($this->validate()) {
+            $this->image->saveAs('uploads/' . $this->image->baseName . '.' . $this->image->extension);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

@@ -10,7 +10,7 @@ use yii\widgets\ActiveForm;
 
 <div class="qualities-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
@@ -23,14 +23,14 @@ use yii\widgets\ActiveForm;
     <?php if(!empty($model->image)): ?>
         
         <div class = "well">
-            <label><?php $file = explode('uploads/', $model->image); echo Yii::t('PowersModule.base', 'Uploaded Image: {file}', array('file' => $file[0])); ?></label>
+            <label><?php $file = explode('uploads/', $model->image); echo Yii::t('MatchingModule.base', 'Uploaded Image: {file}', array('file' => $file[0])); ?></label>
             <br><a href = "<?= $model->image ?>" target = "_blank"><img src = "<?= $model->image ?>" width = "200"></img></a> 
         </div><br><br>
     
     <?php else: ?>
     
         <div class = "well">
-            <span><?= Yii::t('PowersModule.base', 'No images uploaded yet') ?></span>
+            <span><?= Yii::t('MatchingModule.base', 'No images uploaded yet') ?></span>
         </div><br>
     
     <?php endif; ?>

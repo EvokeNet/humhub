@@ -17,7 +17,6 @@ use app\modules\powers\models\UserQualities;
  * @property string $updated_at
  * @property double $improve_multiplier
  * @property double $improve_offset
- * @property string $image
  *
  * @property ActivityPowers[] $activityPowers
  * @property PowerTranslations[] $powerTranslations
@@ -127,16 +126,6 @@ class Powers extends \yii\db\ActiveRecord
         }
         return parent::afterSave($insert, $changedAttributes);
 
-    }
-    
-    public function upload()
-    {
-        if ($this->validate()) {
-            $this->image->saveAs('uploads/' . $this->image->baseName . '.' . $this->image->extension);
-            return true;
-        } else {
-            return false;
-        }
     }
     
 }

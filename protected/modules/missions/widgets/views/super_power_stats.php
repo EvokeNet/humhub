@@ -19,7 +19,7 @@ use app\modules\missions\models\Evidence;
     <div class="panel-body">
         <?php foreach($userPowers as $userQuality): ?>
             <div class="col-xs-3">
-                <i class="fa fa-eye fa-5x" aria-hidden="true"></i>
+                <img src = "<?php echo $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->image; ?>" width=100></img>
                 <BR>
                     <?= $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->name; ?>
                 <BR>
