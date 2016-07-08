@@ -21,7 +21,7 @@ use app\modules\missions\models\Evidence;
             <div class="col-xs-3">
                 <i class="fa fa-eye fa-5x" aria-hidden="true"></i>
                 <BR>
-                    <?= $userQuality[0]->getPower()->getQualityPowers()[0]->getQualityObject()->name; ?>
+                    <?= $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->name; ?>
                 <BR>
                     Level 
                     <?= $userQuality[0]->getUserQuality()->getLevel() ?>

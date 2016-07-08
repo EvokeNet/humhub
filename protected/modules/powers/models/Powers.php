@@ -46,7 +46,6 @@ class Powers extends \yii\db\ActiveRecord
             [['created_at', 'updated_at'], 'safe'],
             [['improve_multiplier', 'improve_offset'], 'number'],
             [['title'], 'string', 'max' => 256],
-            // [['image'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
         ];
     }
 
@@ -63,7 +62,6 @@ class Powers extends \yii\db\ActiveRecord
             'updated_at' => Yii::t('PowersModule.base', 'Updated At'),
             'improve_multiplier' => Yii::t('PowersModule.base', 'Improve Multiplier'),
             'improve_offset' => Yii::t('PowersModule.base', 'Improve Offset'),
-            'image' => Yii::t('PowersModule.base', 'Image'),
         ];
     }
 
@@ -89,6 +87,12 @@ class Powers extends \yii\db\ActiveRecord
     public function getQualityPowers()
     {
         return $this->hasMany(QualityPowers::className(), ['power_id' => 'id']);
+    }
+
+    public function getQualityPowersArray()
+    {
+        $powers = QualityPowers::find()->where(['power_id' => $this->id])->all();
+        return $powers;
     }
 
     /**

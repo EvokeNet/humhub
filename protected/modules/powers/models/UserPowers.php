@@ -232,8 +232,15 @@ class UserPowers extends \yii\db\ActiveRecord
 
         foreach($powers as $power){                
 
-            if($power->getPower()->getQualityPowers()[0]->quality_id != $quality_id){
-                $quality_id = $power->getPower()->getQualityPowers()[0]->quality_id;
+/*
+            echo "<pre>";
+            print_r($power->getPower()->getQualityPowers());
+            echo "</pre>";
+            return array();
+
+*/
+            if($power->getPower()->getQualityPowersArray()[0]->quality_id != $quality_id){
+                $quality_id = $power->getPower()->getQualityPowersArray()[0]->quality_id;
 
                 if(!empty($quality_powers)){
                     array_push($qualities, $quality_powers);

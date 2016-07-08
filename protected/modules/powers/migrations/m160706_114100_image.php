@@ -6,14 +6,14 @@ class m160706_114100_image extends Migration
 {
     public function up()
     {
-        $this->addColumn('powers', 'image', 'VARCHAR(256) NOT NULL');
+        $this->addColumn('qualities', 'image', 'VARCHAR(256) NOT NULL');
     }
 
     public function down()
     {
-        echo "m160706_114100_image cannot be reverted.\n";
+        $this->dropColumn('qualities', 'image');
 
-        return false;
+        return true;
     }
 
     /*

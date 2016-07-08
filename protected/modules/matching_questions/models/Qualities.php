@@ -35,6 +35,7 @@ class Qualities extends \yii\db\ActiveRecord
             [['name', 'short_name', 'description'], 'required'],
             [['created', 'modified'], 'safe'],
             [['name', 'short_name', 'description'], 'string', 'max' => 255],
+            [['image'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
         ];
     }
 
@@ -50,6 +51,7 @@ class Qualities extends \yii\db\ActiveRecord
             'description' => Yii::t('MatchingModule.base', 'Description'),
             'created' => Yii::t('MatchingModule.base', 'Created'),
             'modified' => Yii::t('MatchingModule.base', 'Modified'),
+            'image' => Yii::t('PowersModule.base', 'Image'),
         ];
     }
 

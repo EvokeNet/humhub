@@ -28,10 +28,10 @@ $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
         <div class= "list-group-item">
             <?php foreach($userPowers as $userQuality): ?>
                 <div class="power" style="font-size: 18px;">
-                    <i class="fa fa-eye fa-5x" aria-hidden="true" style="font-size: 40px;"></i>
+                    <img src = "<?php echo $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->image; ?>" width=100></img>
                     <BR>
                     <strong>
-                        <?= $userQuality[0]->getPower()->getQualityPowers()[0]->getQualityObject()->name; ?>
+                        <?= $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->name; ?>
                     </strong>
                     <BR>
                     <div class="level" style="font-size: 14px;">
