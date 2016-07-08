@@ -12,7 +12,7 @@ use app\modules\matching_questions\models\Qualities;
  * @property integer $id
  * @property integer $user_id
  * @property integer $quality_id
- * @property integer $total_value
+ * @property integer $level
  * @property string $created_at
  * @property string $updated_at
  *
@@ -35,8 +35,8 @@ class UserQualities extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'quality_id', 'total_value'], 'required'],
-            [['user_id', 'quality_id', 'total_value'], 'integer'],
+            [['user_id', 'quality_id', 'level'], 'required'],
+            [['user_id', 'quality_id', 'level'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['quality_id'], 'exist', 'skipOnError' => true, 'targetClass' => Qualities::className(), 'targetAttribute' => ['quality_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
@@ -52,7 +52,7 @@ class UserQualities extends \yii\db\ActiveRecord
             'id' => Yii::t('PowersModule.base', 'ID'),
             'user_id' => Yii::t('PowersModule.base', 'User ID'),
             'quality_id' => Yii::t('PowersModule.base', 'Quality ID'),
-            'total_value' => Yii::t('PowersModule.base', 'Total Value'),
+            'level' => Yii::t('PowersModule.base', 'Level'),
             'created_at' => Yii::t('PowersModule.base', 'Created At'),
             'updated_at' => Yii::t('PowersModule.base', 'Modified At'),
         ];
@@ -75,29 +75,49 @@ class UserQualities extends \yii\db\ActiveRecord
     }
 
     public function getLevel(){
-        return floor($this->total_value / 100);
+        if(!$this->level){
+
+            $quality_powers = QualityPowers::findAll(['quality_id' => $this->quality_id]);
+
+            foreach($quality_powers as $quality_power){
+                $user_power = UserPowers::findOne(['power_id' => $quality_power->power_id, 'user_id' => $this->user_id]);
+                
+                if($user_power)
+                    $user_power->updateLevel();
+            }
+
+            return $this->updateLevel();
+        }
+
+        return $this->level;
     }
 
-    public function updatedQualityPoints($quality_id, $user){
+     public function updateLevel(){
+        return $this->updateQualityLevel($this->quality_id, $this->user_id);
+    }
+
+    public function updateQualityLevel($quality_id, $user_id){
+
         $query = (new \yii\db\Query())
-        ->select(['sum(value) as sum'])
+        ->select(['min(level) as level'])
         ->from('user_powers p')
         ->join('INNER JOIN', 'quality_powers q', 'q.power_id = p.power_id')
-        ->where(['user_id' => $user->id, 'quality_id' => $quality_id])
+        ->where(['user_id' => $user_id, 'quality_id' => $quality_id])
         ->one();
 
-        $value = $query['sum'] ? $query['sum'] : 0;
+        $level = $query['level'] ? $query['level'] : 0;
 
-        $userQuality = UserQualities::findOne(['quality_id' => $quality_id, 'user_id' => $user->id]);
+        $userQuality = UserQualities::findOne(['quality_id' => $quality_id, 'user_id' => $user_id]);
 
         if(!isset($userQuality)){
             $userQuality = new UserQualities();
-            $userQuality->user_id = $user->id;
+            $userQuality->user_id = $user_id;
             $userQuality->quality_id = $quality_id;
         }  
 
-        $userQuality->total_value = $value;
+        $userQuality->level = $level;
         $userQuality->save();
 
+        return $level;
     }
 }

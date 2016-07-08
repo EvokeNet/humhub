@@ -3,6 +3,9 @@
 namespace humhub\modules\powers\controllers;
 
 use Yii;
+use yii\web\Controller;
+use app\models\UploadForm;
+use yii\web\UploadedFile;
 use app\modules\powers\models\Powers;
 use app\modules\powers\models\PowerTranslations; 
 
@@ -22,9 +25,11 @@ class AdminController extends \humhub\modules\admin\components\Controller
     public function actionCreate()
     {
         $model = new Powers();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+       
+        if ($model->load(Yii::$app->request->post())) {
+            
+            if($model->save())
+                return $this->redirect(['index']);
         } 
         
         return $this->render('powers/create', array('model' => $model));
@@ -34,9 +39,15 @@ class AdminController extends \humhub\modules\admin\components\Controller
     {
         $model = Powers::findOne(['id' => Yii::$app->request->get('id')]);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
-        }
+        if ($model->load(Yii::$app->request->post())) {
+            // $model->image = UploadedFile::getInstance($model, 'image');
+            // var_dump($model->image);
+            // var_dump(is_null($model->image));
+            // die();    
+            
+            if($model->save())
+                return $this->redirect(['index']);
+        } 
 
         return $this->render('powers/update', array('model' => $model));
     }

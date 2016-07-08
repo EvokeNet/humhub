@@ -11,9 +11,12 @@ namespace humhub\modules\missions;
 use Yii;
 use yii\helpers\Url;
 use humhub\models\Setting;
+
 use humhub\modules\missions\widgets\EvidenceWidget;
-use humhub\modules\missions\widgets\CTAPostEvidenceWidget;
+use humhub\modules\missions\widgets\CTAPostEvidence;
 use humhub\modules\missions\widgets\PopUpWidget;
+use humhub\modules\missions\widgets\PlayerStats;
+
 use humhub\modules\space\models\Space;
 use app\modules\missions\models\Evidence;
 use app\modules\missions\models\ActivityPowers;
@@ -29,8 +32,11 @@ class Events
 {
 
     public static function onDashboardSidebarInit($event){
+        $userPowers = UserPowers::getUserPowers(Yii::$app->user->getIdentity()->id);
+
         $event->sender->addWidget(PopUpWidget::className(), []);
-        $event->sender->addWidget(CTAPostEvidenceWidget::className(), []);
+        $event->sender->addWidget(CTAPostEvidence::className(), []);
+        $event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers]);
     }
 
     public static function onSidebarInit($event)
@@ -40,7 +46,10 @@ class Events
             $space = $event->sender->space;
             $event->sender->addWidget(PopUpWidget::className(), []);
             $event->sender->addWidget(EvidenceWidget::className(), array('space' => $space), array('sortOrder' => 9));
-            // $event->sender->addWidget(CTAPostEvidenceWidget::className(), array('space' => $space), array('sortOrder' => 9));
+
+            $userPowers = UserPowers::getUserPowers(Yii::$app->user->getIdentity()->id);
+
+            $event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers], array('sortOrder' => 9));
         }
 
     }
@@ -63,6 +72,7 @@ class Events
                     || Yii::$app->controller->action->id != 'create-category-translations'
                     || Yii::$app->controller->action->id != 'update-category-translations'
                 )
+
             ),
         ));
     }
@@ -212,5 +222,16 @@ class Events
         ));
 
     }
+
+    public static function onProfileSidebarInit($event)
+    {
+        if (Yii::$app->user->isGuest || Yii::$app->user->getIdentity()->getSetting("hideSharePanel", "share") != 1) {
+           
+            $userPowers = UserPowers::getUserPowers(Yii::$app->user->getIdentity()->id);
+            $event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers], array('sortOrder' => 9));
+
+        }
+        
+    }    
 
 }

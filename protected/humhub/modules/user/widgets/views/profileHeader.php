@@ -208,10 +208,6 @@ if ($isProfileOwner) {
                                 class="title"><?php echo Yii::t('UserModule.widgets_views_profileHeader', 'Spaces'); ?></span>
                         </div>
 
-                        <div class="pull-left entry">
-                          <?php echo \humhub\modules\coin\widgets\UserWallet::widget(array('user' => $user)); ?>
-                        </div>
-
                     </div>
                     <!-- end: User statistics -->
 

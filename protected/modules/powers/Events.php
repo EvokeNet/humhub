@@ -36,41 +36,13 @@ class Events extends \yii\base\Object
     public static function onProfileSidebarInit($event)
     {
         if (Yii::$app->user->isGuest || Yii::$app->user->getIdentity()->getSetting("hideSharePanel", "share") != 1) {
-            
-            //$powers = UserPowers::findAll(['user_id' => $user = $event->sender->user->id]);
-            $powers = UserPowers::find()
-            ->where(['user_id' => $user = $event->sender->user->id])
-            ->joinWith('qualityPowers', true, 'INNER JOIN')
-            ->orderBy('quality_powers.quality_id')
-            ->all();
-
-            $quality_id = -1;
-            $qualities = array();
-            $quality_powers = array();
-
-            foreach($powers as $power){                
-
-                if($power->getPower()->getQualityPowers()[0]->quality_id != $quality_id){
-                    $quality_id = $power->getPower()->getQualityPowers()[0]->quality_id;
-
-                    if(!empty($quality_powers)){
-                        array_push($qualities, $quality_powers);
-                    }
-    
-                    $quality_powers = array();
-                }
-
-                array_push($quality_powers, $power);
-            }
-
-            if(!empty($quality_powers)){
-                array_push($qualities, $quality_powers);
-            }
+            /*
+            $qualities = UserPowers::getUserPowers($event->sender->user->id);
 
             foreach($qualities as $quality_powers){
                 $event->sender->addWidget(UserPowersWidget::className(), array('powers' => $quality_powers), array('sortOrder' => 9));
             }
-            
+            */
         }
         
     }

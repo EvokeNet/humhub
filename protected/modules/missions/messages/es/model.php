@@ -17,13 +17,15 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Comment' => 'Comentario',
+    'Evokation Category ID' => 'Identificación de Categoria de Evocation',
+    'Mission Status (Locked/Unlocked)' => 'Estado de Misión (Bloqueado/Desbloqueado)',
     'Activities' => 'Actividades',
     'Activities ID' => 'Identificación de Actividades',
     'Activity ID' => 'Identificación de Actividad',
     'Activity Powers' => 'Poderes de actividad',
     'Activity Translations' => 'Traducciones de actividad',
     'Are you sure you want to delete this item?' => '¿Está seguro de que desea eliminar este artículo?',
+    'Comment' => 'Comentario',
     'Create' => 'Crear',
     'Create Activities' => 'Create Actividades',
     'Create Activity Powers' => 'Create Poderes de Actividades',

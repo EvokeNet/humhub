@@ -12,6 +12,8 @@ use app\modules\powers\models\QualityPowers;
 use app\modules\matching_questions\models\QualityTranslations;
 use app\modules\matching_questions\models\SuperheroIdentities;
 use app\modules\matching_questions\models\SuperheroIdentityTranslations; 
+use app\models\UploadForm;
+use yii\web\UploadedFile;
 
 /**
  * AdminController
@@ -30,8 +32,14 @@ class AdminController extends \humhub\modules\admin\components\Controller
     {
         $model = new MatchingQuestions();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+        if ($model->load(Yii::$app->request->post())) {
+            
+            $model->image = UploadedFile::getInstance($model, 'image');    
+            $model->image->saveAs('uploads/' . $model->image->baseName . '.' . $model->image->extension);
+            $model->image = 'uploads/' . $model->image->baseName . '.' . $model->image->extension;
+            
+            if($model->save())
+                return $this->redirect(['index']);
         } 
         
         return $this->render('matching-questions/create', array('model' => $model));
@@ -41,8 +49,10 @@ class AdminController extends \humhub\modules\admin\components\Controller
     {
         $model = MatchingQuestions::findOne(['id' => Yii::$app->request->get('id')]);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+        if ($model->load(Yii::$app->request->post())) {
+
+            if($model->save())
+                return $this->redirect(['index']);
         }
 
         return $this->render('matching-questions/update', array('model' => $model));
@@ -241,8 +251,14 @@ class AdminController extends \humhub\modules\admin\components\Controller
     {
         $model = new Qualities();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index-qualities']);
+        if ($model->load(Yii::$app->request->post())) {
+
+            $model->image = UploadedFile::getInstance($model, 'image');    
+            $model->image->saveAs('uploads/' . $model->image->baseName . '.' . $model->image->extension);
+            $model->image = 'uploads/' . $model->image->baseName . '.' . $model->image->extension;
+
+            if($model->save())
+                return $this->redirect(['index-qualities']);
         } 
         
         return $this->render('qualities/create', array('model' => $model));
@@ -252,8 +268,16 @@ class AdminController extends \humhub\modules\admin\components\Controller
     {
         $model = Qualities::findOne(['id' => Yii::$app->request->get('id')]);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index-qualities']);
+        if ($model->load(Yii::$app->request->post())) {
+
+            if(!is_null(UploadedFile::getInstance($model, 'image'))){
+                $model->image = UploadedFile::getInstance($model, 'image');
+                $model->image->saveAs('uploads/' . $model->image->baseName . '.' . $model->image->extension);
+                $model->image = 'uploads/' . $model->image->baseName . '.' . $model->image->extension;
+            }
+
+            if($model->save())
+                return $this->redirect(['index-qualities']);
         }
 
         return $this->render('qualities/update', array('model' => $model));

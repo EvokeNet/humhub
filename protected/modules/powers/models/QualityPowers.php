@@ -8,6 +8,7 @@ use yii\db\Expression;
 use yii\behaviors\TimestampBehavior;
 
 use app\modules\matching_questions\models\Qualities;
+use app\modules\powers\models\UserPowers;
 
 /**
  * This is the model class for table "quality_powers".
@@ -94,4 +95,6 @@ class QualityPowers extends \yii\db\ActiveRecord
         $power = Powers::findOne($this->power_id);
         return $power;
     }
+
+    
 }

@@ -23,7 +23,9 @@ use yii\helpers\Url;
     	<?php foreach($powers as $userPower): ?>
     	<?php $power = $userPower->getPower(); ?>
 	    	<div class="list-group-item">
-	    		<?= isset($power->powerTranslations[0]) ? $power->powerTranslations[0]->title : $power->title ?> - <?= $userPower->value ?> <?= Yii::t('PowersModule.base', 'points') ?>
+	    		<?= isset($power->powerTranslations[0]) ? $power->powerTranslations[0]->title : $power->title ?>
+           - 
+           <?= Yii::t('PowersModule.base', 'Level') ?> <?= $userPower->getLevel() ?>
 	    	</div>
     	<?php endforeach; ?>
         <?php 
