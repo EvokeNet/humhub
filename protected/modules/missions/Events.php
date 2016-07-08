@@ -35,16 +35,16 @@ class Events
 
     public static function onSidebarInit($event)
     {
-        
+
         if (Yii::$app->user->isGuest || Yii::$app->user->getIdentity()->getSetting("hideSharePanel", "share") != 1) {
             $space = $event->sender->space;
             $event->sender->addWidget(PopUpWidget::className(), []);
             $event->sender->addWidget(EvidenceWidget::className(), array('space' => $space), array('sortOrder' => 9));
             // $event->sender->addWidget(CTAPostEvidenceWidget::className(), array('space' => $space), array('sortOrder' => 9));
         }
-        
+
     }
-    
+
     public static function onAdminMenuInit($event)
     {
         $event->sender->addItem(array(
@@ -52,13 +52,13 @@ class Events
             'url' => Url::to(['/missions/admin']),
             'group' => 'manage',
             'icon' => '<i class="fa fa-sitemap"></i>',
-            'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'admin' 
-            && 
+            'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'admin'
+            &&
                 (
                     Yii::$app->controller->action->id != 'index-categories'
                     || Yii::$app->controller->action->id != 'create-categories'
                     || Yii::$app->controller->action->id != 'update-categories'
-                    
+
                     || Yii::$app->controller->action->id != 'index-category-translations'
                     || Yii::$app->controller->action->id != 'create-category-translations'
                     || Yii::$app->controller->action->id != 'update-category-translations'
@@ -66,7 +66,7 @@ class Events
             ),
         ));
     }
-    
+
     public static function onCategoriesAdminMenuInit($event)
     {
         $event->sender->addItem(array(
@@ -75,12 +75,12 @@ class Events
             'group' => 'manage',
             'icon' => '<i class="fa fa-sort-amount-asc"></i>',
             'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'admin'
-            && 
+            &&
                 (
                     Yii::$app->controller->action->id == 'index-categories'
                     || Yii::$app->controller->action->id == 'create-categories'
                     || Yii::$app->controller->action->id == 'update-categories'
-                    
+
                     || Yii::$app->controller->action->id == 'index-category-translations'
                     || Yii::$app->controller->action->id == 'create-category-translations'
                     || Yii::$app->controller->action->id == 'update-category-translations'
@@ -88,10 +88,10 @@ class Events
             ),
         ));
     }
-    
+
      /**
      * Create installer sample data
-     * 
+     *
      * @param \yii\base\Event $event
      */
     public static function onSampleDataInstall($event)
@@ -134,34 +134,34 @@ class Events
         }
 
     }
-    
+
     public static function onMissionSpaceMenuInit($event)
     {
         $space = $event->sender->space;
-        if ($space->isModuleEnabled('missions')) {
+        if ($space->isModuleEnabled('missions') && $space['name'] !== 'Mentor') {
             $event->sender->addItem(array(
                 'label' => Yii::t('MissionsModule.base', 'Mission'),
                 'group' => 'modules',
                 'url' => $space->createUrl('/missions/evidence/missions'),
                 'icon' => '<i class="fa fa-sitemap"></i>',
-                'isActive' => (Yii::$app->controller->module 
-                && Yii::$app->controller->module->id == 'missions' 
+                'isActive' => (Yii::$app->controller->module
+                && Yii::$app->controller->module->id == 'missions'
                 && Yii::$app->controller->id == 'evidence'),
             ));
         }
     }
-    
+
     public static function onEvokationSpaceMenuInit($event)
     {
         $space = $event->sender->space;
-        if ($space->isModuleEnabled('missions')) {
+        if ($space->isModuleEnabled('missions') && $space['name'] !== 'Mentor') {
             $event->sender->addItem(array(
                 'label' => Yii::t('MissionsModule.base', 'Evokation Home'),
                 'group' => 'modules',
                 'url' => $space->createUrl('/missions/evokation/index'),
                 'icon' => '<i class="fa fa-users"></i>',
-                'isActive' => (Yii::$app->controller->module 
-                && Yii::$app->controller->module->id == 'missions' 
+                'isActive' => (Yii::$app->controller->module
+                && Yii::$app->controller->module->id == 'missions'
                 && Yii::$app->controller->id == 'evokation'),
             ));
         }
@@ -176,8 +176,8 @@ class Events
                 'group' => 'modules',
                 'url' => $space->createUrl('/missions/review/index'),
                 'icon' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i>',
-                'isActive' => (Yii::$app->controller->module 
-                && Yii::$app->controller->module->id == 'missions' 
+                'isActive' => (Yii::$app->controller->module
+                && Yii::$app->controller->module->id == 'missions'
                 && Yii::$app->controller->id == 'review'),
             ));
         }
@@ -206,11 +206,11 @@ class Events
         'icon' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i>',
         'url' => Url::to(['/missions/review/index', 'sguid' => $member->space->guid]),
         'sortOrder' => 200,
-        'isActive' => (Yii::$app->controller->module 
-            && Yii::$app->controller->module->id == 'missions' 
+        'isActive' => (Yii::$app->controller->module
+            && Yii::$app->controller->module->id == 'missions'
             && Yii::$app->controller->id == 'review'),
         ));
-        
+
     }
 
 }
