@@ -28,8 +28,8 @@ class EvokationController extends ContentContainerController
     {
         return array(
             'stream' => array(
-                'class' => \humhub\modules\missions\components\StreamAction::className(),
-                'mode' => \humhub\modules\missions\components\StreamAction::MODE_NORMAL,
+                'class' => \humhub\modules\missions\components\EvokationStreamAction::className(),
+                'mode' => \humhub\modules\missions\components\EvokationStreamAction::MODE_NORMAL,
                 'contentContainer' => $this->contentContainer
              ),
         );
@@ -91,6 +91,29 @@ class EvokationController extends ContentContainerController
         ])->all();
         
         return $this->render('missions', array('missions' => $missions, 'contentContainer' => $this->contentContainer));
+    }
+
+    /**
+     * Posts a new question  throu the question form
+     *
+     * @return type
+     */
+    public function actionShow($missionId)
+    {           
+        $mission = Missions::find()
+        ->where(['=', 'id', $missionId])
+        ->with([
+            'missionTranslations' => function ($query) {
+                $lang = Languages::findOne(['code' => Yii::$app->language]);
+                $query->andWhere(['language_id' => $lang->id]);
+            },
+        ])->one();
+
+        return $this->render('show', array(
+            'contentContainer' => $this->contentContainer,
+            'mission' => $mission,
+            'space' => $this->space,
+        ));
     }
 
 }

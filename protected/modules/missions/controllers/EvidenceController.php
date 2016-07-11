@@ -156,8 +156,6 @@ class EvidenceController extends ContentContainerController
             throw new HttpException(400, 'Access denied!');
         }
 
-        
-
             $evidence = new Evidence();
             $evidence->scenario = Evidence::SCENARIO_CREATE;
             $evidence->title = Yii::$app->request->post('title');
@@ -178,8 +176,6 @@ class EvidenceController extends ContentContainerController
             foreach($activityPowers as $activity_power){
                 UserPowers::addPowerPoint($activity_power->getPower(), $user, $activity_power->value);
             }
-
-
 
             $message = $this->getEvidenceCreatedMessage($activityPowers);
             AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), $message);
