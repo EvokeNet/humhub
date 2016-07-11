@@ -9,7 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\HttpException;
 use yii\filters\VerbFilter;
-use humhub\modules\content\components\ContentContainerController;
+use humhub\modules\missions\components\ContentContainerController;
 use app\modules\missions\models\Missions;
 use app\modules\missions\models\Activities;
 use app\modules\languages\models\Languages;
@@ -33,8 +33,8 @@ class EvidenceController extends ContentContainerController
                 'activity_id' => Yii::$app->request->get('activity_id'),
              ),
             'userfeed' => array(
-                'class' => \humhub\modules\missions\components\StreamAction::className(),
-                'mode' => \humhub\modules\missions\components\StreamAction::MODE_NORMAL,
+                'class' => \humhub\modules\missions\components\UserStreamAction::className(),
+                'mode' => \humhub\modules\missions\components\UserStreamAction::MODE_NORMAL,
                 'contentContainer' => $this->contentContainer
             ),
         );
