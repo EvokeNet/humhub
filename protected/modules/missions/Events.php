@@ -239,9 +239,12 @@ class Events
     {
         if (Yii::$app->user->isGuest || Yii::$app->user->getIdentity()->getSetting("hideSharePanel", "share") != 1) {
            
-            $userPowers = UserPowers::getUserPowers(Yii::$app->user->getIdentity()->id);
-            $event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers], array('sortOrder' => 9));
-            $event->sender->addWidget(PopUpWidget::className(), []);
+            // if viewing other user profile
+            if(Yii::$app->user->getIdentity()->id != $event->sender->user->id){
+                $userPowers = UserPowers::getUserPowers(Yii::$app->user->getIdentity()->id);
+                $event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers], array('sortOrder' => 9));
+                $event->sender->addWidget(PopUpWidget::className(), []);    
+            }
 
         }
         
