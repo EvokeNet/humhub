@@ -32,6 +32,7 @@ class m160516_215224_evidences extends Migration
 
     public function down()
     {
+        $this->dropForeignKey('fk-evidence-activities_id', 'evidence');
         $this->dropTable('evidence');
 
         return true;
