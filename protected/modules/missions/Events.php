@@ -229,6 +229,7 @@ class Events
            
             $userPowers = UserPowers::getUserPowers(Yii::$app->user->getIdentity()->id);
             $event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers], array('sortOrder' => 9));
+            $event->sender->addWidget(PopUpWidget::className(), []);
 
         }
         
