@@ -16,6 +16,7 @@ use humhub\modules\missions\widgets\EvidenceWidget;
 use humhub\modules\missions\widgets\CTAPostEvidence;
 use humhub\modules\missions\widgets\PopUpWidget;
 use humhub\modules\missions\widgets\PlayerStats;
+use humhub\modules\missions\widgets\PortfolioWidget;
 
 use humhub\modules\space\models\Space;
 use app\modules\missions\models\Evidence;
@@ -50,6 +51,8 @@ class Events
             $userPowers = UserPowers::getUserPowers(Yii::$app->user->getIdentity()->id);
 
             $event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers], array('sortOrder' => 9));
+
+            $event->sender->addWidget(PortfolioWidget::className(), [], array('sortOrder' => 8));
         }
 
     }

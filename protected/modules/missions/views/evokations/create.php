@@ -16,8 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     
     <?= \humhub\modules\missions\widgets\WallCreateEvokationForm::widget([
     'contentContainer' => $contentContainer,
-    'submitButtonText' => Yii::t('MissionsModule.widgets_EvokationFormWidget', 'Submit Evokation'),
-    'mission' => $mission,
+    'submitButtonText' => Yii::t('MissionsModule.widgets_EvokationFormWidget', 'Submit Evokation')
         ]) ?>
     
 
@@ -34,7 +33,6 @@ echo \app\modules\missions\widgets\EvokationStream::widget(array(
     'messageStreamEmptyCss' => ($canCreateEvokations) ? 'placeholder-empty-stream' : '',
     'filters' => [
     ],
-    'mission_id' => $mission->id,
 ));
 
 ?>

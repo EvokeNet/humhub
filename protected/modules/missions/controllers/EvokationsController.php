@@ -25,8 +25,7 @@ class EvokationsController extends ContentContainerController //extends Controll
             'stream' => array(
                 'class' => \humhub\modules\missions\components\EvokationStreamAction::className(),
                 'mode' => \humhub\modules\missions\components\EvokationStreamAction::MODE_NORMAL,
-                'contentContainer' => $this->contentContainer,
-                'mission_id' => Yii::$app->request->get('mission_id'),
+                'contentContainer' => $this->contentContainer
              ),
         );
     }  
@@ -73,21 +72,11 @@ class EvokationsController extends ContentContainerController //extends Controll
         ]);
     }
 
-    public function actionSubmit($missionId){
-
-        $mission = Missions::find()
-        ->where(['=', 'id', $missionId])
-        ->with([
-            'missionTranslations' => function ($query) {
-                $lang = Languages::findOne(['code' => Yii::$app->language]);
-                $query->andWhere(['language_id' => $lang->id]);
-            },
-        ])->one();
+    public function actionSubmit(){
         
         return $this->render('create', [
             'contentContainer' => $this->contentContainer,
-            'space' => $this->space,
-            'mission' => $mission
+            'space' => $this->space
         ]);
     }
     
@@ -108,7 +97,6 @@ class EvokationsController extends ContentContainerController //extends Controll
         $evokation->description = Yii::$app->request->post('description');
         $evokation->youtube_url = Yii::$app->request->post('youtube_url');
         $evokation->gdrive_url = Yii::$app->request->post('gdrive_url');
-        // $evokation->mission_id = Yii::$app->request->post('missionId');
             
         if(!Yii::$app->request->post('title')){
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Title cannot be blank.'));
@@ -212,4 +200,10 @@ class EvokationsController extends ContentContainerController //extends Controll
         
         return $this->render('missions', array('missions' => $missions, 'contentContainer' => $this->contentContainer));
     }
+
+
+    public function portfolio(){
+        return $this->render('portfolio', []);
+    }
+
 }

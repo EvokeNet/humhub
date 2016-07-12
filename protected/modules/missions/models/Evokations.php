@@ -19,7 +19,6 @@ use yii\behaviors\TimestampBehavior;
  * @property string $description
  * @property string $youtube_url
  * @property string $gdrive_url
- * @property integer $mission_id
  * @property string $created_at
  * @property integer $created_by
  * @property string $updated_at
