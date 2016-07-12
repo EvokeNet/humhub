@@ -16,9 +16,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'youtube_url')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'youtube_url')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'gdrive_url')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'gdrive_url')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'mission_id')->textInput() ?>
 

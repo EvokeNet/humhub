@@ -179,11 +179,11 @@ class Events
             $event->sender->addItem(array(
                 'label' => Yii::t('MissionsModule.base', 'Evokation Home'),
                 'group' => 'modules',
-                'url' => $space->createUrl('/missions/evokation/index'),
+                'url' => $space->createUrl('/missions/evokations/home'),
                 'icon' => '<i class="fa fa-users"></i>',
                 'isActive' => (Yii::$app->controller->module
                 && Yii::$app->controller->module->id == 'missions'
-                && Yii::$app->controller->id == 'evokation'),
+                && Yii::$app->controller->id == 'evokations'),
             ));
         }
     }

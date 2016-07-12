@@ -146,7 +146,7 @@ class EvidenceController extends ContentContainerController
     }
 
     /**
-     * Posts a new question  throu the question form
+     * Posts a new question  throws the question form
      *
      * @return type
      */
@@ -164,9 +164,9 @@ class EvidenceController extends ContentContainerController
 
         if(!Yii::$app->request->post('title')){
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Title cannot be blank.'));
-        }else if(!Yii::$app->request->post('text')){
+        } else if(!Yii::$app->request->post('text')){
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Text cannot be blank.'));
-        }else{
+        } else{
 
             //ACTIVITY POWER POINTS
             $activityPowers = ActivityPowers::findAll(['activity_id' => $evidence->activities_id]);

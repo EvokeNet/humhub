@@ -149,7 +149,6 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
      */
     public function getSearchAttributes()
     {
-
         return array(
             'title' => $this->title
         );

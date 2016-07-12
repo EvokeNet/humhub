@@ -8,10 +8,10 @@ class m160707_215543_evokation extends Migration
     {
         $this->createTable('evokations', array(
             'id' => 'pk',
-            'title' => 'varchar(120) NOT NULL',
+            'title' => 'varchar(256) NOT NULL',
             'description' => 'text NOT NULL',
-            'youtube_url' => 'text NOT NULL',
-            'gdrive_url' => 'text NOT NULL',
+            'youtube_url' => 'varchar(256) NOT NULL',
+            'gdrive_url' => 'varchar(256) NOT NULL',
             'mission_id' => 'int(16) NOT NULL',
             'created_at' => 'datetime NOT NULL',
             'created_by' => 'int(16) NOT NULL',

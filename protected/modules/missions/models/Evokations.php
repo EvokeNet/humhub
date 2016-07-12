@@ -3,6 +3,13 @@
 namespace app\modules\missions\models;
 
 use Yii;
+use humhub\modules\content\components\ContentActiveRecord;
+use yii\db\ActiveRecord;
+use app\modules\languages\models\Languages;
+use app\modules\space\models\Space;
+use app\modules\user\models\User;
+use yii\db\Expression;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "evokations".
@@ -20,8 +27,38 @@ use Yii;
  *
  * @property Missions $mission
  */
-class Evokations extends \yii\db\ActiveRecord
+class Evokations extends ContentActiveRecord implements \humhub\modules\search\interfaces\Searchable
 {
+    const SCENARIO_CREATE = 'create';
+    const SCENARIO_EDIT = 'edit';
+    const SCENARIO_CLOSE = 'close';
+    public $autoAddToWall = true;
+    public $wallEntryClass = 'humhub\modules\missions\widgets\WallEvokationEntry';
+    
+    public function scenarios()
+    {
+        return [
+            self::SCENARIO_CLOSE => [],
+            self::SCENARIO_CREATE => ['title', 'description', 'youtube_url', 'gdrive_url'],
+            self::SCENARIO_EDIT => ['title', 'description', 'youtube_url', 'gdrive_url']
+        ];
+    }
+    
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+                // if you're using datetime instead of UNIX timestamp:
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
+    
     /**
      * @inheritdoc
      */
@@ -36,7 +73,7 @@ class Evokations extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'description', 'youtube_url', 'gdrive_url', 'mission_id', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'required'],
+            [['title', 'description', 'youtube_url', 'gdrive_url'], 'required'],
             [['description', 'youtube_url', 'gdrive_url'], 'string'],
             [['mission_id', 'created_by', 'updated_by'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
@@ -51,16 +88,16 @@ class Evokations extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'title' => Yii::t('app', 'Title'),
-            'description' => Yii::t('app', 'Description'),
-            'youtube_url' => Yii::t('app', 'Youtube Url'),
-            'gdrive_url' => Yii::t('app', 'Gdrive Url'),
-            'mission_id' => Yii::t('app', 'Mission ID'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'created_by' => Yii::t('app', 'Created By'),
-            'updated_at' => Yii::t('app', 'Updated At'),
-            'updated_by' => Yii::t('app', 'Updated By'),
+            'id' => Yii::t('MissionsModule.model', 'ID'),
+            'title' => Yii::t('MissionsModule.model', 'Title'),
+            'description' => Yii::t('MissionsModule.model', 'Description'),
+            'youtube_url' => Yii::t('MissionsModule.model', 'Youtube Url'),
+            'gdrive_url' => Yii::t('MissionsModule.model', 'Gdrive Url'),
+            'mission_id' => Yii::t('MissionsModule.model', 'Mission ID'),
+            'created_at' => Yii::t('MissionsModule.model', 'Created At'),
+            'created_by' => Yii::t('MissionsModule.model', 'Created By'),
+            'updated_at' => Yii::t('MissionsModule.model', 'Updated At'),
+            'updated_by' => Yii::t('MissionsModule.model', 'Updated By'),
         ];
     }
 
@@ -71,4 +108,11 @@ class Evokations extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Missions::className(), ['id' => 'mission_id']);
     }
+    
+    public function getSearchAttributes()
+    {
+        return array(
+            'title' => $this->title
+        );
+    } 
 }
