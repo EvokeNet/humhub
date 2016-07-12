@@ -38,7 +38,7 @@ class m160707_215543_evokation extends Migration
         
         $this->dropTable('evokations');
 
-        return false;
+        return true;
     }
 
     /*

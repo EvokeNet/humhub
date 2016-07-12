@@ -17,9 +17,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= \humhub\modules\missions\widgets\WallCreateEvokationForm::widget([
     'contentContainer' => $contentContainer,
     'submitButtonText' => Yii::t('MissionsModule.widgets_EvokationFormWidget', 'Submit Evokation'),
-    // 'activity' => $activity,
+    'mission' => $mission,
         ]) ?>
     
-    <?php $canCreateEvidences = $contentContainer->permissionManager->can(new \humhub\modules\missions\permissions\CreateEvokation()); ?>
+    <?php $canCreateEvokations = $contentContainer->permissionManager->can(new \humhub\modules\missions\permissions\CreateEvokation()); ?>
     
 </div>

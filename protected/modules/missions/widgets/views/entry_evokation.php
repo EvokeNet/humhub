@@ -10,7 +10,7 @@ echo Html::beginForm();
    <?php print humhub\widgets\RichText::widget(['text' => $evokation->title]); ?>
 </strong>
 <br>
-<?php print humhub\widgets\RichText::widget(['text' => $evokation->text]);?>
+<?php print humhub\widgets\RichText::widget(['text' => $evokation->description]);?>
 
 <br><br>
 

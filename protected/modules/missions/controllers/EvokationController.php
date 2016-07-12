@@ -26,13 +26,6 @@ class EvokationController extends ContentContainerController
 
     public function actions()
     {
-        return array(
-            'stream' => array(
-                'class' => \humhub\modules\missions\components\EvokationStreamAction::className(),
-                'mode' => \humhub\modules\missions\components\EvokationStreamAction::MODE_NORMAL,
-                'contentContainer' => $this->contentContainer
-             ),
-        );
     }   
 
    

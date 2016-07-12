@@ -109,10 +109,34 @@ class Evokations extends ContentActiveRecord implements \humhub\modules\search\i
         return $this->hasOne(Missions::className(), ['id' => 'mission_id']);
     }
     
+    /**
+     * @inheritdoc
+     */
+    public function getContentName()
+    {
+        return Yii::t('MissionsModule.models_Missions', "Evokation");
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getContentDescription()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function getSearchAttributes()
     {
         return array(
             'title' => $this->title
         );
-    } 
+    }    
+
+    public function getId(){
+        return $this->id;
+    }
+
 }
