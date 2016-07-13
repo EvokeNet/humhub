@@ -151,6 +151,14 @@ class Events
         ->where(['user_id' => Yii::$app->user->getIdentity()->id])
         ->orderBy('space_id DESC')
         ->one();
+        
+    //     echo "<pre>";
+    //    print_r($member->space->id);
+    //    echo "<br>";
+    //    print_r($event->sender->space->id);
+    //    echo "<br>";
+    //    print_r(Yii::$app->user->getIdentity()->id);
+    //    echo "</pre>";
 
         $space = $event->sender->space;
         if ($space->isModuleEnabled('missions') && $space['name'] !== 'Mentor' && $member->space->id == $space->id) {

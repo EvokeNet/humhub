@@ -12,7 +12,7 @@ class m160707_215543_evokation extends Migration
             'description' => 'text NOT NULL',
             'youtube_url' => 'varchar(256) NOT NULL',
             'gdrive_url' => 'varchar(256) NOT NULL',
-            'mission_id' => 'int(16) NOT NULL',
+            // 'mission_id' => 'int(16) NOT NULL',
             'created_at' => 'datetime NOT NULL',
             'created_by' => 'int(16) NOT NULL',
             'updated_at' => 'datetime NOT NULL',
@@ -20,21 +20,21 @@ class m160707_215543_evokation extends Migration
                 ), '');
 
 
-        $this->addForeignKey(
-            'fk-evokations-mission_id',
-            'evokations',
-            'mission_id',
-            'missions',
-            'id',
-            'CASCADE'
-        );
+        // $this->addForeignKey(
+        //     'fk-evokations-mission_id',
+        //     'evokations',
+        //     'mission_id',
+        //     'missions',
+        //     'id',
+        //     'CASCADE'
+        // );
     }
 
     public function down()
     {
         //echo "m160707_215543_evokation cannot be reverted.\n";
         
-        $this->dropForeignKey('fk-evokations-mission_id', 'evokations');
+        // $this->dropForeignKey('fk-evokations-mission_id', 'evokations');
         
         $this->dropTable('evokations');
 
