@@ -73,8 +73,8 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
 
     <div class="panel-body">
         <div class="col-xs-4">
-            <a class = "btn btn-info" href=''>
-                    <?= Yii::t('MissionsModule.base', 'Save') ?>
+            <a class = "btn btn-info" href='#' onclick="updatePortfolio();">
+                <?= Yii::t('MissionsModule.base', 'Save') ?>
             </a> 
         </div>
 
@@ -205,18 +205,24 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
             evokations[evok_id] = evok_value;
         }
 
+        $('#portfolio_status').show();
+
         $.ajax({
-            url: '/test/PersonSubmit',
+            url: '<?= Url::to(['/missions/portfolio/update']); ?>',
             type: 'post',
             dataType: 'json',
             success: function (data) {
-                $('#portfolio_status').hide();
+                if(data.status == 'success'){
+                    $('#portfolio_status').hide();
+                    showMessage("<?= Yii::t('MissionsModule.base', 'Updated') ?>", "<?= Yii::t('MissionsModule.base', 'Portfolio updated successfully!') ?>");
+                }
+                
             },
             data: evokations
         });
     }
 
-    function ($) {
+    (function ($) {
       $('.spinner .btn:first-of-type').on('click', function(e) {
             var inputInvestment = e.target.parentElement.parentElement.parentElement.getElementsByClassName('form-control');
             raiseInvestment(inputInvestment[0]);
