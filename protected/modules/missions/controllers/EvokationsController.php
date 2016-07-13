@@ -23,9 +23,10 @@ class EvokationsController extends ContentContainerController //extends Controll
     {
         return array(
             'stream' => array(
-                'class' => \humhub\modules\missions\components\StreamAction::className(),
-                'mode' => \humhub\modules\missions\components\StreamAction::MODE_NORMAL,
-                'contentContainer' => $this->contentContainer
+                'class' => \humhub\modules\missions\components\EvokationStreamAction::className(),
+                'mode' => \humhub\modules\missions\components\EvokationStreamAction::MODE_NORMAL,
+                'contentContainer' => $this->contentContainer,
+                'mission_id' => Yii::$app->request->get('mission_id'),
              ),
         );
     }  
@@ -68,26 +69,27 @@ class EvokationsController extends ContentContainerController //extends Controll
     public function actionView($id)
     {
         return $this->render('view', [
+            'contentContainer' => $this->contentContainer,
             'model' => $this->findModel($id),
         ]);
     }
 
-    public function actionSubmit(){
-        // $model = new Evokations();
+    public function actionSubmit($missionId){
+
+        $mission = Missions::find()
+        ->where(['=', 'id', $missionId])
+        ->with([
+            'missionTranslations' => function ($query) {
+                $lang = Languages::findOne(['code' => Yii::$app->language]);
+                $query->andWhere(['language_id' => $lang->id]);
+            },
+        ])->one();
         
         return $this->render('create', [
             'contentContainer' => $this->contentContainer,
-            'space' => $this->space
+            'space' => $this->space,
+            'mission' => $mission
         ]);
-            
-        // if ($model->load(Yii::$app->request->post()) && $model->save()) {
-        //     return $this->redirect(['view', 'id' => $model->id]);
-        // } else {
-        //     return $this->render('create', [
-        //         'model' => $model,
-        //         'contentContainer' => $this->contentContainer
-        //     ]);
-        // }
     }
     
     /**
@@ -107,7 +109,7 @@ class EvokationsController extends ContentContainerController //extends Controll
         $evokation->description = Yii::$app->request->post('description');
         $evokation->youtube_url = Yii::$app->request->post('youtube_url');
         $evokation->gdrive_url = Yii::$app->request->post('gdrive_url');
-        // $evokation->activities_id = Yii::$app->request->post('activityId');
+        // $evokation->mission_id = Yii::$app->request->post('missionId');
             
         if(!Yii::$app->request->post('title')){
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Title cannot be blank.'));
@@ -117,42 +119,9 @@ class EvokationsController extends ContentContainerController //extends Controll
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'YouTube URL cannot be blank.'));
         } else if(!Yii::$app->request->post('gdrive_url')){
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Google Drive URL cannot be blank.'));
-        } else{
-
-            //ACTIVITY POWER POINTS
-            // $activityPowers = ActivityPowers::findAll(['activity_id' => $evidence->activities_id]);
-            $user = Yii::$app->user->getIdentity();
-            
-            echo "foi 2";
-            
-            if($evokation->save()){
-                echo "foi";
-                return;
-            }
-            
-            // return $this->redirect(['view', 'id' => $model->id]);
-            
-            //USER POWER POINTS
-            // foreach($activityPowers as $activity_power){
-            //     UserPowers::addPowerPoint($activity_power->getPower(), $user, $activity_power->value);
-            // }
-
-            // $message = $this->getEvidenceCreatedMessage($activityPowers);
-            // AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), $message);
-
         }
 
-        //return \humhub\modules\missions\widgets\WallCreateEvokationForm::create($evokation, $this->contentContainer);
-        
-        // $model = new Evokations();
-
-        // if ($model->load(Yii::$app->request->post()) && $model->save()) {
-        //     return $this->redirect(['view', 'id' => $model->id]);
-        // } else {
-        //     return $this->render('create', [
-        //         'model' => $model
-        //     ]);
-        // }
+        return \humhub\modules\missions\widgets\WallCreateEvokationForm::create($evokation, $this->contentContainer);
     }
 
     /**
@@ -164,13 +133,21 @@ class EvokationsController extends ContentContainerController //extends Controll
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $model->scenario = Evokations::SCENARIO_EDIT;
+        
+        $edited = false;
+        
+        if (!$model->content->canWrite()) {
+            throw new HttpException(403, Yii::t('MissionsModule.controllers_PollController', 'Access denied!'));
+        }
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->id, 'sguid' => $this->contentContainer->guid]);
         } else {
             return $this->render('update', [
                 'model' => $model,
             ]);
+            //return $this->renderAjax('update', ['model' => $model, 'edited' => $edited]);
         }
     }
 

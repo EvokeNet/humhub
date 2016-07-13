@@ -728,10 +728,38 @@ input[type=select] {
   position: relative;
 }
 .panel h1 {
-  font-size: 16px;
-  font-weight: 300;
-  margin-top: 0;
-  color: #555;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 30pt;
+  font-weight: 700;
+}
+.panel h2 {
+  font-size: 30pt;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 500;
+}
+.panel h3 {
+  font-size: 26pt;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 500;
+}
+.panel h4 {
+  font-size: 20pt;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 500;
+}
+.panel h5 {
+  font-size: 16pt;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 500;
+}
+.panel h6 {
+  font-size: 14pt;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 500;
+}
+.panel p {
+  font-family: 'Vollkorn', serif;
+  font-weight: 400;
 }
 .panel .panel-heading {
   font-weight: 500;
@@ -746,9 +774,39 @@ input[type=select] {
 .panel .panel-body {
   padding: 10px;
 }
+.panel .panel-body h1 {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 30pt;
+  font-weight: 700;
+}
+.panel .panel-body h2 {
+  font-size: 30pt;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 500;
+}
+.panel .panel-body h3 {
+  font-size: 26pt;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 500;
+}
+.panel .panel-body h4 {
+  font-size: 20pt;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 500;
+}
+.panel .panel-body h5 {
+  font-size: 16pt;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 500;
+}
+.panel .panel-body h6 {
+  font-size: 14pt;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 500;
+}
 .panel .panel-body p {
-  color: #555;
-  font-size: 16px;
+  font-family: 'Vollkorn', serif;
+  font-weight: 400;
 }
 .panel .statistics .entry {
   margin-left: 20px;

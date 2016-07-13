@@ -28,4 +28,5 @@
    'Amount' => '',
    'Created At' => '',
    'Modified At' => '',
+   'Create Wallets' => '',
  ];

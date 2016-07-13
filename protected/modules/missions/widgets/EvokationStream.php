@@ -69,7 +69,7 @@ class EvokationStream extends \yii\base\Widget
     public $messageStreamEmptyCss = "";
 
 
-    public $activity_id;
+    public $mission_id;
 
     /**
      * Inits the Wall Stream Widget
@@ -120,7 +120,7 @@ class EvokationStream extends \yii\base\Widget
             'filters' => '-filter-',
             'sort' => '-sort-',
             'from' => '-from-',
-            'activity_id' => $this->activity_id,
+            // 'mission_id' => $this->mission_id,
             'mode' => \humhub\modules\content\components\actions\Stream::MODE_NORMAL
         ];
 

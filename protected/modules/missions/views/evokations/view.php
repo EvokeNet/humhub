@@ -7,38 +7,39 @@ use yii\widgets\DetailView;
 /* @var $model app\modules\missions\models\Evokations */
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Evokations'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.base', 'Evokations'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="evokations-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        
+        <p style = "float:right">
+            <?= Html::a(Yii::t('MissionsModule.base', 'Update'), ['update', 'id' => $model->id, 'sguid' => $contentContainer->guid], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a(Yii::t('MissionsModule.base', 'Delete'), ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => Yii::t('MissionsModule.base', 'Are you sure you want to delete this item?'),
+                    'method' => 'post',
+                ],
+            ]) ?>
+        </p>
+            
+        <h3><?= Yii::t('MissionsModule.base', 'Title: {title}', array('title' => $model->title)) ?></h3>
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+    </div>
+    <div class="panel-body">
+        
+        <div class="evokations-view">
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'title',
-            'description:ntext',
-            'youtube_url:ntext',
-            'gdrive_url:ntext',
-            'mission_id',
-            'created_at',
-            'created_by',
-            'updated_at',
-            'updated_by',
-        ],
-    ]) ?>
-
+            <h5><?= Yii::t('MissionsModule.base', 'Description: {description}', array('description' => $model->description)) ?></h5><br>
+            <h5><?= Yii::t('MissionsModule.base', 'Google Drive Link: ') ?>&nbsp;<a href="//<?= $model->gdrive_url ?>"><?= $model->gdrive_url ?></a></h5><br>
+            <h5><?= Yii::t('MissionsModule.base', 'Elevator Pitch:') ?></h5><br>
+            
+            <iframe width="620" height="420" src="http://www.youtube.com/embed/<?php echo $model->getYouTubeCode($model->youtube_url)?>" frameborder="0" allowfullscreen></iframe>
+            <!--<iframe width="620" height="420" src="http://www.youtube.com/embed/<?php //echo $model->getYouTubeCode('https://www.youtube.com/watch?v=w12kbScuayI')?>" frameborder="0" allowfullscreen></iframe>-->
+            <!--<iframe width="620" height="420" src="https://www.youtube.com/embed/nVWX67mWZGE" frameborder="0" allowfullscreen></iframe>-->
+            <!--<iframe width="420" height="315" src="https://www.youtube.com/embed/watch?v=nVWX67mWZGE" frameborder="0" allowfullscreen></iframe>-->
+        </div>
+    </div>
 </div>

@@ -16,7 +16,7 @@ class WallCreateEvokationForm extends \humhub\modules\content\widgets\WallCreate
      */
     public function renderForm()
     {
-        return $this->render('form_evokation', array('mission' => $this->mission));
+        return $this->render('form_evokation');
     }
 
     /**

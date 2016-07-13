@@ -147,8 +147,13 @@ class Events
 
     public static function onMissionSpaceMenuInit($event)
     {
+        $member = Membership::find()
+        ->where(['user_id' => Yii::$app->user->getIdentity()->id])
+        ->orderBy('space_id DESC')
+        ->one();
+
         $space = $event->sender->space;
-        if ($space->isModuleEnabled('missions') && $space['name'] !== 'Mentor') {
+        if ($space->isModuleEnabled('missions') && $space['name'] !== 'Mentor' && $member->space->id == $space->id) {
             $event->sender->addItem(array(
                 'label' => Yii::t('MissionsModule.base', 'Mission'),
                 'group' => 'modules',
@@ -163,6 +168,12 @@ class Events
 
     public static function onEvokationSpaceMenuInit($event)
     {
+        $member = Membership::find()
+        ->where(['user_id' => Yii::$app->user->getIdentity()->id])
+        ->orderBy('space_id DESC')
+        ->one();
+
+
         $space = $event->sender->space;
         if ($space->isModuleEnabled('missions') && $space['name'] !== 'Mentor') {
             $event->sender->addItem(array(
@@ -179,6 +190,11 @@ class Events
 
     public static function onReviewSpaceMenuInit($event)
     {
+        $member = Membership::find()
+        ->where(['user_id' => Yii::$app->user->getIdentity()->id])
+        ->orderBy('space_id DESC')
+        ->one();
+
         $space = $event->sender->space;
         if ($space->isModuleEnabled('missions')) {
             $event->sender->addItem(array(
@@ -202,12 +218,8 @@ class Events
     public static function onTopMenuInit($event)
     {
         $member = Membership::find()
-        // (new \yii\db\Query())
-        // ->select(['s.space_id as space_id'])
-        // ->from('space_membership as s')
         ->where(['user_id' => Yii::$app->user->getIdentity()->id])
         ->orderBy('space_id DESC')
-        // ->andWhere(['!=', 'space_id', 1])
         ->one();
 
         $event->sender->addItem(array(
@@ -227,8 +239,12 @@ class Events
     {
         if (Yii::$app->user->isGuest || Yii::$app->user->getIdentity()->getSetting("hideSharePanel", "share") != 1) {
            
-            $userPowers = UserPowers::getUserPowers(Yii::$app->user->getIdentity()->id);
-            $event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers], array('sortOrder' => 9));
+            // if viewing other user profile
+            if(Yii::$app->user->getIdentity()->id != $event->sender->user->id){
+                $userPowers = UserPowers::getUserPowers(Yii::$app->user->getIdentity()->id);
+                $event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers], array('sortOrder' => 9));
+                $event->sender->addWidget(PopUpWidget::className(), []);    
+            }
 
         }
         

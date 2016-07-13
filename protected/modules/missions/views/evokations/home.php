@@ -36,7 +36,7 @@ endforeach;
 <div class="panel panel-default">
     <div class="panel-heading">
         
-        <a class = "btn btn-primary" href='<?= Url::to(['/missions/evokations/submit', 'sguid' => $contentContainer->guid]); ?>' style = "margin-top:10px">
+        <a class = "btn btn-primary" href='<?= Url::to(['/missions/evokations/submit', 'sguid' => $contentContainer->guid, 'missionId' => '1']); ?>' style = "margin-top:10px">
             <?= Yii::t('MissionsModule.base', 'Submit evokation') ?>
         </a>
             
@@ -85,9 +85,9 @@ endforeach;
                                 <?php 
                                 
                                 $a = isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title;
-                                //echo Html::a(
-                                //$a,
-                                //['evidences', 'activities', 'categoryId' => $mission->id, 'sguid' => $contentContainer->guid]); 
+                                // echo Html::a(
+                                // $a,
+                                // ['evidences', 'activities', 'categoryId' => $mission->id, 'sguid' => $contentContainer->guid]); 
                                                                 
                                 echo Html::a($a, ['evidence/show', 'activityId' => $activity->id, 'sguid' => $contentContainer->guid], ['class' => 'profile-link']);
                                 
