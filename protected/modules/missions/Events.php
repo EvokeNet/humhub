@@ -21,6 +21,7 @@ use humhub\modules\missions\widgets\PortfolioWidget;
 use humhub\modules\space\models\Space;
 use app\modules\missions\models\Evidence;
 use app\modules\missions\models\ActivityPowers;
+use app\modules\missions\models\Portfolio;
 use app\modules\powers\models\UserPowers;
 use humhub\modules\user\models\User;
 use humhub\modules\space\models\Membership;
@@ -52,7 +53,9 @@ class Events
 
             $event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers], array('sortOrder' => 9));
 
-            $event->sender->addWidget(PortfolioWidget::className(), [], array('sortOrder' => 8));
+            $portfolio = Portfolio::getUserPortfolio(Yii::$app->user->getIdentity()->id);
+
+            $event->sender->addWidget(PortfolioWidget::className(), ['portfolio' => $portfolio], array('sortOrder' => 8));
         }
 
     }
