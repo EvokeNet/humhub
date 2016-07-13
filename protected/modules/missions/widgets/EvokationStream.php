@@ -120,7 +120,7 @@ class EvokationStream extends \yii\base\Widget
             'filters' => '-filter-',
             'sort' => '-sort-',
             'from' => '-from-',
-            'mission_id' => $this->mission_id,
+            // 'mission_id' => $this->mission_id,
             'mode' => \humhub\modules\content\components\actions\Stream::MODE_NORMAL
         ];
 

@@ -189,7 +189,7 @@ class Events
 
 
         $space = $event->sender->space;
-        if ($space->isModuleEnabled('missions') && $space['name'] !== 'Mentor' && $member->space->id == $space->id) {
+        if ($space->isModuleEnabled('missions') && $space['name'] !== 'Mentor') {
             $event->sender->addItem(array(
                 'label' => Yii::t('MissionsModule.base', 'Evokation Home'),
                 'group' => 'modules',
@@ -210,7 +210,7 @@ class Events
         ->one();
 
         $space = $event->sender->space;
-        if ($space->isModuleEnabled('missions') && $member->space->id == $space->id) {
+        if ($space->isModuleEnabled('missions')) {
             $event->sender->addItem(array(
                 'label' => Yii::t('MissionsModule.base', 'Review Evidence'),
                 'group' => 'modules',

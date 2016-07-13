@@ -18,30 +18,30 @@ class Events extends \yii\base\Object
      *
      * @param type $event
      */
-    public static function onAboutTopMenuInit($event)
-    {
-        if(Yii::$app->user->getIdentity()->super_admin == 1){
+    // public static function onAboutTopMenuInit($event)
+    // {
+    //     if(Yii::$app->user->getIdentity()->super_admin == 1){
 
-            $event->sender->addItem(array(
-            'label' => Yii::t('StaticPagesModule.base', 'About'),
-            'id' => 'static_pages_about',
-            'icon' => '<i class="fa fa-th"></i>',
-            'url' => Url::toRoute('/static_pages/static-pages/about'),
-            'sortOrder' => 1000,
-            'isActive' => (
-                Yii::$app->controller->module && Yii::$app->controller->module->id == 'static_pages' 
-                && Yii::$app->controller->id != 'admin'
-                && Yii::$app->controller->action->id == 'about'
-                &&(
-                    Yii::$app->controller->action->id != 'how_to'
-                    || Yii::$app->controller->action->id != 'privacy-policy'
-                    || Yii::$app->controller->action->id != 'terms-conditions'
-                )
-             ),
-            ));
-        }
+    //         $event->sender->addItem(array(
+    //         'label' => Yii::t('StaticPagesModule.base', 'About'),
+    //         'id' => 'static_pages_about',
+    //         'icon' => '<i class="fa fa-th"></i>',
+    //         'url' => Url::toRoute('/static_pages/static-pages/about'),
+    //         'sortOrder' => 1000,
+    //         'isActive' => (
+    //             Yii::$app->controller->module && Yii::$app->controller->module->id == 'static_pages' 
+    //             && Yii::$app->controller->id != 'admin'
+    //             && Yii::$app->controller->action->id == 'about'
+    //             &&(
+    //                 Yii::$app->controller->action->id != 'how_to'
+    //                 || Yii::$app->controller->action->id != 'privacy-policy'
+    //                 || Yii::$app->controller->action->id != 'terms-conditions'
+    //             )
+    //          ),
+    //         ));
+    //     }
         
-    }
+    // }
     
     public static function onHowToTopMenuInit($event)
     {
@@ -57,65 +57,65 @@ class Events extends \yii\base\Object
                 Yii::$app->controller->module && Yii::$app->controller->module->id == 'static_pages' 
                 && Yii::$app->controller->id != 'admin'
                 && Yii::$app->controller->action->id == 'how-to'
-                &&(
-                    Yii::$app->controller->action->id != 'about'
-                    || Yii::$app->controller->action->id != 'privacy-policy'
-                    || Yii::$app->controller->action->id != 'terms-conditions'
-                )
+                // &&(
+                //     Yii::$app->controller->action->id != 'about'
+                //     || Yii::$app->controller->action->id != 'privacy-policy'
+                //     || Yii::$app->controller->action->id != 'terms-conditions'
+                // )
              ),
             ));
         }
         
     }
     
-    public static function onPrivacyPolicyTopMenuInit($event)
-    {
-        if(Yii::$app->user->getIdentity()->super_admin == 1){
+    // public static function onPrivacyPolicyTopMenuInit($event)
+    // {
+    //     if(Yii::$app->user->getIdentity()->super_admin == 1){
 
-            $event->sender->addItem(array(
-            'label' => Yii::t('StaticPagesModule.base', 'Privacy Policy'),
-            'id' => 'static_pages_privacy-policy',
-            'icon' => '<i class="fa fa-th"></i>',
-            'url' => Url::toRoute('/static_pages/static-pages/privacy-policy'),
-            'sortOrder' => 1000,
-            'isActive' => (
-                Yii::$app->controller->module && Yii::$app->controller->module->id == 'static_pages' 
-                && Yii::$app->controller->id != 'admin'
-                && Yii::$app->controller->action->id == 'privacy-policy'
-                &&(
-                    Yii::$app->controller->action->id != 'about'
-                    || Yii::$app->controller->action->id != 'how-to'
-                    || Yii::$app->controller->action->id != 'terms-conditions'
-                )
-             ),
-            ));
-        }
+    //         $event->sender->addItem(array(
+    //         'label' => Yii::t('StaticPagesModule.base', 'Privacy Policy'),
+    //         'id' => 'static_pages_privacy-policy',
+    //         'icon' => '<i class="fa fa-th"></i>',
+    //         'url' => Url::toRoute('/static_pages/static-pages/privacy-policy'),
+    //         'sortOrder' => 1000,
+    //         'isActive' => (
+    //             Yii::$app->controller->module && Yii::$app->controller->module->id == 'static_pages' 
+    //             && Yii::$app->controller->id != 'admin'
+    //             && Yii::$app->controller->action->id == 'privacy-policy'
+    //             &&(
+    //                 Yii::$app->controller->action->id != 'about'
+    //                 || Yii::$app->controller->action->id != 'how-to'
+    //                 || Yii::$app->controller->action->id != 'terms-conditions'
+    //             )
+    //          ),
+    //         ));
+    //     }
         
-    }
+    // }
     
-    public static function onTermsTopMenuInit($event)
-    {
-        if(Yii::$app->user->getIdentity()->super_admin == 1){
+    // public static function onTermsTopMenuInit($event)
+    // {
+    //     if(Yii::$app->user->getIdentity()->super_admin == 1){
 
-            $event->sender->addItem(array(
-            'label' => Yii::t('StaticPagesModule.base', 'Terms & Conditions'),
-            'id' => 'static_pages_terms_conditions',
-            'icon' => '<i class="fa fa-th"></i>',
-            'url' => Url::toRoute('/static_pages/static-pages/terms-conditions'),
-            'sortOrder' => 1000,
-            'isActive' => (
-                Yii::$app->controller->module && Yii::$app->controller->module->id == 'static_pages' 
-                && Yii::$app->controller->id != 'admin'
-                && Yii::$app->controller->action->id == 'terms-conditions'
-                &&(
-                    Yii::$app->controller->action->id != 'about'
-                    || Yii::$app->controller->action->id != 'how-to'
-                    || Yii::$app->controller->action->id != 'privacy-policy'
-                )
-             ),
-            ));
-        }
+    //         $event->sender->addItem(array(
+    //         'label' => Yii::t('StaticPagesModule.base', 'Terms & Conditions'),
+    //         'id' => 'static_pages_terms_conditions',
+    //         'icon' => '<i class="fa fa-th"></i>',
+    //         'url' => Url::toRoute('/static_pages/static-pages/terms-conditions'),
+    //         'sortOrder' => 1000,
+    //         'isActive' => (
+    //             Yii::$app->controller->module && Yii::$app->controller->module->id == 'static_pages' 
+    //             && Yii::$app->controller->id != 'admin'
+    //             && Yii::$app->controller->action->id == 'terms-conditions'
+    //             &&(
+    //                 Yii::$app->controller->action->id != 'about'
+    //                 || Yii::$app->controller->action->id != 'how-to'
+    //                 || Yii::$app->controller->action->id != 'privacy-policy'
+    //             )
+    //          ),
+    //         ));
+    //     }
         
-    }
+    // }
 
 }

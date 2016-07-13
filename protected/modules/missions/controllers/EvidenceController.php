@@ -162,7 +162,6 @@ class EvidenceController extends ContentContainerController
         $evidence->text = Yii::$app->request->post('text');
         $evidence->activities_id = Yii::$app->request->post('activityId');
 
-
         if(!Yii::$app->request->post('title')){
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Title cannot be blank.'));
         } else if(!Yii::$app->request->post('text')){

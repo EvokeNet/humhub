@@ -68,6 +68,7 @@ class EvokationsController extends ContentContainerController //extends Controll
     public function actionView($id)
     {
         return $this->render('view', [
+            'contentContainer' => $this->contentContainer,
             'model' => $this->findModel($id),
         ]);
     }
@@ -120,13 +121,21 @@ class EvokationsController extends ContentContainerController //extends Controll
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $model->scenario = Evokations::SCENARIO_EDIT;
+        
+        $edited = false;
+        
+        if (!$model->content->canWrite()) {
+            throw new HttpException(403, Yii::t('MissionsModule.controllers_PollController', 'Access denied!'));
+        }
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->id, 'sguid' => $this->contentContainer->guid]);
         } else {
             return $this->render('update', [
                 'model' => $model,
             ]);
+            //return $this->renderAjax('update', ['model' => $model, 'edited' => $edited]);
         }
     }
 

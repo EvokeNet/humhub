@@ -85,9 +85,9 @@ endforeach;
                                 <?php 
                                 
                                 $a = isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title;
-                                //echo Html::a(
-                                //$a,
-                                //['evidences', 'activities', 'categoryId' => $mission->id, 'sguid' => $contentContainer->guid]); 
+                                // echo Html::a(
+                                // $a,
+                                // ['evidences', 'activities', 'categoryId' => $mission->id, 'sguid' => $contentContainer->guid]); 
                                                                 
                                 echo Html::a($a, ['evidence/show', 'activityId' => $activity->id, 'sguid' => $contentContainer->guid], ['class' => 'profile-link']);
                                 

@@ -16,10 +16,10 @@
         'events' => [
             //['class' => \humhub\modules\admin\widgets\AdminMenu::className(), 'event' => AdminMenu::EVENT_INIT, 'callback' => ['humhub\modules\languages\Events', 'onAdminMenuInit']],
             //['class' => TopMenu::className(), 'event' => TopMenu::EVENT_INIT, 'callback' => ['humhub\modules\custom_pages\Events', 'onTopMenuInit']],
-            ['class' => \humhub\widgets\TopMenu::className(), 'event' => TopMenu::EVENT_INIT, 'callback' => ['\humhub\modules\static_pages\Events', 'onAboutTopMenuInit']],
+            //['class' => \humhub\widgets\TopMenu::className(), 'event' => TopMenu::EVENT_INIT, 'callback' => ['\humhub\modules\static_pages\Events', 'onAboutTopMenuInit']],
             ['class' => \humhub\widgets\TopMenu::className(), 'event' => TopMenu::EVENT_INIT, 'callback' => ['\humhub\modules\static_pages\Events', 'onHowToTopMenuInit']],
-            ['class' => \humhub\widgets\TopMenu::className(), 'event' => TopMenu::EVENT_INIT, 'callback' => ['\humhub\modules\static_pages\Events', 'onPrivacyPolicyTopMenuInit']],
-            ['class' => \humhub\widgets\TopMenu::className(), 'event' => TopMenu::EVENT_INIT, 'callback' => ['\humhub\modules\static_pages\Events', 'onTermsTopMenuInit']],
+            //['class' => \humhub\widgets\TopMenu::className(), 'event' => TopMenu::EVENT_INIT, 'callback' => ['\humhub\modules\static_pages\Events', 'onPrivacyPolicyTopMenuInit']],
+            //['class' => \humhub\widgets\TopMenu::className(), 'event' => TopMenu::EVENT_INIT, 'callback' => ['\humhub\modules\static_pages\Events', 'onTermsTopMenuInit']],
         ],
         // 'urlManagerRules' => [
         //     'matching_questions' => 'matching_questions/matching-questions'
