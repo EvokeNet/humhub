@@ -51,6 +51,7 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                     <div class="container margin-toleft-25">
                         <div class="input-group spinner">
                             <input id = "evokation_<?= $evokation_investment->evokation_id ?>" type="text" class="form-control" value="<?= $evokation_investment->investment ?>">
+                            <input id = "oldvalue" type="hidden" value="<?= $evokation_investment->investment ?>">
                             <div class="input-group-btn-vertical">
                                 <button class="btn btn-default" type="button">
                                     <i class="fa fa-caret-up"></i>
@@ -174,13 +175,39 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
         remainingAmount.innerHTML = parseInt(remainingAmount.innerHTML) + 1;
       });
 
-      $('.form-control').on('change', function(e) {
-        var inputInvestment = e.target;
+      $('.form-control').change (function(e) {
+        var inputInvestment = e.target.value;
+        var oldInputInvestment = $(e.target).parent().find('#oldvalue');
+        var diff = 0;
+
+        //if new value is integer and >= 0
+        if (isInt(inputInvestment) && inputInvestment >= 0){
+            diff = parseInt(inputInvestment) - parseInt(oldInputInvestment.val());
+            oldInputInvestment.val(inputInvestment);
+            totalAmount.innerHTML = parseInt(totalAmount.innerHTML) + diff;
+            remainingAmount.innerHTML = parseInt(remainingAmount.innerHTML) - diff;
+        }
+
       });
 
 
 
 
     })(jQuery);
+
+    function change(inputInvestment, diff){
+        var oldInputInvestment = $(e.target).parent().find('#oldvalue');
+
+    }
+
+    function isInt(value) {
+        var x;
+        if (isNaN(value)) {
+            return false;
+        }
+        x = parseFloat(value);
+        return (x | 0) === x;
+    }
+
 
 </script>
