@@ -36,8 +36,12 @@ endforeach;
 <div class="panel panel-default">
     <div class="panel-heading">
         
-        <a class = "btn btn-primary" href='<?= Url::to(['/missions/evokations/submit', 'sguid' => $contentContainer->guid, 'missionId' => '1']); ?>' style = "margin-top:10px">
+        <a class = "btn btn-primary" href='<?= Url::to(['/missions/evokations/submit', 'sguid' => $contentContainer->guid]); ?>' style = "margin-top:10px">
             <?= Yii::t('MissionsModule.base', 'Submit evokation') ?>
+        </a>
+
+        <a class = "btn btn-primary" href='<?= Url::to(['/missions/evokations/voting', 'sguid' => $contentContainer->guid]); ?>' style = "margin-top:10px">
+            <?= Yii::t('MissionsModule.base', 'Vote on Evokations') ?>
         </a>
             
         <div style = "margin-top:10px; float:right">

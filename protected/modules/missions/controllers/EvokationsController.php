@@ -73,6 +73,14 @@ class EvokationsController extends ContentContainerController //extends Controll
         ]);
     }
 
+    public function actionVoting()
+    {
+        return $this->render('voting', [
+            'contentContainer' => $this->contentContainer,
+            'space' => $this->space,
+        ]);
+    }
+    
     public function actionSubmit(){
         
         return $this->render('create', [
