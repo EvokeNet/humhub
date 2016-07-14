@@ -33,12 +33,13 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                 </div>
             </div>
 
-            <?php if(empty($portfolio)): ?>
+
+            <div id="empty_portfolio" <?php if(!empty($portfolio)): ?> style="display: none;" <?php endif;?> >
                 <?= Yii::t('MissionsModule.base', 'Add an evokation to invest') ?>
-            <?php endif; ?>
+            </div>
                 
             <?php foreach($portfolio as $evokation_investment): ?>    
-            <div>
+            <div id="evokation_row_<?= $evokation_investment->evokation_id ?>" class="evokation_row">
                 <div class="col-xs-8">
                     <div class="padding-fromtop-5px margin-toleft-10">
                         <a href='<?= Url::to(['/missions/evokations/view', 'id' => $evokation_investment->getEvokationObject()->id, 'sguid' => $evokation_investment->getEvokationObject()->content->container->guid]); ?>'>
@@ -61,7 +62,10 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                                 </button>
                             </div>
                         </div>
-                    </div>  
+                    </div> 
+                    <a href='#' onclick="deleteEvokation(<?= $evokation_investment->evokation_id ?>);">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </p> 
                 </div>
             </div>   
             <?php endforeach; ?>
@@ -186,12 +190,113 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
 
 </style>
 
-
 <script type="text/javascript">
     var totalAmount = document.getElementById('totalAmount');
     var remainingAmount = document.getElementById('remainingAmount');
     var raiseInvestmentInterval, decreaseInvestmentInterval;
 
+    function removeFromPortfolio(id){
+        var element = document.getElementById("evokation_row_" + id);
+        element.remove();
+
+        var total = document.getElementsByClassName("evokation_row").length;
+        if(total < 1){
+            $("#empty_portfolio").show();
+        }
+
+    }
+
+    function getNewElement(id, name, url, investment){
+        //===================
+        //html for element
+        var html = "<div id='evokation_row_"+id+"' class=''evokation_row'>";
+        html += "<div class='col-xs-8'>";
+        html += "<div class='padding-fromtop-5px margin-toleft-10'>";
+                   html += "<a href='"+url+"'>";
+                        html += name;
+                    html += "</a>";
+                html += "</div>";
+            html += "</div>";
+            
+             html += "<div class='col-xs-4'>";
+                 html += "<div class='container margin-toleft-25'>";
+                     html += "<div class='input-group spinner'>";
+                         html += "<input id = 'evokation_"+id+"' type='text' class='form-control investment_input' value='"+investment+"''>";
+                         html += "<input id = 'oldvalue' type='hidden' value='"+investment+"'>";
+                         html += "<div class='input-group-btn-vertical'>";
+                             html += "<button class='btn btn-default' type='button'>";
+                                 html += "<i class='fa fa-caret-up'></i>"
+                            html += "</button>";
+                             html += "<button class='btn btn-default' type='button'>";
+                                 html += "<i class='fa fa-caret-down'></i>"
+                            html += "</button>";
+                        html += "</div>";
+                    html += "</div>";
+                html += "</div>"; 
+                html += "<a href='#' onclick='deleteEvokation("+ id + ");'>";
+                     html += "<span class='glyphicon glyphicon-trash'></span>";
+                html += "</p>";
+            html += "</div>";
+            
+        html += "</div>";
+        // end html
+        //===================
+
+        return html;
+    }
+
+    function addEvokation(id, name, url, investment){
+
+        //evokations total
+        var elements = document.getElementsByClassName("evokation_row");
+
+        var html = getNewElement(id, name, url, investment);
+        var last_id = -1;
+        var evok_id;
+
+        if(elements.length < 1){
+            $("#empty_portfolio").hide();
+            $("#empty_portfolio").after(html);
+        }else{
+            for(var x=0; x < elements.length; x++){
+                evok_id = elements[x].id.slice(14);
+                if(evok_id <= id){
+                    last_id = evok_id;
+                }else{
+                    break;
+                }
+            }
+
+            if(last_id < 0){
+                $("#empty_portfolio").hide();
+                $("#empty_portfolio").after(html);
+            }else{
+                $("#evokation_row_"+last_id).after(html);
+            }
+        }
+    }
+
+    function deleteEvokation(id){
+
+        var confirm = window.confirm("<?= Yii::t('MissionsModule.base', 'Do you really want to delete it?') ?>");
+        if (confirm == true) {
+            $.ajax({
+                url: '<?= Url::to(['/missions/portfolio/delete']); ?>&evokation_id='+id,
+                type: 'get',
+                dataType: 'json',
+                success: function (data) {
+                    if(data.status == 'success'){
+                        removeFromPortfolio(id);
+                        $('#portfolio_status').hide();
+                        showMessage("<?= Yii::t('MissionsModule.base', 'Updated') ?>", "<?= Yii::t('MissionsModule.base', 'Evokation removed!') ?>");
+                    }else if(data.status == 'error'){
+                        $('#portfolio_status').hide();
+                        showMessage("<?= Yii::t('MissionsModule.base', 'Error') ?>", "<?= Yii::t('MissionsModule.base', 'Something went wrong') ?>");
+                    }
+                }
+            });
+        }  
+    }
 
     function updatePortfolio() {
         var evok_id, evok_value;
@@ -201,7 +306,7 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
 
         for(var x = 0; x < evokation_array.length; x++){
             evok_value = evokation_array[x].value;
-            evok_id = evokation_array[x].id.slice(10);
+            evok_id = evokation_array[x].id.slice(14);
             evokations[evok_id] = evok_value;
         }
 
@@ -212,9 +317,22 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
             type: 'post',
             dataType: 'json',
             success: function (data) {
+                for(var index in data) { 
+                    var attr = data[index]; 
+                    if(index != 'status'){
+                        removeFromPortfolio(index);
+                    }
+                }
+
                 if(data.status == 'success'){
                     $('#portfolio_status').hide();
                     showMessage("<?= Yii::t('MissionsModule.base', 'Updated') ?>", "<?= Yii::t('MissionsModule.base', 'Portfolio updated successfully!') ?>");
+                }else if(data.status == 'no_enough_evocoins'){
+                    $('#portfolio_status').hide();
+                    showMessage("<?= Yii::t('MissionsModule.base', 'Error') ?>", "<?= Yii::t('MissionsModule.base', 'No enough Evocoins!') ?>");
+                }else if(data.status == 'invalid_data'){
+                    $('#portfolio_status').hide();
+                    showMessage("<?= Yii::t('MissionsModule.base', 'Error') ?>", "<?= Yii::t('MissionsModule.base', 'Invalid Data! Input only numbers.') ?>");
                 }
                 
             },
@@ -267,7 +385,11 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
     })(jQuery);
 
     function raiseInvestment(target){
-        target.value = parseInt(target.value) + 1;
+        if(parseInt(target.value) < 0){
+            target.value = 0;
+        }else{
+            target.value = parseInt(target.value) + 1;
+        }
         change(target, target.value)
     }
 
