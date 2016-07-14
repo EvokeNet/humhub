@@ -13,6 +13,32 @@ class PortfolioController extends \yii\web\Controller
         return $this->render('index');
     }
 
+    public function actionAdd($evokation_id, $investment){
+        $user = Yii::$app->user->getIdentity();
+
+         if(intval($investment)){
+            if($investment >= 0){
+
+                $evokation_investment = new Portfolio();
+                $evokation_investment->user_id = $user->id;
+                $evokation_investment->evokation_id = $evokation_id;
+                $evokation_investment->investment = $investment;
+                $evokation_investment->save();
+
+                header('Content-type: application/json');
+                $response_array['status'] = 'success'; 
+                echo json_encode($response_array);
+                Yii::$app->end();
+                
+            }
+        }
+
+        header('Content-type: application/json');
+        $response_array['status'] = 'error'; 
+        echo json_encode($response_array);
+        Yii::$app->end();
+    }
+
     public function actionDelete($evokation_id){
         $user = Yii::$app->user->getIdentity();
         $evokation_investment = Portfolio::findOne(['user_id' => $user->id, 'evokation_id' => $evokation_id]);
@@ -27,7 +53,7 @@ class PortfolioController extends \yii\web\Controller
         }
 
         echo json_encode($response_array);
-            Yii::$app->end();
+        Yii::$app->end();
 
     }
 

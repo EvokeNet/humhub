@@ -4,6 +4,9 @@ namespace app\modules\missions\models;
 
 use Yii;
 use humhub\modules\user\models\User;
+use yii\db\Expression;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "portfolio".
@@ -28,13 +31,28 @@ class Portfolio extends \yii\db\ActiveRecord
         return 'portfolio';
     }
 
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+                // if you're using datetime instead of UNIX timestamp:
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['user_id', 'evokation_id', 'investment', 'created_at', 'updated_at'], 'required'],
+            [['user_id', 'evokation_id', 'investment'], 'required'],
             [['user_id', 'evokation_id', 'investment'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['evokation_id'], 'exist', 'skipOnError' => true, 'targetClass' => Evokations::className(), 'targetAttribute' => ['evokation_id' => 'id']],
