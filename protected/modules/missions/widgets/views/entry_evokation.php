@@ -33,22 +33,38 @@ $evokation_investment = Portfolio::find()
         </a>
     </div>
 
-    <?php if(!$evokation_investment && $evokation->content->user_id != Yii::$app->user->getIdentity()->id && ((strtotime(date('Y-m-d H:i:s')) > strtotime($deadline->start_date)) && (strtotime(date('Y-m-d H:i:s')) < strtotime($deadline->finish_date)))): ?>
+    <?php if(!$evokation_investment && $evokation->content->user_id != Yii::$app->user->getIdentity()->id): ?>
 
-    <div style = "float:right">
-        <a class = "btn btn-primary" href="#" onClick="addEvokationToPortfolio<?= $evokation->id ?>();">
-            <?= Yii::t('MissionsModule.base', 'Add to Portfolio') ?>
-        </a>
-    </div>
+        <?php if ((strtotime(date('Y-m-d H:i:s')) > strtotime($deadline->start_date)) && (strtotime(date('Y-m-d H:i:s')) < strtotime($deadline->finish_date))){ ?>
+        <div style = "float:right">
+            <a class = "btn btn-primary" href="#" onClick="addEvokationToPortfolio<?= $evokation->id ?>();">
+                <?= Yii::t('MissionsModule.base', 'Add to Portfolio') ?>
+            </a>
+        </div>
+        <?php } else{ ?>
+            <div style = "float:right">
+                <a class = "btn btn-default" href='#'>
+                    <?= Yii::t('MissionsModule.base', 'Voting Closed') ?>
+                </a>
+            </div>
+        <?php } ?>
 
     <?php elseif($evokation_investment || $evokation->content->user_id != Yii::$app->user->getIdentity()->id): ?>
 
-    <?php else: ?>
+        <?php if ((strtotime(date('Y-m-d H:i:s')) > strtotime($deadline->start_date)) && (strtotime(date('Y-m-d H:i:s')) < strtotime($deadline->finish_date))){ ?>
         <div style = "float:right">
-            <a class = "btn btn-default" href='#'>
-                <?= Yii::t('MissionsModule.base', 'Voting Closed') ?>
+            <a class = "btn btn-primary" href="#" onClick="addEvokationToPortfolio<?= $evokation->id ?>();">
+                <?= Yii::t('MissionsModule.base', 'Add to Portfolio') ?>
             </a>
         </div>
+        <?php } else{ ?>
+            <div style = "float:right">
+                <a class = "btn btn-default" href='#'>
+                    <?= Yii::t('MissionsModule.base', 'Voting Closed') ?>
+                </a>
+            </div>
+        <?php } ?>
+        
     <?php endif; ?>
 </div>
             
