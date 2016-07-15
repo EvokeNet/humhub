@@ -19,7 +19,7 @@ class PortfolioController extends \yii\web\Controller
         $deadline = EvokationDeadline::find()->one();
 
         //if voting is closed
-        if ($deadline && (strtotime(date('Y-m-d H:i:s')) <= strtotime($deadline->start_date)) || (strtotime(date('Y-m-d H:i:s')) >= strtotime($deadline->finish_date))){
+        if ($deadline && ((strtotime(date('Y-m-d H:i:s')) <= strtotime($deadline->start_date)) || (strtotime(date('Y-m-d H:i:s')) >= strtotime($deadline->finish_date)))){
             header('Content-type: application/json');
             $response_array['status'] = 'error'; 
             echo json_encode($response_array);
@@ -65,7 +65,7 @@ class PortfolioController extends \yii\web\Controller
         $deadline = EvokationDeadline::find()->one();
 
         //if voting is closed
-        if ($deadline && (strtotime(date('Y-m-d H:i:s')) <= strtotime($deadline->start_date)) || (strtotime(date('Y-m-d H:i:s')) >= strtotime($deadline->finish_date))){
+        if ($deadline && ((strtotime(date('Y-m-d H:i:s')) <= strtotime($deadline->start_date)) || (strtotime(date('Y-m-d H:i:s')) >= strtotime($deadline->finish_date)))){
             header('Content-type: application/json');
             $response_array['status'] = 'error'; 
             echo json_encode($response_array);
@@ -101,7 +101,7 @@ class PortfolioController extends \yii\web\Controller
 
 
         //if voting is closed
-        if ($deadline && (strtotime(date('Y-m-d H:i:s')) <= strtotime($deadline->start_date)) || (strtotime(date('Y-m-d H:i:s')) >= strtotime($deadline->finish_date))){
+        if ($deadline && ((strtotime(date('Y-m-d H:i:s')) <= strtotime($deadline->start_date)) || (strtotime(date('Y-m-d H:i:s')) >= strtotime($deadline->finish_date)))){
             header('Content-type: application/json');
             $response_array['status'] = 'error'; 
             echo json_encode($response_array);
