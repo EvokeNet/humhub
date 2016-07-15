@@ -28,7 +28,7 @@ $member = Membership::find()
         </a>
     </div>
 
-    <?php if($member->space->id == $contentContainer->id): ?>
+    <?php if($evokation->content->user_id != Yii::$app->user->getIdentity()->id): ?>
     <div style = "float:right">
         <a class = "btn btn-primary" href="#" onClick="addEvokationToPortfolio<?= $evokation->id ?>();">
             <?= Yii::t('MissionsModule.base', 'Add to Portfolio') ?>

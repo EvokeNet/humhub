@@ -5,6 +5,7 @@ namespace humhub\modules\missions\controllers;
 use Yii;
 use app\modules\missions\models\Portfolio;
 use app\modules\coin\models\Wallet;
+use app\modules\missions\models\Evokations;
 
 class PortfolioController extends \yii\web\Controller
 {
@@ -19,17 +20,20 @@ class PortfolioController extends \yii\web\Controller
          if(intval($investment)){
             if($investment >= 0){
 
-                $evokation_investment = new Portfolio();
-                $evokation_investment->user_id = $user->id;
-                $evokation_investment->evokation_id = $evokation_id;
-                $evokation_investment->investment = $investment;
-                $evokation_investment->save();
+                $evokation = Evokations::findOne($evokation_id);
+                if($evokation && $evokation->content->user_id != Yii::$app->user->getIdentity()->id){
 
-                header('Content-type: application/json');
-                $response_array['status'] = 'success'; 
-                echo json_encode($response_array);
-                Yii::$app->end();
-                
+                    $evokation_investment = new Portfolio();
+                    $evokation_investment->user_id = $user->id;
+                    $evokation_investment->evokation_id = $evokation_id;
+                    $evokation_investment->investment = $investment;
+                    $evokation_investment->save();
+
+                    header('Content-type: application/json');
+                    $response_array['status'] = 'success'; 
+                    echo json_encode($response_array);
+                    Yii::$app->end();
+                }
             }
         }
 
@@ -90,7 +94,7 @@ class PortfolioController extends \yii\web\Controller
         }
 
     	foreach($portfolio as $id => $investment){
-    		$evokation_investment = Portfolio::findOne(['user_id' => $user->id, 'evokation_id' => $id]);
+    		$evokation_investment = Portfolio::findOne(['user_id' => $user->id, 'evokation_id' => $id]);  
 
             // if exists
             if($evokation_investment){

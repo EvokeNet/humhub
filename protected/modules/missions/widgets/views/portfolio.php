@@ -198,6 +198,16 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
 
     function removeFromPortfolio(id){
         var element = document.getElementById("evokation_row_" + id);
+        var elementInvestment = document.getElementById("evokation_" + id).value;
+
+        newRemainingValue = parseInt(remainingAmount.innerHTML) + parseInt(elementInvestment);
+
+            if(newRemainingValue >=0){
+              totalAmount.innerHTML = parseInt(totalAmount.innerHTML) - parseInt(elementInvestment);
+              remainingAmount.innerHTML = newRemainingValue;
+              availableAmount = parseInt(remainingAmount.innerHTML);
+            }
+
         element.remove();
 
         var total = document.getElementsByClassName("evokation_row").length;
@@ -275,6 +285,14 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                 $("#evokation_row_"+last_id).after(html);
             }
         }
+
+        newRemainingValue = parseInt(remainingAmount.innerHTML) - investment;
+
+            if(newRemainingValue >=0){
+              totalAmount.innerHTML = parseInt(totalAmount.innerHTML) + investment;
+              remainingAmount.innerHTML = newRemainingValue;
+              availableAmount = parseInt(remainingAmount.innerHTML);
+            }
     }
 
     function deleteEvokation(id){
