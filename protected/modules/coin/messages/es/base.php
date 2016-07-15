@@ -40,4 +40,5 @@ return [
   'Delete' => '',
   'Are you sure you want to delete this item?' => '',
   'No coins created yet!' => '',
+  'Create Wallets' => '',
 ];
