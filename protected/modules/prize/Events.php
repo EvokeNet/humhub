@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Events for Coin Module installation
+ * Events for Prize Module installation
  */
 
 namespace humhub\modules\prize;
