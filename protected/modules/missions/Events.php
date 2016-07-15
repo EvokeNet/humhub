@@ -289,6 +289,10 @@ class Events
                 $event->sender->addWidget(PopUpWidget::className(), []);    
             }
 
+            $portfolio = Portfolio::getUserPortfolio(Yii::$app->user->getIdentity()->id);
+
+            $event->sender->addWidget(PortfolioWidget::className(), ['portfolio' => $portfolio], array('sortOrder' => 8));
+
         }
         
     }    
