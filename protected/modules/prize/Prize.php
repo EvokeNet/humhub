@@ -4,9 +4,9 @@ namespace app\modules\prize;
 
 use app\modules\prize\models\prize
 /**
- * Coin Module Definition Class
+ * Prize Module Definition Class
  */
- class Coin extends \yii\base\Module
+ class Prize extends \yii\base\Module
  {
 
    /**
