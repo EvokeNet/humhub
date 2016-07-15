@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use \yii\helpers\Url;
 use humhub\modules\space\models\Membership;
+use app\modules\missions\models\Portfolio;
 
 echo Html::beginForm(); 
 
@@ -10,6 +11,10 @@ $member = Membership::find()
     ->where(['user_id' => Yii::$app->user->getIdentity()->id])
     ->orderBy('space_id DESC')
     ->one();
+$evokation_investment = Portfolio::find()
+    ->where(['user_id' => Yii::$app->user->getIdentity()->id,'evokation_id' => $evokation->id])
+    ->one();
+
 ?>
 
 <strong>
@@ -28,12 +33,22 @@ $member = Membership::find()
         </a>
     </div>
 
-    <?php if($evokation->content->user_id != Yii::$app->user->getIdentity()->id): ?>
+    <?php if(!$evokation_investment && $evokation->content->user_id != Yii::$app->user->getIdentity()->id && ((strtotime(date('Y-m-d H:i:s')) > strtotime($deadline->start_date)) && (strtotime(date('Y-m-d H:i:s')) < strtotime($deadline->finish_date)))): ?>
+
     <div style = "float:right">
         <a class = "btn btn-primary" href="#" onClick="addEvokationToPortfolio<?= $evokation->id ?>();">
             <?= Yii::t('MissionsModule.base', 'Add to Portfolio') ?>
         </a>
     </div>
+
+    <?php elseif($evokation_investment || $evokation->content->user_id != Yii::$app->user->getIdentity()->id): ?>
+
+    <?php else: ?>
+        <div style = "float:right">
+            <a class = "btn btn-default" href='#'>
+                <?= Yii::t('MissionsModule.base', 'Voting Closed') ?>
+            </a>
+        </div>
     <?php endif; ?>
 </div>
             

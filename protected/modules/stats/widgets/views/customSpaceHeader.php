@@ -183,12 +183,12 @@ if ($space->isAdmin()) {
                 <div class="col-md-12">
                     <div class="statistics pull-left">
 
-                        <div class="pull-left entry">
-                            <span class="count"><?php echo $postCount; ?></span></a>
+                        <!--<div class="pull-left entry">
+                            <span class="count"><?php //echo $postCount; ?></span></a>
                             <br>
                             <span
-                                class="title"><?php echo Yii::t('SpaceModule.widgets_views_spaceHeader', 'Posts'); ?></span>
-                        </div>
+                                class="title"><?php //echo Yii::t('SpaceModule.widgets_views_spaceHeader', 'Posts'); ?></span>
+                        </div>-->
 
                         <div class="pull-left entry">
                             <span class="count"><?php echo count($space->memberships); ?></span>
