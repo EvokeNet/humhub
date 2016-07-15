@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'amount') ?>
+    <?= $form->field($model, 'amount')->input('number') ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('CoinModule.base', 'Create') : Yii::t('CoinModule.base', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
