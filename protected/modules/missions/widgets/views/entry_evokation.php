@@ -22,11 +22,20 @@ echo Html::beginForm();
             <?= Yii::t('MissionsModule.base', 'Read More') ?>
         </a>
     </div>
+    
+    <?php if((strtotime(date('Y-m-d H:i:s')) > strtotime($deadline->start_date)) && (strtotime(date('Y-m-d H:i:s')) < strtotime($deadline->finish_date))): ?>
     <div style = "float:right">
         <a class = "btn btn-primary" href='#'>
             <?= Yii::t('MissionsModule.base', 'Add to Portfolio') ?>
         </a>
     </div>
+    <?php else: ?>
+        <div style = "float:right">
+            <a class = "btn btn-default" href='#'>
+                <?= Yii::t('MissionsModule.base', 'Voting Closed') ?>
+            </a>
+        </div>
+    <?php endif; ?>
 </div>
             
 <br><br>

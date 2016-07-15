@@ -68,18 +68,20 @@ class Events
             'group' => 'manage',
             'icon' => '<i class="fa fa-sitemap"></i>',
             'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'admin'
-            &&
-                (
-                    Yii::$app->controller->action->id != 'index-categories'
-                    || Yii::$app->controller->action->id != 'create-categories'
-                    || Yii::$app->controller->action->id != 'update-categories'
+            
+                && Yii::$app->controller->action->id != 'index-categories'
+                && Yii::$app->controller->action->id != 'create-categories'
+                && Yii::$app->controller->action->id != 'update-categories'
 
-                    || Yii::$app->controller->action->id != 'index-category-translations'
-                    || Yii::$app->controller->action->id != 'create-category-translations'
-                    || Yii::$app->controller->action->id != 'update-category-translations'
-                )
+                && Yii::$app->controller->action->id != 'index-category-translations'
+                && Yii::$app->controller->action->id != 'create-category-translations'
+                && Yii::$app->controller->action->id != 'update-category-translations'
+                
+                && Yii::$app->controller->action->id != 'index-deadline'
+                && Yii::$app->controller->action->id != 'create-deadline'
+                && Yii::$app->controller->action->id != 'update-deadline'
 
-            ),
+           ),
         ));
     }
 
@@ -100,6 +102,33 @@ class Events
                     || Yii::$app->controller->action->id == 'index-category-translations'
                     || Yii::$app->controller->action->id == 'create-category-translations'
                     || Yii::$app->controller->action->id == 'update-category-translations'
+                    
+                )
+            ),
+        ));
+    }
+    
+    public static function onLockdownAdminMenuInit($event)
+    {
+        $event->sender->addItem(array(
+            'label' => Yii::t('MissionsModule.base', 'Evokation Deadline'),
+            'url' => Url::to(['/missions/admin/index-deadline']),
+            'group' => 'manage',
+            'icon' => '<i class="fa fa-clock-o"></i>',
+            'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'admin'
+            &&
+                (
+                    Yii::$app->controller->action->id == 'index-deadline'
+                    || Yii::$app->controller->action->id == 'create-deadline'
+                    || Yii::$app->controller->action->id == 'update-deadline'
+
+                    // || Yii::$app->controller->action->id != 'index-categories'
+                    // || Yii::$app->controller->action->id != 'create-categories'
+                    // || Yii::$app->controller->action->id != 'update-categories'
+
+                    // || Yii::$app->controller->action->id != 'index-category-translations'
+                    // || Yii::$app->controller->action->id != 'create-category-translations'
+                    // || Yii::$app->controller->action->id != 'update-category-translations'
                 )
             ),
         ));

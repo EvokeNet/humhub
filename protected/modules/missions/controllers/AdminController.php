@@ -11,6 +11,7 @@ use app\modules\missions\models\ActivityPowers;
 use app\modules\missions\models\DifficultyLevels;
 use app\modules\missions\models\EvokationCategories;
 use app\modules\missions\models\EvokationCategoryTranslations;
+use app\modules\missions\models\EvokationDeadline;
 
 /**
  * AdminController
@@ -18,6 +19,45 @@ use app\modules\missions\models\EvokationCategoryTranslations;
  */
 class AdminController extends \humhub\modules\admin\components\Controller
 {
+    public function actionIndexDeadline()
+    {
+        $model = EvokationDeadline::find()->one();
+        
+        return $this->render('evokation-deadline/index', array('model' => $model));
+    }
+    
+    public function actionCreateDeadline()
+    {
+        $model = new EvokationDeadline();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index-deadline']);
+        } 
+        
+        return $this->render('evokation-deadline/create', array('model' => $model));
+    }
+    
+    public function actionUpdateDeadline($id)
+    {
+        $model = EvokationDeadline::findOne(['id' => Yii::$app->request->get('id')]);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index-deadline']);
+        }
+
+        return $this->render('evokation-deadline/update', array('model' => $model));
+    }
+    
+    public function actionDeleteDeadline()
+    {
+        $model = EvokationDeadline::findOne(['id' => Yii::$app->request->get('id')]);
+
+        if ($model !== null) {
+            $model->delete();
+        }
+
+        return $this->redirect(['index-deadline']);
+    }
     
     public function actionIndexCategories()
     {

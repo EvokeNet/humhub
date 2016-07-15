@@ -6,4 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'yii\\jui\\' => array($vendorDir . '/yiisoft/yii2-jui'),
+    'yii\\composer\\' => array($vendorDir . '/yiisoft/yii2-composer'),
+    'yii\\' => array($vendorDir . '/yiisoft/yii2'),
+    'janisto\\timepicker\\' => array($vendorDir . '/janisto/yii2-timepicker/src'),
+    'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
 );

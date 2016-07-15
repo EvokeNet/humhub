@@ -1,4 +1,5 @@
 {
     "require": {
+        "janisto/yii2-timepicker": "*"
     }
 }
