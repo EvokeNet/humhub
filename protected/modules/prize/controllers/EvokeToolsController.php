@@ -7,6 +7,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use app\modules\prize\models\Prize;
 use app\modules\prize\models\WonPrize;
+use app\modules\coin\models\Coin;
+use app\modules\coin\models\Wallet;
 use humhub\modules\user\models\User;
 
 /**
@@ -20,17 +22,32 @@ class EvokeToolsController extends Controller
     public function actionIndex()
     {
         $prizes = Prize::find()->all();
+        $coin_id = Coin::find()->where(['name' => 'EvoCoin'])->one()->id;
+        $wallet = Wallet::find()->where(['owner_id' => Yii::$app->user->id, 'coin_id' => $coin_id])->one();
 
-        return $this->render('evoke_tools/index', array('prizes' => $prizes));
+        if (array_key_exists('results', $_GET)) {
+          $results = $_GET['results'];
+        } else {
+          $results = null;
+        }
+
+        return $this->render('evoke_tools/index', array('prizes' => $prizes, 'wallet' => $wallet, 'results' => $results));
     }
 
     public function actionSearch()
     {
       $prizes = Prize::find()->where('quantity' > 0)->all();
+      $coin_id = Coin::find()->where(['name' => 'EvoCoin'])->one()->id;
+      $wallet = Wallet::find()->where(['owner_id' => Yii::$app->user->id, 'coin_id' => $coin_id])->one();
+
       $roll = mt_rand(0, $this->max_prob);
       $probabilities = [];
       $available_prizes = [];
       $prize_won = '';
+
+      // minus the 5 evocoin this action costs
+      $wallet->amount -= 5;
+      $wallet->save();
 
       // workout the probabilities for each prize
       // this is tied to when the prize was set to be available
@@ -61,15 +78,20 @@ class EvokeToolsController extends Controller
 
           $won_prize = new WonPrize();
           $won_prize->prize_id = $prize_won->id;
-          $won_prize->user_id = $app->user->id;
+          $won_prize->user_id = Yii::$app->user->id;
           $won_prize->save();
 
           break;
+        }
+
+        // if they didn't win a prize, check if they might have won some evocoin
+        if ($roll >= ($this->max_prob * 0.8)) {
+
         }
       }
 
       $results = '<div>' . $roll . '</div><strong>' . $date . '</strong><div>' . $diff . '</div><div>' . implode(',', $probabilities);
 
-      return $this->render('evoke_tools/index', array('prizes' => $prizes, 'results' => $results));
+      return $this->redirect(['index', 'results' => $results]);
     }
 }

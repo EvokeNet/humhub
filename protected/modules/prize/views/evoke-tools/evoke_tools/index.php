@@ -14,17 +14,24 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                   <strong><?php echo Yii::t('PrizeModule.base', 'Search for Help') ?></strong>
                 </div>
                 <div class="panel-body">
-                  <div class="col-xs-7">
-                    <?php echo Html::a(
-                        Yii::t('PrizeModule.base', 'Search'),
-                        ['search'], array('class' => 'btn btn-success')); ?>
-                  </div>
+                  <?php if ($wallet->amount >= 5): ?>
+                    <div class="col-xs-7">
+                      <?php echo Html::a(
+                          Yii::t('PrizeModule.base', 'Search'),
+                          ['search'], array('class' => 'btn btn-success')); ?>
+                      <span><?php echo Yii::t('PrizeModule.base', 'Costs 5 Evocoin'); ?></span>
+                    </div>
 
-                  <div class="col-xs-7" id="results">
-                    <?php if(isset($results)): ?>
-                      <span><?php echo $results ?></span>
-                    <?php endif; ?>
-                  </div>
+                    <div class="col-xs-7" id="results">
+                      <?php if(isset($results)): ?>
+                        <span><?php echo $results ?></span>
+                      <?php endif; ?>
+                    </div>
+                  <?php else: ?>
+                    <div class="col-xs-7">
+                      <?php echo Yii::t('PrizeModule.base', 'Not Enough Evocoin!'); ?>
+                    </div>
+                  <?php endif; ?>
                 </div>
               </div>
             </div>
