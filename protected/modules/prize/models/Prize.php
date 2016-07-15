@@ -28,6 +28,9 @@ use Yii;
        return [
          ['name', 'required'],
          ['name', 'string', 'max' => 256],
+         ['quantity', 'integer', 'min' => 0],
+         ['week_of', 'date', 'format' => 'yy-MM-dd'],
+         ['weight', 'integer', 'min' => 0]
        ];
      }
 

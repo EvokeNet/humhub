@@ -24,38 +24,12 @@ class AdminController extends \humhub\modules\admin\components\Controller
       $model = new Prize();
 
       if ($model->load(Yii::$app->request->post())) {
-
+          $model->created_at = date("Y-m-d H:i:s");
           if($model->save())
               return $this->redirect(['index']);
       }
 
       return $this->render('prize/create', array('model' => $model));
-    }
-
-    public function actionImburse()
-    {
-      $coin = Coin::find()->where(['name' => 'EvoCoin'])->one();
-
-      $coin_id = $coin->id;
-      $users = User::find()->all();
-
-      foreach ($users as $user) {
-
-        // check if user has wallet
-        $wallet = Wallet::find()->where(['owner_id' => $user->id, 'coin_id' => $coin_id])->one();
-
-        if (is_null($wallet)) {
-          $wallet = new Wallet();
-
-          $wallet->coin_id  = $coin_id;
-          $wallet->owner_id = $user->id;
-          $wallet->amount   = 0;
-
-          $wallet->save();
-        }
-      }
-
-      return $this->redirect(['index']);
     }
 
     public function actionUpdate($id)

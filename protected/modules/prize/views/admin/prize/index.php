@@ -31,13 +31,13 @@ echo Breadcrumbs::widget([
               <tr>
                   <!--<td><?php //echo $coin->id_code; ?></td>-->
                   <td><?php echo $prize->name; ?></td>
-                  <td><?php echo $wallet->quantity; ?></td>
-                  <td><?php echo $wallet->weight; ?></td>
-                  <td><?php echo $wallet->week_of; ?></td>
+                  <td><?php echo $prize->quantity; ?></td>
+                  <td><?php echo $prize->weight; ?></td>
+                  <td><?php echo $prize->week_of; ?></td>
                   <td>
                       <?php echo Html::a(
                           Yii::t('PrizeModule.base', 'Edit'),
-                          ['update', 'id' => $wallet->id], array('class' => 'btn btn-primary btn-sm')); ?>
+                          ['update', 'id' => $prize->id], array('class' => 'btn btn-primary btn-sm')); ?>
                   </td>
               </tr>
           <?php endforeach; ?>
