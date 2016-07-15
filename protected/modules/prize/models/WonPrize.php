@@ -18,11 +18,6 @@ use humhub\modules\user\models\User;
  */
  class WonPrize extends \yii\db\ActiveRecord
  {
-   public function behaviors()
-   {
-     //custom behaviors go here
-   }
-
    /**
     * @inheritdoc
     */
@@ -40,7 +35,7 @@ use humhub\modules\user\models\User;
          [['user_id', 'prize_id'], 'required'],
          [['user_id', 'prize_id'], 'integer'],
          [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
-         [['prize_id'], 'exist', 'skipOnError' => true, 'targetClass' => Coin::className(), 'targetAttribute' => ['prize_id' => 'id']],
+         [['prize_id'], 'exist', 'skipOnError' => true, 'targetClass' => Prize::className(), 'targetAttribute' => ['prize_id' => 'id']],
        ];
      }
 

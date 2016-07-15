@@ -22,7 +22,7 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                       <span><?php echo Yii::t('PrizeModule.base', 'Costs 5 Evocoin'); ?></span>
                     </div>
 
-                    <div class="col-xs-7" id="results">
+                    <div class="col-xs-3" id="results">
                       <?php if(isset($results)): ?>
                         <span><?php echo $results ?></span>
                       <?php endif; ?>

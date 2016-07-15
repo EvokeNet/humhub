@@ -35,4 +35,5 @@
    'Search for Help' => '',
    'Not Enough Evocoin!' => '',
    'Costs 5 Evocoin' => '',
+   'Sorry' => 'Sorry, nothing was found.',
  ];

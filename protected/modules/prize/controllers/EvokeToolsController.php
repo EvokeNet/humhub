@@ -17,7 +17,7 @@ use humhub\modules\user\models\User;
  */
 class EvokeToolsController extends Controller
 {
-    public $max_prob = 10000;
+    public $max_prob = 1000;
 
     public function actionIndex()
     {
@@ -69,6 +69,7 @@ class EvokeToolsController extends Controller
       // done by counting down from the max prob and seeing if they scored a number above it
       $prob_checker = $this->max_prob; //here to keep track of where we are in the number line
       foreach ($probabilities as $key => $probability) {
+
         $prob_checker -= $probability;
 
         if ($roll >= $prob_checker) { // they won!
@@ -81,16 +82,40 @@ class EvokeToolsController extends Controller
           $won_prize->user_id = Yii::$app->user->id;
           $won_prize->save();
 
+          $prize_won = $prize_won->name; // switch to string
+
           break;
-        }
-
-        // if they didn't win a prize, check if they might have won some evocoin
-        if ($roll >= ($this->max_prob * 0.8)) {
-
         }
       }
 
-      $results = '<div>' . $roll . '</div><strong>' . $date . '</strong><div>' . $diff . '</div><div>' . implode(',', $probabilities);
+      // if they didn't win a prize, check if they might have won some evocoin
+      if ($prize_won === '') {
+        if ($roll >= ($this->max_prob * 0.98)) {
+          $prize_won = '50 Evocoin!';
+          $wallet->amount += 50;
+          $wallet->save();
+        }
+        elseif ($roll >= ($this->max_prob * 0.95)) {
+          $prize_won = '20 Evocoin!';
+          $wallet->amount += 20;
+          $wallet->save();
+        }
+        elseif ($roll >= ($this->max_prob * 0.9)) {
+          $prize_won = '10 Evocoin!';
+          $wallet->amount += 10;
+          $wallet->save();
+        }
+        elseif ($roll >= ($this->max_prob * 0.8)) {
+          $prize_won = '5 Evocoin!';
+          $wallet->amount += 5;
+          $wallet->save();
+        }
+        else {
+          $prize_won = Yii::t('PrizeModule.base', 'Sorry');
+        }
+      }
+
+      $results = '<div><strong>' . $prize_won . '</strong></div>';
 
       return $this->redirect(['index', 'results' => $results]);
     }
