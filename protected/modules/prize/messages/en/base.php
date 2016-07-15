@@ -31,4 +31,6 @@
    'Edit' => '',
    'Create Prizes' => '',
    'This should be the begining of the week for this prize' => '',
+   'Evoke Tools' => '',
+   'Search for Help' => '',
  ];
