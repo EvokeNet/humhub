@@ -194,6 +194,7 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
     var totalAmount = document.getElementById('totalAmount');
     var remainingAmount = document.getElementById('remainingAmount');
     var raiseInvestmentInterval, decreaseInvestmentInterval;
+    var availableAmount = parseInt(remainingAmount.innerHTML);
 
     function removeFromPortfolio(id){
         var element = document.getElementById("evokation_row_" + id);
@@ -306,7 +307,7 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
 
         for(var x = 0; x < evokation_array.length; x++){
             evok_value = evokation_array[x].value;
-            evok_id = evokation_array[x].id.slice(14);
+            evok_id = evokation_array[x].id.slice(10);
             evokations[evok_id] = evok_value;
         }
 
@@ -325,6 +326,7 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                 }
 
                 if(data.status == 'success'){
+                    availableAmount = parseInt(remainingAmount.innerHTML);
                     $('#portfolio_status').hide();
                     showMessage("<?= Yii::t('MissionsModule.base', 'Updated') ?>", "<?= Yii::t('MissionsModule.base', 'Portfolio updated successfully!') ?>");
                 }else if(data.status == 'no_enough_evocoins'){
@@ -411,6 +413,7 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
               oldInputInvestment.val(inputInvestment);
               totalAmount.innerHTML = parseInt(totalAmount.innerHTML) + diff;
               remainingAmount.innerHTML = newRemainingValue;
+              availableAmount = parseInt(remainingAmount.innerHTML);
             }else{
               target.value = oldInputInvestment.val();
             }          

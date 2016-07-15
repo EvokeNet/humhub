@@ -25,7 +25,7 @@
 
 <script type="text/javascript">
 
-setInterval(function() {
+var popUpWatcher = setInterval(function() {
     loadPopUps();
 }, 1000); 
 

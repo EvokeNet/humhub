@@ -2,9 +2,14 @@
 
 use yii\helpers\Html;
 use \yii\helpers\Url;
+use humhub\modules\space\models\Membership;
 
 echo Html::beginForm(); 
 
+$member = Membership::find()
+    ->where(['user_id' => Yii::$app->user->getIdentity()->id])
+    ->orderBy('space_id DESC')
+    ->one();
 ?>
 
 <strong>
@@ -22,11 +27,14 @@ echo Html::beginForm();
             <?= Yii::t('MissionsModule.base', 'Read More') ?>
         </a>
     </div>
+
+    <?php if($member->space->id == $contentContainer->id): ?>
     <div style = "float:right">
         <a class = "btn btn-primary" href="#" onClick="addEvokationToPortfolio<?= $evokation->id ?>();">
             <?= Yii::t('MissionsModule.base', 'Add to Portfolio') ?>
         </a>
     </div>
+    <?php endif; ?>
 </div>
             
 <br><br>
@@ -35,6 +43,7 @@ echo Html::beginForm();
 
 
 <script type="text/javascript">
+
     function addEvokationToPortfolio<?= $evokation->id ?>(){
 
         do{
@@ -42,6 +51,11 @@ echo Html::beginForm();
         }while( (!isNaN(investment) && (isNaN(parseInt(investment)) || investment < 1)));
 
         if(!isNaN(investment)){
+
+            if(investment > availableAmount){
+                showMessage("<?= Yii::t('MissionsModule.base', 'Error') ?>", "<?= Yii::t('MissionsModule.base', 'No enough Evocoins!') ?>");
+                return;
+            }
 
             $.ajax({
                 url: '<?= Url::to(['/missions/portfolio/add']); ?>&evokation_id='+<?= $evokation->id ?>+"&investment="+investment,
