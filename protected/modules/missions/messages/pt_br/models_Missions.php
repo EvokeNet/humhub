@@ -18,4 +18,5 @@
  */
 return [
     'Evidence' => '',
+    'Evokation' => '',
 ];

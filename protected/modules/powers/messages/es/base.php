@@ -17,12 +17,6 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Image' => 'Imagen',
-    'Improve Multiplier' => 'Mejorar el multiplicador',
-    'Improve Offset' => 'Mejorar Compensación',
-    'Level' => 'Nivel',
-    'No images uploaded yet' => 'No hay imágenes se han subido aún',
-    'Uploaded Image: {file}' => 'Imagen subida: {file}',
     'Are you sure you want to delete this item?' => 'Estás seguro que quieres eliminar este ítem?',
     'Create' => 'Crear',
     'Create Power Translation' => 'Crear traducción de poder',
@@ -37,7 +31,10 @@ return [
     'Delete' => 'Eliminar',
     'Description' => 'Descripción',
     'ID' => 'Identificación',
+    'Improve Multiplier' => 'Mejorar el multiplicador',
+    'Improve Offset' => 'Mejorar Compensación',
     'Language ID' => 'Identificación de idioma',
+    'Level' => 'Nivel',
     'Modified At' => 'Modificado en',
     'No matching questions created yet!' => 'No existen preguntas asociadas aún!',
     'No power translations created yet!' => 'No hay traducciones de poderes creadas aún!',

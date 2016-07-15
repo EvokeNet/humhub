@@ -17,6 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Evokation' => 'Evocacion',
-    'Evidence' => 'Evidencia',
+    'Description' => '',
+    'Google Drive File URL' => '',
+    'Title' => '',
+    'YouTube URL' => '',
 ];

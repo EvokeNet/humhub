@@ -37,6 +37,7 @@ return [
     'Difficulty Level ID' => '',
     'Evokation Category ID' => '',
     'Flag' => '',
+    'Gdrive Url' => '',
     'ID' => '',
     'Id Code' => '',
     'Language ID' => '',
@@ -57,4 +58,5 @@ return [
     'Updated At' => '',
     'Updated By' => '',
     'Value' => '',
+    'Youtube Url' => '',
 ];

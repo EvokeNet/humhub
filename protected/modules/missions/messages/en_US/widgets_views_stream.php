@@ -19,4 +19,6 @@
 return [
     'There are no evidences yet!' => '',
     'There are no evidences yet! Be the first and create one...' => '',
+    'There are no evokations yet!' => '',
+    'There are no evokations yet! Be the first and create one...' => '',
 ];

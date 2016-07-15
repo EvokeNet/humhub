@@ -17,8 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Evokation Category ID' => 'Identificación de Categoria de Evocation',
-    'Mission Status (Locked/Unlocked)' => 'Estado de Misión (Bloqueado/Desbloqueado)',
+    'Gdrive Url' => 'Url de Gdrive',
+    'Youtube Url' => 'Url de Youtube',
     'Activities' => 'Actividades',
     'Activities ID' => 'Identificación de Actividades',
     'Activity ID' => 'Identificación de Actividad',
@@ -37,11 +37,13 @@ return [
     'Description' => 'Descripción',
     'Develop' => 'Desarrollar',
     'Difficulty Level ID' => 'Identificación de nivel de dificultad',
+    'Evokation Category ID' => 'Identificación de Categoria de Evocation',
     'Flag' => 'Flag',
     'ID' => 'Identificación',
     'Id Code' => 'Código de identificación',
     'Language ID' => 'Identificación de idioma',
     'Mission ID' => 'Identificación de misión',
+    'Mission Status (Locked/Unlocked)' => 'Estado de Misión (Bloqueado/Desbloqueado)',
     'Mission Translations' => 'Traducciones de misión',
     'Modified At' => 'Modificado en',
     'No, it does not meet the activity\'s requirement' => 'No, no cumple con el requisito de la actividad',
