@@ -5,7 +5,9 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use app\modules\coin\models\Wallet;
 use app\modules\missions\models\Portfolio;
+use app\modules\missions\models\EvokationDeadline;
 
+$deadline = EvokationDeadline::find()->one();
 $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
 $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id);
 
@@ -48,6 +50,7 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                     </div>
                 </div>
 
+                <?php if (!$deadline || (strtotime(date('Y-m-d H:i:s')) > strtotime($deadline->start_date)) && (strtotime(date('Y-m-d H:i:s')) < strtotime($deadline->finish_date))): ?>
                 <div class="col-xs-4">
                     <div class="container margin-toleft-25">
                         <div class="input-group spinner">
@@ -67,6 +70,15 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                         <span class="glyphicon glyphicon-trash"></span>
                     </p> 
                 </div>
+                <?php else: ?>
+                 <div class="col-xs-4">
+                    <div class="container margin-toleft-25">
+                        <div class="input-group spinner">
+                            <?= $evokation_investment->investment ?>
+                        </div>
+                    </div> 
+                </div>   
+                <?php endif; ?>
             </div>   
             <?php endforeach; ?>
                 
@@ -77,9 +89,15 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
 
     <div class="panel-body">
         <div class="col-xs-4">
-            <a class = "btn btn-info" href='#' onclick="updatePortfolio();">
-                <?= Yii::t('MissionsModule.base', 'Save') ?>
-            </a> 
+            <?php if (!$deadline || (strtotime(date('Y-m-d H:i:s')) > strtotime($deadline->start_date)) && (strtotime(date('Y-m-d H:i:s')) < strtotime($deadline->finish_date))): ?>
+                <a class = "btn btn-info" href='#' onclick="updatePortfolio();">
+                    <?= Yii::t('MissionsModule.base', 'Save') ?>
+                </a> 
+            <?php else: ?>
+                <a class = "btn btn-default" href='#'>
+                    <?= Yii::t('MissionsModule.base', 'Voting Closed') ?>
+                </a>
+            <?php endif; ?>    
         </div>
 
         <div class="col-xs-8" style="text-align: right;">
