@@ -34,48 +34,18 @@ class AdminController extends \humhub\modules\admin\components\Controller
 
     public function actionUpdate($id)
     {
-        $model = Wallet::findOne(['id' => Yii::$app->request->get('id')]);
+        $model = Prize::findOne(['id' => Yii::$app->request->get('id')]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         }
 
-        return $this->render('coin/update', array('model' => $model));
-    }
-
-    public function actionCredit($id)
-    {
-        $model = Wallet::findOne(['id' => Yii::$app->request->get('id')]);
-
-        return $this->render('coin/credit', array('model' => $model));
-    }
-
-    public function actionGive($id, $params = [])
-    {
-      echo($params);
-      die();
-      $model = Wallet::findOne(['id' => Yii::$app->request->get('id')]);
-
-      $model->addCoin($credit);
-      $model->save();
-
-      return $this->redirect(['index']);
-    }
-
-    public function actionDebit($id)
-    {
-        $model = Wallet::findOne(['id' => Yii::$app->request->get('id')]);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
-        }
-
-        return $this->render('coin/debit', array('model' => $model));
+        return $this->render('prize/update', array('model' => $model));
     }
 
     public function actionDelete()
     {
-        $model = Coin::findOne(['id' => Yii::$app->request->get('id')]);
+        $model = Prize::findOne(['id' => Yii::$app->request->get('id')]);
 
         if ($model !== null) {
             $model->delete();

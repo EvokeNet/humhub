@@ -26,6 +26,7 @@ echo Breadcrumbs::widget([
               <th><?php echo Yii::t('PrizeModule.base', 'Weight') ?></th>
               <th><?php echo Yii::t('PrizeModule.base', 'Week of') ?></th>
               <th>&nbsp;</th>
+              <th>&nbsp;</th>
           </tr>
           <?php foreach ($prizes as $prize): ?>
               <tr>
@@ -38,6 +39,11 @@ echo Breadcrumbs::widget([
                       <?php echo Html::a(
                           Yii::t('PrizeModule.base', 'Edit'),
                           ['update', 'id' => $prize->id], array('class' => 'btn btn-primary btn-sm')); ?>
+                  </td>
+                  <td>
+                    <?php echo Html::a(
+                        Yii::t('PrizeModule.base', 'Delete'),
+                        ['delete', 'id' => $prize->id], array('class' => 'btn btn-alert btn-sm')); ?>
                   </td>
               </tr>
           <?php endforeach; ?>
