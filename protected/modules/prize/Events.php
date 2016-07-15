@@ -22,7 +22,7 @@ class Events extends \yii\base\Object
   public static function onAdminMenuInit($event)
   {
     $event->sender->addItem(array(
-      'label' => Yii::t('CoinModule.base', 'Wallet'),
+      'label' => Yii::t('PrizeModule.base', 'Prizes'),
       'url' => Url::to(['/prize/admin/']),
       'group' => 'manage',
       'icon' => '<i class="fa fa-gift"></i>',
