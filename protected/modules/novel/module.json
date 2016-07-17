@@ -1,0 +1,11 @@
+{
+    "id": "novel",
+    "name": "Evoke Graphic Novel",
+    "description": "Evoke Graphic Novel for HumHub",
+    "keywords": ["graphic novel"],
+    "version": "0.0.1",
+    "humhub": {
+        "minVersion": "0.20"
+    },
+    "screenshots": []
+}

@@ -6,11 +6,15 @@ use yii\helpers\Url;
 use app\modules\missions\models\Evidence;
 use humhub\modules\space\models\Membership;
 use app\modules\coin\models\Wallet;
+use app\modules\teams\models\Team;
 
-$member = Membership::find()
-->where(['user_id' => Yii::$app->user->getIdentity()->id])
-->orderBy('space_id DESC')
-->one();
+$team_id = Team::getUserTeam(Yii::$app->user->getIdentity()->id);
+if($team_id){
+    $member = Membership::findOne(['space_id' => $team_id]);    
+}else{
+    $member = null;
+}
+
 
 $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
 
@@ -94,7 +98,7 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
                     </a> 
                 </div>
             </div>-->
-            
+
         </div>
     </div>
 </div>

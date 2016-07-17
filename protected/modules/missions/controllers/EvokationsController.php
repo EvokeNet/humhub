@@ -120,6 +120,7 @@ class EvokationsController extends ContentContainerController //extends Controll
         return \humhub\modules\missions\widgets\WallCreateEvokationForm::create($evokation, $this->contentContainer);
     }
 
+
     /**
      * Updates an existing Evokations model.
      * If update is successful, the browser will be redirected to the 'view' page.

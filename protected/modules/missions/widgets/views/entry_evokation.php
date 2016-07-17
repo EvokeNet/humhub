@@ -2,15 +2,10 @@
 
 use yii\helpers\Html;
 use \yii\helpers\Url;
-use humhub\modules\space\models\Membership;
 use app\modules\missions\models\Portfolio;
 
 echo Html::beginForm(); 
 
-$member = Membership::find()
-    ->where(['user_id' => Yii::$app->user->getIdentity()->id])
-    ->orderBy('space_id DESC')
-    ->one();
 $evokation_investment = Portfolio::find()
     ->where(['user_id' => Yii::$app->user->getIdentity()->id,'evokation_id' => $evokation->id])
     ->one();

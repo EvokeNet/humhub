@@ -7,6 +7,7 @@ use app\modules\missions\models\Evidence;
 use humhub\modules\file\models\File;
 use yii\helpers\Json;
 use humhub\modules\content\components\ContentContainerController;
+use app\modules\teams\models\Team;
 
 class ReviewController extends ContentContainerController
 {
@@ -16,39 +17,32 @@ class ReviewController extends ContentContainerController
 
     }   
 
-    public function getEvidenceToReviewCount(){
+    public function getEvidenceToReviewCount($currentSpace){
 
-        $query = (new \yii\db\Query())
-        ->select(['s.space_id as space_id'])
-        ->from('space_membership as s')
-        ->where(['user_id' => Yii::$app->user->getIdentity()->id])
-        ->one();
-        
-        $user_space_id = $query['space_id'];
+        $user_id = Yii::$app->user->getIdentity()->id;
+
+        $team_id = Team::getUserTeam($user_id);
 
         $query = (new \yii\db\Query())
         ->select(['count(distinct e.id) as count'])
         ->from('evidence as e')
         ->join('INNER JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
-        ->join('LEFT JOIN', 'space_membership s', '`s`.`user_id`=`c`.`user_id`')
-        ->where('s.space_id != '.$user_space_id)
+        //->join('LEFT JOIN', 'space_membership s', '`s`.`user_id`=`c`.`user_id`')
+        //->where('s.space_id != '.$team_id)
+        ->where('c.space_id != '.$currentSpace->id)
+        ->andWhere('c.user_id != '.$user_id)
         ->one();
 
         return $query['count'];
     }
 
-    public function getNextEvidence(){
+    public function getNextEvidence($currentSpace){
         $nextEvidence = array();
         $evidence = null;
         $files = null;
+        $user_id = Yii::$app->user->getIdentity()->id;
 
-        $query = (new \yii\db\Query())
-        ->select(['s.space_id as space_id'])
-        ->from('space_membership as s')
-        ->where(['user_id' => Yii::$app->user->getIdentity()->id])
-        ->one();
-        
-        $user_space_id = $query['space_id'];
+        $team_id = Team::getUserTeam($user_id);
 
         $subquery = '(SELECT v2.evidence_id from votes as v2 where v2.user_id = '.Yii::$app->user->getIdentity()->id.')';
 
@@ -57,8 +51,10 @@ class ReviewController extends ContentContainerController
         ->from('evidence as e')
         ->join('INNER JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
         ->join('LEFT JOIN', 'votes v', '`v`.`evidence_id`=`e`.`id`')
-        ->join('LEFT JOIN', 'space_membership s', '`s`.`user_id`=`c`.`user_id`')
-        ->where('s.space_id != '.$user_space_id.' AND e.id NOT IN '.$subquery)
+        //->join('LEFT JOIN', 'space_membership s', '`s`.`user_id`=`c`.`user_id`')
+        ->where('c.space_id != '.$currentSpace->id)
+        ->andWhere('e.id NOT IN  '.$subquery)
+        ->andWhere('c.user_id != '.$user_id)
         ->groupBy('e.id')
         ->orderBy('vote_count ASC')
         ->All();
@@ -93,11 +89,11 @@ class ReviewController extends ContentContainerController
    
     public function actionIndex()
     {   
-        $nextEvidence = $this->getNextEvidence();
+        $nextEvidence = $this->getNextEvidence($this->contentContainer);
         $evidence = $nextEvidence['evidence'];
         $files = $nextEvidence['files'];
         $evidence_to_review_count = $nextEvidence['evidence_to_review_count'];
-        $totalEvidence = $this->getEvidenceToReviewCount();
+        $totalEvidence = $this->getEvidenceToReviewCount($this->contentContainer);
 
         return $this->render('index', array('contentContainer' => $this->contentContainer, 'evidence' => $evidence, 'files' => $files, 'evidence_count' => $totalEvidence, 'evidence_to_review_count' => $evidence_to_review_count));
     }

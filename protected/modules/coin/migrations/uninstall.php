@@ -32,7 +32,7 @@ class uninstall extends Migration
       );
 
       $this->dropTable('coin');
-      $this->dropTable('wallet');
+      $this->dropTable('coin_wallet');
     }
 
     public function down()

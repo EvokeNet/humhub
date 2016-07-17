@@ -113,7 +113,7 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                     <?= Yii::t('MissionsModule.base', 'Remaining') ?>:  
                 </strong>
                 <div id="remainingAmount" style="display: inline-block;">
-                    <?= $wallet->amount - $totalAmount ?>
+                    <?= $wallet->amount ?>
                 </div>
             </div>
         </div>
@@ -371,6 +371,9 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                 }else if(data.status == 'invalid_data'){
                     $('#portfolio_status').hide();
                     showMessage("<?= Yii::t('MissionsModule.base', 'Error') ?>", "<?= Yii::t('MissionsModule.base', 'Invalid Data! Input only numbers.') ?>");
+                }else if(data.status == 'error'){
+                    $('#portfolio_status').hide();
+                    showMessage("<?= Yii::t('MissionsModule.base', 'Error') ?>", "<?= Yii::t('MissionsModule.base', 'Something went wrong') ?>");
                 }
                 
             },

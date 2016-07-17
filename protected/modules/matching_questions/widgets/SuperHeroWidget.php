@@ -18,6 +18,8 @@ class SuperHeroWidget extends Widget
     {
       if ($this->superhero_id !== NULL) {
         return $this->render('superhero_menu', ['superhero_id' => $this->superhero_id, 'user' => $this->user]);
+      } else {
+        return $this->render('superhero_menu', ['superhero_id' => NULL, 'user' => $this->user]);
       }
       return;
     }
