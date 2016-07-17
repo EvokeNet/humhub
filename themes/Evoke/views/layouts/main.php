@@ -152,13 +152,14 @@ AppAsset::register($this);
     
     <footer class="footer">
       <div class="container">
-        <p class="text-muted">Place sticky footer content here.
+        <p class="text-muted"><i class="fa fa-copyright" aria-hidden="true"></i> Copyright 2016 - World Bank</p>
+        <p class = "right">
         <?php echo Html::a(
             Yii::t('app', 'About'), 
-            ['/static_pages/static-pages/About'], array('class' => '')); ?>
+            ['/static_pages/static-pages/About'], array('class' => 'bordered')); ?>
         <?php echo Html::a(
             Yii::t('app', 'Privacy Policy'), 
-            ['/static_pages/static-pages/privacy-policy'], array('class' => '')); ?>
+            ['/static_pages/static-pages/privacy-policy'], array('class' => 'bordered')); ?>
         <?php echo Html::a(
             Yii::t('app', 'Terms & Conditions'), 
             ['/static_pages/static-pages/terms-conditions'], array('class' => '')); ?>

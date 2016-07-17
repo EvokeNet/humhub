@@ -36,23 +36,22 @@ endforeach;
 <div class="panel panel-default">
     <div class="panel-heading">
         
-        <a class = "btn btn-primary" href='<?= Url::to(['/missions/evokations/submit', 'sguid' => $contentContainer->guid]); ?>' style = "margin-top:10px">
+        <a class = "btn btn-cta2" href='<?= Url::to(['/missions/evokations/submit', 'sguid' => $contentContainer->guid]); ?>' style = "margin-top:10px">
             <?= Yii::t('MissionsModule.base', 'Submit evokation') ?>
         </a>
 
-        <a class = "btn btn-primary" href='<?= Url::to(['/missions/evokations/voting', 'sguid' => $contentContainer->guid]); ?>' style = "margin-top:10px">
+        <a class = "btn btn-cta2" href='<?= Url::to(['/missions/evokations/voting', 'sguid' => $contentContainer->guid]); ?>' style = "margin-top:10px">
             <?= Yii::t('MissionsModule.base', 'Vote on Evokations') ?>
         </a>
             
-        <div style = "margin-top:10px; float:right">
-            
+        <!--<div style = "margin-top:10px; float:right">
             <div class="progress">
                 <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?= floor(($done/$total)*100) ?>%;">
                     <span class="sr-only"></span>
                 </div>
             </div>
-            <span><?= Yii::t('MissionsModule.base', 'Team Progress: {number}%', array('number' => floor(($done/$total)*100))) ?></span>
-        </div>
+            <p><?= Yii::t('MissionsModule.base', 'Team Progress: {number}%', array('number' => floor(($done/$total)*100))) ?></p>
+        </div>-->
         
         <h2><strong><?php echo Yii::t('MissionsModule.base', "{name}'s Evokation", array('name' => $contentContainer->name)); ?></strong></h2>
 

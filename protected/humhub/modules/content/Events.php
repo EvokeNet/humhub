@@ -119,7 +119,7 @@ class Events extends \yii\base\Object
             'seperator' => "&nbsp;&middot;&nbsp;",
             'template' => '<div class="wall-entry-controls">{content}</div>',
                 ), array('sortOrder' => 10)
-        );
+        ); 
     }
 
     public static function onCronRun($event)

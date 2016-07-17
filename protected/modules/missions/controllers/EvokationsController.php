@@ -185,11 +185,21 @@ class EvokationsController extends ContentContainerController //extends Controll
         ->with([
             'activities.mission.missionTranslations' => function ($query) {
                 $lang = Languages::findOne(['code' => Yii::$app->language]);
-                $query->andWhere(['language_id' => $lang->id]);
+                if(isset($lang))
+                    $query->andWhere(['language_id' => $lang->id]);
+                else{
+                    $lang = Languages::findOne(['code' => 'en-US']);
+                    $query->andWhere(['language_id' => $lang->id]);
+                }
             },
             'activities.activityTranslations' => function ($query) {
                 $lang = Languages::findOne(['code' => Yii::$app->language]);
-                $query->andWhere(['language_id' => $lang->id]);
+                if(isset($lang))
+                    $query->andWhere(['language_id' => $lang->id]);
+                else{
+                    $lang = Languages::findOne(['code' => 'en-US']);
+                    $query->andWhere(['language_id' => $lang->id]);
+                }
             },
             // 'activities.evidences' => function($query){
             //     $query->andWhere([$this->contentContainer->id]);

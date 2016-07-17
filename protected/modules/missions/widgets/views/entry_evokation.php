@@ -17,18 +17,17 @@ $evokation_investment = Portfolio::find()
 
 ?>
 
-<strong>
-   <?php print humhub\widgets\RichText::widget(['text' => $evokation->title]); ?>
-</strong>
+<h5><?php print humhub\widgets\RichText::widget(['text' => $evokation->title]); ?></h5>
+<p><?php print humhub\widgets\RichText::widget(['text' => $evokation->description]);?></p>
 <br>
-<?php print humhub\widgets\RichText::widget(['text' => $evokation->description]);?>
-<br><br>
 
 <iframe width="630" height="420" src="http://www.youtube.com/embed/<?php echo $evokation->getYouTubeCode($evokation->youtube_url)?>" frameborder="0" allowfullscreen></iframe>
 
+<br><br>
+
 <div>
     <div style = "float:left">
-        <a class = "btn btn-primary" href='<?= Url::to(['/missions/evokations/view', 'id' => $evokation->id, 'sguid' => $contentContainer->guid]); ?>'>
+        <a class = "btn btn-cta2" href='<?= Url::to(['/missions/evokations/view', 'id' => $evokation->id, 'sguid' => $contentContainer->guid]); ?>'>
             <?= Yii::t('MissionsModule.base', 'Read More') ?>
         </a>
     </div>
@@ -37,7 +36,7 @@ $evokation_investment = Portfolio::find()
 
         <?php if (!$deadline || (strtotime(date('Y-m-d H:i:s')) > strtotime($deadline->start_date)) && (strtotime(date('Y-m-d H:i:s')) < strtotime($deadline->finish_date))): ?>
         <div style = "float:right">
-            <a class = "btn btn-primary" href="#" onClick="addEvokationToPortfolio<?= $evokation->id ?>();">
+            <a class = "btn btn-cta1" href="#" onClick="addEvokationToPortfolio<?= $evokation->id ?>();">
                 <?= Yii::t('MissionsModule.base', 'Add to Portfolio') ?>
             </a>
         </div>

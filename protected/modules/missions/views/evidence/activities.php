@@ -21,21 +21,11 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Mission {mission}: Activities'
 <div class="panel panel-default">
     <div class="panel-heading">
         
-        <h2>
-            <strong>
-                <?php echo Yii::t('MissionsModule.base', 'Mission:'); ?>&nbsp;<?= $mission_title ?>
-            </strong>
-        </h2>
+        <h4 class = "bold"><?php echo Yii::t('MissionsModule.base', 'Mission:'); ?>&nbsp;<?= $mission_title ?></h4>
         
         <p class="description">
             <?= isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->description : $mission->description ?>
         </p>
-
-        <br>
-                  
-        <h4>
-            <strong><?php echo Yii::t('MissionsModule.base', 'Choose an Activity:'); ?></strong>
-        </h4>
         
     </div>
     <div class="panel-body">
@@ -47,11 +37,10 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Mission {mission}: Activities'
             <?php foreach ($mission->activities as $activity): ?>
             
                 <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title ?>
+                    </div>
                     <div class="panel-body">
-                        
-                        <h4>
-                            <strong><?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title ?></strong>
-                        </h4>
                         
                         <p class="description">
                             <?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description ?>
@@ -60,7 +49,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Mission {mission}: Activities'
                         <br>
                         <?php echo Html::a(
                                 Yii::t('MissionsModule.base', 'Enter Activity'), 
-                                ['show', 'activityId' => $activity->id, 'sguid' => $contentContainer->guid], array('class' => 'btn btn-success')); ?>
+                                ['show', 'activityId' => $activity->id, 'sguid' => $contentContainer->guid], array('class' => 'btn btn-cta2')); ?>
                     </div>
                 </div>
             

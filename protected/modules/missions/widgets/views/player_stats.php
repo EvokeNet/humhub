@@ -13,9 +13,10 @@ $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
     <div class="panel-heading">
         <strong><?= Yii::t('MissionsModule.base', 'Your Evocoins') ?></strong>
     </div>
-    <div class="list-group submit-body">
-    	<div class= "list-group-item" style="font-size: 30px;">
-            <?= $wallet->amount ?>
+    <div class="panel-body">
+        <div class = "evocoins">
+            <img src="/humhub/themes/Evoke/img/evocoin_bg.png">
+            <div><p><?= $wallet->amount ?></p></div>    
         </div>
     </div>
 </div>
@@ -24,22 +25,17 @@ $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
     <div class="panel-heading">
         <strong><?= Yii::t('MissionsModule.base', 'Your Powers') ?></strong>
     </div>
-    <div class="list-group submit-body">
-        <div class= "list-group-item">
-            <?php foreach($userPowers as $userQuality): ?>
-                <div class="power" style="font-size: 18px;">
-                    <img src = "<?php echo $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->image; ?>" width=100></img>
-                    <BR>
-                    <strong>
-                        <?= $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->name; ?>
-                    </strong>
-                    <BR>
-                    <div class="level" style="font-size: 14px;">
-                        <?= Yii::t('MissionsModule.base', 'Level {level}', array('level' => null != $userQuality[0]->getUserQuality() ? $userQuality[0]->getUserQuality()->getLevel() : 0)) ?>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
+    <div class="panel-body">
+        <?php foreach($userPowers as $userQuality): ?>
+            <div class="power text-center">
+                <img src = "<?php echo $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->image; ?>" width="100px"></img>
+                
+                <h6><?= $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->name; ?></h6>
+                
+                <span class = "bold italic" style = "color: #28C503"><?php echo Yii::t('MissionsModule.base', 'Level {level}', array('level' => null != $userQuality[0]->getUserQuality() ? $userQuality[0]->getUserQuality()->getLevel() : 0)); ?></span>
+                
+            </div>
+        <?php endforeach; ?>
     </div>
 </div>
 

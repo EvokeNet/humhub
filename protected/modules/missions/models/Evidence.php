@@ -117,11 +117,21 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
         ->with([
             'activityTranslations' => function ($query) {
                 $lang = Languages::findOne(['code' => Yii::$app->language]);
-                $query->andWhere(['language_id' => $lang->id]);
+                if(isset($lang))
+                    $query->andWhere(['language_id' => $lang->id]);
+                else{
+                    $lang = Languages::findOne(['code' => 'en-US']);
+                    $query->andWhere(['language_id' => $lang->id]);
+                }
             },
             'mission.missionTranslations' => function ($query) {
                 $lang = Languages::findOne(['code' => Yii::$app->language]);
-                $query->andWhere(['language_id' => $lang->id]);
+                if(isset($lang))
+                    $query->andWhere(['language_id' => $lang->id]);
+                else{
+                    $lang = Languages::findOne(['code' => 'en-US']);
+                    $query->andWhere(['language_id' => $lang->id]);
+                }
             },
         ])->one();
         

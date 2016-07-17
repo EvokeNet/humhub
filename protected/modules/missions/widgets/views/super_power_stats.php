@@ -10,48 +10,44 @@ use app\modules\missions\models\Evidence;
 <div class="panel panel-default">
 
     <div class="panel-heading">
-        <strong>
-            Super Powers
-        </strong>
-        Earn points to increase powers
+        <h4 class = "display-inline"><?php echo Yii::t('MissionsModule.base', 'Super Powers'); ?></h4>
+        <p style = "display:inline; margin-left:10px"><?php echo Yii::t('MissionsModule.base', 'Earn points to increase powers'); ?></p>
     </div>
 
-    <div class="panel-body">
+    <div class="panel-body row">
         <?php foreach($userPowers as $userQuality): ?>
-            <div class="col-xs-3">
+            <div class="col-xs-3 text-center">
                 <img src = "<?php echo $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->image; ?>" width=100></img>
-                <BR>
-                    <?= $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->name; ?>
-                <BR>
-                    Level 
-                    <?= null != $userQuality[0]->getUserQuality() ? $userQuality[0]->getUserQuality()->getLevel() : 0 ?>
-                <p style="padding-top: 15px;">
-                    <strong>
-                        Power
-                    </strong>
-                </p>
+                
+                <h6><?= $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->name; ?></h6>
+                
+                <span style = "color: #28C503"><?php echo Yii::t('MissionsModule.base', 'Level {level}', array('level' => null != $userQuality[0]->getUserQuality() ? $userQuality[0]->getUserQuality()->getLevel() : 0)); ?></span>
+                               
+                <br><br><span class="label label-primary"><?php echo Yii::t('MissionsModule.base', 'Power'); ?> </span><br><br>
+                
                 <?php foreach($userQuality as $userPower): ?>
                     <div class="power">
                         <?php 
                             $power = $userPower->getPower(); 
                             $percentage = floor($userPower->getCurrentLevelPoints() / $userPower->getNextLevelPoints() * 100) ;
                         ?>
-                        <?= isset($power->powerTranslations[0]) ? $power->powerTranslations[0]->title : $power->title ?>
+                        
+                        <p class = "text-center"><?= isset($power->powerTranslations[0]) ? $power->powerTranslations[0]->title : $power->title ?></p>
+                        
                         <div class="progress">
                             <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?= $percentage ?>%;">
                                 <span class="sr-only"></span>
                             </div>
-                            <span>
-                            </span>
-                        </div>     
-                        <div class="level">
-                            Level <?= $userPower->getLevel() ?>
                         </div>
-                        <div class="points">
-                            <?= $userPower->getCurrentLevelPoints() ?>
-                            /
-                            <?= $userPower->getNextLevelPoints() ?>
-                        </div> 
+                                 
+                        <div class="level italic">
+                            <?php echo Yii::t('MissionsModule.base', 'Level {level}', array('level' => $userPower->getLevel())); ?>
+                        </div>
+                        
+                        <div class="points italic">
+                            <?php echo Yii::t('MissionsModule.base', '{points} / {total}', array('points' => $userPower->getCurrentLevelPoints(), 'total' => $userPower->getNextLevelPoints())); ?>
+                        </div>
+                         
                     </div>
                 <?php endforeach; ?>
 
@@ -78,7 +74,7 @@ use app\modules\missions\models\Evidence;
 }
 
 .power{
-    padding-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .power .level{
