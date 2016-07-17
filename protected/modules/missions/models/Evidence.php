@@ -182,6 +182,24 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
         return true;
     }    
 
+    public function hasUserSubmittedEvidence($activityId = "", $userId = "")
+    {
+
+        if($activityId == "")
+            return false;
+
+        if ($userId == "")
+            $userId = Yii::$app->user->id;
+
+        $evidence = Evidence::findOne(['activities_id' => $activityId, 'created_by' => $userId]);
+
+        if($evidence){
+            return true;
+        }
+
+        return false;
+    }
+
 
     public function getUserVote($userId = "")
     {

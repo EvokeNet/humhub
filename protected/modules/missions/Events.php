@@ -190,7 +190,7 @@ class Events
         $space = $event->sender->space;
         if ($space->isModuleEnabled('missions')  && $team_id == $space->id) {
             $event->sender->addItem(array(
-                'label' => Yii::t('MissionsModule.base', 'Mission'),
+                'label' => Yii::t('MissionsModule.base', 'Missions'),
                 'group' => 'modules',
                 'url' => $space->createUrl('/missions/evidence/missions'),
                 'icon' => '<i class="fa fa-sitemap"></i>',

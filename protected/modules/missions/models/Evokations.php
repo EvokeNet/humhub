@@ -136,9 +136,9 @@ class Evokations extends ContentActiveRecord implements \humhub\modules\search\i
     public function getYouTubeCode($link)
     {
             $pos = explode('v=', $link);
-            if($pos !== false) 
+            if($pos != false && count($pos) > 1) 
                 return $pos['1'];
             else
-                return '';
+                return null;
     }
 }

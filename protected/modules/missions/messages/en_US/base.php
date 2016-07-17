@@ -70,6 +70,7 @@ return [
     'Mission Progress' => '',
     'Mission {mission}' => '',
     'Mission {mission}: Activities' => '',
+    'Missions' => '',
     'Mission:' => '',
     'Mission: {alias}' => '',
     'Missions Module Configuration' => '',

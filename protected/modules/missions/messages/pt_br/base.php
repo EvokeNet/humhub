@@ -82,6 +82,7 @@ return [
     'Language' => '',
     'Level {level}' => '',
     'Mission' => '',
+    'Missions' => '',
     'Mission Progress' => '',
     'Mission {mission}' => '',
     'Mission {mission}: Activities' => '',

@@ -1,15 +1,23 @@
 <?php
 use Yii;
 use \yii\helpers\Url;
+use app\modules\missions\models\Evidence;
+
+$hasUserSubmittedEvidence = Evidence::hasUserSubmittedEvidence($activity->id);
+
 ?>
 
 <?php
 
-echo \humhub\modules\missions\widgets\WallCreateForm::widget([
-    'contentContainer' => $contentContainer,
-    'submitButtonText' => Yii::t('MissionsModule.widgets_EvidenceFormWidget', 'Submit Evidence'),
-    'activity' => $activity,
-]);
+if(!$hasUserSubmittedEvidence){
+
+    echo \humhub\modules\missions\widgets\WallCreateForm::widget([
+        'contentContainer' => $contentContainer,
+        'submitButtonText' => Yii::t('MissionsModule.widgets_EvidenceFormWidget', 'Submit Evidence'),
+        'activity' => $activity,
+    ]);
+
+}
 
 $this->pageTitle = Yii::t('MissionsModule.base', 'Activity {activity}', array('activity' => $activity->title));
 
