@@ -203,6 +203,9 @@ if ($space->isAdmin()) {
                                 class="title"><?php echo Yii::t('SpaceModule.widgets_views_spaceHeader', 'Followers'); ?></span>
                         </div>
                         
+                        <!-- Team Header -->
+                        <?php if ($space->is_team): ?>
+
                         <div class="pull-left entry">
                             <span class="count"><?php echo $evidencesTotal; ?></span><br>
                             <span
@@ -220,6 +223,8 @@ if ($space->isAdmin()) {
                             <span
                                 class="title"><?php echo Yii::t('StatsModule.widgets_views_spaceHeader', 'Evokation Progress'); ?></span>
                         </div>
+
+                        <?php endif; ?>
                         
                     </div>
                     <!-- end: User statistics -->

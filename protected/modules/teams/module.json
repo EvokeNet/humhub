@@ -1,0 +1,11 @@
+{
+    "id": "teams",
+    "name": "Evoke Teams",
+    "description": "Teams",
+    "keywords": ["teams"],
+    "version": "0.0.1",
+    "humhub": {
+        "minVersion": "0.20"
+    },
+    "screenshots": []
+}

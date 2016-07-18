@@ -24,7 +24,7 @@ use app\modules\missions\models\ActivityPowers;
 use app\modules\missions\models\Portfolio;
 use app\modules\powers\models\UserPowers;
 use humhub\modules\user\models\User;
-use humhub\modules\space\models\Membership;
+use app\modules\teams\models\Team;
 
 /**
  * Description of Events
@@ -182,21 +182,11 @@ class Events
 
     public static function onMissionSpaceMenuInit($event)
     {
-        $member = Membership::find()
-        ->where(['user_id' => Yii::$app->user->getIdentity()->id])
-        ->orderBy('space_id DESC')
-        ->one();
-        
-    //     echo "<pre>";
-    //    print_r($member->space->id);
-    //    echo "<br>";
-    //    print_r($event->sender->space->id);
-    //    echo "<br>";
-    //    print_r(Yii::$app->user->getIdentity()->id);
-    //    echo "</pre>";
+
+        $team_id = Team::getUserTeam(Yii::$app->user->getIdentity()->id);
 
         $space = $event->sender->space;
-        if ($space->isModuleEnabled('missions') && $space['name'] !== 'Mentor' && $member->space->id == $space->id) {
+        if ($space->isModuleEnabled('missions')  && $team_id == $space->id) {
             $event->sender->addItem(array(
                 'label' => Yii::t('MissionsModule.base', 'Mission'),
                 'group' => 'modules',
@@ -211,14 +201,10 @@ class Events
 
     public static function onEvokationSpaceMenuInit($event)
     {
-        $member = Membership::find()
-        ->where(['user_id' => Yii::$app->user->getIdentity()->id])
-        ->orderBy('space_id DESC')
-        ->one();
-
+        $team_id = Team::getUserTeam(Yii::$app->user->getIdentity()->id);
 
         $space = $event->sender->space;
-        if ($space->isModuleEnabled('missions') && $space['name'] !== 'Mentor') {
+        if ($space->isModuleEnabled('missions') &&  $team_id == $space->id) {
             $event->sender->addItem(array(
                 'label' => Yii::t('MissionsModule.base', 'Evokation Home'),
                 'group' => 'modules',
@@ -233,13 +219,10 @@ class Events
 
     public static function onReviewSpaceMenuInit($event)
     {
-        $member = Membership::find()
-        ->where(['user_id' => Yii::$app->user->getIdentity()->id])
-        ->orderBy('space_id DESC')
-        ->one();
+        $team_id = Team::getUserTeam(Yii::$app->user->getIdentity()->id);
 
         $space = $event->sender->space;
-        if ($space->isModuleEnabled('missions')) {
+        if ($space->isModuleEnabled('missions') && ($team_id == $space->id || $space['name'] == 'Mentor')) {
             $event->sender->addItem(array(
                 'label' => Yii::t('MissionsModule.base', 'Review Evidence'),
                 'group' => 'modules',
@@ -260,22 +243,22 @@ class Events
      */
     public static function onTopMenuInit($event)
     {
-        $member = Membership::find()
-        ->where(['user_id' => Yii::$app->user->getIdentity()->id])
-        ->orderBy('space_id DESC')
-        ->one();
+        $team_id = Team::getUserTeam(Yii::$app->user->getIdentity()->id);
+        $team = Team::findOne($team_id);
 
-        $event->sender->addItem(array(
-        'label' => Yii::t('MissionsModule.base', 'Review Evidence'),
-        'id' => 'review_evidence',
-        'icon' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i>',
-        'url' => Url::to(['/missions/review/index', 'sguid' => $member->space->guid]),
-        'sortOrder' => 200,
-        'isActive' => (Yii::$app->controller->module
-            && Yii::$app->controller->module->id == 'missions'
-            && Yii::$app->controller->id == 'review'),
-        ));
-
+        if($team){
+            $event->sender->addItem(array(
+            'label' => Yii::t('MissionsModule.base', 'Review Evidence'),
+            'id' => 'review_evidence',
+            'icon' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i>',
+            'url' => Url::to(['/missions/review/index', 'sguid' => $team->guid]),
+            'sortOrder' => 200,
+            'isActive' => (Yii::$app->controller->module
+                && Yii::$app->controller->module->id == 'missions'
+                && Yii::$app->controller->id == 'review'),
+            ));
+        }
+        
     }
 
     public static function onProfileSidebarInit($event)

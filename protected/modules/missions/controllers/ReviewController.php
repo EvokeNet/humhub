@@ -7,6 +7,7 @@ use app\modules\missions\models\Evidence;
 use humhub\modules\file\models\File;
 use yii\helpers\Json;
 use humhub\modules\content\components\ContentContainerController;
+use app\modules\teams\models\Team;
 
 class ReviewController extends ContentContainerController
 {
@@ -18,20 +19,14 @@ class ReviewController extends ContentContainerController
 
     public function getEvidenceToReviewCount(){
 
-        $query = (new \yii\db\Query())
-        ->select(['s.space_id as space_id'])
-        ->from('space_membership as s')
-        ->where(['user_id' => Yii::$app->user->getIdentity()->id])
-        ->one();
-        
-        $user_space_id = $query['space_id'];
+        $team_id = Team::getUserTeam(Yii::$app->user->getIdentity()->id);
 
         $query = (new \yii\db\Query())
         ->select(['count(distinct e.id) as count'])
         ->from('evidence as e')
         ->join('INNER JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
         ->join('LEFT JOIN', 'space_membership s', '`s`.`user_id`=`c`.`user_id`')
-        ->where('s.space_id != '.$user_space_id)
+        ->where('s.space_id != '.$team_id)
         ->one();
 
         return $query['count'];
@@ -42,13 +37,7 @@ class ReviewController extends ContentContainerController
         $evidence = null;
         $files = null;
 
-        $query = (new \yii\db\Query())
-        ->select(['s.space_id as space_id'])
-        ->from('space_membership as s')
-        ->where(['user_id' => Yii::$app->user->getIdentity()->id])
-        ->one();
-        
-        $user_space_id = $query['space_id'];
+        $team_id = Team::getUserTeam(Yii::$app->user->getIdentity()->id);
 
         $subquery = '(SELECT v2.evidence_id from votes as v2 where v2.user_id = '.Yii::$app->user->getIdentity()->id.')';
 
@@ -58,7 +47,7 @@ class ReviewController extends ContentContainerController
         ->join('INNER JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
         ->join('LEFT JOIN', 'votes v', '`v`.`evidence_id`=`e`.`id`')
         ->join('LEFT JOIN', 'space_membership s', '`s`.`user_id`=`c`.`user_id`')
-        ->where('s.space_id != '.$user_space_id.' AND e.id NOT IN '.$subquery)
+        ->where('s.space_id != '.$team_id.' AND e.id NOT IN '.$subquery)
         ->groupBy('e.id')
         ->orderBy('vote_count ASC')
         ->All();

@@ -6,11 +6,15 @@ use yii\helpers\Url;
 use app\modules\missions\models\Evidence;
 use humhub\modules\space\models\Membership;
 use app\modules\coin\models\Wallet;
+use app\modules\teams\models\Team;
 
-$member = Membership::find()
-->where(['user_id' => Yii::$app->user->getIdentity()->id])
-->orderBy('space_id DESC')
-->one();
+$team_id = Team::getUserTeam(Yii::$app->user->getIdentity()->id);
+if($team_id){
+    $member = Membership::findOne(['space_id' => $team_id]);    
+}else{
+    $member = null;
+}
+
 
 $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
 
@@ -25,9 +29,11 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
                 <strong>
                     <?= Yii::t('MissionsModule.base', 'Mission Progress') ?>
                 </strong>
-                <a id="submit_evidence" class="btn btn-primary" style="float: right;" href="<?= Url::to(['/missions/evokation/index', 'sguid' => $member->space->guid]); ?>">
-                    <?php echo Yii::t('MissionsModule.base', 'Submit Evidence'); ?>
-                </a>
+                <?php if($member): ?>
+                    <a id="submit_evidence" class="btn btn-primary" style="float: right;" href="<?= Url::to(['/missions/evokation/index', 'sguid' => $member->space->guid]); ?>">
+                        <?php echo Yii::t('MissionsModule.base', 'Submit Evidence'); ?>
+                    </a>
+                <?php endif; ?>
                 <div>
                     <?= Yii::t('MissionsModule.base', 'Your average rating: {avg}', array('avg' => $avg)) ?>
                 </div>
@@ -53,10 +59,11 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
                     <?= $wallet->amount ?>
                 </div> 
             </div>
-
-            <a class = "btn btn-info" href='<?= Url::to(['/missions/review/index', 'sguid' => $member->space->guid]) ?>'>
-                    <?= Yii::t('MissionsModule.base', 'Review Evidence') ?>
-            </a> 
+            <?php if($member): ?>
+                <a class = "btn btn-info" href='<?= Url::to(['/missions/review/index', 'sguid' => $member->space->guid]) ?>'>
+                        <?= Yii::t('MissionsModule.base', 'Review Evidence') ?>
+                </a> 
+            <?php endif; ?>
         </div>
     </div>
 </div>

@@ -12,12 +12,14 @@ use yii\helpers\Url;
     </div>
     <div class="list-group submit-body">
     	<div class= "list-group-item">
-    		<a class = "btn btn-primary" href='<?= Url::to(['/missions/evidence/missions', 'sguid' => $member->space->guid]); ?>'>
-        		<?= Yii::t('MissionsModule.base', 'Choose a mission') ?>
-        	</a>
-            <a class = "btn btn-primary" href='<?= Url::to(['/missions/review/index', 'sguid' => $member->space->guid]) ?>'>
-        		<?= Yii::t('MissionsModule.base', 'Review evidences') ?>
-        	</a>
+            <?php if($member): ?>
+        		<a class = "btn btn-primary" href='<?= Url::to(['/missions/evidence/missions', 'sguid' => $member->space->guid]); ?>'>
+            		<?= Yii::t('MissionsModule.base', 'Choose a mission') ?>
+            	</a>
+                <a class = "btn btn-primary" href='<?= Url::to(['/missions/review/index', 'sguid' => $member->space->guid]) ?>'>
+            		<?= Yii::t('MissionsModule.base', 'Review evidences') ?>
+            	</a>
+            <?php endif; ?>
         </div>
     </div>
 </div>
