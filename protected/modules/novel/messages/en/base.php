@@ -19,9 +19,15 @@
 
  return [
    'Create' => '',
-   'Name'   => '',
+   'Page Image'   => '',
+   'Page Number' => '',
    'ID'     => '',
    'Created At' => '',
    'Modified At' => '',
    'Graphic Novel' => '',
+   'Create Page' => '',
+   'Pages' => '',
+   'Uploaded Image: {file}' => '',
+   'No images uploaded yet' => '',
+   'Novel Page' => '',
  ];
