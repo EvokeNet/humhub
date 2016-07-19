@@ -16,7 +16,7 @@
             ['class' => \humhub\widgets\TopMenu::className(), 'event' => TopMenu::EVENT_INIT, 'callback' => ['\humhub\modules\prize\Events', 'onTopMenuInit']],
         ],
         'urlManagerRules' => [
-            'coin' => 'coin/coin'
+            'prize' => 'prize/prize'
         ]
     ];
 
