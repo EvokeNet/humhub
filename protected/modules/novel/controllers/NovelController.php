@@ -42,7 +42,7 @@ class NovelController extends Controller
       $user = Yii::$app->user->getIdentity();
 
       //make sure user hasn't already read the graphic novel
-      if ($user->has_read_novel) {
+      if ($user->has_read_novel || $user->group->name == "Mentors") {
         //send em home
         return $this->redirect(['/']);
       } else {
