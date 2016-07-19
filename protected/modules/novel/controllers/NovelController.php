@@ -50,7 +50,12 @@ class NovelController extends Controller
         if (isset($power)) {
           $points_to_level = floor(($power->improve_multiplier * pow(1,1.95)) + $power->improve_offset);
           //give them enough transformation points to get to the 1st level
-          // UserPowers::addPowerPoint($power, $user, $points_to_level);
+          UserPowers::addPowerPoint($power, $user, $points_to_level);
+
+          //mark that user has read the novel so they don't get double points
+          $user->has_read_novel = true;
+          $user->save();
+
           return $this->render('novel/transformation', array('points' => $points_to_level));
         } else {
           //couldn't find the power, go home
