@@ -553,6 +553,7 @@ class Team extends ContentContainerActiveRecord implements \humhub\modules\searc
         ->join('INNER JOIN', 'space as s', '`m`.`space_id`= `s`.`id`')
         ->where('m.user_id = '.$user_id)
         ->andWhere('s.is_team ='. Team::TEAM_ENABLED)
+        ->andWhere('m.status ='. Membership::STATUS_MEMBER)
         ->one();
 
         return $query['space_id'];

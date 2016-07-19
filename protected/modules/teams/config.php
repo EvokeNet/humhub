@@ -17,7 +17,7 @@
             ['class' => \humhub\modules\admin\widgets\AdminMenu::className(), 'event' => AdminMenu::EVENT_INIT, 'callback' => ['humhub\modules\teams\Events', 'onAdminMenuInit']],
         ],
         'urlManagerRules' => [
-            'powers' => 'teams/teams'
+            'teams' => 'teams/teams'
         ]
     ];
 

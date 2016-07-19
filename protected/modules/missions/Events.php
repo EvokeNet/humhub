@@ -38,7 +38,7 @@ class Events
 
         $event->sender->addWidget(PopUpWidget::className(), []);
         $event->sender->addWidget(CTAPostEvidence::className(), []);
-        $event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers]);
+        //$event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers]);
     }
 
     public static function onSidebarInit($event)
@@ -47,15 +47,17 @@ class Events
         if (Yii::$app->user->isGuest || Yii::$app->user->getIdentity()->getSetting("hideSharePanel", "share") != 1) {
             $space = $event->sender->space;
             $event->sender->addWidget(PopUpWidget::className(), []);
-            $event->sender->addWidget(EvidenceWidget::className(), array('space' => $space), array('sortOrder' => 9));
 
-            $userPowers = UserPowers::getUserPowers(Yii::$app->user->getIdentity()->id);
+            if($space->is_team){
+                //$event->sender->addWidget(EvidenceWidget::className(), array('space' => $space), array('sortOrder' => 9));    
 
-            $event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers], array('sortOrder' => 9));
+                $userPowers = UserPowers::getUserPowers(Yii::$app->user->getIdentity()->id);
+                $event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers], array('sortOrder' => 9));
 
-            $portfolio = Portfolio::getUserPortfolio(Yii::$app->user->getIdentity()->id);
+                $portfolio = Portfolio::getUserPortfolio(Yii::$app->user->getIdentity()->id);
+                $event->sender->addWidget(PortfolioWidget::className(), ['portfolio' => $portfolio], array('sortOrder' => 8));
+            }
 
-            $event->sender->addWidget(PortfolioWidget::className(), ['portfolio' => $portfolio], array('sortOrder' => 8));
         }
 
     }
@@ -267,14 +269,17 @@ class Events
            
             // if viewing other user profile
             if(Yii::$app->user->getIdentity()->id != $event->sender->user->id){
+                /*
                 $userPowers = UserPowers::getUserPowers(Yii::$app->user->getIdentity()->id);
                 $event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers], array('sortOrder' => 9));
+                */
                 $event->sender->addWidget(PopUpWidget::className(), []);    
             }
 
+            /*
             $portfolio = Portfolio::getUserPortfolio(Yii::$app->user->getIdentity()->id);
-
             $event->sender->addWidget(PortfolioWidget::className(), ['portfolio' => $portfolio], array('sortOrder' => 8));
+            */
 
         }
         

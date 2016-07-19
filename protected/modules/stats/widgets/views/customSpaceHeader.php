@@ -4,6 +4,7 @@
 
 use yii\helpers\Url;
 use yii\helpers\Html;
+use app\modules\teams\models\Team;
 
 if ($space->isAdmin()) {
     $this->registerJsFile('@web/resources/space/spaceHeaderImageUpload.js');
@@ -231,11 +232,22 @@ if ($space->isAdmin()) {
 
                     <div class="controls controls-header pull-right">
                         <?php
-                        echo humhub\modules\space\widgets\HeaderControls::widget(['widgets' => [
+
+                        $team_id = Team::getUserTeam(Yii::$app->user->getIdentity()->id);
+
+                        //if user belongs to a team and current space is a team and it's not user's
+                        if($team_id > 0 && $space->is_team && ($team_id != $space->id)){
+                            echo humhub\modules\space\widgets\HeaderControls::widget(['widgets' => [
+                            [\humhub\modules\space\widgets\FollowButton::className(), ['space' => $space], ['sortOrder' => 30]]
+                        ]]);
+
+                        }else{
+                            echo humhub\modules\space\widgets\HeaderControls::widget(['widgets' => [
                             [\humhub\modules\space\widgets\InviteButton::className(), ['space' => $space], ['sortOrder' => 10]],
                             [\humhub\modules\space\widgets\MembershipButton::className(), ['space' => $space], ['sortOrder' => 20]],
                             [\humhub\modules\space\widgets\FollowButton::className(), ['space' => $space], ['sortOrder' => 30]]
-                        ]]);
+                            ]]);
+                        }
                         ?>
 
                         <?php echo humhub\modules\space\modules\manage\widgets\Menu::widget(['space' => $space, 'template' => '@humhub/widgets/views/dropdownNavigation']); ?>

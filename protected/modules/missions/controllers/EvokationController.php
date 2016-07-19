@@ -20,6 +20,7 @@ use app\modules\missions\models\ActivityPowers;
 use app\modules\missions\models\Votes;
 use humhub\modules\missions\controllers\AlertController;
 use humhub\modules\user\models\User;
+use app\modules\missions\models\Evokations;
 
 class EvokationController extends ContentContainerController
 {
@@ -108,5 +109,54 @@ class EvokationController extends ContentContainerController
             'space' => $this->space,
         ));
     }
+
+        public function actionEdit()
+    {
+
+        $request = Yii::$app->request;
+        $id = $request->get('id');
+
+        $edited = false;
+        $model = Evokations::findOne(['id' => $id]);
+        $model->scenario = Evokations::SCENARIO_EDIT;
+
+        if (!$model->content->canWrite()) {
+            throw new HttpException(403, Yii::t('MissionsModule.controllers_PollController', 'Access denied!'));
+        }
+
+
+        if ($model->load($request->post())) {
+
+            Yii::$app->response->format = 'json';
+            $result = [];
+            if ($model->validate() && $model->save()) {
+                // Reload record to get populated updated_at field
+                $model = Evokations::findOne(['id' => $id]);
+                $result['success'] = true;
+                $result['output'] = $this->renderAjaxContent($model->getWallOut(['justEdited' => true]));
+            } else {
+                $result['errors'] = $model->getErrors();
+            }
+            return $result;
+        }
+
+        return $this->renderAjax('edit', ['evokation' => $model, 'edited' => $edited]);
+    }
+
+    /**
+     * Reloads a single entry
+     */
+    public function actionReload()
+    {
+        $id = Yii::$app->request->get('id');
+        $model = Evokations::findOne(['id' => $id]);
+
+        if (!$model->content->canRead()) {
+            throw new HttpException(403, Yii::t('MissionsModule.controllers_PollController', 'Access denied!'));
+        }
+
+        return $this->renderAjaxContent($model->getWallOut(['justEdited' => true]));
+    }
+
 
 }
