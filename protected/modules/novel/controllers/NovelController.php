@@ -14,13 +14,18 @@ use humhub\modules\user\models\User;
  */
 class NovelController extends Controller
 {
-    public $max_prob = 1000;
-
     public function actionIndex()
     {
         $pages = NovelPage::find()->orderBy('page_number ASC')->all();
 
 
         return $this->render('novel/index', array('pages' => $pages));
+    }
+
+    public function actionGraphicNovel($page)
+    {
+      $page = NovelPage::find()->where(['page_number' => $page])->one();
+
+      return $this->render('novel/page', array('page' => $page));
     }
 }

@@ -12,6 +12,7 @@ use Yii;
 use yii\helpers\Url;
 use humhub\models\Setting;
 use humhub\modules\user\models\User;
+use app\modules\novel\models\NovelPage;
 
 /**
  * Description of Events
@@ -29,7 +30,7 @@ class Events extends \yii\base\Object
           {
             //Check if user hasn't read the graphic novel yet
             if(User::findOne(['id' => Yii::$app->user->getIdentity()->id])->has_read_novel == false){
-                $event->action->controller->redirect(Url::toRoute('/novel/novel/index'));
+                $event->action->controller->redirect(Url::toRoute(['/novel/novel/graphic-novel', 'page' => 1]));
             }
           }
         }
