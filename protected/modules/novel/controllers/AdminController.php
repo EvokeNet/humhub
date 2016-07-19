@@ -27,8 +27,6 @@ class AdminController extends \humhub\modules\admin\components\Controller
 
       if ($model->load(Yii::$app->request->post())) {
         $model->page_image = UploadedFile::getInstance($model, 'page_image');
-        // var_dump($model->page_image);
-        // die();
         $model->page_image->saveAs('uploads/' . $model->page_image->baseName . '.' . $model->page_image->extension);
         $model->page_image = 'uploads/' . $model->page_image->baseName . '.' . $model->page_image->extension;
 
@@ -57,7 +55,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
 
     public function actionDelete()
     {
-        $model = Prize::findOne(['id' => Yii::$app->request->get('id')]);
+        $model = NovelPage::findOne(['id' => Yii::$app->request->get('id')]);
 
         if ($model !== null) {
             $model->delete();
