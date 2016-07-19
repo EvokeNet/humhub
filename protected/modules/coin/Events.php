@@ -32,8 +32,36 @@ class Events extends \yii\base\Object
     ));
   }
 
-  // public static function onProfileSidebarInit($event)
-  // {
-  //
-  // }
+  public static function onAuthUser($event){
+
+    //on login and create account actions
+    if($event->action->actionMethod === 'actionLogin' || $event->action->actionMethod === 'actionCreateAccount'){
+
+      //Check if user is logged in
+      if(null != Yii::$app->user->getIdentity()){
+        //make sure they have a wallet
+        $user = Yii::$app->user->getIdentity();
+        $coin = Coin::find()->where(['name' => 'EvoCoin'])->one();
+
+        if (!isset($coin)) {
+          //nothing to be done
+          return;
+        }
+
+        $coin_id = $coin->id;
+        $wallet = Wallet::find()->where(['owner_id' => $user->id, 'coin_id' => $coin_id])->one();
+
+        //give them a wallet if they have none
+        if (is_null($wallet)) {
+          $wallet = new Wallet();
+
+          $wallet->coin_id  = $coin_id;
+          $wallet->owner_id = $user->id;
+          $wallet->amount   = 0;
+
+          $wallet->save();
+        }
+      }
+    }
+  }
 }
