@@ -29,7 +29,7 @@ class Events extends \yii\base\Object
           if (null != Yii::$app->user->getIdentity())
           {
             //Check if user hasn't read the graphic novel yet
-            if(User::findOne(['id' => Yii::$app->user->getIdentity()->id])->has_read_novel == false){
+            if(Yii::$app->user->getIdentity()->has_read_novel == false){
                 $event->action->controller->redirect(Url::toRoute(['/novel/novel/graphic-novel', 'page' => 1]));
             }
           }

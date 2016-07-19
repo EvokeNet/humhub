@@ -30,4 +30,9 @@
    'Uploaded Image: {file}' => '',
    'No images uploaded yet' => '',
    'Novel Page' => '',
+   'Complete Your Profile' => '',
+   'Congratulations!' => '',
+   'You have transformed' => 'You have taken your first steps as an agent of Evoke and have already demonstrated your power of transformation. Please take a few moments to complete your profile and see what other innate abilities you have.',
+   'You earned' => '',
+   'in Transformation' => '',
  ];
