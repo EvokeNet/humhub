@@ -17,25 +17,25 @@ $language = Yii::$app->language;
         </strong>
     </div>
     <div class="panel-body">
-        
+
         <?php if(isset($superhero_id)): ?>
             <h6>
                 <strong>
                     <?php echo isset($superhero_id->superheroIdentityTranslations[0]) ? $superhero_id->superheroIdentityTranslations[0]->name : $superhero_id->name; ?>
                 </strong>
             </h6>
-            
+
             <p>
                 <?php echo isset($superhero_id->superheroIdentityTranslations[0]) ? $superhero_id->superheroIdentityTranslations[0]->description : $superhero_id->description; ?>
             </p>
-        
+
         <?php else: ?>
             <p>
-                <strong>
-                    <?php echo Yii::t('MatchingModule.base', 'Not Defined Yet'); ?>
-                </strong>
+              <?php echo Html::a(
+                  Yii::t('MatchingModule.base', 'Complete Profile'),
+                  ['/matching_questions/matching-questions/matching'], array('class' => 'btn btn-success btn-sm')); ?>
             </p>
         <?php endif; ?>
-                
+
     </div>
 </div>

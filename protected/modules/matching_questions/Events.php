@@ -29,33 +29,33 @@ class Events extends \yii\base\Object
      *
      * @param type $event
      */
-    public static function onTopMenuInit($event)
-    {
-        if(Yii::$app->user->getIdentity()->super_admin == 1){
-
-            $event->sender->addItem(array(
-            'label' => Yii::t('MatchingModule.base', 'Superhero Identity'),
-            'id' => 'matching_questions',
-            'icon' => '<i class="fa fa-th"></i>',
-            'url' => Url::toRoute('/matching_questions/matching-questions/matching'),
-            'sortOrder' => 200,
-            'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'matching_questions' && Yii::$app->controller->id != 'admin'),
-            ));
-        }
-        
-    }
+    // public static function onTopMenuInit($event)
+    // {
+    //     if(Yii::$app->user->getIdentity()->super_admin == 1){
+    //
+    //         $event->sender->addItem(array(
+    //         'label' => Yii::t('MatchingModule.base', 'Superhero Identity'),
+    //         'id' => 'matching_questions',
+    //         'icon' => '<i class="fa fa-th"></i>',
+    //         'url' => Url::toRoute('/matching_questions/matching-questions/matching'),
+    //         'sortOrder' => 200,
+    //         'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'matching_questions' && Yii::$app->controller->id != 'admin'),
+    //         ));
+    //     }
+    //
+    // }
 
     public static function onProfileSidebarInit($event)
     {
         if (Yii::$app->user->isGuest || Yii::$app->user->getIdentity()->getSetting("hideSharePanel", "share") != 1) {
-            
+
             $user = $event->sender->user;
 
             $superhero_id = SuperheroIdentities::findOne([$user->superhero_identity_id]);
 
             $event->sender->addWidget(SuperHeroWidget::className(), ['superhero_id' => $superhero_id, 'user' => $user], array('sortOrder' => 8));
         }
-        
+
     }
 
     public static function onAuthUser($event){
@@ -79,7 +79,7 @@ class Events extends \yii\base\Object
             }
         }
     }
-    
+
     public static function onAdminMenuInit($event)
     {
         $event->sender->addItem(array(
@@ -90,26 +90,26 @@ class Events extends \yii\base\Object
             'isActive' => (
                 Yii::$app->controller->module && Yii::$app->controller->module->id == 'matching_questions'
                 && Yii::$app->controller->action->id != 'view'
-                
+
                 && Yii::$app->controller->action->id != 'index-qualities'
                 && Yii::$app->controller->action->id != 'create-qualities'
                 && Yii::$app->controller->action->id != 'update-qualities'
-                
+
                 && Yii::$app->controller->action->id != 'index-quality-translations'
                 && Yii::$app->controller->action->id != 'create-quality-translations'
                 && Yii::$app->controller->action->id != 'update-quality-translations'
-                
+
                 && Yii::$app->controller->action->id != 'index-superhero-identities'
                 && Yii::$app->controller->action->id != 'create-superhero-identities'
                 && Yii::$app->controller->action->id != 'update-superhero-identities'
-                        
+
                 && Yii::$app->controller->action->id != 'index-superhero-identity-translations'
                 && Yii::$app->controller->action->id != 'create-superhero-identity-translations'
                 && Yii::$app->controller->action->id != 'update-superhero-identity-translations'
             ),
         ));
     }
-    
+
     // public static function onSpaceAdminMenuInit($event)
     // {
     //     $space = $event->sender->space;
@@ -123,7 +123,7 @@ class Events extends \yii\base\Object
     //         ));
     //     }
     // }
-    
+
     public static function onQualityAdminMenuInit($event)
     {
         $event->sender->addItem(array(
@@ -132,26 +132,26 @@ class Events extends \yii\base\Object
             'group' => 'manage',
             'icon' => '<i class="fa fa-navicon"></i>',
             'isActive' => (
-                    Yii::$app->controller->module && Yii::$app->controller->module->id == 'matching_questions' 
-                    && Yii::$app->controller->id == 'admin' 
-                    
-                    && 
+                    Yii::$app->controller->module && Yii::$app->controller->module->id == 'matching_questions'
+                    && Yii::$app->controller->id == 'admin'
+
+                    &&
                     (
                         Yii::$app->controller->action->id == 'index-qualities'
                         || Yii::$app->controller->action->id == 'create-qualities'
                         || Yii::$app->controller->action->id == 'update-qualities'
-                        
+
                         || Yii::$app->controller->action->id == 'index-quality-translations'
                         || Yii::$app->controller->action->id == 'create-quality-translations'
                         || Yii::$app->controller->action->id == 'update-quality-translations'
-                
+
                     )
-                    
+
                     && (
                         Yii::$app->controller->action->id != 'index-superhero-identities'
                         || Yii::$app->controller->action->id != 'create-superhero-identities'
                         || Yii::$app->controller->action->id != 'update-superhero-identities'
-                        
+
                         || Yii::$app->controller->action->id != 'index-superhero-identity-translations'
                         || Yii::$app->controller->action->id != 'create-superhero-identity-translations'
                         || Yii::$app->controller->action->id != 'update-superhero-identity-translations'
@@ -159,7 +159,7 @@ class Events extends \yii\base\Object
             ),
         ));
     }
-    
+
     public static function onSuperheroAdminMenuInit($event)
     {
         $event->sender->addItem(array(
@@ -168,45 +168,45 @@ class Events extends \yii\base\Object
             'group' => 'manage',
             'icon' => '<i class="fa fa-male"></i>',
             'isActive' => (
-                
-                Yii::$app->controller->module && Yii::$app->controller->module->id == 'matching_questions' 
-                && Yii::$app->controller->id == 'admin' 
-                // && 
+
+                Yii::$app->controller->module && Yii::$app->controller->module->id == 'matching_questions'
+                && Yii::$app->controller->id == 'admin'
+                // &&
                 // (
                 //     Yii::$app->controller->action->id != 'index-qualities'
                 //     && Yii::$app->controller->action->id != 'create-qualities'
                 //     && Yii::$app->controller->action->id != 'update-qualities'
-                    
+
                 //     || Yii::$app->controller->action->id == 'index-quality-translations'
                 //     || Yii::$app->controller->action->id == 'create-quality-translations'
                 //     || Yii::$app->controller->action->id == 'update-quality-translations'
-                    
+
                 //     || Yii::$app->controller->action->id == 'index-superhero-identities'
                 //     || Yii::$app->controller->action->id == 'create-superhero-identities'
                 //     || Yii::$app->controller->action->id == 'update-superhero-identities'
-                    
+
                 //     || Yii::$app->controller->action->id == 'index-superhero-identity-translations'
                 //     || Yii::$app->controller->action->id == 'create-superhero-identity-translations'
                 //     || Yii::$app->controller->action->id == 'update-superhero-identity-translations'
-                
+
                 // )
-                && 
+                &&
                     (
                         Yii::$app->controller->action->id != 'index-qualities'
                         || Yii::$app->controller->action->id != 'create-qualities'
                         || Yii::$app->controller->action->id != 'update-qualities'
-                        
+
                         || Yii::$app->controller->action->id != 'index-quality-translations'
                         || Yii::$app->controller->action->id != 'create-quality-translations'
                         || Yii::$app->controller->action->id != 'update-quality-translations'
-                
+
                     )
-                    
+
                     && (
                         Yii::$app->controller->action->id == 'index-superhero-identities'
                         || Yii::$app->controller->action->id == 'create-superhero-identities'
                         || Yii::$app->controller->action->id == 'update-superhero-identities'
-                        
+
                         || Yii::$app->controller->action->id == 'index-superhero-identity-translations'
                         || Yii::$app->controller->action->id == 'create-superhero-identity-translations'
                         || Yii::$app->controller->action->id == 'update-superhero-identity-translations'
