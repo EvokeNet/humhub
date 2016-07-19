@@ -11,6 +11,7 @@ namespace humhub\modules\novel;
 use Yii;
 use yii\helpers\Url;
 use humhub\models\Setting;
+use humhub\modules\user\models\User;
 
 /**
  * Description of Events
@@ -23,11 +24,14 @@ class Events extends \yii\base\Object
 
         //on login and create account actions
         if($event->action->actionMethod === 'actionLogin' || $event->action->actionMethod === 'actionCreateAccount'){
-
-            //Check if user is logged in and if user hasn't superhero id yet
-            if(null != Yii::$app->user->getIdentity() && !isset(Yii::$app->user->getIdentity()->superhero_identity_id)){
-                $event->action->controller->redirect(Url::toRoute('/matching_questions/matching-questions/matching'));
+          //make sure user is logged in
+          if (null != Yii::$app->user->getIdentity())
+          {
+            //Check if user hasn't read the graphic novel yet
+            if(User::findOne(['id' => Yii::$app->user->getIdentity()->id])->has_read_novel == false){
+                $event->action->controller->redirect(Url::toRoute('/novel/novel/index'));
             }
+          }
         }
 
     }

@@ -5,7 +5,7 @@ use yii\grid\GridView;
 
 use yii\widgets\Breadcrumbs;
 
-$this->title = Yii::t('NovelModule.base', 'Prizes');
+$this->title = Yii::t('NovelModule.base', 'Graphic Novel');
 $this->params['breadcrumbs'][] = $this->title;
 
 echo Breadcrumbs::widget([
