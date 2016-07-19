@@ -125,7 +125,7 @@ class Team extends ContentContainerActiveRecord implements \humhub\modules\searc
             'updated_at' => Yii::t('SpaceModule.models_Space', 'Updated At'),
             'updated_by' => Yii::t('SpaceModule.models_Space', 'Updated by'),
             'ownerUsernameSearch' => Yii::t('SpaceModule.models_Space', 'Owner'),
-            'is_team' => Yii::t('SpaceModule.models_Space', 'Is Team'),
+            'is_team' => Yii::t('TeamsModule.models_Space', 'Is Team'),
         );
     }
 

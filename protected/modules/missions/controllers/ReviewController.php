@@ -19,7 +19,9 @@ class ReviewController extends ContentContainerController
 
     public function getEvidenceToReviewCount(){
 
-        $team_id = Team::getUserTeam(Yii::$app->user->getIdentity()->id);
+        $user_id = Yii::$app->user->getIdentity()->id;
+
+        $team_id = Team::getUserTeam($user_id);
 
         $query = (new \yii\db\Query())
         ->select(['count(distinct e.id) as count'])
@@ -27,6 +29,7 @@ class ReviewController extends ContentContainerController
         ->join('INNER JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
         ->join('LEFT JOIN', 'space_membership s', '`s`.`user_id`=`c`.`user_id`')
         ->where('s.space_id != '.$team_id)
+        ->andWhere('c.user_id != '.$user_id)
         ->one();
 
         return $query['count'];
@@ -36,8 +39,9 @@ class ReviewController extends ContentContainerController
         $nextEvidence = array();
         $evidence = null;
         $files = null;
+        $user_id = Yii::$app->user->getIdentity()->id;
 
-        $team_id = Team::getUserTeam(Yii::$app->user->getIdentity()->id);
+        $team_id = Team::getUserTeam($user_id);
 
         $subquery = '(SELECT v2.evidence_id from votes as v2 where v2.user_id = '.Yii::$app->user->getIdentity()->id.')';
 
@@ -48,6 +52,7 @@ class ReviewController extends ContentContainerController
         ->join('LEFT JOIN', 'votes v', '`v`.`evidence_id`=`e`.`id`')
         ->join('LEFT JOIN', 'space_membership s', '`s`.`user_id`=`c`.`user_id`')
         ->where('s.space_id != '.$team_id.' AND e.id NOT IN '.$subquery)
+        ->andWhere('c.user_id != '.$user_id)
         ->groupBy('e.id')
         ->orderBy('vote_count ASC')
         ->All();
