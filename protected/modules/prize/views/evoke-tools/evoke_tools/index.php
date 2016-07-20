@@ -27,11 +27,11 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
 
                       <div class="col-xs-4">
                         <div class="row text-right">
-                          <span><?php echo Yii::t('PrizeModule.base', 'Tools Remaining:') ?><?php echo count($prizes) ?></span>
+                          <strong><?php echo Yii::t('PrizeModule.base', 'Tools remaining:') ?><?php echo $total_prizes ?></strong>
                         </div>
                         <?php foreach ($prizes as $prize): ?>
                           <div class="row text-right">
-                            <span><?php echo $prize->name . ': ' . $prize->quantity ?></span>
+                            <strong><?php echo $prize->name . ': ' . $prize->quantity ?></strong>
                           </div>
                         <?php endforeach; ?>
                       </div>
@@ -42,6 +42,32 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                     <?php endif; ?>
                   </div>
                   <div class="row">
+                    <div class="spinner">
+                      <div class="prizes">
+                        <?php foreach ($prizes as $prize): ?>
+                          <div class="prize">
+                            <div class="prize-name">
+                              <?php echo $prize->name; ?>
+                            </div>
+                          </div>
+                        <?php endforeach; ?>
+                        <div class="prize evocoin">
+                          <div class="prize-name">
+                            5 Evocoin
+                          </div>
+                        </div>
+                        <div class="prize evocoin">
+                          <div class="prize-name">
+                            10 Evocoin
+                          </div>
+                        </div>
+                        <div class="prize evocoin">
+                          <div class="prize-name">
+                            20 Evocoin
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     <?php if(isset($results)): ?>
                       <span><?php echo $results ?></span>
                     <?php endif; ?>

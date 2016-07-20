@@ -38,4 +38,5 @@
    'Discover Tools' => '',
    'Tools Description' => 'Officia deserunt ut reprehenderit aliqua commodo consectetur culpa. Ullamco in laborum veniam ullamco do qui proident eiusmod proident nulla consectetur.',
    'Pay 5 Evocoins to play' => '',
+   'Tools remaining:' => '',
  ];

@@ -24,6 +24,11 @@ class EvokeToolsController extends Controller
         $prizes = Prize::find()->where(['<=', 'week_of', date('Y-m-d')])->all();
         $coin_id = Coin::find()->where(['name' => 'EvoCoin'])->one()->id;
         $wallet = Wallet::find()->where(['owner_id' => Yii::$app->user->id, 'coin_id' => $coin_id])->one();
+        $total_prizes = 0;
+
+        foreach ($prizes as $prize) {
+          $total_prizes += $prize->quantity;
+        }
 
         if (array_key_exists('results', $_GET)) {
           $results = $_GET['results'];
@@ -31,7 +36,7 @@ class EvokeToolsController extends Controller
           $results = null;
         }
 
-        return $this->render('evoke_tools/index', array('prizes' => $prizes, 'wallet' => $wallet, 'results' => $results));
+        return $this->render('evoke_tools/index', array('prizes' => $prizes, 'wallet' => $wallet, 'results' => $results, 'total_prizes' => $total_prizes));
     }
 
     public function actionSearch()
@@ -58,7 +63,7 @@ class EvokeToolsController extends Controller
         $time_diff = date_diff(new \DateTime($date), new \DateTime());
         $diff = (int)$time_diff->format('%R%a'); // int of days
 
-        if ($diff >= 0) { //prize not available yet if diff < 0
+        if ($diff >= 0) { //prize not available yet if diff < 0 (shouldnt be in query, but just in case)
           $prize_prob = $prize->weight * ($diff + 1);
           $probabilities[] = $prize_prob;
           $available_prizes[] = $prize;
