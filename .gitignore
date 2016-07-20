@@ -41,3 +41,5 @@ protected/modules/birthday/*
 protected/modules/birthday/*
 protected/modules/breakingnews/*
 protected/modules/wiki/*
+
+protected/vendor/*

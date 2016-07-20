@@ -2,7 +2,8 @@
 
 namespace app\modules\coin;
 
-use app\modules\coin\models\coin
+use app\modules\coin\models\coin;
+
 /**
  * Coin Module Definition Class
  */
