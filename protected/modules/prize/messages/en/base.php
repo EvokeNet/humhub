@@ -32,8 +32,10 @@
    'Create Prizes' => '',
    'This should be the begining of the week for this prize' => '',
    'Evoke Tools' => '',
-   'Search for Help' => '',
    'Not Enough Evocoin!' => '',
    'Costs 5 Evocoin' => '',
    'Sorry' => 'Sorry, nothing was found.',
+   'Discover Tools' => '',
+   'Tools Description' => 'Officia deserunt ut reprehenderit aliqua commodo consectetur culpa. Ullamco in laborum veniam ullamco do qui proident eiusmod proident nulla consectetur.',
+   'Pay 5 Evocoins to play' => '',
  ];
