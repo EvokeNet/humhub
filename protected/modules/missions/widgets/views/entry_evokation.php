@@ -10,6 +10,8 @@ $evokation_investment = Portfolio::find()
     ->where(['user_id' => Yii::$app->user->getIdentity()->id,'evokation_id' => $evokation->id])
     ->one();
 
+$youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation->youtube_url) : null;
+
 ?>
 
 <strong>
@@ -19,7 +21,9 @@ $evokation_investment = Portfolio::find()
 <?php print humhub\widgets\RichText::widget(['text' => $evokation->description]);?>
 <br><br>
 
-<iframe width="630" height="420" src="http://www.youtube.com/embed/<?php echo $evokation->getYouTubeCode($evokation->youtube_url)?>" frameborder="0" allowfullscreen></iframe>
+<?php if($youtube_code): ?>
+    <iframe width="630" height="420" src="http://www.youtube.com/embed/<?php echo $youtube_code; ?>" frameborder="0" allowfullscreen></iframe>
+<?php endif; ?>
 
 <div>
     <div style = "float:left">
