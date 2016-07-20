@@ -13,9 +13,11 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                 <div class="panel-heading">
                   <strong><?php echo Yii::t('PrizeModule.base', 'Discover Tools') ?></strong>
                 </div>
-                <p>
-                  <?php echo Yii::t('PrizeModule.base', 'Tools Description') ?>
-                </p>
+                <div class="col-xs-12">
+                  <p>
+                    <?php echo Yii::t('PrizeModule.base', 'Tools Description') ?>
+                  </p>
+                </div>
                 <div class="panel-body">
                   <div class="row">
                     <?php if ($wallet->amount >= 5): ?>
@@ -41,7 +43,7 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                       </div>
                     <?php endif; ?>
                   </div>
-                  <div class="row">
+                  <div class="row col-xs-12">
                     <div class="spinner">
                       <div class="prizes">
                         <?php foreach ($prizes as $prize): ?>
@@ -83,13 +85,21 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                     </div>
                     <div class="panel-body">
                       <div class="row">
-                        <p>
-                          <?php echo Yii::t('PrizeModule.base', 'Boardgame intro'); ?>
-                        </p>
+                        <div class="col-xs-12">
+                          <p>
+                            <?php echo Yii::t('PrizeModule.base', 'Boardgame intro'); ?>
+                          </p>
+                        </div>
                       </div>
                       <div class="row">
-                        <span class="boardgame-image col-xs-7"></span>
-                        <span class="dowload col-xs-4"></span>
+                        <span class="col-xs-7"><img src="<?php echo Url::to('@web/themes/Evoke/img/evoke_board.png') ?>" alt="evoke board" class="img-responsive" /></span>
+                        <span class="dowload col-xs-4 well well-lg">
+                          <p>
+                            <?php echo Yii::t('PrizeModule.base', 'Instructions intro') ?>
+                          </p>
+                          </br>
+                          <?php echo Html::a(Yii::t('PrizeModule.base', 'Dowload instructions PDF'), Url::to('@web/themes/Evoke/img/evoke_board.png'), array('class' => 'btn')); ?>
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -108,6 +118,16 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
     </div>
 </div>
 
+<style media="screen">
+  .boardgame-image{
+    background-image: url();
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 1em;
+
+  }
+</style>
+
 <script type="text/javascript">
   $('#toolSearch').on('click', function(event){
     event.preventDefault();
@@ -115,6 +135,7 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
     $.ajax({
       url: '<?php echo Url::toRoute('/prize/evoke-tools/search') ?>',
       success: function(result) {
+        //spinner animation
         $('#results').html(result);
       }
     })
