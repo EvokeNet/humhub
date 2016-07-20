@@ -17,6 +17,6 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Actions' => '',
+    'Actions' => 'Acciones',
     '<strong>Manage</strong> groups' => '<strong>Administrar</strong> grupos',
 ];

@@ -131,7 +131,7 @@ class ContentActiveRecord extends ActiveRecord implements \humhub\modules\conten
      * 
      * @return \humhub\modules\content\widgets\WallEntry
      */
-    public function getWallEntryWidget()
+    public function getWallEntryWidget() 
     {
         if ($this->wallEntryClass !== '') {
             $class = $this->wallEntryClass;

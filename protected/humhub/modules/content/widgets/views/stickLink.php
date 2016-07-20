@@ -7,3 +7,4 @@
                     return false;"><i class="fa fa-arrow-up"></i> <?php echo Yii::t('ContentModule.widgets_views_stickLink', 'Stick'); ?></a>
     <?php endif; ?>
 </li>
+ 

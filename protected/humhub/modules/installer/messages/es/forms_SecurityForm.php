@@ -17,8 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Allow access for non-registered users to public content (guest access)' => '',
-    'External user can register (The registration form will be displayed at Login))' => '',
-    'Newly registered users have to be activated by an admin first' => '',
-    'Registered members can invite new users via email' => '',
+    'Allow access for non-registered users to public content (guest access)' => 'Permitir el acceso de usuarios no registrados al contenido público (acceso para invitados)',
+    'External user can register (The registration form will be displayed at Login)' => 'Usuario externo puede registrar (El formulario de inscripción se mostrará al iniciar sesión)',
+    'Newly registered users have to be activated by an admin first' => 'Nuevos usuarios registrados tienen que ser activada por un administrador primera',
+    'Registered members can invite new users via email' => 'Los miembros registrados pueden invitar a nuevos usuarios vía e-mail',
 ];

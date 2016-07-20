@@ -17,8 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Auto format based on user language - Example: {example}' => '',
-    'Fixed format (mm/dd/yyyy) - Example: {example}' => '',
+    'Auto format based on user language - Example: {example}' => 'Formato automático basado en el lenguaje del usuario - Ejemplo: {example}',
+    'Fixed format (mm/dd/yyyy) - Example: {example}' => 'Formato fijo (mm/dd/yyyy) - Ejemplo: {example}',
     '<strong>Design</strong> settings' => 'Ajustes de <strong>diseño</strong>',
     'Alphabetical' => 'Alfabético',
     'Firstname Lastname (e.g. John Doe)' => 'Nombre y Apellido (p.ej. John Doe)',

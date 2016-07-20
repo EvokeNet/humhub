@@ -17,13 +17,13 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    '<strong>Current Group:</strong>' => '',
-    '<strong>Manage</strong> members' => '',
-    '<strong>Manage</strong> permissions' => '',
-    '<strong>Pending</strong> approvals' => '',
-    '<strong>Pending</strong> invitations' => '',
-    'Actions' => '',
-    'Group' => '',
-    'Remove' => '',
-    'never' => '',
+    '<strong>Current Group:</strong>' => '<strong>Grupo actual:</strong>',
+    '<strong>Manage</strong> members' => '<strong>Administrar</strong> miembros',
+    '<strong>Manage</strong> permissions' => '<strong>Administrar</strong> permisos',
+    '<strong>Pending</strong> approvals' => '<strong>Aprobaciones</strong> pedientes',
+    '<strong>Pending</strong> invitations' => '<strong>Invitaciones</strong> pedientes',
+    'Actions' => 'Acciones',
+    'Group' => 'Grupo',
+    'Remove' => 'Borrar',
+    'never' => 'nunca',
 ];

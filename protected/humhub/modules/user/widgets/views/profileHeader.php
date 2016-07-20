@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use humhub\modules\user\models\User;
 use humhub\modules\space\models\Space;
+use humhub\modules\coin\widgets\UserWallet;
 
 if ($isProfileOwner) {
     $this->registerJsFile('@web/resources/user/profileHeaderImageUpload.js');

@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'TimeZone' => '',
+    'TimeZone' => 'Zona horaria',
     'Hide panel on dashboard' => 'Esconder panel en Inicio',
     'Language' => 'Idioma',
     'Profile visibility' => 'Visibilidad del perfil',

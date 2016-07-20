@@ -17,11 +17,11 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    '<strong>Configuration</strong>' => '',
-    'My club' => '',
-    'My community' => '',
-    'My company (Social Intranet / Project management)' => '',
-    'My educational institution (school, university)' => '',
-    'Skip this step, I want to set up everything manually' => '',
-    'To simplify the configuration, we have predefined setups for the most common use cases with different options for modules and settings. You can adjust them during the next step.' => '',
+    '<strong>Configuration</strong>' => '<strong>Configuración</strong>',
+    'My club' => 'Mi club',
+    'My community' => 'Mi comunidad',
+    'My company (Social Intranet / Project management)' => 'Mi empresa (Intranet Social / Gestión de proyectos)',
+    'My educational institution (school, university)' => 'Mi institución educativa (escuela, universidad)',
+    'Skip this step, I want to set up everything manually' => 'Omitir este paso, quiero configurar todo manualmente',
+    'To simplify the configuration, we have predefined setups for the most common use cases with different options for modules and settings. You can adjust them during the next step.' => 'Para simplificar la configuración , tenemos configuraciones predefinidas para los casos de uso más comunes con diferentes opciones para los módulos y la configuración. Puede ajustarlos durante el paso siguiente ',
 ];

@@ -17,15 +17,15 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Drag a photo here or click to browse your files' => '',
-    'Hide my year of birth' => '',
-    'Howdy <strong>%firstname%</strong>, thank you for using HumHub.' => '',
-    'Save and close' => '',
-    'You are the first user here... Yehaaa! Be a shining example and complete your profile,<br>so that future users know who is the top dog here and to whom they can turn to if they have questions.' => '',
-    'Your firstname' => '',
-    'Your lastname' => '',
-    'Your mobild phone number' => '',
-    'Your phone number at work' => '',
-    'Your skills, knowledge and experience (comma seperated)' => '',
-    'Your title or position' => '',
+    'Drag a photo here or click to browse your files' => 'Arrastre una foto aquí o haga clic para navegar por los archivos',
+    'Hide my year of birth' => 'Ocultar mi año de nacimiento',
+    'Howdy <strong>%firstname%</strong>, thank you for using HumHub.' => 'Hola <strong>%firstname%</strong>, gracias por usar HumHub.',
+    'Save and close' => 'Guardar y cerrar',
+    'You are the first user here... Yehaaa! Be a shining example and complete your profile,<br>so that future users know who is the top dog here and to whom they can turn to if they have questions.' => 'Usted es el primer usuario aquí ... Yehaaa ! Sea un ejemplo brillante y completan su perfil <br>para que los futuros usuarios sepan quién es el perro superior aquí y al que pueden acudir a si tienen preguntas.',
+    'Your firstname' => 'Su nombre',
+    'Your lastname' => 'Tu apellido',
+    'Your mobile phone number' => 'Tu número de teléfono',
+    'Your phone number at work' => 'Su número de teléfono en el trabajo',
+    'Your skills, knowledge and experience (comma separated)' => 'Sus habilidades, conocimientos y experiencia (separadas por comas)',
+    'Your title or position' => 'Su título o cargo',
 ];
