@@ -119,9 +119,14 @@ class EvokeToolsController extends Controller
           $prize_won = Yii::t('PrizeModule.base', 'Sorry');
         }
       }
-
       $results = '<div><strong>' . $prize_won . '</strong></div>';
 
-      return $this->redirect(['index', 'results' => $results]);
+      if (Yii::$app->request->isAjax) {
+        return $results;
+      } else {
+
+
+        return $this->redirect(['index', 'results' => $results]);
+      }
     }
 }

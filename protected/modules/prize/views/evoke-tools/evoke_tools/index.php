@@ -1,6 +1,6 @@
 <?php
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\helpers\Url;
 
 $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
 ?>
@@ -22,7 +22,7 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                       <div class="col-xs-7">
                         <?php echo Html::a(
                             Yii::t('PrizeModule.base', 'Pay 5 Evocoins to play'),
-                            ['search'], array('class' => 'btn btn-primary')); ?>
+                            ['search'], array('class' => 'btn btn-primary', 'id' => 'toolSearch')); ?>
                       </div>
 
                       <div class="col-xs-4">
@@ -68,9 +68,30 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                         </div>
                       </div>
                     </div>
-                    <?php if(isset($results)): ?>
-                      <span><?php echo $results ?></span>
-                    <?php endif; ?>
+                    <div id="results">
+                      <?php if(isset($results)): ?>
+                        <span><?php echo $results ?></span>
+                      <?php endif; ?>
+                    </div>
+                  </div>
+                  <div class="row">
+                  </br>
+                  </div>
+                  <div class="row">
+                    <div class="panel-heading">
+                      <strong><?php echo Yii::t('PrizeModule.base', 'The boardgame') ?></strong>
+                    </div>
+                    <div class="panel-body">
+                      <div class="row">
+                        <p>
+                          <?php echo Yii::t('PrizeModule.base', 'Boardgame intro'); ?>
+                        </p>
+                      </div>
+                      <div class="row">
+                        <span class="boardgame-image col-xs-7"></span>
+                        <span class="dowload col-xs-4"></span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -86,3 +107,16 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+  $('#toolSearch').on('click', function(event){
+    event.preventDefault();
+
+    $.ajax({
+      url: '<?php echo Url::toRoute('/prize/evoke-tools/search') ?>',
+      success: function(result) {
+        $('#results').html(result);
+      }
+    })
+  });
+</script>
