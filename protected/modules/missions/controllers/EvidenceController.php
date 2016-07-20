@@ -283,6 +283,12 @@ class EvidenceController extends ContentContainerController
                 //Reward reviewer 5 evocoin
                 $wallet = Wallet::find()->where(['owner_id' => $user->id])->one();
                 $wallet->addCoin(5);
+
+                //give an extra 5 for adding a comment
+                if (!empty($comment)) {
+                  $wallet->addCoin(5);
+                }
+
                 $wallet->save();
 
                 //Reward evidence author
