@@ -38,7 +38,7 @@ class MatchingQuestionsController extends Controller
             ],
         ];
     }
-    
+
     public function actionMatching()
     {
 
@@ -67,7 +67,7 @@ class MatchingQuestionsController extends Controller
                 // check if it is SINGLE CHOICE
                 if(strpos($key, 'matching_question', 0) === 0){
                     // get matching question id
-                    $matching_question = (int) str_replace('matching_question_', '', $key); 
+                    $matching_question = (int) str_replace('matching_question_', '', $key);
 
                     //get matching answer id
                     $matching_answer = $answer;
@@ -83,12 +83,12 @@ class MatchingQuestionsController extends Controller
                     // get matching answer id
 
                     //remove matching answer tag
-                    $matching_answer = str_replace('matching_answer_', '', $key); 
+                    $matching_answer = str_replace('matching_answer_', '', $key);
                     //remove matching question info
                     $matching_answer = (int) substr($matching_answer, 0, strpos($matching_answer, "_"));
 
                     // get matching question id
-                    $matching_question = (int) substr($key, strrpos($key, "_") + 1, strlen($key) - 1);  
+                    $matching_question = (int) substr($key, strrpos($key, "_") + 1, strlen($key) - 1);
 
                     if(!$answer){
                         Yii::$app->session->setFlash('matching_questions_incomplete_answers');
@@ -127,15 +127,17 @@ class MatchingQuestionsController extends Controller
 
             //SET USER'S FIRST POWER POINTS
             $powers_quality_1 = QualityPowers::findAll(['quality_id' => $quality_1->id]);
-            $powers_quality_2 = QualityPowers::findAll(['quality_id' => $quality_2->id]);
+            // $powers_quality_2 = QualityPowers::findAll(['quality_id' => $quality_2->id]);
 
             foreach($powers_quality_1 as $power_quality_1){
-                UserPowers::addPowerPoint($power_quality_1->getPower(), $user, 10);
+              $starter_points = floor((($power_quality_1->improve_multiplier * pow(1, 1.95)) + $power->improve_offset) * 0.125); // give them 12.5% of the points needed for the first level
+
+              UserPowers::addPowerPoint($power_quality_1->getPower(), $user, $starter_points);
             }
 
-            foreach($powers_quality_2 as $power_quality_2){
-                UserPowers::addPowerPoint($power_quality_2->getPower(), $user, 5);
-            }
+            // foreach($powers_quality_2 as $power_quality_2){
+            //     UserPowers::addPowerPoint($power_quality_2->getPower(), $user, 5);
+            // }
 
             return $this->render('matching-results', compact('quality_1', 'quality_2', 'superhero_identity'));
 
@@ -146,13 +148,11 @@ class MatchingQuestionsController extends Controller
 
 
     private function redirectQuestionnaire(){
-        
-        // var_dump(Yii::$app->language);
-        // die();
+
         $questions = MatchingQuestions::find()->with([
             'matchingQuestionTranslations' => function ($query) {
                 $lang = Languages::findOne(['code' => Yii::$app->language]);
-                
+
                 if(isset($lang))
                     $query->andWhere(['language_id' => $lang->id]);
                 else{
@@ -169,13 +169,11 @@ class MatchingQuestionsController extends Controller
                     $query->andWhere(['language_id' => $lang->id]);
                 }
             },
-        ])->all(); 
-        
-        //$customers = Customers::model()->with('municipality','municipality.franchisesMunicipalities')->findAll($criteria);
+        ])->all();
 
         return $this->render('matching', compact('questions'));
     }
-    
+
      private function build_qualities_array() {
         $qualities = array();
 
@@ -192,8 +190,8 @@ class MatchingQuestionsController extends Controller
     public function actionIndex()
     {
         $searchModel = new MatchingQuestionsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);   
-        
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
