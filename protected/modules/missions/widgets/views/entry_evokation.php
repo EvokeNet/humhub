@@ -14,20 +14,19 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
 
 ?>
 
-<strong>
-   <?php print humhub\widgets\RichText::widget(['text' => $evokation->title]); ?>
-</strong>
+<h5><?php print humhub\widgets\RichText::widget(['text' => $evokation->title]); ?></h5>
+<p><?php print humhub\widgets\RichText::widget(['text' => $evokation->description]);?></p>
 <br>
-<?php print humhub\widgets\RichText::widget(['text' => $evokation->description]);?>
-<br><br>
 
 <?php if($youtube_code): ?>
     <iframe width="630" height="420" src="http://www.youtube.com/embed/<?php echo $youtube_code; ?>" frameborder="0" allowfullscreen></iframe>
 <?php endif; ?>
 
+<br><br>
+
 <div>
     <div style = "float:left">
-        <a class = "btn btn-primary" href='<?= Url::to(['/missions/evokations/view', 'id' => $evokation->id, 'sguid' => $contentContainer->guid]); ?>'>
+        <a class = "btn btn-cta2" href='<?= Url::to(['/missions/evokations/view', 'id' => $evokation->id, 'sguid' => $contentContainer->guid]); ?>'>
             <?= Yii::t('MissionsModule.base', 'Read More') ?>
         </a>
     </div>
@@ -36,7 +35,7 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
 
         <?php if (!$deadline || (strtotime(date('Y-m-d H:i:s')) > strtotime($deadline->start_date)) && (strtotime(date('Y-m-d H:i:s')) < strtotime($deadline->finish_date))): ?>
         <div style = "float:right">
-            <a class = "btn btn-primary" href="#" onClick="addEvokationToPortfolio<?= $evokation->id ?>();">
+            <a class = "btn btn-cta1" href="#" onClick="addEvokationToPortfolio<?= $evokation->id ?>();">
                 <?= Yii::t('MissionsModule.base', 'Add to Portfolio') ?>
             </a>
         </div>

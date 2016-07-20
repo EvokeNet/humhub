@@ -40,7 +40,7 @@ class Events
         //$event->sender->addWidget(CTAPostEvidence::className(), []);
         //$event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers]);
     }
-
+    
     public static function onSidebarInit($event)
     {
 

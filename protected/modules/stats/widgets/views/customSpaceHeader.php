@@ -57,7 +57,7 @@ if ($space->isAdmin()) {
             <div class="img-profile-data">
                 <h1 class="space"><?php echo Html::encode($space->name); ?></h1>
 
-                <h2 class="space"><?php echo Html::encode($space->description); ?></h2>
+                <!--<h2 class="space"><?php //echo Html::encode($space->description); ?></h2>-->
             </div>
 
             <!-- check if the current user is the profile owner and can change the images -->
@@ -219,10 +219,21 @@ if ($space->isAdmin()) {
                                 class="title"><?php echo Yii::t('StatsModule.widgets_views_spaceHeader', 'Activities Completed'); ?></span>
                         </div>
                         
-                        <div class="pull-left entry">
-                            <span class="count"><?php echo floor(($done/$total)*100).'%'; ?></span><br>
+                        <div class="pull-left entry" style = "margin-top:10px">
+                            <!--<span class="count"><?php echo floor(($done/$total)*100).'%'; ?></span><br>
                             <span
-                                class="title"><?php echo Yii::t('StatsModule.widgets_views_spaceHeader', 'Evokation Progress'); ?></span>
+                                class="title"><?php echo Yii::t('StatsModule.widgets_views_spaceHeader', 'Evokation Progress'); ?></span>-->
+                            <div class="progress" style = "width:150px">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?= floor(($done/$total)*100) ?>%;">
+                                    <span class="sr-only"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="pull-left entry">
+                            <span><?= floor(($done/$total)*100).'%' ?></span><br>
+                            <span><?= Yii::t('MissionsModule.base', 'Evokation Progress') ?></span>
+                            <!--<p><?php //Yii::t('MissionsModule.base', 'Evokation Progress: {number}%', array('number' => floor(($done/$total)*100))) ?></p>-->
                         </div>
 
                         <?php endif; ?>

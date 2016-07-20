@@ -27,7 +27,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Missions');
             <?php foreach ($missions as $mission): ?>
             
                 <div class="panel panel-default">
-                    <div class="panel-body">
+                    <div class="panel-body grey_box">
                         
                         <h4>
                             <strong><?= isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title ?></strong>
@@ -40,7 +40,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Missions');
                         <br>
                         <?php echo Html::a(
                             Yii::t('MissionsModule.base', 'Enter Mission'),
-                            ['activities', 'missionId' => $mission->id, 'sguid' => $contentContainer->guid], array('class' => 'btn btn-success')); ?>
+                            ['activities', 'missionId' => $mission->id, 'sguid' => $contentContainer->guid], array('class' => 'btn btn-cta1')); ?>
                     </div>
                 </div>
                 

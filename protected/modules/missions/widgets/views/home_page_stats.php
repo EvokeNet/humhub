@@ -26,44 +26,80 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
     <div class="panel-body row">
         <div class="col-xs-7">
             <div class="panel-heading">
-                <strong>
-                    <?= Yii::t('MissionsModule.base', 'Mission Progress') ?>
-                </strong>
+                <h4 class = "display-inline">
+                    <strong>
+                        <?= Yii::t('MissionsModule.base', 'Mission Progress') ?>
+                    </strong>
+                </h4>
                 <?php if($member): ?>
-                    <a id="submit_evidence" class="btn btn-primary" style="float: right;" href="<?= Url::to(['/missions/evokation/index', 'sguid' => $member->space->guid]); ?>">
+                    <a id="submit_evidence" class="btn btn-cta2" style="float: right;" href="<?= Url::to(['/missions/evokation/index', 'sguid' => $member->space->guid]); ?>">
                         <?php echo Yii::t('MissionsModule.base', 'Submit Evidence'); ?>
                     </a>
                 <?php endif; ?>
-                <div>
+                <br>
+                <span>
                     <?= Yii::t('MissionsModule.base', 'Your average rating: {avg}', array('avg' => $avg)) ?>
-                </div>
+                </span>
             </div>
             <div class="panel-body">
-               <?= Yii::t('MissionsModule.base', 'Every time you submit evidence, your overall rating will improve.') ?>
+               <p><?= Yii::t('MissionsModule.base', 'Every time you submit evidence, your overall rating will improve.') ?><p>
             </div>
         </div>
-        <div class="col-xs-5" style="text-align: center;">
-            <div class="col-xs-9">
-                <div class="panel-heading"  style="text-align: left;">
-                    <strong>
-                        <?= Yii::t('MissionsModule.base', 'Your Evocoins') ?>
-                    </strong>  
+        <div class="col-xs-5">
+            
+            <div class = "grey_box">
+                <div style = "position:relative; height:90px">
+                        
+                        <div style = "position:absolute; left:0; width:50%">
+                            <h6><?= Yii::t('MissionsModule.base', 'Your Evocoins') ?></h6>  
+                            <p style = "font-size:9pt"><?= Yii::t('MissionsModule.base', 'Earn Evocoins by reviewing evidence.') ?></p>
+                        </div> 
+                
+                        <div style = "position:absolute; right:0; top:10px">
+                            <div class = "home-widget-evocoins">
+                                <img src="/humhub/themes/Evoke/img/evocoin_bg.png" width = "70px">
+                                <div><p><?= $wallet->amount ?></p></div>    
+                            </div>
+                        </div> 
+                
                 </div>
-                <div class="panel-body"  style="text-align: justify;">
-                    <?= Yii::t('MissionsModule.base', 'Earn Evocoins by reviewing evidence.') ?>
+                
+                <br>
+                <div class = "text-center">
+                    <a class = "btn btn-cta1" href='<?= Url::to(['/missions/review/index', 'sguid' => $member->space->guid]) ?>'>
+                            <?= Yii::t('MissionsModule.base', 'Review Evidence') ?>
+                    </a> 
                 </div>
             </div>
-
-            <div class="col-xs-3" style="padding-top: 20%;">
-                <div class="btn-default evokecoin">
-                    <?= $wallet->amount ?>
-                </div> 
-            </div>
-            <?php if($member): ?>
-                <a class = "btn btn-info" href='<?= Url::to(['/missions/review/index', 'sguid' => $member->space->guid]) ?>'>
-                        <?= Yii::t('MissionsModule.base', 'Review Evidence') ?>
-                </a> 
-            <?php endif; ?>
+            
+            <!--<div class = "grey_box">
+                <div class="row">
+                    <div class="col-xs-6">
+                        
+                        <div>
+                            <h6><?= Yii::t('MissionsModule.base', 'Your Evocoins') ?></h6>  
+                            <p style = "font-size:9pt"><?= Yii::t('MissionsModule.base', 'Earn Evocoins by reviewing evidence.') ?></p>
+                        </div> 
+                
+                    </div>
+                    <div class="col-xs-6">
+                        <div>
+                            <div class = "home-widget-evocoins">
+                                <img src="/humhub/themes/Evoke/img/evocoin_bg.png" width = "70px">
+                                <div><p><?= $wallet->amount ?></p></div>    
+                            </div>
+                        </div> 
+                
+                    </div>
+                </div>
+                
+                <br>
+                <div class = "text-center">
+                    <a class = "btn btn-cta1" href='<?= Url::to(['/missions/review/index', 'sguid' => $member->space->guid]) ?>'>
+                            <?= Yii::t('MissionsModule.base', 'Review Evidence') ?>
+                    </a> 
+                </div>
+            </div>-->
         </div>
     </div>
 </div>
