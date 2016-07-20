@@ -17,7 +17,7 @@ class ReviewController extends ContentContainerController
 
     }   
 
-    public function getEvidenceToReviewCount(){
+    public function getEvidenceToReviewCount($currentSpace){
 
         $user_id = Yii::$app->user->getIdentity()->id;
 
@@ -27,15 +27,16 @@ class ReviewController extends ContentContainerController
         ->select(['count(distinct e.id) as count'])
         ->from('evidence as e')
         ->join('INNER JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
-        ->join('LEFT JOIN', 'space_membership s', '`s`.`user_id`=`c`.`user_id`')
-        ->where('s.space_id != '.$team_id)
+        //->join('LEFT JOIN', 'space_membership s', '`s`.`user_id`=`c`.`user_id`')
+        //->where('s.space_id != '.$team_id)
+        ->where('c.space_id != '.$currentSpace->id)
         ->andWhere('c.user_id != '.$user_id)
         ->one();
 
         return $query['count'];
     }
 
-    public function getNextEvidence(){
+    public function getNextEvidence($currentSpace){
         $nextEvidence = array();
         $evidence = null;
         $files = null;
@@ -50,8 +51,9 @@ class ReviewController extends ContentContainerController
         ->from('evidence as e')
         ->join('INNER JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
         ->join('LEFT JOIN', 'votes v', '`v`.`evidence_id`=`e`.`id`')
-        ->join('LEFT JOIN', 'space_membership s', '`s`.`user_id`=`c`.`user_id`')
-        ->where('s.space_id != '.$team_id.' AND e.id NOT IN '.$subquery)
+        //->join('LEFT JOIN', 'space_membership s', '`s`.`user_id`=`c`.`user_id`')
+        ->where('c.space_id != '.$currentSpace->id)
+        ->andWhere('e.id NOT IN  '.$subquery)
         ->andWhere('c.user_id != '.$user_id)
         ->groupBy('e.id')
         ->orderBy('vote_count ASC')
@@ -87,11 +89,11 @@ class ReviewController extends ContentContainerController
    
     public function actionIndex()
     {   
-        $nextEvidence = $this->getNextEvidence();
+        $nextEvidence = $this->getNextEvidence($this->contentContainer);
         $evidence = $nextEvidence['evidence'];
         $files = $nextEvidence['files'];
         $evidence_to_review_count = $nextEvidence['evidence_to_review_count'];
-        $totalEvidence = $this->getEvidenceToReviewCount();
+        $totalEvidence = $this->getEvidenceToReviewCount($this->contentContainer);
 
         return $this->render('index', array('contentContainer' => $this->contentContainer, 'evidence' => $evidence, 'files' => $files, 'evidence_count' => $totalEvidence, 'evidence_to_review_count' => $evidence_to_review_count));
     }
