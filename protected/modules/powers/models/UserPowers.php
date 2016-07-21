@@ -183,12 +183,10 @@ class UserPowers extends \yii\db\ActiveRecord
             $level_aux--;
         }
 
-        $level_aux;
-
         $this->level = $level_aux;
-        $this->save();
 
         if($this->level != $old_level){
+            $this->save();
 
             $quality_power = QualityPowers::findOne(['power_id' => $this->power_id]);
             if($quality_power){

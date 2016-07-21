@@ -26,7 +26,11 @@
 <script type="text/javascript">
 
 var popUpWatcher = setInterval(function() {
-    loadPopUps();
+
+    if(! $("#popup-message").is(':visible') ){
+      loadPopUps();
+    }
+
 }, 1000); 
 
 function loadPopUps(){

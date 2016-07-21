@@ -5,6 +5,7 @@ namespace app\modules\powers\models;
 use Yii;
 use humhub\modules\user\models\User;
 use app\modules\matching_questions\models\Qualities;
+use humhub\modules\missions\controllers\AlertController;
 
 /**
  * This is the model class for table "user_qualities".
@@ -66,6 +67,11 @@ class UserQualities extends \yii\db\ActiveRecord
         return $this->hasOne(Qualities::className(), ['id' => 'quality_id']);
     }
 
+    public function getQualityObject()
+    {
+        return Qualities::findOne($this->quality_id);
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -109,11 +115,31 @@ class UserQualities extends \yii\db\ActiveRecord
 
         $userQuality = UserQualities::findOne(['quality_id' => $quality_id, 'user_id' => $user_id]);
 
+        $new_power = false;
+
         if(!isset($userQuality)){
             $userQuality = new UserQualities();
             $userQuality->user_id = $user_id;
             $userQuality->quality_id = $quality_id;
-        }  
+
+            if($level >= 1){
+                $new_power = true;
+            }
+
+        }else if( ( (isset($userQuality->level) && $userQuality->level < 1) || (!isset($userQuality->level)) ) && $level >= 1)  {
+            $new_power = true;
+        }
+
+        if($new_power){
+            AlertController::createAlert(
+                "Congratulations!", 
+                Yii::t(
+                    'MissionsModule.base', ' You have earned the {super_power_name} super power!!', 
+                    array('super_power_name' => $userQuality->getQualityObject()->name)
+                ),
+                'secondary'
+            );
+        }
 
         $userQuality->level = $level;
         $userQuality->save();
