@@ -25,6 +25,7 @@ class Events extends \yii\base\Object
       'label' => Yii::t('PrizeModule.base', 'Prizes'),
       'url' => Url::to(['/prize/admin/']),
       'group' => 'manage',
+      'sortOrder' => 1300,
       'icon' => '<i class="fa fa-gift"></i>',
       'isActive' => (
         Yii::$app->controller->module && Yii::$app->controller->module->id == 'prize'

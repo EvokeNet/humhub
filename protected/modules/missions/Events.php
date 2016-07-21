@@ -68,6 +68,7 @@ class Events
             'label' => Yii::t('MissionsModule.base', 'Missions'),
             'url' => Url::to(['/missions/admin']),
             'group' => 'manage',
+            'sortOrder' => 600,
             'icon' => '<i class="fa fa-sitemap"></i>',
             'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'admin'
             
@@ -93,6 +94,7 @@ class Events
             'label' => Yii::t('MissionsModule.base', 'Evokation Categories'),
             'url' => Url::to(['/missions/admin/index-categories']),
             'group' => 'manage',
+            'sortOrder' => 1100,
             'icon' => '<i class="fa fa-sort-amount-asc"></i>',
             'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'admin'
             &&
@@ -116,6 +118,7 @@ class Events
             'label' => Yii::t('MissionsModule.base', 'Evokation Deadline'),
             'url' => Url::to(['/missions/admin/index-deadline']),
             'group' => 'manage',
+            'sortOrder' => 1000,
             'icon' => '<i class="fa fa-clock-o"></i>',
             'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'admin'
             &&

@@ -3,10 +3,10 @@
 namespace humhub\modules\missions\components;
 
 use Yii;
-use humhub\modules\content\components\actions\ContentContainerStream;
+//use humhub\modules\content\components\actions\ContentContainerStream;
 use app\modules\missions\models\Evokations;
 
-class EvokationStreamAction extends ContentContainerStream
+class EvokationStreamAction extends EvokationsContentContainerStream
 {
 
 	public $mission_id;

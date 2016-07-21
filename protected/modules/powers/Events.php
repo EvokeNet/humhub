@@ -26,6 +26,7 @@ class Events extends \yii\base\Object
             'label' => Yii::t('PowersModule.base', 'Powers'),
             'url' => Url::to(['/powers/admin']),
             'group' => 'manage',
+            'sortOrder' => 900,
             'icon' => '<i class="fa fa-bolt"></i>',
             'isActive' => (
                 Yii::$app->controller->module && Yii::$app->controller->module->id == 'powers'

@@ -6,7 +6,7 @@ $userPowers = UserPowers::getUserPowers($user->id);
 
 echo \humhub\modules\missions\widgets\SuperPowerStats::widget(['powers' => $userPowers]);
 
-//echo \humhub\modules\post\widgets\Form::widget(['contentContainer' => $user]); 
+echo \humhub\modules\post\widgets\Form::widget(['contentContainer' => $user]); 
 
 $canCreateEvidences = $user->permissionManager->can(new \humhub\modules\missions\permissions\CreateEvidence());
 
