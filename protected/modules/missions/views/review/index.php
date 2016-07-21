@@ -9,36 +9,26 @@ if($evidence){
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h2>
-            <strong>
-                <?php echo Yii::t('MissionsModule.base', 'Review Evidence'); ?>
-            </strong>
-        </h2>
+        <h3><?php echo Yii::t('MissionsModule.base', 'Review Evidence'); ?></h3>
         <?php if($activity): ?>
-        <div style="float:right">
-            <?php //($evidence_count - $evidence_to_review_count + 1) ?>
-            <?php echo Yii::t('MissionsModule.base', '{first} of {total}', array('first' => ($evidence_count - $evidence_to_review_count + 1), 'total' => $evidence_count)); ?> 
-            <?php //$evidence_count ?>
-        </div>
+        <h6><?php echo Yii::t('MissionsModule.base', '{first} of {total}', array('first' => ($evidence_count - $evidence_to_review_count + 1), 'total' => $evidence_count)); ?></h6>
         <?php endif; ?>
     </div>
 <?php if($activity): ?>
     <div class="panel-body">
 
-        <div class="activity_area">
-            <?= isset($activity->mission->missionTranslations[0]) ? $activity->mission->missionTranslations[0]->title : $activity->mission->title ?>, 
-            <?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title ?>
-            <br>
-            <br>
-            <?= isset($activity->mission->missionTranslations[0]) ? $activity->mission->missionTranslations[0]->description : $activity->mission->description ?>
+        <div class="grey-box formatted">
+            <h4>
+                <?= isset($activity->mission->missionTranslations[0]) ? $activity->mission->missionTranslations[0]->title : $activity->mission->title ?>, 
+                <?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title ?>
+            </h4>
+
+            <p><?= isset($activity->mission->missionTranslations[0]) ? $activity->mission->missionTranslations[0]->description : $activity->mission->description ?></p>
         </div>
 
         <div class="evidence_area">
-            <strong>
-                <?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?>
-            </strong>
-            <br>
-            <?php print humhub\widgets\RichText::widget(['text' => $evidence->text]);?>
+            <h5><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h5>
+            <p><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]); ?></p>
         </div>
 
         <?php if(sizeof($files) > 0): ?>
@@ -58,9 +48,9 @@ if($evidence){
         <div class="statistics">
             <?php if(Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
                 <?php //echo \humhub\widgets\TimeAgo::widget(['timestamp' => $evidence->created_at]); ?>
-                <?php echo Yii::t('MissionsModule.base', 'By Anonymous, {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $evidence->created_at]))); ?>
+                <p><?php echo Yii::t('MissionsModule.base', 'By Anonymous, {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $evidence->created_at]))); ?></p>
             <?php else: ?>
-                <?php echo Yii::t('MissionsModule.base', 'By'); ?> 
+                <p><?php echo Yii::t('MissionsModule.base', 'By'); ?></p> 
                 <a href="<?= ($evidence->content->user->getUrl()) ?>">
                     <?= ($evidence->content->user->username) ?>
                 </a>, 
@@ -95,53 +85,53 @@ if($evidence){
                   }        
                 ?>
                 <div>
-                  <?php 
-                    $primaryPowerTitle = $activity->getPrimaryPowers()[0]->getPower()->title; 
-                  ?>
-                	<h2><?= Yii::t('MissionsModule.base', 'Distribute points for {title}', array('title' => $primaryPowerTitle)) ?></h2>
-                	<p>
-                		<?php //$activity->rubric ?>
-                    <?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric ?>
-                	</p>
+                  <?php $primaryPowerTitle = $activity->getPrimaryPowers()[0]->getPower()->title; ?>
+                    <h4><?= Yii::t('MissionsModule.base', 'Distribute points for {title}', array('title' => $primaryPowerTitle)) ?></h4>
+                    <p style = "margin-bottom:25px"><?= Yii::t('MissionsModule.base', '<strong>Activity Rubric:</strong> {rubric}', array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></p>
+                    
                 	<form id = "review" class="review">
                         <input type="hidden" id="evidence_id" value="<?= $evidence->id ?>">
                 		<div class="radio">
               				<label>
               					<input type="radio" name="yes-no-opt" class="btn-show" value="yes" <?= $yes ?> >
-              					Yes
+              					<?= Yii::t('MissionsModule.base', 'Yes') ?>
               				</label>
+                            
+                            <br>
               				<div id="yes-opt" class="collapse <?= $collapse ?>">
+                                <br>
               					<?php for ($x=1; $x <= 5; $x++): ?> 
               					<label class="radio-inline">
               						<input type="radio" name="grade" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> >
               						<?php echo $x; ?>
               					</label>
               					<?php endfor; ?>
-              					<p>
-                          <?= Yii::t('MissionsModule.base', 'How many points will you award this evidence?') ?>
-              					</p>
+              					<p style = "display:inline; margin-left:20px"><?= Yii::t('MissionsModule.base', 'How many points will you award this evidence?') ?></p>
+                                  <br><br>
               				</div>
+                            
             			  </div>
             			  <div class="radio">
             				  <label>
             					<input type="radio" name="yes-no-opt" class="btn-hide" value="no" <?= $no ?>>
-            					 No
+            					 <?= Yii::t('MissionsModule.base', 'No') ?>
             				  </label>
             			  </div>
             			  <br>
-                    <?php echo Html::textArea("text", $comment , array('id' => 'review_comment', 'class' => 'text-margin form-control ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Comment"))); ?>  
-            			  <br>
-                    <?= Yii::t('MissionsModule.base', 'For every piece of evidence you review, you receive 10 points in {title}', array('title' => $primaryPowerTitle)) ?>
-            			  <br>
-            			  <button type="submit" id="post_submit_review" class="btn btn-info">
-                      <?= Yii::t('MissionsModule.base', 'Submit Review') ?>
+                            
+                          <?php echo Html::textArea("text", $comment , array('id' => 'review_comment', 'class' => 'text-margin form-control ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Comment"))); ?>  
+                          <br>
+                          <p><?= Yii::t('MissionsModule.base', 'For every piece of evidence you review, you receive 10 points in {title}', array('title' => $primaryPowerTitle)) ?></p>
+            			  
+            			  <button type="submit" id="post_submit_review" class="btn btn-cta2" style = "padding: 8px 16px 6px;">
+                            <?= Yii::t('MissionsModule.base', 'Submit Review') ?>
             			  </button>
                 	</form>
                 </div>
             </div>
         <?php endif; ?> 
             <hr>
-            <a id="next_evidence" class="btn btn-info" disabled="disabled" style="float: right;" onClick="return false" href="<?= $contentContainer->createUrl('/missions/review/index') ?>">
+            <a id="next_evidence" class="btn btn-cta3" disabled="disabled" style="float: right;" onClick="return false" href="<?= $contentContainer->createUrl('/missions/review/index') ?>">
                 <?php echo Yii::t('MissionsModule.base', 'Next Evidence'); ?>
             </a>
         </div>

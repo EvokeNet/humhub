@@ -10,18 +10,21 @@ use app\modules\matching_questions\models\MatchingQuestions;
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
-            <!--<div class="panel-heading"><strong><?php echo $this->title; ?></strong></div>-->
-            <div class="panel-body">
-
-                <div class="intro">
-                    <?= Yii::t('MatchingModule.base', "Congratulations, you have ventured further than most by answering this call.") ?> 
-                    <br><?= Yii::t('MatchingModule.base', "Now, it is time to find out what type of Evoke agent are you. What do you know?") ?> 
-                    <br><?= Yii::t('MatchingModule.base', "What are the strengths, passions, and abilities you will bring to the Evoke network?") ?>
-                    <br><?= Yii::t('MatchingModule.base', "Answer the following and find out what type of Super Hero is hiding inside you!") ?>
+            <div class="panel-heading">
+                <h3 style = "text-align:center; line-height:40px; padding: 10px 30px">
+                    <?php// Yii::t('MatchingModule.base', 'Congratulations! You have ventured further than most by answering this call.
+                    //Now, it is time to find out what type of Evoke agent are you. What do you know?
+                    //What are the strengths, passions, and abilities you will bring to the Evoke network?
+                    //Answer the following and find out what type of Super Hero is hiding inside you!') ?>
+                    <?= Yii::t('MatchingModule.base', 'By discovering your natural powers, you can learn how to fit into the Evoke network. 
+                    Try to imagine vividly what would you do in each of the scenarios described and honestly answer each question.
+                    ') ?>  
                     <?php if(Yii::$app->session->getFlash('matching_questions_incomplete_answers')): ?>
                         <br><span id="warning" class="warning"><?= Yii::t('MatchingModule.base', 'In case of redirect, please make sure to answer all questions') ?></span>
                     <?php endif; ?>
-                </div>
+                </h3>
+            </div>
+            <div class="panel-body">
 
                 <div class="questionnaire">
                     
@@ -33,7 +36,7 @@ use app\modules\matching_questions\models\MatchingQuestions;
 
                 <?php foreach($questions as $question): ?>
                 
-                    <p class = "question"><?= isset($question->matchingQuestionTranslations[0]) ? $question->matchingQuestionTranslations[0]->description : $question->description ?></p>
+                    <h5 style = "line-height:30px; border-left: 3px solid #28C503; padding: 0 20px"><?= isset($question->matchingQuestionTranslations[0]) ? $question->matchingQuestionTranslations[0]->description : $question->description ?></h5>
                     
                     <br>
                     
@@ -46,24 +49,23 @@ use app\modules\matching_questions\models\MatchingQuestions;
                                 <label>
                                     <input type="number" min="1" max=<?= $maxValue ?> name="matching_answer_<?= $answer->id ?>_matching_question_<?= $question->id ?>" value = "" >
                                         <?= isset($answer->matchingAnswerTranslations[0]) ? $answer->matchingAnswerTranslations[0]->description : $answer->description ?>
-                                </label>   
+                                </label>   <br>
                             <!-- SINGLE CHOICE -->     
                             <?php else: ?>    
-                                <label>
+                                <label style = "margin-right:20px">
                                     <input type="radio" name="matching_question_<?= $question->id ?>" value = <?= $answer->id ?> >
                                         <?= isset($answer->matchingAnswerTranslations[0]) ? $answer->matchingAnswerTranslations[0]->description : $answer->description ?>
                                 </label>
                             <?php endif; ?>
                             
-                            <BR>
                         <?php endforeach; ?>    
                     </div>
-                    <HR>
 
+                    <div class = "text-center"><div style = "border-bottom: 3px solid #3399E1; margin: 50px 200px;"></div></div>
                 <?php endforeach; ?>
 
                 <div class="form-group">
-                    <?= Html::submitButton(Yii::t('MatchingModule.base', "Submit"), ['class' => 'btn btn-primary']) ?>
+                    <?= Html::submitButton(Yii::t('MatchingModule.base', "Submit"), ['class' => 'btn btn-cta1']) ?>
                 </div>
 
                 <?php
@@ -97,14 +99,14 @@ form{
     margin-left: 20px;
 }
 .question{
-    font-size: 18px;
+    font-size: 20pt;
 }
 
 .questionnaire{
     margin: auto;
     /*width: 75%;*/
     /*padding-top: 30px;*/
-    padding: 50px 30px 0px;
+    padding: 20px 50px 0px;
 }
 
 </style>

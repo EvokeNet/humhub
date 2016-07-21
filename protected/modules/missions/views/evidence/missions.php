@@ -16,7 +16,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Missions');
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h2><strong><?php echo Yii::t('MissionsModule.base', 'Missions'); ?></strong></h2>
+        <h3><strong><?php echo Yii::t('MissionsModule.base', 'Missions'); ?></strong></h3>
     </div>
     <div class="panel-body">
 
@@ -27,7 +27,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Missions');
             <?php foreach ($missions as $mission): ?>
             
                 <div class="panel panel-default">
-                    <div class="panel-body grey_box">
+                    <div class="panel-body grey-box">
                         
                         <h4>
                             <strong><?= isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title ?></strong>

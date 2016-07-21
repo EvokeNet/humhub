@@ -28,7 +28,7 @@ $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
     <div class="panel-body">
         <?php foreach($userPowers as $userQuality): ?>
             <div class="power text-center">
-                <img src = "<?php echo $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->image; ?>" width="100px"></img>
+                <img src = "<?php echo $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->image; ?>" width="100px" class = "power-border"></img>
                 
                 <h6><?= $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->name; ?></h6>
                 

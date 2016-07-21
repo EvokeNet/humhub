@@ -3,33 +3,22 @@
 use yii\helpers\Html;
 
 echo Html::beginForm(); 
-$activity = $evidence->getActivities();
+  $activity = $evidence->getActivities();
+
 ?>
 
-<strong>
-   <?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?>
-</strong>
-<br>
-<?php print humhub\widgets\RichText::widget(['text' => $evidence->text]);?>
+<h5><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h5>
+<p><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]);?></p>
 
-<br><br>
-
-<div class="clearFloats"></div>
-
-<hr>
-
-<div class="activity_area">
-	<?= isset($activity->mission->missionTranslations[0]) ? $activity->mission->missionTranslations[0]->title : $activity->mission->title ?>
-	<br>
-	<?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title ?>
-</div>
-
-<div class="statistics">
-  <?= Yii::t('MissionsModule.base', 'Votes:') ?> 
-  <?= $evidence->getVoteCount()? $evidence->getVoteCount() : "0" ?>
-  <br>
-  <?= Yii::t('MissionsModule.base', 'Average Rating:') ?> 
-  <?= $evidence->getAverageRating()? number_format((float)$evidence->getAverageRating(), 1, '.', '') : "-" ?>
+<div class = "grey-box" style = "padding:10px">
+  <div>
+    <p style = "display:inline; float:left"><?= isset($activity->mission->missionTranslations[0]) ? $activity->mission->missionTranslations[0]->title : $activity->mission->title ?></p>
+    <p style = "text-align:end"><?= Yii::t('MissionsModule.base', 'Votes: {votes}', array('votes' => $evidence->getVoteCount()? $evidence->getVoteCount() : "0")) ?></p>
+  </div>
+  <div>
+    <p style = "display:inline; float:left"><?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title ?></p>
+    <p style = "text-align:end"><?= Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $evidence->getAverageRating()? number_format((float)$evidence->getAverageRating(), 1, '.', '') : "-")) ?></p>    
+  </div>
 </div>
 
 <?php echo Html::endForm(); ?>

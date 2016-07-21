@@ -516,7 +516,7 @@ use humhub\models\Setting;
             <?php $this->head() ?>
     </head>
 
-    <body style="font-size:12px; font-family:Open Sans, Arial,Tahoma, Helvetica, sans-serif; background-color:#ededed; width:80%">
+    <body style="font-size:12px; font-family:Open Sans, Arial,Tahoma, Helvetica, sans-serif; background-color:#ededed">
         <?php $this->beginBody() ?>
 
         <!--start 100% wrapper (white background) -->

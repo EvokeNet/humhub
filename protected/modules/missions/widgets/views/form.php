@@ -5,55 +5,52 @@ use yii\helpers\ArrayHelper;
 $firstPrimary = true;
 $firstSecondary = true;
 
-    echo Html::tag('h3', Html::encode(isset($activity->activityTranslations[0]) ? Yii::t('MissionsModule.base', 'Activity:').' '.$activity->activityTranslations[0]->title : Yii::t('MissionsModule.base', 'Activity:').' '.$activity->title), ['class' => 'font-weight-bold']);
-    echo Html::tag('p', Html::encode(isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description), ['class' => 'description']);
-    
-    echo Html::tag('br');
-
-    $rubric = Html::tag('p', Html::encode(isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric), ['class' => 'description']);
-    $rubric_title = Html::tag('b', Yii::t('MissionsModule.widgets_views_evidenceForm', "Rubric: {rubric}", array('rubric' => $rubric)));
-    
-    // echo $rubric_title.$rubric;
-    echo $rubric_title;
-    
-    echo Html::tag('br');
-    echo Html::tag('hr');
-
-    foreach($activity->getPrimaryPowers() as $power){
-        if($firstPrimary){
-            echo Html::tag('b', Yii::t('MissionsModule.widgets_views_evidenceForm', "Primary power:")." ");
-            $firstPrimary = false;
-        }
-        echo Html::tag('br');
-        echo $power->getPower()->title." - ";
-        echo $power->value." ";
-        echo Yii::t('MissionsModule.widgets_views_evidenceForm', "points");
-    }
-    
-    echo Html::tag('br');
-    echo Html::tag('hr');
-
-    foreach($activity->getSecondaryPowers() as $power){
-        if($firstSecondary){
-            echo Html::tag('b', Yii::t('MissionsModule.widgets_views_evidenceForm', "Secondary power:")." ");
-            $firstSecondary = false;
-        }
-        echo Html::tag('br');
-        echo $power->getPower()->title." - ";
-        echo $power->value." ";
-        echo Yii::t('MissionsModule.widgets_views_evidenceForm', "points");
-    }
-    
-    echo Html::tag('br');
-    echo Html::tag('br');
-     
-    echo Html::tag('h4', Html::encode(Yii::t('MissionsModule.base', 'Create an Evidence for this Activity:')), ['class' => 'font-weight-bold']);
-    echo Html::tag('br');
-    echo Html::hiddenInput('activityId', $activity->id);
-    echo Html::textArea("title", '', array('id' => 'contentForm_question', 'class' => 'form-control autosize contentForm', 'rows' => '1', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.widgets_views_evidenceForm', "Page Title"))); 
-    echo Html::textArea("text", '', array('id' => 'contentForm_question', 'class' => 'text-margin form-control autosize contentForm', 'rows' => '10', "tabindex" => "2", 'placeholder' => Yii::t('MissionsModule.widgets_views_evidenceForm', "Content")));
-
 ?>
+
+    <h3 style = "margin-bottom:30px"><?= Yii::t('MissionsModule.base', 'Activity: {activity}', array('activity' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title)) ?></h3>
+    <p style = "margin-bottom:20px"><?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description ?></p>
+    <p style = "margin-bottom:20px"><?= Yii::t('MissionsModule.widgets_views_evidenceForm', "<strong>Rubric:</strong> {rubric}", array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></p>
+    
+    <div class="row" style = "margin-bottom:40px">
+        <div class="col-xs-4">
+            <h6><?= Yii::t('MissionsModule.base', 'Primary Power') ?></h6>
+            
+            <?php
+                foreach($activity->getPrimaryPowers() as $power):
+                    if($firstPrimary)
+                        $firstPrimary = false;
+            ?>           
+            
+            <p><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $power->getPower()->title, 'points' => $power->value)); ?></p>
+            
+            <?php endforeach; ?>
+            
+        </div>
+        <div class="col-xs-8">
+            <h6><?= Yii::t('MissionsModule.base', 'Secondary Power') ?></h6>
+            
+            <?php
+                foreach($activity->getSecondaryPowers() as $power):
+                    if($firstSecondary)
+                        $firstSecondary = false;
+            ?>           
+            
+            <p><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $power->getPower()->title, 'points' => $power->value)); ?></p>
+            
+            <?php endforeach; ?>
+            
+        </div>
+    </div>
+                        
+    <h4 style = "margin-bottom:20px"><?= Yii::t('MissionsModule.base', 'Create an Evidence for this Activity:') ?></h4>
+    
+    <?php
+    
+        echo Html::hiddenInput('activityId', $activity->id);
+        echo Html::textArea("title", '', array('id' => 'contentForm_question', 'class' => 'form-control autosize contentForm', 'rows' => '1', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.widgets_views_evidenceForm', "Page Title"))); 
+        echo Html::textArea("text", '', array('id' => 'contentForm_question', 'class' => 'text-margin form-control autosize contentForm', 'rows' => '10', "tabindex" => "2", 'placeholder' => Yii::t('MissionsModule.widgets_views_evidenceForm', "Content")));
+
+    ?>
 
 <style type="text/css">
 

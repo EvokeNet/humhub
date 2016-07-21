@@ -120,8 +120,7 @@ class m160507_112009_matching extends Migration
 
         $this->insert('matching_questions', [
             'id' => 4,
-            'description' => '<p class="text-color-highlight">Agent, we have received an urgent evoke to help save protected land in your community.  You are called to action, how will you respond?  A large public space in your community is about to be approved for commercial development.  Poor families will lose a green park space and birds and frogs are at risk of losing their habitat.  The private developer will profit enormously and there are good reasons to believe that the politicians who have made the decision to allow the land to be developed will be rewarded by the developer. </p>
-                <p class="text-color-highlight">What will you do? Input these answers in order of how you are most likely to respond (1 - 4) </p>',
+            'description' => 'Agent, we have received an urgent evoke to help save protected land in your community. You are called to action, how will you respond?  A large public space in your community is about to be approved for commercial development. Poor families will lose a green park space and birds and frogs are at risk of losing their habitat. The private developer will profit enormously and there are good reasons to believe that the politicians who have made the decision to allow the land to be developed will be rewarded by the developer.<br><br>What will you do? Input these answers in order of how you are most likely to respond (1 - 4)',
             'type' => 'order',
             'created_at' => NULL,
             'updated_at' => NULL,
@@ -129,11 +128,10 @@ class m160507_112009_matching extends Migration
 
         $this->insert('matching_questions', [
             'id' => 5,
-            'description' => '<p class="text-color-highlight">Agent, we have learned of an epidemic in a community next to yours that hits very close to your heart. You learn that your cousin has cancer. She further tells you that her next door neighbor and childhood friend died from the same cancer last year. In fact the incidence of people suffering from this precise cancer in this particular neighborhood seems far above what you would expect. Your cousin’s medical expenses will far exceed her resources. Which of the following would you be most likely to do? </p>
-                <p class="text-color-highlight">What would be your preferred action to help? Order the following responses according to your top three preferences.</p>
-                <p class="text-color-highlight">
-                Input these actions in order of what would be your preference in helping (1 - 4).
-                </p>',
+            'description' => '<br><br>Agent, we have learned of an epidemic in a community next to yours that hits very close to your heart. You learn that your cousin has cancer. She further tells you that her next door neighbor and childhood friend died from the same cancer last year. In fact the incidence of people suffering from this precise cancer in this particular neighborhood seems far above what you would expect. Your cousin’s medical expenses will far exceed her resources. Which of the following would you be most likely to do?
+                <br><br>What would be your preferred action to help? Order the following responses according to your top three preferences.
+                <br><br>
+                Input these actions in order of what would be your preference in helping (1 - 4).',
             'type' => 'order',
             'created_at' => NULL,
             'updated_at' => NULL,

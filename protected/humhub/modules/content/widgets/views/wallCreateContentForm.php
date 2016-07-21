@@ -42,7 +42,7 @@ use humhub\modules\space\models\Space;
         ?>
 
         <div class="contentForm_options">
-
+ 
             <hr>
 
             <div class="btn_container">

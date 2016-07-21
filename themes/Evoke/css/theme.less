@@ -21,9 +21,9 @@
 //
 // Colors and fonts variables
 // --------------------------------------------------
-@import 'https://fonts.googleapis.com/css?family=Ubuntu|Vollkorn';
+@import 'https://fonts.googleapis.com/css?family=Ubuntu|Vollkorn|Roboto|Open+Sans|Noto+Serif';
 @heading_font: 'Ubuntu', sans-serif;
-@text_font: 'Vollkorn', serif;
+@text_font: 'Roboto', sans-serif; //'Noto Serif', serif; //'Vollkorn', serif;
 
 @primary1: #254054;
 @primary2: #3399E1;
@@ -397,6 +397,13 @@ textarea {
   }
 }
 
+input[type="number"] {
+  width: 60px;
+  height: 35px;
+  padding-left: 10px;
+  margin-right: 10px;
+}
+  
 input[type=text],
 input[type=password],
 input[type=select] {
@@ -567,6 +574,7 @@ input[type=select] {
       position: absolute;
       top: 4px;
       right: -2px;
+      padding: 4px 5px 5px;
     }
     .arrow:after {
       position: absolute;
@@ -786,6 +794,7 @@ input[type=select] {
   }
   .nav > li > a#space-menu {
     padding-right: 13px;
+    min-height: 69px;
     // border-right: 1px solid #ededed;
   }
   .nav > li > a#search-menu {
@@ -899,8 +908,9 @@ input[type=select] {
 
 .media {
   .time {
-    font-size: 11px;
-    color: @font4;
+    // font-size: 11px;
+    font-size: 10pt;
+    color: @primary1;
   }
   .img-space {
     position: absolute;
@@ -913,9 +923,9 @@ input[type=select] {
     h4.media-heading {
       font-size: 14px;
       font-weight: 500;
-      color: @font3;
+      color: @primary1;
       a {
-        color: @font3;
+        color: @primary1;
       }
       small,
       small a {
@@ -951,7 +961,7 @@ input[type=select] {
     }
   }
   .content .files a {
-    color: @font3;
+    color: @primary1;
   }
 }
 
@@ -983,7 +993,7 @@ input[type=select] {
     li {
       border-left: 3px solid white;
       a {
-        color: @font3;
+        color: @primary1;
         font-size: 14px;
         font-weight: 400;
         padding: 4px 15px;
@@ -1097,13 +1107,14 @@ input[type=select] {
     }
 
     h6{
-      font-size: 12pt;
+      font-size: 14pt;
       .header-font
     }
 
     p{
       font-family: @text_font;
       font-weight: 400;
+      font-size:12pt;
     }
   }
   .statistics {
@@ -1323,7 +1334,7 @@ input[type=select] {
 .pagination > li > a:hover,
 .pagination > li > a:active,
 .pagination > li > a:focus {
-  color: @font3;
+  color: @primary1;
 }
 
 //
@@ -1430,7 +1441,7 @@ input[type=select] {
   .popover-content {
     font-size: 13px;
     padding: 5px 15px;
-    color: @font3;
+    color: @primary1;
     a {
       color: @info;
     }
@@ -1506,30 +1517,30 @@ input[type=select] {
 .nav .caret,
 .nav .caret:hover,
 .nav .caret:active {
-  border-top-color: @font3;
-  border-bottom-color: @font3;
+  border-top-color: @primary1;
+  border-bottom-color: @primary1;
 }
 
 .nav li.dropdown > a:hover .caret,
 .nav li.dropdown > a:active .caret {
-  border-top-color: @font3;
-  border-bottom-color: @font3;
+  border-top-color: @primary1;
+  border-bottom-color: @primary1;
 }
 
 .nav .open > a .caret,
 .nav .open > a:hover .caret,
 .nav .open > a:focus .caret {
-  border-top-color: @font3;
-  border-bottom-color: @font3;
+  border-top-color: @primary1;
+  border-bottom-color: @primary1;
 }
 
 .nav .open > a,
 .nav .open > a:hover,
 .nav .open > a:focus {
   border-color: #ededed;
-  color: @font3;
+  color: @primary1;
   .caret {
-    color: @font3;
+    color: @primary1;
   }
 }
 
@@ -1847,6 +1858,9 @@ input[type=select] {
 .radio label,
 .checkbox label {
   padding-left: 10px;
+  min-height: 20px;
+  line-height: 16px;
+  font-size: 12pt;
 }
 
 .form-control {
@@ -1893,6 +1907,7 @@ select.form-control {
 
 label {
   font-weight: normal;
+  margin-bottom: 20px;
 }
 
 label.control-label {
@@ -1937,13 +1952,25 @@ input:-moz-placeholder {
 .label {
   text-transform: uppercase;
   display: inline-block;
-  padding: 3px 5px 4px;
+  padding: 4px 5px 3px;
   font-weight: 600;
-  font-size: 10px !important;
+  font-size: 8pt !important;
   color: white !important;
   vertical-align: baseline;
   white-space: nowrap;
   text-shadow: none;
+}
+
+.label-secondary {
+  background: @secondary1;
+  color: white !important;
+}
+
+.label-border {
+  background: transparent;
+  color: @primary !important;
+  border: 3px solid @primary1;
+  font-weight:700;
 }
 
 .label-default {
@@ -1991,7 +2018,7 @@ a.label-warning:hover {
 // Alerts
 // --------------------------------------------------
 .alert-default {
-  color: @font3;
+  color: @primary1;
   background-color: @background1;
   border-color: @background2;
   font-size: 13px;
@@ -2060,7 +2087,7 @@ a.list-group-item.active,
 a.list-group-item.active:hover,
 a.list-group-item.active:focus {
   z-index: 2;
-  color: @font3;
+  color: @primary1;
   background-color: @background1;
   border-left: 3px solid @info !important;
 }
@@ -2120,7 +2147,7 @@ a.list-group-item.active:focus {
   h4,
   h5 {
     margin-top: 20px;
-    color: @font3;
+    color: @primary1;
     font-weight: 300;
   }
   h4.media-heading {
@@ -2132,7 +2159,7 @@ a.list-group-item.active:focus {
   // font-size: 20px;
   font-size: 30px;
   font-weight: 200;
-  color: @font3;
+  color: @primary1;
 }
 
 .modal-dialog, .modal-content {
@@ -2504,8 +2531,8 @@ ul.tag_input {
 
 .wall-entry-controls,
 .wall-entry-controls a {
-  font-size: 11px;
-  color: @font5;
+  font-size: 10pt;
+  color: @primary2;
   margin-top: 10px;
   margin-bottom: 0;
 }
@@ -2772,7 +2799,7 @@ ul.tag_input.focus {
     font-size: 11px;
     font-weight: 600;
     a {
-      color: @font3;
+      color: @primary1;
     }
   }
   .dropdown-menu {
@@ -3130,7 +3157,7 @@ img.bounceIn {
     th {
       font-size: 13px;
       font-weight: 700;
-      color: @font3;
+      color: @primary1;
     }
 
     thead {
@@ -3268,7 +3295,7 @@ img.bounceIn {
   border: 1px solid #dddcda !important;
   border-radius: 0 !important;
   background: #fff;
-  color: @font3 !important;
+  color: @primary1 !important;
   -webkit-box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
 }
@@ -3384,4 +3411,47 @@ img.bounceIn {
   margin: 9px 0;
   overflow: hidden;
   background-color: #e5e5e5;
+}
+
+.grey-box{
+  background-color: #F6F7F9;
+  &.formatted{
+    padding: 15px;
+  }
+}
+
+.bold{
+  font-weight: 700;
+}
+
+.members{
+  img#space-members{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 3px solid @primary1;
+    margin-right: 5px;
+  }
+}
+
+.regular-radio + .regular-radio-button{
+  padding:10px;
+  margin-top:-3px;
+}
+
+.regular-radio:checked + .regular-radio-button:after{
+  width: 15px;
+  height: 15px;
+  top: 2px;
+  background: @primary3;
+}
+
+.border-questions{
+    border-left: 5px solid @secondary1;
+    padding: 10px;
+}
+
+.power-border{
+    border: 3px solid @secondary3;
+    border-radius: 50%;
 }

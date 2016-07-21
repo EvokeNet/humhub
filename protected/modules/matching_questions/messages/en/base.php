@@ -28,7 +28,11 @@ return [
     'Are you sure you want to delete this translation?' => '',
     'Auth Mode' => '',
     'Choose one answer for each single-choice question.' => '',
-    'Congratulations, you have ventured further than most by answering this call.' => '',
+    'Complete Profile' => '',
+    'Congratulations, you have ventured further than most by answering this call.
+                    Now, it is time to find out what type of Evoke agent are you. What do you know?
+                    What are the strengths, passions, and abilities you will bring to the Evoke network?
+                    Answer the following and find out what type of Super Hero is hiding inside you!' => '',
     'Contentcontainer ID' => '',
     'Create' => '',
     'Create Matching Answer Translation' => '',
@@ -56,6 +60,7 @@ return [
     'Guid' => '',
     'ID' => '',
     'ID Code' => '',
+    'Image' => '',
     'In case of redirect, please make sure to answer all questions' => '',
     'Language' => '',
     'Language ID' => '',
@@ -72,6 +77,7 @@ return [
     'Matching Questions' => '',
     'Modified' => '',
     'Name' => '',
+    'No images uploaded yet' => '',
     'No matching question translations created yet!' => '',
     'No matching questions created yet!' => '',
     'No missions created yet!' => '',
@@ -80,7 +86,6 @@ return [
     'No quality translations created yet!' => '',
     'No superhero identity created yet!' => '',
     'No superhero identity translations created yet!' => '',
-    'Not Defined Yet' => '',
     'Now, it is time to find out what type of Evoke agent are you. What do you know?' => '',
     'Order' => '',
     'Order questions from 1 to 4. Do not repeat numbers.' => '',
@@ -124,6 +129,7 @@ return [
     'Updated' => '',
     'Updated At' => '',
     'Updated By' => '',
+    'Uploaded Image: {file}' => '',
     'User ID' => '',
     'Username' => '',
     'View Matching Answers' => '',
@@ -133,5 +139,4 @@ return [
     'Wall ID' => '',
     'What are the strengths, passions, and abilities you will bring to the Evoke network?' => '',
     'Your Agent Type is:' => '',
-    'Complete Profile' => '',
 ];

@@ -123,7 +123,13 @@ use humhub\models\Setting;
                                                     <td width="auto"  align="center" valign="middle" height="32" style=" background-color:<?php echo Setting::Get('colorPrimary'); ?>;  border-radius:5px; background-clip: padding-box;font-size:14px; font-family:Open Sans, Arial,Tahoma, Helvetica, sans-serif; text-align:center;  color:#ffffff; font-weight: 600; padding-left:30px; padding-right:30px; padding-top: 5px; padding-bottom: 5px;">
 
                                                         <span style="color: #ffffff; font-weight: 300;">
-                                                            <a href="<?php echo $approveUrl; ?>" style="text-decoration: none; color: #ffffff; font-weight: 300;">
+                                                            <a href="<?php echo $approveUrl; ?>" style="border-radius: 3px;
+                                                                padding: 8px 16px;
+                                                                background: #3399E1;
+                                                                color: white !important;
+                                                                text-decoration: none;
+                                                                width: 140px;
+                                                                border-bottom: 2px solid #254054;">
                                                                 <strong><?php echo Yii::t('UserModule.views_mails_ChangeEmail', 'Confirm'); ?></strong>
                                                             </a>
                                                         </span>

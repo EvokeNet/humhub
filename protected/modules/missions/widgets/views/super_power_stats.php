@@ -17,13 +17,16 @@ use app\modules\missions\models\Evidence;
     <div class="panel-body row">
         <?php foreach($userPowers as $userQuality): ?>
             <div class="col-xs-3 text-center">
-                <img src = "<?php echo $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->image; ?>" width=100></img>
+                <div style = "height: 175px;">
+                <img src = "<?php echo $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->image; ?>" width=100 class = "power-border"></img>
                 
                 <h6><?= $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->name; ?></h6>
                 
                 <span style = "color: #28C503"><?php echo Yii::t('MissionsModule.base', 'Level {level}', array('level' => null != $userQuality[0]->getUserQuality() ? $userQuality[0]->getUserQuality()->getLevel() : 0)); ?></span>
-                               
-                <br><br><span class="label label-primary"><?php echo Yii::t('MissionsModule.base', 'Power'); ?> </span><br><br>
+                
+                </div>
+                
+                <br><br><span class="label label-secondary"><?php echo Yii::t('MissionsModule.base', 'Powers'); ?> </span><br><br>
                 
                 <?php foreach($userQuality as $userPower): ?>
                     <div class="power">
