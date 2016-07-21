@@ -10,6 +10,7 @@ use app\modules\space\models\Space;
 use app\modules\user\models\User;
 use yii\db\Expression;
 use yii\behaviors\TimestampBehavior;
+use app\modules\missions\models\Votes;
 
 /**
  * This is the model class for table "evidence".
@@ -280,6 +281,18 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
 
         return parent::afterSave($insert, $changedAttributes);
 
-    }         
+    }    
+
+
+    public function beforeDelete()
+    {
+        $votes = Votes::findAll(['evidence_id' => $this->id]);
+
+        foreach($votes as $vote){
+            $vote->delete();
+        }
+
+        return parent::beforeDelete();
+    }       
 
 }

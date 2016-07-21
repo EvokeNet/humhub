@@ -102,12 +102,20 @@ class Votes extends ContentActiveRecord
 
     public function afterSave($insert, $changedAttributes)
     {
-        
+
         if ($insert && !$this->flag) {
             $evidence = Evidence::findOne($this->evidence_id);
             $author = User::findOne($this->evidence->content->user_id);
 
             $notification = new \humhub\modules\missions\notifications\RejectedEvidence();
+            $notification->source = $this;
+            $notification->originator = Yii::$app->user->getIdentity();
+            $notification->send($author);
+        }else if($insert) {
+            $evidence = Evidence::findOne($this->evidence_id);
+            $author = User::findOne($this->evidence->content->user_id);
+
+            $notification = new \humhub\modules\missions\notifications\ReviewedEvidence();
             $notification->source = $this;
             $notification->originator = Yii::$app->user->getIdentity();
             $notification->send($author);
@@ -122,19 +130,16 @@ class Votes extends ContentActiveRecord
         return $evidence->content->getUrl();
     }
 
-
-    public function afterDelete()
+    public function beforeDelete()
     {
-
         $notifications = Notification::findAll(['source_pk' => $this->id, 'source_class' => Votes::classname()]);
 
         foreach($notifications as $notification){
             $notification->delete();
         }
 
-        return parent::afterDelete();
-
-    }     
+        return parent::beforeDelete();
+    }  
 
 
 }
