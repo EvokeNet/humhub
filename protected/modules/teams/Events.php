@@ -20,6 +20,7 @@ class Events extends \yii\base\Object
 {
     public static function onAdminMenuInit($event)
     {
+        /*
         $event->sender->addItem(array(
             'label' => Yii::t('TeamsModule.base', 'Teams'),
             'url' => Url::to(['/teams/teams']),
@@ -29,6 +30,7 @@ class Events extends \yii\base\Object
                 Yii::$app->controller->module && Yii::$app->controller->module->id == 'teams'
             ),
         ));
+        */
     }
 
 }

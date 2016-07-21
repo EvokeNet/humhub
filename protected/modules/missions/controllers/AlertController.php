@@ -9,11 +9,16 @@ use yii\web\NotFoundHttpException;
 class AlertController extends Controller
 {
 
-    public static function createAlert($title, $message){
+    public static function createAlert($title, $message, $secondary = ""){
         $popup = array_fill_keys(array('title', 'message'),"");
         $popup['title'] = $title;
         $popup['message'] = $message;
-        Yii::$app->session->setFlash('popup', $popup);
+        
+        if($secondary !=""){
+            Yii::$app->session->setFlash('popup2', $popup);
+        }else{
+            Yii::$app->session->setFlash('popup', $popup);
+        }
     }
 
     public function actionAlert(){
@@ -24,7 +29,9 @@ class AlertController extends Controller
         }
 
         if (Yii::$app->session->getFlash('popup')) {
-          $popup = json_encode(Yii::$app->session->getFlash('popup'));
+            $popup = json_encode(Yii::$app->session->getFlash('popup'));
+        }else if(Yii::$app->session->getFlash('popup2')){
+            $popup = json_encode(Yii::$app->session->getFlash('popup2'));
         }
 
         header('Content-Type: application/json; charset="UTF-8"');

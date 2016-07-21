@@ -25,6 +25,7 @@ class Events extends \yii\base\Object
       'label' => Yii::t('CoinModule.base', 'Wallet'),
       'url' => Url::to(['/coin/admin/']),
       'group' => 'manage',
+      'sortOrder' => 1200,
       'icon' => '<i class="fa fa-money"></i>',
       'isActive' => (
         Yii::$app->controller->module && Yii::$app->controller->module->id == 'coin'

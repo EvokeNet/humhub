@@ -43,6 +43,7 @@ class Events extends \yii\base\Object
             'label' => Yii::t('NovelModule.base', 'Graphic Novel'),
             'url' => Url::to(['/novel/admin']),
             'group' => 'manage',
+            'sortOrder' => 1400,
             'icon' => '<i class="fa fa-book"></i>',
             'isActive' => (
                 Yii::$app->controller->module && Yii::$app->controller->module->id == 'novel'
