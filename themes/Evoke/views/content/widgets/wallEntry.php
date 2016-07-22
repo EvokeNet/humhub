@@ -51,7 +51,11 @@ $container = $object->content->container;
             <div class="media-body">
 
                 <!-- show username with link and creation time-->
-                <h4 class="media-heading" style = "margin-bottom:5px"><a href="<?php echo $user->getUrl(); ?>"><?php echo Html::encode($user->displayName); ?></a></h4>
+                <h4 class="media-heading" style = "margin-bottom:5px">
+                    <a href="<?php echo $user->getUrl(); ?>">
+                        <?php echo Yii::t('ContentModule.views_wallLayout', '{name} @ {team}', array('name' => $user->displayName, 'team' => $object->content->container->name)); ?>
+                    </a>
+                </h4>
                 
                 <span>
                         <?php echo \humhub\widgets\TimeAgo::widget(['timestamp' => $object->content->created_at]); ?>
