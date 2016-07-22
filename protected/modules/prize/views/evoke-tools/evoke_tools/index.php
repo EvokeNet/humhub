@@ -132,29 +132,29 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                             <?php echo Yii::t('PrizeModule.base', 'Instructions intro') ?>
                           </p>
                           </br>
-                          <?php echo Html::a(Yii::t('PrizeModule.base', 'Dowload instructions PDF'), Url::to('@web/themes/Evoke/img/evoke_board.png'), array('class' => 'btn')); ?>
+                          <?php echo Html::a(Yii::t('PrizeModule.base', 'Dowload instructions PDF'), Url::to('@web/themes/Evoke/documents/reglas_de_evoke.pdf'), array('class' => 'btn', 'target' => '_blank')); ?>
                         </span>
                       </div>
                     </div>
                   </div>
                   <!-- roles -->
-                  <div class="row">
+                  <!-- <div class="row">
                     <div class="panel-heading">
-                      <strong><?php echo Yii::t('PrizeModule.base', 'Roles') ?></strong>
+                      <strong><?php //echo Yii::t('PrizeModule.base', 'Roles') ?></strong>
                     </div>
                     <div class="panel-body">
                       <div class="row">
                         <div class="col-xs-12">
-                          <?php echo Yii::t('PrizeModule.base', 'Earn super powers') ?>
+                          <?php //echo Yii::t('PrizeModule.base', 'Earn super powers') ?>
                         </div>
                       </div>
                       <div class="row">
-                        <?php foreach ($super_powers as $super_power): ?>
+                        <?php //foreach ($super_powers as $super_power): ?>
 
-                        <?php endforeach; ?>
+                        <?php //endforeach; ?>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
