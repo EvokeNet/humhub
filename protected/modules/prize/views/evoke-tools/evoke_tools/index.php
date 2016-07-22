@@ -102,7 +102,8 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
 
                       </div>
                     </div>
-                    <div id="results">
+                  </br>
+                    <div id="results" class="row col-xs-12">
                       <?php if(isset($results)): ?>
                         <span><?php echo $results ?></span>
                       <?php endif; ?>
@@ -262,6 +263,12 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
     position: absolute;
   }
 
+  .prize-won-name {
+    font-weight: bold;
+    font-size: 1.4em;
+    color: #000;
+  }
+
   .well {
     background-color: #eaeaea;
   }
@@ -280,9 +287,8 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
 
       $('.selector').removeClass('first-try');
       if ($(".prizes").length > 1) { //remove the clone if it's there
-        console.log($('.prizes'));
         $(".prizes").not(':first').remove();
-        TweenMax.to($('.prizes'), 1, {
+        TweenMax.to($('.prizes'), 0.5, {
           x: 0,
           ease: Back.easeOut
         });
@@ -291,14 +297,14 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
 
       $.ajax({
         url: '<?php echo Url::toRoute('/prize/evoke-tools/search') ?>',
-        success: function(result) {
+        success: function(response) {
           $toolSearch.addClass('disabled');
+          var result = JSON.parse(response);
 
           //spinner animation
 
-          var prizeNumber = $('#' + result).index(),
+          var prizeNumber = $('#' + result.id).index(),
               spinOffset  = (prizeNumber - 2) * prizeWidth;
-          console.log(spinOffset);
 
           $('.prizes').clone().appendTo(".spinner");
 
@@ -306,24 +312,28 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
             $('.prizes').clone().appendTo(".spinner");
           }
 
-          TweenMax.to( $(".prizes"), 2,
+          TweenMax.to( $(".prizes"), 1,
             {
           	 x: -( $('.prizes').width()),
              ease: Linear.easeNone,
              repeat: 4,
-             delay: 1
+             delay: 0.5
             }
           );
 
           TweenMax.set($('.prizes'), {clearProps: "all"});
 
-          TweenMax.to( $(".prizes"), 2,
+          TweenMax.to( $(".prizes"), 5,
             {
           	 x: -( $('.prizes').width() + 18 + spinOffset ),
-             ease: Elastic.easeOut,
-             delay: 9,
+             ease: Back.easeOut,
+             delay: 4.5,
              onComplete: function() {
                $toolSearch.removeClass('disabled');
+               $('#results').html(
+                 '<div class="prize-won-name">' + result.name + '</div>' + '<div class="prize-won-description">' + result.description + '</div>'
+               );
+               $(':focus').blur();
              }
             }
           );

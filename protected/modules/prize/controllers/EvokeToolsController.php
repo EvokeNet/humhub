@@ -88,7 +88,8 @@ class EvokeToolsController extends Controller
           $won_prize->save();
 
           $prize_won_id = "prize" . $prize->id;
-          $prize_won = $prize_won->name; // switch to string
+          $prize_won_name = $prize_won->name;
+          $prize_won_description = $prize_won->description;
 
           break;
         }
@@ -97,41 +98,49 @@ class EvokeToolsController extends Controller
       // if they didn't win a prize, check if they might have won some evocoin
       if ($prize_won === '') {
         if ($roll >= ($this->max_prob * 0.99)) {
-          $prize_won = '50 Evocoin!';
+          $prize_won_name = '50 Evocoin!';
+          $prize_won_description = '';
           $prize_won_id = 'evocoin50';
           $wallet->amount += 50;
           $wallet->save();
         }
         elseif ($roll >= ($this->max_prob * 0.95)) {
-          $prize_won = '20 Evocoin!';
+          $prize_won_name = '20 Evocoin!';
+          $prize_won_description = '';
           $prize_won_id = 'evocoin20';
           $wallet->amount += 20;
           $wallet->save();
         }
         elseif ($roll >= ($this->max_prob * 0.9)) {
-          $prize_won = '10 Evocoin!';
+          $prize_won_name = '10 Evocoin!';
+          $prize_won_description = '';
           $prize_won_id = 'evocoin10';
           $wallet->amount += 10;
           $wallet->save();
         }
         elseif ($roll >= ($this->max_prob * 0.8)) {
-          $prize_won = '5 Evocoin!';
+          $prize_won_name = '5 Evocoin!';
+          $prize_won_description = '';
           $prize_won_id = 'evocoin5';
           $wallet->amount += 5;
           $wallet->save();
         }
         else {
-          $prize_won = Yii::t('PrizeModule.base', 'Sorry');
+          $prize_won_name = Yii::t('PrizeModule.base', 'Sorry');
+          $prize_won_description = '';
           $prize_won_id = "noWin";
         }
       }
 
 
       if (Yii::$app->request->isAjax) {
-        return $prize_won_id;
+        $json = array('id' => $prize_won_id, 'name' => $prize_won_name, 'description' => $prize_won_description);
+
+        $response = json_encode($json);
+        return $response;
       } else {
 
-        $results = '<div><strong>' . $prize_won . '</strong></div>';
+        $results = '<div><strong>' . $prize_won_name . '</strong></div>';
         return $this->redirect(['index', 'results' => $results]);
       }
     }
