@@ -17,6 +17,7 @@ use yii\filters\VerbFilter;
 use app\modules\powers\models\QualityPowers;
 use app\modules\powers\models\UserPowers;
 use app\modules\powers\models\Powers;
+use app\modules\powers\models\UserQualities;
 use app\modules\languages\models\Languages;
 
 /**
@@ -38,7 +39,7 @@ class MatchingQuestionsController extends Controller
             ],
         ];
     }
-    
+
     public function actionMatching()
     {
 
@@ -52,8 +53,19 @@ class MatchingQuestionsController extends Controller
             $superhero_identity = SuperheroIdentities::findOne(['id' => $user->superhero_identity_id]);
             $quality_1 = Qualities::findOne(['id' => $superhero_identity->quality_1]);
             $quality_2 = Qualities::findOne(['id' => $superhero_identity->quality_2]);
+            $powers_quality_1 = QualityPowers::findAll(['quality_id' => $quality_1->id]);
+            $relevant_powers = [];
 
-            return $this->render('matching-results', compact('quality_1', 'quality_2', 'superhero_identity'));
+            foreach ($powers_quality_1 as $quality_power) {
+              $userPower = UserPowers::findOne(['power_id' => $quality_power->power_id, 'user_id' => $user->id]);
+              $relevant_powers[] = $userPower;
+            }
+
+            $other_qualities = Qualities::find()->where(['not in', 'id', $quality_1->id])->all();
+
+            $super_powers = Qualities::find()->all();
+
+            return $this->render('matching-results', compact('quality_1', 'quality_2', 'superhero_identity', 'relevant_powers', 'other_qualities'));
         }
 
         if ($request->isPost){
@@ -67,7 +79,7 @@ class MatchingQuestionsController extends Controller
                 // check if it is SINGLE CHOICE
                 if(strpos($key, 'matching_question', 0) === 0){
                     // get matching question id
-                    $matching_question = (int) str_replace('matching_question_', '', $key); 
+                    $matching_question = (int) str_replace('matching_question_', '', $key);
 
                     //get matching answer id
                     $matching_answer = $answer;
@@ -83,12 +95,12 @@ class MatchingQuestionsController extends Controller
                     // get matching answer id
 
                     //remove matching answer tag
-                    $matching_answer = str_replace('matching_answer_', '', $key); 
+                    $matching_answer = str_replace('matching_answer_', '', $key);
                     //remove matching question info
                     $matching_answer = (int) substr($matching_answer, 0, strpos($matching_answer, "_"));
 
                     // get matching question id
-                    $matching_question = (int) substr($key, strrpos($key, "_") + 1, strlen($key) - 1);  
+                    $matching_question = (int) substr($key, strrpos($key, "_") + 1, strlen($key) - 1);
 
                     if(!$answer){
                         Yii::$app->session->setFlash('matching_questions_incomplete_answers');
@@ -115,8 +127,20 @@ class MatchingQuestionsController extends Controller
             //$user->attributes = array('superhero_identity_id' => $superhero_identity);
             $user->save();
 
-            //CREATE USER'S POWERS
+            //CREATE USER'S POWERS & SUPER POWERS
             $powers = Powers::find()->all();
+            $super_powers = Qualities::find()->all();
+
+            foreach ($super_powers as $super_power) {
+              // check if user has the super power already
+              if (null === UserQualities::find()->where(['and', ['quality_id' => $super_power->id], ['user_id' => $user->id]])->one()) {
+                $user_super_power = new UserQualities();
+                $user_super_power->quality_id = $super_power->id;
+                $user_super_power->user_id = $user->id;
+                $user_super_power->level = 0;
+                $user_super_power->save();
+              }
+            }
 
             foreach($powers as $power){
                 $userPower = UserPowers::findOne(['power_id' => $power->id, 'user_id' => $user->id]);
@@ -127,17 +151,27 @@ class MatchingQuestionsController extends Controller
 
             //SET USER'S FIRST POWER POINTS
             $powers_quality_1 = QualityPowers::findAll(['quality_id' => $quality_1->id]);
-            $powers_quality_2 = QualityPowers::findAll(['quality_id' => $quality_2->id]);
+            // $powers_quality_2 = QualityPowers::findAll(['quality_id' => $quality_2->id]);
 
             foreach($powers_quality_1 as $power_quality_1){
-                UserPowers::addPowerPoint($power_quality_1->getPower(), $user, 10);
+              $power = $power_quality_1->getPower();
+              $starter_points = floor((($power->improve_multiplier * pow(1, 1.95)) + $power->improve_offset) * 0.125); // give them 12.5% of the points needed for the first level
+
+              UserPowers::addPowerPoint($power, $user, $starter_points);
             }
 
-            foreach($powers_quality_2 as $power_quality_2){
-                UserPowers::addPowerPoint($power_quality_2->getPower(), $user, 5);
+            // foreach($powers_quality_2 as $power_quality_2){
+            //     UserPowers::addPowerPoint($power_quality_2->getPower(), $user, 5);
+            // }
+
+            foreach ($powers_quality_1 as $quality_power) {
+              $userPower = UserPowers::findOne(['power_id' => $quality_power->power_id, 'user_id' => $user->id]);
+              $relevant_powers[] = $userPower;
             }
 
-            return $this->render('matching-results', compact('quality_1', 'quality_2', 'superhero_identity'));
+            $other_qualities = Qualities::find()->where(['not in', 'id', $quality_1->id])->all();
+
+            return $this->render('matching-results', compact('quality_1', 'quality_2', 'superhero_identity', 'relevant_powers', 'other_qualities'));
 
         } else{
             return $this->redirectQuestionnaire();
@@ -146,13 +180,11 @@ class MatchingQuestionsController extends Controller
 
 
     private function redirectQuestionnaire(){
-        
-        // var_dump(Yii::$app->language);
-        // die();
+
         $questions = MatchingQuestions::find()->with([
             'matchingQuestionTranslations' => function ($query) {
                 $lang = Languages::findOne(['code' => Yii::$app->language]);
-                
+
                 if(isset($lang))
                     $query->andWhere(['language_id' => $lang->id]);
                 else{
@@ -169,13 +201,11 @@ class MatchingQuestionsController extends Controller
                     $query->andWhere(['language_id' => $lang->id]);
                 }
             },
-        ])->all(); 
-        
-        //$customers = Customers::model()->with('municipality','municipality.franchisesMunicipalities')->findAll($criteria);
+        ])->all();
 
         return $this->render('matching', compact('questions'));
     }
-    
+
      private function build_qualities_array() {
         $qualities = array();
 
@@ -192,8 +222,8 @@ class MatchingQuestionsController extends Controller
     public function actionIndex()
     {
         $searchModel = new MatchingQuestionsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);   
-        
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

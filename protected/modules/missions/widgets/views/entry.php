@@ -24,6 +24,7 @@ echo Html::beginForm();
 <?php echo Html::endForm(); ?>
 
 <BR>
+
 <?php if($evidence->content->user_id != Yii::$app->user->getIdentity()->id && Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>  
 <div class="panel-group">
   <div class="panel panel-default">
@@ -98,6 +99,51 @@ echo Html::beginForm();
   </div>
 </div>
 <?php endif; ?> 
+
+<?php if($evidence->content->user_id == Yii::$app->user->getIdentity()->id || Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
+
+<BR>
+
+<div class="panel-group">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" href="#collapseEvidenceReviews<?= $evidence->id ?>">
+                    <?= Yii::t('MissionsModule.base', 'Reviews') ?>
+                </a>
+            </h4>
+        </div>
+
+        <div id="collapseEvidenceReviews<?= $evidence->id ?>" class="panel-collapse collapse">
+            <div class="">
+                <?php
+                $votes = $evidence->getVotes();
+                ?>
+
+                <?php foreach($votes as $vote): ?>
+                    <div class="">
+                        <?= $vote->comment ?>
+                        
+                        <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
+                            <?php echo Yii::t('MissionsModule.base', 'By'); ?>
+                            <a href="<?= ($vote->user->getUrl()) ?>">
+                                <?= ($vote->user->username) ?>
+                            </a>, 
+                            <?php echo \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]); ?>
+                        <?php else: ?>
+                            <?php echo Yii::t('MissionsModule.base', 'By Anonymous, {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]))); ?>
+                        <?php endif; ?>
+
+                        <?php echo Yii::t('MissionsModule.base', 'Rating:'); ?>
+                        <?= ($vote->value) ?>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+
+    </div>
+</div>  
+<?php endif; ?>
 
 
 <style type="text/css">

@@ -240,6 +240,11 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
 
     }    
 
+    public function getVotes()
+    {
+        return Votes::findAll(['evidence_id' => $this->id]);
+    }
+
 
     public function getVoteCount()   {
 

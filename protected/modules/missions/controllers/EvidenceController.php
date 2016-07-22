@@ -19,6 +19,7 @@ use app\modules\missions\models\ActivityPowers;
 use app\modules\missions\models\Votes;
 use humhub\modules\missions\controllers\AlertController;
 use humhub\modules\user\models\User;
+use app\modules\coin\models\Wallet;
 
 class EvidenceController extends ContentContainerController
 {
@@ -38,11 +39,11 @@ class EvidenceController extends ContentContainerController
                 'contentContainer' => $this->contentContainer
             ),
         );
-    }   
+    }
 
-   
+
     public function actionActivities($missionId)
-    {   
+    {
         $mission = Missions::find()
         ->where(['=', 'id', $missionId])
         ->with([
@@ -65,15 +66,15 @@ class EvidenceController extends ContentContainerController
                 }
             },
         ])->one();
-                
+
         return $this->render('activities', array('mission' => $mission, 'contentContainer' => $this->contentContainer));
     }
 
     public function actionMissions()
-    {   
+    {
 
         //$missions = Missions::find()->all();
-        
+
         $missions = Missions::find()
         ->with([
             'missionTranslations' => function ($query) {
@@ -88,7 +89,7 @@ class EvidenceController extends ContentContainerController
         ])
         ->where(['locked' => 0])
         ->all();
-        
+
         return $this->render('missions', array('missions' => $missions, 'contentContainer' => $this->contentContainer));
     }
 
@@ -128,7 +129,7 @@ class EvidenceController extends ContentContainerController
      * @return type
      */
     public function actionShow($activityId)
-    {           
+    {
         $activity = Activities::find()
         ->where(['=', 'id', $activityId])
         ->with([
@@ -159,7 +160,7 @@ class EvidenceController extends ContentContainerController
     {
         if (!$this->contentContainer->permissionManager->can(new \humhub\modules\missions\permissions\CreateEvidence())) {
             throw new HttpException(400, 'Access denied!');
-        } 
+        }
 
         $evidence = new Evidence();
         $evidence->scenario = Evidence::SCENARIO_CREATE;
@@ -272,7 +273,7 @@ class EvidenceController extends ContentContainerController
                 UserPowers::addPowerPoint($activityPower->getPower(), User::findOne($evidence->content->user_id), $pointChange);
 
                 AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', 'Your review was updated!'));
-                
+
             }else{
                 //SAVE VOTE
                 $vote = new Votes();
@@ -284,22 +285,30 @@ class EvidenceController extends ContentContainerController
                 $vote->value = $grade;
                 $vote->save();
 
-                //Reward reviewer
-                $activityPower = Activities::findOne($vote->activity_id)->getPrimaryPowers()[0];
-                UserPowers::addPowerPoint($activityPower->getPower(), $user, 10);
+                //Reward reviewer 5 evocoin
+                $wallet = Wallet::find()->where(['owner_id' => $user->id])->one();
+                $wallet->addCoin(5);
+
+                //give an extra 5 for adding a comment
+                if (!empty($comment)) {
+                  $wallet->addCoin(5);
+                }
+
+                $wallet->save();
+
                 //Reward evidence author
                 if($flag){
                     UserPowers::addPowerPoint($activityPower->getPower(), User::findOne($evidence->content->user_id), $grade);
                 }
 
                 $message = Yii::t('MissionsModule.base', 'You just gained 10 points in {message}', array('message' => $activityPower->getPower()->title));
-                
+
                 AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', '{message}. <BR>Thank you for your review.', array('message' => $message)));
             }
         } else{
             AlertController::createAlert("Error", "Oops! Something's wrong.");
         }
-        
+
     }
 
 
