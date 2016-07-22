@@ -17,6 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Edit your evokation content...' => '',
+    'Edit your evokation title...' => '',
     'Description' => 'Descripción',
     'Google Drive File URL' => 'URL de Archivo de Google Drive',
     'Title' => 'Título',

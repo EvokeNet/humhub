@@ -25,24 +25,49 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Missions');
             if (count($missions) != 0): ?>
             
             <?php foreach ($missions as $mission): ?>
-            
-                <div class="panel panel-default">
-                    <div class="panel-body grey-box">
-                        
-                        <h4>
-                            <strong><?= isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title ?></strong>
-                        </h4>
-                        
-                        <p class="description">
-                            <?= isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->description : $mission->description ?>
-                        </p>
-                        
-                        <br>
-                        <?php echo Html::a(
-                            Yii::t('MissionsModule.base', 'Enter Mission'),
-                            ['activities', 'missionId' => $mission->id, 'sguid' => $contentContainer->guid], array('class' => 'btn btn-cta1')); ?>
+                
+                <?php if($mission->locked == 1): ?>
+                    
+                    <div class="panel panel-default">
+                        <div class="panel-body grey-box blur">
+                            
+                            <h4>
+                                <strong><?= isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title ?></strong>
+                                &nbsp;<i class="fa fa-lock" aria-hidden="true"></i>
+                            </h4>
+                            
+                            <p class="description">
+                                <?= isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->description : $mission->description ?>
+                            </p>
+                            
+                            <br>
+                            <?php echo Html::a(
+                                Yii::t('MissionsModule.base', 'Enter Mission'),
+                                ['activities', 'missionId' => $mission->id, 'sguid' => $contentContainer->guid], array('class' => 'btn btn-cta1 disabled')); ?>
+                        </div>
                     </div>
-                </div>
+                    
+                <?php else: ?>
+                    
+                    <div class="panel panel-default">
+                        <div class="panel-body grey-box">
+                            
+                            <h4>
+                                <strong><?= isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title ?></strong>
+                            </h4>
+                            
+                            <p class="description">
+                                <?= isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->description : $mission->description ?>
+                            </p>
+                            
+                            <br>
+                            <?php echo Html::a(
+                                Yii::t('MissionsModule.base', 'Enter Mission'),
+                                ['activities', 'missionId' => $mission->id, 'sguid' => $contentContainer->guid], array('class' => 'btn btn-cta1')); ?>
+                        </div>
+                    </div>
+                
+                <?php endif; ?>
                 
             <?php endforeach; ?>
             

@@ -20,6 +20,8 @@ use yii\helpers\ArrayHelper;
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'locked')->dropDownList(['0' => 'Unlocked', '1' => 'Locked'], ['prompt' => 'Select Option']) ?>
+    
+    <?= $form->field($model, 'position')->textarea(['rows' => 1]) ?>
                  
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('MissionsModule.base', 'Create') : Yii::t('MissionsModule.base', 'Edit'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

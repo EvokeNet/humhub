@@ -17,12 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    '<strong>Rubric:</strong> {rubric}' => '',
     'Content' => '',
     'Edit your Evidence content...' => '',
     'Edit your Evidence title...' => '',
     'Page Title' => '',
-    'Primary power:' => '',
-    'Rubric: {rubric}' => '',
-    'Secondary power:' => '',
-    'points' => '',
 ];
