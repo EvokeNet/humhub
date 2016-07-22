@@ -17,6 +17,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $updated_at
  * @property string $id_code
  * @property integer $locked
+ * @property integer $position
  *
  * @property Activities[] $activities
  * @property MissionTranslations[] $missionTranslations
@@ -55,7 +56,7 @@ class Missions extends \yii\db\ActiveRecord
             [['title', 'description'], 'required'],
             [['description', 'id_code'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
-            [['locked'], 'integer'],
+            [['locked', 'position'], 'integer'],
             [['title'], 'string', 'max' => 255],
         ];
     }
@@ -72,7 +73,8 @@ class Missions extends \yii\db\ActiveRecord
             'created_at' => Yii::t('MissionsModule.model', 'Created At'),
             'updated_at' => Yii::t('MissionsModule.model', 'Updated At'),
             'id_code' => Yii::t('MissionsModule.model', 'Id Code'),
-            'locked' => Yii::t('MissionsModule.model', 'Mission Status (Locked/Unlocked)'),
+            'locked' => Yii::t('MissionsModule.model', 'Locked'),
+            'position' => Yii::t('MissionsModule.model', 'Position'),
         ];
     }
 

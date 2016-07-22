@@ -20,14 +20,14 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $difficulty_level_id
  * @property string $rubric
  * @property integer $evokation_category_id
+ * @property integer $position
  *
- * @property EvokationCategories $evokationCategory
  * @property DifficultyLevels $difficultyLevel
+ * @property EvokationCategories $evokationCategory
  * @property Missions $mission
  * @property ActivityPowers[] $activityPowers
  * @property ActivityTranslations[] $activityTranslations
  * @property Evidence[] $evidences
- * @property RubricVotes[] $rubricVotes
  * @property Skills[] $skills
  * @property Votes[] $votes
  */
@@ -64,11 +64,11 @@ class Activities extends \yii\db\ActiveRecord
         return [
             [['title', 'description', 'mission_id'], 'required'],
             [['description', 'id_code', 'rubric'], 'string'],
-            [['mission_id', 'difficulty_level_id', 'evokation_category_id'], 'integer'],
+            [['mission_id', 'difficulty_level_id', 'evokation_category_id', 'position'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['title'], 'string', 'max' => 255],
-            [['evokation_category_id'], 'exist', 'skipOnError' => true, 'targetClass' => EvokationCategories::className(), 'targetAttribute' => ['evokation_category_id' => 'id']],
             [['difficulty_level_id'], 'exist', 'skipOnError' => true, 'targetClass' => DifficultyLevels::className(), 'targetAttribute' => ['difficulty_level_id' => 'id']],
+            [['evokation_category_id'], 'exist', 'skipOnError' => true, 'targetClass' => EvokationCategories::className(), 'targetAttribute' => ['evokation_category_id' => 'id']],
             [['mission_id'], 'exist', 'skipOnError' => true, 'targetClass' => Missions::className(), 'targetAttribute' => ['mission_id' => 'id']],
         ];
     }
@@ -89,15 +89,8 @@ class Activities extends \yii\db\ActiveRecord
             'difficulty_level_id' => Yii::t('MissionsModule.model', 'Difficulty Level ID'),
             'rubric' => Yii::t('MissionsModule.model', 'Rubric'),
             'evokation_category_id' => Yii::t('MissionsModule.model', 'Evokation Category ID'),
+            'position' => Yii::t('MissionsModule.model', 'Position'),
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getEvokationCategory()
-    {
-        return $this->hasOne(EvokationCategories::className(), ['id' => 'evokation_category_id']);
     }
 
     /**
@@ -106,6 +99,14 @@ class Activities extends \yii\db\ActiveRecord
     public function getDifficultyLevel()
     {
         return $this->hasOne(DifficultyLevels::className(), ['id' => 'difficulty_level_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEvokationCategory()
+    {
+        return $this->hasOne(EvokationCategories::className(), ['id' => 'evokation_category_id']);
     }
 
     /**
@@ -131,33 +132,13 @@ class Activities extends \yii\db\ActiveRecord
     {
         return $this->hasMany(ActivityTranslations::className(), ['activity_id' => 'id']);
     }
-    
+
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getEvidences()
     {
         return $this->hasMany(Evidence::className(), ['activities_id' => 'id']);
-    }
-    
-    public function getPrimaryPowers()
-    {
-        $powers = ActivityPowers::findAll(['activity_id' => $this->id, 'flag' => 0]);
-        return $powers;
-    }
-
-    public function getSecondaryPowers()
-    {
-        $powers = ActivityPowers::findAll(['activity_id' => $this->id, 'flag' => 1]);
-        return $powers;
-    }
-    
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getRubricVotes()
-    {
-        return $this->hasMany(RubricVotes::className(), ['activity_id' => 'id']);
     }
 
     /**
@@ -174,5 +155,31 @@ class Activities extends \yii\db\ActiveRecord
     public function getVotes()
     {
         return $this->hasMany(Votes::className(), ['activity_id' => 'id']);
+    }
+    
+     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPrimaryPowers()
+    {
+        $powers = ActivityPowers::findAll(['activity_id' => $this->id, 'flag' => 0]);
+        return $powers;
+    }
+
+     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSecondaryPowers()
+    {
+        $powers = ActivityPowers::findAll(['activity_id' => $this->id, 'flag' => 1]);
+        return $powers;
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRubricVotes()
+    {
+        return $this->hasMany(RubricVotes::className(), ['activity_id' => 'id']);
     }
 }
