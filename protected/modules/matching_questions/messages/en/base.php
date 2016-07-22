@@ -134,4 +134,8 @@ return [
     'What are the strengths, passions, and abilities you will bring to the Evoke network?' => '',
     'Your survey results' => '',
     'Complete Profile' => '',
+    'Getting started' => '',
+    'Based on your answers' => 'Based on your answers to the Agent Type survey we\'ve determined the best role for you is that of ',
+    'gifted power' => 'Furthermore, you are already gifted with the ',
+    'Super Power' => '',
 ];
