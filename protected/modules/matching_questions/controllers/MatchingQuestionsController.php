@@ -17,6 +17,7 @@ use yii\filters\VerbFilter;
 use app\modules\powers\models\QualityPowers;
 use app\modules\powers\models\UserPowers;
 use app\modules\powers\models\Powers;
+use app\modules\powers\models\UserQualities;
 use app\modules\languages\models\Languages;
 
 /**
@@ -60,7 +61,11 @@ class MatchingQuestionsController extends Controller
               $relevant_powers[] = $userPower;
             }
 
-            return $this->render('matching-results', compact('quality_1', 'quality_2', 'superhero_identity', 'relevant_powers'));
+            $other_qualities = Qualities::find()->where(['not in', 'id', $quality_1->id])->all();
+
+            $super_powers = Qualities::find()->all();
+
+            return $this->render('matching-results', compact('quality_1', 'quality_2', 'superhero_identity', 'relevant_powers', 'other_qualities'));
         }
 
         if ($request->isPost){
@@ -122,8 +127,20 @@ class MatchingQuestionsController extends Controller
             //$user->attributes = array('superhero_identity_id' => $superhero_identity);
             $user->save();
 
-            //CREATE USER'S POWERS
+            //CREATE USER'S POWERS & SUPER POWERS
             $powers = Powers::find()->all();
+            $super_powers = Qualities::find()->all();
+
+            foreach ($super_powers as $super_power) {
+              // check if user has the super power already
+              if (null === UserQualities::find()->where(['and', ['quality_id' => $super_power->id], ['user_id' => $user->id]])->one()) {
+                $user_super_power = new UserQualities();
+                $user_super_power->quality_id = $super_power->id;
+                $user_super_power->user_id = $user->id;
+                $user_super_power->level = 0;
+                $user_super_power->save();
+              }
+            }
 
             foreach($powers as $power){
                 $userPower = UserPowers::findOne(['power_id' => $power->id, 'user_id' => $user->id]);
@@ -147,7 +164,14 @@ class MatchingQuestionsController extends Controller
             //     UserPowers::addPowerPoint($power_quality_2->getPower(), $user, 5);
             // }
 
-            return $this->render('matching-results', compact('quality_1', 'quality_2', 'superhero_identity', 'powers_quality_1'));
+            foreach ($powers_quality_1 as $quality_power) {
+              $userPower = UserPowers::findOne(['power_id' => $quality_power->power_id, 'user_id' => $user->id]);
+              $relevant_powers[] = $userPower;
+            }
+
+            $other_qualities = Qualities::find()->where(['not in', 'id', $quality_1->id])->all();
+
+            return $this->render('matching-results', compact('quality_1', 'quality_2', 'superhero_identity', 'relevant_powers', 'other_qualities'));
 
         } else{
             return $this->redirectQuestionnaire();

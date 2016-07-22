@@ -140,4 +140,8 @@ return [
     'Super Power' => '',
     'Your' => '',
     'Powers:' => '',
+    'points' => '',
+    'Additional Powers' => '',
+    'other powers' => 'You can also earn points towards 3 more SUper powers with the Powers below. Submit quality evidence to advance in your powers.',
+    'level' => '',
 ];
