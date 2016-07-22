@@ -87,6 +87,7 @@ class EvokeToolsController extends Controller
           $won_prize->user_id = Yii::$app->user->id;
           $won_prize->save();
 
+          $prize_won_id = "prize" . $prize->id;
           $prize_won = $prize_won->name; // switch to string
 
           break;
@@ -95,37 +96,42 @@ class EvokeToolsController extends Controller
 
       // if they didn't win a prize, check if they might have won some evocoin
       if ($prize_won === '') {
-        if ($roll >= ($this->max_prob * 0.98)) {
+        if ($roll >= ($this->max_prob * 0.99)) {
           $prize_won = '50 Evocoin!';
+          $prize_won_id = 'evocoin50';
           $wallet->amount += 50;
           $wallet->save();
         }
         elseif ($roll >= ($this->max_prob * 0.95)) {
           $prize_won = '20 Evocoin!';
+          $prize_won_id = 'evocoin20';
           $wallet->amount += 20;
           $wallet->save();
         }
         elseif ($roll >= ($this->max_prob * 0.9)) {
           $prize_won = '10 Evocoin!';
+          $prize_won_id = 'evocoin10';
           $wallet->amount += 10;
           $wallet->save();
         }
         elseif ($roll >= ($this->max_prob * 0.8)) {
           $prize_won = '5 Evocoin!';
+          $prize_won_id = 'evocoin5';
           $wallet->amount += 5;
           $wallet->save();
         }
         else {
           $prize_won = Yii::t('PrizeModule.base', 'Sorry');
+          $prize_won_id = "noWin";
         }
       }
-      $results = '<div><strong>' . $prize_won . '</strong></div>';
+
 
       if (Yii::$app->request->isAjax) {
-        return $results;
+        return $prize_won_id;
       } else {
 
-
+        $results = '<div><strong>' . $prize_won . '</strong></div>';
         return $this->redirect(['index', 'results' => $results]);
       }
     }
