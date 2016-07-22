@@ -42,4 +42,7 @@
    'Boardgame intro' => 'Proident eiusmod ex dolore dolore ut ad tempor. Mollit officia tempor sunt aute ut occaecat officia adipisicing. Do in labore amet consectetur aliquip ut voluptate esse nostrud mollit eiusmod irure. Anim ad proident veniam sit deserunt nostrud ad veniam ut incididunt adipisicing mollit in cupidatat. Labore sint quis nulla culpa quis duis elit nulla dolore commodo ullamco pariatur laboris enim reprehenderit magna veniam.',
    'Instructions intro' => 'Consectetur irure proident proident enim eiusmod voluptate aute nisi ad eu pariatur et proident incididunt reprehenderit aute ad.Lorem veniam minim esse eu sit qui pariatur voluptate occaecat minim in ipsum.',
    'Dowload instructions PDF' => '',
+   'Roles' => '',
+   'Earn super powers' => 'Earn Super Powers to unlock roles in the game. Level up for more powerful roles.',
+   'Better luck next time!' => '',
  ];
