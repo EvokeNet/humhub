@@ -2817,7 +2817,7 @@ img.bounceIn {
   font-weight: bold;
 }
 .evocoin {
-  background-image: url('img/evocoin_bg.png');
+  background-image: url('../img/evocoin_bg.png');
 }
 .footer {
   background-color: #254054;

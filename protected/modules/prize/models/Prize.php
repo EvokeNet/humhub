@@ -30,7 +30,9 @@ use Yii;
          ['name', 'string', 'max' => 256],
          ['quantity', 'integer'],
          ['week_of', 'date', 'format' => 'yyyy-MM-dd'],
-         ['weight', 'integer', 'min' => 0]
+         ['weight', 'integer', 'min' => 0],
+         ['description', 'string'],
+         ['image', 'string', 'max' => 256]
        ];
      }
 
@@ -44,7 +46,9 @@ use Yii;
           'name' => Yii::t('PrizeModule.base', 'Name'),
           'week_of' => Yii::t('PrizeModule.base', 'Week of'),
           'weight' => Yii::t('PrizeModule.base', 'Weight'),
-          'quantity' => Yii::t('PrizeModule.base', 'Quantity')
+          'quantity' => Yii::t('PrizeModule.base', 'Quantity'),
+          'description' => Yii::t('PrizeModule.base', 'Description'),
+          'image' => Yii::t('PrizeModule.base', "Image"),
         ];
       }
 
