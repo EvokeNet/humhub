@@ -50,7 +50,7 @@
 @btn-green-dark: #19B8B8;
 
 @btn-purple-light: #A748FA;
-@btn-purple-dark: #760ED1; 
+@btn-purple-dark: #760ED1;
 
 @white: #FFFFFF;
 
@@ -93,9 +93,10 @@ h6{
   .header-font
 }
 
-p{
+p, span{
   font-family: @text_font;
   font-weight: 400;
+  font-size: 12pt;
   color: @primary1;
 }
 
@@ -339,7 +340,7 @@ textarea {
   position: relative;
   // top: 15px;
   right: 30px;
-  
+
   div{
     top: 30%;
     position: absolute;
@@ -368,38 +369,38 @@ textarea {
 .evocoins{
   position:relative;
   margin-bottom: 10px;
-  // display: inline-block; 
+  // display: inline-block;
   // padding: 0px 0px 13px 26px;
   // padding: 0px 13px 13px;
   img{
     width:100px;
   }
   div{
-    // display: inherit; 
-    // position: relative; 
+    // display: inherit;
+    // position: relative;
     // left: -51%;
     // top: 4px;
-    position: absolute; 
-    top: 35%; 
+    position: absolute;
+    top: 35%;
     left: 45%;
     p{
-      font-weight: bold !important; 
-      font-size: 16pt !important; 
+      font-weight: bold !important;
+      font-size: 16pt !important;
       color: #254054 !important;
     }
   }
 }
 
 .home-widget-evocoins{
-  display: inline-block; 
+  display: inline-block;
   div{
-    display: inherit; 
-    position: relative; 
+    display: inherit;
+    position: relative;
     left: -51%;
     top: 2px;
     p{
-      font-weight: bold !important; 
-      // font-size: 16pt !important; 
+      font-weight: bold !important;
+      // font-size: 16pt !important;
       color: #254054 !important;
     }
   }
@@ -411,7 +412,7 @@ input[type="number"] {
   padding-left: 10px;
   margin-right: 10px;
 }
-  
+
 input[type=text],
 input[type=password],
 input[type=select] {
@@ -878,7 +879,7 @@ input[type=select] {
     position: relative;
     // border-left: 3px solid white;
     // font-size: 12px;
-    
+
     border: 1px solid #EDEDED;
     font-size: 9pt;
     margin: 5px;
@@ -1989,6 +1990,7 @@ input:-moz-placeholder {
   color: @primary !important;
   border: 3px solid @primary1;
   font-weight:700;
+  padding: 3px 4px 4px;
 }
 
 .label-default {
@@ -3404,23 +3406,23 @@ img.bounceIn {
   font-family: @heading_font;
   .container{
     padding: 15px 0 12px;
-    
+
     p{
       margin:0;
       color: white;
       display:inline;
       font-family: @heading_font;
     }
-  
+
     .right{
       float: right;
     }
-    
+
     a.bordered{
       border-right: 1px solid #fff;
       padding: 0 10px;
     }
-    
+
     a{
       padding: 0 10px;
     }
@@ -3487,8 +3489,16 @@ img.bounceIn {
     color: @secondary2;
 }
 
+.mission-number{
+    padding: 6px 18px 8px;
+    border: 2px solid @secondary2;
+    border-radius: 50%;
+    margin-right: 10px;
+    color: @secondary2;
+}
+
 .blue-border{
-  border-bottom: 3px solid @primary2; 
+  border-bottom: 3px solid @primary2;
   margin: 50px 200px;
 }
 

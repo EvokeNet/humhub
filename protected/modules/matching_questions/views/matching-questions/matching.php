@@ -46,13 +46,13 @@ use app\modules\matching_questions\models\MatchingQuestions;
                             <?php $maxValue = count($question->matchingAnswers); ?>
                             <!-- MULTIPLE CHOICE -->
                             <?php if($maxValue > 2) :  ?>
-                                <label>
+                                <label style = "font-size:12pt">
                                     <input type="number" min="1" max=<?= $maxValue ?> name="matching_answer_<?= $answer->id ?>_matching_question_<?= $question->id ?>" value = "" >
                                         <?= isset($answer->matchingAnswerTranslations[0]) ? $answer->matchingAnswerTranslations[0]->description : $answer->description ?>
                                 </label>   <br>
                             <!-- SINGLE CHOICE -->     
                             <?php else: ?>    
-                                <label style = "margin-right:20px">
+                                <label style = "margin-right:20px; font-size:12pt">
                                     <input type="radio" name="matching_question_<?= $question->id ?>" value = <?= $answer->id ?> >
                                         <?= isset($answer->matchingAnswerTranslations[0]) ? $answer->matchingAnswerTranslations[0]->description : $answer->description ?>
                                 </label>

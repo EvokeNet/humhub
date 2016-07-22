@@ -31,16 +31,16 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                 <div class="col-xs-5">
                     <strong>
                         <?= Yii::t('MissionsModule.base', 'Investment') ?>
-                    </strong> 
+                    </strong>
                 </div>
             </div>
 
 
-            <div id="empty_portfolio" <?php if(!empty($portfolio)): ?> style="display: none;" <?php endif;?> >
-                <?= Yii::t('MissionsModule.base', 'Add an evokation to invest') ?>
+            <div id="empty_portfolio" <?php if(!empty($portfolio)): ?> style="display: none;" <?php endif;?> style = "text-align: center; margin: 15px 0px 0px">
+                <label class = "label-border"><?= Yii::t('MissionsModule.base', 'Add an evokation to invest') ?></label>
             </div>
-                
-            <?php foreach($portfolio as $evokation_investment): ?>    
+
+            <?php foreach($portfolio as $evokation_investment): ?>
             <div id="evokation_row_<?= $evokation_investment->evokation_id ?>" class="evokation_row row">
                 <div class="col-xs-7">
                     <div class="padding-fromtop-5px">
@@ -67,7 +67,7 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                         </div>
                         <a href='#' onclick="deleteEvokation(<?= $evokation_investment->evokation_id ?>);">
                             <span class="glyphicon glyphicon-trash" style ="color: #FB656F; top:15px; left:5px"></span>
-                        </a> 
+                        </a>
                     </div>
                 </div>
                 <?php else: ?>
@@ -76,12 +76,12 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                         <div class="input-group spinner">
                             <?= $evokation_investment->investment ?>
                         </div>
-                    </div> 
-                </div>   
+                    </div>
+                </div>
                 <?php endif; ?>
-            </div>   
+            </div>
             <?php endforeach; ?>
-                
+
     </div>
 
     <HR>
@@ -91,25 +91,25 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
             <?php if (!$deadline || (strtotime(date('Y-m-d H:i:s')) > strtotime($deadline->start_date)) && (strtotime(date('Y-m-d H:i:s')) < strtotime($deadline->finish_date))): ?>
                 <a class = "btn btn-cta2" href='#' onclick="updatePortfolio();" style = "width:90px">
                     <?= Yii::t('MissionsModule.base', 'Save') ?>
-                </a> 
+                </a>
             <?php else: ?>
                 <a class = "btn btn-default" href='#'>
                     <?= Yii::t('MissionsModule.base', 'Voting Closed') ?>
                 </a>
-            <?php endif; ?>    
+            <?php endif; ?>
         </div>
 
         <div class="col-xs-8" style="text-align: right;">
             <div class="margin-toright-10">
                 <strong>
-                    <?= Yii::t('MissionsModule.base', 'Total') ?>:  
+                    <?= Yii::t('MissionsModule.base', 'Total') ?>:
                 </strong>
                 <div id="totalAmount" style="display: inline-block;">
                     <?= $totalAmount ?>
                 </div>
                 <BR>
                 <strong>
-                    <?= Yii::t('MissionsModule.base', 'Remaining') ?>:  
+                    <?= Yii::t('MissionsModule.base', 'Remaining') ?>:
                 </strong>
                 <div id="remainingAmount" style="display: inline-block;">
                     <?= $wallet->amount ?>
@@ -135,7 +135,7 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
   overflow: hidden;
   display: inline-block;
   vertical-align: bottom;
-  -webkit-animation: ellipsis steps(4,end) 900ms infinite;      
+  -webkit-animation: ellipsis steps(4,end) 900ms infinite;
   animation: ellipsis steps(4,end) 900ms infinite;
   content: "\2026"; /* ascii code for the ellipsis character */
   width: 0px;
@@ -143,13 +143,13 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
 
 @keyframes ellipsis {
   to {
-    width: 20px;    
+    width: 20px;
   }
 }
 
 @-webkit-keyframes ellipsis {
   to {
-    width: 20px;    
+    width: 20px;
   }
 }
 
@@ -246,7 +246,7 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                         html += "</a>";
                 html += "</div>";
             html += "</div>";
-                
+
                 html += "<div class='col-xs-5'>";
                     html += "<div class='container2' style = 'display:inline-flex'>";
                         html += "<div class='input-group spinner'>";
@@ -264,9 +264,9 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                     html += "<a href='#' onclick='deleteEvokation("+ id + ");'>";
                         html += "<span class='glyphicon glyphicon-trash' style ='color: #FB656F; top:15px; left:5px'></span>";
                     html += "</a>";
-                    html += "</div>"; 
+                    html += "</div>";
                 html += "</div>";
-            
+
         html += "</div>";
         // end html
         //===================
@@ -332,7 +332,7 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                     }
                 }
             });
-        }  
+        }
     }
 
     function updatePortfolio() {
@@ -354,8 +354,8 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
             type: 'post',
             dataType: 'json',
             success: function (data) {
-                for(var index in data) { 
-                    var attr = data[index]; 
+                for(var index in data) {
+                    var attr = data[index];
                     if(index != 'status'){
                         removeFromPortfolio(index);
                     }
@@ -375,7 +375,7 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                     $('#portfolio_status').hide();
                     showMessage("<?= Yii::t('MissionsModule.base', 'Error') ?>", "<?= Yii::t('MissionsModule.base', 'Something went wrong') ?>");
                 }
-                
+
             },
             data: evokations
         });
@@ -389,7 +389,7 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
 
       $('.spinner .btn:first-of-type').mousedown(function(e) {
             var inputInvestment = e.target.parentElement.parentElement.parentElement.getElementsByClassName('form-control');
-        
+
             raiseInvestmentInterval = setInterval(function(){
                 raiseInvestment(inputInvestment[0]);
             }, 150);
@@ -407,7 +407,7 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
 
       $('.spinner .btn:last-of-type').mousedown(function(e) {
             var inputInvestment = e.target.parentElement.parentElement.parentElement.getElementsByClassName('form-control');
-        
+
             decreaseInvestmentInterval = setInterval(function(){
                 decreaseInvestment(inputInvestment[0]);
             }, 150);
@@ -455,7 +455,7 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
               availableAmount = parseInt(remainingAmount.innerHTML);
             }else{
               target.value = oldInputInvestment.val();
-            }          
+            }
         }
     }
 

@@ -107,7 +107,7 @@ if ($space->isAdmin()) {
             $profileImageOrig = preg_replace('/.[^.]*$/', '', $space->getProfileImage()->getUrl());
             $defaultImage = (basename($space->getProfileImage()->getUrl()) == 'default_space.jpg' || basename($space->getProfileImage()->getUrl()) == 'default_space.jpg?cacheId=0') ? true : false;
             $profileImageOrig = $profileImageOrig . '_org.' . $profileImageExt;
-            
+
             if (!$defaultImage) {
                 ?>
 
@@ -203,7 +203,7 @@ if ($space->isAdmin()) {
                             <span
                                 class="title"><?php echo Yii::t('SpaceModule.widgets_views_spaceHeader', 'Followers'); ?></span>
                         </div>
-                        
+
                         <!-- Team Header -->
                         <?php if ($space->is_team): ?>
 
@@ -212,32 +212,31 @@ if ($space->isAdmin()) {
                             <span
                                 class="title"><?php echo Yii::t('StatsModule.widgets_views_spaceHeader', '# Evidences'); ?></span>
                         </div>
-                        
+
                         <div class="pull-left entry">
                             <span class="count"><?php echo $done.'/'.$total; ?></span><br>
                             <span
                                 class="title"><?php echo Yii::t('StatsModule.widgets_views_spaceHeader', 'Activities Completed'); ?></span>
                         </div>
-                        
-                        <div class="pull-left entry" style = "margin-top:10px">
+
+                        <!-- <div class="pull-left entry" style = "margin-top:10px"> -->
                             <!--<span class="count"><?php echo floor(($done/$total)*100).'%'; ?></span><br>
                             <span
                                 class="title"><?php echo Yii::t('StatsModule.widgets_views_spaceHeader', 'Evokation Progress'); ?></span>-->
-                            <div class="progress" style = "width:150px">
+                            <!-- <div class="progress" style = "width:150px">
                                 <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?= floor(($done/$total)*100) ?>%;">
                                     <span class="sr-only"></span>
                                 </div>
-                            </div>
-                        </div>
-                        
-                        <div class="pull-left entry">
-                            <span><?= floor(($done/$total)*100).'%' ?></span><br>
-                            <span><?= Yii::t('MissionsModule.base', 'Evokation Progress') ?></span>
-                            <!--<p><?php //Yii::t('MissionsModule.base', 'Evokation Progress: {number}%', array('number' => floor(($done/$total)*100))) ?></p>-->
-                        </div>
+                            </div> -->
+                        <!-- </div> -->
+
+                        <!-- <div class="pull-left entry">
+                            <span><?php //floor(($done/$total)*100).'%' ?></span><br>
+                            <span><?php //Yii::t('MissionsModule.base', 'Evokation Progress') ?></span>
+                        </div> -->
 
                         <?php endif; ?>
-                        
+
                     </div>
                     <!-- end: User statistics -->
 

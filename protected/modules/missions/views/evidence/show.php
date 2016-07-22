@@ -9,8 +9,8 @@ $hasUserSubmittedEvidence = Evidence::hasUserSubmittedEvidence($activity->id);
 $this->title = $activity->mission->title; //Yii::t('MissionsModule.base', 'Activities');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.base', 'Missions'), 'url' => ['missions', 'sguid' => $contentContainer->guid]];
 // $this->params['breadcrumbs'][] = $mission->title;
-$this->params['breadcrumbs'][] = Yii::t('MissionsModule.base', 'Mission: {alias}', array('{alias}' => $this->title)); //Yii::t('MissionsModule.base', 'Mission:').' '.$this->title;
-$this->params['breadcrumbs'][] = Yii::t('MissionsModule.base', 'Activity: {alias}', array('{alias}' => $activity->title)); 
+$this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.base', 'Mission {position} - {alias}', array('position' => $activity->mission->position, 'alias' => $this->title)), 'url' => ['activities', 'missionId' => $activity->mission->id, 'sguid' => $contentContainer->guid]]; //Yii::t('MissionsModule.base', 'Mission:').' '.$this->title;
+$this->params['breadcrumbs'][] = Yii::t('MissionsModule.base', 'Activity {position} - {alias}', array('position' => $activity->position, 'alias' => $activity->title));
 
 echo Breadcrumbs::widget([
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],

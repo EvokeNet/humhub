@@ -29,11 +29,11 @@ echo Html::beginForm();
 <div class="panel-group">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h4 class="panel-title">
+      <h6 class="panel-title">
         <a data-toggle="collapse" href="#collapseEvidence<?= $evidence->id ?>">
         	<?= Yii::t('MissionsModule.base', 'Review') ?>
         </a>
-      </h4>
+      </h6>
     </div>
 
     <div id="collapseEvidence<?= $evidence->id ?>" class="panel-collapse collapse">
@@ -90,7 +90,7 @@ echo Html::beginForm();
     			  <br>
             <?= Yii::t('MissionsModule.base', 'For every piece of evidence you review, you receive 10 points in {title}', array('title' => $primaryPowerTitle)) ?>
     			  <br>
-    			  <button type="submit" id="post_submit_review" class="btn btn-info">
+    			  <button type="submit" id="post_submit_review" class="btn btn-cta1">
               <?= Yii::t('MissionsModule.base', 'Submit Review') ?>
     			  </button>
         	</form>
@@ -107,37 +107,37 @@ echo Html::beginForm();
 <div class="panel-group">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h4 class="panel-title">
+            <h6 class="panel-title">
                 <a data-toggle="collapse" href="#collapseEvidenceReviews<?= $evidence->id ?>">
                     <?= Yii::t('MissionsModule.base', 'Reviews') ?>
                 </a>
-            </h4>
+            </h6>
         </div>
+        
+        <div class="panel-body">
+            <div id="collapseEvidenceReviews<?= $evidence->id ?>" class="panel-collapse collapse">
+                <div class="">
+                    <?php
+                    $votes = $evidence->getVotes();
+                    ?>
 
-        <div id="collapseEvidenceReviews<?= $evidence->id ?>" class="panel-collapse collapse">
-            <div class="">
-                <?php
-                $votes = $evidence->getVotes();
-                ?>
-
-                <?php foreach($votes as $vote): ?>
-                    <div class="">
-                        <?= $vote->comment ?>
-                        
-                        <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
-                            <?php echo Yii::t('MissionsModule.base', 'By'); ?>
-                            <a href="<?= ($vote->user->getUrl()) ?>">
-                                <?= ($vote->user->username) ?>
-                            </a>, 
-                            <?php echo \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]); ?>
-                        <?php else: ?>
-                            <?php echo Yii::t('MissionsModule.base', 'By Anonymous, {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]))); ?>
-                        <?php endif; ?>
-
-                        <?php echo Yii::t('MissionsModule.base', 'Rating:'); ?>
-                        <?= ($vote->value) ?>
-                    </div>
-                <?php endforeach; ?>
+                    <?php foreach($votes as $vote): ?>
+                        <div style = "padding: 10px 10px 3px; margin-bottom: 20px; border: 3px solid #9013FE;">
+                            <p><?php echo Yii::t('MissionsModule.base', 'Comment: {comment}', array('comment' => $vote->comment)); ?></p>
+                            <p><?php echo Yii::t('MissionsModule.base', 'Rating: {rating}', array('rating' => $vote->value)); ?></p>
+                            
+                            <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
+                                <p><?php echo Yii::t('MissionsModule.base', 'By'); ?>
+                                <a href="<?= ($vote->user->getUrl()) ?>">
+                                    <?= ($vote->user->username) ?>
+                                </a>, 
+                                <?php echo \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]); ?></p>
+                            <?php else: ?>
+                                <p><?php echo Yii::t('MissionsModule.base', 'By Anonymous, {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]))); ?></p>
+                            <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
         </div>
 

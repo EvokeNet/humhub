@@ -5,7 +5,6 @@
   use app\modules\powers\models\UserPowers;
   use app\modules\powers\models\QualityPowers;
 
-
   $user = Yii::$app->user->getIdentity();
 
   $super_power_image_url = Url::to($quality_1->image);
@@ -14,90 +13,83 @@
 <div class="container">
   <div class="row">
       <div class="col-md-8 layout-content-container">
+
           <div class="panel panel-default">
               <!--<div class="panel-heading"><strong><?php echo $this->title; ?></strong></div>-->
 
-                <div class="survey-results">
-                  <div>
-                    <div class="image-container col-xs-3">
-                      <div class="super-power-image">
-                      </div>
-                      <div class="image-text"><strong><?= isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->name : $quality_1->name ?></strong>
+                <div style = "text-align:center; padding: 20px 30px">
+
+                  <h4><?= Yii::t('MatchingModule.base', "Your survey results are:") ?></h4>
+
+                  <div class="row">
+                      <div class="col-xs-4">
+
+                        <img src = "<?php echo $super_power_image_url ?>" width=120 class = "power-border" style = "margin-top:30px">
+                        <h6><?= isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->name : $quality_1->name ?></h6>
 
                       </div>
-                    </div>
-                    <div class="panel-heading survey-heading col-xs-8">
-                      <?= Yii::t('MatchingModule.base', "Your survey results") ?>
-                    </div>
-                    <div class="panel-body">
-                      <p>
-                        <?php echo Yii::t('MatchingModule.base', 'Based on your answers') ?>
-                        <strong><?= isset($superhero_identity->superheroIdentityTranslations[0]) ? $superhero_identity->superheroIdentityTranslations[0]->name : $superhero_identity->name ?></strong>.
-                        <?php echo Yii::t('MatchingModule.base', 'gifted power') ?>
-                        <strong><?= isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->name : $quality_1->name ?>
-                        <?php echo Yii::t('MatchingModule.base', 'Super Power') ?>.</strong>
-                        <?php echo isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->description : $quality_1->description ?>.
-                      </p>
-                    </div>
+                      <div class="col-xs-8" style = "margin-top:30px">
+
+                        <p>
+                          <?php echo Yii::t('MatchingModule.base', "Based on your answers to the Agent Type survey we have determined the best role for you is that of <strong>{item}</strong>.", array('item' => isset($superhero_identity->superheroIdentityTranslations[0]) ? $superhero_identity->superheroIdentityTranslations[0]->name : $superhero_identity->name)) ?>
+                          <?php echo Yii::t('MatchingModule.base', 'Furthermore, you are already gifted with the <strong>{item}</strong>', array('item' => isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->name : $quality_1->name)) ?>
+                          <?php echo Yii::t('MatchingModule.base', 'Super Power. {description}.', array('description' => isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->description : $quality_1->description)) ?></strong>
+                        </p>
+                      </div>
                   </div>
+
                 </div>
+
                 </br>
+
                 <!-- earned powers -->
-                <div class="panel-heading sub-heading">
-                  <?php echo Yii::t('MatchingModule.base', 'Your') ?>
-                  <?= isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->name : $quality_1->name ?>
-                  <?php echo Yii::t('MatchingModule.base', 'Powers:') ?>
+                <div class="panel-heading">
+                  <h5><?php echo Yii::t('MatchingModule.base', 'Your {power} Powers:', array('power' => isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->name : $quality_1->name)) ?></h5>
                 </div>
+
                 <div class="panel-body">
-                  <div class="relevant-powers">
+                  <div class="relevant-powers text-center">
                     <?php foreach($relevant_powers as $user_power): ?>
                         <?php $power = $user_power->getPower(); ?>
-                        <div class="relevant-power col-xs-6">
-                          <div class="power-image" style="background-image:url('<?php echo $power->image; ?>')">
-                          </div>
-                          <div class="power-name">
-                            <?php echo $power->title ?>
-                          </div>
-                          <div class="power-points-container">
-                            <div class="power-points">
-                              <?php echo $user_power->value ?> <?php echo Yii::t('MatchingModule.base', 'points') ?>
-                            </div>
-                          </div>
+                        <div class="col-xs-6" style = "margin: 15px 0">
+                          <img src = "<?php echo $power->image; ?>" width=90px>
+                          <br /><br />
+                          <span style = "font-weight:700"><?php echo $power->title ?></span>
+                          <h6 style = "font-weight:700; color: #9013FE">
+                            <?php echo Yii::t('MatchingModule.base', '{point} points', array('point' => $user_power->value)) ?>
+                          </h6>
                         </div>
                     <?php endforeach; ?>
                   </div>
                 </div>
+
                 <!-- additional powers -->
-                <div class="panel-heading sub-heading">
-                  <?php echo Yii::t('MatchingModule.base', 'Additional Powers') ?>
+                <div class="panel-heading">
+                  <h5><?php echo Yii::t('MatchingModule.base', 'Additional Powers') ?></h5>
                 </div>
                 <div class="panel-body">
-                  <p>
-                    <?php echo Yii::t('MatchingModule.base', 'other powers') ?>
-                  </p>
-                  <?php foreach ($other_qualities as $quality): ?>
-                    <div class="col-xs-4">
-                      <div class="super-power-image small" style='background-image:url("<?php echo $quality->image ?>")'>
+                  <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'You can also earn points towards 3 more Super Powers with the Powers below. Submit quality evidence to advance in your powers.') ?></p>
 
-                      </div>
-                      <div class="super-power-name">
-                        <?= isset($quality->qualityTranslations[0]) ? $quality->qualityTranslations[0]->name : $quality->name ?>
-                      </div>
-                      <div class="super-power-level">
-                        <?php $user_quality = UserQualities::find()->where(['and', ['user_id' => Yii::$app->user->getIdentity()->id], ['quality_id' => $quality->id]])->one() ?>
-                        <?php echo Yii::t('MatchingModule.base', 'level') ?> <?php echo $user_quality->getLevel() ?>
-                      </div>
+                  <?php foreach ($other_qualities as $quality): ?>
+                    <div class="col-xs-4 text-center">
+
+                      <img src = "<?php echo $quality->image ?>" width=100 class = "power-border">
+                      <h6><?= isset($quality->qualityTranslations[0]) ? $quality->qualityTranslations[0]->name : $quality->name ?></h6>
+
+
+                      <?php $user_quality = UserQualities::find()->where(['and', ['user_id' => Yii::$app->user->getIdentity()->id], ['quality_id' => $quality->id]])->one() ?>
+                      <span style = "color: #28C503"><?php echo Yii::t('MatchingModule.base', 'Level {level}', array('level' => $user_quality->getLevel())); ?></span>
+
+                      <br><br><span class="label label-secondary"><?php echo Yii::t('MissionsModule.base', 'Powers'); ?> </span><br><br>
+
                       <div class="super-power-powers">
-                        <p style="padding-top: 15px;">
-                            <strong>
-                                <?php echo Yii::t('MatchingModule.base', 'Powers:') ?>
-                            </strong>
-                        </p>
+
                         <?php $quality_powers = QualityPowers::find()->where(['quality_id' => $quality->id])->all(); ?>
                         <?php $power_ids = []; ?>
                         <?php foreach ($quality_powers as $quality_power) {
                           $power_ids[] = $quality_power->power_id;
                         } ?>
+
                         <?php $userPowers = UserPowers::find()->where(['and', ['power_id' => $power_ids], ['user_id' => $user->id]])->all() ?>
 
                         <?php foreach($userPowers as $userPower): ?>
@@ -106,22 +98,23 @@
                                     $power = $userPower->getPower();
                                     $percentage = floor($userPower->getCurrentLevelPoints() / $userPower->getNextLevelPoints() * 100) ;
                                 ?>
-                                <?= isset($power->powerTranslations[0]) ? $power->powerTranslations[0]->title : $power->title ?>
+
+                                <p class = "text-center"><?= isset($power->powerTranslations[0]) ? $power->powerTranslations[0]->title : $power->title ?></p>
+
                                 <div class="progress">
                                     <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?= $percentage ?>%;">
                                         <span class="sr-only"></span>
                                     </div>
-                                    <span>
-                                    </span>
                                 </div>
-                                <div class="level">
-                                    Level <?= $userPower->getLevel() ?>
+
+                                <div class="level italic">
+                                    <?php echo Yii::t('MissionsModule.base', 'Level {level}', array('level' => $userPower->getLevel())); ?>
                                 </div>
-                                <div class="points">
-                                    <?= $userPower->getCurrentLevelPoints() ?>
-                                    /
-                                    <?= $userPower->getNextLevelPoints() ?>
+
+                                <div class="points italic">
+                                    <?php echo Yii::t('MissionsModule.base', '{points} / {total}', array('points' => $userPower->getCurrentLevelPoints(), 'total' => $userPower->getNextLevelPoints())); ?>
                                 </div>
+
                             </div>
                         <?php endforeach; ?>
                       </div>
@@ -142,6 +135,10 @@
 </div>
 
 <style type="text/css">
+
+.power{
+    padding-bottom: 50px;
+}
 
 .super-power-image{
   padding-bottom: 250px;
@@ -215,9 +212,9 @@
 }
 
 .relevant-powers .power-name {
-  position: absolute;
+  /*position: absolute;
   top: 0;
-  left: 7em;
+  left: 7em;*/
   font-weight: bold;
 }
 
@@ -241,6 +238,14 @@
 .super-power-level {
   color: #28c503;
   font-style: italic;
+}
+
+.power .level{
+    float: left;
+}
+
+.power .points{
+    float: right;
 }
 
 </style>
