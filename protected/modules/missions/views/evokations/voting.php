@@ -1,5 +1,15 @@
 <?php
 
+use yii\widgets\Breadcrumbs;
+
+$this->title = Yii::t('MissionsModule.base', 'Evokations');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.base', "{name}'s Evokation Home Page", array('name' => $contentContainer->name)), 'url' => ['home', 'sguid' => $contentContainer->guid]];
+$this->params['breadcrumbs'][] = Yii::t('MissionsModule.base', 'Evokation Voting');
+
+echo Breadcrumbs::widget([
+    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+]);
+
 $canCreateEvokations = $contentContainer->permissionManager->can(new \humhub\modules\missions\permissions\CreateEvidence());
 
 echo \app\modules\missions\widgets\EvokationVotingStream::widget(array(

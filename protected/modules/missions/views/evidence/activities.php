@@ -37,12 +37,12 @@ $firstSecondary = true;
             $x = 0;
             if (count($mission->activities) != 0): ?>
             
-            <?php foreach ($mission->activities as $activity): ?>
+            <?php foreach ($mission->activities as $key => $activity): ?>
             
                 <div class="panel panel-default">
                     <div class="panel-body panel-body grey-box">
                         
-                        <h5><?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title ?></h5>
+                        <h5><span class = "activity-number"><?= $key+1 ?></span><?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title ?></h5>
                         
                         <p class="description">
                             <?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description ?>

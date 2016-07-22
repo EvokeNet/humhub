@@ -61,7 +61,7 @@ use app\modules\matching_questions\models\MatchingQuestions;
                         <?php endforeach; ?>    
                     </div>
 
-                    <div class = "text-center"><div style = "border-bottom: 3px solid #3399E1; margin: 50px 200px;"></div></div>
+                    <div class = "text-center"><div class = "blue-border"></div></div>
                 <?php endforeach; ?>
 
                 <div class="form-group">

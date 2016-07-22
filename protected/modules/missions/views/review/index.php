@@ -56,17 +56,15 @@ if($evidence){
                 </a>, 
                 <?php echo \humhub\widgets\TimeAgo::widget(['timestamp' => $evidence->created_at]); ?>
                 <br>
-                <?= Yii::t('MissionsModule.base', 'Votes:') ?> 
-                <?= $evidence->getVoteCount()? $evidence->getVoteCount() : "0" ?>
+                <?= Yii::t('MissionsModule.base', 'Votes: {votes}', array('votes' => $evidence->getVoteCount() ? $evidence->getVoteCount() : "0")) ?>
                 <br>
-                <?= Yii::t('MissionsModule.base', 'Average Rating:') ?> 
-                <?= $evidence->getAverageRating()? number_format((float)$evidence->getAverageRating(), 1, '.', '') : "-" ?>
+                <?= Yii::t('MissionsModule.base', 'Average Rating: {rating}', array('rating' => $evidence->getAverageRating()? number_format((float)$evidence->getAverageRating(), 1, '.', '') : "-")) ?> 
             <?php endif; ?>
         </div>
 
-        <hr>
+        <div class = "text-center"><div class = "blue-border"></div></div>
 
-        <div class="review">
+        <div class="review evidence_area">
         <?php if($evidence->content->user_id != Yii::$app->user->getIdentity()->id): ?>  
             <div>
                 <?php
@@ -91,7 +89,7 @@ if($evidence){
                     
                 	<form id = "review" class="review">
                         <input type="hidden" id="evidence_id" value="<?= $evidence->id ?>">
-                		<div class="radio">
+                		<div class="radio" style = "margin-bottom:15px">
               				<label>
               					<input type="radio" name="yes-no-opt" class="btn-show" value="yes" <?= $yes ?> >
               					<?= Yii::t('MissionsModule.base', 'Yes') ?>
@@ -111,7 +109,7 @@ if($evidence){
               				</div>
                             
             			  </div>
-            			  <div class="radio">
+            			  <div class="radio" style = "margin-bottom:15px">
             				  <label>
             					<input type="radio" name="yes-no-opt" class="btn-hide" value="no" <?= $no ?>>
             					 <?= Yii::t('MissionsModule.base', 'No') ?>
@@ -121,7 +119,8 @@ if($evidence){
                             
                           <?php echo Html::textArea("text", $comment , array('id' => 'review_comment', 'class' => 'text-margin form-control ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Comment"))); ?>  
                           <br>
-                          <p><?= Yii::t('MissionsModule.base', 'For every piece of evidence you review, you receive 10 points in {title}', array('title' => $primaryPowerTitle)) ?></p>
+                          
+                          <label class = "label label-secondary2"><?= Yii::t('MissionsModule.base', 'For every piece of evidence you review, you receive 10 points in {title}', array('title' => $primaryPowerTitle)) ?></label><br>
             			  
             			  <button type="submit" id="post_submit_review" class="btn btn-cta2" style = "padding: 8px 16px 6px;">
                             <?= Yii::t('MissionsModule.base', 'Submit Review') ?>
@@ -152,11 +151,6 @@ if($evidence){
     text-align: right;
     margin-right: 2%;
     padding-top: 10px;
-}
-
-.evidence_area{
-    padding: 15px;
-    border-radius: 4px
 }
 
 .activity_area{

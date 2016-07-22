@@ -222,16 +222,16 @@ textarea {
   padding: 10px;
 }
 .evocoins {
-  display: inline-block;
+  position: relative;
+  margin-bottom: 10px;
 }
 .evocoins img {
   width: 100px;
 }
 .evocoins div {
-  display: inherit;
-  position: relative;
-  left: -51%;
-  top: 4px;
+  position: absolute;
+  top: 35%;
+  left: 45%;
 }
 .evocoins div p {
   font-weight: bold !important;
@@ -1675,7 +1675,7 @@ input:-moz-placeholder {
   display: inline-block;
   padding: 4px 5px 3px;
   font-weight: 600;
-  font-size: 8pt !important;
+  font-size: 9pt !important;
   color: white !important;
   vertical-align: baseline;
   white-space: nowrap;
@@ -1683,6 +1683,10 @@ input:-moz-placeholder {
 }
 .label-secondary {
   background: #9013FE;
+  color: white !important;
+}
+.label-secondary2 {
+  background: #FB656F;
   color: white !important;
 }
 .label-border {
@@ -2884,4 +2888,19 @@ img.bounceIn {
 .power-border {
   border: 3px solid #ECE046;
   border-radius: 50%;
+}
+.activity-number {
+  padding: 3px 10px 5px;
+  border: 2px solid #FB656F;
+  border-radius: 50%;
+  margin-right: 10px;
+  color: #FB656F;
+}
+.blue-border {
+  border-bottom: 3px solid #3399E1;
+  margin: 50px 200px;
+}
+.evidence_area {
+  padding: 15px;
+  border-radius: 4px;
 }

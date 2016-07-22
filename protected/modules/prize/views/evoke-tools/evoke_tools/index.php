@@ -9,10 +9,10 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
         <div class="col-md-8 layout-content-container">
           <div class="panel-group">
             <div class="panel panel-default">
-              <div class="panel-body">
-                <div class="panel-heading">
-                  <strong><?php echo Yii::t('PrizeModule.base', 'Discover Tools') ?></strong>
+              <div class="panel-heading">
+                  <h4><?php echo Yii::t('PrizeModule.base', 'Discover Tools') ?></h4>
                 </div>
+              <div class="panel-body">
                 <div class="col-xs-12">
                   <p>
                     <?php echo Yii::t('PrizeModule.base', 'Tools Description') ?>
@@ -24,7 +24,7 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                       <div class="col-xs-7">
                         <?php echo Html::a(
                             Yii::t('PrizeModule.base', 'Pay 5 Evocoins to play'),
-                            ['search'], array('class' => 'btn btn-primary', 'id' => 'toolSearch')); ?>
+                            ['search'], array('class' => 'btn btn-cta1', 'id' => 'toolSearch')); ?>
                       </div>
 
                       <div class="col-xs-4">
@@ -112,10 +112,13 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                   <div class="row">
                   </br>
                   </div>
+                  
+                  <div class = "text-center"><div class = "blue-border"></div></div>
+
                   <!-- boardgame rules -->
                   <div class="row">
                     <div class="panel-heading">
-                      <strong><?php echo Yii::t('PrizeModule.base', 'The boardgame') ?></strong>
+                      <h4><?php echo Yii::t('PrizeModule.base', 'The boardgame') ?></h4>
                     </div>
                     <div class="panel-body">
                       <div class="row">
@@ -132,7 +135,7 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                             <?php echo Yii::t('PrizeModule.base', 'Instructions intro') ?>
                           </p>
                           </br>
-                          <?php echo Html::a(Yii::t('PrizeModule.base', 'Dowload instructions PDF'), Url::to('@web/themes/Evoke/documents/reglas_de_evoke.pdf'), array('class' => 'btn', 'target' => '_blank')); ?>
+                          <?php echo Html::a(Yii::t('PrizeModule.base', 'Dowload instructions PDF'), Url::to('@web/themes/Evoke/documents/reglas_de_evoke.pdf'), array('class' => 'btn btn-cta1', 'target' => '_blank')); ?>
                         </span>
                       </div>
                     </div>

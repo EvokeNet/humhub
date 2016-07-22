@@ -6,7 +6,7 @@ use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 
 $this->title = Yii::t('MissionsModule.base', 'Evokations');
-$this->params['breadcrumbs'][] = Yii::t('MissionsModule.base', "{name}'s Evokation Page", array('name' => $contentContainer->name));
+$this->params['breadcrumbs'][] = Yii::t('MissionsModule.base', "{name}'s Evokation Home Page", array('name' => $contentContainer->name));
 
 echo Breadcrumbs::widget([
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],

@@ -13,7 +13,7 @@ $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
     <div class="panel-heading">
         <strong><?= Yii::t('MissionsModule.base', 'Your Evocoins') ?></strong>
     </div>
-    <div class="panel-body">
+    <div class="panel-body text-center">
         <div class = "evocoins">
             <img src="/humhub/themes/Evoke/img/evocoin_bg.png">
             <div><p><?= $wallet->amount ?></p></div>    
