@@ -10,6 +10,8 @@ use app\modules\prize\models\WonPrize;
 use app\modules\coin\models\Coin;
 use app\modules\coin\models\Wallet;
 use humhub\modules\user\models\User;
+use app\modules\powers\models\UserQualities;
+use app\modules\matching_questions\models\Qualities;
 
 /**
  * Evoke Tools Controller
@@ -21,9 +23,16 @@ class EvokeToolsController extends Controller
 
     public function actionIndex()
     {
-        $prizes = Prize::find()->all();
+        $prizes = Prize::find()->where(['<=', 'week_of', date('Y-m-d')])->all();
         $coin_id = Coin::find()->where(['name' => 'EvoCoin'])->one()->id;
         $wallet = Wallet::find()->where(['owner_id' => Yii::$app->user->id, 'coin_id' => $coin_id])->one();
+        $super_powers = Qualities::find()->all();
+
+        $total_prizes = 0;
+
+        foreach ($prizes as $prize) {
+          $total_prizes += $prize->quantity;
+        }
 
         if (array_key_exists('results', $_GET)) {
           $results = $_GET['results'];
@@ -31,7 +40,7 @@ class EvokeToolsController extends Controller
           $results = null;
         }
 
-        return $this->render('evoke_tools/index', array('prizes' => $prizes, 'wallet' => $wallet, 'results' => $results));
+        return $this->render('evoke_tools/index', array('prizes' => $prizes, 'wallet' => $wallet, 'results' => $results, 'total_prizes' => $total_prizes, 'super_powers' => $super_powers));
     }
 
     public function actionSearch()
@@ -58,7 +67,7 @@ class EvokeToolsController extends Controller
         $time_diff = date_diff(new \DateTime($date), new \DateTime());
         $diff = (int)$time_diff->format('%R%a'); // int of days
 
-        if ($diff >= 0) { //prize not available yet if diff < 0
+        if ($diff >= 0) { //prize not available yet if diff < 0 (shouldnt be in query, but just in case)
           $prize_prob = $prize->weight * ($diff + 1);
           $probabilities[] = $prize_prob;
           $available_prizes[] = $prize;
@@ -82,7 +91,9 @@ class EvokeToolsController extends Controller
           $won_prize->user_id = Yii::$app->user->id;
           $won_prize->save();
 
-          $prize_won = $prize_won->name; // switch to string
+          $prize_won_id = "prize" . $prize->id;
+          $prize_won_name = $prize_won->name;
+          $prize_won_description = $prize_won->description;
 
           break;
         }
@@ -90,33 +101,51 @@ class EvokeToolsController extends Controller
 
       // if they didn't win a prize, check if they might have won some evocoin
       if ($prize_won === '') {
-        if ($roll >= ($this->max_prob * 0.98)) {
-          $prize_won = '50 Evocoin!';
+        if ($roll >= ($this->max_prob * 0.99)) {
+          $prize_won_name = '50 Evocoin!';
+          $prize_won_description = '';
+          $prize_won_id = 'evocoin50';
           $wallet->amount += 50;
           $wallet->save();
         }
         elseif ($roll >= ($this->max_prob * 0.95)) {
-          $prize_won = '20 Evocoin!';
+          $prize_won_name = '20 Evocoin!';
+          $prize_won_description = '';
+          $prize_won_id = 'evocoin20';
           $wallet->amount += 20;
           $wallet->save();
         }
         elseif ($roll >= ($this->max_prob * 0.9)) {
-          $prize_won = '10 Evocoin!';
+          $prize_won_name = '10 Evocoin!';
+          $prize_won_description = '';
+          $prize_won_id = 'evocoin10';
           $wallet->amount += 10;
           $wallet->save();
         }
         elseif ($roll >= ($this->max_prob * 0.8)) {
-          $prize_won = '5 Evocoin!';
+          $prize_won_name = '5 Evocoin!';
+          $prize_won_description = '';
+          $prize_won_id = 'evocoin5';
           $wallet->amount += 5;
           $wallet->save();
         }
         else {
-          $prize_won = Yii::t('PrizeModule.base', 'Sorry');
+          $prize_won_name = Yii::t('PrizeModule.base', 'Sorry');
+          $prize_won_description = '';
+          $prize_won_id = "noWin";
         }
       }
 
-      $results = '<div><strong>' . $prize_won . '</strong></div>';
 
-      return $this->redirect(['index', 'results' => $results]);
+      if (Yii::$app->request->isAjax) {
+        $json = array('id' => $prize_won_id, 'name' => $prize_won_name, 'description' => $prize_won_description);
+
+        $response = json_encode($json);
+        return $response;
+      } else {
+
+        $results = '<div><strong>' . $prize_won_name . '</strong></div>';
+        return $this->redirect(['index', 'results' => $results]);
+      }
     }
 }
