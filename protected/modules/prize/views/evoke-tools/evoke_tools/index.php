@@ -49,14 +49,20 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                     <div class="spinner-container">
                       <div class="spinner">
                         <div class="prizes">
-                          <div id="evocoin10" class="prize evocoin">
+                          <div id="evocoin10" class="prize">
+                            <div class="prize-image evocoin">
+                              10
+                            </div>
                             <div class="prize-name">
-                              10 Evocoin
+                              Evocoin
                             </div>
                           </div>
-                          <div id="evocoin20" class="prize evocoin">
+                          <div id="evocoin20" class="prize">
+                            <div class="prize-image evocoin">
+                              20
+                            </div>
                             <div class="prize-name">
-                              20 Evocoin
+                              Evocoin
                             </div>
                           </div>
                           <div id="noWin" class="prize">
@@ -66,24 +72,33 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                           </div>
                           <?php foreach ($prizes as $prize): ?>
                             <div id='<?php echo "prize" . $prize->id ?>' class="prize">
+                              <div class="prize-image" style="background-image: url('<?php echo  $prize->image?>')">
+
+                              </div>
                               <div class="prize-name">
                                 <?php echo $prize->name; ?>
                               </div>
                             </div>
                           <?php endforeach; ?>
-                          <div id="evocoin50" class="prize evocoin">
+                          <div id="evocoin50" class="prize">
+                            <div class="prize-image evocoin">
+                              50
+                            </div>
                             <div class="prize-name">
-                              50 Evocoin
+                              Evocoin
                             </div>
                           </div>
-                          <div id="evocoin5" class="prize evocoin">
+                          <div id="evocoin5" class="prize">
+                            <div class="prize-image evocoin">
+                              5
+                            </div>
                             <div class="prize-name">
-                              5 Evocoin
+                              Evocoin
                             </div>
                           </div>
                         </div>
                       </div>
-                      <div class="selector">
+                      <div class="selector first-try">
 
                       </div>
                     </div>
@@ -179,6 +194,20 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
     position: relative;
   }
 
+  .spinner .prize-image {
+    width: 5em;
+    height: 5em;
+    position: absolute;
+    color: black;
+    background-size: contain;
+    background-repeat: no-repeat;
+    line-height: 5em;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 2em;
+  }
+
   .spinner .prize-name {
     position: absolute;
     bottom: 0;
@@ -220,6 +249,19 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
     margin: 0 auto;
   }
 
+  .spinner-container .selector.first-try {
+    background-color: #1ecccc;
+  }
+
+  .spinner-container .selector.first-try:after {
+    content: '<?php echo Yii::t('PrizeModule.base', 'Try your luck') ?>';
+    line-height: 9em;
+    left: 0;
+    right: 0;
+    text-align: center;
+    position: absolute;
+  }
+
   .well {
     background-color: #eaeaea;
   }
@@ -235,6 +277,8 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
     var $toolSearch = $(event.target);
 
     if (!$toolSearch.hasClass('disabled')) {
+
+      $('.selector').removeClass('first-try');
       if ($(".prizes").length > 1) { //remove the clone if it's there
         console.log($('.prizes'));
         $(".prizes").not(':first').remove();

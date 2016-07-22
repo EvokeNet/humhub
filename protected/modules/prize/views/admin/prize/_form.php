@@ -8,16 +8,35 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="powers-form">
+<div class="prizes-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'name') ?>
     <?= $form->field($model, 'quantity')->input('number') ?>
     <?= $form->field($model, 'weight')->input('number') ?>
     <?= $form->field($model, 'week_of')->widget(\yii\jui\DatePicker::className(),[
         'dateFormat' => 'yyyy-MM-dd',
-      ]) ?> <span><?php Yii::t('PrizeModule.base', 'This should be the begining of the week for this prize') ?>This should be the begining of the week for this prize.</span>
+      ]) ?>
+
+    <?= $form->field($model, 'image')->fileInput() ?>
+
+    <?php if(!empty($model->image)): ?>
+
+        <div class = "well">
+            <label><?php $file = explode('uploads/', $model->image); echo Yii::t('NovelModule.base', 'Uploaded Image: {file}', array('file' => $file[0])); ?></label>
+            <br><a href = "<?= $model->image ?>" target = "_blank"><img src = "<?= $model->image ?>" width = "200"></img></a>
+        </div><br><br>
+
+    <?php else: ?>
+
+        <div class = "well">
+            <span><?= Yii::t('NovelModule.base', 'No images uploaded yet') ?></span>
+        </div><br>
+
+    <?php endif; ?>
+
+    <?php echo $form->field($model, 'description')->textArea(['rows' => 3]); ?>
 
 
     <div class="form-group">

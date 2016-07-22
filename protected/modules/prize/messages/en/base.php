@@ -45,4 +45,7 @@
    'Roles' => '',
    'Earn super powers' => 'Earn Super Powers to unlock roles in the game. Level up for more powerful roles.',
    'Better luck next time!' => '',
+   'Try your luck' => '',
+   'Description' => '',
+   'Image' => '',
  ];
