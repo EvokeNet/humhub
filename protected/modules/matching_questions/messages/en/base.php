@@ -132,6 +132,6 @@ return [
     'Visibility' => '',
     'Wall ID' => '',
     'What are the strengths, passions, and abilities you will bring to the Evoke network?' => '',
-    'Your Agent Type is:' => '',
+    'Your survey results' => '',
     'Complete Profile' => '',
 ];

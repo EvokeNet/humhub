@@ -130,9 +130,10 @@ class MatchingQuestionsController extends Controller
             // $powers_quality_2 = QualityPowers::findAll(['quality_id' => $quality_2->id]);
 
             foreach($powers_quality_1 as $power_quality_1){
-              $starter_points = floor((($power_quality_1->improve_multiplier * pow(1, 1.95)) + $power->improve_offset) * 0.125); // give them 12.5% of the points needed for the first level
+              $power = $power_quality_1->getPower();
+              $starter_points = floor((($power->improve_multiplier * pow(1, 1.95)) + $power->improve_offset) * 0.125); // give them 12.5% of the points needed for the first level
 
-              UserPowers::addPowerPoint($power_quality_1->getPower(), $user, $starter_points);
+              UserPowers::addPowerPoint($power, $user, $starter_points);
             }
 
             // foreach($powers_quality_2 as $power_quality_2){
