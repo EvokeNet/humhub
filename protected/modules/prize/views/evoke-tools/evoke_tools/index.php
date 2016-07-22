@@ -149,10 +149,9 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                         </div>
                       </div>
                       <div class="row">
-                        <span class="well"></span>
-                        <span class="well"></span>
-                        <span class="well"></span>
-                        <span class="well"></span>
+                        <?php foreach ($super_powers as $super_power): ?>
+
+                        <?php endforeach; ?>
                       </div>
                     </div>
                   </div>
@@ -271,6 +270,7 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
 
   .well {
     background-color: #eaeaea;
+    border-radius: 1px;
   }
 </style>
 

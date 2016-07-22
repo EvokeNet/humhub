@@ -10,6 +10,8 @@ use app\modules\prize\models\WonPrize;
 use app\modules\coin\models\Coin;
 use app\modules\coin\models\Wallet;
 use humhub\modules\user\models\User;
+use app\modules\powers\models\UserQualities;
+use app\modules\matching_questions\models\Qualities;
 
 /**
  * Evoke Tools Controller
@@ -24,6 +26,8 @@ class EvokeToolsController extends Controller
         $prizes = Prize::find()->where(['<=', 'week_of', date('Y-m-d')])->all();
         $coin_id = Coin::find()->where(['name' => 'EvoCoin'])->one()->id;
         $wallet = Wallet::find()->where(['owner_id' => Yii::$app->user->id, 'coin_id' => $coin_id])->one();
+        $super_powers = Qualities::find()->all();
+
         $total_prizes = 0;
 
         foreach ($prizes as $prize) {
@@ -36,7 +40,7 @@ class EvokeToolsController extends Controller
           $results = null;
         }
 
-        return $this->render('evoke_tools/index', array('prizes' => $prizes, 'wallet' => $wallet, 'results' => $results, 'total_prizes' => $total_prizes));
+        return $this->render('evoke_tools/index', array('prizes' => $prizes, 'wallet' => $wallet, 'results' => $results, 'total_prizes' => $total_prizes, 'super_powers' => $super_powers));
     }
 
     public function actionSearch()
