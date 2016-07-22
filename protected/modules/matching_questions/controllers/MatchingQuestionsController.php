@@ -52,8 +52,15 @@ class MatchingQuestionsController extends Controller
             $superhero_identity = SuperheroIdentities::findOne(['id' => $user->superhero_identity_id]);
             $quality_1 = Qualities::findOne(['id' => $superhero_identity->quality_1]);
             $quality_2 = Qualities::findOne(['id' => $superhero_identity->quality_2]);
+            $powers_quality_1 = QualityPowers::findAll(['quality_id' => $quality_1->id]);
+            $relevant_powers = [];
 
-            return $this->render('matching-results', compact('quality_1', 'quality_2', 'superhero_identity'));
+            foreach ($powers_quality_1 as $quality_power) {
+              $userPower = UserPowers::findOne(['power_id' => $quality_power->power_id, 'user_id' => $user->id]);
+              $relevant_powers[] = $userPower;
+            }
+
+            return $this->render('matching-results', compact('quality_1', 'quality_2', 'superhero_identity', 'relevant_powers'));
         }
 
         if ($request->isPost){
@@ -140,7 +147,7 @@ class MatchingQuestionsController extends Controller
             //     UserPowers::addPowerPoint($power_quality_2->getPower(), $user, 5);
             // }
 
-            return $this->render('matching-results', compact('quality_1', 'quality_2', 'superhero_identity'));
+            return $this->render('matching-results', compact('quality_1', 'quality_2', 'superhero_identity', 'powers_quality_1'));
 
         } else{
             return $this->redirectQuestionnaire();

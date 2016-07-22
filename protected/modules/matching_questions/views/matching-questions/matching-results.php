@@ -2,7 +2,7 @@
   use yii\helpers\Html;
   use yii\helpers\Url;
 
-  $super_power_image_url = Url::to('@web/themes/Evoke/img/super_powers/' . str_replace(' ', '_', strtolower($quality_1->name) . '.png'));
+  $super_power_image_url = Url::to($quality_1->image);
 
  ?>
 <div class="container">
@@ -10,55 +10,50 @@
       <div class="col-md-8 layout-content-container">
           <div class="panel panel-default">
               <!--<div class="panel-heading"><strong><?php echo $this->title; ?></strong></div>-->
-              <div class="panel-body">
 
-                  <div class="survey-results">
-                    <div>
-                      <div class="image-container col-xs-3">
-                        <div class="super-power-image">
-                        </div>
-                        <div class="image-text"><strong><?= isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->name : $quality_1->name ?></strong>
+                <div class="survey-results">
+                  <div>
+                    <div class="image-container col-xs-3">
+                      <div class="super-power-image">
+                      </div>
+                      <div class="image-text"><strong><?= isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->name : $quality_1->name ?></strong>
 
-                        </div>
-                      </div>
-                      <div class="panel-heading survey-heading col-xs-8">
-                        <?= Yii::t('MatchingModule.base', "Your survey results") ?>
-                      </div>
-                      <div class="panel-body">
-                        <p>
-                          <?php echo Yii::t('MatchingModule.base', 'Based on your answers') ?>
-                          <strong><?= isset($superhero_identity->superheroIdentityTranslations[0]) ? $superhero_identity->superheroIdentityTranslations[0]->name : $superhero_identity->name ?></strong>.
-                          <?php echo Yii::t('MatchingModule.base', 'gifted power') ?>
-                          <strong><?= isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->name : $quality_1->name ?>
-                          <?php echo Yii::t('MatchingModule.base', 'Super Power') ?>.</strong>
-                        </p>
                       </div>
                     </div>
+                    <div class="panel-heading survey-heading col-xs-8">
+                      <?= Yii::t('MatchingModule.base', "Your survey results") ?>
+                    </div>
+                    <div class="panel-body">
+                      <p>
+                        <?php echo Yii::t('MatchingModule.base', 'Based on your answers') ?>
+                        <strong><?= isset($superhero_identity->superheroIdentityTranslations[0]) ? $superhero_identity->superheroIdentityTranslations[0]->name : $superhero_identity->name ?></strong>.
+                        <?php echo Yii::t('MatchingModule.base', 'gifted power') ?>
+                        <strong><?= isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->name : $quality_1->name ?>
+                        <?php echo Yii::t('MatchingModule.base', 'Super Power') ?>.</strong>
+                        <?php echo isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->description : $quality_1->description ?>.
+                      </p>
+                    </div>
                   </div>
-                  <br>
-
-                  <p>
-                      <?= isset($superhero_identity->superheroIdentityTranslations[0]) ? $superhero_identity->superheroIdentityTranslations[0]->description : $superhero_identity->description ?>
-                  </p>
-
-                  <br><br>
-
-                  <div class="qualities">
-                      <h3><?= Yii::t('MatchingModule.base', "Qualities:") ?></h3>
-
-                      <br>
-
-                      <div class="row">
-                          <div class="col-xs-6 col-sm-6 col-md-6">
-                              <h4><strong><?= isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->name : $quality_1->name ?></strong></h4>
-                              <p><?= isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->description : $quality_1->description ?></p>
-                          </div>
+                </div>
+                </br>
+                <div class="panel-heading sub-heading">
+                  <?php echo Yii::t('MatchingModule.base', 'Your') ?>
+                  <?= isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->name : $quality_1->name ?>
+                  <?php echo Yii::t('MatchingModule.base', 'Powers:') ?>
+                </div>
+                <div class="panel-body">
+                  <?php foreach($relevant_powers as $user_power): ?>
+                      <?php $power = $user_power->getPower(); ?>
+                      <div class="power-name">
+                        <?php echo $power->title ?>
+                      </div>
+                      <div class="power-points">
+                        <?php echo $user_power->getCurrentLevelPoints() ?>
                       </div>
 
-                  </div>
-
+                  <?php endforeach; ?>
+                </div>
               </div>
-          </div>
       </div>
       <div class="col-md-4 layout-sidebar-container">
         <div class="panel panel-default">
