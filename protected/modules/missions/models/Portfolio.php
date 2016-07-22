@@ -118,7 +118,6 @@ class Portfolio extends \yii\db\ActiveRecord
         ->one();
 
         return $query['total'];
-
     }
 
 }

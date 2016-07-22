@@ -10,6 +10,8 @@ use app\modules\space\models\Space;
 use app\modules\user\models\User;
 use yii\db\Expression;
 use yii\behaviors\TimestampBehavior;
+use app\modules\missions\models\Portfolio;
+use app\modules\coin\models\Wallet;
 
 /**
  * This is the model class for table "evokations".
@@ -141,4 +143,25 @@ class Evokations extends ContentActiveRecord implements \humhub\modules\search\i
             else
                 return null;
     }
+
+
+    public function beforeDelete()
+    {
+        $evokation_investments = Portfolio::findAll(['evokation_id' => $this->id]);
+
+        foreach($evokation_investments as $evokation_investment){
+            
+            if($evokation_investment->investment > 0){
+                $wallet = Wallet::findOne(['owner_id' => $evokation_investment->user_id]);
+                $wallet->amount = $wallet->amount + ($evokation_investment->investment);
+                $wallet->save();
+            }
+
+            $evokation_investment->delete();
+            
+        }
+
+        return parent::beforeDelete();
+    }    
+
 }
