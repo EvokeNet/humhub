@@ -1,4 +1,4 @@
-@import 'https://fonts.googleapis.com/css?family=Ubuntu|Vollkorn|Roboto|Open+Sans|Noto+Serif';
+@import 'https://fonts.googleapis.com/css?family=Ubuntu|Vollkorn|Roboto|Open+Sans|Noto+Serif|PT+Serif|Lora';
 h1 {
   font-family: 'Ubuntu', sans-serif;
   font-size: 30pt;
@@ -36,7 +36,7 @@ h6 {
   color: #254054;
 }
 p {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Lora', serif;
   font-weight: 400;
   color: #254054;
 }
@@ -44,7 +44,7 @@ body {
   padding-top: 130px;
   background-color: #F6F7F9;
   color: #254054;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Lora', serif;
 }
 body a,
 body a:hover,
@@ -230,7 +230,8 @@ textarea {
 .evocoins div {
   display: inherit;
   position: relative;
-  left: -50%;
+  left: -51%;
+  top: 4px;
 }
 .evocoins div p {
   font-weight: bold !important;
@@ -243,7 +244,8 @@ textarea {
 .home-widget-evocoins div {
   display: inherit;
   position: relative;
-  left: -50%;
+  left: -51%;
+  top: 2px;
 }
 .home-widget-evocoins div p {
   font-weight: bold !important;
@@ -470,6 +472,11 @@ input[type=select] {
   position: absolute;
   top: 14px;
   left: 14px;
+}
+#topbar-first .notifications .dropdown-menu li .media .img-space-aux {
+  position: absolute;
+  top: 34px;
+  left: 34px;
 }
 #topbar-first .dropdown-footer {
   margin: 10px 10px 5px;
@@ -843,7 +850,7 @@ input[type=select] {
   color: #254054;
 }
 .panel p {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Lora', serif;
   font-weight: 400;
   font-size: 12pt;
 }
@@ -898,7 +905,7 @@ input[type=select] {
   color: #254054;
 }
 .panel .panel-body p {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Lora', serif;
   font-weight: 400;
   font-size: 12pt;
 }
@@ -1746,7 +1753,7 @@ a.label-warning:hover {
   padding: 3px 5px;
   border-radius: 2px;
   font-weight: normal;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Lora', serif;
   font-size: 10px !important;
   text-transform: uppercase;
   color: #fff;
@@ -2112,6 +2119,11 @@ ul.tag_input li img {
   position: absolute;
   top: 14px;
   left: 14px;
+}
+.activities li .media .img-space-aux {
+  position: absolute;
+  top: 34px;
+  left: 34px;
 }
 .wall-entry {
   position: relative;

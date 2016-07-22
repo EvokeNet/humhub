@@ -21,9 +21,10 @@
 //
 // Colors and fonts variables
 // --------------------------------------------------
-@import 'https://fonts.googleapis.com/css?family=Ubuntu|Vollkorn|Roboto|Open+Sans|Noto+Serif';
+@import 'https://fonts.googleapis.com/css?family=Ubuntu|Vollkorn|Roboto|Open+Sans|Noto+Serif|PT+Serif|Lora';
 @heading_font: 'Ubuntu', sans-serif;
-@text_font: 'Roboto', sans-serif; //'Noto Serif', serif; //'Vollkorn', serif;
+// @text_font: 'Roboto', sans-serif; //'Noto Serif', serif; //'Vollkorn', serif;
+@text_font: 'Lora', serif;
 
 @primary1: #254054;
 @primary2: #3399E1;
@@ -374,7 +375,8 @@ textarea {
   div{
     display: inherit; 
     position: relative; 
-    left: -50%;
+    left: -51%;
+    top: 4px;
     p{
       font-weight: bold !important; 
       font-size: 16pt !important; 
@@ -388,7 +390,8 @@ textarea {
   div{
     display: inherit; 
     position: relative; 
-    left: -50%;
+    left: -51%;
+    top: 2px;
     p{
       font-weight: bold !important; 
       // font-size: 16pt !important; 
@@ -636,6 +639,11 @@ input[type=select] {
         position: absolute;
         top: 14px;
         left: 14px;
+      }
+      li .media .img-space-aux {
+        position: absolute;
+        top: 34px;
+        left: 34px;
       }
     }
   }
@@ -2510,6 +2518,11 @@ ul.tag_input {
     top: 14px;
     left: 14px;
   }
+  li .media .img-space-aux {
+      position: absolute;
+      top: 34px;
+      left: 34px;
+    }
 }
 
 // Wall-Entries

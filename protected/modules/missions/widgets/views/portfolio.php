@@ -20,15 +20,15 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
         </strong>
     </div>
     <div class="panel-body">
-        <table>
-            <div>
-                <div class="col-xs-8">
-                   <strong style="margin-left: -10%">
+
+            <div class = "row">
+                <div class="col-xs-7">
+                   <strong>
                         <?= Yii::t('MissionsModule.base', 'Evokation Name') ?>
                     </strong>
                 </div>
 
-                <div class="col-xs-4">
+                <div class="col-xs-5">
                     <strong>
                         <?= Yii::t('MissionsModule.base', 'Investment') ?>
                     </strong> 
@@ -41,9 +41,9 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
             </div>
                 
             <?php foreach($portfolio as $evokation_investment): ?>    
-            <div id="evokation_row_<?= $evokation_investment->evokation_id ?>" class="evokation_row">
-                <div class="col-xs-8">
-                    <div class="padding-fromtop-5px margin-toleft-10">
+            <div id="evokation_row_<?= $evokation_investment->evokation_id ?>" class="evokation_row row">
+                <div class="col-xs-7">
+                    <div class="padding-fromtop-5px">
                         <a href='<?= Url::to(['/missions/evokations/view', 'id' => $evokation_investment->getEvokationObject()->id, 'sguid' => $evokation_investment->getEvokationObject()->content->container->guid]); ?>'>
                             <?= $evokation_investment->getEvokationObject()->title ?>
                         </a>
@@ -51,8 +51,8 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                 </div>
 
                 <?php if (!$deadline || (strtotime(date('Y-m-d H:i:s')) > strtotime($deadline->start_date)) && (strtotime(date('Y-m-d H:i:s')) < strtotime($deadline->finish_date))): ?>
-                <div class="col-xs-4">
-                    <div class="container margin-toleft-25">
+                <div class="col-xs-5">
+                    <div class="container2" style = "display:inline-flex">
                         <div class="input-group spinner">
                             <input id = "evokation_<?= $evokation_investment->evokation_id ?>" type="text" class="form-control investment_input" value="<?= $evokation_investment->investment ?>">
                             <input id = "oldvalue" type="hidden" value="<?= $evokation_investment->investment ?>">
@@ -65,14 +65,14 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                                 </button>
                             </div>
                         </div>
-                    </div> 
-                    <a href='#' onclick="deleteEvokation(<?= $evokation_investment->evokation_id ?>);">
-                        <span class="glyphicon glyphicon-trash"></span>
-                    </p> 
+                        <a href='#' onclick="deleteEvokation(<?= $evokation_investment->evokation_id ?>);">
+                            <span class="glyphicon glyphicon-trash" style ="color: #FB656F; top:15px; left:5px"></span>
+                        </a> 
+                    </div>
                 </div>
                 <?php else: ?>
-                 <div class="col-xs-4">
-                    <div class="container margin-toleft-25">
+                 <div class="col-xs-5">
+                    <div class="container2">
                         <div class="input-group spinner">
                             <?= $evokation_investment->investment ?>
                         </div>
@@ -82,7 +82,6 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
             </div>   
             <?php endforeach; ?>
                 
-        </table>
     </div>
 
     <HR>
@@ -172,6 +171,7 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
 
 .spinner {
   width: 70px;
+  margin-top: 8px;
 }
 .spinner input {
   text-align: right;
@@ -239,33 +239,33 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
         //===================
         //html for element
         var html = "<div id='evokation_row_"+id+"' class=''evokation_row'>";
-        html += "<div class='col-xs-8'>";
-        html += "<div class='padding-fromtop-5px margin-toleft-10'>";
-                   html += "<a href='"+url+"'>";
-                        html += name;
-                    html += "</a>";
+            html += "<div class='col-xs-7'>";
+                html += "<div class='padding-fromtop-5px margin-toleft-10'>";
+                    html += "<a href='"+url+"'>";
+                            html += name;
+                        html += "</a>";
                 html += "</div>";
             html += "</div>";
-            
-             html += "<div class='col-xs-4'>";
-                 html += "<div class='container margin-toleft-25'>";
-                     html += "<div class='input-group spinner'>";
-                         html += "<input id = 'evokation_"+id+"' type='text' class='form-control investment_input' value='"+investment+"''>";
-                         html += "<input id = 'oldvalue' type='hidden' value='"+investment+"'>";
-                         html += "<div class='input-group-btn-vertical'>";
-                             html += "<button class='btn btn-default' type='button'>";
-                                 html += "<i class='fa fa-caret-up'></i>"
-                            html += "</button>";
-                             html += "<button class='btn btn-default' type='button'>";
-                                 html += "<i class='fa fa-caret-down'></i>"
-                            html += "</button>";
+                
+                html += "<div class='col-xs-5'>";
+                    html += "<div class='container2' style = 'display:inline-flex'>";
+                        html += "<div class='input-group spinner'>";
+                            html += "<input id = 'evokation_"+id+"' type='text' class='form-control investment_input' value='"+investment+"''>";
+                            html += "<input id = 'oldvalue' type='hidden' value='"+investment+"'>";
+                            html += "<div class='input-group-btn-vertical'>";
+                                html += "<button class='btn btn-default' type='button'>";
+                                    html += "<i class='fa fa-caret-up'></i>"
+                                html += "</button>";
+                                html += "<button class='btn btn-default' type='button'>";
+                                    html += "<i class='fa fa-caret-down'></i>"
+                                html += "</button>";
+                            html += "</div>";
                         html += "</div>";
-                    html += "</div>";
-                html += "</div>"; 
-                html += "<a href='#' onclick='deleteEvokation("+ id + ");'>";
-                     html += "<span class='glyphicon glyphicon-trash'></span>";
-                html += "</p>";
-            html += "</div>";
+                    html += "<a href='#' onclick='deleteEvokation("+ id + ");'>";
+                        html += "<span class='glyphicon glyphicon-trash' style ='color: #FB656F; top:15px; left:5px'></span>";
+                    html += "</a>";
+                    html += "</div>"; 
+                html += "</div>";
             
         html += "</div>";
         // end html
