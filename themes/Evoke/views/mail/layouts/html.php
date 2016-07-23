@@ -520,7 +520,7 @@ use humhub\models\Setting;
         <?php $this->beginBody() ?>
 
         <!--start 100% wrapper (white background) -->
-        <table width="100%" id="mainStructure" border="0" cellspacing="0" cellpadding="0" style="background-color:#ededed;">
+        <table height="100%" width="100%" id="mainStructure" border="0" cellspacing="0" cellpadding="0" style="background-color:#ededed;">
 
 
             <!-- START VIEW HEADER -->
