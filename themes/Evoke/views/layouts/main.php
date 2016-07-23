@@ -156,7 +156,7 @@ AppAsset::register($this);
         <p class = "right">
         <?php echo Html::a(
             Yii::t('app', 'About'), 
-            ['/static_pages/static-pages/About'], array('class' => 'bordered')); ?>
+            ['/static_pages/static-pages/about'], array('class' => 'bordered')); ?>
         <?php echo Html::a(
             Yii::t('app', 'Privacy Policy'), 
             ['/static_pages/static-pages/privacy-policy'], array('class' => 'bordered')); ?>

@@ -17,9 +17,5 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    '<strong>Rubric:</strong> {rubric}' => '<strong>Rùbrica:</strong> {rubric}',
-    'Content' => 'Contenido',
-    'Edit your Evidence content...' => 'Editar el contenido de su Evidencia...',
-    'Edit your Evidence title...' => 'Editar el título de su Evidencia...',
-    'Page Title' => 'Título de Página',
+    'How To Play' => '',
 ];

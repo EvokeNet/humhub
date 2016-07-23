@@ -17,8 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'There are no evokations yet!' => 'No hay Evocacions aún!',
-    'There are no evokations yet! Be the first and create one...' => '',
+    'There are no evokations yet!' => 'No hay Evocaciones aún!',
+    'There are no evokations yet! Be the first and create one...' => 'No hay Evocaciones aún! Sea el primero y cree una...',
     'There are no evidences yet!' => 'No hay Evidencias aún!',
-    'There are no evidences yet! Be the first and create one...' => 'No hay Evidencias todavía! Sea el primero y cree una...',
+    'There are no evidences yet! Be the first and create one...' => 'No hay Evidencias aún! Sea el primero y cree una...',
 ];

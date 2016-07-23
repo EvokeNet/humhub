@@ -15,10 +15,23 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
               <div class="panel-body">
               
                 <p>
-                  <?php echo Yii::t('PrizeModule.base', 'Tools Description') ?>
+                  <?php echo Yii::t('PrizeModule.base', 'We introduce some tools the network has made available to facilitate your agent work in Soacha.') ?>
                 </p>
                 
+                <br>
+                
+                <div class = "text-center"><div class = "blue-border"></div></div>
+                
+                <div class="panel-heading">
+                  <h4><?php echo Yii::t('PrizeModule.base', 'Slot Machine') ?></h4>
+                </div>
+                
                 <div class="panel-body">
+                  
+                  <p>
+                    <?php echo Yii::t('PrizeModule.base', 'Try your luck to win support in our slot machine. Every attempt will cost 5 evocoins.') ?>
+                  </p>
+                
                   <div class="row">
                     <?php if ($wallet->amount >= 5): ?>
                       <div class="col-xs-7">
@@ -27,9 +40,9 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                             ['search'], array('class' => 'btn btn-cta1', 'id' => 'toolSearch')); ?>
                       </div>
 
-                      <div class="col-xs-4">
-                        <div class="row text-right">
-                          <strong><?php echo Yii::t('PrizeModule.base', 'Tools remaining: {total}', array('total' => $total_prizes)) ?><?php echo $total_prizes ?></strong>
+                      <div class="col-xs-5">
+                        <div class="row text-right" style = "margin-top:10px; margin-right:5px">
+                          <p><strong><?php echo Yii::t('PrizeModule.base', 'Tools remaining: {total}', array('total' => $total_prizes)) ?><?php echo $total_prizes ?></strong></p>
                         </div>
                         <?php foreach ($prizes as $prize): ?>
                           <div class="row text-right">
@@ -47,6 +60,7 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                   </br>
                   </br>
                   
+                  <!-- Slot machine -->
                   <div class="row">
                     <div class="spinner-container">
                       <div class="spinner">
@@ -56,7 +70,7 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                               10
                             </div>
                             <div class="prize-name">
-                              Evocoin
+                              <p><?php echo Yii::t('PrizeModule.base', 'Evocoin(s)'); ?></p>
                             </div>
                           </div>
                           <div id="evocoin20" class="prize">
@@ -64,7 +78,7 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                               20
                             </div>
                             <div class="prize-name">
-                              Evocoin
+                              <p><?php echo Yii::t('PrizeModule.base', 'Evocoin(s)'); ?></p>
                             </div>
                           </div>
                           <div id="noWin" class="prize">
@@ -87,7 +101,7 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                               50
                             </div>
                             <div class="prize-name">
-                              Evocoin
+                              <p><?php echo Yii::t('PrizeModule.base', 'Evocoin(s)'); ?></p>
                             </div>
                           </div>
                           <div id="evocoin5" class="prize">
@@ -95,7 +109,7 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                               5
                             </div>
                             <div class="prize-name">
-                              Evocoin
+                              <p><?php echo Yii::t('PrizeModule.base', 'Evocoin(s)'); ?></p>
                             </div>
                           </div>
                         </div>
@@ -120,22 +134,23 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                   <!-- boardgame rules -->
                 
                   <div class="panel-heading">
-                    <h4><?php echo Yii::t('PrizeModule.base', 'The boardgame') ?></h4>
+                    <h4><?php echo Yii::t('PrizeModule.base', 'The Boardgame') ?></h4>
                   </div>
                   <div class="panel-body">
 
-                        <p>
-                          <?php echo Yii::t('PrizeModule.base', 'Boardgame intro'); ?>
-                        </p>
+                    <p>
+                      <?php echo Yii::t('PrizeModule.base', 'Located in Soacha, this game was designed by a secret team from the network to ensure countless hours of fun with your team of agents. When you play, you can win evocoins both to use the slot machine and to invest in your Evokations portfolio'); ?>
+                    </p>
+                    <br>
                     
                     <div class="row">
                       <span class="col-xs-7"><img src="<?php echo Url::to('@web/themes/Evoke/img/evoke_board.png') ?>" alt="evoke board" class="img-responsive" /></span>
-                      <span class="dowload col-xs-4 well well-lg">
-                        <p>
-                          <?php echo Yii::t('PrizeModule.base', 'Instructions intro') ?>
+                      <span class="dowload col-xs-5 well well-lg">
+                        <p class = "text-center">
+                          <?php echo Yii::t('PrizeModule.base', 'Download here instructions to the boardgame.') ?>
                         </p>
                         </br>
-                        <?php echo Html::a(Yii::t('PrizeModule.base', 'Dowload instructions PDF'), Url::to('@web/themes/Evoke/documents/reglas_de_evoke.pdf'), array('class' => 'btn btn-cta1', 'target' => '_blank')); ?>
+                        <div class = "text-center"><?php echo Html::a(Yii::t('PrizeModule.base', 'Download instructions PDF'), Url::to('@web/themes/Evoke/documents/reglas_de_evoke.pdf'), array('class' => 'btn btn-cta1', 'target' => '_blank')); ?></div>
                       </span>
                     </div>
                   </div>
@@ -222,13 +237,22 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
   }
 
   .spinner .prize-name.no-win {
-    top: 40%;
+    top: 35%;
+    color: #FB656F;
+    font-weight: 700;
+    font-size: 12pt;
+    margin-left: 10px;
   }
-
+  
+  .spinner-container{
+    position: relative;
+  }
+  
   .spinner-container .selector {
     height: 9em;
     width: 9em;
-    border: 2px solid #1ecccc;
+    /*border: 2px solid #1ecccc;*/
+    border: 5px solid #19B8B8;
     position: absolute;
     top: 0.5em;
     left: 0;
@@ -244,7 +268,7 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
 
-    border-top: 15px solid #1ecccc;
+    border-top: 15px solid #19B8B8;
     position: absolute;
     top: -2px;
     left: 0;
@@ -263,12 +287,20 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
     right: 0;
     text-align: center;
     position: absolute;
+    font-family: 'Ubuntu', sans-serif;
+    /*font-size: 12pt;*/
+    text-transform: uppercase;
+    font-weight: 700;
   }
 
   .prize-won-name {
     font-weight: bold;
-    font-size: 1.4em;
-    color: #000;
+    font-size: 16pt;
+    color: #254054;
+    margin-left: 20px;
+    border: 3px solid #19B8B8;
+    padding: 10px;
+    text-align: center;
   }
 
   .well {

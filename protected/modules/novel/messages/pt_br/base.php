@@ -34,6 +34,6 @@ return [
     'Update' => '',
     'Uploaded Image: {file}' => '',
     'You earned' => '',
-    'You have transformed' => '',
+    'You have taken your first steps as an agent of Evoke and have already demonstrated your power of transformation. Please take a few moments to complete your profile and see what other innate abilities you have.' => '',
     'in Transformation' => '',
 ];

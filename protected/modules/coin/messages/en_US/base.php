@@ -16,17 +16,25 @@
  *
  * NOTE: this file must be saved in UTF-8 encoding.
  */
-
- return [
-   'Create' => '',
-   'Coin'   => '',
-   'Name'   => '',
-   'ID'     => '',
-   'Wallet' => '',
-   'Owner ID' => '',
-   'Coin ID' => '',
-   'Amount' => '',
-   'Created At' => '',
-   'Modified At' => '',
-   'Create Wallets' => '',
- ];
+return [
+    'Amount' => '',
+    'Coin' => '',
+    'Coin ID' => '',
+    'Create' => '',
+    'Create Wallets' => '',
+    'Created At' => '',
+    'Credit' => '',
+    'Credit Coins to' => '',
+    'Give Coins' => '',
+    'ID' => '',
+    'Modified At' => '',
+    'Name' => '',
+    'No coins created yet!' => '',
+    'Owner' => '',
+    'Owner ID' => '',
+    'Powers' => '',
+    'Update' => '',
+    'Update {modelClass}: ' => '',
+    'Wallet' => '',
+    'Wallets' => '',
+];

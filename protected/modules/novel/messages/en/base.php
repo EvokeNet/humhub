@@ -16,23 +16,24 @@
  *
  * NOTE: this file must be saved in UTF-8 encoding.
  */
-
- return [
-   'Create' => '',
-   'Page Image'   => '',
-   'Page Number' => '',
-   'ID'     => '',
-   'Created At' => '',
-   'Modified At' => '',
-   'Graphic Novel' => '',
-   'Create Page' => '',
-   'Pages' => '',
-   'Uploaded Image: {file}' => '',
-   'No images uploaded yet' => '',
-   'Novel Page' => '',
-   'Complete Your Profile' => '',
-   'Congratulations!' => '',
-   'You have transformed' => 'You have taken your first steps as an agent of Evoke and have already demonstrated your power of transformation. Please take a few moments to complete your profile and see what other innate abilities you have.',
-   'You earned' => '',
-   'in Transformation' => '',
- ];
+return [
+    'Complete Your Profile' => '',
+    'Congratulations!' => '',
+    'Create' => '',
+    'Create Page' => '',
+    'Delete' => '',
+    'Edit' => '',
+    'Edit ' => '',
+    'Graphic Novel' => '',
+    'ID' => '',
+    'Image' => '',
+    'No images uploaded yet' => '',
+    'Page Image' => '',
+    'Page Number' => '',
+    'Pages' => '',
+    'Update' => '',
+    'Uploaded Image: {file}' => '',
+    'You earned' => '',
+    'You have taken your first steps as an agent of Evoke and have already demonstrated your power of transformation. Please take a few moments to complete your profile and see what other innate abilities you have.' => '',
+    'in Transformation' => '',
+];

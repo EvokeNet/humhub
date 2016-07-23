@@ -17,7 +17,7 @@ use app\modules\novel\models\NovelPage;
         </br>
         </br>
         <p>
-          <?php echo Yii::t('NovelModule.base', 'You have transformed') ?>
+          <?php echo Yii::t('NovelModule.base', 'You have taken your first steps as an agent of Evoke and have already demonstrated your power of transformation. Please take a few moments to complete your profile and see what other innate abilities you have.') ?>
         </p>
         <?php echo Html::a(
             Yii::t('NovelModule.base', 'Complete Your Profile'),
