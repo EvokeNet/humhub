@@ -7,7 +7,7 @@ use app\modules\novel\models\NovelPage;
 ?>
 <style media="screen">
   .graphic-novel-page{
-    min-height:80vh;
+    min-height:200vh;
     background-image:url('<?= $page->page_image ?>');
     background-size:contain;
     background-repeat:no-repeat;
@@ -17,11 +17,12 @@ use app\modules\novel\models\NovelPage;
   .graphic-novel-page .page-button{
     top: 50%;
     font-size:2em;
-    position:absolute;
+    position: fixed;
     width: 2em;
     text-align: center;
     line-height: 2em;
-    background-color: #000;
+    background-color: #1ecccc;
+    border: 2px solid #254054;
     color: #fff;
     font-weight: bold;
     cursor: pointer;
@@ -37,6 +38,14 @@ use app\modules\novel\models\NovelPage;
   }
   .graphic-novel-page .button-next{
     right: 1em;
+  }
+  
+  .topbar {
+    display: none;
+  }
+
+  body {
+    padding-top: 1em;
   }
 </style>
 

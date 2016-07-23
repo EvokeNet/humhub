@@ -72,6 +72,65 @@
                 <br>
 
                 <!-- additional powers -->
+                 <!--<div class="panel-heading">
+                  <h4><?php echo Yii::t('MatchingModule.base', 'Your Super Powers') ?></h4>
+                </div>
+                <div class="panel-body">
+                  <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'You can also earn points towards 3 more Super Powers with the Powers below. Submit quality evidence to advance in your powers.') ?></p>
+
+                  <?php foreach ($other_qualities as $quality): ?>
+                    <div class="col-xs-4 text-center">
+
+                      <img src = "<?php echo $quality->image ?>" width=100 class = "power-border">
+                      <h6><?= isset($quality->qualityTranslations[0]) ? $quality->qualityTranslations[0]->name : $quality->name ?></h6>
+
+
+                      <?php $user_quality = UserQualities::find()->where(['and', ['user_id' => Yii::$app->user->getIdentity()->id], ['quality_id' => $quality->id]])->one() ?>
+                      <span style = "color: #28C503"><?php echo Yii::t('MatchingModule.base', 'Level {level}', array('level' => $user_quality->getLevel())); ?></span>
+
+                      <br><br><span class="label label-secondary"><?php echo Yii::t('MissionsModule.base', 'Powers'); ?> </span><br><br>
+
+                      <div class="super-power-powers">
+
+                        <?php $quality_powers = QualityPowers::find()->where(['quality_id' => $quality->id])->all(); ?>
+                        <?php $power_ids = []; ?>
+                        <?php foreach ($quality_powers as $quality_power) {
+                          $power_ids[] = $quality_power->power_id;
+                        } ?>
+
+                        <?php $userPowers = UserPowers::find()->where(['and', ['power_id' => $power_ids], ['user_id' => $user->id]])->all() ?>
+
+                        <?php foreach($userPowers as $userPower): ?>
+                            <div class="power">
+                                <?php
+                                    $power = $userPower->getPower();
+                                    $percentage = floor($userPower->getCurrentLevelPoints() / $userPower->getNextLevelPoints() * 100) ;
+                                ?>
+
+                                <p class = "text-center"><?= isset($power->powerTranslations[0]) ? $power->powerTranslations[0]->title : $power->title ?></p>
+
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?= $percentage ?>%;">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                </div>
+
+                                <div class="level italic">
+                                    <?php echo Yii::t('MissionsModule.base', 'Level {level}', array('level' => $userPower->getLevel())); ?>
+                                </div>
+
+                                <div class="points italic">
+                                    <?php echo Yii::t('MissionsModule.base', '{points} / {total}', array('points' => $userPower->getCurrentLevelPoints(), 'total' => $userPower->getNextLevelPoints())); ?>
+                                </div>
+
+                            </div>
+                        <?php endforeach; ?>
+                      </div>
+                    </div>
+                  <?php endforeach; ?>
+                </div> -->
+
+                <!-- additional powers -->
                  <div class="panel-heading">
                   <!--<h5><?php //echo Yii::t('MatchingModule.base', 'Additional Powers') ?></h5>-->
                   <h4><?php echo Yii::t('MatchingModule.base', 'Your Super Powers') ?></h4>
@@ -91,6 +150,28 @@
                       </div>
                     </div>
 
+                    <!-- <div class="col-xs-4 text-center">
+
+                      <img src = "<?php echo $quality->image ?>" width=100 class = "power-border">
+                      <h6><?= isset($quality->qualityTranslations[0]) ? $quality->qualityTranslations[0]->name : $quality->name ?></h6>
+
+
+                      <?php $user_quality = UserQualities::find()->where(['and', ['user_id' => Yii::$app->user->getIdentity()->id], ['quality_id' => $quality->id]])->one() ?>
+                      <span style = "color: #28C503"><?php echo Yii::t('MatchingModule.base', 'Level {level}', array('level' => $user_quality->getLevel())); ?></span>
+
+                      <br><br><span class="label label-secondary"><?php echo Yii::t('MissionsModule.base', 'Powers'); ?> </span><br><br>
+
+                      <div class="super-power-powers">
+
+                        <?php $quality_powers = QualityPowers::find()->where(['quality_id' => $quality->id])->all(); ?>
+                        <?php $power_ids = []; ?>
+                        <?php foreach ($quality_powers as $quality_power) {
+                          $power_ids[] = $quality_power->power_id;
+                        } ?>
+
+                        <?php $userPowers = UserPowers::find()->where(['and', ['power_id' => $power_ids], ['user_id' => $user->id]])->all() ?>
+                      </div>
+                    </div> -->
                   <?php endforeach; ?>
                 </div>
 

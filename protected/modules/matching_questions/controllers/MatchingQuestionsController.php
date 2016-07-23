@@ -19,6 +19,7 @@ use app\modules\powers\models\UserPowers;
 use app\modules\powers\models\Powers;
 use app\modules\powers\models\UserQualities;
 use app\modules\languages\models\Languages;
+use humhub\modules\space\models\Space;
 
 /**
  * MatchingQuestionsController implements the CRUD actions for MatchingQuestions model.
@@ -65,8 +66,10 @@ class MatchingQuestionsController extends Controller
             $other_qualities = Qualities::find()->where(['not in', 'id', $quality_1->id])->all();
 
             $super_powers = Qualities::find()->all();
+            $welcome_space = Space::find()->where(['id' => 1])->one();
 
-            return $this->render('matching-results', compact('quality_1', 'quality_2', 'superhero_identity', 'relevant_powers', 'other_qualities', 'super_powers'));
+            return $this->render('matching-results', compact('quality_1', 'quality_2', 'superhero_identity', 'relevant_powers', 'other_qualities', 'super_powers', 'welcome_space'));
+
         }
 
         if ($request->isPost){
@@ -173,7 +176,9 @@ class MatchingQuestionsController extends Controller
 
             $other_qualities = Qualities::find()->where(['not in', 'id', $quality_1->id])->all();
 
-            return $this->render('matching-results', compact('quality_1', 'quality_2', 'superhero_identity', 'relevant_powers', 'other_qualities', 'super_powers'));
+            $welcome_space = Space::find()->where(['id' => 1])->one();
+
+            return $this->render('matching-results', compact('quality_1', 'quality_2', 'superhero_identity', 'relevant_powers', 'other_qualities', 'super_powers', 'welcome_space'));
 
         } else{
             return $this->redirectQuestionnaire();

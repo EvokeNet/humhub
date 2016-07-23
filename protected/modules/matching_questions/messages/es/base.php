@@ -20,7 +20,6 @@ return [
     'By discovering your natural powers, you can learn how to fit into the Evoke network. 
                     Try to imagine vividly what would you do in each of the scenarios described and honestly answer each question.
                     ' => 'Al descubrir tus poderes naturales, podré saber cómo encajas en la red Evoke. Trata de imaginar vívidamente qué harías en cada uno de los escenarios descritos y de responder honestamente cada pregunta.',
-    'The powers that you possess are:' => 'Los poderes que posees son:',
     'Welcome to the Evoke network.
             <br><br>Over the next 16 weeks you will be asked to respond to the urgent challenge of forced displacement and peace in your country.  You have been selected because of your unique potential to change the world.  You have some powers there is no doubt, but you will need to increase your powers to realize your potential.  I\'ve asked one of our best agents -- Marta -- to share her story and guide you on this journey.
             <br><br>Over the course of these 16 weeks you will form a team to create your unique world changing idea or as we call it in the Evoke network -- your Evokation.  Your Evokation will be created as you respond to the 8 missions I will give you.  At the end of the journey, the network will invest evocoin in your Evokations. The 10 Evokations with the most investment will be reviewed by experts in my network and the top 3 will receive recognition and reward.  As a team you must complete all 6 activities for each mission to advance to the next mission.  By completing activities, your powers will increase.
@@ -34,11 +33,7 @@ Como equipo deberán cumplir con las 6 actividades propuestas por cada misión p
 <br><br>Hay 16 poderes únicos que puedes desarrollar, los que a su vez, te darán tus super-poderes - visionario creativo, colaborador con compromiso, pensador de sistemas y líder empático. Estos poderes te van a ayudar en el viaje dentro de la experiencia Evoke. 
 <br><br>También vas a ganar Evocoins - la moneda que se usa en la red de Evoke - cada vez que contribuyas a mejorar la calidad de los pensamientos colectivos a través de darle poderes a otros o comentar sobre sus propias evidencias y/o contribuciones. Las monedas Evocoins serán usadas al final de esta experiencia para invertir en aquellas ideas innovadoras y cambiantes del mundo que creas que tendrán un mayor impacto en la comunidad, en tu país, o en el mundo. <br><br>Durante las 16 semanas, también se te dará la oportunidad de cambiar tus Evocoins para solicitar ayuda en completar tu Evokacion al usar la herramienta de Evoke - accediendo a transporte, materiales, y otra formas de asistencia que se proveerán… a un costo en Evocoins.
 <br><br>Buena suerte Agentes! No veo la hora de ver sus progresos y reconocer su aporte a la Evokacion Final al terminar esta experiencia.',
-    'With the powers you already possess, you are closest to achieving:' => 'Según los poderes que posees, estás más cerca de lograr:',
-    'You can develop all of the superpowers by completing each of the mission activities.' => 'En esta plataforma podrás enviar evidencias para completar actividades dentro de las misiones. Así desarrollarás todos los superpoderes.',
-    'Your Powers' => 'Sus Poderes',
-    'Your Super Powers' => 'Sus Super Poderes',
-    'Your powers are the reason why I have summoned you. They are the skills that qualify you to be part of the Evoke network. Now it is time to be your best. Over the course of this experience you must develop the four fundamental superpowers of Evoke agents:' => 'Tus poderes son la razón por la que te he convocado. Son las competencias que te cualifican para hacer parte de la red Evoke. Sin embargo, esta es una red en expansión, y en el transcurso de tu experiencia debes desarrollar los cuatro superpoderes fundamentales de los agentes Evoke:',
+    'You can also earn points towards 3 more Super Powers with the Powers below. Submit quality evidence to advance in your powers.' => '',
     'Add new Power' => 'Añadir nuevo Poder',
     'Additional Powers' => 'Poderes Adicionales',
     'Agent Type' => 'Tipo de agente',
@@ -140,6 +135,7 @@ Como equipo deberán cumplir con las 6 actividades propuestas por cada misión p
     'Superhero Identity Translation' => 'Traducción de Identidad de Superhéroe',
     'Superhero Identity Translations' => 'Traducciones de identidad de superhéroe',
     'Tags' => 'Etiquetas',
+    'The powers that you possess are:' => 'Los poderes que posees son:',
     'Time Zone' => 'Huso horario',
     'Title' => 'Título',
     'Translations' => 'Traducciones',
@@ -161,13 +157,17 @@ Como equipo deberán cumplir con las 6 actividades propuestas por cada misión p
     'View translations' => 'Ver traducciones',
     'Visibility' => 'Visibilidad',
     'Wall ID' => 'Identificación del muro',
-    'You can also earn points towards 3 more Super Powers with the Powers below. Submit quality evidence to advance in your powers.' => 'También puede ganar puntos para 3 de los superpoderes con los poderes abajo. Envia evidencia de cualidad para avanzar en sus poderes.',
-    'Your survey results' => 'Sus resultados de lo cuestionario',
-    'Your survey results are:' => 'Sus resultados de lo cuestionario són:',
+    'With the powers you already possess, you are closest to achieving:' => 'Según los poderes que posees, estás más cerca de lograr:',
+    'You can develop all of the superpowers by completing each of the mission activities.' => 'En esta plataforma podrás enviar evidencias para completar actividades dentro de las misiones. Así desarrollarás todos los superpoderes.',
+    'Your Powers' => 'Sus Poderes',
+    'Your Super Powers' => 'Sus Super Poderes',
+    'Your powers are the reason why I have summoned you. They are the skills that qualify you to be part of the Evoke network. Now it is time to be your best. Over the course of this experience you must develop the four fundamental superpowers of Evoke agents:' => 'Tus poderes son la razón por la que te he convocado. Son las competencias que te cualifican para hacer parte de la red Evoke. Sin embargo, esta es una red en expansión, y en el transcurso de tu experiencia debes desarrollar los cuatro superpoderes fundamentales de los agentes Evoke:',
+    'Your survey results' => 'Sus resultados',
+    'Your survey results are:' => 'Sus resultados son:',
     'Your {power} Powers:' => 'Sus {power} Poderes:',
     'gifted power' => 'poder dado',
     'level' => 'nivel',
     'other powers' => 'otros poderes',
     'points' => 'puntos',
-    '{point} points' => '{point} puntos',
+    '{point} points' => '{points} puntos',
 ];
