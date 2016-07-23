@@ -17,7 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Complete Your Profile' => 'Completa su Perfil',
+    'Discover Your Powers' => 'Descubre tus poderes',
+    'This power has been evident since the network found you. Now we will discover the other powers you have and which so far have not been so evident.' => '',
+    'You earned {points} points in Transformation' => 'Ha ganado {points} puntos en Transformación',
     'Congratulations!' => 'Felicitaciones',
     'Create' => 'Crear',
     'Create Page' => 'Crear Página',
@@ -33,7 +35,4 @@ return [
     'Pages' => 'Páginas',
     'Update' => 'Actualizado',
     'Uploaded Image: {file}' => 'Imagen subida: {file}',
-    'You earned' => 'Ha ganado',
-    'You have taken your first steps as an agent of Evoke and have already demonstrated your power of transformation. Please take a few moments to complete your profile and see what other innate abilities you have.' => 'Usted ha dado sus primeros pasos como un agente de Evoke y ya ha demostrado su poder de transformación. Por favor, tómese unos minutos para completar su perfil y ver qué otras habilidades innatas que tiene',
-    'in Transformation' => 'en Transformación',
 ];

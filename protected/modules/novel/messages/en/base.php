@@ -17,11 +17,11 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Complete Your Profile' => '',
     'Congratulations!' => '',
     'Create' => '',
     'Create Page' => '',
     'Delete' => '',
+    'Discover Your Powers' => '',
     'Edit' => '',
     'Edit ' => '',
     'Graphic Novel' => '',
@@ -31,9 +31,8 @@ return [
     'Page Image' => '',
     'Page Number' => '',
     'Pages' => '',
+    'This power has been evident since the network found you. Now we will discover the other powers you have and which so far have not been so evident.' => '',
     'Update' => '',
     'Uploaded Image: {file}' => '',
-    'You earned' => '',
-    'You have taken your first steps as an agent of Evoke and have already demonstrated your power of transformation. Please take a few moments to complete your profile and see what other innate abilities you have.' => '',
-    'in Transformation' => '',
+    'You earned {points} points in Transformation' => '',
 ];

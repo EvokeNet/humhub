@@ -121,6 +121,7 @@ return [
     'Superhero Identity Translation' => '',
     'Superhero Identity Translations' => '',
     'Tags' => '',
+    'The powers that you possess are:' => '',
     'Time Zone' => '',
     'Title' => '',
     'Translations' => '',
@@ -142,14 +143,19 @@ return [
     'View translations' => '',
     'Visibility' => '',
     'Wall ID' => '',
-    'Welcome to the Evoke network. 
-            <br><br>Over the next 16 weeks you will be asked to respond to the urgent challenge of forced displacement and peace in your country.  You have been selected because of your unique potential to change the world.  You have some powers there is no doubt, but you will need to increase your powers to realize your potential.  I\'ve asked one of our best agents -- Marta -- to share her story and guide you on this journey. 
-            <br><br>Over the course of these 16 weeks you will form a team to create your unique world changing idea or as we call it in the Evoke network -- your Evokation.  Your Evokation will be created as you respond to the 8 missions I will give you.  At the end of the journey, the network will invest evocoin in your Evokations. The 10 Evokations with the most investment will be reviewed by experts in my network and the top 3 will receive recognition and reward.  As a team you must complete all 6 activities for each mission to advance to the next mission.  By completing activities, your powers will increase. 
-            <br><br>There are 16 unique powers that you can develop which will in turn will give you your superpowers -- creative visionary, deep collaborator, systems thinker, and empathetic activist.  These powers will help you on your journey. 
-            <br><br>You will also earn Evocoin -- the currency of the Evoke network -- each time you contribute to the quality of our collective thought by giving power to others and commenting on their contributions.  Evocoin will be used at the end of your journey to invest in those world changing ideas that you think will have the greatest impact on your community, your country, the world.  
-            <br><br>You will also be given opportunities during the 16 weeks to exchange your Evocoin for assistance in completing your Evokation by accessing Evoke tools - transportation, materials, and other forms of support will be provided....for a cost.  
+    'Welcome to the Evoke network.
+            <br><br>Over the next 16 weeks you will be asked to respond to the urgent challenge of forced displacement and peace in your country.  You have been selected because of your unique potential to change the world.  You have some powers there is no doubt, but you will need to increase your powers to realize your potential.  I\'ve asked one of our best agents -- Marta -- to share her story and guide you on this journey.
+            <br><br>Over the course of these 16 weeks you will form a team to create your unique world changing idea or as we call it in the Evoke network -- your Evokation.  Your Evokation will be created as you respond to the 8 missions I will give you.  At the end of the journey, the network will invest evocoin in your Evokations. The 10 Evokations with the most investment will be reviewed by experts in my network and the top 3 will receive recognition and reward.  As a team you must complete all 6 activities for each mission to advance to the next mission.  By completing activities, your powers will increase.
+            <br><br>There are 16 unique powers that you can develop which will in turn will give you your superpowers -- creative visionary, deep collaborator, systems thinker, and empathetic activist.  These powers will help you on your journey.
+            <br><br>You will also earn Evocoin -- the currency of the Evoke network -- each time you contribute to the quality of our collective thought by giving power to others and commenting on their contributions.  Evocoin will be used at the end of your journey to invest in those world changing ideas that you think will have the greatest impact on your community, your country, the world.
+            <br><br>You will also be given opportunities during the 16 weeks to exchange your Evocoin for assistance in completing your Evokation by accessing Evoke tools - transportation, materials, and other forms of support will be provided....for a cost.
             <br><br>Good luck agents. I look forward to checking in on your progress and recognizing your final Evokations at the end of this journey.' => '',
+    'With the powers you already possess, you are closest to achieving:' => '',
     'You can also earn points towards 3 more Super Powers with the Powers below. Submit quality evidence to advance in your powers.' => '',
+    'You can develop all of the superpowers by completing each of the mission activities.' => '',
+    'Your Powers' => '',
+    'Your Super Powers' => '',
+    'Your powers are the reason why I have summoned you. They are the skills that qualify you to be part of the Evoke network. Now it is time to be your best. Over the course of this experience you must develop the four fundamental superpowers of Evoke agents:' => '',
     'Your survey results' => '',
     'Your survey results are:' => '',
     'Your {power} Powers:' => '',

@@ -10,17 +10,15 @@ use app\modules\novel\models\NovelPage;
     <div class="panel panel-default">
       <div class="panel-body text-center">
         <h1><?php echo Yii::t('NovelModule.base', 'Congratulations!') ?></h1>
-          <span><?php echo Yii::t('NovelModule.base', 'You earned') ?></span>
-          <div class="">
-            <strong><?php echo $points ?> pts</strong>
-          </div><span><?php echo Yii::t('NovelModule.base', 'in Transformation') ?></span>
+          <span><strong><?php echo Yii::t('NovelModule.base', 'You earned {points} points in Transformation', array('points' => $points)) ?></strong></span>
+          
         </br>
         </br>
         <p>
-          <?php echo Yii::t('NovelModule.base', 'You have taken your first steps as an agent of Evoke and have already demonstrated your power of transformation. Please take a few moments to complete your profile and see what other innate abilities you have.') ?>
+          <?php echo Yii::t('NovelModule.base', 'This power has been evident since the network found you. Now we will discover the other powers you have and which so far have not been so evident.') ?>
         </p>
         <?php echo Html::a(
-            Yii::t('NovelModule.base', 'Complete Your Profile'),
+            Yii::t('NovelModule.base', 'Discover Your Powers'),
             ['/matching_questions/matching-questions/matching'], array('class' => 'btn btn-success')); ?>
       </div>
     </div>

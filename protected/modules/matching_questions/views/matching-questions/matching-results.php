@@ -4,10 +4,13 @@
   use app\modules\powers\models\UserQualities;
   use app\modules\powers\models\UserPowers;
   use app\modules\powers\models\QualityPowers;
+  use humhub\modules\space\models\Space;
 
   $user = Yii::$app->user->getIdentity();
 
   $super_power_image_url = Url::to($quality_1->image);
+
+  $space = Space::findOne(['id' => 1]);
 
  ?>
 <div class="container">
@@ -17,7 +20,7 @@
           <div class="panel panel-default">
               <!--<div class="panel-heading"><strong><?php echo $this->title; ?></strong></div>-->
 
-                <div style = "text-align:center; padding: 20px 30px">
+                <!--<div style = "text-align:center; padding: 20px 30px">
 
                   <h4><?= Yii::t('MatchingModule.base', "Your survey results are:") ?></h4>
 
@@ -40,32 +43,39 @@
 
                 </div>
 
-                </br>
+                </br>-->
 
                 <!-- earned powers -->
                 <div class="panel-heading">
-                  <h5><?php echo Yii::t('MatchingModule.base', 'Your {power} Powers:', array('power' => isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->name : $quality_1->name)) ?></h5>
+                  <!--<h5><?php //echo Yii::t('MatchingModule.base', 'Your {power} Powers:', array('power' => isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->name : $quality_1->name)) ?></h5>-->
+                  <h4><?php echo Yii::t('MatchingModule.base', 'Your Powers') ?></h4>
                 </div>
 
                 <div class="panel-body">
+
+                  <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'The powers that you possess are:') ?></p>
+
                   <div class="relevant-powers text-center">
                     <?php foreach($relevant_powers as $user_power): ?>
                         <?php $power = $user_power->getPower(); ?>
                         <div class="col-xs-6" style = "margin: 15px 0">
-                          <img src = "<?php echo $power->image ?>" width=90px>
-                          <br /><br />
-                          <span style = "font-weight:700"><?php echo $power->title ?></span>
-                          <h6 style = "font-weight:700; color: #9013FE">
-                            <?php echo Yii::t('MatchingModule.base', '{point} points', array('point' => $user_power->value)) ?>
-                          </h6>
+                          <div style = "float:left"><img src = "<?php echo $power->image ?>" width=90px></div>
+                          <div style = "margin-top:15px">
+                            <span style = "font-weight:700; font-size:12pt"><?= isset($power->powerTranslations[0]) ? $power->powerTranslations[0]->title : $power->title ?></span>
+                            <h6 style = "font-weight:700; color: #9013FE">
+                              <?php echo Yii::t('MatchingModule.base', '{point} points', array('point' => $user_power->value)) ?>
+                            </h6>
+                          </div>
                         </div>
                     <?php endforeach; ?>
                   </div>
                 </div>
 
+                <br>
+
                 <!-- additional powers -->
-                <!-- <div class="panel-heading">
-                  <h5><?php echo Yii::t('MatchingModule.base', 'Additional Powers') ?></h5>
+                 <!--<div class="panel-heading">
+                  <h4><?php echo Yii::t('MatchingModule.base', 'Your Super Powers') ?></h4>
                 </div>
                 <div class="panel-body">
                   <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'You can also earn points towards 3 more Super Powers with the Powers below. Submit quality evidence to advance in your powers.') ?></p>
@@ -121,6 +131,105 @@
                     </div>
                   <?php endforeach; ?>
                 </div> -->
+
+                <!-- additional powers -->
+                 <div class="panel-heading">
+                  <!--<h5><?php //echo Yii::t('MatchingModule.base', 'Additional Powers') ?></h5>-->
+                  <h4><?php echo Yii::t('MatchingModule.base', 'Your Super Powers') ?></h4>
+                </div>
+                <div class="panel-body">
+                  <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'Your powers are the reason why I have summoned you. They are the skills that qualify you to be part of the Evoke network. Now it is time to be your best. Over the course of this experience you must develop the four fundamental superpowers of Evoke agents:') ?></p>
+
+                  <?php foreach ($super_powers as $quality): ?>
+
+                    <div style = "display:flex; margin-top:30px">
+                      <div style = "float:left"><img src = "<?php echo $quality->image ?>" width=100 class = "power-border"></div>
+                      <div style = "margin-left:20px">
+                        <h6 style = "font-weight:700; color: #9013FE; margin-bottom:5px"><?= isset($quality->qualityTranslations[0]) ? $quality->qualityTranslations[0]->name : $quality->name ?></h6>
+                        <p style = "font-weight:700; color: #254054">
+                          <?= isset($quality->qualityTranslations[0]) ? $quality->qualityTranslations[0]->description : $quality->description ?>
+                        </p>
+                      </div>
+                    </div>
+
+                    <!-- <div class="col-xs-4 text-center">
+
+                      <img src = "<?php echo $quality->image ?>" width=100 class = "power-border">
+                      <h6><?= isset($quality->qualityTranslations[0]) ? $quality->qualityTranslations[0]->name : $quality->name ?></h6>
+
+
+                      <?php $user_quality = UserQualities::find()->where(['and', ['user_id' => Yii::$app->user->getIdentity()->id], ['quality_id' => $quality->id]])->one() ?>
+                      <span style = "color: #28C503"><?php echo Yii::t('MatchingModule.base', 'Level {level}', array('level' => $user_quality->getLevel())); ?></span>
+
+                      <br><br><span class="label label-secondary"><?php echo Yii::t('MissionsModule.base', 'Powers'); ?> </span><br><br>
+
+                      <div class="super-power-powers">
+
+                        <?php $quality_powers = QualityPowers::find()->where(['quality_id' => $quality->id])->all(); ?>
+                        <?php $power_ids = []; ?>
+                        <?php foreach ($quality_powers as $quality_power) {
+                          $power_ids[] = $quality_power->power_id;
+                        } ?>
+
+                        <?php $userPowers = UserPowers::find()->where(['and', ['power_id' => $power_ids], ['user_id' => $user->id]])->all() ?>
+                      </div>
+                    </div> -->
+                  <?php endforeach; ?>
+                </div>
+
+                <!-- Your survey result -->
+                <div class="panel-heading">
+                  <!--<h5><?php //echo Yii::t('MatchingModule.base', 'Additional Powers') ?></h5>-->
+                  <h4><?= Yii::t('MatchingModule.base', "Your survey results are:") ?></h4>
+                </div>
+                <div class="panel-body">
+                  <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'With the powers you already possess, you are closest to achieving:') ?></p>
+
+                  <div class="row">
+                      <div class="col-xs-4 text-center">
+
+                        <img src = "<?php echo $super_power_image_url ?>" width=120 class = "power-border" style = "margin-top:30px">
+                        <h6 style = "color: #9013FE; font-weight:700"><?= isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->name : $quality_1->name ?></h6>
+
+                      </div>
+                      <div class="col-xs-8" style = "margin-top:35px">
+
+                        <p>
+                          <?php echo Yii::t('MatchingModule.base', "Based on your answers to the Agent Type survey we have determined the best role for you is that of <strong>{item}</strong>.", array('item' => isset($superhero_identity->superheroIdentityTranslations[0]) ? $superhero_identity->superheroIdentityTranslations[0]->name : $superhero_identity->name)) ?>
+                          <?php echo Yii::t('MatchingModule.base', 'Furthermore, you are already gifted with the <strong>{item}</strong>', array('item' => isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->name : $quality_1->name)) ?>
+                          <?php echo Yii::t('MatchingModule.base', 'Super Power. {description}.', array('description' => isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->description : $quality_1->description)) ?></strong>
+                        </p>
+                      </div>
+                  </div>
+
+                  <br />
+                  <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'You can develop all of the superpowers by completing each of the mission activities.') ?></p>
+
+                </div>
+
+                <!-- <div style = "text-align:center; padding: 20px 30px">
+
+                  <h4><?= Yii::t('MatchingModule.base', "Your survey results are:") ?></h4>
+
+                  <div class="row">
+                      <div class="col-xs-4">
+
+                        <img src = "<?php echo $super_power_image_url ?>" width=120 class = "power-border" style = "margin-top:30px">
+                        <h6 style = "color: #9013FE; font-weight:700"><?= isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->name : $quality_1->name ?></h6>
+
+                      </div>
+                      <div class="col-xs-8" style = "margin-top:30px">
+
+                        <p>
+                          <?php echo Yii::t('MatchingModule.base', "Based on your answers to the Agent Type survey we have determined the best role for you is that of <strong>{item}</strong>.", array('item' => isset($superhero_identity->superheroIdentityTranslations[0]) ? $superhero_identity->superheroIdentityTranslations[0]->name : $superhero_identity->name)) ?>
+                          <?php echo Yii::t('MatchingModule.base', 'Furthermore, you are already gifted with the <strong>{item}</strong>', array('item' => isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->name : $quality_1->name)) ?>
+                          <?php echo Yii::t('MatchingModule.base', 'Super Power. {description}.', array('description' => isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->description : $quality_1->description)) ?></strong>
+                        </p>
+                      </div>
+                  </div>
+
+                </div> -->
+
               </div>
       </div>
       <div class="col-md-5 layout-sidebar-container">
@@ -129,13 +238,17 @@
             <h4><?php echo Yii::t('MatchingModule.base', 'Getting started') ?></h4>
           </div>
           <div class = "panel-body">
-            <span style = "padding: 20px; font-size: 12pt;"><?php echo Yii::t('MatchingModule.base', "Welcome to the Evoke network.
+            <span style = "font-size: 12pt;"><?php echo Yii::t('MatchingModule.base', "Welcome to the Evoke network.
             <br><br>Over the next 16 weeks you will be asked to respond to the urgent challenge of forced displacement and peace in your country.  You have been selected because of your unique potential to change the world.  You have some powers there is no doubt, but you will need to increase your powers to realize your potential.  I've asked one of our best agents -- Marta -- to share her story and guide you on this journey.
             <br><br>Over the course of these 16 weeks you will form a team to create your unique world changing idea or as we call it in the Evoke network -- your Evokation.  Your Evokation will be created as you respond to the 8 missions I will give you.  At the end of the journey, the network will invest evocoin in your Evokations. The 10 Evokations with the most investment will be reviewed by experts in my network and the top 3 will receive recognition and reward.  As a team you must complete all 6 activities for each mission to advance to the next mission.  By completing activities, your powers will increase.
             <br><br>There are 16 unique powers that you can develop which will in turn will give you your superpowers -- creative visionary, deep collaborator, systems thinker, and empathetic activist.  These powers will help you on your journey.
             <br><br>You will also earn Evocoin -- the currency of the Evoke network -- each time you contribute to the quality of our collective thought by giving power to others and commenting on their contributions.  Evocoin will be used at the end of your journey to invest in those world changing ideas that you think will have the greatest impact on your community, your country, the world.
             <br><br>You will also be given opportunities during the 16 weeks to exchange your Evocoin for assistance in completing your Evokation by accessing Evoke tools - transportation, materials, and other forms of support will be provided....for a cost.
             <br><br>Good luck agents. I look forward to checking in on your progress and recognizing your final Evokations at the end of this journey.") ?></span>
+            <br /><br />
+            <?php echo Html::a(
+                    Yii::t('MissionsModule.base', 'Continue to Base Operations'),
+                    ['/space/space', 'sguid' => $space->guid], array('class' => 'btn btn-cta1')); ?>
           </div>
         </div>
       </div>
