@@ -278,6 +278,26 @@ class Events
         }
         
     }
+    
+    public static function onLeaderboardTopMenuInit($event)
+    {
+        $team_id = Team::getUserTeam(Yii::$app->user->getIdentity()->id);
+        $team = Team::findOne($team_id);
+
+        if($team){
+            $event->sender->addItem(array(
+            'label' => Yii::t('MissionsModule.base', 'Leaderboard'),
+            'id' => 'leaerboard',
+            'icon' => '<i class="fa fa-sort-numeric-asc" aria-hidden="true"></i>',
+            'url' => Url::to(['/missions/leaderboard/index']),
+            'sortOrder' => 200,
+            'isActive' => (Yii::$app->controller->module
+                && Yii::$app->controller->module->id == 'missions'
+                && Yii::$app->controller->id == 'leaderboard'),
+            ));
+        }
+        
+    }
 
     public static function onProfileSidebarInit($event)
     {
