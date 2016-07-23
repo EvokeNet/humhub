@@ -868,7 +868,7 @@ input[type=select] {
   border-radius: 4px;
 }
 .panel .panel-body {
-  padding: 10px;
+  padding: 15px 25px;
 }
 .panel .panel-body h1 {
   font-family: 'Ubuntu', sans-serif;
@@ -2823,7 +2823,6 @@ img.bounceIn {
   font-weight: bold;
 }
 .evocoin {
-  background-image: url('/themes/Evoke/img/evocoin_bg.png');
   background-image: url('../img/evocoin_bg.png');
 }
 .footer {

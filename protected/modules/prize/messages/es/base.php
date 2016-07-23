@@ -40,7 +40,7 @@ return [
     'ID' => 'Identificación',
     'Image' => 'Imagen',
     'Instructions intro' => 'Instrucciones de introducción',
-    'Located in Soacha, this game was designed by a secret team from the network to ensure countless hours of fun with your team of agents. When you play, you can win evocoins both to use the slot machine and to invest in your Evokations portfolio' => 'Localizado en Soacha, este juego fue diseñado por un equipo secreto de la red para garantizar incontables horas de diversión con tu equipo de agentes. Al jugar, podrás ganar evocoins para usar tanto en la máquina tragamonedas como para invertir en tu portafolio de evocaciones.',
+    'Located in Soacha, this game was designed by a secret team from the network to ensure countless hours of fun with your team of agents. When you play, you can win evocoins both to use the slot machine and to invest in your Evokations portfolio' => 'Localizado en Soacha, este juego fue diseñado por un equipo secreto de la red para garantizar incontables horas de diversión con tu equipo de agentes. Al jugar, podrás ganar evocoins para usar tanto en la máquina tragamonedas como para invertir en tu portafolio de Evokaciones.',
     'Name' => 'Nombre',
     'Not Enough Evocoin!' => 'No hay suficiente Evocoin!',
     'Pay 5 Evocoins to play' => 'Paga 5 Evocoins para jugar',
