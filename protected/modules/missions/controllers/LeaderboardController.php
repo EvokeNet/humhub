@@ -134,11 +134,11 @@ class LeaderboardController extends \yii\web\Controller
         $ranking['my_evocoins'] = $this->getRankingObjectPosition($this->getRankAgentsEvocoins(), $user_id, User::classname());
 
         //debugging
-        echo "<pre>";
-        print_r($ranking);
-        echo "</pre>";
+        // echo "<pre>";
+        // print_r($ranking);
+        // echo "</pre>";
         
-        //return $this->render('index', array('ranking' => $ranking));
+        return $this->render('index', array('ranking' => $ranking));
     }
 
 }
