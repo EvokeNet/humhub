@@ -9,7 +9,7 @@ use app\modules\teams\models\Team;
 $user = $object->content->user;
 $container = $object->content->container;
 
-$team_id = Team::getUserTeam(Yii::$app->user->getIdentity()->id);
+$team_id = Team::getUserTeam($user->id);
 if($team_id){
     $team = Team::findOne($team_id);
 }else{
