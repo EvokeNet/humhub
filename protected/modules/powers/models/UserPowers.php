@@ -54,7 +54,7 @@ class UserPowers extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'power_id', 'value', 'level'], 'required'],
+            [['user_id', 'power_id', 'value'], 'required'],
             [['user_id', 'power_id', 'value', 'level'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['power_id'], 'exist', 'skipOnError' => true, 'targetClass' => Powers::className(), 'targetAttribute' => ['power_id' => 'id']],

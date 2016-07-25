@@ -52,7 +52,7 @@
                     <?php foreach($relevant_powers as $user_power): ?>
                         <?php $power = $user_power->getPower(); ?>
                         <div class="col-xs-6" style = "margin: 15px 0">
-                          <img src = "<?php echo $power->image; ?>" width=90px>
+                          <img src = "<?php echo $power->image ?>" width=90px>
                           <br /><br />
                           <span style = "font-weight:700"><?php echo $power->title ?></span>
                           <h6 style = "font-weight:700; color: #9013FE">

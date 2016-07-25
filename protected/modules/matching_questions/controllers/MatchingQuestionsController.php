@@ -58,8 +58,11 @@ class MatchingQuestionsController extends Controller
 
             foreach ($powers_quality_1 as $quality_power) {
               $userPower = UserPowers::findOne(['power_id' => $quality_power->power_id, 'user_id' => $user->id]);
-              $relevant_powers[] = $userPower;
+              if($userPower)
+                $relevant_powers[] = $userPower;
             }
+
+
 
             $other_qualities = Qualities::find()->where(['not in', 'id', $quality_1->id])->all();
 
@@ -166,7 +169,8 @@ class MatchingQuestionsController extends Controller
 
             foreach ($powers_quality_1 as $quality_power) {
               $userPower = UserPowers::findOne(['power_id' => $quality_power->power_id, 'user_id' => $user->id]);
-              $relevant_powers[] = $userPower;
+              if($userPower)
+                $relevant_powers[] = $userPower;
             }
 
             $other_qualities = Qualities::find()->where(['not in', 'id', $quality_1->id])->all();
