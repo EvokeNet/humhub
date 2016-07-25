@@ -5,12 +5,13 @@ namespace humhub\modules\missions\controllers;
 use Yii;
 use app\modules\teams\models\Team;
 use app\modules\missions\models\Evidence;
+use humhub\modules\user\models\User;
 
 class LeaderboardController extends \yii\web\Controller
 {
 
     //Users and Teams
-    public function getRankingObjectPosition($ranking, $object_id){
+    public function getRankingObjectPosition($ranking, $object_id, $classname){
     
         foreach($ranking as $key => $object){
             if($object['id'] == $object_id){
@@ -19,8 +20,25 @@ class LeaderboardController extends \yii\web\Controller
             }
         }
 
-        $object = [];
-        $object['id'] = $object_id;
+        if($classname == User::classname()){
+            $object = (new \yii\db\Query())
+                ->select(['u.*', 'p.firstname', 'p.lastname'])
+                ->from('user as u')
+                ->join('INNER JOIN', 'profile as p', 'u.id = `p`.`user_id`')
+                ->where('id = '.$object_id)
+                ->one();
+
+        }elseif($classname == Team::classname()){
+            $object = (new \yii\db\Query())
+                ->select(['s.*'])
+                ->from('space as s')
+                ->where('id = '.$object_id)
+                ->one();
+
+        }else{
+            return;
+        }
+
         $object['position'] = -1;
         return $object;
     }
@@ -57,8 +75,9 @@ class LeaderboardController extends \yii\web\Controller
 
     public function getRankAgentsEvidences($limit = ""){
         return  (new \yii\db\Query())
-        ->select(['u.*, count(e.id) as evidences'])
+        ->select(['u.*, p.firstname, p.lastname, count(e.id) as evidences'])
         ->from('user as u')
+        ->join('INNER JOIN', 'profile as p', 'u.id = `p`.`user_id`')
         ->join('INNER JOIN', 'group as g', 'u.group_id = `g`.`id`')
         ->join('INNER JOIN', 'content as c', 'u.id = `c`.`user_id`')
         ->join('INNER JOIN', 'evidence as e', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
@@ -71,8 +90,9 @@ class LeaderboardController extends \yii\web\Controller
 
     public function getRankAgentsReviews($limit = ""){
         return (new \yii\db\Query())
-        ->select(['u.*, count(v.id) as reviews'])
+        ->select(['u.*, p.firstname, p.lastname, count(v.id) as reviews'])
         ->from('user as u')
+        ->join('INNER JOIN', 'profile as p', 'u.id = `p`.`user_id`')
         ->join('INNER JOIN', 'group as g', 'u.group_id = `g`.`id`')
         ->join('INNER JOIN', 'votes as v', 'u.id = `v`.`user_id`')
         ->where('g.name != "Mentors"')
@@ -84,8 +104,9 @@ class LeaderboardController extends \yii\web\Controller
 
     public function getRankAgentsEvocoins($limit = ""){
         return (new \yii\db\Query())
-        ->select(['u.*', 'w.amount as evocoins'])
+        ->select(['u.*', 'p.firstname', 'p.lastname', 'w.amount as evocoins'])
         ->from('user as u')
+        ->join('INNER JOIN', 'profile as p', 'u.id = `p`.`user_id`')
         ->join('INNER JOIN', 'group as g', 'u.group_id = `g`.`id`')
         ->join('INNER JOIN', 'coin_wallet as w', 'u.id = `w`.`owner_id`')
         ->where('g.name != "Mentors"')
@@ -102,15 +123,15 @@ class LeaderboardController extends \yii\web\Controller
         $ranking = [];
 
         $ranking['rank_teams_evidences'] = $this->getRankTeamsEvidences(10);
-        $ranking['my_team_evidences'] = $this->getRankingObjectPosition($this->getRankTeamsEvidences(), $team_id);
+        $ranking['my_team_evidences'] = $this->getRankingObjectPosition($this->getRankTeamsEvidences(), $team_id, Team::classname());
         $ranking['rank_teams_reviews'] = $this->getRankTeamsReviews(10);
-        $ranking['my_team_reviews'] = $this->getRankingObjectPosition($this->getRankTeamsReviews(), $team_id);
+        $ranking['my_team_reviews'] = $this->getRankingObjectPosition($this->getRankTeamsReviews(), $team_id, Team::classname());
         $ranking['rank_agents_evidences'] = $this->getRankAgentsEvidences(10);
-        $ranking['my_evidences'] = $this->getRankingObjectPosition($this->getRankAgentsEvidences(), $user_id);
+        $ranking['my_evidences'] = $this->getRankingObjectPosition($this->getRankAgentsEvidences(), $user_id, User::classname());
         $ranking['rank_agents_reviews'] = $this->getRankAgentsReviews(10);
-        $ranking['my_reviews'] = $this->getRankingObjectPosition($this->getRankAgentsReviews(), $user_id);
+        $ranking['my_reviews'] = $this->getRankingObjectPosition($this->getRankAgentsReviews(), $user_id, User::classname());
         $ranking['rank_agents_evocoins'] = $this->getRankAgentsEvocoins(10);
-        $ranking['my_evocoins'] = $this->getRankingObjectPosition($this->getRankAgentsEvocoins(), $user_id);
+        $ranking['my_evocoins'] = $this->getRankingObjectPosition($this->getRankAgentsEvocoins(), $user_id, User::classname());
 
         //debugging
         echo "<pre>";
