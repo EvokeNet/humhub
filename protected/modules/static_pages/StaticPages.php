@@ -1,22 +1,22 @@
 <?php
 
-namespace app\modules\languages;
+namespace app\modules\static_pages;
 
 /**
- * languages module definition class
+ * static_pages module definition class
  */
-class Languages extends \yii\base\Module
+class StaticPages extends \yii\base\Module
 {
     /**
      * @inheritdoc
      */
-    public $controllerNamespace = 'app\modules\languages\controllers';
+    public $controllerNamespace = 'app\modules\static_pages\controllers';
 
     /**
      * @inheritdoc
      */
     public function init()
-    {
+    { 
         parent::init();
 
         // custom initialization code goes here
@@ -25,19 +25,19 @@ class Languages extends \yii\base\Module
     
     public function registerTranslations()
     {
-        Yii::$app->i18n->translations['modules/languages/*'] = [
+        Yii::$app->i18n->translations['modules/static_pages/*'] = [
             'class' => 'yii\i18n\PhpMessageSource',
             'sourceLanguage' => 'en-US',
-            'basePath' => 'humhub/modules/languages/messages',
+            'basePath' => 'humhub/modules/static_pages/messages',
             'fileMap' => [
-                'modules/languages/views' => 'languages.php',
+                'modules/static_pages/views' => 'static_pages.php',
             ],
         ];
     }
     
     public static function t($category, $message, $params = [], $language = null)
     {
-        return Yii::t('modules/languages/' . $category, $message, $params, $language);
+        return Yii::t('modules/static_pages/' . $category, $message, $params, $language);
     }
         
 }

@@ -6,8 +6,6 @@ use Yii;
 use humhub\models\Setting;
 use yii\helpers\Url;
 
-use app\modules\static_pages\models\StaticPages;
-
 class Module extends \humhub\components\Module
 {
 
@@ -16,7 +14,7 @@ class Module extends \humhub\components\Module
      */
     public function getConfigUrl()
     {
-        return Url::to(['/static_pages/config']);
+        return Url::to(['/static_pages/config']); 
     }
 
     /**
