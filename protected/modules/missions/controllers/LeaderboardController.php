@@ -58,8 +58,10 @@ class LeaderboardController extends \yii\web\Controller
         return  (new \yii\db\Query())
         ->select(['u.*, count(e.id) as evidences'])
         ->from('user as u')
+        ->join('INNER JOIN', 'group as g', 'u.group_id = `g`.`id`')
         ->join('INNER JOIN', 'content as c', 'u.id = `c`.`user_id`')
         ->join('INNER JOIN', 'evidence as e', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
+        ->where('g.name != "Mentors"')
         ->limit($limit)
         ->groupBy('u.id')
         ->orderBy('evidences desc')
@@ -70,7 +72,9 @@ class LeaderboardController extends \yii\web\Controller
         return (new \yii\db\Query())
         ->select(['u.*, count(v.id) as reviews'])
         ->from('user as u')
+        ->join('INNER JOIN', 'group as g', 'u.group_id = `g`.`id`')
         ->join('INNER JOIN', 'votes as v', 'u.id = `v`.`user_id`')
+        ->where('g.name != "Mentors"')
         ->limit($limit)
         ->groupBy('u.id')
         ->orderBy('reviews desc')
@@ -81,7 +85,9 @@ class LeaderboardController extends \yii\web\Controller
         return (new \yii\db\Query())
         ->select(['u.*', 'w.amount as evocoins'])
         ->from('user as u')
+        ->join('INNER JOIN', 'group as g', 'u.group_id = `g`.`id`')
         ->join('INNER JOIN', 'coin_wallet as w', 'u.id = `w`.`owner_id`')
+        ->where('g.name != "Mentors"')
         ->limit($limit)
         ->orderBy('evocoins desc')
         ->all();
@@ -105,12 +111,12 @@ class LeaderboardController extends \yii\web\Controller
         $ranking['rank_agents_evocoins'] = $this->getRankAgentsEvocoins(10);
         $ranking['my_evocoins'] = $this->getRankingObjectPosition($this->getRankAgentsEvocoins(), $user_id);
 
-        /* debugging
+        //debugging
         echo "<pre>";
         print_r($ranking);
         echo "</pre>";
-        */
-        return $this->render('index', array('ranking' => $ranking));
+        
+        //return $this->render('index', array('ranking' => $ranking));
     }
 
 }
