@@ -7,6 +7,7 @@ $firstSecondary = true;
 
 ?>
 
+<div id="evidence_form">
 <div class="panel panel-default">
     <div class="panel-body panel-body grey-box">
 
@@ -64,6 +65,27 @@ $firstSecondary = true;
         echo Html::textArea("text", '', array('id' => 'contentForm_question', 'class' => 'text-margin form-control autosize contentForm', 'rows' => '10', "tabindex" => "2", 'placeholder' => Yii::t('MissionsModule.widgets_views_evidenceForm', "Content")));
 
     ?>
+</div>
+
+<script type="text/javascript">
+
+$( document ).ready(function() {
+   var oldHandleResponse = handleResponse;
+
+    handleResponse = function(response) {
+      oldHandleResponse(response);
+      if (!response.errors) {
+            $('#evidence_form').parent().parent().remove(); 
+            window.location.hash = "";
+            window.location.hash = "wallEntry_" + response.wallEntryId;  
+      }
+    }
+
+});
+
+    
+    
+</script>
 
 <style type="text/css">
 
