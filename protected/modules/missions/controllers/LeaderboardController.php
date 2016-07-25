@@ -11,7 +11,7 @@ class LeaderboardController extends \yii\web\Controller
 
     //Users and Teams
     public function getRankingObjectPosition($ranking, $object_id){
-        
+    
         foreach($ranking as $key => $object){
             if($object['id'] == $object_id){
                 $object['position'] = $key;
@@ -19,6 +19,7 @@ class LeaderboardController extends \yii\web\Controller
             }
         }
 
+        $object = [];
         $object['id'] = $object_id;
         $object['position'] = -1;
         return $object;
