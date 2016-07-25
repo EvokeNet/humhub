@@ -121,6 +121,12 @@ echo Html::beginForm();
                     $votes = $evidence->getVotes();
                     ?>
 
+                    <?php if(!$votes || sizeof($votes) <= 0): ?>
+                        <p>
+                            <?php echo Yii::t('MissionsModule.base', 'There are no reviews yet.'); ?>
+                        </p>
+                    <?php endif; ?>
+
                     <?php foreach($votes as $vote): ?>
                         <div style = "padding: 10px 10px 3px; margin-bottom: 20px; border: 3px solid #9013FE;">
                             <p><?php echo Yii::t('MissionsModule.base', 'Comment: {comment}', array('comment' => $vote->comment)); ?></p>

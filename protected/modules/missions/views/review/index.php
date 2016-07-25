@@ -62,6 +62,55 @@ if($evidence){
             <?php endif; ?>
         </div>
 
+        <!-- REVIEWS SECTION -->
+        <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
+
+            <div class = "text-center"><div class = "blue-border"></div></div>
+
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h6 class="panel-title">
+                            <a data-toggle="collapse" href="#collapseEvidenceReviews<?= $evidence->id ?>">
+                                <?= Yii::t('MissionsModule.base', 'Reviews') ?>
+                            </a>
+                        </h6>
+                    </div>
+                    
+                    <div class="panel-body">
+                        <div id="collapseEvidenceReviews<?= $evidence->id ?>" class="panel-collapse collapse">
+                            <div class="">
+                                <?php
+                                $votes = $evidence->getVotes();
+                                ?>
+
+                                <?php if(!$votes || sizeof($votes) <= 0): ?>
+                                    <p>
+                                        <?php echo Yii::t('MissionsModule.base', 'There are no reviews yet.'); ?>
+                                    </p>
+                                <?php endif; ?>
+
+                                <?php foreach($votes as $vote): ?>
+                                    <div style = "padding: 10px 10px 3px; margin-bottom: 20px; border: 3px solid #9013FE;">
+                                        <p><?php echo Yii::t('MissionsModule.base', 'Comment: {comment}', array('comment' => $vote->comment)); ?></p>
+                                        <p><?php echo Yii::t('MissionsModule.base', 'Rating: {rating}', array('rating' => $vote->value)); ?></p>
+                                        
+                                        <p><?php echo Yii::t('MissionsModule.base', 'By'); ?>
+                                        <a href="<?= ($vote->user->getUrl()) ?>">
+                                            <?= ($vote->user->username) ?>
+                                        </a>, 
+                                        <?php echo \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]); ?></p>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>   
+
+        <?php endif; ?>       
+
         <div class = "text-center"><div class = "blue-border"></div></div>
 
         <div class="review evidence_area">
