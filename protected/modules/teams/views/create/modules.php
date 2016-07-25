@@ -28,6 +28,7 @@ use yii\helpers\Url;
             <div class="row">
 
                 <?php foreach ($availableModules as $moduleId => $module): ?>
+                <?php if( !($space->is_team) || ($moduleId != 'wiki' && $moduleId != 'notes') ): ?>
                     <div class="col-md-6">
                         <div class="media well well-small ">
                             <img class="media-object img-rounded pull-left" data-src="holder.js/64x64" alt="64x64"
@@ -101,6 +102,7 @@ use yii\helpers\Url;
                         </div>
                         <br>
                     </div>
+                <?php endif; ?>    
                 <?php endforeach; ?>
             </div>
 
