@@ -169,8 +169,9 @@ if($evidence){
                           <?php echo Html::textArea("text", $comment , array('id' => 'review_comment', 'class' => 'text-margin form-control ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Comment"))); ?>  
                           <br>
                           
+                          <!--
                           <label class = "label label-secondary2"><?= Yii::t('MissionsModule.base', 'For every piece of evidence you review, you receive 10 points in {title}', array('title' => $primaryPowerTitle)) ?></label><br>
-            			  
+            			  -->
             			  <button type="submit" id="post_submit_review" class="btn btn-cta2" style = "padding: 8px 16px 6px;">
                             <?= Yii::t('MissionsModule.base', 'Submit Review') ?>
             			  </button>
