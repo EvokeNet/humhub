@@ -299,6 +299,8 @@ class EvidenceController extends ContentContainerController
 
                 $wallet->save();
 
+                $activityPower = Activities::findOne($vote->activity_id)->getPrimaryPowers()[0];
+
                 //Reward evidence author
                 if($flag){
                     UserPowers::addPowerPoint($activityPower->getPower(), User::findOne($evidence->content->user_id), $grade);
