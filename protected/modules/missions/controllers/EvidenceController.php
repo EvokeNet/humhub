@@ -87,7 +87,7 @@ class EvidenceController extends ContentContainerController
                 }
             },
         ])
-        ->where(['locked' => 0])
+        // ->where(['locked' => 0])
         ->all();
 
         return $this->render('missions', array('missions' => $missions, 'contentContainer' => $this->contentContainer));

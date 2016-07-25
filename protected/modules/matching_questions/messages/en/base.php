@@ -18,21 +18,22 @@
  */
 return [
     'Add new Power' => '',
+    'Additional Powers' => '',
     'Agent Type' => '',
     'Answer all the order questions from 1 to 4.' => '',
-    'Answer the following and find out what type of Super Hero is hiding inside you!' => '',
     'Are you sure you want to delete this item?' => '',
     'Are you sure you want to delete this power?' => '',
     'Are you sure you want to delete this quality?' => '',
     'Are you sure you want to delete this superhero identity?' => '',
     'Are you sure you want to delete this translation?' => '',
     'Auth Mode' => '',
+    'Based on your answers' => '',
+    'Based on your answers to the Agent Type survey we have determined the best role for you is that of <strong>{item}</strong>.' => '',
+    'By discovering your natural powers, you can learn how to fit into the Evoke network. 
+                    Try to imagine vividly what would you do in each of the scenarios described and honestly answer each question.
+                    ' => '',
     'Choose one answer for each single-choice question.' => '',
     'Complete Profile' => '',
-    'Congratulations, you have ventured further than most by answering this call.
-                    Now, it is time to find out what type of Evoke agent are you. What do you know?
-                    What are the strengths, passions, and abilities you will bring to the Evoke network?
-                    Answer the following and find out what type of Super Hero is hiding inside you!' => '',
     'Contentcontainer ID' => '',
     'Create' => '',
     'Create Matching Answer Translation' => '',
@@ -56,6 +57,8 @@ return [
     'Delete' => '',
     'Description' => '',
     'Email' => '',
+    'Furthermore, you are already gifted with the <strong>{item}</strong>' => '',
+    'Getting started' => '',
     'Group ID' => '',
     'Guid' => '',
     'ID' => '',
@@ -66,6 +69,7 @@ return [
     'Language ID' => '',
     'Last Activity Email' => '',
     'Last Login' => '',
+    'Level {level}' => '',
     'Matching Answer' => '',
     'Matching Answer ID' => '',
     'Matching Answer Translations' => '',
@@ -86,13 +90,12 @@ return [
     'No quality translations created yet!' => '',
     'No superhero identity created yet!' => '',
     'No superhero identity translations created yet!' => '',
-    'Now, it is time to find out what type of Evoke agent are you. What do you know?' => '',
     'Order' => '',
     'Order questions from 1 to 4. Do not repeat numbers.' => '',
+    'Powers:' => '',
     'Primary Power' => '',
     'Primary Quality' => '',
     'Qualities' => '',
-    'Qualities:' => '',
     'Quality' => '',
     'Quality 1' => '',
     'Quality 2' => '',
@@ -110,6 +113,8 @@ return [
     'Status' => '',
     'Submit' => '',
     'Super Admin' => '',
+    'Super Power' => '',
+    'Super Power. {description}.' => '',
     'Superhero Identities' => '',
     'Superhero Identity' => '',
     'Superhero Identity ID' => '',
@@ -137,18 +142,20 @@ return [
     'View translations' => '',
     'Visibility' => '',
     'Wall ID' => '',
-    'What are the strengths, passions, and abilities you will bring to the Evoke network?' => '',
-    'Your Agent Type is:' => '',
+    'Welcome to the Evoke network. 
+            <br><br>Over the next 16 weeks you will be asked to respond to the urgent challenge of forced displacement and peace in your country.  You have been selected because of your unique potential to change the world.  You have some powers there is no doubt, but you will need to increase your powers to realize your potential.  I\'ve asked one of our best agents -- Marta -- to share her story and guide you on this journey. 
+            <br><br>Over the course of these 16 weeks you will form a team to create your unique world changing idea or as we call it in the Evoke network -- your Evokation.  Your Evokation will be created as you respond to the 8 missions I will give you.  At the end of the journey, the network will invest evocoin in your Evokations. The 10 Evokations with the most investment will be reviewed by experts in my network and the top 3 will receive recognition and reward.  As a team you must complete all 6 activities for each mission to advance to the next mission.  By completing activities, your powers will increase. 
+            <br><br>There are 16 unique powers that you can develop which will in turn will give you your superpowers -- creative visionary, deep collaborator, systems thinker, and empathetic activist.  These powers will help you on your journey. 
+            <br><br>You will also earn Evocoin -- the currency of the Evoke network -- each time you contribute to the quality of our collective thought by giving power to others and commenting on their contributions.  Evocoin will be used at the end of your journey to invest in those world changing ideas that you think will have the greatest impact on your community, your country, the world.  
+            <br><br>You will also be given opportunities during the 16 weeks to exchange your Evocoin for assistance in completing your Evokation by accessing Evoke tools - transportation, materials, and other forms of support will be provided....for a cost.  
+            <br><br>Good luck agents. I look forward to checking in on your progress and recognizing your final Evokations at the end of this journey.' => '',
+    'You can also earn points towards 3 more Super Powers with the Powers below. Submit quality evidence to advance in your powers.' => '',
     'Your survey results' => '',
-    'Complete Profile' => '',
-    'Getting started' => '',
-    'Based on your answers' => '',
+    'Your survey results are:' => '',
+    'Your {power} Powers:' => '',
     'gifted power' => '',
-    'Super Power' => '',
-    'Your' => '',
-    'Powers:' => '',
-    'points' => '',
-    'Additional Powers' => '',
-    'other powers' => '',
     'level' => '',
+    'other powers' => '',
+    'points' => '',
+    '{point} points' => '',
 ];

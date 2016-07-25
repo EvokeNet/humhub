@@ -17,8 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Gdrive Url' => 'Url de Gdrive',
-    'Youtube Url' => 'Url de Youtube',
+    'Locked' => '',
+    'Position' => '',
     'Activities' => 'Actividades',
     'Activities ID' => 'Identificación de Actividades',
     'Activity ID' => 'Identificación de Actividad',
@@ -39,11 +39,11 @@ return [
     'Difficulty Level ID' => 'Identificación de nivel de dificultad',
     'Evokation Category ID' => 'Identificación de Categoria de Evocation',
     'Flag' => 'Flag',
+    'Gdrive Url' => 'Url de Gdrive',
     'ID' => 'Identificación',
     'Id Code' => 'Código de identificación',
     'Language ID' => 'Identificación de idioma',
     'Mission ID' => 'Identificación de misión',
-    'Mission Status (Locked/Unlocked)' => 'Estado de Misión (Bloqueado/Desbloqueado)',
     'Mission Translations' => 'Traducciones de misión',
     'Modified At' => 'Modificado en',
     'No, it does not meet the activity\'s requirement' => 'No, no cumple con el requisito de la actividad',
@@ -59,4 +59,5 @@ return [
     'Updated At' => 'Actualizado en',
     'Updated By' => 'Actualizado por',
     'Value' => 'Valor',
+    'Youtube Url' => 'Url de Youtube',
 ];

@@ -2913,3 +2913,19 @@ img.bounceIn {
   padding: 15px;
   border-radius: 4px;
 }
+.blur {
+  display: block;
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -o-filter: blur(2px);
+  -ms-filter: blur(2px);
+  filter: blur(2px);
+  opacity: 0.95;
+}
+.evidence-mission-box {
+  padding: 10px 15px 2px;
+  background: transparent;
+  color: #2A2E32 !important;
+  border: 3px solid #254054;
+  margin-top: 30px;
+}

@@ -10,14 +10,14 @@ echo Html::beginForm();
 <h5><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h5>
 <p><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]);?></p>
 
-<div class = "grey-box" style = "padding:10px">
+<div class = "evidence-mission-box">
   <div>
-    <p style = "display:inline; float:left"><?= isset($activity->mission->missionTranslations[0]) ? $activity->mission->missionTranslations[0]->title : $activity->mission->title ?></p>
-    <p style = "text-align:end"><?= Yii::t('MissionsModule.base', 'Votes: {votes}', array('votes' => $evidence->getVoteCount()? $evidence->getVoteCount() : "0")) ?></p>
+    <p style = "display:inline; float:left; font-weight: 700;"><?= isset($activity->mission->missionTranslations[0]) ? $activity->mission->missionTranslations[0]->title : $activity->mission->title ?></p>
+    <p style = "text-align:end; font-weight: 700;"><?= Yii::t('MissionsModule.base', 'Votes: {votes}', array('votes' => $evidence->getVoteCount()? $evidence->getVoteCount() : "0")) ?></p>
   </div>
   <div>
-    <p style = "display:inline; float:left"><?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title ?></p>
-    <p style = "text-align:end"><?= Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $evidence->getAverageRating()? number_format((float)$evidence->getAverageRating(), 1, '.', '') : "-")) ?></p>    
+    <p style = "display:inline; float:left; font-weight: 700;"><?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title ?></p>
+    <p style = "text-align:end; font-weight: 700;"><?= Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $evidence->getAverageRating()? number_format((float)$evidence->getAverageRating(), 1, '.', '') : "-")) ?></p>    
   </div>
 </div>
 

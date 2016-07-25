@@ -17,23 +17,5 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Complete Your Profile' => '',
-    'Congratulations!' => '',
-    'Create' => '',
-    'Create Page' => '',
-    'Delete' => '',
-    'Edit' => '',
-    'Edit ' => '',
-    'Graphic Novel' => '',
-    'ID' => '',
-    'Image' => '',
-    'No images uploaded yet' => '',
-    'Page Image' => '',
-    'Page Number' => '',
-    'Pages' => '',
-    'Update' => '',
-    'Uploaded Image: {file}' => '',
-    'You earned' => '',
-    'You have transformed' => '',
-    'in Transformation' => '',
+    'You\'re already a member of a Team.<BR>Leave it to create a new one.' => '',
 ];

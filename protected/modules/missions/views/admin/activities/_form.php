@@ -23,6 +23,8 @@ use app\modules\missions\models\EvokationCategories;
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
     
     <?= $form->field($model, 'rubric')->textarea(['rows' => 6]) ?>
+    
+    <?= $form->field($model, 'position')->textarea(['rows' => 1]) ?>
 
     <!--<div class="form-group">
         <?= $form->field($model, 'mission_id')->dropdownList(

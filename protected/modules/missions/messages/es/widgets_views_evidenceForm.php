@@ -17,12 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Rubric: {rubric}' => 'Rubrica: {rubric}',
+    '<strong>Rubric:</strong> {rubric}' => '',
     'Content' => 'Contenido',
     'Edit your Evidence content...' => 'Editar el contenido de su Evidencia...',
     'Edit your Evidence title...' => 'Editar el título de su Evidencia...',
     'Page Title' => 'Título de Página',
-    'Primary power:' => 'Poder primario:',
-    'Secondary power:' => 'Poder secundario:',
-    'points' => 'pontos',
 ];
