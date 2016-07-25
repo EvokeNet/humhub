@@ -65,7 +65,7 @@ if($evidence){
         <!-- REVIEWS SECTION -->
         <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
 
-            <div class = "text-center"><div class = "blue-border"></div></div>
+            <div class = "text-center"><div class = "blue-border"></div></div>  
 
             <div class="panel-group">
                 <div class="panel panel-default">

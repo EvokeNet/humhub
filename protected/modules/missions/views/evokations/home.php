@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use app\modules\missions\models\Missions;
 use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
+use humhub\models\Setting;
 
 $this->title = Yii::t('MissionsModule.base', 'Evokations');
 $this->params['breadcrumbs'][] = Yii::t('MissionsModule.base', "{name}'s Evokation Home Page", array('name' => $contentContainer->name));
@@ -36,13 +37,15 @@ endforeach;
 <div class="panel panel-default">
     <div class="panel-heading">
         
-        <a class = "btn btn-cta2" href='<?= Url::to(['/missions/evokations/submit', 'sguid' => $contentContainer->guid]); ?>' style = "margin-top:10px">
-            <?= Yii::t('MissionsModule.base', 'Submit evokation') ?>
-        </a>
+        <?php if(Setting::Get('enabled_evokations')): ?>
+            <a class = "btn btn-cta2" href='<?= Url::to(['/missions/evokations/submit', 'sguid' => $contentContainer->guid]); ?>' style = "margin-top:10px">
+                <?= Yii::t('MissionsModule.base', 'Submit evokation') ?>
+            </a>
 
-        <a class = "btn btn-cta2" href='<?= Url::to(['/missions/evokations/voting', 'sguid' => $contentContainer->guid]); ?>' style = "margin-top:10px">
-            <?= Yii::t('MissionsModule.base', 'Vote on Evokations') ?>
-        </a>
+            <a class = "btn btn-cta2" href='<?= Url::to(['/missions/evokations/voting', 'sguid' => $contentContainer->guid]); ?>' style = "margin-top:10px">
+                <?= Yii::t('MissionsModule.base', 'Vote on Evokations') ?>
+            </a>
+        <?php endif; ?>
             
         <!--<div style = "margin-top:10px; float:right">
             <div class="progress">

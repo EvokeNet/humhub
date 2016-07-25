@@ -53,9 +53,12 @@ class Events
 
                 $userPowers = UserPowers::getUserPowers(Yii::$app->user->getIdentity()->id);
                 $event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers], array('sortOrder' => 9));
-
-                $portfolio = Portfolio::getUserPortfolio(Yii::$app->user->getIdentity()->id);
-                $event->sender->addWidget(PortfolioWidget::className(), ['portfolio' => $portfolio], array('sortOrder' => 8));
+                
+                if(Setting::Get('enabled_evokations')){
+                    $portfolio = Portfolio::getUserPortfolio(Yii::$app->user->getIdentity()->id);
+                    $event->sender->addWidget(PortfolioWidget::className(), ['portfolio' => $portfolio], array('sortOrder' => 8));    
+                }
+                
             }
 
         }
@@ -84,6 +87,16 @@ class Events
                 && Yii::$app->controller->action->id != 'create-deadline'
                 && Yii::$app->controller->action->id != 'update-deadline'
 
+           ),
+        ));
+
+        $event->sender->addItem(array(
+            'label' => Yii::t('MissionsModule.base', 'Evoke Settings'),
+            'url' => Url::to(['/missions/settings']),
+            'group' => 'settings',
+            'sortOrder' => 150,
+            'icon' => '<i class="fa fa-university"></i>',
+            'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'settings'
            ),
         ));
     }
