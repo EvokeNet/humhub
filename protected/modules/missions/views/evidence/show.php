@@ -26,6 +26,7 @@ if(!$hasUserSubmittedEvidence){
         'contentContainer' => $contentContainer,
         'submitButtonText' => Yii::t('MissionsModule.widgets_EvidenceFormWidget', 'Submit Evidence'),
         'activity' => $activity,
+        
     ]);
 
 }

@@ -2,10 +2,20 @@
 
 use yii\helpers\Html;
 use humhub\modules\space\models\Space;
+use humhub\modules\user\models\User;
 use humhub\modules\content\components\ContentContainerController;
+use app\modules\teams\models\Team;
 
 $user = $object->content->user;
 $container = $object->content->container;
+
+$team_id = Team::getUserTeam(Yii::$app->user->getIdentity()->id);
+if($team_id){
+    $team = Team::findOne($team_id);
+}else{
+    $team = null;
+}
+
 ?>
 
 <div class="panel panel-default wall_<?php echo $object->getUniqueId(); ?>">
@@ -53,7 +63,11 @@ $container = $object->content->container;
                 <!-- show username with link and creation time-->
                 <h4 class="media-heading" style = "margin-bottom:5px">
                     <a href="<?php echo $user->getUrl(); ?>">
-                        <?php echo Yii::t('ContentModule.views_wallLayout', '{name} @ {team}', array('name' => $user->displayName, 'team' => $object->content->container->name)); ?>
+                        <?php if($team): ?>
+                            <?php echo Yii::t('ContentModule.views_wallLayout', '{name} @ {team}', array('name' => $user->displayName, 'team' => $team->name)); ?>
+                        <?php else: ?>
+                            <?php echo Yii::t('ContentModule.views_wallLayout', '{name}', array('name' => $user->displayName)); ?>
+                        <?php endif ?> 
                     </a>
                 </h4>
                 
