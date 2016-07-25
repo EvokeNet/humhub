@@ -6,6 +6,7 @@ use Yii;
 use \yii\base\Widget;
 use humhub\modules\space\widgets\Header;
 use app\modules\missions\models\Missions;
+use app\modules\missions\models\Activities;
 use app\modules\missions\models\Evidence;
 use app\modules\coin\models\Wallet;
 use humhub\modules\content\models\Content;
@@ -23,31 +24,23 @@ class CustomSpaceHeader extends Header
         $missions = Missions::find()
         ->where(['locked' => 0])
         ->all();
+
+        $total = Activities::find()->count();
+
+        $done = (new \yii\db\Query())
+        ->select(['count(DISTINCT e.activities_id) as count'])
+        ->from('evidence as e')
+        ->join('INNER JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
+        ->join('INNER JOIN', 'activities as a', '`e`.`activities_id`= `a`.`id`')
+        ->where(['c.space_id' => $this->space->id])
+        ->one()['count'];
         
-        $total = 0;
-        $done = 0;
-        $doneActivity = false;
-        $evidencesTotal = 0;
-
-        foreach($missions as $m):
-
-            foreach($m->activities as $activity):
-                $total++;
-                foreach ($activity->evidences as $evidence):                     
-                    if($evidence->content->space_id == $this->space->id){ 
-                        $evidencesTotal += count($activity->evidences);
-                    }
-
-                    if($doneActivity){
-                        $done++;  
-                        $doneActivity = true;  
-                        break;
-                    }
-                endforeach;
-                $doneActivity = false;
-            endforeach;
-                                        
-        endforeach;
+        $evidencesTotal = (new \yii\db\Query())
+        ->select(['count(e.id) as count'])
+        ->from('evidence as e')
+        ->join('INNER JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
+        ->where(['c.space_id' => $this->space->id])
+        ->one()['count'];
 
         return $this->render('customSpaceHeader', array(
                     'mission' => $missions,
