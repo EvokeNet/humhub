@@ -272,17 +272,11 @@ class Events
            
             // if viewing other user profile
             if(Yii::$app->user->getIdentity()->id != $event->sender->user->id){
-                /*
                 $userPowers = UserPowers::getUserPowers(Yii::$app->user->getIdentity()->id);
                 $event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers], array('sortOrder' => 9));
-                */
-                $event->sender->addWidget(PopUpWidget::className(), []);    
             }
 
-            /*
-            $portfolio = Portfolio::getUserPortfolio(Yii::$app->user->getIdentity()->id);
-            $event->sender->addWidget(PortfolioWidget::className(), ['portfolio' => $portfolio], array('sortOrder' => 8));
-            */
+            $event->sender->addWidget(PopUpWidget::className(), []);    
 
         }
         
