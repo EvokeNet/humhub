@@ -26,19 +26,25 @@ class CustomSpaceHeader extends Header
         
         $total = 0;
         $done = 0;
+        $doneActivity = false;
         $evidencesTotal = 0;
 
         foreach($missions as $m):
 
             foreach($m->activities as $activity):
                 $total++;
-                $evidencesTotal += count($activity->evidences);
                 foreach ($activity->evidences as $evidence):                     
                     if($evidence->content->space_id == $this->space->id){ 
-                        $done++;    
+                        $evidencesTotal += count($activity->evidences);
+                    }
+
+                    if($doneActivity){
+                        $done++;  
+                        $doneActivity = true;  
                         break;
                     }
                 endforeach;
+                $doneActivity = false;
             endforeach;
                                         
         endforeach;
