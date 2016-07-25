@@ -10,6 +10,7 @@ use humhub\modules\content\models\Wall;
 use humhub\modules\content\models\Content;
 use humhub\modules\content\components\ContentContainerActiveRecord;
 use humhub\modules\user\models\User;
+use app\modules\missions\models\Evidence;
 
 /**
  * This is the model class for table "space".
@@ -557,6 +558,15 @@ class Team extends ContentContainerActiveRecord implements \humhub\modules\searc
         ->one();
 
         return $query['space_id'];
+    }
+
+    public function getEvidenceCount(){
+        return (new \yii\db\Query())
+        ->select(['count(e.id) as count'])
+        ->from('evidence as e')
+        ->join('INNER JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
+        ->where(['c.space_id' => $this->id])
+        ->one()['count'];
     }
 
 
