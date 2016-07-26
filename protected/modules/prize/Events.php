@@ -35,18 +35,15 @@ class Events extends \yii\base\Object
 
   public static function onTopMenuInit($event)
   {
-    if(Yii::$app->user->getIdentity()->super_admin == 1){
-
-        $event->sender->addItem(array(
-        'label' => Yii::t('PrizeModule.base', 'Evoke Tools'),
-        'id' => 'Evoke tools',
-        'icon' => '<i class="fa fa-flask"></i>',
-        'url' => Url::toRoute('/prize/evoke-tools/index'),
-        'isActive' => (
-          Yii::$app->controller->module && Yii::$app->controller->module->id == 'prize' && Yii::$app->controller->id != 'admin'
-         ),
-        ));
-    }
+    $event->sender->addItem(array(
+    'label' => Yii::t('PrizeModule.base', 'Evoke Tools'),
+    'id' => 'Evoke tools',
+    'icon' => '<i class="fa fa-flask"></i>',
+    'url' => Url::toRoute('/prize/evoke-tools/index'),
+    'isActive' => (
+      Yii::$app->controller->module && Yii::$app->controller->module->id == 'prize' && Yii::$app->controller->id != 'admin'
+     ),
+    ));
   }
 
   // public static function onProfileSidebarInit($event)

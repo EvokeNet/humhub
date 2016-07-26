@@ -42,28 +42,6 @@ class EvokeToolsController extends Controller
 
         return $this->render('evoke_tools/index', array('prizes' => $prizes, 'wallet' => $wallet, 'results' => $results, 'total_prizes' => $total_prizes, 'super_powers' => $super_powers));
     }
-    
-    public function actionIndex2()
-    {
-        $prizes = Prize::find()->where(['<=', 'week_of', date('Y-m-d')])->all();
-        $coin_id = Coin::find()->where(['name' => 'EvoCoin'])->one()->id;
-        $wallet = Wallet::find()->where(['owner_id' => Yii::$app->user->id, 'coin_id' => $coin_id])->one();
-        $super_powers = Qualities::find()->all();
-
-        $total_prizes = 0;
-
-        foreach ($prizes as $prize) {
-          $total_prizes += $prize->quantity;
-        }
-
-        if (array_key_exists('results', $_GET)) {
-          $results = $_GET['results'];
-        } else {
-          $results = null;
-        }
-
-        return $this->render('evoke_tools/index', array('prizes' => $prizes, 'wallet' => $wallet, 'results' => $results, 'total_prizes' => $total_prizes, 'super_powers' => $super_powers));
-    }
 
     public function actionSearch()
     {
