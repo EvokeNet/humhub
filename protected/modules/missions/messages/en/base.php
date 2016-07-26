@@ -64,6 +64,7 @@ return [
     'Evokation\'s Page' => '',
     'Evokations' => '',
     'For every piece of evidence you review, you receive 10 points in {title}' => '',
+    'You just gained {message} evocoins!' => '',
     'Google Drive Link: ' => '',
     'Google Drive URL cannot be blank.' => '',
     'How many evocoins do you want to invest?' => '',

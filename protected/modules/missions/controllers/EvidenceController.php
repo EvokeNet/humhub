@@ -284,14 +284,17 @@ class EvidenceController extends ContentContainerController
                 $vote->flag = $flag;
                 $vote->value = $grade;
                 $vote->save();
+                $evocoin_earned = 0;
 
                 //Reward reviewer 5 evocoin
                 $wallet = Wallet::find()->where(['owner_id' => $user->id])->one();
                 $wallet->addCoin(5);
+                $evocoin_earned += 5;
 
                 //give an extra 5 for adding a comment
                 if (!empty($comment)) {
                   $wallet->addCoin(5);
+                  $evocoin_earned += 5;
                 }
 
                 $wallet->save();
@@ -301,7 +304,7 @@ class EvidenceController extends ContentContainerController
                     UserPowers::addPowerPoint($activityPower->getPower(), User::findOne($evidence->content->user_id), $grade);
                 }
 
-                $message = Yii::t('MissionsModule.base', 'You just gained 10 points in {message}', array('message' => $activityPower->getPower()->title));
+                $message = Yii::t('MissionsModule.base', 'You just gained {message} evocoins!', array('message' => $evocoin_earned));
 
                 AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', '{message}. <BR>Thank you for your review.', array('message' => $message)));
             }

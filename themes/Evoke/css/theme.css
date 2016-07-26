@@ -2823,6 +2823,7 @@ img.bounceIn {
   font-weight: bold;
 }
 .evocoin {
+  background-image: url('/themes/Evoke/img/evocoin_bg.png');
   background-image: url('../img/evocoin_bg.png');
 }
 .footer {

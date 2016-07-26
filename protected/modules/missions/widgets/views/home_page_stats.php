@@ -10,7 +10,7 @@ use app\modules\teams\models\Team;
 
 $team_id = Team::getUserTeam(Yii::$app->user->getIdentity()->id);
 if($team_id){
-    $member = Membership::findOne(['space_id' => $team_id]);    
+    $member = Membership::findOne(['space_id' => $team_id]);
 }else{
     $member = null;
 }
@@ -48,34 +48,34 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
             </div>
         </div>
         <div class="col-xs-5">
-            
+
             <div class = "grey_box">
                 <div style = "position:relative; height:90px">
-                        
+
                         <div style = "position:absolute; left:0; width:50%">
-                            <h6><?= Yii::t('MissionsModule.base', 'Your Evocoins') ?></h6>  
+                            <h6><?= Yii::t('MissionsModule.base', 'Your Evocoins') ?></h6>
                             <p style = "font-size:9pt"><?= Yii::t('MissionsModule.base', 'Earn Evocoins by reviewing evidence.') ?></p>
-                        </div> 
-                
+                        </div>
+
                         <div style = "position:absolute; right:0; top:10px">
                             <div class = "home-widget-evocoins">
-                                <img src="/humhub/themes/Evoke/img/evocoin_bg.png" width = "70px">
-                                <div><p><?= $wallet->amount ?></p></div>    
+                                <img src="<?php echo Url::to('@web/themes/Evoke/img/evocoin_bg.png') ?>" width = "70px">
+                                <div><p><?= $wallet->amount ?></p></div>
                             </div>
-                        </div> 
-                
+                        </div>
+
                 </div>
-                
+
                 <br>
                 <?php if($member): ?>
                 <div class = "text-center">
                     <a class = "btn btn-cta1" href='<?= Url::to(['/missions/review/index', 'sguid' => $member->space->guid]) ?>'>
                             <?= Yii::t('MissionsModule.base', 'Review Evidence') ?>
-                    </a> 
+                    </a>
                 </div>
                 <?php endif; ?>
             </div>
-            
+
         </div>
     </div>
 </div>

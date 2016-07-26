@@ -13,11 +13,11 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                   <h4><?php echo Yii::t('PrizeModule.base', 'Discover Tools') ?></h4>
                 </div>
               <div class="panel-body">
-              
+
                 <p>
                   <?php echo Yii::t('PrizeModule.base', 'Tools Description') ?>
                 </p>
-                
+
                 <div class="panel-body">
                   <div class="row">
                     <?php if ($wallet->amount >= 5): ?>
@@ -29,7 +29,7 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
 
                       <div class="col-xs-4">
                         <div class="row text-right">
-                          <strong><?php echo Yii::t('PrizeModule.base', 'Tools remaining: {total}', array('total' => $total_prizes)) ?><?php echo $total_prizes ?></strong>
+                          <strong><?php echo Yii::t('PrizeModule.base', 'Tools remaining: {total}', array('total' => $total_prizes)) ?></strong>
                         </div>
                         <?php foreach ($prizes as $prize): ?>
                           <div class="row text-right">
@@ -43,10 +43,10 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                       </div>
                     <?php endif; ?>
                   </div>
-                  
+
                   </br>
                   </br>
-                  
+
                   <div class="row">
                     <div class="spinner-container">
                       <div class="spinner">
@@ -114,11 +114,11 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                   <div class="row">
                   </br>
                   </div>
-                  
+
                   <div class = "text-center"><div class = "blue-border"></div></div>
 
                   <!-- boardgame rules -->
-                
+
                   <div class="panel-heading">
                     <h4><?php echo Yii::t('PrizeModule.base', 'The boardgame') ?></h4>
                   </div>
@@ -127,7 +127,7 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                         <p>
                           <?php echo Yii::t('PrizeModule.base', 'Boardgame intro'); ?>
                         </p>
-                    
+
                     <div class="row">
                       <span class="col-xs-7"><img src="<?php echo Url::to('@web/themes/Evoke/img/evoke_board.png') ?>" alt="evoke board" class="img-responsive" /></span>
                       <span class="dowload col-xs-4 well well-lg">
@@ -174,6 +174,10 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
 </div>
 
 <style media="screen">
+  .spinner-container {
+    position: relative;
+  }
+
   .spinner {
     height: 10em;
     border: 1px solid #000;

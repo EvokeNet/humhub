@@ -15,8 +15,8 @@ $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
     </div>
     <div class="panel-body text-center">
         <div class = "evocoins">
-            <img src="/humhub/themes/Evoke/img/evocoin_bg.png">
-            <div><p><?= $wallet->amount ?></p></div>    
+            <img src="<?php echo Url::to('@web/themes/Evoke/img/evocoin_bg.png') ?>">
+            <div><p><?= $wallet->amount ?></p></div>
         </div>
     </div>
 </div>
@@ -29,11 +29,11 @@ $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
         <?php foreach($userPowers as $userQuality): ?>
             <div class="power text-center">
                 <img src = "<?php echo $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->image; ?>" width="100px" class = "power-border"></img>
-                
+
                 <h6><?= $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->name; ?></h6>
-                
+
                 <span class = "bold italic" style = "color: #28C503"><?php echo Yii::t('MissionsModule.base', 'Level {level}', array('level' => null != $userQuality[0]->getUserQuality() ? $userQuality[0]->getUserQuality()->getLevel() : 0)); ?></span>
-                
+
             </div>
         <?php endforeach; ?>
     </div>
