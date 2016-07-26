@@ -365,7 +365,7 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
 
           TweenMax.to( $(".prizes"), 5,
             {
-          	 x: -( $('.prizes').width() + 18 + spinOffset ),
+          	 x: -( $('.prizes').width()  + spinOffset ),
              ease: Back.easeOut,
              delay: 4.5,
              onComplete: function() {
