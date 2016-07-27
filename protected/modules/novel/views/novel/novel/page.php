@@ -39,6 +39,14 @@ use app\modules\novel\models\NovelPage;
   .graphic-novel-page .button-next{
     right: 1em;
   }
+  
+  .topbar {
+    display: none;
+  }
+
+  body {
+    padding-top: 1em;
+  }
 </style>
 
 <div class="row">
