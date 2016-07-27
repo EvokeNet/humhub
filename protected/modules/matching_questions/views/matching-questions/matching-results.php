@@ -136,6 +136,9 @@
             <br><br>You will also earn Evocoin -- the currency of the Evoke network -- each time you contribute to the quality of our collective thought by giving power to others and commenting on their contributions.  Evocoin will be used at the end of your journey to invest in those world changing ideas that you think will have the greatest impact on your community, your country, the world.
             <br><br>You will also be given opportunities during the 16 weeks to exchange your Evocoin for assistance in completing your Evokation by accessing Evoke tools - transportation, materials, and other forms of support will be provided....for a cost.
             <br><br>Good luck agents. I look forward to checking in on your progress and recognizing your final Evokations at the end of this journey.") ?></span>
+            <div class="continue">
+              <?php echo Html::a(Yii::t('MatchingModule.base', 'Continue to base of operations'), ['space/space', 'sguid' => $welcome_space->guid], array('class' => 'btn btn-primary')) ?>
+            </div>
           </div>
         </div>
       </div>
@@ -256,4 +259,9 @@
     float: right;
 }
 
+.continue{
+  text-align: center;
+  position: relative;
+  margin-top: 1em;
+}
 </style>
