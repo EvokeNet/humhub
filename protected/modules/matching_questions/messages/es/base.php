@@ -20,7 +20,7 @@ return [
     'Additional Powers' => 'Poderes Adicionales',
     'Based on your answers' => 'Con base en sus respuestas',
     'Based on your answers to the Agent Type survey we have determined the best role for you is that of <strong>{item}</strong>.' => 'Con base en sus respuestas en el cuestionario, hemos determinado que el mejor papel para usted es de <strong>{item}</strong>.',
-    'By discovering your natural powers, you can learn how to fit into the Evoke network. 
+    'By discovering your natural powers, you can learn how to fit into the Evoke network.
                     Try to imagine vividly what would you do in each of the scenarios described and honestly answer each question.
                     ' => 'Al descubrir sus poderes naturales, puedes aprender cómo se encaja en la red de Evoke.
                      Trate de imaginar vívidamente lo que haría usted en cada uno de los escenarios descritos y honestamente responda a cada pregunta.',
@@ -165,4 +165,5 @@ Como equipo deberán cumplir con las 6 actividades propuestas por cada misión p
     'View translations' => 'Ver traducciones',
     'Visibility' => 'Visibilidad',
     'Wall ID' => 'Identificación del muro',
+    'Continue to base of operations' => 'Continuar a base de operaciones'
 ];
