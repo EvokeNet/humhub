@@ -17,6 +17,7 @@ use humhub\modules\missions\widgets\CTAPostEvidence;
 use humhub\modules\missions\widgets\PopUpWidget;
 use humhub\modules\missions\widgets\PlayerStats;
 use humhub\modules\missions\widgets\PortfolioWidget;
+use humhub\modules\missions\widgets\CreateATeamWidget;
 
 use humhub\modules\space\models\Space;
 use app\modules\missions\models\Evidence;
@@ -47,6 +48,12 @@ class Events
         if (Yii::$app->user->isGuest || Yii::$app->user->getIdentity()->getSetting("hideSharePanel", "share") != 1) {
             $space = $event->sender->space;
             $event->sender->addWidget(PopUpWidget::className(), []);
+
+            $team_id = Team::getUserTeam(Yii::$app->user->getIdentity()->id);
+
+            if(!isset($team_id) && $space->name != "Mentors" && $space->name != "Mentor" && Yii::$app->user->getIdentity()->group->name != "Mentors"){
+                $event->sender->addWidget(CreateATeamWidget::className(), [], array('sortOrder' => 0));    
+            }
 
             if($space->is_team){
                 //$event->sender->addWidget(EvidenceWidget::className(), array('space' => $space), array('sortOrder' => 9));    
@@ -281,21 +288,16 @@ class Events
     
     public static function onLeaderboardTopMenuInit($event)
     {
-        $team_id = Team::getUserTeam(Yii::$app->user->getIdentity()->id);
-        $team = Team::findOne($team_id);
-
-        if($team){
-            $event->sender->addItem(array(
-            'label' => Yii::t('MissionsModule.base', 'Leaderboard'),
-            'id' => 'leaerboard',
-            'icon' => '<i class="fa fa-sort-numeric-asc" aria-hidden="true"></i>',
-            'url' => Url::to(['/missions/leaderboard/index']),
-            'sortOrder' => 200,
-            'isActive' => (Yii::$app->controller->module
-                && Yii::$app->controller->module->id == 'missions'
-                && Yii::$app->controller->id == 'leaderboard'),
-            ));
-        }
+        $event->sender->addItem(array(
+        'label' => Yii::t('MissionsModule.base', 'Leaderboard'),
+        'id' => 'leaerboard',
+        'icon' => '<i class="fa fa-sort-numeric-asc" aria-hidden="true"></i>',
+        'url' => Url::to(['/missions/leaderboard/index']),
+        'sortOrder' => 200,
+        'isActive' => (Yii::$app->controller->module
+            && Yii::$app->controller->module->id == 'missions'
+            && Yii::$app->controller->id == 'leaderboard'),
+        ));
         
     }
 

@@ -36,7 +36,7 @@ use yii\helpers\Html;
                         <?php endforeach; ?>
                     </div>
                     
-                    <?php if($ranking['my_team_evidences']['position'] == -1): ?>
+                    <?php if(!isset($ranking['my_team_evidences']) || $ranking['my_team_evidences']['position'] == -1): ?>
                         <span style = "font-size: 12pt; font-weight: 700; color: #254054;"><?php echo Yii::t('MissionsModule.base', "My Team's Position: Not Ranked"); ?></span><br>
                     <?php else: ?>
                         <span style = "font-size: 12pt; font-weight: 700; color: #254054;"><?php echo Yii::t('MissionsModule.base', "My Team's Position: {position}", array('position' => $ranking['my_team_evidences']['position'] + 1)); ?></span><br>
@@ -64,7 +64,7 @@ use yii\helpers\Html;
                         <?php endforeach; ?>
                     </div>
                     
-                    <?php if($ranking['my_team_reviews']['position'] == -1): ?>
+                    <?php if(!isset($ranking['my_team_reviews']) || $ranking['my_team_reviews']['position'] == -1): ?>
                         <span style = "font-size: 12pt; font-weight: 700; color: #254054;"><?php echo Yii::t('MissionsModule.base', "My Team's Position: Not Ranked"); ?></span><br>
                     <?php else: ?>
                         <span style = "font-size: 12pt; font-weight: 700; color: #254054;"><?php echo Yii::t('MissionsModule.base', "My Team's Position: {position}", array('position' => $ranking['my_team_reviews']['position'] + 1)); ?></span><br>

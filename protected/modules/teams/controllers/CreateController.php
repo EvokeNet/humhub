@@ -35,10 +35,20 @@ class CreateController extends Controller
         return $this->redirect(Url::to(['create']));
     }
 
+    public function actionCreate_team(){
+        $team_id = Team::getUserTeam(Yii::$app->user->getIdentity()->id);
+        if(!isset($team_id)){
+            return $this->actionCreate(true);    
+        }else{
+            return $this->actionCreate();  
+        }
+        
+    }
+
     /**
      * Creates a new Space
      */
-    public function actionCreate()
+    public function actionCreate($teamChecked = "")
     {
         // User cannot create spaces (public or private)
         if (!Yii::$app->user->permissionmanager->can(new CreatePublicSpace) && !Yii::$app->user->permissionmanager->can(new CreatePrivateSpace())) {
@@ -46,6 +56,9 @@ class CreateController extends Controller
         }
 
         $model = $this->createSpaceModel();
+        if($teamChecked){
+            $model->is_team = 1;
+        }
 
         $createTeamsPermission = !(Team::isMemberOfATeam(Yii::$app->user->id));
 
