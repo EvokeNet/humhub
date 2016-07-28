@@ -164,8 +164,7 @@
             <br><br>Good luck agents. I look forward to checking in on your progress and recognizing your final Evokations at the end of this journey.") ?></span>
             <br /><br />
             <?php echo Html::a(
-                    Yii::t('MissionsModule.base', 'Continue to Base Operations'),
-                    ['/space/space', 'sguid' => $welcome_space->guid], array('class' => 'btn btn-cta1')); ?>
+                    Yii::t('MissionsModule.base', 'Continue to Base Operations'), Url::toRoute(['/space/space', 'sguid' => $welcome_space->guid]), array('class' => 'btn btn-cta1')); ?>
 
           </div>
         </div>
@@ -291,5 +290,13 @@
   text-align: center;
   position: relative;
   margin-top: 1em;
+}
+
+.topbar {
+  display: none;
+}
+
+body {
+  padding-top: 1em;
 }
 </style>
