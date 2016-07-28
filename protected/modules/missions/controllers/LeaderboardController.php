@@ -123,9 +123,14 @@ class LeaderboardController extends \yii\web\Controller
         $ranking = [];
 
         $ranking['rank_teams_evidences'] = $this->getRankTeamsEvidences(10);
-        $ranking['my_team_evidences'] = $this->getRankingObjectPosition($this->getRankTeamsEvidences(), $team_id, Team::classname());
         $ranking['rank_teams_reviews'] = $this->getRankTeamsReviews(10);
-        $ranking['my_team_reviews'] = $this->getRankingObjectPosition($this->getRankTeamsReviews(), $team_id, Team::classname());
+
+        if($team_id){
+
+            $ranking['my_team_evidences'] = $this->getRankingObjectPosition($this->getRankTeamsEvidences(), $team_id, Team::classname());
+            $ranking['my_team_reviews'] = $this->getRankingObjectPosition($this->getRankTeamsReviews(), $team_id, Team::classname());
+        }
+
         $ranking['rank_agents_evidences'] = $this->getRankAgentsEvidences(10);
         $ranking['my_evidences'] = $this->getRankingObjectPosition($this->getRankAgentsEvidences(), $user_id, User::classname());
         $ranking['rank_agents_reviews'] = $this->getRankAgentsReviews(10);

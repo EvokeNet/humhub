@@ -13,15 +13,29 @@ $this->registerCssFile('@web/resources/space/colorpicker/css/bootstrap-colorpick
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title"
-                id="myModalLabel"><?php echo Yii::t('SpaceModule.views_create_create', '<strong>Create</strong> new space'); ?></h4>
+                id="myModalLabel">
+                <?php if($model->is_team == 1): ?>
+                    <?php echo Yii::t('TeamsModule.views_create_create', '<strong>Create</strong> new team'); ?>
+                <?php else: ?>
+                    <?php echo Yii::t('SpaceModule.views_create_create', '<strong>Create</strong> new space'); ?>
+                <?php endif; ?>
+            </h4>
         </div>
         <div class="modal-body">
 
             <hr>
             <br>
             <div class="row">
-                <div class="col-md-8"> <?php echo $form->field($model, 'name')->textInput(['id' => 'space-name', 'placeholder' => Yii::t('SpaceModule.views_create_create', 'space name'), 'maxlength' => 45]); ?></div>
-                <div class="col-md-4">            <strong><?php echo Yii::t('SpaceModule.views_create_create', 'Color'); ?></strong>
+                <div class="col-md-8"> 
+                    <?php if($model->is_team == 1): ?>
+                        <?php echo $form->field($model, 'name')->textInput(['id' => 'space-name', 'placeholder' => Yii::t('TeamsModule.views_create_create', 'team name'), 'maxlength' => 45]); ?>
+                    <?php else: ?>
+                        <?php echo $form->field($model, 'name')->textInput(['id' => 'space-name', 'placeholder' => Yii::t('SpaceModule.views_create_create', 'space name'), 'maxlength' => 45]); ?>
+                    <?php endif; ?>
+                </div>
+                <div class="col-md-4">            
+                    <strong><?php echo Yii::t('SpaceModule.views_create_create', 'Color'); ?>
+                </strong>
 
                     <div class="input-group space-color-chooser" style="margin-top: 5px;">
 
@@ -31,10 +45,18 @@ $this->registerCssFile('@web/resources/space/colorpicker/css/bootstrap-colorpick
                     <br></div>
             </div>
 
-            <?php echo $form->field($model, 'description')->textarea(['placeholder' => Yii::t('SpaceModule.views_create_create', 'space description'), 'rows' => '3']); ?>
+            <?php if($model->is_team == 1): ?>
+                <?php echo $form->field($model, 'description')->textarea(['placeholder' => Yii::t('TeamsModule.views_create_create', 'team description'), 'rows' => '3']); ?>
+            <?php else: ?>
+                <?php echo $form->field($model, 'description')->textarea(['placeholder' => Yii::t('SpaceModule.views_create_create', 'space description'), 'rows' => '3']); ?>
+            <?php endif; ?>
 
             <?php if($createTeamsPermission): ?>
-                <?php echo $form->field($model, 'is_team')->checkBox(); ?>
+                <?php if($model->is_team == 1): ?>
+                    <?php echo Html::activeHiddenInput($model, 'is_team'); ?>
+                <?php else: ?>
+                    <?php echo $form->field($model, 'is_team')->checkBox(); ?>
+                <?php endif; ?>
             <?php else: ?>
                 <?php echo $form->field($model, 'is_team')->checkBox(['disabled' => true]); ?>
                 <?php echo Html::label(Yii::t('TeamsModule.views_create_create', "You're already a member of a Team.<BR>Leave it to create a new one.")); ?>
@@ -63,13 +85,19 @@ $this->registerCssFile('@web/resources/space/colorpicker/css/bootstrap-colorpick
             <hr>
             <br>
             <?php
+                if($model->is_team == 1){
+                    $urlAction = 'create_team';
+                }else{
+                    $urlAction = 'create';
+                }
+
             echo \humhub\widgets\AjaxButton::widget([
                 'label' => Yii::t('SpaceModule.views_create_create', 'Next'),
                 'ajaxOptions' => [
                     'type' => 'POST',
                     'beforeSend' => new yii\web\JsExpression('function(){ setModalLoader(); }'),
                     'success' => new yii\web\JsExpression('function(html){ $("#globalModal").html(html); }'),
-                    'url' => Url::to(['/teams/create/create']),
+                    'url' => Url::to(['/teams/create/'.$urlAction]),
                 ],
                 'htmlOptions' => [
                     'class' => 'btn btn-primary',
