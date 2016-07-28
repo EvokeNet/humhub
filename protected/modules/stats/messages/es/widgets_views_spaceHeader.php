@@ -22,4 +22,4 @@ return [
     'Members' => 'Miembros',
     'Ok' => 'Ok',
     '# Evidences' => '# Evidencias',
-    '
+];
