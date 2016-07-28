@@ -292,4 +292,12 @@
   position: relative;
   margin-top: 1em;
 }
+
+.topbar {
+  display: none;
+}
+
+body {
+  padding-top: 1em;
+}
 </style>
