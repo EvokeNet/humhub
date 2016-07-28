@@ -50,14 +50,22 @@ class CreateController extends Controller
      */
     public function actionCreate($teamChecked = "")
     {
+        $user = Yii::$app->user->getIdentity();
+
         // User cannot create spaces (public or private)
         if (!Yii::$app->user->permissionmanager->can(new CreatePublicSpace) && !Yii::$app->user->permissionmanager->can(new CreatePrivateSpace())) {
             throw new HttpException(400, 'You are not allowed to create spaces!');
         }
 
         $model = $this->createSpaceModel();
+        $model->is_team = -1;
+
         if($teamChecked){
             $model->is_team = 1;
+        }
+
+        if($user->group->name == "Mentors"){
+            $model->is_team = 0;
         }
 
         $createTeamsPermission = !(Team::isMemberOfATeam(Yii::$app->user->id));

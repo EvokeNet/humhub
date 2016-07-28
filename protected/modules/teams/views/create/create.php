@@ -52,7 +52,7 @@ $this->registerCssFile('@web/resources/space/colorpicker/css/bootstrap-colorpick
             <?php endif; ?>
 
             <?php if($createTeamsPermission): ?>
-                <?php if($model->is_team == 1): ?>
+                <?php if($model->is_team == 1 || $model->is_team == 0): ?>
                     <?php echo Html::activeHiddenInput($model, 'is_team'); ?>
                 <?php else: ?>
                     <?php echo $form->field($model, 'is_team')->checkBox(); ?>

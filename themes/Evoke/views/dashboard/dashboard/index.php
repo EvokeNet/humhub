@@ -2,13 +2,17 @@
 
 use app\modules\powers\models\UserPowers;
 
-$userPowers = UserPowers::getUserPowers(Yii::$app->user->getIdentity()->id);
+$user = Yii::$app->user->getIdentity();
+
+$userPowers = UserPowers::getUserPowers($user->id);
 
 $this->pageTitle = Yii::t('DashboardModule.views_dashboard_index', 'Dashboard X');
 ?>
 <div class="container">
     <div class="row">
         <div class="col-md-8 layout-content-container">
+
+            <?php if($user->group->name != "Mentors"): ?>
             <div class="panel-group">
                 <?php
                 echo \humhub\modules\missions\widgets\HomePageStats::widget();
@@ -16,6 +20,8 @@ $this->pageTitle = Yii::t('DashboardModule.views_dashboard_index', 'Dashboard X'
                 echo \humhub\modules\missions\widgets\SuperPowerStats::widget(['powers' => $userPowers]);
                 ?>
             </div>
+            <?php endif; ?>
+
             <?php
             if ($showProfilePostForm) {
                 echo \humhub\modules\post\widgets\Form::widget(['contentContainer' => \Yii::$app->user->getIdentity()]);
@@ -30,6 +36,7 @@ $this->pageTitle = Yii::t('DashboardModule.views_dashboard_index', 'Dashboard X'
             ]);
             ?>
         </div>
+        
         <div class="col-md-4 layout-sidebar-container">
             <?php
             echo \humhub\modules\dashboard\widgets\Sidebar::widget(['widgets' => [
