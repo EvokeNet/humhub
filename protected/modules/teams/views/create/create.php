@@ -85,13 +85,19 @@ $this->registerCssFile('@web/resources/space/colorpicker/css/bootstrap-colorpick
             <hr>
             <br>
             <?php
+                if($model->is_team == 1){
+                    $urlAction = 'create_team';
+                }else{
+                    $urlAction = 'create';
+                }
+
             echo \humhub\widgets\AjaxButton::widget([
                 'label' => Yii::t('SpaceModule.views_create_create', 'Next'),
                 'ajaxOptions' => [
                     'type' => 'POST',
                     'beforeSend' => new yii\web\JsExpression('function(){ setModalLoader(); }'),
                     'success' => new yii\web\JsExpression('function(html){ $("#globalModal").html(html); }'),
-                    'url' => Url::to(['/teams/create/create']),
+                    'url' => Url::to(['/teams/create/'.$urlAction]),
                 ],
                 'htmlOptions' => [
                     'class' => 'btn btn-primary',
