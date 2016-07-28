@@ -17,5 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    '<strong>Create</strong> new team' => '',
     'You\'re already a member of a Team.<BR>Leave it to create a new one.' => '',
+    'team description' => '',
+    'team name' => '',
 ];

@@ -44,6 +44,7 @@ return [
     'Create Evokation Categories' => '',
     'Create an Evidence for this Activity:' => '',
     'Create new Evokation Category' => '',
+    'Create new team' => '',
     'Description cannot be blank.' => '',
     'Description: {description}' => '',
     'Distribute points for {title}' => '',

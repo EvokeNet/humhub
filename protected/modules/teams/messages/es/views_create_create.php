@@ -17,5 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'You\'re already a member of a Team.<BR>Leave it to create a new one.' => '',
+    '<strong>Create</strong> new team' => '<strong>Crear</strong> nuevo equipo',
+    'You\'re already a member of a Team.<BR>Leave it to create a new one.' => 'Ya eres un miembro de un equipo. Dejalo para crear un nuevo.',
+    'team description' => 'descripción del equipo',
+    'team name' => 'nombre del equipo',
 ];

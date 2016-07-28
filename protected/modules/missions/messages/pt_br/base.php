@@ -53,6 +53,7 @@ return [
     'Create new Evokation Category' => '',
     'Create new Mission' => '',
     'Create new Translation' => '',
+    'Create new team' => '',
     'Delete' => '',
     'Description' => '',
     'Description cannot be blank.' => '',
