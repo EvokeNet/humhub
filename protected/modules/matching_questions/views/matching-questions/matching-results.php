@@ -81,13 +81,56 @@
 
                   <?php foreach ($super_powers as $quality): ?>
 
-                    <div style = "display:flex; margin-top:30px">
-                      <div style = "float:left"><img src = "<?php echo $quality->image ?>" width=100 class = "power-border"></div>
-                      <div style = "margin-left:20px">
-                        <h6 style = "font-weight:700; color: #9013FE; margin-bottom:5px"><?= isset($quality->qualityTranslations[0]) ? $quality->qualityTranslations[0]->name : $quality->name ?></h6>
-                        <p style = "font-weight:700; color: #254054">
-                          <?= isset($quality->qualityTranslations[0]) ? $quality->qualityTranslations[0]->description : $quality->description ?>
+                    <div class="col-xs-4">
+                      <div style = "height:200px; text-align:center">
+                        <div class="super-power-image small">
+                          <img src = "<?php echo $quality->image ?>" width=100 class = "power-border">
+                        </div>
+                        <div class="super-power-name">
+                          <h6><?= isset($quality->qualityTranslations[0]) ? $quality->qualityTranslations[0]->name : $quality->name ?></h6>
+                        </div>
+                        <div class="super-power-level">
+                          <?php $user_quality = UserQualities::find()->where(['and', ['user_id' => Yii::$app->user->getIdentity()->id], ['quality_id' => $quality->id]])->one() ?>
+                          <?php echo Yii::t('MatchingModule.base', 'level') ?> <?php echo $user_quality->getLevel() ?>
+                        </div>
+                      </div>
+                      <div class="super-power-powers">
+                        <p style="padding-top: 15px;">
+                            <strong>
+                                <?php echo Yii::t('MatchingModule.base', 'Powers:') ?>
+                            </strong>
                         </p>
+                        <?php $quality_powers = QualityPowers::find()->where(['quality_id' => $quality->id])->all(); ?>
+                        <?php $power_ids = []; ?>
+                        <?php foreach ($quality_powers as $quality_power) {
+                          $power_ids[] = $quality_power->power_id;
+                        } ?>
+                        <?php $userPowers = UserPowers::find()->where(['and', ['power_id' => $power_ids], ['user_id' => $user->id]])->all() ?>
+
+                        <?php foreach($userPowers as $userPower): ?>
+                            <div class="power">
+                                <?php
+                                    $power = $userPower->getPower();
+                                    $percentage = floor($userPower->getCurrentLevelPoints() / $userPower->getNextLevelPoints() * 100) ;
+                                ?>
+                                <?= isset($power->powerTranslations[0]) ? $power->powerTranslations[0]->title : $power->title ?>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?= $percentage ?>%;">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                    <span>
+                                    </span>
+                                </div>
+                                <div class="level">
+                                    Level <?= $userPower->getLevel() ?>
+                                </div>
+                                <div class="points">
+                                    <?= $userPower->getCurrentLevelPoints() ?>
+                                    /
+                                    <?= $userPower->getNextLevelPoints() ?>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
                       </div>
                     </div>
 
@@ -155,16 +198,10 @@
             <h4><?php echo Yii::t('MatchingModule.base', 'Getting started') ?></h4>
           </div>
           <div class = "panel-body">
-            <span style = "font-size: 12pt;"><?php echo Yii::t('MatchingModule.base', "Welcome to the Evoke network.
-            <br><br>Over the next 16 weeks you will be asked to respond to the urgent challenge of forced displacement and peace in your country.  You have been selected because of your unique potential to change the world.  You have some powers there is no doubt, but you will need to increase your powers to realize your potential.  I've asked one of our best agents -- Marta -- to share her story and guide you on this journey.
-            <br><br>Over the course of these 16 weeks you will form a team to create your unique world changing idea or as we call it in the Evoke network -- your Evokation.  Your Evokation will be created as you respond to the 8 missions I will give you.  At the end of the journey, the network will invest evocoin in your Evokations. The 10 Evokations with the most investment will be reviewed by experts in my network and the top 3 will receive recognition and reward.  As a team you must complete all 6 activities for each mission to advance to the next mission.  By completing activities, your powers will increase.
-            <br><br>There are 16 unique powers that you can develop which will in turn will give you your superpowers -- creative visionary, deep collaborator, systems thinker, and empathetic activist.  These powers will help you on your journey.
-            <br><br>You will also earn Evocoin -- the currency of the Evoke network -- each time you contribute to the quality of our collective thought by giving power to others and commenting on their contributions.  Evocoin will be used at the end of your journey to invest in those world changing ideas that you think will have the greatest impact on your community, your country, the world.
-            <br><br>You will also be given opportunities during the 16 weeks to exchange your Evocoin for assistance in completing your Evokation by accessing Evoke tools - transportation, materials, and other forms of support will be provided....for a cost.
-            <br><br>Good luck agents. I look forward to checking in on your progress and recognizing your final Evokations at the end of this journey.") ?></span>
+            <span style = "font-size: 12pt;"><?php echo Yii::t('MatchingModule.base', "Welcome to the Evoke network.<br><br>Over the next 16 weeks you will be asked to respond to the urgent challenge of forced displacement and peace in your country.  You have been selected because of your unique potential to change the world.  You have some powers there is no doubt, but you will need to increase your powers to realize your potential.  I have asked one of our best agents -- Marta -- to share her story and guide you on this journey.<br><br>Over the course of these 16 weeks you will form a team to create your unique world changing idea or as we call it in the Evoke network -- your Evokation.  Your Evokation will be created as you respond to the 8 missions I will give you.  At the end of the journey, the network will invest evocoin in your Evokations. The 10 Evokations with the most investment will be reviewed by experts in my network and the top 3 will receive recognition and reward.  As a team you must complete all 6 activities for each mission to advance to the next mission.  By completing activities, your powers will increase.<br><br>You will also earn Evocoin -- the currency of the Evoke network -- each time you contribute to the quality of our collective thought by giving power to others and commenting on their contributions.  Evocoin will be used at the end of your journey to invest in those world changing ideas that you think will have the greatest impact on your community, your country, the world. <br><br>You will also be given opportunities during the 16 weeks to exchange your Evocoin for assistance in completing your Evokation by accessing Evoke tools - transportation, materials, and other forms of support will be provided....for a cost.<br><br>Good luck agents. I look forward to checking in on your progress and recognizing your final Evokations at the end of this journey.") ?></span>
             <br /><br />
             <?php echo Html::a(
-                    Yii::t('MissionsModule.base', 'Continue to Base Operations'),
+                    Yii::t('MatchingModule.base', 'Continue to Base Operations'),
                     ['/space/space', 'sguid' => $welcome_space->guid], array('class' => 'btn btn-cta1')); ?>
 
           </div>
@@ -180,16 +217,16 @@
 }
 
 .super-power-image{
-  padding-bottom: 250px;
-  background-image:url("<?php echo $super_power_image_url ?>");
+  padding-bottom: 15px;
+  /*background-image:url("<?php echo $super_power_image_url ?>");*/
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
 }
 
 .super-power-image.small {
-  padding-bottom: 100px;
-  background-position: left;
+  /*padding-bottom: 100px;*/
+  /*background-position: left;*/
 }
 
 .power-image {
@@ -270,7 +307,7 @@
 }
 
 .super-power-name {
-  text-align: justify;
+  /*text-align: justify;*/
   font-weight: bold;
 }
 

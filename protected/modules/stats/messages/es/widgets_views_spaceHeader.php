@@ -17,7 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    '<strong>Something</strong> went wrong' => '<strong>Algo</strong> salió mal',
+    'Followers' => 'Seguidores',
+    'Members' => 'Miembros',
+    'Ok' => 'Ok',
     '# Evidences' => '# Evidencias',
-    'Activities Completed' => 'Actividades Completadas',
-    'Evokation Progress' => 'Progreso de la Evocacion',
-];
+    '

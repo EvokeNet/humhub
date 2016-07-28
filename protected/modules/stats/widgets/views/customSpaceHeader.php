@@ -195,13 +195,13 @@ if ($space->isAdmin()) {
                             <span class="count"><?php echo count($space->memberships); ?></span>
                             <br>
                             <span
-                                class="title"><?php echo Yii::t('SpaceModule.widgets_views_spaceHeader', 'Members'); ?></span>
+                                class="title"><?php echo Yii::t('StatsModule.widgets_views_spaceHeader', 'Members'); ?></span>
                         </div>
 
                         <div class="pull-left entry">
                             <span class="count"><?php echo $space->getFollowerCount(); ?></span><br>
                             <span
-                                class="title"><?php echo Yii::t('SpaceModule.widgets_views_spaceHeader', 'Followers'); ?></span>
+                                class="title"><?php echo Yii::t('StatsModule.widgets_views_spaceHeader', 'Followers'); ?></span>
                         </div>
 
                         <!-- Team Header -->
@@ -280,14 +280,14 @@ if ($space->isAdmin()) {
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title"
-                    id="myModalLabel"><?php echo Yii::t('SpaceModule.widgets_views_spaceHeader', '<strong>Something</strong> went wrong'); ?></h4>
+                    id="myModalLabel"><?php echo Yii::t('StatsModule.widgets_views_spaceHeader', '<strong>Something</strong> went wrong'); ?></h4>
             </div>
             <div class="modal-body text-center">
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary"
-                        data-dismiss="modal"><?php echo Yii::t('SpaceModule.widgets_views_spaceHeader', 'Ok'); ?></button>
+                        data-dismiss="modal"><?php echo Yii::t('StatsModule.widgets_views_spaceHeader', 'Ok'); ?></button>
             </div>
         </div>
     </div>
