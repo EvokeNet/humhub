@@ -138,7 +138,7 @@ class EvokeToolsController extends Controller
 
 
       if (Yii::$app->request->isAjax) {
-        $json = array('id' => $prize_won_id, 'name' => $prize_won_name, 'description' => $prize_won_description);
+        $json = array('id' => $prize_won_id, 'name' => $prize_won_name, 'description' => $prize_won_description, 'evocoin' => $wallet->amount);
 
         $response = json_encode($json);
         return $response;
