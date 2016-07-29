@@ -32,6 +32,7 @@ return [
     'By discovering your natural powers, you can learn how to fit into the Evoke network. Try to imagine vividly what would you do in each of the scenarios described and honestly answer each question.' => '',
     'Choose one answer for each single-choice question.' => '',
     'Complete Profile' => '',
+    'Congratulations, you are already an Evoke agent!' => '',
     'Contentcontainer ID' => '',
     'Continue to Base Operations' => '',
     'Create' => '',

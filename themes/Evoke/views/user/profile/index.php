@@ -2,6 +2,8 @@
 
 use app\modules\powers\models\UserPowers;
 
+$this->pageTitle = $user->username;
+
 $userPowers = UserPowers::getUserPowers($user->id);
 
 if($user->group->name != "Mentors"){

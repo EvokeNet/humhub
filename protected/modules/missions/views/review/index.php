@@ -6,6 +6,9 @@ $activity = null;
 if($evidence){
     $activity = $evidence->getActivities();  
 }
+
+$this->pageTitle = Yii::t('MissionsModule.base', 'Review Evidence');
+
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
