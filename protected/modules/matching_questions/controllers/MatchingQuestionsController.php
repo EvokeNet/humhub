@@ -221,6 +221,34 @@ class MatchingQuestionsController extends Controller
         return $qualities;
       }
 
+
+    public function setInitialPowers(){
+        $user = Yii::$app->user->getIdentity();
+
+
+        //CREATE USER'S POWERS & SUPER POWERS
+        $powers = Powers::find()->all();
+        $super_powers = Qualities::find()->all();
+
+        foreach ($super_powers as $super_power) {
+          // check if user has the super power already
+          if (null === UserQualities::find()->where(['and', ['quality_id' => $super_power->id], ['user_id' => $user->id]])->one()) {
+            $user_super_power = new UserQualities();
+            $user_super_power->quality_id = $super_power->id;
+            $user_super_power->user_id = $user->id;
+            $user_super_power->level = 0;
+            $user_super_power->save();
+          }
+        }
+
+        foreach($powers as $power){
+            $userPower = UserPowers::findOne(['power_id' => $power->id, 'user_id' => $user->id]);
+            if(!isset($userPower)){
+                UserPowers::addPowerPoint($power, $user, 0);
+            }
+        }
+    }
+
     /**
      * Lists all MatchingQuestions models.
      * @return mixed

@@ -9,6 +9,7 @@ use app\modules\novel\models\NovelPage;
 use humhub\modules\user\models\User;
 use app\modules\powers\models\UserPowers;
 use app\modules\powers\models\Powers;
+use app\modules\matching_questions\controllers\MatchingQuestionsController;
 
 
 /**
@@ -40,6 +41,7 @@ class NovelController extends Controller
     public function actionTransformation()
     {
       $user = Yii::$app->user->getIdentity();
+      MatchingQuestionsController::setInitialPowers();
 
       //make sure user hasn't already read the graphic novel
       if ($user->has_read_novel || $user->group->name == "Mentors") {
