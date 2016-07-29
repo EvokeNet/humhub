@@ -35,7 +35,7 @@ class Events
 {
 
     public static function onDashboardSidebarInit($event){
-        $userPowers = UserPowers::getUserPowers(Yii::$app->user->getIdentity()->id);
+        //$userPowers = UserPowers::getUserPowers(Yii::$app->user->getIdentity()->id);
 
         $event->sender->addWidget(PopUpWidget::className(), []);
         //$event->sender->addWidget(CTAPostEvidence::className(), []);
@@ -45,24 +45,26 @@ class Events
     public static function onSidebarInit($event)
     {
 
-        if (Yii::$app->user->isGuest || Yii::$app->user->getIdentity()->getSetting("hideSharePanel", "share") != 1) {
+        $user = Yii::$app->user->getIdentity();
+
+        if (Yii::$app->user->isGuest || $user->getSetting("hideSharePanel", "share") != 1) {
             $space = $event->sender->space;
             $event->sender->addWidget(PopUpWidget::className(), []);
 
-            $team_id = Team::getUserTeam(Yii::$app->user->getIdentity()->id);
+            $team_id = Team::getUserTeam($user->id);
 
-            if(!isset($team_id) && $space->name != "Mentors" && $space->name != "Mentor" && Yii::$app->user->getIdentity()->group->name != "Mentors"){
+            if(!isset($team_id) && $space->name != "Mentors" && $space->name != "Mentor" && $user->group->name != "Mentors"){
                 $event->sender->addWidget(CreateATeamWidget::className(), [], array('sortOrder' => 0));    
             }
 
-            if($space->is_team){
+            if($space->is_team && $user->group->name != "Mentors"){
                 //$event->sender->addWidget(EvidenceWidget::className(), array('space' => $space), array('sortOrder' => 9));    
 
-                $userPowers = UserPowers::getUserPowers(Yii::$app->user->getIdentity()->id);
+                $userPowers = UserPowers::getUserPowers($user->id);
                 $event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers], array('sortOrder' => 9));
                 
                 if(Setting::Get('enabled_evokations')){
-                    $portfolio = Portfolio::getUserPortfolio(Yii::$app->user->getIdentity()->id);
+                    $portfolio = Portfolio::getUserPortfolio($user->id);
                     $event->sender->addWidget(PortfolioWidget::className(), ['portfolio' => $portfolio], array('sortOrder' => 8));    
                 }
                 

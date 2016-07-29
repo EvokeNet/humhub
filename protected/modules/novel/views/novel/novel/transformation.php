@@ -11,7 +11,7 @@ use app\modules\novel\models\NovelPage;
       <div class="panel-body text-center">
         <h1><?php echo Yii::t('NovelModule.base', 'Congratulations!') ?></h1>
           <span><strong><?php echo Yii::t('NovelModule.base', 'You earned {points} points in Transformation', array('points' => $points)) ?></strong></span>
-          
+
         </br>
         </br>
         <p>
@@ -24,3 +24,13 @@ use app\modules\novel\models\NovelPage;
     </div>
   </div>
 </div>
+
+<style media="screen">
+  .topbar {
+    display: none;
+  }
+
+  body {
+    padding-top: 1em;
+  }
+</style>

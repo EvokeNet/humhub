@@ -17,6 +17,7 @@ use app\modules\matching_questions\models\MatchingQuestions;
                     //What are the strengths, passions, and abilities you will bring to the Evoke network?
                     //Answer the following and find out what type of Super Hero is hiding inside you!') ?>
                     <?= Yii::t('MatchingModule.base', 'By discovering your natural powers, you can learn how to fit into the Evoke network. Try to imagine vividly what would you do in each of the scenarios described and honestly answer each question.') ?>  
+
                     <?php if(Yii::$app->session->getFlash('matching_questions_incomplete_answers')): ?>
                         <br><span id="warning" class="warning"><?= Yii::t('MatchingModule.base', 'In case of redirect, please make sure to answer all questions') ?></span>
                     <?php endif; ?>
@@ -25,19 +26,19 @@ use app\modules\matching_questions\models\MatchingQuestions;
             <div class="panel-body">
 
                 <div class="questionnaire">
-                    
+
                 <?php
                     $form = CActiveForm::begin([
                         'id' => 'questionnaire',
                     ]);
-                ?>              
+                ?>
 
                 <?php foreach($questions as $question): ?>
-                
+
                     <h5 style = "line-height:30px; border-left: 3px solid #28C503; padding: 0 20px"><?= isset($question->matchingQuestionTranslations[0]) ? $question->matchingQuestionTranslations[0]->description : $question->description ?></h5>
-                    
+
                     <br>
-                    
+
                     <div class="form">
 
                         <?php foreach($question->matchingAnswers as $answer):  ?>
@@ -48,15 +49,15 @@ use app\modules\matching_questions\models\MatchingQuestions;
                                     <input type="number" min="1" max=<?= $maxValue ?> name="matching_answer_<?= $answer->id ?>_matching_question_<?= $question->id ?>" value = "" >
                                         <?= isset($answer->matchingAnswerTranslations[0]) ? $answer->matchingAnswerTranslations[0]->description : $answer->description ?>
                                 </label>   <br>
-                            <!-- SINGLE CHOICE -->     
-                            <?php else: ?>    
+                            <!-- SINGLE CHOICE -->
+                            <?php else: ?>
                                 <label style = "margin-right:20px; font-size:12pt">
                                     <input type="radio" name="matching_question_<?= $question->id ?>" value = <?= $answer->id ?> >
                                         <?= isset($answer->matchingAnswerTranslations[0]) ? $answer->matchingAnswerTranslations[0]->description : $answer->description ?>
                                 </label>
                             <?php endif; ?>
-                            
-                        <?php endforeach; ?>    
+
+                        <?php endforeach; ?>
                     </div>
 
                     <div class = "text-center"><div class = "blue-border"></div></div>
@@ -67,7 +68,7 @@ use app\modules\matching_questions\models\MatchingQuestions;
                 </div>
 
                 <?php
-                    CActiveForm::end(); 
+                    CActiveForm::end();
                 ?>
                 </div>
 
@@ -106,6 +107,13 @@ form{
     /*padding-top: 30px;*/
     padding: 20px 50px 0px;
 }
+.topbar {
+  display: none;
+}
+
+body {
+  padding-top: 1em;
+}
 
 </style>
 
@@ -140,8 +148,8 @@ form{
                     //SINGLE CHOICE
                         singleChoice = true;
 
-                        if (checked == false){ 
-                            checked = inputs[x].checked 
+                        if (checked == false){
+                            checked = inputs[x].checked
                         }
 
                     }else{
@@ -162,14 +170,14 @@ form{
                     }
 
                 }
-                
+
             }
 
             if(singleChoice && !checked){
                 warningMessage("<?= Yii::t('MatchingModule.base', 'Choose one answer for each single-choice question.') ?>");
                 return false;
             }
-            
+
         };
 
         return true;

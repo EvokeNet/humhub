@@ -13,7 +13,7 @@ use yii\helpers\Url;
     </div>
     <div class="panel-body">
         <div class="col-xs-12">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            <!-- content -->
         </div>
     </div>
 
