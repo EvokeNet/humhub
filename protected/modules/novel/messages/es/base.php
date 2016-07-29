@@ -17,13 +17,12 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Discover Your Powers' => 'Descubre tus poderes',
-    'This power has been evident since the network found you. Now we will discover the other powers you have and which so far have not been so evident.' => '',
-    'You earned {points} points in Transformation' => 'Ha ganado {points} puntos en Transformación',
-    'Congratulations!' => 'Felicitaciones',
+    'As you can see, Marta\'s story continues. She, like you, is committed to creating change in her community. Because of your commitment you have received {points} points in the power of Transformation.<br><br>This power has been evident since the network found you. Now we will discover the other powers you have and which so far have not been so evident.' => 'Como ves, la historia de Marta continúa. Ella, al igual que tú, está comprometida con la creación de un cambio en su comunidad. Es por eso que tienes {points} puntos en el poder de la Transformación. <br>Este poder ha sido evidente en ti desde que la red te encontró. Ahora descubramos los otros poderes que tienes y que hasta ahora no han sido tan evidentes.',
+    'Congratulations!' => 'Felicitaciones!',
     'Create' => 'Crear',
     'Create Page' => 'Crear Página',
     'Delete' => 'Borrar',
+    'Discover Your Powers' => 'Descubre tus poderes',
     'Edit' => 'Editar',
     'Edit ' => 'Editar ',
     'Graphic Novel' => 'Novela gráfica',
@@ -33,6 +32,7 @@ return [
     'Page Image' => 'Imagen de la página',
     'Page Number' => 'Número de página',
     'Pages' => 'Páginas',
+    'This power has been evident since the network found you. Now we will discover the other powers you have and which so far have not been so evident.' => 'Este poder ha sido evidente en ti desde que la red te encontró. Ahora descubramos los otros poderes que tienes y que hasta ahora no han sido tan evidentes.',
     'Update' => 'Actualizado',
     'Uploaded Image: {file}' => 'Imagen subida: {file}',
 ];

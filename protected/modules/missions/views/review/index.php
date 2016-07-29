@@ -132,7 +132,9 @@ if($evidence){
                   }        
                 ?>
                 <div>
-                  <?php $primaryPowerTitle = $activity->getPrimaryPowers()[0]->getPower()->title; ?>
+                  <?php 
+                    $power = $activity->getPrimaryPowers()[0]->getPower();
+                    $primaryPowerTitle = isset($power->powerTranslations[0]) ? $power->powerTranslations[0]->title : $power->title; ?>
                     <h4><?= Yii::t('MissionsModule.base', 'Distribute points for {title}', array('title' => $primaryPowerTitle)) ?></h4>
                     <p style = "margin-bottom:25px"><?= Yii::t('MissionsModule.base', '<strong>Activity Rubric:</strong> {rubric}', array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></p>
                     
@@ -146,15 +148,14 @@ if($evidence){
                             
                             <br>
               				<div id="yes-opt" class="collapse <?= $collapse ?>">
-                                <br>
+                                <br><p><?= Yii::t('MissionsModule.base', 'How many points will you award this evidence?') ?></p>
               					<?php for ($x=1; $x <= 5; $x++): ?> 
               					<label class="radio-inline">
               						<input type="radio" name="grade" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> >
               						<?php echo $x; ?>
               					</label>
               					<?php endfor; ?>
-              					<p style = "display:inline; margin-left:20px"><?= Yii::t('MissionsModule.base', 'How many points will you award this evidence?') ?></p>
-                                  <br><br>
+                                  <br><br><br>
               				</div>
                             
             			  </div>
