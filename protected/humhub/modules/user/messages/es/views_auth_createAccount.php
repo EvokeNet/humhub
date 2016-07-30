@@ -18,5 +18,5 @@
  */
 return [
     'Create Account' => 'Crear Cuenta',
-    '<strong>Account</strong> registration' => 'Registro de <strong>cuenta</strong>',
+    '<strong>Agent</strong> registration' => 'Registro de <strong>Agente</strong>',
 ];
