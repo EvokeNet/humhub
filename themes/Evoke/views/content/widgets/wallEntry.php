@@ -43,17 +43,19 @@ if($team_id){
 
             <!-- Show space image, if you are outside from a space -->
             <?php if (!Yii::$app->controller instanceof ContentContainerController && $object->content->container instanceof Space): ?>
-                <?php echo \humhub\modules\space\widgets\Image::widget([
-                    'space' => $object->content->container,
-                    'width' => 20,
-                    'htmlOptions' => [
-                        'class' => 'img-space',
-                    ],
-                    'link' => 'true',
-                    'linkOptions' => [
-                        'class' => 'pull-left',
-                    ],
-                ]); ?>
+                <?php 
+                // echo \humhub\modules\space\widgets\Image::widget([
+                //     'space' => $object->content->container,
+                //     'width' => 20,
+                //     'htmlOptions' => [
+                //         'class' => 'img-space',
+                //     ],
+                //     'link' => 'true',
+                //     'linkOptions' => [
+                //         'class' => 'pull-left',
+                //     ],
+                // ]); 
+                ?>
 
             <?php endif; ?>
 
