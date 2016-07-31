@@ -35,4 +35,7 @@ return [
     'This power has been evident since the network found you. Now we will discover the other powers you have and which so far have not been so evident.' => 'Este poder ha sido evidente en ti desde que la red te encontró. Ahora descubramos los otros poderes que tienes y que hasta ahora no han sido tan evidentes.',
     'Update' => 'Actualizado',
     'Uploaded Image: {file}' => 'Imagen subida: {file}',
+    'You earned {points} points in Transformation' => '',
+    'novel intro' => 'antes de empezar tu recorrido, quiero compartirte la historia de Marta. Su caso es muy valioso para entender las problemáticas que está viviendo tu comunidad. Ella será su guía y estará disponible para ayudarlos en las misiones, actividades y evokaciones.',
+    'Graphic Novel' => 'Novela Grafica'
 ];

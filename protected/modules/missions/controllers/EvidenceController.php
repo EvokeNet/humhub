@@ -248,6 +248,7 @@ class EvidenceController extends ContentContainerController
         $comment = Yii::$app->request->get("comment");
         $evidenceId = Yii::$app->request->get("evidenceId");
         $evidence = $evidenceId ? Evidence::findOne($evidenceId) : null;
+        $evocoin_earned = 0;
 
         $vote = Votes::findOne(['user_id' => $user->id, 'evidence_id' => $evidenceId]);
 
@@ -263,6 +264,20 @@ class EvidenceController extends ContentContainerController
             if($vote){
                 $pointChange = $grade - $vote->value;
 
+                // mentor votes are worth twice as much
+                if (Yii::$app->user->getIdentity()->group->name === "Mentors") {
+                  $pointChange = $pointChange * 2;
+                }
+
+                if(empty($vote->comment) && !empty($comment)){
+                    $wallet = Wallet::find()->where(['owner_id' => $user->id])->one();
+                    $wallet->addCoin(5);
+                    $evocoin_earned += 5;
+                    $wallet->save();
+                }else if(!empty($vote->comment) && empty($comment)){
+                    $comment = $vote->comment;
+                }
+
                 $vote->flag = $flag;
                 $vote->comment = $comment;
                 $vote->value = $grade;
@@ -272,7 +287,13 @@ class EvidenceController extends ContentContainerController
                 $activityPower = Activities::findOne($vote->activity_id)->getPrimaryPowers()[0];
                 UserPowers::addPowerPoint($activityPower->getPower(), User::findOne($evidence->content->user_id), $pointChange);
 
-                AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', 'Your review was updated!'));
+                if($evocoin_earned <= 0){
+                    AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', 'Your review was updated!'));
+                }else{
+                    $message = Yii::t('MissionsModule.base', 'You just gained {message} evocoins!', array('message' => $evocoin_earned));
+                    AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', '{message}. <BR>Thank you for your review.', array('message' => $message)));
+                }
+
 
             }else{
                 //SAVE VOTE
@@ -293,8 +314,8 @@ class EvidenceController extends ContentContainerController
 
                 //give an extra 5 for adding a comment
                 if (!empty($comment)) {
-                  $wallet->addCoin(5);
-                  $evocoin_earned += 5;
+                    $wallet->addCoin(5);
+                    $evocoin_earned += 5;
                 }
 
                 $wallet->save();

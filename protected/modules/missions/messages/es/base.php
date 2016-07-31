@@ -156,6 +156,7 @@ return [
     'Top Agents By Reviews Given' => 'Mejores agentes por Revisiones Publicadas',
     'Top Teams By Evidences Submitted' => 'Mejores equipos por Evidencias Publicadas',
     'Top Teams By Reviews Given' => 'Mejores equipos por Revisiones Publicadas',
+    'Top Mentors By Reviews Given' => 'Mejores mentores por Revisiones Publicadas',
     'Total' => 'Total',
     'Translation' => 'Traducción',
     'Translations' => 'Traducciones',

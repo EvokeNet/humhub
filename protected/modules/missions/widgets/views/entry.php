@@ -132,7 +132,7 @@ echo Html::beginForm();
                             <p><?php echo Yii::t('MissionsModule.base', 'Comment: {comment}', array('comment' => $vote->comment)); ?></p>
                             <p><?php echo Yii::t('MissionsModule.base', 'Rating: {rating}', array('rating' => $vote->value)); ?></p>
                             
-                            <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
+                            <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors" || $vote->user->group->name == "Mentors"): ?>
                                 <p><?php echo Yii::t('MissionsModule.base', 'By'); ?>
                                 <a href="<?= ($vote->user->getUrl()) ?>">
                                     <?= ($vote->user->username) ?>

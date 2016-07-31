@@ -8,8 +8,7 @@ $evidence = Evidence::findOne($vote->evidence_id);
 ?>
 <?php
 
-echo Yii::t('MissionsModule.views_notifications_rejectedEvidence', "%displayName% marked %contentTitle% as: ", array(
-    '%displayName%' => '<strong>' . Html::encode($source->user->displayName) . '</strong>',
+echo Yii::t('MissionsModule.views_notifications_rejectedEvidence', "%contentTitle% has been marked  as: ", array(
     '%contentTitle%' => $this->context->getContentInfo($evidence)
 )); 
 ?>

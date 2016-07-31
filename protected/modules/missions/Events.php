@@ -53,7 +53,7 @@ class Events
 
             $team_id = Team::getUserTeam($user->id);
 
-            if(!isset($team_id) && $space->name != "Mentors" && $space->name != "Mentor" && $user->group->name != "Mentors"){
+            if(!isset($team_id) && $space->name != "Mentors" && $space->name != "Mentor" && $user->group->name != "Mentors" && !$space->is_team){
                 $event->sender->addWidget(CreateATeamWidget::className(), [], array('sortOrder' => 0));    
             }
 
@@ -271,27 +271,35 @@ class Events
      */
     public static function onTopMenuInit($event)
     {
+
         $user = Yii::$app->user->getIdentity();
-        $team_id = Team::getUserTeam($user->id);
-        $team = Team::findOne($team_id);
+
+        if(isset($user)){
+
+            $team_id = Team::getUserTeam($user->id);
+
+            $team = Team::findOne($team_id);
+            
+
+            if(!$team && $user->group->name == "Mentors"){
+                $team = Space::findOne(['name' => 'Mentors']);
+            }
+
+            if($team){
+                $event->sender->addItem(array(
+                'label' => Yii::t('MissionsModule.base', 'Review Evidence'),
+                'id' => 'review_evidence',
+                'icon' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i>',
+                'url' => Url::to(['/missions/review/index', 'sguid' => $team->guid]),
+                'sortOrder' => 200,
+                'isActive' => (Yii::$app->controller->module
+                    && Yii::$app->controller->module->id == 'missions'
+                    && Yii::$app->controller->id == 'review'),
+                ));
+            }
+
+        }
         
-
-        if(!$team && $user->group->name == "Mentors"){
-            $team = Space::findOne(['name' => 'Mentors']);
-        }
-
-        if($team){
-            $event->sender->addItem(array(
-            'label' => Yii::t('MissionsModule.base', 'Review Evidence'),
-            'id' => 'review_evidence',
-            'icon' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i>',
-            'url' => Url::to(['/missions/review/index', 'sguid' => $team->guid]),
-            'sortOrder' => 200,
-            'isActive' => (Yii::$app->controller->module
-                && Yii::$app->controller->module->id == 'missions'
-                && Yii::$app->controller->id == 'review'),
-            ));
-        }
         
     }
     
