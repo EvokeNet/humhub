@@ -14,12 +14,17 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.base', 'Evok
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('MissionsModule.base', 'Update');
 ?>
-<div class="evokation-categories-update">
+<div class="panel panel-default">
+    <div class="panel-heading"><strong><?php echo $this->title; ?></strong></div>
+    <div class="panel-body">
+        
+        <div class="evokation-categories-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+            <?= $this->render('_form', [
+                'model' => $model,
+            ]) ?>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+        </div>
 
+    </div>
 </div>
