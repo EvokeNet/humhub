@@ -3,7 +3,7 @@
 use yii\widgets\Breadcrumbs;
 
 $this->title = Yii::t('MissionsModule.base', 'Evokations');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.base', "{name}'s Evokation Home Page", array('name' => $contentContainer->name)), 'url' => ['home', 'sguid' => $contentContainer->guid]];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.base', "{name}'s Evokation", array('name' => $contentContainer->name)), 'url' => ['home', 'sguid' => $contentContainer->guid]];
 $this->params['breadcrumbs'][] = Yii::t('MissionsModule.base', 'Evokation Voting');
 
 echo Breadcrumbs::widget([

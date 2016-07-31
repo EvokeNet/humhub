@@ -16,8 +16,8 @@ $this->pageTitle = Yii::t('DashboardModule.views_dashboard_index', 'Dashboard');
             <div class="panel-group">
                 <?php
                 echo \humhub\modules\missions\widgets\HomePageStats::widget();
-                echo "<br>";
-                echo \humhub\modules\missions\widgets\SuperPowerStats::widget(['powers' => $userPowers]);
+                // echo "<br>";
+                // echo \humhub\modules\missions\widgets\SuperPowerStats::widget(['powers' => $userPowers]);
                 ?>
             </div>
             <?php endif; ?>

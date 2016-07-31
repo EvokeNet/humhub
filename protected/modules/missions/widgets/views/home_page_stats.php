@@ -25,7 +25,7 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
 <div class="panel panel-default">
     <div class="panel-body row">
         <div class="col-xs-7">
-            <div class="panel-heading">
+            <div class="panel-heading" style = "height: 90px;">
                 <h4 class = "display-inline">
                     <strong>
                         <?= Yii::t('MissionsModule.base', 'Mission Progress') ?>
@@ -33,15 +33,15 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
                 </h4>
 
                 <?php if($member): ?>
-                    <a id="submit_evidence" class="btn btn-cta2" style="float: right;" href="<?= Url::to(['/missions/evokation/index', 'sguid' => $member->space->guid]); ?>">
+                    <a id="submit_evidence" class="btn btn-cta1" style="float: right; margin-top:5px" href="<?= Url::to(['/missions/evokation/index', 'sguid' => $member->space->guid]); ?>">
                         <?php echo Yii::t('MissionsModule.base', 'Submit Evidence'); ?>
                     </a>
                 <?php endif; ?>
 
                 <br>
-                <span>
+                <p style = "margin-top:10px">
                     <?= Yii::t('MissionsModule.base', 'Your average rating: {avg}', array('avg' => $avg)) ?>
-                </span>
+                </p>
             </div>
             <div class="panel-body">
                <p><?= Yii::t('MissionsModule.base', 'Every time you submit evidence, your overall rating will improve.') ?><p>

@@ -20,49 +20,51 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Review Evidence');
 <?php if($activity): ?>
     <div class="panel-body">
 
-        <div class="grey-box formatted">
+        <div class="formatted" style = "margin-bottom:40px">
             <h4>
-                <?= isset($activity->mission->missionTranslations[0]) ? $activity->mission->missionTranslations[0]->title : $activity->mission->title ?>, 
-                <?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title ?>
+                <?= Yii::t('MissionsModule.base', 'Mission {mission}: Activity {activity}', array('mission' => $activity->mission->position, 'activity' => $activity->position)) ?>
             </h4>
 
-            <p><?= isset($activity->mission->missionTranslations[0]) ? $activity->mission->missionTranslations[0]->description : $activity->mission->description ?></p>
+            <p><?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description ?></p>
         </div>
 
-        <div class="evidence_area">
-            <h5><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h5>
+        <div class="grey-box evidence_area">
+            <h3><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h3>
+            <br>
             <p><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]); ?></p>
-        </div>
+        
 
-        <?php if(sizeof($files) > 0): ?>
-        <div class="files_area">
-            <?php foreach ($files as $file): ?>
-                <a data-toggle="lightbox" data-gallery="<?php
-                if (count($files) > 1) {
-                    echo "gallery-" . $evidence->content->getUniqueId();
-                }
-                ?>" href="<?php echo $file->getUrl(); ?>#.jpeg"  data-footer='<button type="button" class="btn btn-primary" data-dismiss="modal"><?php echo Yii::t('FileModule.widgets_views_showFiles', 'Close'); ?></button>'>
-                    <img src='<?php echo $file->getPreviewImageUrl(200, 200); ?>'>
-                </a>
-            <?php endforeach;?>
-        </div>
-        <?php endif;?>
+            <?php if(sizeof($files) > 0): ?>
+            <div class="files_area">
+                <?php foreach ($files as $file): ?>
+                    <a data-toggle="lightbox" data-gallery="<?php
+                    if (count($files) > 1) {
+                        echo "gallery-" . $evidence->content->getUniqueId();
+                    }
+                    ?>" href="<?php echo $file->getUrl(); ?>#.jpeg"  data-footer='<button type="button" class="btn btn-primary" data-dismiss="modal"><?php echo Yii::t('FileModule.widgets_views_showFiles', 'Close'); ?></button>'>
+                        <img src='<?php echo $file->getPreviewImageUrl(200, 200); ?>'>
+                    </a>
+                <?php endforeach;?>
+            </div>
+            <?php endif;?>
 
-        <div class="statistics">
-            <?php if(Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
-                <?php //echo \humhub\widgets\TimeAgo::widget(['timestamp' => $evidence->created_at]); ?>
-                <p><?php echo Yii::t('MissionsModule.base', 'By Anonymous, {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $evidence->created_at]))); ?></p>
-            <?php else: ?>
-                <p><?php echo Yii::t('MissionsModule.base', 'By'); ?></p> 
-                <a href="<?= ($evidence->content->user->getUrl()) ?>">
-                    <?= ($evidence->content->user->username) ?>
-                </a>, 
-                <?php echo \humhub\widgets\TimeAgo::widget(['timestamp' => $evidence->created_at]); ?>
-                <br>
-                <?= Yii::t('MissionsModule.base', 'Votes: {votes}', array('votes' => $evidence->getVoteCount() ? $evidence->getVoteCount() : "0")) ?>
-                <br>
-                <?= Yii::t('MissionsModule.base', 'Average Rating: {rating}', array('rating' => $evidence->getAverageRating()? number_format((float)$evidence->getAverageRating(), 1, '.', '') : "-")) ?> 
-            <?php endif; ?>
+            <div class="statistics">
+                <?php if(Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
+                    <?php //echo \humhub\widgets\TimeAgo::widget(['timestamp' => $evidence->created_at]); ?>
+                    <p><?php echo Yii::t('MissionsModule.base', 'By Anonymous, {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $evidence->created_at]))); ?></p>
+                <?php else: ?>
+                    <p><?php echo Yii::t('MissionsModule.base', 'By'); ?></p> 
+                    <a href="<?= ($evidence->content->user->getUrl()) ?>">
+                        <?= ($evidence->content->user->username) ?>
+                    </a>, 
+                    <?php echo \humhub\widgets\TimeAgo::widget(['timestamp' => $evidence->created_at]); ?>
+                    <br>
+                    <?= Yii::t('MissionsModule.base', 'Votes: {votes}', array('votes' => $evidence->getVoteCount() ? $evidence->getVoteCount() : "0")) ?>
+                    <br>
+                    <?= Yii::t('MissionsModule.base', 'Average Rating: {rating}', array('rating' => $evidence->getAverageRating()? number_format((float)$evidence->getAverageRating(), 1, '.', '') : "-")) ?> 
+                <?php endif; ?>
+            </div>
+        
         </div>
 
         <!-- REVIEWS SECTION -->

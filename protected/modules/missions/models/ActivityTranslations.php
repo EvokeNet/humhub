@@ -54,7 +54,7 @@ class ActivityTranslations extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['activity_id', 'title', 'description', 'language_id', 'created_at', 'updated_at'], 'required'],
+            [['activity_id', 'title', 'description', 'language_id'], 'required'],
             [['activity_id', 'language_id'], 'integer'],
             [['description', 'rubric'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
