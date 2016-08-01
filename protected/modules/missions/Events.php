@@ -249,7 +249,7 @@ class Events
         $team_id = Team::getUserTeam(Yii::$app->user->getIdentity()->id);
 
         $space = $event->sender->space;
-        if ($space->isModuleEnabled('missions') && ($team_id == $space->id || $space['name'] == 'Mentor')) {
+        if ($space->isModuleEnabled('missions') && ($team_id == $space->id || $space['name'] == 'Mentors')) {
             $event->sender->addItem(array(
                 'label' => Yii::t('MissionsModule.base', 'Review Evidence'),
                 'group' => 'modules',
@@ -272,6 +272,11 @@ class Events
     {
         $team_id = Team::getUserTeam(Yii::$app->user->getIdentity()->id);
         $team = Team::findOne($team_id);
+        $user = Yii::$app->user->getIdentity();
+
+        if(!$team && $user->group->name == "Mentors"){
+            $team = Space::findOne(['name' => 'Mentors']);
+        }
 
         if($team){
             $event->sender->addItem(array(
