@@ -159,7 +159,7 @@ class MatchingQuestionsController extends Controller
 
             foreach($powers_quality_1 as $power_quality_1){
               $power = $power_quality_1->getPower();
-              $starter_points = floor((($power->improve_multiplier * pow(1, 1.95)) + $power->improve_offset) * 0.125); // give them 12.5% of the points needed for the first level
+              $starter_points = floor((($power->improve_multiplier * pow(1, 1.95)) + $power->improve_offset)) * 0.125; // give them 12.5% of the points needed for the first level
 
               UserPowers::addPowerPoint($power, $user, $starter_points);
             }
