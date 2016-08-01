@@ -246,10 +246,11 @@ class Events
 
     public static function onReviewSpaceMenuInit($event)
     {
-        $team_id = Team::getUserTeam(Yii::$app->user->getIdentity()->id);
+        $user = Yii::$app->user->getIdentity();
+        $team_id = Team::getUserTeam($user->id);
 
         $space = $event->sender->space;
-        if ($space->isModuleEnabled('missions') && ($team_id == $space->id || $space['name'] == 'Mentors')) {
+        if ($space->isModuleEnabled('missions') && ($team_id == $space->id)) {
             $event->sender->addItem(array(
                 'label' => Yii::t('MissionsModule.base', 'Review Evidence'),
                 'group' => 'modules',
@@ -270,9 +271,10 @@ class Events
      */
     public static function onTopMenuInit($event)
     {
-        $team_id = Team::getUserTeam(Yii::$app->user->getIdentity()->id);
-        $team = Team::findOne($team_id);
         $user = Yii::$app->user->getIdentity();
+        $team_id = Team::getUserTeam($user->id);
+        $team = Team::findOne($team_id);
+        
 
         if(!$team && $user->group->name == "Mentors"){
             $team = Space::findOne(['name' => 'Mentors']);
