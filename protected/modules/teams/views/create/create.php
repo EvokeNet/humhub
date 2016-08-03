@@ -55,12 +55,17 @@ $this->registerCssFile('@web/resources/space/colorpicker/css/bootstrap-colorpick
                 <?php if($model->is_team == 1 || $model->is_team == 0): ?>
                     <?php echo Html::activeHiddenInput($model, 'is_team'); ?>
                 <?php else: ?>
-                    <?php echo $form->field($model, 'is_team')->checkBox(); ?>
+                    <?php //echo $form->field($model, 'is_team')->checkBox(); ?>
+                    <?php 
+                        $model->is_team = 0;
+                        echo Html::activeHiddenInput($model, 'is_team'); 
+                    ?>
                 <?php endif; ?>
             <?php else: ?>
-                <?php echo $form->field($model, 'is_team')->checkBox(['disabled' => true]); ?>
-                <?php echo Html::label(Yii::t('TeamsModule.views_create_create', "You're already a member of a Team.<BR>Leave it to create a new one.")); ?>
-                <br>
+                
+                <?php //echo $form->field($model, 'is_team')->checkBox(['disabled' => true]); ?>
+                <?php //echo Html::label(Yii::t('TeamsModule.views_create_create', "You're already a member of a Team.<BR>Leave it to create a new one.")); ?>
+                
             <?php endif; ?>
 
             <a data-toggle="collapse" id="access-settings-link" href="#collapse-access-settings"
