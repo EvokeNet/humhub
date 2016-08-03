@@ -228,11 +228,14 @@ textarea {
 }
 .evocoins img {
   width: 100px;
+  position: relative;
 }
 .evocoins div {
+  left: 0;
   position: absolute;
-  top: 35%;
-  left: 45%;
+  text-align: center;
+  top: 30px;
+  width: 100%;
 }
 .evocoins div p {
   font-weight: bold !important;

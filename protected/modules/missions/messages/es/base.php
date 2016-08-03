@@ -63,7 +63,7 @@ return [
     'Earn Evocoins by reviewing evidence.' => 'Gane Evocoins mediante la revisión de la evidencia.',
     'Earn points to increase powers' => 'Gana puntos para aumentar los poderes',
     'Edit' => 'Editar',
-    'Elevator Pitch:' => 'Elevator Pitch:',
+    'Elevator Pitch:' => 'Discurso del ascensor:',
     'Enable Evokations' => 'Habilitar Evokaciones',
     'Enter Activity' => 'Entrar en la actividad',
     'Enter Mission' => 'Entrar en la misión',

@@ -164,6 +164,15 @@
 
                   <br />
                   <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'You can develop all of the superpowers by completing each of the mission activities.') ?></p>
+                  
+                  <br>
+                  
+                  <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'Congratulations, you are already an Evoke agent!') ?></p>
+                  
+                  <br /><br />
+                  <div class = "text-center"><?php echo Html::a(
+                          Yii::t('MatchingModule.base', 'Continue to Base Operations'),
+                          ['/space/space', 'sguid' => $welcome_space->guid], array('class' => 'btn btn-cta1')); ?></div>
 
                 </div>
 
@@ -199,11 +208,6 @@
           </div>
           <div class = "panel-body">
             <span style = "font-size: 12pt;"><?php echo Yii::t('MatchingModule.base', "Welcome to the Evoke network.<br><br>Over the next 16 weeks you will be asked to respond to the urgent challenge of forced displacement and peace in your country.  You have been selected because of your unique potential to change the world.  You have some powers there is no doubt, but you will need to increase your powers to realize your potential.  I have asked one of our best agents -- Marta -- to share her story and guide you on this journey.<br><br>Over the course of these 16 weeks you will form a team to create your unique world changing idea or as we call it in the Evoke network -- your Evokation.  Your Evokation will be created as you respond to the 8 missions I will give you.  At the end of the journey, the network will invest evocoin in your Evokations. The 10 Evokations with the most investment will be reviewed by experts in my network and the top 3 will receive recognition and reward.  As a team you must complete all 6 activities for each mission to advance to the next mission.  By completing activities, your powers will increase.<br><br>You will also earn Evocoin -- the currency of the Evoke network -- each time you contribute to the quality of our collective thought by giving power to others and commenting on their contributions.  Evocoin will be used at the end of your journey to invest in those world changing ideas that you think will have the greatest impact on your community, your country, the world. <br><br>You will also be given opportunities during the 16 weeks to exchange your Evocoin for assistance in completing your Evokation by accessing Evoke tools - transportation, materials, and other forms of support will be provided....for a cost.<br><br>Good luck agents. I look forward to checking in on your progress and recognizing your final Evokations at the end of this journey.") ?></span>
-            <br /><br />
-            <?php echo Html::a(
-                    Yii::t('MatchingModule.base', 'Continue to Base Operations'),
-                    ['/space/space', 'sguid' => $welcome_space->guid], array('class' => 'btn btn-cta1')); ?>
-
           </div>
         </div>
       </div>

@@ -6,6 +6,8 @@ use yii\helpers\Html;
     // print_r($ranking);
     // echo "</pre>";
     
+$this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
+
 ?>
 
 <div class="container">

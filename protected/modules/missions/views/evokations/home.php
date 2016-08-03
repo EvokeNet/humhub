@@ -13,7 +13,7 @@ echo Breadcrumbs::widget([
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
 ]);
 
-$this->pageTitle = Yii::t('MissionsModule.base', 'Evokations');
+$this->pageTitle = Yii::t('MissionsModule.base', "{name}'s Evokation Home Page", array('name' => $contentContainer->name));
 
 $total = 0;
 $done = 0;

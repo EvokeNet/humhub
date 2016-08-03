@@ -9,17 +9,12 @@ use app\modules\novel\models\NovelPage;
   <div class="col-md-8 col-md-offset-2">
     <div class="panel panel-default">
       <div class="panel-body text-center">
-        <h1><?php echo Yii::t('NovelModule.base', 'Congratulations!') ?></h1>
-          <span><strong><?php echo Yii::t('NovelModule.base', 'You earned {points} points in Transformation', array('points' => $points)) ?></strong></span>
-
-        </br>
-        </br>
-        <p>
-          <?php echo Yii::t('NovelModule.base', 'This power has been evident since the network found you. Now we will discover the other powers you have and which so far have not been so evident.') ?>
-        </p>
+        <h1><?php echo Yii::t('NovelModule.base', 'Congratulations!') ?></h1><br>
+        <h4><?php echo Yii::t('NovelModule.base', "As you can see, Marta's story continues. She, like you, is committed to creating change in her community. Because of your commitment you have received {points} points in the power of Transformation.<br><br>This power has been evident since the network found you. Now we will discover the other powers you have and which so far have not been so evident.", array('points' => $points)) ?></h4>
+        <br>
         <?php echo Html::a(
             Yii::t('NovelModule.base', 'Discover Your Powers'),
-            ['/matching_questions/matching-questions/matching'], array('class' => 'btn btn-success')); ?>
+            ['/matching_questions/matching-questions/matching'], array('class' => 'btn btn-cta1')); ?>
       </div>
     </div>
   </div>
