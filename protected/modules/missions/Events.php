@@ -53,7 +53,7 @@ class Events
 
             $team_id = Team::getUserTeam($user->id);
 
-            if(!isset($team_id) && $space->name != "Mentors" && $space->name != "Mentor" && $user->group->name != "Mentors"){
+            if(!isset($team_id) && $space->name != "Mentors" && $space->name != "Mentor" && $user->group->name != "Mentors" && !$space->is_team){
                 $event->sender->addWidget(CreateATeamWidget::className(), [], array('sortOrder' => 0));    
             }
 
