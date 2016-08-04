@@ -50,23 +50,40 @@ class CreateController extends Controller
      */
     public function actionCreate($teamChecked = "")
     {
+        $user = Yii::$app->user->getIdentity();
+
         // User cannot create spaces (public or private)
         if (!Yii::$app->user->permissionmanager->can(new CreatePublicSpace) && !Yii::$app->user->permissionmanager->can(new CreatePrivateSpace())) {
             throw new HttpException(400, 'You are not allowed to create spaces!');
         }
 
-        $model = $this->createSpaceModel();
+        $model = $this->createTeamModel();
+
         if($teamChecked){
             $model->is_team = 1;
         }
 
+        if($user->group->name == "Mentors"){
+            $model->is_team = 0;
+        }
+
         $createTeamsPermission = !(Team::isMemberOfATeam(Yii::$app->user->id));
 
+        $data = [];
 
-        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()) {
+        if(Yii::$app->request->post()){
+            $model = $this->createSpaceModel();
+            $data = Yii::$app->request->post();
+            $data['Space'] = $data['Team'];
+            unset($data['Team']);
+            
+        }
+
+        if ($model->load($data) && $model->validate() && $model->save()) {
+
             if($createTeamsPermission){
                 $teamModel = Team::findOne($model->id);
-                $teamModel->is_team = Yii::$app->request->post('Space')['is_team'];
+                $teamModel->is_team = $data['Space']['is_team'];
                 $teamModel->save();
             }
 
@@ -162,6 +179,16 @@ class CreateController extends Controller
         $model->scenario = 'create';
         $model->visibility = Setting::Get('defaultVisibility', 'space');
         $model->join_policy = Setting::Get('defaultJoinPolicy', 'space');
+        return $model;
+    }
+
+    protected function createTeamModel()
+    {
+        $model = new Team();
+        $model->scenario = 'create';
+        $model->visibility = Setting::Get('defaultVisibility', 'space');
+        $model->join_policy = Setting::Get('defaultJoinPolicy', 'space');
+        $model->is_team = -1;
         return $model;
     }
 

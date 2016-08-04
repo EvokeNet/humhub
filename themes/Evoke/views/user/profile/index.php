@@ -2,9 +2,13 @@
 
 use app\modules\powers\models\UserPowers;
 
+$this->pageTitle = $user->username;
+
 $userPowers = UserPowers::getUserPowers($user->id);
 
-echo \humhub\modules\missions\widgets\SuperPowerStats::widget(['powers' => $userPowers]);
+if($user->group->name != "Mentors"){
+	echo \humhub\modules\missions\widgets\SuperPowerStats::widget(['powers' => $userPowers]);
+}
 
 echo \humhub\modules\post\widgets\Form::widget(['contentContainer' => $user]); 
 

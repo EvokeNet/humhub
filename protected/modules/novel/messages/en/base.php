@@ -17,6 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'As you can see, Marta\'s story continues. She, like you, is committed to creating change in her community. Because of your commitment you have received {points} points in the power of Transformation.<br><br>This power has been evident since the network found you. Now we will discover the other powers you have and which so far have not been so evident.' => '',
     'Congratulations!' => '',
     'Create' => '',
     'Create Page' => '',

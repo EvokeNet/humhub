@@ -17,22 +17,22 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                 <p>
                   <?php echo Yii::t('PrizeModule.base', 'We introduce some tools the network has made available to facilitate your agent work in Soacha.') ?>
                 </p>
-                
+
                 <br>
-                
+
                 <div class = "text-center"><div class = "blue-border"></div></div>
-                
+
                 <div class="panel-heading">
                   <h4><?php echo Yii::t('PrizeModule.base', 'Slot Machine') ?></h4>
                 </div>
-                
+
                 <div class="panel-body">
-                  
+
                   <p>
                     <?php echo Yii::t('PrizeModule.base', 'Try your luck to win support in our slot machine. Every attempt will cost 5 evocoins.') ?>
                   </p>
-                
-                  <div class="row">
+
+                  <div class="row" id="evokeToolsButton">
                     <?php if ($wallet->amount >= 5): ?>
                       <div class="col-xs-7">
                         <?php echo Html::a(
@@ -42,7 +42,7 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
 
                       <div class="col-xs-5">
                         <div class="row text-right" style = "margin-top:10px; margin-right:5px">
-                          <p><strong><?php echo Yii::t('PrizeModule.base', 'Tools remaining: {total}', array('total' => $total_prizes)) ?><?php echo $total_prizes ?></strong></p>
+                          <p><strong><?php echo Yii::t('PrizeModule.base', 'Tools remaining: {total}', array('total' => $total_prizes)) ?></strong></p>
 
                         </div>
                         <?php foreach ($prizes as $prize): ?>
@@ -143,7 +143,7 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                       <?php echo Yii::t('PrizeModule.base', 'Located in Soacha, this game was designed by a secret team from the network to ensure countless hours of fun with your team of agents. When you play, you can win evocoins both to use the slot machine and to invest in your Evokations portfolio'); ?>
                     </p>
                     <br>
-                    
+
                     <div class="row">
                       <span class="col-xs-7"><img src="<?php echo Url::to('@web/themes/Evoke/img/evoke_board.png') ?>" alt="evoke board" class="img-responsive" /></span>
                       <span class="dowload col-xs-5 well well-lg">
@@ -180,6 +180,23 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
           </div>
         </div>
         <div class="col-md-4 layout-sidebar-container">
+          <div class = "panel">
+              <div style = "position:relative; height:90px" class="panel-body">
+
+                <div class="col-xs-6">
+                    <h6><?= Yii::t('MissionsModule.base', 'Your Evocoins') ?></h6>
+                    <p style = "font-size:9pt"><?= Yii::t('MissionsModule.base', 'Earn Evocoins by reviewing evidence.') ?></p>
+                </div>
+
+                <div class="col-xs-6">
+                    <div class = "home-widget-evocoins">
+                        <img src="<?php echo Url::to('@web/themes/Evoke/img/evocoin_bg.png') ?>" width = "70px">
+                        <div><p id="userEvocoin"><?= $wallet->amount ?></p></div>
+                    </div>
+                </div>
+              </div>
+            </br>
+          </div>
             <?php
             echo \humhub\modules\dashboard\widgets\Sidebar::widget(['widgets' => [
                     [\humhub\modules\activity\widgets\Stream::className(), ['streamAction' => '/dashboard/dashboard/stream'], ['sortOrder' => 150]]
@@ -248,11 +265,11 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
     font-size: 12pt;
     margin-left: 10px;
   }
-  
+
   .spinner-container{
     position: relative;
   }
-  
+
   .spinner-container .selector {
     height: 9em;
     width: 9em;
@@ -365,15 +382,24 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
 
           TweenMax.to( $(".prizes"), 5,
             {
-          	 x: -( $('.prizes').width()  + spinOffset ),
+          	 x: -( $('.prizes').width()  + 32 + spinOffset ),
              ease: Back.easeOut,
              delay: 4.5,
              onComplete: function() {
                $toolSearch.removeClass('disabled');
+               // adjust evocoin
+               $('#userEvocoin').html(result.evocoin);
+
+               // show prize (if available)
                $('#results').html(
                  '<div class="prize-won-name">' + result.name + '</div>' + '<div class="prize-won-description">' + result.description + '</div>'
                );
                $(':focus').blur();
+
+               // if user now has less than 5 evocoin, disable the evoke tools button
+               if(result.evocoin < 5) {
+                 $('#evokeToolsButton').html('<div class="col-xs-7"><?php echo Yii::t("PrizeModule.base", "Not Enough Evocoin!"); ?></div>')
+               }
              }
             }
           );

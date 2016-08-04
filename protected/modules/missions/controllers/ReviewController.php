@@ -89,11 +89,17 @@ class ReviewController extends ContentContainerController
    
     public function actionIndex()
     {   
+        $user = Yii::$app->user->getIdentity();
+
         $nextEvidence = $this->getNextEvidence($this->contentContainer);
         $evidence = $nextEvidence['evidence'];
         $files = $nextEvidence['files'];
         $evidence_to_review_count = $nextEvidence['evidence_to_review_count'];
         $totalEvidence = $this->getEvidenceToReviewCount($this->contentContainer);
+
+        if($this->contentContainer->name == "Mentors" && $user->group->name != "Mentors"){
+            $this->redirect($this->contentContainer->createUrl());
+        }
 
         return $this->render('index', array('contentContainer' => $this->contentContainer, 'evidence' => $evidence, 'files' => $files, 'evidence_count' => $totalEvidence, 'evidence_to_review_count' => $evidence_to_review_count));
     }

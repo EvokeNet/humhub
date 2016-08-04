@@ -15,7 +15,7 @@ echo Breadcrumbs::widget([
 
 $mission_title = isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title;
 
-$this->pageTitle = Yii::t('MissionsModule.base', 'Mission {mission}: Activities', array('mission' => $mission_title));
+$this->pageTitle = Yii::t('MissionsModule.base', 'Mission {position} - {alias}', array('position' => $mission->position, 'alias' => $this->title));
 
 $firstPrimary = true;
 $firstSecondary = true;

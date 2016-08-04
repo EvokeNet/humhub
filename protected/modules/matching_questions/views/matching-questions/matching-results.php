@@ -69,7 +69,7 @@
                   </div>
                 </div>
 
-                <br>
+                <br />
 
                 <!-- additional powers -->
                  <div class="panel-heading">
@@ -85,12 +85,38 @@
                       <div style = "float:left"><img src = "<?php echo $quality->image ?>" width=100 class = "power-border"></div>
                       <div style = "margin-left:20px">
                         <h6 style = "font-weight:700; color: #9013FE; margin-bottom:5px"><?= isset($quality->qualityTranslations[0]) ? $quality->qualityTranslations[0]->name : $quality->name ?></h6>
+                        <div class="super-power-level">
+                          <?php $user_quality = UserQualities::find()->where(['and', ['user_id' => Yii::$app->user->getIdentity()->id], ['quality_id' => $quality->id]])->one() ?>
+                          <?php echo Yii::t('MatchingModule.base', 'level') ?> <?php echo $user_quality->getLevel() ?>
+                        </div><br />
                         <p style = "font-weight:700; color: #254054">
                           <?= isset($quality->qualityTranslations[0]) ? $quality->qualityTranslations[0]->description : $quality->description ?>
                         </p>
                       </div>
                     </div>
 
+                    <!-- <div class="col-xs-4 text-center">
+
+                      <img src = "<?php echo $quality->image ?>" width=100 class = "power-border">
+                      <h6><?= isset($quality->qualityTranslations[0]) ? $quality->qualityTranslations[0]->name : $quality->name ?></h6>
+
+
+                      <?php $user_quality = UserQualities::find()->where(['and', ['user_id' => Yii::$app->user->getIdentity()->id], ['quality_id' => $quality->id]])->one() ?>
+                      <span style = "color: #28C503"><?php echo Yii::t('MatchingModule.base', 'Level {level}', array('level' => $user_quality->getLevel())); ?></span>
+
+                      <br><br><span class="label label-secondary"><?php echo Yii::t('MissionsModule.base', 'Powers'); ?> </span><br><br>
+
+                      <div class="super-power-powers">
+
+                        <?php $quality_powers = QualityPowers::find()->where(['quality_id' => $quality->id])->all(); ?>
+                        <?php $power_ids = []; ?>
+                        <?php foreach ($quality_powers as $quality_power) {
+                          $power_ids[] = $quality_power->power_id;
+                        } ?>
+
+                        <?php $userPowers = UserPowers::find()->where(['and', ['power_id' => $power_ids], ['user_id' => $user->id]])->all() ?>
+                      </div>
+                    </div> -->
                   <?php endforeach; ?>
                 </div>
 
@@ -99,7 +125,7 @@
                   <!--<h5><?php //echo Yii::t('MatchingModule.base', 'Additional Powers') ?></h5>-->
                   <h4><?= Yii::t('MatchingModule.base', "Your survey results are:") ?></h4>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body text-center">
                   <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'With the powers you already possess, you are closest to achieving:') ?></p>
 
                   <div class="row">
@@ -119,9 +145,19 @@
                       </div>
                   </div>
 
-                  <br />
+                  <br /><br /><br />
                   <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'You can develop all of the superpowers by completing each of the mission activities.') ?></p>
+                  
 
+                  <br />
+                  
+                  <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'Congratulations, you are already an Evoke agent!') ?></p>
+                  
+                  <br />
+                  <div class = "text-center"><?php echo Html::a(
+                          Yii::t('MatchingModule.base', 'Continue to Base Operations'),
+                          ['/space/space', 'sguid' => $welcome_space->guid], array('class' => 'btn btn-cta1')); ?></div>
+                  <br />
                 </div>
 
                 <!-- <div style = "text-align:center; padding: 20px 30px">
@@ -155,17 +191,7 @@
             <h4><?php echo Yii::t('MatchingModule.base', 'Getting started') ?></h4>
           </div>
           <div class = "panel-body">
-            <span style = "font-size: 12pt;"><?php echo Yii::t('MatchingModule.base', "Welcome to the Evoke network.
-            <br><br>Over the next 16 weeks you will be asked to respond to the urgent challenge of forced displacement and peace in your country.  You have been selected because of your unique potential to change the world.  You have some powers there is no doubt, but you will need to increase your powers to realize your potential.  I've asked one of our best agents -- Marta -- to share her story and guide you on this journey.
-            <br><br>Over the course of these 16 weeks you will form a team to create your unique world changing idea or as we call it in the Evoke network -- your Evokation.  Your Evokation will be created as you respond to the 8 missions I will give you.  At the end of the journey, the network will invest evocoin in your Evokations. The 10 Evokations with the most investment will be reviewed by experts in my network and the top 3 will receive recognition and reward.  As a team you must complete all 6 activities for each mission to advance to the next mission.  By completing activities, your powers will increase.
-            <br><br>There are 16 unique powers that you can develop which will in turn will give you your superpowers -- creative visionary, deep collaborator, systems thinker, and empathetic activist.  These powers will help you on your journey.
-            <br><br>You will also earn Evocoin -- the currency of the Evoke network -- each time you contribute to the quality of our collective thought by giving power to others and commenting on their contributions.  Evocoin will be used at the end of your journey to invest in those world changing ideas that you think will have the greatest impact on your community, your country, the world.
-            <br><br>You will also be given opportunities during the 16 weeks to exchange your Evocoin for assistance in completing your Evokation by accessing Evoke tools - transportation, materials, and other forms of support will be provided....for a cost.
-            <br><br>Good luck agents. I look forward to checking in on your progress and recognizing your final Evokations at the end of this journey.") ?></span>
-            <br /><br />
-            <?php echo Html::a(
-                    Yii::t('MissionsModule.base', 'Continue to Base Operations'), Url::toRoute(['/space/space', 'sguid' => $welcome_space->guid]), array('class' => 'btn btn-cta1')); ?>
-
+            <span style = "font-size: 12pt;"><?php echo Yii::t('MatchingModule.base', "Welcome to the Evoke network.<br /><br />Over the next 16 weeks you will be asked to respond to the urgent challenge of forced displacement and peace in your country.  You have been selected because of your unique potential to change the world.  You have some powers there is no doubt, but you will need to increase your powers to realize your potential.  I have asked one of our best agents -- Marta -- to share her story and guide you on this journey.<br /><br />Over the course of these 16 weeks you will form a team to create your unique world changing idea or as we call it in the Evoke network -- your Evokation.  Your Evokation will be created as you respond to the 8 missions I will give you.  At the end of the journey, the network will invest evocoin in your Evokations. The 10 Evokations with the most investment will be reviewed by experts in my network and the top 3 will receive recognition and reward.  As a team you must complete all 6 activities for each mission to advance to the next mission.  By completing activities, your powers will increase.<br /><br />You will also earn Evocoin -- the currency of the Evoke network -- each time you contribute to the quality of our collective thought by giving power to others and commenting on their contributions.  Evocoin will be used at the end of your journey to invest in those world changing ideas that you think will have the greatest impact on your community, your country, the world. <br /><br />You will also be given opportunities during the 16 weeks to exchange your Evocoin for assistance in completing your Evokation by accessing Evoke tools - transportation, materials, and other forms of support will be provided....for a cost.<br /><br />Good luck agents. I look forward to checking in on your progress and recognizing your final Evokations at the end of this journey.") ?></span>
           </div>
         </div>
       </div>
@@ -179,16 +205,16 @@
 }
 
 .super-power-image{
-  padding-bottom: 250px;
-  background-image:url("<?php echo $super_power_image_url ?>");
+  padding-bottom: 15px;
+  /*background-image:url("<?php echo $super_power_image_url ?>");*/
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
 }
 
 .super-power-image.small {
-  padding-bottom: 100px;
-  background-position: left;
+  /*padding-bottom: 100px;*/
+  /*background-position: left;*/
 }
 
 .power-image {
@@ -269,7 +295,7 @@
 }
 
 .super-power-name {
-  text-align: justify;
+  /*text-align: justify;*/
   font-weight: bold;
 }
 
