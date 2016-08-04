@@ -131,6 +131,7 @@ return [
     'Top Agents By Reviews Given' => '',
     'Top Teams By Evidences Submitted' => '',
     'Top Teams By Reviews Given' => '',
+    'Top Mentors By Reviews Given' => '',
     'Total' => '',
     'Type (Primary/Secondary)' => '',
     'Unavailable - Rate Evidence' => '',
