@@ -37,4 +37,5 @@ return [
     'Uploaded Image: {file}' => 'Imagen subida: {file}',
     'You earned {points} points in Transformation' => '',
     'novel intro' => 'antes de empezar tu recorrido, quiero compartirte la historia de Marta. Su caso es muy valioso para entender las problemáticas que está viviendo tu comunidad. Ella será su guía y estará disponible para ayudarlos en las misiones, actividades y evokaciones.',
+    'Graphic Novel' => 'Novela Grafica'
 ];
