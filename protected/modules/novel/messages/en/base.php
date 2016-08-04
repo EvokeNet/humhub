@@ -32,7 +32,10 @@ return [
     'Page Image' => '',
     'Page Number' => '',
     'Pages' => '',
-    'This power has been evident since the network found you. Now we will discover the other powers you have and which so far have not been so evident.' => '',
+    'This power has been evident since the network found you. Now we will discover the other powers you have and which so far have not been so evident.' => 'You have always had this power.  Now it is time to discover your other hidden powers.',
     'Update' => '',
     'Uploaded Image: {file}' => '',
+    'You earned {points} points in Transformation' => '',
+    'novel intro' => 'Before begining your journey, I want to share the story of Marta with you. Her case can help you understand the problems of your own community. She will be your guide and will be available to help you in the missions, activities, and evokations to come.',
+    'Graphic Novel' => '',
 ];

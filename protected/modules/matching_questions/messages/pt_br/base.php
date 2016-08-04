@@ -17,6 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'According to the powers that you have, you are closest to achieving:' => '',
     'Add new Power' => '',
     'Additional Powers' => '',
     'Agent Type' => '',
@@ -90,6 +91,7 @@ return [
     'No quality translations created yet!' => '',
     'No superhero identity created yet!' => '',
     'No superhero identity translations created yet!' => '',
+    'On this platform you can submit evidence to complete activities within each mission. This will develop all of the superpowers.' => '',
     'Order' => '',
     'Order questions from 1 to 4. Do not repeat numbers.' => '',
     'Powers:' => '',
@@ -164,5 +166,6 @@ return [
     'level' => '',
     'other powers' => '',
     'points' => '',
+    '{agent}: Congratulations, you are already an Evoke agent!' => '',
     '{point} points' => '',
 ];
