@@ -548,16 +548,20 @@ class Team extends ContentContainerActiveRecord implements \humhub\modules\searc
 
     public function getUserTeam($user_id)
     {
-        $query = (new \yii\db\Query())
-        ->select(['IFNULL(s.id,0) as space_id'])
-        ->from('space_membership as m')
-        ->join('INNER JOIN', 'space as s', '`m`.`space_id`= `s`.`id`')
-        ->where('m.user_id = '.$user_id)
-        ->andWhere('s.is_team ='. Team::TEAM_ENABLED)
-        ->andWhere('m.status ='. Membership::STATUS_MEMBER)
-        ->one();
+        if(isset($user_id)){
+           $query = (new \yii\db\Query())
+            ->select(['IFNULL(s.id,0) as space_id'])
+            ->from('space_membership as m')
+            ->join('INNER JOIN', 'space as s', '`m`.`space_id`= `s`.`id`')
+            ->where('m.user_id = '.$user_id)
+            ->andWhere('s.is_team ='. Team::TEAM_ENABLED)
+            ->andWhere('m.status ='. Membership::STATUS_MEMBER)
+            ->one();
 
-        return $query['space_id'];
+            return $query['space_id']; 
+        }
+        
+        return null;
     }
 
     public function getEvidenceCount(){
