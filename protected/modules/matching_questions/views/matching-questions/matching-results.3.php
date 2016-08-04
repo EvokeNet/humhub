@@ -121,23 +121,36 @@
                 </div>
 
                 <!-- Your survey result -->
-                <!--<div class="panel-heading">
-                  <h4><?php //Yii::t('MatchingModule.base', "Your survey results are:") ?></h4>
-                </div>-->
-                <br><br>
+                <div class="panel-heading">
+                  <!--<h5><?php //echo Yii::t('MatchingModule.base', 'Additional Powers') ?></h5>-->
+                  <h4><?= Yii::t('MatchingModule.base', "Your survey results are:") ?></h4>
+                </div>
                 <div class="panel-body text-center">
-                  <h6 style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'According to the powers that you have, you are closest to achieving:') ?></h6>
+                  <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'With the powers you already possess, you are closest to achieving:') ?></p>
 
-                  <img src = "<?php echo $super_power_image_url ?>" width=120 class = "power-border" style = "margin-top:30px">
-                  <h6 style = "color: #9013FE; font-weight:700"><?= isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->name : $quality_1->name ?></h6>
+                  <div class="row">
+                      <div class="col-xs-4 text-center">
+
+                        <img src = "<?php echo $super_power_image_url ?>" width=120 class = "power-border" style = "margin-top:30px">
+                        <h6 style = "color: #9013FE; font-weight:700"><?= isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->name : $quality_1->name ?></h6>
+
+                      </div>
+                      <div class="col-xs-8" style = "margin-top:35px">
+
+                        <p>
+                          <?php echo Yii::t('MatchingModule.base', "Based on your answers to the Agent Type survey we have determined the best role for you is that of <strong>{item}</strong>.", array('item' => isset($superhero_identity->superheroIdentityTranslations[0]) ? $superhero_identity->superheroIdentityTranslations[0]->name : $superhero_identity->name)) ?>
+                          <?php echo Yii::t('MatchingModule.base', 'Furthermore, you are already gifted with the <strong>{item}</strong>', array('item' => isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->name : $quality_1->name)) ?>
+                          <?php echo Yii::t('MatchingModule.base', 'Super Power. {description}.', array('description' => isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->description : $quality_1->description)) ?></strong>
+                        </p>
+                      </div>
+                  </div>
+
+                  <br><br><br>
+                  <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'You can develop all of the superpowers by completing each of the mission activities.') ?></p>
                   
                   <br>
-                  <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'On this platform you can submit evidence to complete activities within each mission. This will develop all of the superpowers.') ?></p>
                   
-
-                  <br>
-                  
-                  <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', '{agent}: Congratulations, you are already an Evoke agent!', array('agent' => $user->username)) ?></p>
+                  <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'Congratulations, you are already an Evoke agent!') ?></p>
                   
                   <br>
                   <div class = "text-center"><?php echo Html::a(
