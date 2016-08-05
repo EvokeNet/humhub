@@ -11,8 +11,6 @@ $this->pageTitle = Yii::t('UserModule.views_auth_login', 'Login');
     <?= humhub\widgets\SiteLogo::widget(['place' => 'login']); ?>
     <br><br>
     
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/Nzueroug_90?rel=0" frameborder="0" allowfullscreen></iframe>
-
     <br><br>
     
     <div class="panel panel-default animated bounceIn" id="login-form"
@@ -24,11 +22,8 @@ $this->pageTitle = Yii::t('UserModule.views_auth_login', 'Login');
 
             <?php $form = ActiveForm::begin(['id' => 'account-login-form', 'enableClientValidation'=>false]); ?>
 
-            <!--<p><?php // echo Yii::t('UserModule.views_auth_login', "If you're already a member, please login with your username/email and password."); ?></p>-->
+            <p><?php echo Yii::t('UserModule.views_auth_login', "If you're already a member, please login with your username/email and password."); ?></p>
             
-            <p style = "font-style:italic"><?php echo Yii::t('UserModule.views_auth_login', "This is Alchemy, and this is an Urgent Evoke. Wherever you are, whoever you are, if you found this message, it's your destiny to join us."); ?></p>
-            <p><?php echo Yii::t('UserModule.views_auth_login', "You have demonstrated your courage, and your commitment is unquestionable. The first thing we need is to update the Evoke database Evoke with the following fields:"); ?></p><br>
-
             <?php echo $form->field($model, 'username')->textInput(['id' => 'login_username', 'placeholder' => $model->getAttributeLabel('username')])->label(false); ?>
             <?php echo $form->field($model, 'password')->passwordInput(['id' => 'login_password', 'placeholder' => $model->getAttributeLabel('password')])->label(false); ?>
             <?php echo $form->field($model, 'rememberMe')->checkbox(); ?>

@@ -134,7 +134,6 @@
                   <br>
                   <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'On this platform you can submit evidence to complete activities within each mission. This will develop all of the superpowers.') ?></p>
                   
-
                   <br>
                   
                   <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', '{agent}: Congratulations, you are already an Evoke agent!', array('agent' => $user->username)) ?></p>
