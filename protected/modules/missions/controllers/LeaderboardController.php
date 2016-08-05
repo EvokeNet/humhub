@@ -12,7 +12,7 @@ class LeaderboardController extends \yii\web\Controller
 
     //Users and Teams
     public function getRankingObjectPosition($ranking, $object_id, $classname){
-    
+
         foreach($ranking as $key => $object){
             if($object['id'] == $object_id){
                 $object['position'] = $key;
@@ -42,7 +42,7 @@ class LeaderboardController extends \yii\web\Controller
         $object['position'] = -1;
         return $object;
     }
-   
+
     public function getRankTeamsEvidences($limit = ""){
         $team_evidences =  (new \yii\db\Query())
         ->select(['s.*, count(e.id) as evidences'])
@@ -70,7 +70,7 @@ class LeaderboardController extends \yii\web\Controller
         ->orderBy('reviews desc')
         ->all();
 
-        return $team_reviews;   
+        return $team_reviews;
     }
 
     public function getRankAgentsEvidences($limit = ""){
@@ -115,8 +115,22 @@ class LeaderboardController extends \yii\web\Controller
         ->all();
     }
 
+    public function getRankMentorsReviews($limit = "") {
+      return (new \yii\db\Query())
+      ->select(['u.*, p.firstname, p.lastname, count(v.id) as reviews'])
+      ->from('user as u')
+      ->join('INNER JOIN', 'profile as p', 'u.id = `p`.`user_id`')
+      ->join('INNER JOIN', 'group as g', 'u.group_id = `g`.`id`')
+      ->join('INNER JOIN', 'votes as v', 'u.id = `v`.`user_id`')
+      ->where('g.name = "Mentors"')
+      ->limit($limit)
+      ->groupBy('u.id')
+      ->orderBy('reviews desc')
+      ->all();
+    }
+
     public function actionIndex()
-    {   
+    {
         $user_id = Yii::$app->user->getIdentity()->id;
         $team_id = Team::getUserTeam($user_id);
 
@@ -134,15 +148,21 @@ class LeaderboardController extends \yii\web\Controller
         $ranking['rank_agents_evidences'] = $this->getRankAgentsEvidences(10);
         $ranking['my_evidences'] = $this->getRankingObjectPosition($this->getRankAgentsEvidences(), $user_id, User::classname());
         $ranking['rank_agents_reviews'] = $this->getRankAgentsReviews(10);
-        $ranking['my_reviews'] = $this->getRankingObjectPosition($this->getRankAgentsReviews(), $user_id, User::classname());
         $ranking['rank_agents_evocoins'] = $this->getRankAgentsEvocoins(10);
         $ranking['my_evocoins'] = $this->getRankingObjectPosition($this->getRankAgentsEvocoins(), $user_id, User::classname());
+        $ranking['rank_mentors_reviews'] = $this->getRankMentorsReviews(10);
+
+        if (Yii::$app->user->getIdentity()->group->name == "Mentors") {
+          $ranking['my_reviews'] = $this->getRankingObjectPosition($this->getRankMentorsReviews(), $user_id, User::classname());
+        } else {
+          $ranking['my_reviews'] = $this->getRankingObjectPosition($this->getRankAgentsReviews(), $user_id, User::classname());
+        }
 
         //debugging
         // echo "<pre>";
         // print_r($ranking);
         // echo "</pre>";
-        
+
         return $this->render('index', array('ranking' => $ranking));
     }
 
