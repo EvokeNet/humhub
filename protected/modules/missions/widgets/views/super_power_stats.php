@@ -16,7 +16,10 @@ use app\modules\missions\models\Evidence;
 
     <div class="panel-body row">
         <?php foreach($userPowers as $userQuality): $quality = $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject(); ?>
-            <div class="col-xs-3 text-center">
+        <?php
+            $unavailable_power = $userQuality[0]->getUserQuality() == null || $userQuality[0]->getUserQuality()->getLevel() <= 0 ? true : false;
+        ?>
+            <div class="col-xs-3 text-center <?= $unavailable_power ? 'unavailable-power' : '' ?>">
                 <div style = "height: 175px;">
                   <img src = "<?php echo $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->image; ?>" width=100 class = "power-border"></img>
 
@@ -88,13 +91,13 @@ use app\modules\missions\models\Evidence;
     float: right;
 }
 
-.unavailable{
-    color: white;
-    text-shadow: -0.5px 0 gray, 0 0.5px gray, 2px 0 gray, 0 -0.5px gray;
+.unavailable-power{
+    opacity: 0.5;
 }
 
-.unavailable:hover{
-    color: white;
+.unavailable-power span, h6{
+    color: gray !important;
 }
+
 
 </style>
