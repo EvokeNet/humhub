@@ -114,7 +114,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                         <div class="col-md-6">
                             <div class = "grey-box" style = "padding: 15px 20px; margin-bottom:15px">
                                 <span style = "font-size: 14pt; font-weight: 700; color: #254054;"><?php echo $key + 1; ?>.</span>&nbsp;&nbsp;
-                                <?= Html::a($r['firstname'].' '.$r['lastname'], ['/user/profile', 'uguid' => $r['guid']], ['style' => 'font-size: 14pt; font-weight: 700; color: #2273AC;']) ?>
+                                <?= Html::a($r['username'], ['/user/profile', 'uguid' => $r['guid']], ['style' => 'font-size: 14pt; font-weight: 700; color: #2273AC;']) ?>
                                 <span style = "float:right; font-size: 14pt; color: #3399E1; font-weight: 700;"><?php echo $r['reviews']; ?></span>
                             </div><br>
                         </div>
