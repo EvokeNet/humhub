@@ -115,14 +115,14 @@ class EvokeToolsController extends Controller
           $wallet->amount += 20;
           $wallet->save();
         }
-        elseif ($roll >= ($this->max_prob * 0.9)) {
+        elseif ($roll >= ($this->max_prob * 0.8)) {
           $prize_won_name = Yii::t('PrizeModule.base', '10 Evocoin(s)!');
           $prize_won_description = '';
           $prize_won_id = 'evocoin10';
           $wallet->amount += 10;
           $wallet->save();
         }
-        elseif ($roll >= ($this->max_prob * 0.8)) {
+        elseif ($roll >= ($this->max_prob * 0.65)) {
           $prize_won_name = Yii::t('PrizeModule.base', '5 Evocoin(s)!');
           $prize_won_description = '';
           $prize_won_id = 'evocoin5';
@@ -130,9 +130,10 @@ class EvokeToolsController extends Controller
           $wallet->save();
         }
         else {
-          $prize_won_name = Yii::t('PrizeModule.base', 'Sorry!');
+          $prize_won_name = Yii::t('PrizeModule.base', '1 Evocoin!');
           $prize_won_description = '';
-          $prize_won_id = "noWin";
+          $prize_won_id = 'evocoin1';
+          $wallet->amount += 1;
         }
       }
 
