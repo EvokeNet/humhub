@@ -233,7 +233,7 @@ class Events
         $space = $event->sender->space;
         if ($space->isModuleEnabled('missions') &&  $team_id == $space->id) {
             $event->sender->addItem(array(
-                'label' => Yii::t('MissionsModule.base', 'Evokation Home'),
+                'label' => Yii::t('MissionsModule.base', 'Evokation'),
                 'group' => 'modules',
                 'url' => $space->createUrl('/missions/evokations/home'),
                 'icon' => '<i class="fa fa-users"></i>',

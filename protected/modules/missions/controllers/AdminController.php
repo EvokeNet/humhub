@@ -76,7 +76,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
         return $this->render('evokation-categories/create', array('model' => $model));
     }
     
-    public function actionEditCategories()
+    public function actionUpdateCategories()
     {
         $model = EvokationCategories::findOne(['id' => Yii::$app->request->get('id')]);
 

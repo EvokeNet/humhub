@@ -29,21 +29,22 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
     <div class="panel-body row">
         <div class="col-xs-<?= $member? '7' : '0'?>">
             <?php if($member): ?>
-            <div class="panel-heading">
+            <div class="panel-heading" style = "height: 90px;">
+
                 <h4 class = "display-inline">
                     <strong>
                         <?= Yii::t('MissionsModule.base', 'Mission Progress') ?>
                     </strong>
                 </h4>
                 
-                    <a id="submit_evidence" class="btn btn-cta2" style="float: right;" href="<?= Url::to(['/missions/evidence/missions', 'sguid' => $member->space->guid]); ?>">
+                    <a id="submit_evidence" class="btn btn-cta1" style="float: right;  margin-top:5px" href="<?= Url::to(['/missions/evidence/missions', 'sguid' => $member->space->guid]); ?>">
                         <?php echo Yii::t('MissionsModule.base', 'Submit Evidence'); ?>
                     </a>
 
                 <br>
-                <span>
+                <p style = "margin-top:10px">
                     <?= Yii::t('MissionsModule.base', 'Your average rating: {avg}', array('avg' => $avg)) ?>
-                </span>
+                </p>
             </div>
 
             <div class="panel-body">
