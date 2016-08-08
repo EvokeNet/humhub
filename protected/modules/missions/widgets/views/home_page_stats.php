@@ -7,12 +7,15 @@ use app\modules\missions\models\Evidence;
 use humhub\modules\space\models\Membership;
 use app\modules\coin\models\Wallet;
 use app\modules\teams\models\Team;
+use humhub\modules\space\models\Space;
 
 $team_id = Team::getUserTeam(Yii::$app->user->getIdentity()->id);
 if($team_id){
     $member = Membership::findOne(['space_id' => $team_id]);
+    $space = $member->space;
 }else{
     $member = null;
+    $space = Space::findOne(['name' => 'Mentors']);
 }
 
 
@@ -43,9 +46,9 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
                 </div>
 
                 <br>
-                <?php if($member): ?>
+                <?php if($space): ?>
                 <div style = "text-align:left">
-                    <a class = "btn btn-cta1" href='<?= Url::to(['/missions/review/index', 'sguid' => $member->space->guid]) ?>'>
+                    <a class = "btn btn-cta1" href='<?= Url::to(['/missions/review/index', 'sguid' => $space->guid]) ?>'>
                             <?= Yii::t('MissionsModule.base', 'Review Evidence') ?>
                     </a>
                 </div>
@@ -101,9 +104,9 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
                 </div>
 
                 <br>
-                <?php if($member): ?>
+                <?php if($space): ?>
                 <div class = "text-center">
-                    <a class = "btn btn-cta1" href='<?= Url::to(['/missions/review/index', 'sguid' => $member->space->guid]) ?>'>
+                    <a class = "btn btn-cta1" href='<?= Url::to(['/missions/review/index', 'sguid' => $space->guid]) ?>'>
                             <?= Yii::t('MissionsModule.base', 'Review Evidence') ?>
                     </a>
                 </div>
