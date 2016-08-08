@@ -12,7 +12,7 @@ $this->pageTitle = Yii::t('DashboardModule.views_dashboard_index', 'Dashboard');
     <div class="row">
         <div class="col-md-8 layout-content-container">
 
-            <?php if($user->group->name != "Mentors"): ?>
+            <?php //if($user->group->name != "Mentors"): ?>
             <div class="panel-group">
                 <?php
                 echo \humhub\modules\missions\widgets\HomePageStats::widget();
@@ -20,7 +20,7 @@ $this->pageTitle = Yii::t('DashboardModule.views_dashboard_index', 'Dashboard');
                 //echo \humhub\modules\missions\widgets\SuperPowerStats::widget(['powers' => $userPowers]);
                 ?>
             </div>
-            <?php endif; ?>
+            <?php //endif; ?>
 
             <?php
             if ($showProfilePostForm) {
