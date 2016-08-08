@@ -13,6 +13,7 @@ use app\modules\coin\widget\WalletWidget;
 use app\modules\coin\models\Wallet;
 use app\modules\coin\models\Coin;
 use humhub\modules\user\models\User;
+use app\modules\teams\models\Team;
 
 /**
  * Description of Events
@@ -37,8 +38,9 @@ class Events extends \yii\base\Object
   {
 
     $user = Yii::$app->user->getIdentity();
+    $team_id = Team::getUserTeam($user->id);
 
-    if($user->group->name != "Mentors"){    
+    if($user->group->name != "Mentors" && $team_id){    
         $event->sender->addItem(array(
             'label' => Yii::t('PrizeModule.base', 'Evoke Tools'),
             'id' => 'Evoke tools',
@@ -50,9 +52,5 @@ class Events extends \yii\base\Object
         ));
     }
   }
-
-  // public static function onProfileSidebarInit($event)
-  // {
-  //
-  // }
+  
 }
