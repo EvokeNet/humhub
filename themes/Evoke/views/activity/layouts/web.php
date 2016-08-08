@@ -3,7 +3,7 @@
 use humhub\modules\space\activities\MemberAdded;  
 ?>
 
-<?php if($record->class == MemberAdded::classname()): ?>
+<?php if($originator !== null && $record->class == MemberAdded::classname()): ?>
     <a href="<?=$originator->getUrl()?>">
 <?php elseif ($clickable): ?>
     <a href="#" onClick="activityShowItem(<?= $record->id; ?>); return false;">
