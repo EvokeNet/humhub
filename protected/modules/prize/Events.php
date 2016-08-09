@@ -46,11 +46,12 @@ class Events extends \yii\base\Object
             'id' => 'Evoke tools',
             'icon' => '<i class="fa fa-flask"></i>',
             'url' => Url::toRoute('/prize/evoke-tools/index'),
+            'sortOrder' => 600,
             'isActive' => (
                 Yii::$app->controller->module && Yii::$app->controller->module->id == 'prize' && Yii::$app->controller->id != 'admin'
             ),
         ));
     }
   }
-  
+
 }

@@ -276,13 +276,55 @@ class Events
 
         if(isset($user)){
 
+            // LEADERBOARD
+            $event->sender->addItem(array(
+            'label' => Yii::t('MissionsModule.base', 'Leaderboard'),
+            'id' => 'leaerboard',
+            'icon' => '<i class="fa fa-sort-numeric-asc" aria-hidden="true"></i>',
+            'url' => Url::to(['/missions/leaderboard/index']),
+            'sortOrder' => 700,
+            'isActive' => (Yii::$app->controller->module
+                && Yii::$app->controller->module->id == 'missions'
+                && Yii::$app->controller->id == 'leaderboard'),
+            ));
+
+            // REVIEW EVIDENCE
+
             $team_id = Team::getUserTeam($user->id);
 
-            $team = Team::findOne($team_id);
-            
+            $team = Team::findOne($team_id);        
 
             if(!$team && $user->group->name == "Mentors"){
                 $team = Space::findOne(['name' => 'Mentors']);
+            }else if($team){
+
+                //MY TEAM
+                $event->sender->addItem(array(
+                'label' => Yii::t('MissionsModule.base', 'My Team'),
+                'id' => 'my_team',
+                'icon' => '<i class="fa fa-users" aria-hidden="true"></i>',
+                'url' => Url::to(['/space/space', 'sguid' => $team->guid]),
+                'sortOrder' => 300,
+                'isActive' => (Yii::$app->controller
+                    && Yii::$app->controller->id == 'space'
+                    && Yii::$app->controller->contentContainer
+                    && Yii::$app->controller->contentContainer->guid == $team->guid
+                    ),
+                ));
+
+                //MISSIONS
+
+                $event->sender->addItem(array(
+                'label' => Yii::t('MissionsModule.base', 'Missions'),
+                'id' => 'missions',
+                'icon' => '<i class="fa fa-sitemap"></i>',
+                'url' => $team->createUrl('/missions/evidence/missions'),
+                'sortOrder' => 400,
+                'isActive' => (Yii::$app->controller->module
+                    && Yii::$app->controller->module->id == 'missions'
+                    && Yii::$app->controller->id == 'evidence'),
+                ));
+
             }
 
             if($team){
@@ -291,7 +333,7 @@ class Events
                 'id' => 'review_evidence',
                 'icon' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i>',
                 'url' => Url::to(['/missions/review/index', 'sguid' => $team->guid]),
-                'sortOrder' => 200,
+                'sortOrder' => 500,
                 'isActive' => (Yii::$app->controller->module
                     && Yii::$app->controller->module->id == 'missions'
                     && Yii::$app->controller->id == 'review'),
@@ -300,21 +342,6 @@ class Events
 
         }
         
-        
-    }
-    
-    public static function onLeaderboardTopMenuInit($event)
-    {
-        $event->sender->addItem(array(
-        'label' => Yii::t('MissionsModule.base', 'Leaderboard'),
-        'id' => 'leaerboard',
-        'icon' => '<i class="fa fa-sort-numeric-asc" aria-hidden="true"></i>',
-        'url' => Url::to(['/missions/leaderboard/index']),
-        'sortOrder' => 200,
-        'isActive' => (Yii::$app->controller->module
-            && Yii::$app->controller->module->id == 'missions'
-            && Yii::$app->controller->id == 'leaderboard'),
-        ));
         
     }
 
@@ -332,6 +359,14 @@ class Events
 
         }
         
-    }    
+    }  
+
+
+    public function onTopMenuRun($event)  {
+        // Remove Directory
+        $event->sender->deleteItemByUrl(\yii\helpers\Url::to(['/directory/directory'])); 
+        // Remove Mail
+        $event->sender->deleteItemByUrl(\yii\helpers\Url::to(['/mail/mail/index'])); 
+    }
 
 }
