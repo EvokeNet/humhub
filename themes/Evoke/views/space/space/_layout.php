@@ -26,7 +26,7 @@ $space = $this->context->contentContainer;
                 <?php
                 echo \humhub\modules\space\widgets\Sidebar::widget(['space' => $space, 'widgets' => [
                         [\humhub\modules\space\modules\manage\widgets\PendingApprovals::className(), ['space' => $space], ['sortOrder' => 10]],
-                        [\humhub\modules\activity\widgets\Stream::className(), ['streamAction' => '/space/space/stream', 'contentContainer' => $space], ['sortOrder' => 20]],
+                        [\humhub\modules\missions\widgets\SpaceStream::className(), ['streamAction' => '/space/space/stream', 'contentContainer' => $space], ['sortOrder' => 20]],
                         [\humhub\modules\space\widgets\Members::className(), ['space' => $space], ['sortOrder' => 30]]
                 ]]);
                 ?>
