@@ -90,7 +90,7 @@ return [
     'Invalid Data! Input only numbers.' => '¡Datos inválidos! De entrada sólo números',
     'Investment' => 'Inversión',
     'Language' => 'Idioma',
-    'Leaderboard' => 'La tabla de posiciones',
+    'Leaderboard' => 'Líderes',
     'Level {level}' => 'Nivel {level}',
     'Mission' => 'Misión',
     'Mission Progress' => 'Progreso de la Misión',

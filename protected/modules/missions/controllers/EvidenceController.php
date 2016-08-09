@@ -265,7 +265,7 @@ class EvidenceController extends ContentContainerController
                 $pointChange = $grade - $vote->value;
 
                 // mentor votes are worth twice as much
-                if (Yii::$app->user->getIdentity()->group->name === "Mentors") {
+                if ($user->group->name == "Mentors") {
                   $pointChange = $pointChange * 2;
                 }
 
@@ -324,6 +324,9 @@ class EvidenceController extends ContentContainerController
 
                 //Reward evidence author
                 if($flag){
+                    if ($user->group->name == "Mentors") {
+                        $grade *= 2;
+                    }
                     UserPowers::addPowerPoint($activityPower->getPower(), User::findOne($evidence->content->user_id), $grade);
                 }
 

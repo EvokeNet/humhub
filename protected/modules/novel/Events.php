@@ -58,6 +58,7 @@ class Events extends \yii\base\Object
           'id' => 'Graphic Novel',
           'icon' => '<i class="fa fa-book"></i>',
           'url' => Url::toRoute(['/novel/novel/graphic-novel', 'page' => 1]),
+          'sortOrder' => 800,
           'isActive' => (
               Yii::$app->controller->module && Yii::$app->controller->module->id == 'novel'
           ),

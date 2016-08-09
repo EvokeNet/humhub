@@ -19,6 +19,7 @@ use yii\widgets\ActiveForm;
         <br>
         <br>
         <?php echo $form->field($model, 'enabled_evokations')->checkbox(); ?>
+        <?php echo $form->field($model, 'enabled_evokation_page_visibility')->checkbox(); ?>
 
         <hr>
 
