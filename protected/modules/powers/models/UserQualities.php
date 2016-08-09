@@ -132,9 +132,9 @@ class UserQualities extends \yii\db\ActiveRecord
 
         if($new_power){
             AlertController::createAlert(
-                "Congratulations!", 
+                Yii::t('PowersModule.base', "Congratulations!"), 
                 Yii::t(
-                    'MissionsModule.base', ' You have earned the {super_power_name} super power!!', 
+                    'PowersModule.base', 'You have earned the {super_power_name} super power!', 
                     array('super_power_name' => $userQuality->getQualityObject()->name)
                 ),
                 'secondary'

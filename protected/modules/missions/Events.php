@@ -77,7 +77,7 @@ class Events
     public static function onAdminMenuInit($event)
     {
         $event->sender->addItem(array(
-            'label' => Yii::t('MissionsModule.base', 'Missions'),
+            'label' => Yii::t('MissionsModule.event', 'Missions'),
             'url' => Url::to(['/missions/admin']),
             'group' => 'manage',
             'sortOrder' => 600,
@@ -100,7 +100,7 @@ class Events
         ));
 
         $event->sender->addItem(array(
-            'label' => Yii::t('MissionsModule.base', 'Evoke Settings'),
+            'label' => Yii::t('MissionsModule.event', 'Evoke Settings'),
             'url' => Url::to(['/missions/settings']),
             'group' => 'settings',
             'sortOrder' => 150,
@@ -113,7 +113,7 @@ class Events
     public static function onCategoriesAdminMenuInit($event)
     {
         $event->sender->addItem(array(
-            'label' => Yii::t('MissionsModule.base', 'Evokation Categories'),
+            'label' => Yii::t('MissionsModule.event', 'Evokation Categories'),
             'url' => Url::to(['/missions/admin/index-categories']),
             'group' => 'manage',
             'sortOrder' => 1100,
@@ -137,7 +137,7 @@ class Events
     public static function onLockdownAdminMenuInit($event)
     {
         $event->sender->addItem(array(
-            'label' => Yii::t('MissionsModule.base', 'Evokation Deadline'),
+            'label' => Yii::t('MissionsModule.event', 'Evokation Deadline'),
             'url' => Url::to(['/missions/admin/index-deadline']),
             'group' => 'manage',
             'sortOrder' => 1000,
@@ -215,7 +215,7 @@ class Events
         $space = $event->sender->space;
         if ($space->isModuleEnabled('missions')  && $team_id == $space->id) {
             $event->sender->addItem(array(
-                'label' => Yii::t('MissionsModule.base', 'Missions'),
+                'label' => Yii::t('MissionsModule.event', 'Missions'),
                 'group' => 'modules',
                 'url' => $space->createUrl('/missions/evidence/missions'),
                 'icon' => '<i class="fa fa-sitemap"></i>',
@@ -233,7 +233,7 @@ class Events
         $space = $event->sender->space;
         if ($space->isModuleEnabled('missions') &&  $team_id == $space->id && Setting::Get('enabled_evokation_page_visibility')) {
             $event->sender->addItem(array(
-                'label' => Yii::t('MissionsModule.base', 'Evokation'),
+                'label' => Yii::t('MissionsModule.event', 'Evokation'),
                 'group' => 'modules',
                 'url' => $space->createUrl('/missions/evokations/home'),
                 'icon' => '<i class="fa fa-users"></i>',
@@ -252,7 +252,7 @@ class Events
         $space = $event->sender->space;
         if ($space->isModuleEnabled('missions') && ($team_id == $space->id)) {
             $event->sender->addItem(array(
-                'label' => Yii::t('MissionsModule.base', 'Review Evidence'),
+                'label' => Yii::t('MissionsModule.event', 'Review Evidence'),
                 'group' => 'modules',
                 'url' => $space->createUrl('/missions/review/index'),
                 'icon' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i>',
@@ -278,7 +278,7 @@ class Events
 
             // LEADERBOARD
             $event->sender->addItem(array(
-            'label' => Yii::t('MissionsModule.base', 'Leaderboard'),
+            'label' => Yii::t('MissionsModule.event', 'Leaderboard'),
             'id' => 'leaerboard',
             'icon' => '<i class="fa fa-sort-numeric-asc" aria-hidden="true"></i>',
             'url' => Url::to(['/missions/leaderboard/index']),
@@ -300,7 +300,7 @@ class Events
 
                 //MY TEAM
                 $event->sender->addItem(array(
-                'label' => Yii::t('MissionsModule.base', 'My Team'),
+                'label' => Yii::t('MissionsModule.event', 'My Team'),
                 'id' => 'my_team',
                 'icon' => '<i class="fa fa-users" aria-hidden="true"></i>',
                 'url' => Url::to(['/space/space', 'sguid' => $team->guid]),
@@ -315,7 +315,7 @@ class Events
                 //MISSIONS
 
                 $event->sender->addItem(array(
-                'label' => Yii::t('MissionsModule.base', 'Missions'),
+                'label' => Yii::t('MissionsModule.event', 'Missions'),
                 'id' => 'missions',
                 'icon' => '<i class="fa fa-sitemap"></i>',
                 'url' => $team->createUrl('/missions/evidence/missions'),
@@ -329,7 +329,7 @@ class Events
 
             if($team){
                 $event->sender->addItem(array(
-                'label' => Yii::t('MissionsModule.base', 'Review Evidence'),
+                'label' => Yii::t('MissionsModule.event', 'Review Evidence'),
                 'id' => 'review_evidence',
                 'icon' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i>',
                 'url' => Url::to(['/missions/review/index', 'sguid' => $team->guid]),

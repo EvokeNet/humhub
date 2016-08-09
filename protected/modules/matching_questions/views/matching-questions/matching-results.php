@@ -16,32 +16,6 @@
       <div class="col-md-7 layout-content-container">
 
           <div class="panel panel-default">
-              <!--<div class="panel-heading"><strong><?php echo $this->title; ?></strong></div>-->
-
-                <!--<div style = "text-align:center; padding: 20px 30px">
-
-                  <h4><?= Yii::t('MatchingModule.base', "Your survey results are:") ?></h4>
-
-                  <div class="row">
-                      <div class="col-xs-4">
-
-                        <img src = "<?php echo $super_power_image_url ?>" width=120 class = "power-border" style = "margin-top:30px">
-                        <h6><?= isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->name : $quality_1->name ?></h6>
-
-                      </div>
-                      <div class="col-xs-8" style = "margin-top:30px">
-
-                        <p>
-                          <?php echo Yii::t('MatchingModule.base', "Based on your answers to the Agent Type survey we have determined the best role for you is that of <strong>{item}</strong>.", array('item' => isset($superhero_identity->superheroIdentityTranslations[0]) ? $superhero_identity->superheroIdentityTranslations[0]->name : $superhero_identity->name)) ?>
-                          <?php echo Yii::t('MatchingModule.base', 'Furthermore, you are already gifted with the <strong>{item}</strong>', array('item' => isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->name : $quality_1->name)) ?>
-                          <?php echo Yii::t('MatchingModule.base', 'Super Power. {description}.', array('description' => isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->description : $quality_1->description)) ?></strong>
-                        </p>
-                      </div>
-                  </div>
-
-                </div>
-
-                </br>-->
 
                 <!-- earned powers -->
                 <div class="panel-heading">
@@ -79,18 +53,29 @@
                 <div class="panel-body">
                   <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'Your powers are the reason why I have summoned you. They are the skills that qualify you to be part of the Evoke network. Now it is time to be your best. Over the course of this experience you must develop the four fundamental superpowers of Evoke agents:') ?></p>
 
-                  <?php foreach ($super_powers as $quality): ?>
+                  <?php 
+                    foreach ($super_powers as $quality):
+                    
+                    $name = $quality->name;
+                    $description = $quality->description;
+            
+                    if(Yii::$app->language == 'es' && isset($quality->qualityTranslations[0])){
+                        $name = $quality->qualityTranslations[0]->name;
+                        $description = $quality->qualityTranslations[0]->description;
+                    }
+                 
+                  ?>
 
                     <div style = "display:flex; margin-top:30px">
                       <div style = "float:left"><img src = "<?php echo $quality->image ?>" width=100 class = "power-border"></div>
                       <div style = "margin-left:20px">
-                        <h6 style = "font-weight:700; color: #9013FE; margin-bottom:5px"><?= isset($quality->qualityTranslations[0]) ? $quality->qualityTranslations[0]->name : $quality->name ?></h6>
+                        <h6 style = "font-weight:700; color: #9013FE; margin-bottom:5px"><?= $name ?></h6>
                         <!--<div class="super-power-level">
                           <?php $user_quality = UserQualities::find()->where(['and', ['user_id' => Yii::$app->user->getIdentity()->id], ['quality_id' => $quality->id]])->one() ?>
                           <?php // echo Yii::t('MatchingModule.base', 'level') ?> <?php echo $user_quality->getLevel() ?>
                         </div><br>-->
                         <p style = "font-weight:700; color: #254054">
-                          <?= isset($quality->qualityTranslations[0]) ? $quality->qualityTranslations[0]->description : $quality->description ?>
+                          <?= $description ?>
                         </p>
                       </div>
                     </div>
