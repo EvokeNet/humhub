@@ -10,9 +10,3 @@ use \humhub\compat\CActiveForm;
         <?php CActiveForm::end(); ?>
     </div>
 </div>
-
-<script>
-    
-    //$("option[val=es]").prop("selected",true);
-
-</script>

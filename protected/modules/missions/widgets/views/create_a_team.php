@@ -15,16 +15,17 @@ use yii\helpers\Url;
         <div class="col-xs-12">
             <!-- content -->
             <!--English-->
-            <b class="uppercase">Team captains</b>
+            <img src="<?php echo Url::to('@web/themes/Evoke/img/alchemy.png') ?>" width = "120px">
+            <p class="uppercase" style = "font-weight:700"><?= Yii::t('MissionsModule.base', 'Team Captains') ?></p>
             <p>
-                Your first mission is 
+                <span class="uppercase"><?= Yii::t('MissionsModule.base', 'Your first mission is') ?></span> 
                 <a href="<?= Url::to(['/teams/create/create_team']) ?>" data-target = "#globalModal">
-                    register your team on the platform.
+                    <?= Yii::t('MissionsModule.base', 'register your team on the platform.') ?>
                 </a>
             </p>
-            <b class="uppercase">Other agents</b>
+            <p class="uppercase" style = "font-weight:700"><?= Yii::t('MissionsModule.base', 'Other Agents') ?></p>
             <p>
-                Await the invitation from your captain to join your team.
+                <?= Yii::t('MissionsModule.base', 'Await the invitation from your captain to join your team.') ?>
             </p>
 
             <!--Spanish-->
