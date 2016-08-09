@@ -42,7 +42,12 @@ $firstSecondary = true;
                 <div class="panel panel-default">
                     <div class="panel-body panel-body grey-box">
 
-                        <h5><span class = "activity-number"><?= $activity->position ?></span><?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title ?></h5>
+                        <h5>
+                            <span class = "activity-number">
+                            <?= $activity->position >= 1 ?$activity->position : "#" ?>
+                            </span>
+                            <?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title ?>
+                        </h5>
                         <br />
                         <p class="description">
                             <?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description ?>
