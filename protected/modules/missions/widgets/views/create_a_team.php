@@ -15,30 +15,17 @@ use yii\helpers\Url;
         <div class="col-xs-12">
             <!-- content -->
             <!--English-->
-            <img src="<?php echo Url::to('@web/themes/Evoke/img/alchemy.png') ?>" width = "120px">
-            <p class="uppercase" style = "font-weight:700"><?= Yii::t('MissionsModule.base', 'Team Captains') ?></p>
+            <img src="<?php echo Url::to('@web/themes/Evoke/img/alchemy.png') ?>" width = "120px" style = "border-radius: 50%; border: 3px solid #254054; margin-bottom:10px">
+            <h6 class="uppercase" style = "font-weight:700"><?= Yii::t('MissionsModule.base', 'Team Captains') ?></h6>
             <p>
-                <span class="uppercase"><?= Yii::t('MissionsModule.base', 'Your first mission is') ?></span> 
+                <?= Yii::t('MissionsModule.base', 'Your first mission is') ?> 
                 <a href="<?= Url::to(['/teams/create/create_team']) ?>" data-target = "#globalModal">
                     <?= Yii::t('MissionsModule.base', 'register your team on the platform.') ?>
                 </a>
-            </p>
-            <p class="uppercase" style = "font-weight:700"><?= Yii::t('MissionsModule.base', 'Other Agents') ?></p>
+            </p><br>
+            <h6 class="uppercase" style = "font-weight:700"><?= Yii::t('MissionsModule.base', 'Other Agents') ?></h6>
             <p>
                 <?= Yii::t('MissionsModule.base', 'Await the invitation from your captain to join your team.') ?>
-            </p>
-
-            <!--Spanish-->
-            <b class="uppercase">Agentes capitanes:</b> 
-            <p>
-                Su primera misión es registrar el
-                <a href="<?= Url::to(['/teams/create/create_team']) ?>" data-target = "#globalModal">
-                    equipo en la plataforma.
-                </a>
-            </p>
-            <b class="uppercase">Los demás agentes</b>
-            <p>
-                Deben unirse cuando reciban la invitación de su capitán.
             </p>
         </div>
     </div>

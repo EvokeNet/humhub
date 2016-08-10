@@ -17,12 +17,12 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Await the invitation from your captain to join your team.' => 'Esperar la invitación de su capitán para unirse a su equipo.',
-    'Other Agents' => 'Otros Agentes',
+    'Await the invitation from your captain to join your team.' => 'Deben unirse cuando reciban la invitación de su capitán.',
+    'Other Agents' => 'Los demás agentes',
     'Points to Level: {total}' => 'Puntos para Nivel: {total}',
-    'Team Captains' => 'Capitanes de equipo',
+    'Team Captains' => 'Agentes capitanes',
     'Your first mission is' => 'Tu primera misión es',
-    'register your team on the platform.' => 'registrar su equipo en la plataforma.',
+    'register your team on the platform.' => 'registrar tu equipo en la plataforma.',
     '<strong>Activity Rubric:</strong> {rubric}' => '<strong>Rúbrica de Actividad:</strong> {rubric}',
     '<strong>Evoke</strong> settings' => 'Ajustes de <strong>Evoke</strong>',
     '<strong>Google Drive URL:</strong>' => '<strong>URL de Google Drive:</strong>',
