@@ -22,7 +22,7 @@ return [
     'Points to Level: {total}' => 'Puntos para Nivel: {total}',
     'Team Captains' => 'Agentes capitanes',
     'Your first mission is' => 'Tu primera misión es',
-    'register your team on the platform.' => 'registrar tu equipo en la plataforma.',
+    'register your team on the platform.' => 'registrar el equipo en la plataforma.',
     '<strong>Activity Rubric:</strong> {rubric}' => '<strong>Rúbrica de Actividad:</strong> {rubric}',
     '<strong>Evoke</strong> settings' => 'Ajustes de <strong>Evoke</strong>',
     '<strong>Google Drive URL:</strong>' => '<strong>URL de Google Drive:</strong>',
