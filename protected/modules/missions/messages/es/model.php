@@ -17,8 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Locked' => 'Bloqueado',
-    'Position' => 'Posición',
+    'Evidence Success Message' => '',
     'Activities' => 'Actividades',
     'Activities ID' => 'Identificación de Actividades',
     'Activity ID' => 'Identificación de Actividad',
@@ -43,11 +42,13 @@ return [
     'ID' => 'Identificación',
     'Id Code' => 'Código de identificación',
     'Language ID' => 'Identificación de idioma',
+    'Locked' => 'Bloqueado',
     'Mission ID' => 'Identificación de misión',
     'Mission Translations' => 'Traducciones de misión',
     'Modified At' => 'Modificado en',
     'No, it does not meet the activity\'s requirement' => 'No, no cumple con el requisito de la actividad',
     'Points' => 'Puntos',
+    'Position' => 'Posición',
     'Power ID' => 'Identificación de poder',
     'Reset' => 'Reiniciar',
     'Rubric' => 'Rubrica',

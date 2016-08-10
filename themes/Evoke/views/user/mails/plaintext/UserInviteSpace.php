@@ -4,7 +4,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use humhub\models\Setting;
 ?>
-<?php echo strip_tags(Yii::t('UserModule.views_mails_UserInviteSpace', 'You got a <strong>space</strong> invite')); ?>
+<?php //echo strip_tags(Yii::t('UserModule.views_mails_UserInviteSpace', 'You got a <strong>space</strong> invite')); ?>
 
 <?php if($space->id == 1): ?>
     <?php echo 'Alchemy'; ?> <?php echo strip_tags(Yii::t('UserModule.views_mails_UserInviteSpace', 'invited you to the space:')); ?> <?php echo Html::encode($space->name); ?> at <?php echo Html::encode(Yii::$app->name); ?>

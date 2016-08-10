@@ -22,6 +22,8 @@ use app\modules\languages\models\Languages;
     
     <?= $form->field($model, 'rubric')->textarea(['rows' => 6]) ?>
     
+    <?= $form->field($model, 'message')->textarea(['rows' => 6]) ?>
+    
     <?php //$form->field($model, 'language_id')->textInput() ?>
     
     <?= $form->field($model, 'language_id')->dropdownList(

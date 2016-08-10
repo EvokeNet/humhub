@@ -1,6 +1,8 @@
 <?php
 
 use yii\helpers\Html;
+use yii\widgets\Breadcrumbs;
+use humhub\compat\CActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\missions\models\EvokationCategoryTranslations */
@@ -11,13 +13,22 @@ $this->title = Yii::t('app', 'Update {modelClass}: ', [
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Evokation Category Translations'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
+
+echo Breadcrumbs::widget([
+    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+]);
 ?>
-<div class="evokation-category-translations-update">
+<div class="panel panel-default">
+    <div class="panel-heading"><strong><?php echo $this->title; ?></strong></div>
+    <div class="panel-body">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+        <div class="evokation-category-translations-update">
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+            <?= $this->render('_form', [
+                'model' => $model
+            ]) ?>
 
+        </div>
+
+    </div>
 </div>
