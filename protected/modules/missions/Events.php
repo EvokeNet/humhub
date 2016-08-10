@@ -307,7 +307,7 @@ class Events
                 'sortOrder' => 300,
                 'isActive' => (Yii::$app->controller
                     && Yii::$app->controller->id == 'space'
-                    && Yii::$app->controller->contentContainer
+                    && property_exists(Yii::$app->controller, "contentContainer")
                     && Yii::$app->controller->contentContainer->guid == $team->guid
                     ),
                 ));
