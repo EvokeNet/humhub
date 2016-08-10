@@ -8,6 +8,7 @@ class EvokeSettingsForm extends \yii\base\Model
 {
 
     public $enabled_evokations;
+    public $enabled_evokation_page_visibility;
 
     /**
      * Declares the validation rules.
@@ -15,7 +16,8 @@ class EvokeSettingsForm extends \yii\base\Model
     public function rules()
     {
         return array(
-            array(['enabled_evokations'], 'in', 'range' => array(0, 1))
+            array(['enabled_evokations'], 'in', 'range' => array(0, 1)),
+            array(['enabled_evokation_page_visibility'], 'in', 'range' => array(0, 1))
         );
     }
 
@@ -27,7 +29,8 @@ class EvokeSettingsForm extends \yii\base\Model
     public function attributeLabels()
     {
         return array(
-            'enabled_evokations' => Yii::t('MissionsModule.base', 'Enable Evokations'),
+            'enabled_evokations' => Yii::t('MissionsModule.base', 'Allow Evokation Submissions'),
+            'enabled_evokation_page_visibility' => Yii::t('MissionsModule.base', 'Show Evokation Page on Team Page'),
         );
     }
 }

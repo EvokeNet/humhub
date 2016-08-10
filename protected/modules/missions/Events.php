@@ -231,7 +231,7 @@ class Events
         $team_id = Team::getUserTeam(Yii::$app->user->getIdentity()->id);
 
         $space = $event->sender->space;
-        if ($space->isModuleEnabled('missions') &&  $team_id == $space->id) {
+        if ($space->isModuleEnabled('missions') &&  $team_id == $space->id && Setting::Get('enabled_evokation_page_visibility')) {
             $event->sender->addItem(array(
                 'label' => Yii::t('MissionsModule.base', 'Evokation'),
                 'group' => 'modules',
