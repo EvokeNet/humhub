@@ -19,6 +19,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $created_at
  * @property string $updated_at
  * @property string $rubric
+ * @property string $message
  *
  * @property Activities $activity
  * @property Languages $language
@@ -58,7 +59,7 @@ class ActivityTranslations extends \yii\db\ActiveRecord
             [['activity_id', 'language_id'], 'integer'],
             [['description', 'rubric'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
-            [['title'], 'string', 'max' => 256],
+            [['title', 'message'], 'string', 'max' => 256],
             [['activity_id'], 'exist', 'skipOnError' => true, 'targetClass' => Activities::className(), 'targetAttribute' => ['activity_id' => 'id']],
             [['language_id'], 'exist', 'skipOnError' => true, 'targetClass' => Languages::className(), 'targetAttribute' => ['language_id' => 'id']],
         ];
@@ -78,6 +79,7 @@ class ActivityTranslations extends \yii\db\ActiveRecord
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
             'rubric' => Yii::t('app', 'Rubric'),
+            'message' => Yii::t('app', 'Evidence Success Message'),
         ];
     }
 

@@ -6,7 +6,7 @@ $user = Yii::$app->user->getIdentity();
 
 $userPowers = UserPowers::getUserPowers($user->id);
 
-$this->pageTitle = Yii::t('DashboardModule.views_dashboard_index', 'Dashboard');
+// $this->pageTitle = Yii::t('DashboardModule.views_dashboard_index', 'Home');
 ?>
 <div class="container">
     <div class="row">

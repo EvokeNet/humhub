@@ -83,7 +83,7 @@ class Missions extends \yii\db\ActiveRecord
      */
     public function getActivities()
     {
-        return $this->hasMany(Activities::className(), ['mission_id' => 'id']);
+        return $this->hasMany(Activities::className(), ['mission_id' => 'id'])->orderBy('ISNULL(position), position ASC');
     }
 
     /**

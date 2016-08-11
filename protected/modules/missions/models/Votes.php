@@ -109,7 +109,10 @@ class Votes extends ContentActiveRecord
 
             $notification = new \humhub\modules\missions\notifications\RejectedEvidence();
             $notification->source = $this;
-            $notification->originator = Yii::$app->user->getIdentity();
+
+            if(Yii::$app->user->getIdentity()->group->name == "Mentors"){
+                $notification->originator = Yii::$app->user->getIdentity();  
+            }
             $notification->send($author);
         }else if($insert) {
             $evidence = Evidence::findOne($this->evidence_id);
@@ -117,7 +120,9 @@ class Votes extends ContentActiveRecord
 
             $notification = new \humhub\modules\missions\notifications\ReviewedEvidence();
             $notification->source = $this;
-            $notification->originator = Yii::$app->user->getIdentity();
+            if(Yii::$app->user->getIdentity()->group->name == "Mentors"){
+                $notification->originator = Yii::$app->user->getIdentity();  
+            }
             $notification->send($author);
         }
 

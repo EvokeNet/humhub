@@ -25,7 +25,7 @@ return [
     'Discover Your Powers' => 'Descubre tus poderes',
     'Edit' => 'Editar',
     'Edit ' => 'Editar ',
-    'Graphic Novel' => 'Novela gráfica',
+    'Graphic Novel' => 'Novela Gráfica',
     'ID' => 'Identificación',
     'Image' => 'Imagen',
     'No images uploaded yet' => 'No hay imágenes se han subido aún',
@@ -37,5 +37,4 @@ return [
     'Uploaded Image: {file}' => 'Imagen subida: {file}',
     'You earned {points} points in Transformation' => '',
     'novel intro' => 'antes de empezar tu recorrido, quiero compartirte la historia de Marta. Su caso es muy valioso para entender las problemáticas que está viviendo tu comunidad. Ella será su guía y estará disponible para ayudarlos en las misiones, actividades y evokaciones.',
-    'Graphic Novel' => 'Novela Grafica'
 ];

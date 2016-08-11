@@ -17,6 +17,18 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    '%contentTitle% has been marked  as: ' => '',
-    '%contentTitle% has been reviewed.' => '%contentTitle% ha sido revisado.',
+    'Leaderboard' => '',
+    'My Evidences Submitted: {evidences}' => '',
+    'My Position: Not Ranked' => '',
+    'My Position: {position}' => '',
+    'My Reviews Submitted: {evidences}' => '',
+    'My Team\'s Evidences Submitted: {evidences}' => '',
+    'My Team\'s Position: Not Ranked' => '',
+    'My Team\'s Position: {position}' => '',
+    'My Team\'s Reviews Submitted: {evidences}' => '',
+    'Top Agents By Evidences Submitted' => '',
+    'Top Agents By Reviews Given' => '',
+    'Top Mentors By Reviews Given' => '',
+    'Top Teams By Evidences Submitted' => '',
+    'Top Teams By Reviews Given' => '',
 ];

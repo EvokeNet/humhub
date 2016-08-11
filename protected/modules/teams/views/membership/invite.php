@@ -1,10 +1,8 @@
 <?php
 
-use yii\helpers\Url;
-use yii\widgets\ActiveForm;
+use yii\bootstrap\ActiveForm;
 use humhub\models\Setting;
 ?>
-
 <div class="modal-dialog modal-dialog-small animated fadeIn">
     <div class="modal-content">
         <?php $form = ActiveForm::begin(); ?>
@@ -15,7 +13,7 @@ use humhub\models\Setting;
         </div>
         <div class="modal-body">
 
-            <br><br>
+            <br/>
 
             <?php if (Setting::Get('internalUsersCanInvite', 'authentication_internal')) : ?>
                 <div class="text-center">
@@ -31,7 +29,6 @@ use humhub\models\Setting;
                 <br/>
             <?php endif; ?>
 
-
             <div class="tab-content">
                 <div class="tab-pane active" id="internal">
 
@@ -39,8 +36,8 @@ use humhub\models\Setting;
                     <?php echo Yii::t('SpaceModule.views_space_invite', 'To invite users to this space, please type their names below to find and pick them.'); ?>
 
                     <br/><br/>
-                    <?php echo $form->field($model, 'invite')->textInput(['id' => 'invite']); ?>
 
+                    <?php echo $form->field($model, 'invite')->textInput(['id' => 'invite'])->label(false); ?>
                     <?php
                     // attach mention widget to it
                     echo humhub\modules\teams\widgets\UserPicker::widget(array(
@@ -56,9 +53,10 @@ use humhub\models\Setting;
                 <?php if (Setting::Get('internalUsersCanInvite', 'authentication_internal')) : ?>
                     <div class="tab-pane" id="external">
                         <?php echo Yii::t('SpaceModule.views_space_invite', 'You can also invite external users, which are not registered now. Just add their e-mail addresses separated by comma.'); ?>
-                        <br><br>
-                        <?php echo $form->field($model, 'inviteExternal')->textarea(['rows' => '3', 'placeholder' => Yii::t('SpaceModule.views_space_invite', 'Email addresses')]); ?>
-
+                        <br/><br/>
+                        <div class="form-group">
+                            <?php echo $form->field($model, 'inviteExternal')->textArea(['rows' => '3', 'placeholder' => Yii::t('SpaceModule.views_space_invite', 'Email addresses'), 'id' => 'email_invite'])->label(false); ?>
+                        </div>
                     </div>
                 <?php endif; ?>
             </div>
@@ -66,23 +64,23 @@ use humhub\models\Setting;
 
         </div>
         <div class="modal-footer">
-            <hr>
-            <br>
 
             <?php
             echo \humhub\widgets\AjaxButton::widget([
-                'label' => Yii::t('SpaceModule.views_space_invite', 'Done'),
+                'label' => Yii::t('SpaceModule.views_space_invite', 'Send'),
                 'ajaxOptions' => [
                     'type' => 'POST',
                     'beforeSend' => new yii\web\JsExpression('function(){ setModalLoader(); }'),
                     'success' => new yii\web\JsExpression('function(html){ $("#globalModal").html(html); }'),
-                    'url' => Url::to(['/space/create/invite', 'spaceId' => $space->id]),
+                    'url' => $space->createUrl('/space/membership/invite'),
                 ],
                 'htmlOptions' => [
                     'class' => 'btn btn-primary'
                 ]
             ]);
             ?>
+            <button type="button" class="btn btn-primary"
+                    data-dismiss="modal"><?php echo Yii::t('SpaceModule.views_space_invite', 'Close'); ?></button>
 
             <?php echo \humhub\widgets\LoaderWidget::widget(['id' => 'invite-loader', 'cssClass' => 'loader-modal hidden']); ?>
         </div>
@@ -95,17 +93,17 @@ use humhub\models\Setting;
 
 <script type="text/javascript">
 
-    // Shake modal after wrong validation
+// Shake modal after wrong validation
 <?php if ($model->hasErrors()) : ?>
         $('.modal-dialog').removeClass('fadeIn');
         $('.modal-dialog').addClass('shake');
 
         // check if there is an error at the second tab
-
-    <?php if (Setting::Get('internalUsersCanInvite', 'authentication_internal') && $model->hasError('inviteExternal')) : ?>
-            // show tab
+    <?php if ($model->hasErrors('inviteExternal')) : ?>
+            // show tab external tab
             $('#tabs a:last').tab('show');
     <?php endif; ?>
+
 <?php endif; ?>
 
     $('.tab-internal a').on('shown.bs.tab', function (e) {

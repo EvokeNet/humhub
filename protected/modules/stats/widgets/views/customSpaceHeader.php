@@ -219,22 +219,6 @@ if ($space->isAdmin()) {
                                 class="title"><?php echo Yii::t('StatsModule.widgets_views_spaceHeader', 'Activities Completed'); ?></span>
                         </div>
 
-                        <!-- <div class="pull-left entry" style = "margin-top:10px"> -->
-                            <!--<span class="count"><?php echo floor(($done/$total)*100).'%'; ?></span><br>
-                            <span
-                                class="title"><?php echo Yii::t('StatsModule.widgets_views_spaceHeader', 'Evokation Progress'); ?></span>-->
-                            <!-- <div class="progress" style = "width:150px">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?= floor(($done/$total)*100) ?>%;">
-                                    <span class="sr-only"></span>
-                                </div>
-                            </div> -->
-                        <!-- </div> -->
-
-                        <!-- <div class="pull-left entry">
-                            <span><?php //floor(($done/$total)*100).'%' ?></span><br>
-                            <span><?php //Yii::t('MissionsModule.base', 'Evokation Progress') ?></span>
-                        </div> -->
-
                         <?php endif; ?>
 
                     </div>
@@ -253,7 +237,7 @@ if ($space->isAdmin()) {
 
                         }else{
                             echo humhub\modules\space\widgets\HeaderControls::widget(['widgets' => [
-                            [\humhub\modules\space\widgets\InviteButton::className(), ['space' => $space], ['sortOrder' => 10]],
+                            [\humhub\modules\teams\widgets\InviteButton::className(), ['space' => $space], ['sortOrder' => 10]],
                             [\humhub\modules\space\widgets\MembershipButton::className(), ['space' => $space], ['sortOrder' => 20]],
                             [\humhub\modules\space\widgets\FollowButton::className(), ['space' => $space], ['sortOrder' => 30]]
                             ]]);

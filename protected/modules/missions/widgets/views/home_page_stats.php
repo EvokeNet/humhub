@@ -31,17 +31,17 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
         <div class = "grey_box">
                 <div style = "position:relative; height:90px">
 
-                        <div style = "position:absolute; left:0; width:50%">
-                            <h6><?= Yii::t('MissionsModule.base', 'Your Evocoins') ?></h6>
-                            <p style = "font-size:9pt"><?= Yii::t('MissionsModule.base', 'Earn Evocoins by reviewing evidence.') ?></p>
-                        </div>
+                    <div style = "position:absolute; left:0; width:50%">
+                        <h6><?= Yii::t('MissionsModule.base', 'Your Evocoins') ?></h6>
+                        <p style = "font-size:9pt"><?= Yii::t('MissionsModule.base', 'Earn Evocoins by reviewing evidence.') ?></p>
+                    </div>
 
-                        <div style = "position:absolute; right:0; top:10px">
-                            <div class = "home-widget-evocoins">
-                                <img src="<?php echo Url::to('@web/themes/Evoke/img/evocoin_bg.png') ?>" width = "120px">
-                                <div><p style = "font-size:15pt"><?= $wallet->amount ?></p></div>
-                            </div>
+                    <div style = "position:absolute; right:0; top:10px">
+                        <div class = "home-widget-evocoins">
+                            <img src="<?php echo Url::to('@web/themes/Evoke/img/evocoin_bg.png') ?>" width = "120px">
+                            <div><p style = "font-size:15pt"><?= $wallet->amount ?></p></div>
                         </div>
+                    </div>
 
                 </div>
 
