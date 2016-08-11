@@ -42,14 +42,6 @@ use yii\helpers\Url;
         </div>
     </div>
 
-    <HR>
-
-    <div class="panel-body">
-        <a class = "btn btn-cta2" href="<?= Url::to(['/teams/create/create_team']) ?>" data-target = "#globalModal" style = "width:90px">
-            <?= Yii::t('MissionsModule.base', 'Create') ?>
-        </a>
-    </div>
-
 </div>
 
 <style>

@@ -37,8 +37,13 @@ class Events
     public static function onDashboardSidebarInit($event){
         //$userPowers = UserPowers::getUserPowers(Yii::$app->user->getIdentity()->id);
 
+        $user = Yii::$app->user->getIdentity();
+        $team_id = Team::getUserTeam($user->id);
+
         $event->sender->addWidget(PopUpWidget::className(), []);
-        $event->sender->addWidget(CreateATeamWidget::className(), [], array('sortOrder' => 0));   
+        if(!isset($team_id) && $user->group->name != "Mentors" ){
+            $event->sender->addWidget(CreateATeamWidget::className(), [], array('sortOrder' => 0));   
+        }
         //$event->sender->addWidget(CTAPostEvidence::className(), []);
         //$event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers]);
     }
