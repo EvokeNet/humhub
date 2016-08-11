@@ -74,9 +74,12 @@ class CreateController extends Controller
         if(Yii::$app->request->post()){
             $model = $this->createSpaceModel();
             $data = Yii::$app->request->post();
-            $data['Space'] = $data['Team'];
-            unset($data['Team']);
+
+            if(null !== Yii::$app->request->post('Team')){
+                $data['Space'] = $data['Team'];    
+            }
             
+            unset($data['Team']);
         }
 
         if ($model->load($data) && $model->validate() && $model->save()) {
