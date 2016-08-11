@@ -38,6 +38,7 @@ class Events
         //$userPowers = UserPowers::getUserPowers(Yii::$app->user->getIdentity()->id);
 
         $event->sender->addWidget(PopUpWidget::className(), []);
+        $event->sender->addWidget(CreateATeamWidget::className(), [], array('sortOrder' => 0));   
         //$event->sender->addWidget(CTAPostEvidence::className(), []);
         //$event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers]);
     }
