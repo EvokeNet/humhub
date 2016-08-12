@@ -1,6 +1,6 @@
 <?php
 return array (
-  'Registration Link' => 'Enlace de registro',
+  'Registration Link' => 'Invitación para unirte a la Red Evoke',
   'Sign up' => 'Regístrate aquí',
   'Sign Up' => 'Regístrate aquí',
   'Please click on the button below to proceed with your registration!' => 'Por favor, clica en el botón para continuar con su registro!',
