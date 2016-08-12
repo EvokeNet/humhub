@@ -370,7 +370,7 @@ class Events
 
     public function onTopMenuRun($event)  {
         // Remove Directory
-        $event->sender->deleteItemByUrl(\yii\helpers\Url::to(['/directory/directory'])); 
+        //$event->sender->deleteItemByUrl(\yii\helpers\Url::to(['/directory/directory'])); 
         // Remove Mail
         $event->sender->deleteItemByUrl(\yii\helpers\Url::to(['/mail/mail/index'])); 
     }
