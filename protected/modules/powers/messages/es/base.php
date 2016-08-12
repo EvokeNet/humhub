@@ -17,6 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'You have earned the {super_power_name} super power!' => '¡Has ganado el super poder de {super_power_name}!',
+    'Congratulations!' => '¡Felicitaciones!',
     'Are you sure you want to delete this item?' => 'Estás seguro que quieres eliminar este ítem?',
     'Create' => 'Crear',
     'Create Power Translation' => 'Crear traducción de poder',

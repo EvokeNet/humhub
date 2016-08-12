@@ -9,6 +9,11 @@
   $user = Yii::$app->user->getIdentity();
 
   $super_power_image_url = Url::to($quality_1->image);
+  
+  $quality1_name = $quality_1->name;
+  
+  if(Yii::$app->language == 'es' && isset($quality_1->qualityTranslations[0]))
+      $quality1_name = $quality_1->qualityTranslations[0]->name;
 
  ?>
 <div class="container">
@@ -16,32 +21,6 @@
       <div class="col-md-7 layout-content-container">
 
           <div class="panel panel-default">
-              <!--<div class="panel-heading"><strong><?php echo $this->title; ?></strong></div>-->
-
-                <!--<div style = "text-align:center; padding: 20px 30px">
-
-                  <h4><?= Yii::t('MatchingModule.base', "Your survey results are:") ?></h4>
-
-                  <div class="row">
-                      <div class="col-xs-4">
-
-                        <img src = "<?php echo $super_power_image_url ?>" width=120 class = "power-border" style = "margin-top:30px">
-                        <h6><?= isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->name : $quality_1->name ?></h6>
-
-                      </div>
-                      <div class="col-xs-8" style = "margin-top:30px">
-
-                        <p>
-                          <?php echo Yii::t('MatchingModule.base', "Based on your answers to the Agent Type survey we have determined the best role for you is that of <strong>{item}</strong>.", array('item' => isset($superhero_identity->superheroIdentityTranslations[0]) ? $superhero_identity->superheroIdentityTranslations[0]->name : $superhero_identity->name)) ?>
-                          <?php echo Yii::t('MatchingModule.base', 'Furthermore, you are already gifted with the <strong>{item}</strong>', array('item' => isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->name : $quality_1->name)) ?>
-                          <?php echo Yii::t('MatchingModule.base', 'Super Power. {description}.', array('description' => isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->description : $quality_1->description)) ?></strong>
-                        </p>
-                      </div>
-                  </div>
-
-                </div>
-
-                </br>-->
 
                 <!-- earned powers -->
                 <div class="panel-heading">
@@ -55,11 +34,15 @@
 
                   <div class="relevant-powers text-center">
                     <?php foreach($relevant_powers as $user_power): ?>
-                        <?php $power = $user_power->getPower(); ?>
+                        <?php $power = $user_power->getPower(); 
+                          $power_name = $power->title;
+                          if(Yii::$app->language == 'es' && isset($power->powerTranslations[0]))
+                            $power_name = $power->powerTranslations[0]->title;
+                        ?>
                         <div class="col-xs-6" style = "margin: 15px 0">
                           <div style = "float:left"><img src = "<?php echo $power->image ?>" width=90px></div>
                           <div style = "margin-top:15px">
-                            <span style = "font-weight:700; font-size:12pt"><?= isset($power->powerTranslations[0]) ? $power->powerTranslations[0]->title : $power->title ?></span>
+                            <span style = "font-weight:700; font-size:12pt"><?= $power_name ?></span>
                             <h6 style = "font-weight:700; color: #9013FE">
                               <?php echo Yii::t('MatchingModule.base', '{point} points', array('point' => $user_power->value)) ?>
                             </h6>
@@ -79,44 +62,33 @@
                 <div class="panel-body">
                   <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'Your powers are the reason why I have summoned you. They are the skills that qualify you to be part of the Evoke network. Now it is time to be your best. Over the course of this experience you must develop the four fundamental superpowers of Evoke agents:') ?></p>
 
-                  <?php foreach ($super_powers as $quality): ?>
+                  <?php 
+                    foreach ($super_powers as $quality):
+                    
+                    $name = $quality->name;
+                    $description = $quality->description;
+            
+                    if(Yii::$app->language == 'es' && isset($quality->qualityTranslations[0])){
+                        $name = $quality->qualityTranslations[0]->name;
+                        $description = $quality->qualityTranslations[0]->description;
+                    }
+                 
+                  ?>
 
                     <div style = "display:flex; margin-top:30px">
                       <div style = "float:left"><img src = "<?php echo $quality->image ?>" width=100 class = "power-border"></div>
                       <div style = "margin-left:20px">
-                        <h6 style = "font-weight:700; color: #9013FE; margin-bottom:5px"><?= isset($quality->qualityTranslations[0]) ? $quality->qualityTranslations[0]->name : $quality->name ?></h6>
+                        <h6 style = "font-weight:700; color: #9013FE; margin-bottom:5px"><?= $name ?></h6>
                         <!--<div class="super-power-level">
                           <?php $user_quality = UserQualities::find()->where(['and', ['user_id' => Yii::$app->user->getIdentity()->id], ['quality_id' => $quality->id]])->one() ?>
                           <?php // echo Yii::t('MatchingModule.base', 'level') ?> <?php echo $user_quality->getLevel() ?>
                         </div><br>-->
                         <p style = "font-weight:700; color: #254054">
-                          <?= isset($quality->qualityTranslations[0]) ? $quality->qualityTranslations[0]->description : $quality->description ?>
+                          <?= $description ?>
                         </p>
                       </div>
                     </div>
 
-                    <!-- <div class="col-xs-4 text-center">
-
-                      <img src = "<?php echo $quality->image ?>" width=100 class = "power-border">
-                      <h6><?= isset($quality->qualityTranslations[0]) ? $quality->qualityTranslations[0]->name : $quality->name ?></h6>
-
-
-                      <?php $user_quality = UserQualities::find()->where(['and', ['user_id' => Yii::$app->user->getIdentity()->id], ['quality_id' => $quality->id]])->one() ?>
-                      <span style = "color: #28C503"><?php echo Yii::t('MatchingModule.base', 'Level {level}', array('level' => $user_quality->getLevel())); ?></span>
-
-                      <br><br><span class="label label-secondary"><?php echo Yii::t('MissionsModule.base', 'Powers'); ?> </span><br><br>
-
-                      <div class="super-power-powers">
-
-                        <?php $quality_powers = QualityPowers::find()->where(['quality_id' => $quality->id])->all(); ?>
-                        <?php $power_ids = []; ?>
-                        <?php foreach ($quality_powers as $quality_power) {
-                          $power_ids[] = $quality_power->power_id;
-                        } ?>
-
-                        <?php $userPowers = UserPowers::find()->where(['and', ['power_id' => $power_ids], ['user_id' => $user->id]])->all() ?>
-                      </div>
-                    </div> -->
                   <?php endforeach; ?>
                 </div>
 
@@ -129,7 +101,7 @@
                   <h6 style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'According to the powers that you have, you are closest to achieving:') ?></h6>
 
                   <img src = "<?php echo $super_power_image_url ?>" width=120 class = "power-border" style = "margin-top:30px">
-                  <h6 style = "color: #9013FE; font-weight:700"><?= isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->name : $quality_1->name ?></h6>
+                  <h6 style = "color: #9013FE; font-weight:700"><?= $quality1_name ?></h6>
                   
                   <br>
                   <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'On this platform you can submit evidence to complete activities within each mission. This will develop all of the superpowers.') ?></p>
@@ -144,29 +116,6 @@
                           ['/space/space', 'sguid' => $welcome_space->guid], array('class' => 'btn btn-cta1')); ?></div>
                   <br>
                 </div>
-
-                <!-- <div style = "text-align:center; padding: 20px 30px">
-
-                  <h4><?= Yii::t('MatchingModule.base', "Your survey results are:") ?></h4>
-
-                  <div class="row">
-                      <div class="col-xs-4">
-
-                        <img src = "<?php echo $super_power_image_url ?>" width=120 class = "power-border" style = "margin-top:30px">
-                        <h6 style = "color: #9013FE; font-weight:700"><?= isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->name : $quality_1->name ?></h6>
-
-                      </div>
-                      <div class="col-xs-8" style = "margin-top:30px">
-
-                        <p>
-                          <?php echo Yii::t('MatchingModule.base', "Based on your answers to the Agent Type survey we have determined the best role for you is that of <strong>{item}</strong>.", array('item' => isset($superhero_identity->superheroIdentityTranslations[0]) ? $superhero_identity->superheroIdentityTranslations[0]->name : $superhero_identity->name)) ?>
-                          <?php echo Yii::t('MatchingModule.base', 'Furthermore, you are already gifted with the <strong>{item}</strong>', array('item' => isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->name : $quality_1->name)) ?>
-                          <?php echo Yii::t('MatchingModule.base', 'Super Power. {description}.', array('description' => isset($quality_1->qualityTranslations[0]) ? $quality_1->qualityTranslations[0]->description : $quality_1->description)) ?></strong>
-                        </p>
-                      </div>
-                  </div>
-
-                </div> -->
 
               </div>
       </div>

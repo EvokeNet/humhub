@@ -17,6 +17,6 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Send' => '',
+    'Send' => 'Enviar',
     'Write a new comment...' => 'Escribe un nuevo comentario...',
 ];

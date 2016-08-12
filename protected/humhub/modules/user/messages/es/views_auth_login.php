@@ -25,11 +25,11 @@ return [
     'Don\'t have an account? Join the network by entering your e-mail address.' => '¿No tienes una cuenta? Únete a la red introduciendo tu dirección de correo electrónico',
     'Forgot your password?' => '¿Olvidaste tu contraseña?',
     'If you\'re already a member, please login with your username/email and password.' => 'Si ya eres miembro, por favor, inicia sesión con tu usuario o correo electrónico y tu contraseña.',
-    'Register' => 'Registrarse',
+    'Register' => 'Regístrate aquí',
     'Sign in' => 'Iniciar sesión',
     'email' => 'correo electrónico',
     'password' => 'contraseña',
     'username or email' => 'Usuario o correo electrónico',
     'This is Alchemy, and this is an Urgent Evoke. Wherever you are, whoever you are, if you found this message, it\'s your destiny to join us.' => 'Soy Alchemy, y este es un Evoke urgente. No importa dónde estás o quién eres, si encontraste este mensaje, tu destino es unirte a nosotros.',
-    'You have demonstrated your courage, and your commitment is unquestionable. The first thing we need is to update the Evoke database Evoke with the following fields:' => 'Acabas de probar tu valentía. Tu compromiso como agente es incuestionable. Lo primero que necesitamos es ingresarte la base de datos de Evoke llenando los siguientes campos:',
+    'You have demonstrated your courage, and your commitment is unquestionable. The first thing we need is to update the Evoke database Evoke with the following fields:' => 'Acabas de probar tu valentía. Tu compromiso como agente es incuestionable. Lo primero que necesitamos es ingresarte la base de datos de Evoke llenando los siguientes campos:', 
 ];

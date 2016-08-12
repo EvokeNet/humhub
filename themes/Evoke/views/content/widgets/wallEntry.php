@@ -7,9 +7,19 @@ use humhub\modules\content\components\ContentContainerController;
 use app\modules\teams\models\Team;
 
 $user = $object->content->user;
-$container = $object->content->container;
+
+try {
+    $container = $object->content->container;
+} catch(Exception  $e){
+
+    // if object has no content, delete it
+    $object->delete();
+    header("Refresh:0");
+    return;
+}
 
 $team_id = Team::getUserTeam($user->id);
+
 if($team_id){
     $team = Team::findOne($team_id);
 }else{
