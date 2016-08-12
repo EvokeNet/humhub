@@ -47,6 +47,26 @@ class Events
         //$event->sender->addWidget(CTAPostEvidence::className(), []);
         //$event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers]);
     }
+
+    public static function onProfileMenuInit($event){
+
+        $user = $event->sender->user;
+        $team_id = Team::getUserTeam($user->id);
+
+        if($team_id){
+
+            $team = Team::findOne($team_id);    
+
+            $event->sender->addItem(array(
+                'label' => Yii::t('MissionsModule.widgets_ProfileMenuWidget', "Go to User Team"),
+                'group' => 'profile',
+                'url' => Url::to(['/space/space', 'sguid' => $team->guid]),
+                'sortOrder' => 250
+            ));
+
+        }
+
+    }
     
     public static function onSidebarInit($event)
     {
