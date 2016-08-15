@@ -44,13 +44,13 @@ $firstSecondary = true;
 
                         <h5>
                             <span class = "activity-number">
-                            <?= $activity->position >= 1 ?$activity->position : "#" ?>
+                            <?php echo $activity->position >= 1 ?$activity->position : "#" ?>
                             </span>
-                            <?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title ?>
+                            <?php echo isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title ?>
                         </h5>
                         <br />
                         <p class="description">
-                            <?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description ?>
+                            <?php echo nl2br(isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description) ?>
                         </p>
 
                         <br>
@@ -62,13 +62,13 @@ $firstSecondary = true;
                             <div class="col-xs-5 text-center">
                                 <h6 style = "margin-bottom:15px"><?= Yii::t('MissionsModule.base', 'Primary Power') ?></h6>
 
-                                <?php 
+                                <?php
                                     foreach($activity->getPrimaryPowers() as $power):
                                         if($firstPrimary)
                                             $firstPrimary = false;
-                                            
+
                                         $name = $power->getPower()->title;
-            
+
                                         if(Yii::$app->language == 'es' && isset($power->getPower()->powerTranslations[0]))
                                             $name = $power->getPower()->powerTranslations[0]->title;
                                 ?>
@@ -87,9 +87,9 @@ $firstSecondary = true;
                                     foreach($activity->getSecondaryPowers() as $power):
                                         if($firstSecondary)
                                             $firstSecondary = false;
-                                            
+
                                         $name = $power->getPower()->title;
-            
+
                                         if(Yii::$app->language == 'es' && isset($power->getPower()->powerTranslations[0]))
                                             $name = $power->getPower()->powerTranslations[0]->title;
                                 ?>
