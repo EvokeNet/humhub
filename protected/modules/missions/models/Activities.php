@@ -21,6 +21,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $rubric
  * @property integer $evokation_category_id
  * @property integer $position
+ * @property string $message
  *
  * @property DifficultyLevels $difficultyLevel
  * @property EvokationCategories $evokationCategory
@@ -67,6 +68,7 @@ class Activities extends \yii\db\ActiveRecord
             [['mission_id', 'difficulty_level_id', 'evokation_category_id', 'position'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['title'], 'string', 'max' => 255],
+            [['message'], 'string', 'max' => 256],
             [['difficulty_level_id'], 'exist', 'skipOnError' => true, 'targetClass' => DifficultyLevels::className(), 'targetAttribute' => ['difficulty_level_id' => 'id']],
             [['evokation_category_id'], 'exist', 'skipOnError' => true, 'targetClass' => EvokationCategories::className(), 'targetAttribute' => ['evokation_category_id' => 'id']],
             [['mission_id'], 'exist', 'skipOnError' => true, 'targetClass' => Missions::className(), 'targetAttribute' => ['mission_id' => 'id']],
@@ -90,6 +92,7 @@ class Activities extends \yii\db\ActiveRecord
             'rubric' => Yii::t('MissionsModule.model', 'Rubric'),
             'evokation_category_id' => Yii::t('MissionsModule.model', 'Evokation Category ID'),
             'position' => Yii::t('MissionsModule.model', 'Position'),
+            'message' => Yii::t('MissionsModule.model', 'Evidence Success Message'),
         ];
     }
 
@@ -157,7 +160,7 @@ class Activities extends \yii\db\ActiveRecord
         return $this->hasMany(Votes::className(), ['activity_id' => 'id']);
     }
     
-     /**
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getPrimaryPowers()

@@ -18,4 +18,7 @@
  */
 return [
     'How To Play' => '',
+    'About' => 'Sobre Evoke',
+    'Privacy Policy' => 'Política de Privacidad',
+    'Terms & Conditions' => 'Términos y Condiciones',
 ];

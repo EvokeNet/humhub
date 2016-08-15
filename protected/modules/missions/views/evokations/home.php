@@ -7,13 +7,13 @@ use yii\helpers\Url;
 use humhub\models\Setting;
 
 $this->title = Yii::t('MissionsModule.base', 'Evokations');
-$this->params['breadcrumbs'][] = Yii::t('MissionsModule.base', "{name}'s Evokation Home Page", array('name' => $contentContainer->name));
+$this->params['breadcrumbs'][] = Yii::t('MissionsModule.base', "{name}'s Evokation", array('name' => $contentContainer->name));
 
 echo Breadcrumbs::widget([
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
 ]);
 
-$this->pageTitle = Yii::t('MissionsModule.base', "{name}'s Evokation Home Page", array('name' => $contentContainer->name));
+$this->pageTitle = Yii::t('MissionsModule.base', "{name}'s Evokation", array('name' => $contentContainer->name));
 
 $total = 0;
 $done = 0;

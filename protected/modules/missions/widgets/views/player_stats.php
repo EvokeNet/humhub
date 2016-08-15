@@ -26,11 +26,21 @@ $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
         <strong><?= Yii::t('MissionsModule.base', 'Your Powers') ?></strong>
     </div>
     <div class="panel-body">
-        <?php foreach($userPowers as $userQuality): $quality = $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject(); ?>
-            <div class="power text-center">
+        <?php foreach($userPowers as $userQuality): $quality = $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject(); 
+            $name = $quality->name;
+            
+            if(Yii::$app->language == 'es' && isset($quality->qualityTranslations[0]))
+                $name = $quality->qualityTranslations[0]->name;
+        ?>
+        <?php
+            $unavailable_power = $userQuality[0]->getUserQuality() == null || $userQuality[0]->getUserQuality()->getLevel() <= 0 ? true : false;
+        ?>
+            <div class="power text-center <?= $unavailable_power ? 'unavailable-power' : '' ?>">
                 <img src = "<?php echo $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->image; ?>" width="100px" class = "power-border"></img>
 
-                <h6><?= isset($quality->qualityTranslations[0]) ? $quality->qualityTranslations[0]->name : $quality->name; ?></h6>
+                <h6>
+                    <?= $name ?>
+                </h6>
 
                 <span class = "bold italic" style = "color: #28C503"><?php echo Yii::t('MissionsModule.base', 'Level {level}', array('level' => null != $userQuality[0]->getUserQuality() ? $userQuality[0]->getUserQuality()->getLevel() : 0)); ?></span>
 
@@ -53,13 +63,13 @@ $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
     float: right;
 }
 
-.unavailable{
-    color: white;
-    text-shadow: -0.5px 0 gray, 0 0.5px gray, 2px 0 gray, 0 -0.5px gray;
+.unavailable-power{
+    opacity: 0.5;
 }
 
-.unavailable:hover{
-    color: white;
+.unavailable-power span, h6{
+    color: gray !important;
 }
+
 
 </style>

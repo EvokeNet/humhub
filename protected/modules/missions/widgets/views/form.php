@@ -27,10 +27,15 @@ $firstSecondary = true;
                     foreach($activity->getPrimaryPowers() as $power):
                         if($firstPrimary)
                             $firstPrimary = false;
+                            
+                        $name = $power->getPower()->title;
+            
+                        if(Yii::$app->language == 'es' && isset($power->getPower()->powerTranslations[0]))
+                            $name = $power->getPower()->powerTranslations[0]->title;
                 ?>
 
                 <img src = "<?php echo $power->getPower()->image; ?>" width=70px style = "margin-bottom:10px">
-                <p><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $power->getPower()->title, 'points' => $power->value)); ?></p>
+                <p><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
                 <br />
 
                 <?php endforeach; ?>
@@ -43,10 +48,15 @@ $firstSecondary = true;
                     foreach($activity->getSecondaryPowers() as $power):
                         if($firstSecondary)
                             $firstSecondary = false;
+                        
+                        $name = $power->getPower()->title;
+            
+                        if(Yii::$app->language == 'es' && isset($power->getPower()->powerTranslations[0]))
+                            $name = $power->getPower()->powerTranslations[0]->title;
                 ?>
 
                 <img src = "<?php echo $power->getPower()->image; ?>" width=70px style = "margin-bottom:15px">
-                <p><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $power->getPower()->title, 'points' => $power->value)); ?></p>
+                <p><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
                 <br />
                 <?php endforeach; ?>
 

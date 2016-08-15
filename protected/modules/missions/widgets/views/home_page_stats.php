@@ -7,12 +7,15 @@ use app\modules\missions\models\Evidence;
 use humhub\modules\space\models\Membership;
 use app\modules\coin\models\Wallet;
 use app\modules\teams\models\Team;
+use humhub\modules\space\models\Space;
 
 $team_id = Team::getUserTeam(Yii::$app->user->getIdentity()->id);
 if($team_id){
     $member = Membership::findOne(['space_id' => $team_id]);
+    $space = $member->space;
 }else{
     $member = null;
+    $space = Space::findOne(['name' => 'Mentors']);
 }
 
 
@@ -22,10 +25,44 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
 
 ?>
 
+<?php if(Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class = "grey_box">
+                <div style = "position:relative; height:90px">
+
+                    <div style = "position:absolute; left:0; width:50%">
+                        <h6><?= Yii::t('MissionsModule.base', 'Your Evocoins') ?></h6>
+                        <p style = "font-size:9pt"><?= Yii::t('MissionsModule.base', 'Earn Evocoins by reviewing evidence.') ?></p>
+                    </div>
+
+                    <div style = "position:absolute; right:0; top:10px">
+                        <div class = "home-widget-evocoins">
+                            <img src="<?php echo Url::to('@web/themes/Evoke/img/evocoin_bg.png') ?>" width = "120px">
+                            <div><p style = "font-size:15pt"><?= $wallet->amount ?></p></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <br>
+                <?php if($space): ?>
+                <div style = "text-align:left">
+                    <a class = "btn btn-cta1" href='<?= Url::to(['/missions/review/index', 'sguid' => $space->guid]) ?>'>
+                            <?= Yii::t('MissionsModule.base', 'Review Evidence') ?>
+                    </a>
+                </div>
+                <?php endif; ?>
+            </div>
+    </div>
+</div>
+
+<?php else: ?>
+
 <div class="panel panel-default">
     <div class="panel-body row">
         <div class="col-xs-7">
-            <div class="panel-heading">
+            <div class="panel-heading" style = "height: 90px;">
                 <h4 class = "display-inline">
                     <strong>
                         <?= Yii::t('MissionsModule.base', 'Mission Progress') ?>
@@ -33,15 +70,15 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
                 </h4>
 
                 <?php if($member): ?>
-                    <a id="submit_evidence" class="btn btn-cta2" style="float: right;" href="<?= Url::to(['/missions/evidence/missions', 'sguid' => $member->space->guid]); ?>">
+                    <a id="submit_evidence" class="btn btn-cta1" style="float: right; margin-top:5px" href="<?= Url::to(['/missions/evokation/index', 'sguid' => $member->space->guid]); ?>">
                         <?php echo Yii::t('MissionsModule.base', 'Submit Evidence'); ?>
                     </a>
                 <?php endif; ?>
 
                 <br>
-                <span>
+                <p style = "margin-top:10px">
                     <?= Yii::t('MissionsModule.base', 'Your average rating: {avg}', array('avg' => $avg)) ?>
-                </span>
+                </p>
             </div>
             <div class="panel-body">
                <p><?= Yii::t('MissionsModule.base', 'Every time you submit evidence, your overall rating will improve.') ?><p>
@@ -67,9 +104,9 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
                 </div>
 
                 <br>
-                <?php if($member): ?>
+                <?php if($space): ?>
                 <div class = "text-center">
-                    <a class = "btn btn-cta1" href='<?= Url::to(['/missions/review/index', 'sguid' => $member->space->guid]) ?>'>
+                    <a class = "btn btn-cta1" href='<?= Url::to(['/missions/review/index', 'sguid' => $space->guid]) ?>'>
                             <?= Yii::t('MissionsModule.base', 'Review Evidence') ?>
                     </a>
                 </div>
@@ -79,6 +116,8 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
         </div>
     </div>
 </div>
+
+<?php endif; ?>
 
 <style type="text/css">
 

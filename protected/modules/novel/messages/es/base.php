@@ -17,25 +17,21 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'As you can see, Marta\'s story continues. She, like you, is committed to creating change in her community. Because of your commitment you have received {points} points in the power of Transformation.<br><br>This power has been evident since the network found you. Now we will discover the other powers you have and which so far have not been so evident.' => 'Como ves, la historia de Marta continúa. Ella, al igual que tú, está comprometida con la creación de un cambio en su comunidad. Es por eso que tienes {points} puntos en el poder de la Transformación. <br>Este poder ha sido evidente en ti desde que la red te encontró. Ahora descubramos los otros poderes que tienes y que hasta ahora no han sido tan evidentes.',
-    'Congratulations!' => 'Felicitaciones!',
+    'As you see, Marta\'s story continues. She, like you, is committed to transforming her community. That\'s why you have {points} points in the power of Transformation.<br><br>You have always had this power. Now it is time to discover your other hidden powers.' => 'Como ves, la historia de Marta continúa. Ella, al igual que tú, está comprometida con la creación de un cambio en su comunidad. Es por eso que tienes {points} puntos en el poder de la Transformación.<br><br>Este poder ha sido evidente en ti desde que la red te encontró. Ahora descubramos los otros poderes que tienes y que hasta ahora no han sido tan evidentes.',
     'Create' => 'Crear',
     'Create Page' => 'Crear Página',
     'Delete' => 'Borrar',
     'Discover Your Powers' => 'Descubre tus poderes',
     'Edit' => 'Editar',
     'Edit ' => 'Editar ',
-    'Graphic Novel' => 'Novela gráfica',
+    'Graphic Novel' => 'Novela Gráfica',
     'ID' => 'Identificación',
     'Image' => 'Imagen',
     'No images uploaded yet' => 'No hay imágenes se han subido aún',
     'Page Image' => 'Imagen de la página',
     'Page Number' => 'Número de página',
     'Pages' => 'Páginas',
-    'This power has been evident since the network found you. Now we will discover the other powers you have and which so far have not been so evident.' => 'Este poder ha sido evidente en ti desde que la red te encontró. Ahora descubramos los otros poderes que tienes y que hasta ahora no han sido tan evidentes.',
     'Update' => 'Actualizado',
     'Uploaded Image: {file}' => 'Imagen subida: {file}',
-    'You earned {points} points in Transformation' => '',
     'novel intro' => 'antes de empezar tu recorrido, quiero compartirte la historia de Marta. Su caso es muy valioso para entender las problemáticas que está viviendo tu comunidad. Ella será su guía y estará disponible para ayudarlos en las misiones, actividades y evokaciones.',
-    'Graphic Novel' => 'Novela Grafica'
 ];

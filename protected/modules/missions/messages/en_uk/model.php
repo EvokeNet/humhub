@@ -35,6 +35,7 @@ return [
     'Description' => '',
     'Develop' => '',
     'Difficulty Level ID' => '',
+    'Evidence Success Message' => '',
     'Evokation Category ID' => '',
     'Flag' => '',
     'Gdrive Url' => '',

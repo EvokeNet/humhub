@@ -118,7 +118,7 @@ use yii\helpers\Url;
                     'type' => 'POST',
                     'beforeSend' => new yii\web\JsExpression('function(){ setModalLoader(); }'),
                     'success' => new yii\web\JsExpression('function(html){ $("#globalModal").html(html); }'),
-                    'url' => Url::to(['/space/create/invite', 'spaceId' => $space->id]),
+                    'url' => Url::to(['/teams/create/invite', 'spaceId' => $space->id]),
                 ],
                 'htmlOptions' => [
                     'class' => 'btn btn-primary'

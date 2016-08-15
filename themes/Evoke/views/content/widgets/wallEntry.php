@@ -7,9 +7,19 @@ use humhub\modules\content\components\ContentContainerController;
 use app\modules\teams\models\Team;
 
 $user = $object->content->user;
-$container = $object->content->container;
+
+try {
+    $container = $object->content->container;
+} catch(Exception  $e){
+
+    // if object has no content, delete it
+    $object->delete();
+    header("Refresh:0");
+    return;
+}
 
 $team_id = Team::getUserTeam($user->id);
+
 if($team_id){
     $team = Team::findOne($team_id);
 }else{
@@ -43,17 +53,19 @@ if($team_id){
 
             <!-- Show space image, if you are outside from a space -->
             <?php if (!Yii::$app->controller instanceof ContentContainerController && $object->content->container instanceof Space): ?>
-                <?php echo \humhub\modules\space\widgets\Image::widget([
-                    'space' => $object->content->container,
-                    'width' => 20,
-                    'htmlOptions' => [
-                        'class' => 'img-space',
-                    ],
-                    'link' => 'true',
-                    'linkOptions' => [
-                        'class' => 'pull-left',
-                    ],
-                ]); ?>
+                <?php 
+                // echo \humhub\modules\space\widgets\Image::widget([
+                //     'space' => $object->content->container,
+                //     'width' => 20,
+                //     'htmlOptions' => [
+                //         'class' => 'img-space',
+                //     ],
+                //     'link' => 'true',
+                //     'linkOptions' => [
+                //         'class' => 'pull-left',
+                //     ],
+                // ]); 
+                ?>
 
             <?php endif; ?>
 

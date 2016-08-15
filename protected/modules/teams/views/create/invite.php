@@ -43,7 +43,7 @@ use humhub\models\Setting;
 
                     <?php
                     // attach mention widget to it
-                    echo humhub\modules\user\widgets\UserPicker::widget(array(
+                    echo humhub\modules\teams\widgets\UserPicker::widget(array(
                         'inputId' => 'invite',
                         'model' => $model, // CForm Instanz
                         'attribute' => 'invite',

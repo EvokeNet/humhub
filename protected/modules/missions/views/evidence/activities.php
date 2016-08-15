@@ -42,7 +42,12 @@ $firstSecondary = true;
                 <div class="panel panel-default">
                     <div class="panel-body panel-body grey-box">
 
-                        <h5><span class = "activity-number"><?= $activity->position ?></span><?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title ?></h5>
+                        <h5>
+                            <span class = "activity-number">
+                            <?= $activity->position >= 1 ?$activity->position : "#" ?>
+                            </span>
+                            <?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title ?>
+                        </h5>
                         <br />
                         <p class="description">
                             <?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description ?>
@@ -57,14 +62,19 @@ $firstSecondary = true;
                             <div class="col-xs-5 text-center">
                                 <h6 style = "margin-bottom:15px"><?= Yii::t('MissionsModule.base', 'Primary Power') ?></h6>
 
-                                <?php
+                                <?php 
                                     foreach($activity->getPrimaryPowers() as $power):
                                         if($firstPrimary)
                                             $firstPrimary = false;
+                                            
+                                        $name = $power->getPower()->title;
+            
+                                        if(Yii::$app->language == 'es' && isset($power->getPower()->powerTranslations[0]))
+                                            $name = $power->getPower()->powerTranslations[0]->title;
                                 ?>
 
                                 <img src = "<?php echo $power->getPower()->image; ?>" width=70px style = "margin-bottom:10px">
-                                <p><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $power->getPower()->title, 'points' => $power->value)); ?></p>
+                                <p><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
                                 <br />
 
                                 <?php endforeach; ?>
@@ -77,10 +87,15 @@ $firstSecondary = true;
                                     foreach($activity->getSecondaryPowers() as $power):
                                         if($firstSecondary)
                                             $firstSecondary = false;
+                                            
+                                        $name = $power->getPower()->title;
+            
+                                        if(Yii::$app->language == 'es' && isset($power->getPower()->powerTranslations[0]))
+                                            $name = $power->getPower()->powerTranslations[0]->title;
                                 ?>
 
                                 <img src = "<?php echo $power->getPower()->image; ?>" width=70px style = "margin-bottom:15px">
-                                <p><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $power->getPower()->title, 'points' => $power->value)); ?></p>
+                                <p><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
                                 <br />
                                 <?php endforeach; ?>
 

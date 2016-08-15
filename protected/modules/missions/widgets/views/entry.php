@@ -55,6 +55,9 @@ echo Html::beginForm();
         <div>
           <?php 
             $primaryPowerTitle = $activity->getPrimaryPowers()[0]->getPower()->title; 
+            
+            if(Yii::$app->language == 'es' && isset($activity->getPrimaryPowers()[0]->getPower()->powerTranslations[0]))
+                $primaryPowerTitle = $activity->getPrimaryPowers()[0]->getPower()->powerTranslations[0]->title;
           ?>
         	<h2><?= Yii::t('MissionsModule.base', 'Distribute points for {title}', array('title' => $primaryPowerTitle)) ?></h2>
         	<p>

@@ -10,7 +10,7 @@ $this->pageTitle = Yii::t('UserModule.views_auth_createAccount', 'Create Account
     <br/>
     <div class="row">
         <div id="create-account-form" class="panel panel-default animated bounceIn" style="max-width: 500px; margin: 0 auto 20px; text-align: left;">
-            <div class="panel-heading"><?php echo Yii::t('UserModule.views_auth_createAccount', '<strong>Agent</strong> registration'); ?></div>
+            <div class="panel-heading"><?php echo Yii::t('UserModule.views_auth_createAccount', '<strong>Account</strong> registration'); ?></div>
             <div class="panel-body">
                 <?php $form = \yii\widgets\ActiveForm::begin(['enableClientValidation' => false]); ?>
                 <?php echo $hForm->render($form); ?>

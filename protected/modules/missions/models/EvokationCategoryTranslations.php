@@ -6,6 +6,7 @@ use Yii;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
 use yii\behaviors\TimestampBehavior;
+use app\modules\languages\models\Languages;
 
 /**
  * This is the model class for table "evokation_category_translations".
@@ -51,7 +52,7 @@ class EvokationCategoryTranslations extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['evokation_category_id', 'title', 'description', 'language_id', 'created_at', 'updated_at'], 'required'],
+            [['evokation_category_id', 'title', 'description', 'language_id'], 'required'],
             [['evokation_category_id', 'language_id'], 'integer'],
             [['description'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
@@ -82,5 +83,13 @@ class EvokationCategoryTranslations extends \yii\db\ActiveRecord
     public function getEvokationCategory()
     {
         return $this->hasOne(EvokationCategories::className(), ['id' => 'evokation_category_id']);
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLanguage()
+    {
+        return $this->hasOne(Languages::className(), ['id' => 'language_id']);
     }
 }

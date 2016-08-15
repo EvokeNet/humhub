@@ -76,7 +76,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
         return $this->render('evokation-categories/create', array('model' => $model));
     }
     
-    public function actionEditCategories()
+    public function actionUpdateCategories()
     {
         $model = EvokationCategories::findOne(['id' => Yii::$app->request->get('id')]);
 
@@ -96,6 +96,52 @@ class AdminController extends \humhub\modules\admin\components\Controller
         }
 
         return $this->redirect(['index-categories']);
+    }
+    
+    public function actionIndexCategoryTranslations($id)
+    {
+        $categories = EvokationCategoryTranslations::find()
+        ->where(['evokation_category_id' => Yii::$app->request->get('id')])
+        ->with('language')
+        ->all();
+        
+        $category = EvokationCategories::findOne(['id' => Yii::$app->request->get('id')]);
+
+        return $this->render('evokation-category-translations/index', array('categories' => $categories, 'category' => $category));
+    }
+    
+    public function actionCreateCategoryTranslations($id)
+    {
+        $model = new EvokationCategoryTranslations();
+        $model->evokation_category_id = $id;
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index-category-translations', 'id' => $id]);
+        } 
+        
+        return $this->render('evokation-category-translations/create', array('model' => $model));
+    }
+    
+    public function actionUpdateCategoryTranslations($id)
+    {
+        $model = EvokationCategoryTranslations::findOne(['id' => Yii::$app->request->get('id')]);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index-category-translations', 'id' => $id]);
+        }
+
+        return $this->render('evokation-category-translations/update', array('model' => $model));
+    }
+    
+    public function actionDeleteCategoryTranslations()
+    {
+        $model = EvokationCategories::findOne(['id' => Yii::$app->request->get('id')]);
+
+        if ($model !== null) {
+            $model->delete();
+        }
+
+        return $this->redirect(['index-category-translations']);
     }
     
     public function actionIndex()
