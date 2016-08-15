@@ -27,13 +27,19 @@ class AdminController extends \humhub\modules\admin\components\Controller
       $model = new Prize();
 
       if ($model->load(Yii::$app->request->post())) {
-          $model->created_at = date("Y-m-d H:i:s");
+        $uploadedFile = UploadedFile::getInstance($model, 'image');
+
+        // only upload a file if it was attached
+        if ($uploadedFile !== null) {
           $model->image = UploadedFile::getInstance($model, 'image');
           $model->image->saveAs('uploads/' . $model->image->baseName . '.' . $model->image->extension);
           $model->image = 'uploads/' . $model->image->baseName . '.' . $model->image->extension;
+        }
 
-          if($model->save())
-              return $this->redirect(['index']);
+        $model->created_at = date("Y-m-d H:i:s");
+
+        if($model->save())
+            return $this->redirect(['index']);
       }
 
       return $this->render('prize/create', array('model' => $model));
@@ -44,10 +50,14 @@ class AdminController extends \humhub\modules\admin\components\Controller
         $model = Prize::findOne(['id' => Yii::$app->request->get('id')]);
 
         if ($model->load(Yii::$app->request->post())) {
-          $model->created_at = date("Y-m-d H:i:s");
-          $model->image = UploadedFile::getInstance($model, 'image');
-          $model->image->saveAs('uploads/' . $model->image->baseName . '.' . $model->image->extension);
-          $model->image = 'uploads/' . $model->image->baseName . '.' . $model->image->extension;
+          $uploadedFile = UploadedFile::getInstance($model, 'image');
+
+          // only upload a file if it was attached
+          if ($uploadedFile !== null) {
+            $model->image = UploadedFile::getInstance($model, 'image');
+            $model->image->saveAs('uploads/' . $model->image->baseName . '.' . $model->image->extension);
+            $model->image = 'uploads/' . $model->image->baseName . '.' . $model->image->extension;
+          }
 
           if ($model->save()) {
             return $this->redirect(['index']);
