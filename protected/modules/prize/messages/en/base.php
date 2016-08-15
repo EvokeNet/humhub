@@ -50,6 +50,7 @@ return [
     'Try your luck to win support in our slot machine. Every attempt will cost 5 evocoins.' => '',
     'Update' => '',
     'We introduce some tools the network has made available to facilitate your agent work in Soacha.' => '',
-    'Week of' => '',
+    'Week of' => 'Start Date',
     'Weight' => '',
+    'weight explanation' => 'The Higher this number, the more likely the prize is to be won. On the first day the prize is available, the weight is exactly the odds of winning it. (i.e. on day one of a prize with weight 10, there is a 10% chance of winning it) Chances of winning a prize increase exponentially as days pass.',
 ];
