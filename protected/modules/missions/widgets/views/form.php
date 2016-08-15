@@ -14,7 +14,7 @@ $firstSecondary = true;
         <h4><span class = "activity-number"><?= $activity->position ?></span><?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title ?></h4>
         <br />
         <p class="description">
-            <?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description ?>
+            <?php echo nl2br(isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description) ?>
         </p>
         <br />
         <p class="description"><?= Yii::t('MissionsModule.widgets_views_evidenceForm', "<strong>Rubric:</strong> {rubric}", array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></p>
@@ -27,9 +27,9 @@ $firstSecondary = true;
                     foreach($activity->getPrimaryPowers() as $power):
                         if($firstPrimary)
                             $firstPrimary = false;
-                            
+
                         $name = $power->getPower()->title;
-            
+
                         if(Yii::$app->language == 'es' && isset($power->getPower()->powerTranslations[0]))
                             $name = $power->getPower()->powerTranslations[0]->title;
                 ?>
@@ -48,9 +48,9 @@ $firstSecondary = true;
                     foreach($activity->getSecondaryPowers() as $power):
                         if($firstSecondary)
                             $firstSecondary = false;
-                        
+
                         $name = $power->getPower()->title;
-            
+
                         if(Yii::$app->language == 'es' && isset($power->getPower()->powerTranslations[0]))
                             $name = $power->getPower()->powerTranslations[0]->title;
                 ?>
@@ -85,16 +85,16 @@ $( document ).ready(function() {
     handleResponse = function(response) {
       oldHandleResponse(response);
       if (!response.errors) {
-            $('#evidence_form').parent().parent().remove(); 
+            $('#evidence_form').parent().parent().remove();
             window.location.hash = "";
-            window.location.hash = "wallEntry_" + response.wallEntryId;  
+            window.location.hash = "wallEntry_" + response.wallEntryId;
       }
     }
 
 });
 
-    
-    
+
+
 </script>
 
 <style type="text/css">
