@@ -43,10 +43,13 @@ class AdminController extends \humhub\modules\admin\components\Controller
         $model = Powers::findOne(['id' => Yii::$app->request->get('id')]);
 
         if ($model->load(Yii::$app->request->post())) {
-          $model->image = UploadedFile::getInstance($model, 'image');
-          $model->image->saveAs('uploads/' . $model->image->baseName . '.' . $model->image->extension);
-          $model->image = 'uploads/' . $model->image->baseName . '.' . $model->image->extension;
 
+            if(isset($model->image)){
+                $model->image = UploadedFile::getInstance($model, 'image');
+                $model->image->saveAs('uploads/' . $model->image->baseName . '.' . $model->image->extension);
+                $model->image = 'uploads/' . $model->image->baseName . '.' . $model->image->extension;
+            }
+            
             if($model->save())
                 return $this->redirect(['index']);
         }
