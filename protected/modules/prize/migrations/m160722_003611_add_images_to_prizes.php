@@ -11,6 +11,6 @@ class m160722_003611_add_images_to_prizes extends Migration
 
     public function down()
     {
-      $this->addColumn('prizes', 'image', $this->string());
+      $this->dropColumn('prizes', 'image');
     }
 }

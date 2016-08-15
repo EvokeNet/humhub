@@ -9,9 +9,9 @@
   $user = Yii::$app->user->getIdentity();
 
   $super_power_image_url = Url::to($quality_1->image);
-  
+
   $quality1_name = $quality_1->name;
-  
+
   if(Yii::$app->language == 'es' && isset($quality_1->qualityTranslations[0]))
       $quality1_name = $quality_1->qualityTranslations[0]->name;
 
@@ -34,19 +34,25 @@
 
                   <div class="relevant-powers text-center">
                     <?php foreach($relevant_powers as $user_power): ?>
-                        <?php $power = $user_power->getPower(); 
+                        <?php $power = $user_power->getPower();
                           $power_name = $power->title;
                           if(Yii::$app->language == 'es' && isset($power->powerTranslations[0]))
                             $power_name = $power->powerTranslations[0]->title;
                         ?>
                         <div class="col-xs-6" style = "margin: 15px 0">
-                          <div style = "float:left"><img src = "<?php echo $power->image ?>" width=90px></div>
-                          <div style = "margin-top:15px">
-                            <span style = "font-weight:700; font-size:12pt"><?= $power_name ?></span>
-                            <h6 style = "font-weight:700; color: #9013FE">
-                              <?php echo Yii::t('MatchingModule.base', '{point} points', array('point' => $user_power->value)) ?>
-                            </h6>
+                          
+                          <div class="row">
+                            <div class="col-sm-3">
+                              <img src = "<?php echo $power->image ?>" width=90px>
+                            </div>
+                            <div class="col-sm-9" style = "margin-top:15px">
+                              <span style = "font-weight:700; font-size:12pt"><?= $power_name ?></span>
+                              <h6 style = "font-weight:700; color: #9013FE">
+                                <?php echo Yii::t('MatchingModule.base', '{point} points', array('point' => $user_power->value)) ?>
+                              </h6>
+                            </div>
                           </div>
+                                                    
                         </div>
                     <?php endforeach; ?>
                   </div>
@@ -62,31 +68,34 @@
                 <div class="panel-body">
                   <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'Your powers are the reason why I have summoned you. They are the skills that qualify you to be part of the Evoke network. Now it is time to be your best. Over the course of this experience you must develop the four fundamental superpowers of Evoke agents:') ?></p>
 
-                  <?php 
+                  <?php
                     foreach ($super_powers as $quality):
-                    
+
                     $name = $quality->name;
                     $description = $quality->description;
-            
+
                     if(Yii::$app->language == 'es' && isset($quality->qualityTranslations[0])){
                         $name = $quality->qualityTranslations[0]->name;
                         $description = $quality->qualityTranslations[0]->description;
                     }
-                 
+
                   ?>
 
                     <div style = "display:flex; margin-top:30px">
-                      <div style = "float:left"><img src = "<?php echo $quality->image ?>" width=100 class = "power-border"></div>
-                      <div style = "margin-left:20px">
-                        <h6 style = "font-weight:700; color: #9013FE; margin-bottom:5px"><?= $name ?></h6>
-                        <!--<div class="super-power-level">
-                          <?php $user_quality = UserQualities::find()->where(['and', ['user_id' => Yii::$app->user->getIdentity()->id], ['quality_id' => $quality->id]])->one() ?>
-                          <?php // echo Yii::t('MatchingModule.base', 'level') ?> <?php echo $user_quality->getLevel() ?>
-                        </div><br>-->
-                        <p style = "font-weight:700; color: #254054">
-                          <?= $description ?>
-                        </p>
+                      
+                      <div class="row">
+                        <div class="col-sm-3" style = "margin-top:10px">
+                          <img src = "<?php echo $quality->image ?>" width=100 class = "power-border">
+                        </div>
+                        <div class="col-sm-9">
+                          <h6 style = "font-weight:700; color: #9013FE; margin-bottom:5px"><?= $name ?></h6>
+                          <p style = "font-weight:700; color: #254054">
+                            <?= $description ?>
+                          </p>
+                        </div>
                       </div>
+                      
+                      
                     </div>
 
                   <?php endforeach; ?>
@@ -102,14 +111,14 @@
 
                   <img src = "<?php echo $super_power_image_url ?>" width=120 class = "power-border" style = "margin-top:30px">
                   <h6 style = "color: #9013FE; font-weight:700"><?= $quality1_name ?></h6>
-                  
+
                   <br>
                   <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'On this platform you can submit evidence to complete activities within each mission. This will develop all of the superpowers.') ?></p>
-                  
+
                   <br>
-                  
+
                   <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', '{agent}: Congratulations, you are already an Evoke agent!', array('agent' => $user->username)) ?></p>
-                  
+
                   <br>
                   <div class = "text-center"><?php echo Html::a(
                           Yii::t('MatchingModule.base', 'Continue to Base Operations'),
@@ -252,7 +261,7 @@
   margin-top: 1em;
 }
 
-.topbar {
+.topbar, .footer {
   display: none;
 }
 

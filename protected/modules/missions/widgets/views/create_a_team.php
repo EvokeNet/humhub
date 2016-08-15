@@ -12,7 +12,7 @@ use yii\helpers\Url;
         </strong>
     </div>
     <div class="panel-body">
-        <div class="col-xs-12">
+        <div class="col-xs-12 text-center">
             <!-- content -->
             <!--English-->
             <img src="<?php echo Url::to('@web/themes/Evoke/img/alchemy.png') ?>" width = "120px" style = "border-radius: 50%; border: 3px solid #254054; margin-bottom:10px">
