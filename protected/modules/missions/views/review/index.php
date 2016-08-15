@@ -176,7 +176,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Review Evidence');
                           <br>
 
                           <!--
-                          <label class = "label label-secondary2"><?= Yii::t('MissionsModule.base', 'For every piece of evidence you review, you receive 10 points in {title}', array('title' => $primaryPowerTitle)) ?></label><br>
+                          <label class = "label label-secondary2"><?php // Yii::t('MissionsModule.base', 'For every piece of evidence you review, you receive 10 points in {title}', array('title' => $primaryPowerTitle)) ?></label><br>
             			  -->
             			  <button type="submit" id="post_submit_review" class="btn btn-cta2" style = "padding: 8px 16px 6px;">
                             <?= Yii::t('MissionsModule.base', 'Submit Review') ?>

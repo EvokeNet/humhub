@@ -24,5 +24,5 @@ return [
     'Leaderboard' => 'Clasificación',
     'Missions' => 'Misiones',
     'My Team' => 'Mi Equipo',
-    'Review Evidence' => 'Evalúa Evidencias',
+    'Review Evidence' => 'Evaluar Evidencias',
 ];

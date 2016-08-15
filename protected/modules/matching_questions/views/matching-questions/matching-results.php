@@ -40,13 +40,19 @@
                             $power_name = $power->powerTranslations[0]->title;
                         ?>
                         <div class="col-xs-6" style = "margin: 15px 0">
-                          <div style = "float:left"><img src = "<?php echo $power->image ?>" width=90px></div>
-                          <div style = "margin-top:15px">
-                            <span style = "font-weight:700; font-size:12pt"><?= $power_name ?></span>
-                            <h6 style = "font-weight:700; color: #9013FE">
-                              <?php echo Yii::t('MatchingModule.base', '{point} points', array('point' => $user_power->value)) ?>
-                            </h6>
+                          
+                          <div class="row">
+                            <div class="col-sm-3">
+                              <img src = "<?php echo $power->image ?>" width=90px>
+                            </div>
+                            <div class="col-sm-9" style = "margin-top:15px">
+                              <span style = "font-weight:700; font-size:12pt"><?= $power_name ?></span>
+                              <h6 style = "font-weight:700; color: #9013FE">
+                                <?php echo Yii::t('MatchingModule.base', '{point} points', array('point' => $user_power->value)) ?>
+                              </h6>
+                            </div>
                           </div>
+                                                    
                         </div>
                     <?php endforeach; ?>
                   </div>
@@ -76,17 +82,20 @@
                   ?>
 
                     <div style = "display:flex; margin-top:30px">
-                      <div style = "float:left"><img src = "<?php echo $quality->image ?>" width=100 class = "power-border"></div>
-                      <div style = "margin-left:20px">
-                        <h6 style = "font-weight:700; color: #9013FE; margin-bottom:5px"><?= $name ?></h6>
-                        <!--<div class="super-power-level">
-                          <?php $user_quality = UserQualities::find()->where(['and', ['user_id' => Yii::$app->user->getIdentity()->id], ['quality_id' => $quality->id]])->one() ?>
-                          <?php // echo Yii::t('MatchingModule.base', 'level') ?> <?php echo $user_quality->getLevel() ?>
-                        </div><br>-->
-                        <p style = "font-weight:700; color: #254054">
-                          <?= $description ?>
-                        </p>
+                      
+                      <div class="row">
+                        <div class="col-sm-3" style = "margin-top:10px">
+                          <img src = "<?php echo $quality->image ?>" width=100 class = "power-border">
+                        </div>
+                        <div class="col-sm-9">
+                          <h6 style = "font-weight:700; color: #9013FE; margin-bottom:5px"><?= $name ?></h6>
+                          <p style = "font-weight:700; color: #254054">
+                            <?= $description ?>
+                          </p>
+                        </div>
                       </div>
+                      
+                      
                     </div>
 
                   <?php endforeach; ?>

@@ -84,13 +84,12 @@ if($team_id){
                 </h4>
                 
                 <span>
-                        <?php echo \humhub\widgets\TimeAgo::widget(['timestamp' => $object->content->created_at]); ?>
+                        <?php //echo \humhub\widgets\TimeAgo::widget(['timestamp' => $object->content->created_at]); ?>
 
                         <?php if ($object->content->created_at !== $object->content->updated_at && $object->content->updated_at != ''): ?>
                             (<?php echo Yii::t('ContentModule.views_wallLayout', 'Updated :timeago', array(':timeago' => \humhub\widgets\TimeAgo::widget(['timestamp' => $object->content->updated_at]))); ?>)
                         <?php endif; ?>
 
-                        <!-- show space name -->
                         <?php if (!Yii::$app->controller instanceof ContentContainerController && $container instanceof Space): ?>
                             <?php echo Yii::t('ContentModule.views_wallLayout', 'in'); ?> <strong><a
                                     href="<?php echo $container->getUrl(); ?>"><?php echo Html::encode($container->name); ?></a></strong>&nbsp;
