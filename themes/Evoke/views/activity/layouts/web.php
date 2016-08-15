@@ -35,10 +35,10 @@ use humhub\modules\space\activities\MemberAdded;
             <div class="media-body">
 
                 <!-- Show content -->
-                <?php echo $content; ?><br/>
+                <div style = "margin-top:10px"><?php echo $content; ?></div><br/>
 
                 <!-- show time -->
-                <?php echo \humhub\widgets\TimeAgo::widget(['timestamp' => $record->content->created_at]); ?>
+                <?php //echo \humhub\widgets\TimeAgo::widget(['timestamp' => $record->content->created_at]); ?>
             </div>
         </div>
     </li>

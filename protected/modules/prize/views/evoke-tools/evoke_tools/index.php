@@ -262,7 +262,7 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
     top: 35%;
     color: #FB656F;
     font-weight: 700;
-    font-size: 12pt;
+    font-size: 9pt;
     margin-left: 10px;
   }
 
