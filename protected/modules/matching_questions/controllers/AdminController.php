@@ -34,9 +34,9 @@ class AdminController extends \humhub\modules\admin\components\Controller
 
         if ($model->load(Yii::$app->request->post())) {
             
-            $model->image = UploadedFile::getInstance($model, 'image');    
-            $model->image->saveAs('uploads/' . $model->image->baseName . '.' . $model->image->extension);
-            $model->image = 'uploads/' . $model->image->baseName . '.' . $model->image->extension;
+            // $model->image = UploadedFile::getInstance($model, 'image');    
+            // $model->image->saveAs('uploads/' . $model->image->baseName . '.' . $model->image->extension);
+            // $model->image = 'uploads/' . $model->image->baseName . '.' . $model->image->extension;
             
             if($model->save())
                 return $this->redirect(['index']);
