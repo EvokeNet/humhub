@@ -70,7 +70,7 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
                 </h4>
 
                 <?php if($member): ?>
-                    <a id="submit_evidence" class="btn btn-cta1" style="float: right; margin-top:5px" href="<?= Url::to(['/missions/evokation/index', 'sguid' => $member->space->guid]); ?>">
+                    <a id="submit_evidence" class="btn btn-cta1" style="float: right; margin-top:5px" href="<?= Url::to(['/missions/evidence/missions', 'sguid' => $member->space->guid]); ?>">
                         <?php echo Yii::t('MissionsModule.base', 'Submit Evidence'); ?>
                     </a>
                 <?php endif; ?>

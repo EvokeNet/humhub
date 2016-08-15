@@ -58,7 +58,7 @@ class Events
             $team = Team::findOne($team_id);    
 
             $event->sender->addItem(array(
-                'label' => Yii::t('MissionsModule.widgets_ProfileMenuWidget', "Go to User Team"),
+                'label' => Yii::t('MissionsModule.widgets_ProfileMenuWidget', "Team"),
                 'group' => 'profile',
                 'url' => Url::to(['/space/space', 'sguid' => $team->guid]),
                 'sortOrder' => 250
