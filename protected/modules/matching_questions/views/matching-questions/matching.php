@@ -164,7 +164,7 @@ body {
                             order.push(inputValue);
 
                         }else{
-                            warningMessage("<?= Yii::t('MatchingModule.base', 'Answer all the order questions from 1 to 4.') ?>");
+                            warningMessage("<?= Yii::t('MatchingModule.base', 'Answer all the questions before submitting.') ?>");
                             return false;
                         }
                     }
