@@ -250,6 +250,19 @@ class Events
                 && Yii::$app->controller->id == 'evidence'),
             ));
         }
+
+        if ($space->isModuleEnabled('missions')) {
+            $event->sender->addItem(array(
+                'label' => Yii::t('MissionsModule.event', 'Members'),
+                'group' => 'modules',
+                'url' => $space->createUrl('/missions/space/members'),
+                'icon' => '<i class="fa fa-group"></i>',
+                'sortOrder' => 200,
+                'isActive' => (Yii::$app->controller->module
+                && Yii::$app->controller->module->id == 'missions'
+                && Yii::$app->controller->id == 'space'),
+            ));
+        }
     }
 
     public static function onEvokationSpaceMenuInit($event)
