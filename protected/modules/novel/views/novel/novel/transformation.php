@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use app\modules\novel\models\NovelPage;
 
 ?>
