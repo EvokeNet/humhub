@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 
-echo Html::beginForm(); 
+echo Html::beginForm();
   $activity = $evidence->getActivities();
 
 ?>
@@ -17,7 +17,7 @@ echo Html::beginForm();
   </div>
   <div>
     <p style = "display:inline; float:left; font-weight: 700;"><?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title ?></p>
-    <p style = "text-align:end; font-weight: 700;"><?= Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $evidence->getAverageRating()? number_format((float)$evidence->getAverageRating(), 1, '.', '') : "-")) ?></p>    
+    <p style = "text-align:end; font-weight: 700;"><?= Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $evidence->getAverageRating()? number_format((float)$evidence->getAverageRating(), 1, '.', '') : "-")) ?></p>
   </div>
 </div>
 
@@ -25,7 +25,7 @@ echo Html::beginForm();
 
 <BR>
 
-<?php if($evidence->content->user_id != Yii::$app->user->getIdentity()->id && Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>  
+<?php if($evidence->content->user_id != Yii::$app->user->getIdentity()->id && Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
 <div class="panel-group">
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -50,12 +50,12 @@ echo Html::beginForm();
             $no = !$vote->flag ? "checked" : "";
             $grade = $vote->value;
             $comment = $vote->comment;
-          }        
+          }
         ?>
         <div>
-          <?php 
-            $primaryPowerTitle = $activity->getPrimaryPowers()[0]->getPower()->title; 
-            
+          <?php
+            $primaryPowerTitle = $activity->getPrimaryPowers()[0]->getPower()->title;
+
             if(Yii::$app->language == 'es' && isset($activity->getPrimaryPowers()[0]->getPower()->powerTranslations[0]))
                 $primaryPowerTitle = $activity->getPrimaryPowers()[0]->getPower()->powerTranslations[0]->title;
           ?>
@@ -71,7 +71,7 @@ echo Html::beginForm();
       					Yes
       				</label>
       				<div id="yes-opt<?= $evidence->id ?>" class="collapse <?= $collapse ?>">
-      					<?php for ($x=1; $x <= 5; $x++): ?> 
+      					<?php for ($x=1; $x <= 5; $x++): ?>
       					<label class="radio-inline">
       						<input type="radio" name="grade<?= $evidence->id ?>" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> >
       						<?php echo $x; ?>
@@ -89,9 +89,9 @@ echo Html::beginForm();
     				  </label>
     			  </div>
     			  <br>
-            <?php echo Html::textArea("text", $comment , array('id' => 'review_comment_'.$evidence->id, 'class' => 'text-margin form-control ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Comment"))); ?>  
+            <?php echo Html::textArea("text", $comment , array('id' => 'review_comment_'.$evidence->id, 'class' => 'text-margin form-control ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Comment"))); ?>
     			  <br>
-            <?= Yii::t('MissionsModule.base', 'For every piece of evidence you review, you receive 10 points in {title}', array('title' => $primaryPowerTitle)) ?>
+
     			  <br>
     			  <button type="submit" id="post_submit_review" class="btn btn-cta1">
               <?= Yii::t('MissionsModule.base', 'Submit Review') ?>
@@ -101,7 +101,7 @@ echo Html::beginForm();
     </div>
   </div>
 </div>
-<?php endif; ?> 
+<?php endif; ?>
 
 <?php if($evidence->content->user_id == Yii::$app->user->getIdentity()->id || Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
 
@@ -116,7 +116,7 @@ echo Html::beginForm();
                 </a>
             </h6>
         </div>
-        
+
         <div class="panel-body">
             <div id="collapseEvidenceReviews<?= $evidence->id ?>" class="panel-collapse collapse">
                 <div class="">
@@ -134,12 +134,12 @@ echo Html::beginForm();
                         <div style = "padding: 10px 10px 3px; margin-bottom: 20px; border: 3px solid #9013FE;">
                             <p><?php echo Yii::t('MissionsModule.base', 'Comment: {comment}', array('comment' => $vote->comment)); ?></p>
                             <p><?php echo Yii::t('MissionsModule.base', 'Rating: {rating}', array('rating' => $vote->value)); ?></p>
-                            
+
                             <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors" || $vote->user->group->name == "Mentors"): ?>
                                 <p><?php echo Yii::t('MissionsModule.base', 'By'); ?>
                                 <a href="<?= ($vote->user->getUrl()) ?>">
                                     <?= ($vote->user->username) ?>
-                                </a>, 
+                                </a>,
                                 <?php echo \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]); ?></p>
                             <?php else: ?>
                                 <p><?php echo Yii::t('MissionsModule.base', 'By Anonymous, {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]))); ?></p>
@@ -151,7 +151,7 @@ echo Html::beginForm();
         </div>
 
     </div>
-</div>  
+</div>
 <?php endif; ?>
 
 
@@ -197,7 +197,7 @@ function validateReview<?= $evidence->id ?>(id){
 	opt = opt? opt.value : null;
 	grade = grade? grade.value : null;
 
-/* 
+/*
 ***Comment isn't required anymore.***
     if(comment == ""){
         showMessage("Error", "<?= Yii::t('MissionsModule.base', 'You must submit a comment.') ?>");
@@ -213,7 +213,7 @@ function validateReview<?= $evidence->id ?>(id){
 
 		// showMessage("Error", "Choose how many points you will award this evidence.");
     showMessage("Error", "<?= Yii::t('MissionsModule.base', 'Choose how many points you will award this evidence.') ?>");
-		
+
 	} else if(opt == "no"){
 		return review(id, comment, opt);
 	} else{

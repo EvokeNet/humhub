@@ -20,6 +20,7 @@
             ['class' => \humhub\modules\dashboard\widgets\Sidebar::className(), 'event' => \humhub\modules\dashboard\widgets\Sidebar::EVENT_INIT, 'callback' => ['\humhub\modules\missions\Events', 'onDashboardSidebarInit']],
             ['class' => \humhub\modules\space\widgets\Sidebar::className(), 'event' => Sidebar::EVENT_INIT, 'callback' => ['\humhub\modules\missions\Events', 'onSidebarInit']],
             ['class' => \humhub\modules\user\widgets\ProfileSidebar::className(), 'event' => ProfileSidebar::EVENT_INIT, 'callback' => ['\humhub\modules\missions\Events', 'onProfileSidebarInit']],
+            ['class' => \humhub\modules\user\widgets\ProfileMenu::className(), 'event' => ProfileSidebar::EVENT_INIT, 'callback' => ['\humhub\modules\missions\Events', 'onProfileMenuInit']],
             ['class' => \humhub\widgets\TopMenu::className(), 'event' => TopMenu::EVENT_INIT, 'callback' => ['\humhub\modules\missions\Events', 'onTopMenuInit']],
             ['class' => \humhub\widgets\TopMenu::className(), 'event' => TopMenu::EVENT_RUN, 'callback' => ['\humhub\modules\missions\Events', 'onTopMenuRun']],
             ['class' => LikeController::className(), 'event' => LikeController::EVENT_BEFORE_ACTION, 'callback' => ['humhub\modules\missions\Events', 'onUserLike']],
