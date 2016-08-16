@@ -32,6 +32,17 @@ class RejectedEvidence extends \humhub\modules\notification\components\BaseNotif
         return parent::send($user);
     }
 
+    public function render(){
+
+        if($this->source == null){
+            $this->delete();
+            return;
+        }else{
+            return parent::render();
+        }
+
+    }
+
 }
 
 ?>
