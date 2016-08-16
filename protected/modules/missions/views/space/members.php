@@ -22,3 +22,15 @@ use yii\helpers\Html;
         <?php endforeach; ?>
     </div>
 </div>
+
+<style>
+
+ .panel-body img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 3px solid #254054;
+    margin-right: 5px;
+}   
+
+</style>

@@ -1,27 +1,24 @@
 <?php
 
-/**
- * @link https://www.humhub.org/
- * @copyright Copyright (c) 2015 HumHub GmbH & Co. KG
- * @license https://www.humhub.com/licences
- */
-
 namespace humhub\modules\missions\controllers;
 
 use Yii;
-use humhub\modules\space\modules\manage\components\Controller;
+use humhub\modules\missions\components\ContentContainerController;
 
 
-class SpaceController extends Controller
+class SpaceController extends ContentContainerController
 {
 
     public function actionMembers()
     {
         $memberQuery = $this->space->getMemberships();
         $memberQuery->joinWith('user');
+        $memberQuery->leftJoin('profile', 'user.id = profile.user_id');
         $memberQuery->where(['user.status' => \humhub\modules\user\models\User::STATUS_ENABLED]);
+        $memberQuery->orderBy('profile.firstname, profile.lastname');
 
         return $this->render('members', ['members' => $memberQuery->all()]);
+        
     }
 
 }
