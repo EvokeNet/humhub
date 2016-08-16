@@ -47,7 +47,7 @@ use app\modules\matching_questions\models\MatchingQuestions;
                             <!-- MULTIPLE CHOICE -->
                             <?php if($maxValue > 2) :  ?>
                                 <label style = "font-size:12pt">
-                                    <input type="number" min="1" max=<?= $maxValue ?> name="matching_answer_<?= $answer->id ?>_matching_question_<?= $question->id ?>" value = "" >
+                                    <input type="text" pattern="[1-<?= $maxValue ?>]*" class= "number_input" min="1" max=<?= $maxValue ?> name="matching_answer_<?= $answer->id ?>_matching_question_<?= $question->id ?>" value = "" >
                                         <?= isset($answer->matchingAnswerTranslations[0]) ? $answer->matchingAnswerTranslations[0]->description : $answer->description ?>
                                 </label>   <br>
                             <!-- SINGLE CHOICE -->
@@ -79,6 +79,10 @@ use app\modules\matching_questions\models\MatchingQuestions;
 </div>
 
 <style type="text/css">
+
+.number_input{
+    width: 60px;
+}
 
 .intro{
     /*margin-left: 20px;*/
