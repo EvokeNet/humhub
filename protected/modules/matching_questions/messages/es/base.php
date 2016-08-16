@@ -25,7 +25,7 @@ return [
     'Add new Power' => 'Añadir nuevo Poder',
     'Additional Powers' => 'Poderes Adicionales',
     'Agent Type' => 'Tipo de agente',
-    'Answer all the order questions from 1 to 4.' => 'Responde a todas las preguntas de la orden de 1 a 4',
+    'Answer all the questions before submitting.' => 'Completa todas las respuestas antes de enviarlas',
     'Are you sure you want to delete this item?' => 'Está seguro que quiere eliminar este item?',
     'Are you sure you want to delete this power?' => 'Está seguro que quiere eliminar este poder?',
     'Are you sure you want to delete this quality?' => 'Está seguro que quiere eliminar esta cualidad?',

@@ -22,6 +22,7 @@ return [
     'Evokation Deadline' => '',
     'Evoke Settings' => '',
     'Leaderboard' => '',
+    'Members' => '',
     'Missions' => '',
     'My Team' => '',
     'Review Evidence' => '',
