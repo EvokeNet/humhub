@@ -4,7 +4,7 @@ use yii\helpers\Html;
 $activity = null;
 
 if($evidence){
-    $activity = $evidence->getActivities();  
+    $activity = $evidence->getActivities();
 }
 
 $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
@@ -25,14 +25,14 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                 <?= Yii::t('MissionsModule.base', 'Mission {mission}: Activity {activity}', array('mission' => $activity->mission->position, 'activity' => $activity->position)) ?>
             </h4>
 
-            <p><?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description ?></p>
+            <p><?php echo nl2br(isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description) ?></p>
         </div>
 
         <div class="grey-box evidence_area">
             <h3><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h3>
             <br>
             <p><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]); ?></p>
-        
+
 
             <?php if(sizeof($files) > 0): ?>
             <div class="files_area">
@@ -53,24 +53,24 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                     <?php //echo \humhub\widgets\TimeAgo::widget(['timestamp' => $evidence->created_at]); ?>
                     <p><?php echo Yii::t('MissionsModule.base', 'By Anonymous, {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $evidence->created_at]))); ?></p>
                 <?php else: ?>
-                    <p><?php echo Yii::t('MissionsModule.base', 'By'); ?></p> 
+                    <p><?php echo Yii::t('MissionsModule.base', 'By'); ?></p>
                     <a href="<?= ($evidence->content->user->getUrl()) ?>">
                         <?= ($evidence->content->user->username) ?>
-                    </a>, 
+                    </a>,
                     <?php echo \humhub\widgets\TimeAgo::widget(['timestamp' => $evidence->created_at]); ?>
                     <br>
                     <?= Yii::t('MissionsModule.base', 'Votes: {votes}', array('votes' => $evidence->getVoteCount() ? $evidence->getVoteCount() : "0")) ?>
                     <br>
-                    <?= Yii::t('MissionsModule.base', 'Average Rating: {rating}', array('rating' => $evidence->getAverageRating()? number_format((float)$evidence->getAverageRating(), 1, '.', '') : "-")) ?> 
+                    <?= Yii::t('MissionsModule.base', 'Average Rating: {rating}', array('rating' => $evidence->getAverageRating()? number_format((float)$evidence->getAverageRating(), 1, '.', '') : "-")) ?>
                 <?php endif; ?>
             </div>
-        
+
         </div>
 
         <!-- REVIEWS SECTION -->
         <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
 
-            <div class = "text-center"><div class = "blue-border"></div></div>  
+            <div class = "text-center"><div class = "blue-border"></div></div>
 
             <div class="panel-group">
                 <div class="panel panel-default">
@@ -81,7 +81,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                             </a>
                         </h6>
                     </div>
-                    
+
                     <div class="panel-body">
                         <div id="collapseEvidenceReviews<?= $evidence->id ?>" class="panel-collapse collapse">
                             <div class="">
@@ -99,11 +99,11 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                                     <div style = "padding: 10px 10px 3px; margin-bottom: 20px; border: 3px solid #9013FE;">
                                         <p><?php echo Yii::t('MissionsModule.base', 'Comment: {comment}', array('comment' => $vote->comment)); ?></p>
                                         <p><?php echo Yii::t('MissionsModule.base', 'Rating: {rating}', array('rating' => $vote->value)); ?></p>
-                                        
+
                                         <p><?php echo Yii::t('MissionsModule.base', 'By'); ?>
                                         <a href="<?= ($vote->user->getUrl()) ?>">
                                             <?= ($vote->user->username) ?>
-                                        </a>, 
+                                        </a>,
                                         <?php echo \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]); ?></p>
                                     </div>
                                 <?php endforeach; ?>
@@ -112,14 +112,14 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                     </div>
 
                 </div>
-            </div>   
+            </div>
 
-        <?php endif; ?>       
+        <?php endif; ?>
 
         <div class = "text-center"><div class = "blue-border"></div></div>
 
         <div class="review evidence_area">
-        <?php if($evidence->content->user_id != Yii::$app->user->getIdentity()->id): ?>  
+        <?php if($evidence->content->user_id != Yii::$app->user->getIdentity()->id): ?>
             <div>
                 <?php
                   $collapse = "";
@@ -134,15 +134,15 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                     $no = !$vote->flag ? "checked" : "";
                     $grade = $vote->value;
                     $comment = $vote->comment;
-                  }        
+                  }
                 ?>
                 <div>
-                  <?php 
+                  <?php
                     $power = $activity->getPrimaryPowers()[0]->getPower();
                     $primaryPowerTitle = isset($power->powerTranslations[0]) ? $power->powerTranslations[0]->title : $power->title; ?>
                     <h4><?= Yii::t('MissionsModule.base', 'Distribute points for {title}', array('title' => $primaryPowerTitle)) ?></h4>
                     <p style = "margin-bottom:25px"><?= Yii::t('MissionsModule.base', '<strong>Activity Rubric:</strong> {rubric}', array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></p>
-                    
+
                 	<form id = "review" class="review">
                         <input type="hidden" id="evidence_id" value="<?= $evidence->id ?>">
                 		<div class="radio" style = "margin-bottom:15px">
@@ -150,11 +150,11 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
               					<input type="radio" name="yes-no-opt" class="btn-show" value="yes" <?= $yes ?> >
               					<?= Yii::t('MissionsModule.base', 'Yes') ?>
               				</label>
-                            
+
                             <br>
               				<div id="yes-opt" class="collapse <?= $collapse ?>">
                                 <br><p><?= Yii::t('MissionsModule.base', 'How many points will you award this evidence?') ?></p>
-              					<?php for ($x=1; $x <= 5; $x++): ?> 
+              					<?php for ($x=1; $x <= 5; $x++): ?>
               					<label class="radio-inline">
               						<input type="radio" name="grade" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> >
               						<?php echo $x; ?>
@@ -162,7 +162,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
               					<?php endfor; ?>
                                   <br><br><br>
               				</div>
-                            
+
             			  </div>
             			  <div class="radio" style = "margin-bottom:15px">
             				  <label>
@@ -171,10 +171,10 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
             				  </label>
             			  </div>
             			  <br>
-                            
-                          <?php echo Html::textArea("text", $comment , array('id' => 'review_comment', 'class' => 'text-margin form-control ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Comment"))); ?>  
+
+                          <?php echo Html::textArea("text", $comment , array('id' => 'review_comment', 'class' => 'text-margin form-control ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Comment"))); ?>
                           <br>
-                          
+
                           <!--
                           <label class = "label label-secondary2"><?php // Yii::t('MissionsModule.base', 'For every piece of evidence you review, you receive 10 points in {title}', array('title' => $primaryPowerTitle)) ?></label><br>
             			  -->
@@ -184,7 +184,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                 	</form>
                 </div>
             </div>
-        <?php endif; ?> 
+        <?php endif; ?>
             <hr>
             <a id="next_evidence" class="btn btn-cta3" disabled="disabled" style="float: right;" onClick="return false" href="<?= $contentContainer->createUrl('/missions/review/index') ?>">
                 <?php echo Yii::t('MissionsModule.base', 'Next Evidence'); ?>
@@ -254,7 +254,7 @@ function validateReview(id){
 	opt = opt? opt.value : null;
 	grade = grade? grade.value : null;
 
-/* 
+/*
 ***Comment isn't required anymore.***
     if(comment == ""){
         showMessage("Error", "<?= Yii::t('MissionsModule.base', 'You must submit a comment.') ?>");
@@ -269,7 +269,7 @@ function validateReview(id){
 		}
 
     showMessage("Error", "<?= Yii::t('MissionsModule.base', 'Choose how many points you will award this evidence.') ?>");
-		
+
 	} else if(opt == "no"){
 		return review(id, comment, opt);
 	} else{

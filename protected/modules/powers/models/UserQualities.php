@@ -81,7 +81,7 @@ class UserQualities extends \yii\db\ActiveRecord
     }
 
     public function getLevel(){
-        if(!$this->level){
+        if(null == $this->level){
 
             $quality_powers = QualityPowers::findAll(['quality_id' => $this->quality_id]);
 
@@ -105,7 +105,7 @@ class UserQualities extends \yii\db\ActiveRecord
     public function updateQualityLevel($quality_id, $user_id){
 
         $query = (new \yii\db\Query())
-        ->select(['min(level) as level'])
+        ->select(['min(IFNULL(level,0)) as level'])
         ->from('user_powers p')
         ->join('INNER JOIN', 'quality_powers q', 'q.power_id = p.power_id')
         ->where(['user_id' => $user_id, 'quality_id' => $quality_id])

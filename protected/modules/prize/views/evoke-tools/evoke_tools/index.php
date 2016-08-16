@@ -82,9 +82,9 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                               <p><?php echo Yii::t('PrizeModule.base', 'Evocoin(s)'); ?></p>
                             </div>
                           </div>
-                          <div id="noWin" class="prize">
-                            <div class="prize-name no-win">
-                              <?php echo Yii::t('PrizeModule.base', 'Better luck next time!'); ?>
+                          <div id="evocoin1" class="prize">
+                            <div class="prize-name evocoin">
+                              <?php echo Yii::t('PrizeModule.base', 'Evocoin(s)'); ?>
                             </div>
                           </div>
                           <?php foreach ($prizes as $prize): ?>

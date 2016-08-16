@@ -20,7 +20,7 @@ use app\modules\novel\models\NovelPage;
 </div>
 
 <style media="screen">
-  .topbar {
+  .topbar, .footer {
     display: none;
   }
 

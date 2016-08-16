@@ -147,11 +147,11 @@
 
                   <br><br><br>
                   <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'You can develop all of the superpowers by completing each of the mission activities.') ?></p>
-                  
+
                   <br>
-                  
+
                   <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'Congratulations, you are already an Evoke agent!') ?></p>
-                  
+
                   <br>
                   <div class = "text-center"><?php echo Html::a(
                           Yii::t('MatchingModule.base', 'Continue to Base Operations'),
@@ -317,7 +317,7 @@
   margin-top: 1em;
 }
 
-.topbar {
+.topbar, .footer {
   display: none;
 }
 

@@ -38,6 +38,7 @@ if($team_id){
                 <li class="dropdown ">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-angle-down"></i></a>
                     <ul class="dropdown-menu pull-right">
+
                         <?php echo \humhub\modules\content\widgets\WallEntryControls::widget(['object' => $object, 'wallEntryWidget' => $wallEntryWidget]); ?>
                     </ul>
                 </li>

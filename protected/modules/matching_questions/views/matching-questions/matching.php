@@ -16,6 +16,7 @@ use app\modules\matching_questions\models\MatchingQuestions;
                     //Now, it is time to find out what type of Evoke agent are you. What do you know?
                     //What are the strengths, passions, and abilities you will bring to the Evoke network?
                     //Answer the following and find out what type of Super Hero is hiding inside you!') ?>
+                    
                     <?= Yii::t('MatchingModule.base', 'Discover your powers. Imagine what you would do in each of the following scenarios. Answer honestly and discover your true potential.') ?>  
 
                     <?php if(Yii::$app->session->getFlash('matching_questions_incomplete_answers')): ?>
@@ -107,7 +108,7 @@ form{
     /*padding-top: 30px;*/
     padding: 20px 50px 0px;
 }
-.topbar {
+.topbar, .footer {
   display: none;
 }
 

@@ -71,9 +71,9 @@ use app\modules\missions\models\Evidence;
                                 </div>
                                 
                                 <div style = "text-align:end; font-size:10pt">
-                                    <?php echo Yii::t('MissionsModule.base', 'Points to Level: {total}', array('total' => $userPower->getNextLevelPoints())); ?>
+                                    <?php echo Yii::t('MissionsModule.base', 'Points to Level: {total}', array('total' => ($userPower->getRemainingPointsToLevelUp()))) ?>
                                 </div>
-                        
+
                             </div>
                         </div>
 

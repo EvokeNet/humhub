@@ -42,7 +42,7 @@ use app\modules\novel\models\NovelPage;
   }
 
   <?php if (!Yii::$app->user->getIdentity()->has_read_novel && !Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
-    .topbar {
+    .topbar, .footer {
       display: none;
     }
 
