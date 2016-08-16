@@ -6,17 +6,21 @@ use yii\widgets\Breadcrumbs;
 
 $hasUserSubmittedEvidence = Evidence::hasUserSubmittedEvidence($activity->id);
 
-$this->title = $activity->mission->title; //Yii::t('MissionsModule.base', 'Activities');
+$mission_title = isset($activity->mission->missionTranslations[0]) ? $activity->mission->missionTranslations[0]->title : $activity->mission->title;
+
+$activity_title = isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title;
+
+$this->title = $mission_title; //Yii::t('MissionsModule.base', 'Activities');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.base', 'Missions'), 'url' => ['missions', 'sguid' => $contentContainer->guid]];
 // $this->params['breadcrumbs'][] = $mission->title;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.base', 'Mission {position} - {alias}', array('position' => $activity->mission->position, 'alias' => $this->title)), 'url' => ['activities', 'missionId' => $activity->mission->id, 'sguid' => $contentContainer->guid]]; //Yii::t('MissionsModule.base', 'Mission:').' '.$this->title;
-$this->params['breadcrumbs'][] = Yii::t('MissionsModule.base', 'Activity {position} - {alias}', array('position' => $activity->position, 'alias' => $activity->title));
+$this->params['breadcrumbs'][] = Yii::t('MissionsModule.base', 'Activity {position} - {alias}', array('position' => $activity->position, 'alias' => $activity_title));
 
 echo Breadcrumbs::widget([
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
 ]);
 
-$this->pageTitle = Yii::t('MissionsModule.base', 'Activity {position} - {alias}', array('position' => $activity->position, 'alias' => $activity->title));
+$this->pageTitle = Yii::t('MissionsModule.base', 'Activity {position} - {alias}', array('position' => $activity->position, 'alias' => $activity_title));
 
 ?>
 
@@ -33,7 +37,7 @@ if(!$hasUserSubmittedEvidence){
 
 }
 
-$this->pageTitle = Yii::t('MissionsModule.base', 'Activity {activity}', array('activity' => $activity->title));
+$this->pageTitle = Yii::t('MissionsModule.base', 'Activity {activity}', array('activity' => $activity_title));
 
 ?>
 

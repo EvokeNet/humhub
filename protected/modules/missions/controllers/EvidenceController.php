@@ -115,8 +115,13 @@ class EvidenceController extends ContentContainerController
             }else{
                 $pointString = Yii::t('MissionsModule.base', 'point');
             }
+            
+            $name = $activity_power->getPower()->title;
+            
+            if(Yii::$app->language == 'es' && isset($activity_power->getPower()->powerTranslations[0]))
+                $name = $activity_power->getPower()->powerTranslations[0]->title;
 
-            $message = $message . $activity_power->value . ' '. $pointString .' '. Yii::t('MissionsModule.base', 'in').' '. $activity_power->getPower()->title . $separator;
+            $message = $message . $activity_power->value . ' '. $pointString .' '. Yii::t('MissionsModule.base', 'in').' '. $name . $separator;
        }
 
        return $message;

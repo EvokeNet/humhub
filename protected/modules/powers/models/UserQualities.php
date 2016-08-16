@@ -129,13 +129,18 @@ class UserQualities extends \yii\db\ActiveRecord
         }else if( ( (isset($userQuality->level) && $userQuality->level < 1) || (!isset($userQuality->level)) ) && $level >= 1)  {
             $new_power = true;
         }
-
+        
+        $name = $userQuality->getQualityObject()->name;
+            
+        if(Yii::$app->language == 'es' && isset($userQuality->getQualityObject()->qualityTranslations[0]))
+            $name = $userQuality->getQualityObject()->qualityTranslations[0]->name;
+                
         if($new_power){
             AlertController::createAlert(
                 Yii::t('PowersModule.base', "Congratulations!"), 
                 Yii::t(
                     'PowersModule.base', 'You have earned the {super_power_name} super power!', 
-                    array('super_power_name' => $userQuality->getQualityObject()->name)
+                    array('super_power_name' => $name)
                 ),
                 'secondary'
             );
