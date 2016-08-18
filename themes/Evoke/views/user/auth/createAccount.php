@@ -8,8 +8,8 @@ $this->pageTitle = Yii::t('UserModule.views_auth_createAccount', 'Create Account
 <div class="container" style="text-align: center;">
     <h1 id="app-title" class="animated fadeIn"><?php echo Html::encode(Yii::$app->name); ?></h1>
     <br/>
-    
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/Nzueroug_90?rel=0" frameborder="0" allowfullscreen></iframe>
+
+    <div id="player"></div>
     
     <br/>
     <br/>
@@ -29,7 +29,45 @@ $this->pageTitle = Yii::t('UserModule.views_auth_createAccount', 'Create Account
     </div>
 </div>
 
+<style>
+</style>
+
+<script src="http://www.youtube.com/player_api"></script>
+
 <script type="text/javascript">
+
+    var player;
+        function onYouTubePlayerAPIReady() {
+            player = new YT.Player('player', {
+              height: '315',
+              width: '560',
+              videoId: 'Nzueroug_90',
+              playerVars: { 
+                'autoplay': 1,
+                'controls': 0, 
+                'showinfo' : 0,
+                'rel' : 0,
+                },
+              events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange,
+              }
+            });
+        }
+
+        // autoplay video
+        function onPlayerReady(event) {
+            //event.target.playVideo();
+        }
+
+        // when video ends
+        function onPlayerStateChange(event) {        
+            if(event.data === 0) {          
+                $('#player').fadeOut('fast', 'swing');   
+            }
+        }
+
+
     $(function () {
         // set cursor to login field
         $('#User_username').focus();
