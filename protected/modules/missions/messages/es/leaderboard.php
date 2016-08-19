@@ -17,18 +17,18 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Leaderboard' => 'La tabla de posiciones',
+    'Leaderboard' => 'Clasificación',
     'My Evidences Submitted: {evidences}' => 'Mis Evidencias Publicadas: {evidences}',
     'My Position: Not Ranked' => 'Mi Posición: Sin puntaje',
     'My Position: {position}' => 'Mi Posición: {position}',
-    'My Reviews Submitted: {evidences}' => 'Mis Revisiones Publicadas: {evidences}',
+    'My Reviews Submitted: {evidences}' => 'Mis Revisiones Realizadas: {evidences}',
     'My Team\'s Evidences Submitted: {evidences}' => 'Evidencias Publicadas de mi equipo: {evidences}',
     'My Team\'s Position: Not Ranked' => 'Posición de mi equipo: Sin puntaje',
     'My Team\'s Position: {position}' => 'Posición de mi equipo: {position}',
-    'My Team\'s Reviews Submitted: {evidences}' => 'Revisiones Publicadas de mi equipo: {evidences}',
+    'My Team\'s Reviews Submitted: {evidences}' => 'Revisiones Realizadas de mi equipo: {evidences}',
     'Top Agents By Evidences Submitted' => 'Mejores agentes considerando Evidencias Publicadas',
-    'Top Agents By Reviews Given' => 'Mejores agentes por Revisiones Publicadas',
-    'Top Mentors By Reviews Given' => 'Mejores mentores por Revisiones Publicadas',
+    'Top Agents By Reviews Given' => 'Mejores agentes considerando Revisiones Realizadas',
+    'Top Mentors By Reviews Given' => 'Mejores mentores considerando Revisiones Realizadas',
     'Top Teams By Evidences Submitted' => 'Mejores equipos considerando Evidencias Publicadas',
-    'Top Teams By Reviews Given' => 'Mejores equipos considerando Revisiones Publicadas',
+    'Top Teams By Reviews Given' => 'Mejores equipos considerando Revisiones Realizadas',
 ];

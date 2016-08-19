@@ -59,18 +59,19 @@ class Events extends \yii\base\Object
 
     }
 
-    // public static function onAuthUser($event){
-    //
-    //     //on login and create account actions
-    //     if($event->action->actionMethod === 'actionLogin' || $event->action->actionMethod === 'actionCreateAccount'){
-    //
-    //         //Check if user is logged in and if user hasn't superhero id yet
-    //         if(null != Yii::$app->user->getIdentity() && !isset(Yii::$app->user->getIdentity()->superhero_identity_id)){
-    //             $event->action->controller->redirect(Url::toRoute('/matching_questions/matching-questions/matching'));
-    //         }
-    //     }
-    //
-    // }
+    public static function onAuthUser($event){
+
+        //on login actions
+        if(property_exists($event->action, "actionMethod") && (($event->action->actionMethod) && $event->action->actionMethod === 'actionLogin')){
+            //Check if user is logged in and if user hasn't superhero id yet
+            if(null != Yii::$app->user->getIdentity()) {
+              if (!isset(Yii::$app->user->getIdentity()->superhero_identity_id) && Yii::$app->user->getIdentity()->has_read_novel == true && Yii::$app->user->getIdentity()->group->name != "Mentors"){
+                  $event->action->controller->redirect(Url::toRoute('/matching_questions/matching-questions/matching'));
+            }
+            }
+        }
+
+    }
 
     public static function onSidebarInit($event)
     {

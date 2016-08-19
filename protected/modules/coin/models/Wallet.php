@@ -112,6 +112,12 @@ use humhub\modules\user\models\User;
          {
            $this->amount += $amount_to_add;
            $this->save();
+
+           //track total coin created
+           $coin = $this->getCoin();
+           $coin->total_created += $amount_to_add;
+           $coin->save();
+
            return true;
          }
 

@@ -26,9 +26,15 @@ class AdminController extends \humhub\modules\admin\components\Controller
       $model = new NovelPage();
 
       if ($model->load(Yii::$app->request->post())) {
-        $model->page_image = UploadedFile::getInstance($model, 'page_image');
-        $model->page_image->saveAs('uploads/' . $model->page_image->baseName . '.' . $model->page_image->extension);
-        $model->page_image = 'uploads/' . $model->page_image->baseName . '.' . $model->page_image->extension;
+
+        $uploadedFile = UploadedFile::getInstance($model, 'image');
+
+        // only upload a file if it was attached
+        if ($uploadedFile !== null) {
+          $model->page_image = UploadedFile::getInstance($model, 'page_image');
+          $model->page_image->saveAs('uploads/' . $model->page_image->baseName . '.' . $model->page_image->extension);
+          $model->page_image = 'uploads/' . $model->page_image->baseName . '.' . $model->page_image->extension;
+        }
 
         if($model->save())
             return $this->redirect(['index']);
@@ -42,9 +48,14 @@ class AdminController extends \humhub\modules\admin\components\Controller
         $model = NovelPage::findOne(['id' => Yii::$app->request->get('id')]);
 
         if ($model->load(Yii::$app->request->post())) {
-          $model->page_image = UploadedFile::getInstance($model, 'page_image');
-          $model->page_image->saveAs('uploads/' . $model->page_image->baseName . '.' . $model->page_image->extension);
-          $model->page_image = 'uploads/' . $model->page_image->baseName . '.' . $model->page_image->extension;
+          $uploadedFile = UploadedFile::getInstance($model, 'image');
+
+          // only upload a file if it was attached
+          if ($uploadedFile !== null) {
+            $model->page_image = UploadedFile::getInstance($model, 'page_image');
+            $model->page_image->saveAs('uploads/' . $model->page_image->baseName . '.' . $model->page_image->extension);
+            $model->page_image = 'uploads/' . $model->page_image->baseName . '.' . $model->page_image->extension;
+          }
 
           if($model->save())
               return $this->redirect(['index']);

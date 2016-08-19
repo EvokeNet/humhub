@@ -18,46 +18,68 @@ use app\modules\missions\models\Evidence;
         <?php foreach($userPowers as $userQuality): $quality = $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject(); ?>
         <?php
             $unavailable_power = $userQuality[0]->getUserQuality() == null || $userQuality[0]->getUserQuality()->getLevel() <= 0 ? true : false;
+            
+            // var_dump($quality->qualityTranslations[0]);
+            // var_dump(Yii::$app->language);
+            
+            $name = $quality->name;
+            
+            if(Yii::$app->language == 'es' && isset($quality->qualityTranslations[0]))
+                $name = $quality->qualityTranslations[0]->name;
+            
         ?>
-            <div class="col-xs-3 text-center <?= $unavailable_power ? 'unavailable-power' : '' ?>">
-                <div style = "height: 175px;">
-                  <img src = "<?php echo $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->image; ?>" width=100 class = "power-border"></img>
-
-                  <h6><?= isset($quality->qualityTranslations[0]) ? $quality->qualityTranslations[0]->name : $quality->name; ?></h6>
-
-                  <span style = "color: #28C503"><?php echo Yii::t('MissionsModule.base', 'Level {level}', array('level' => null != $userQuality[0]->getUserQuality() ? $userQuality[0]->getUserQuality()->getLevel() : 0)); ?></span>
+            <div class="col-xs-6 <?= $unavailable_power ? 'unavailable-power' : '' ?>" style = "margin-bottom:50px">
                 
+                <div class="row" style = "margin-bottom:20px">
+                    <div class="col-xs-4">
+                        <img src = "<?php echo $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->image; ?>" width=100 class = "power-border"></img>
+                    </div>
+                    <div class="col-xs-8">
+                        <h5 style = "margin-left:5px; min-height: 40px;"><?= $name; ?></h5>
+                        <span style = "color: #28C503; margin-left:5px"><?php echo Yii::t('MissionsModule.base', 'Level {level}', array('level' => null != $userQuality[0]->getUserQuality() ? $userQuality[0]->getUserQuality()->getLevel() : 0)); ?></span>
+                    </div>
                 </div>
-
-                <br><br><span class="label label-secondary"><?php echo Yii::t('MissionsModule.base', 'Powers'); ?> </span><br><br>
-
-                <?php foreach($userQuality as $userPower): ?>
-                    <div class="power">
-                        <?php
-                            $power = $userPower->getPower();
-                            $percentage = floor($userPower->getCurrentLevelPoints() / $userPower->getNextLevelPoints() * 100) ;
-                        ?>
-
-                        <p class = "text-center"><?= isset($power->powerTranslations[0]) ? $power->powerTranslations[0]->title : $power->title ?></p>
-
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?= $percentage ?>%;">
-                                <span class="sr-only"></span>
+                
+                <?php 
+                
+                    foreach($userQuality as $userPower):
+                    
+                    $power = $userPower->getPower();
+                    $percentage = floor($userPower->getCurrentLevelPoints() / $userPower->getNextLevelPoints() * 100);
+                    
+                    $power_name = $power->title;
+            
+                    if(Yii::$app->language == 'es' && isset($power->powerTranslations[0]))
+                        $power_name = $power->powerTranslations[0]->title;
+                             
+                ?>
+                
+                    <div style = "margin-bottom:20px">
+                
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <h1 style = "font-size: 50pt; margin-top:0"><?= $userPower->getLevel() ?></h1>
                             </div>
-                        </div>
+                            <div class="col-xs-10" style = "margin-top:5px">
+                        
+                                <p style = "margin-bottom:2px"><?= $power_name ?></p>
+                                
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?= $percentage ?>%;">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                </div>
+                                
+                                <div style = "text-align:end; font-size:10pt">
+                                    <?php echo Yii::t('MissionsModule.base', 'Points to Level: {total}', array('total' => ($userPower->getRemainingPointsToLevelUp()))) ?>
+                                </div>
 
-                        <div class="level italic">
-                            <?php echo Yii::t('MissionsModule.base', 'Level {level}', array('level' => $userPower->getLevel())); ?>
-                        </div>
-
-                        <div class="points italic">
-                            <?php echo Yii::t('MissionsModule.base', '{points} / {total}', array('points' => $userPower->getCurrentLevelPoints(), 'total' => $userPower->getNextLevelPoints())); ?>
+                            </div>
                         </div>
 
                     </div>
                 <?php endforeach; ?>
-
-
+  
             </div>
         <?php endforeach; ?>
 

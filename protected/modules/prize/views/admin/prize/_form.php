@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name') ?>
     <?= $form->field($model, 'quantity')->input('number') ?>
-    <?= $form->field($model, 'weight')->input('number') ?>
+    <?= $form->field($model, 'weight')->input('number') ?> <span><?php echo Yii::t('PrizeModule.base', 'weight explanation') ?></span>
     <?= $form->field($model, 'week_of')->widget(\yii\jui\DatePicker::className(),[
         'dateFormat' => 'yyyy-MM-dd',
       ]) ?>

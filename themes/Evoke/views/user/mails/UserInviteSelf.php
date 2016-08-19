@@ -96,7 +96,13 @@ use humhub\models\Setting;
                                                 <tr>
                                                     <td style="font-size: 14px; line-height: 22px; font-family:Open Sans,Arial,Tahoma, Helvetica, sans-serif; color:#254054; font-weight:300; text-align:center; ">
 
-                                                        <?php echo Yii::t('UserModule.views_mails_UserInviteSelf', 'Please click on the button below to proceed with your registration!'); ?>
+                                                        <?php // echo Yii::t('UserModule.views_mails_UserInviteSelf', 'Please click on the button below to proceed with your registration!'); ?>
+                                                        
+                                                        <img src="http://i.imgur.com/cQsndoX.png" width = "120px" style = "border-radius: 50%; border: 3px solid #254054; margin-bottom:10px">
+                                                        
+                                                        <p style = "font-style:italic">&ldquo;<?php echo Yii::t('UserModule.views_mails_UserInviteSelf', 'This is Alchemy, and this is an Urgent Evoke. Wherever you are, whoever you are, if you found this message, it\'s your destiny to join us.'); ?>&rdquo;</p>
+                                                        
+                                                        <p><?php echo Yii::t('UserModule.views_mails_UserInviteSelf', 'Evoke is a network of social innovators that use their powers to save the world. And this is an invitation to join us.<br><br>During the next 16 weeks you and your team will complete 8 missions and create with the community an Evokation -- your team project that seeks to solve problems in your community of Soacha.  At the end of this journey, the Evoke network will recognize the best Evokations.<br><br>Evoke is counting on you'); ?></p>
 
                                                     </td>
                                                 </tr>

@@ -32,6 +32,17 @@ class NewEvidence extends \humhub\modules\notification\components\BaseNotificati
         return parent::send($user);
     }
 
+    public function render(){
+
+        if($this->source == null){
+            $this->delete();
+            return;
+        }else{
+            return parent::render();
+        }
+
+    }
+    
 }
 
 ?>

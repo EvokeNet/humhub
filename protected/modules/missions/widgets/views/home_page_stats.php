@@ -36,7 +36,7 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
                         <p style = "font-size:9pt"><?= Yii::t('MissionsModule.base', 'Earn Evocoins by reviewing evidence.') ?></p>
                     </div>
 
-                    <div style = "position:absolute; right:0; top:10px">
+                    <div style = "position:appbsolute; right:0; top:10px">
                         <div class = "home-widget-evocoins">
                             <img src="<?php echo Url::to('@web/themes/Evoke/img/evocoin_bg.png') ?>" width = "120px">
                             <div><p style = "font-size:15pt"><?= $wallet->amount ?></p></div>
@@ -70,7 +70,7 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
                 </h4>
 
                 <?php if($member): ?>
-                    <a id="submit_evidence" class="btn btn-cta1" style="float: right; margin-top:5px" href="<?= Url::to(['/missions/evokation/index', 'sguid' => $member->space->guid]); ?>">
+                    <a id="submit_evidence" class="btn btn-cta1" style="float: right; margin-top:5px" href="<?= Url::to(['/missions/evidence/missions', 'sguid' => $member->space->guid]); ?>">
                         <?php echo Yii::t('MissionsModule.base', 'Submit Evidence'); ?>
                     </a>
                 <?php endif; ?>
@@ -104,7 +104,7 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
                 </div>
 
                 <br>
-                <?php if($space): ?>
+                <?php if($space && $team_id): ?>
                 <div class = "text-center">
                     <a class = "btn btn-cta1" href='<?= Url::to(['/missions/review/index', 'sguid' => $space->guid]) ?>'>
                             <?= Yii::t('MissionsModule.base', 'Review Evidence') ?>

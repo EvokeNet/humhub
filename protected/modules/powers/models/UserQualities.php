@@ -81,7 +81,7 @@ class UserQualities extends \yii\db\ActiveRecord
     }
 
     public function getLevel(){
-        if(!$this->level){
+        if(null == $this->level){
 
             $quality_powers = QualityPowers::findAll(['quality_id' => $this->quality_id]);
 
@@ -105,7 +105,7 @@ class UserQualities extends \yii\db\ActiveRecord
     public function updateQualityLevel($quality_id, $user_id){
 
         $query = (new \yii\db\Query())
-        ->select(['min(level) as level'])
+        ->select(['min(IFNULL(level,0)) as level'])
         ->from('user_powers p')
         ->join('INNER JOIN', 'quality_powers q', 'q.power_id = p.power_id')
         ->where(['user_id' => $user_id, 'quality_id' => $quality_id])
@@ -129,13 +129,18 @@ class UserQualities extends \yii\db\ActiveRecord
         }else if( ( (isset($userQuality->level) && $userQuality->level < 1) || (!isset($userQuality->level)) ) && $level >= 1)  {
             $new_power = true;
         }
-
+        
+        $name = $userQuality->getQualityObject()->name;
+            
+        if(Yii::$app->language == 'es' && isset($userQuality->getQualityObject()->qualityTranslations[0]))
+            $name = $userQuality->getQualityObject()->qualityTranslations[0]->name;
+                
         if($new_power){
             AlertController::createAlert(
-                "Congratulations!", 
+                Yii::t('PowersModule.base', "Congratulations!"), 
                 Yii::t(
-                    'MissionsModule.base', ' You have earned the {super_power_name} super power!!', 
-                    array('super_power_name' => $userQuality->getQualityObject()->name)
+                    'PowersModule.base', 'You have earned the {super_power_name} super power!', 
+                    array('super_power_name' => $name)
                 ),
                 'secondary'
             );

@@ -16,7 +16,8 @@ use app\modules\matching_questions\models\MatchingQuestions;
                     //Now, it is time to find out what type of Evoke agent are you. What do you know?
                     //What are the strengths, passions, and abilities you will bring to the Evoke network?
                     //Answer the following and find out what type of Super Hero is hiding inside you!') ?>
-                    <?= Yii::t('MatchingModule.base', 'By discovering your natural powers, you can learn how to fit into the Evoke network. Try to imagine vividly what would you do in each of the scenarios described and honestly answer each question.') ?>  
+                    
+                    <?= Yii::t('MatchingModule.base', 'Discover your powers. Imagine what you would do in each of the following scenarios. Answer honestly and discover your true potential.') ?>  
 
                     <?php if(Yii::$app->session->getFlash('matching_questions_incomplete_answers')): ?>
                         <br><span id="warning" class="warning"><?= Yii::t('MatchingModule.base', 'In case of redirect, please make sure to answer all questions') ?></span>
@@ -46,7 +47,7 @@ use app\modules\matching_questions\models\MatchingQuestions;
                             <!-- MULTIPLE CHOICE -->
                             <?php if($maxValue > 2) :  ?>
                                 <label style = "font-size:12pt">
-                                    <input type="number" min="1" max=<?= $maxValue ?> name="matching_answer_<?= $answer->id ?>_matching_question_<?= $question->id ?>" value = "" >
+                                    <input type="text" pattern="[1-<?= $maxValue ?>]*" class= "number_input" min="1" max=<?= $maxValue ?> name="matching_answer_<?= $answer->id ?>_matching_question_<?= $question->id ?>" value = "" >
                                         <?= isset($answer->matchingAnswerTranslations[0]) ? $answer->matchingAnswerTranslations[0]->description : $answer->description ?>
                                 </label>   <br>
                             <!-- SINGLE CHOICE -->
@@ -79,6 +80,10 @@ use app\modules\matching_questions\models\MatchingQuestions;
 
 <style type="text/css">
 
+.number_input{
+    width: 60px;
+}
+
 .intro{
     /*margin-left: 20px;*/
     font-size: 22px;
@@ -107,7 +112,7 @@ form{
     /*padding-top: 30px;*/
     padding: 20px 50px 0px;
 }
-.topbar {
+.topbar, .footer {
   display: none;
 }
 
@@ -164,7 +169,7 @@ body {
                             order.push(inputValue);
 
                         }else{
-                            warningMessage("<?= Yii::t('MatchingModule.base', 'Answer all the order questions from 1 to 4.') ?>");
+                            warningMessage("<?= Yii::t('MatchingModule.base', 'Answer all the questions before submitting.') ?>");
                             return false;
                         }
                     }

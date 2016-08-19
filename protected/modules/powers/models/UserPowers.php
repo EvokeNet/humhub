@@ -124,27 +124,46 @@ class UserPowers extends \yii\db\ActiveRecord
         return $this->level;
     }
 
+    //diff between level limiar and points to reach next level
     public function getNextLevelPoints(){
+        return $this->getNextLevelTotalPoints() - $this->getLevelPoints($this->level);
+    }
 
+    //total value to reach next level
+    public function getNextLevelTotalPoints(){
         $level = $this->getLevel() + 1;
+        return $this->getLevelPoints($level);
+    }
+
+    //Points limiar for each level
+    public function getLevelPoints($level){
+        $level_points = 0;
+        $level_aux = 0;
 
         if($level >= 1){
             $power = Powers::findOne($this->power_id);
             $improve_multiplier = $power->improve_multiplier;
             $improve_offset = $power->improve_offset;
 
-            if(!$improve_multiplier || !$improve_offset){
+            if(!isset($improve_multiplier) || !isset($improve_offset)){
                 return 1;
             }
 
-            return floor(floatval($improve_multiplier) * pow( $level , 1.95 ) + floatval($improve_offset));
+            while($level_aux < $level){
+                $level_aux++;
+                $level_points += floor(floatval($improve_multiplier) * pow( $level_aux , 1.95 ) + floatval($improve_offset));            
+            } 
+
+            return $level_points;
         }else{
-            return 1;
+            return 0;
         }
     }
 
+    //Points above current level limiar
     public function getCurrentLevelPoints(){
-
+        $level_points = 0;
+        $level_aux = 0;
         $level = $this->getLevel();
 
         if($level >= 1){
@@ -152,14 +171,25 @@ class UserPowers extends \yii\db\ActiveRecord
             $improve_multiplier = $power->improve_multiplier;
             $improve_offset = $power->improve_offset;
 
-            if(!$improve_multiplier || !$improve_offset){
+
+            if(!isset($improve_multiplier) || !isset($improve_offset)){
                 return 0;
             }
 
-            return $this->value - floor(floatval($improve_multiplier) * pow( $level , 1.95 ) + floatval($improve_offset));
+            while($level_aux < $level){
+                $level_aux++;
+                $level_points += floor(floatval($improve_multiplier) * pow( $level_aux , 1.95 ) + floatval($improve_offset));             
+            } 
+
+            return $this->value - $level_points;
         }else{
             return $this->value;
         }
+    }
+
+    // Remaining points to level up
+    public function getRemainingPointsToLevelUp(){
+        return $this->getNextLevelPoints() - $this->getCurrentLevelPoints();
     }
 
     public function updateLevel(){
@@ -176,8 +206,9 @@ class UserPowers extends \yii\db\ActiveRecord
 
         while($value_aux < $this->value){
             $level_aux++;
-            $value_aux = floor(floatval($improve_multiplier) * pow( $level_aux , 1.95 ) + floatval($improve_offset));            
+            $value_aux += floor(floatval($improve_multiplier) * pow( $level_aux , 1.95 ) + floatval($improve_offset)); 
         } 
+        
 
         if($value_aux > $this->value){
             $level_aux--;

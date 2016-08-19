@@ -1,6 +1,6 @@
 <?php
 return array (
-  'First name' => 'Primer nombre',
+  'First name' => 'Nombre',
   'Last name' => 'Apellido',
   'Birthday' => 'Fecha de nacimiento',
   'Custom' => 'Personalizado',
