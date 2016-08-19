@@ -24,7 +24,7 @@ class Events extends \yii\base\Object
     public static function onAuthUser($event){
 
         //on login and create account actions
-        if($event->action->actionMethod === 'actionLogin' || $event->action->actionMethod === 'actionCreateAccount'){
+        if(property_exists($event->action, "actionMethod") && (($event->action->actionMethod) && $event->action->actionMethod === 'actionLogin' || $event->action->actionMethod === 'actionCreateAccount')){
           //make sure user is logged in
           if (null != Yii::$app->user->getIdentity())
           {

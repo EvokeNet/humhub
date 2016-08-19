@@ -156,7 +156,7 @@ class UserPowers extends \yii\db\ActiveRecord
 
             return $level_points;
         }else{
-            return 1;
+            return 0;
         }
     }
 
@@ -178,7 +178,7 @@ class UserPowers extends \yii\db\ActiveRecord
 
             while($level_aux < $level){
                 $level_aux++;
-                $level_points += floor(floatval($improve_multiplier) * pow( $level_aux , 1.95 ) + floatval($improve_offset));            
+                $level_points += floor(floatval($improve_multiplier) * pow( $level_aux , 1.95 ) + floatval($improve_offset));             
             } 
 
             return $this->value - $level_points;
@@ -206,8 +206,9 @@ class UserPowers extends \yii\db\ActiveRecord
 
         while($value_aux < $this->value){
             $level_aux++;
-            $value_aux += floor(floatval($improve_multiplier) * pow( $level_aux , 1.95 ) + floatval($improve_offset));            
+            $value_aux += floor(floatval($improve_multiplier) * pow( $level_aux , 1.95 ) + floatval($improve_offset)); 
         } 
+        
 
         if($value_aux > $this->value){
             $level_aux--;
