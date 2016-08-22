@@ -17,7 +17,6 @@ $firstSecondary = true;
             <?php echo nl2br(isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description) ?>
         </p>
         <br />
-        <p class="description"><?= Yii::t('MissionsModule.widgets_views_evidenceForm', "<strong>Rubric:</strong> {rubric}", array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></p>
 
         <div class="row" style = "margin-top:20px">
             <div class="col-xs-5 text-center">
@@ -62,6 +61,7 @@ $firstSecondary = true;
 
             </div>
         </div>
+        <p class="description"><?= Yii::t('MissionsModule.widgets_views_evidenceForm', "<strong>Rubric:</strong> {rubric}", array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></p>
 
     </div>
 </div>

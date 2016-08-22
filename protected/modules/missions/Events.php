@@ -70,7 +70,6 @@ class Events
     
     public static function onSidebarInit($event)
     {
-
         $user = Yii::$app->user->getIdentity();
 
         if (Yii::$app->user->isGuest || $user->getSetting("hideSharePanel", "share") != 1) {
@@ -97,6 +96,10 @@ class Events
             }
 
         }
+
+    }
+
+    public static function onSidebarRun($event){
 
     }
 
@@ -233,60 +236,72 @@ class Events
 
     }
 
-    public static function onMissionSpaceMenuInit($event)
-    {
-
-        $team_id = Team::getUserTeam(Yii::$app->user->getIdentity()->id);
-
-        $space = $event->sender->space;
-        if ($space->isModuleEnabled('missions')  && $team_id == $space->id) {
-            $event->sender->addItem(array(
-                'label' => Yii::t('MissionsModule.event', 'Missions'),
-                'group' => 'modules',
-                'url' => $space->createUrl('/missions/evidence/missions'),
-                'icon' => '<i class="fa fa-sitemap"></i>',
-                'isActive' => (Yii::$app->controller->module
-                && Yii::$app->controller->module->id == 'missions'
-                && Yii::$app->controller->id == 'evidence'),
-            ));
-        }
-    }
-
-    public static function onEvokationSpaceMenuInit($event)
-    {
-        $team_id = Team::getUserTeam(Yii::$app->user->getIdentity()->id);
-
-        $space = $event->sender->space;
-        if ($space->isModuleEnabled('missions') &&  $team_id == $space->id && Setting::Get('enabled_evokation_page_visibility')) {
-            $event->sender->addItem(array(
-                'label' => Yii::t('MissionsModule.event', 'Evokation'),
-                'group' => 'modules',
-                'url' => $space->createUrl('/missions/evokations/home'),
-                'icon' => '<i class="fa fa-users"></i>',
-                'isActive' => (Yii::$app->controller->module
-                && Yii::$app->controller->module->id == 'missions'
-                && Yii::$app->controller->id == 'evokations'),
-            ));
-        }
-    }
-
-    public static function onReviewSpaceMenuInit($event)
+    public static function onSpaceMenuInit($event)
     {
         $user = Yii::$app->user->getIdentity();
         $team_id = Team::getUserTeam($user->id);
-
         $space = $event->sender->space;
-        if ($space->isModuleEnabled('missions') && ($team_id == $space->id)) {
+
+        if ($space->isModuleEnabled('missions') ) {
+
+            //MEMBERS
             $event->sender->addItem(array(
-                'label' => Yii::t('MissionsModule.event', 'Review Evidence'),
+                'label' => Yii::t('MissionsModule.event', 'Members'),
                 'group' => 'modules',
-                'url' => $space->createUrl('/missions/review/index'),
-                'icon' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i>',
+                'url' => $space->createUrl('/missions/space/members'),
+                'icon' => '<i class="fa fa-group"></i>',
+                'sortOrder' => 200,
                 'isActive' => (Yii::$app->controller->module
                 && Yii::$app->controller->module->id == 'missions'
-                && Yii::$app->controller->id == 'review'),
+                && Yii::$app->controller->id == 'space'),
             ));
+
+            
+            if($team_id == $space->id){
+
+                //MISSIONS
+                $event->sender->addItem(array(
+                    'label' => Yii::t('MissionsModule.event', 'Missions'),
+                    'group' => 'modules',
+                    'url' => $space->createUrl('/missions/evidence/missions'),
+                    'icon' => '<i class="fa fa-sitemap"></i>',
+                    'sortOrder' => 400,
+                    'isActive' => (Yii::$app->controller->module
+                    && Yii::$app->controller->module->id == 'missions'
+                    && Yii::$app->controller->id == 'evidence'),
+                ));
+
+                //REVIEW EVIDENCE
+                $event->sender->addItem(array(
+                    'label' => Yii::t('MissionsModule.event', 'Review Evidence'),
+                    'group' => 'modules',
+                    'url' => $space->createUrl('/missions/review/index'),
+                    'icon' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i>',
+                    'sortOrder' => 500,
+                    'isActive' => (Yii::$app->controller->module
+                    && Yii::$app->controller->module->id == 'missions'
+                    && Yii::$app->controller->id == 'review'),
+                ));
+
+                if(Setting::Get('enabled_evokation_page_visibility')){
+
+                    //EVOKATION
+                    $event->sender->addItem(array(
+                        'label' => Yii::t('MissionsModule.event', 'Evokation'),
+                        'group' => 'modules',
+                        'url' => $space->createUrl('/missions/evokations/home'),
+                        'icon' => '<i class="fa fa-users"></i>',
+                        'sortOrder' => 300,
+                        'isActive' => (Yii::$app->controller->module
+                        && Yii::$app->controller->module->id == 'missions'
+                        && Yii::$app->controller->id == 'evokations'),
+                    ));
+                }
+
+
+            }
         }
+
     }
 
     /**
@@ -382,10 +397,11 @@ class Events
             }
 
             $event->sender->addWidget(PopUpWidget::className(), []);    
-
         }
         
     }  
+
+
 
 
     public function onTopMenuRun($event)  {

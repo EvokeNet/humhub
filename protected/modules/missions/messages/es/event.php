@@ -22,6 +22,7 @@ return [
     'Evokation Deadline' => 'Fin de plazo de Evokación',
     'Evoke Settings' => 'Ajustes de Evoke',
     'Leaderboard' => 'Clasificación',
+    'Members' => 'Miembros',
     'Missions' => 'Misiones',
     'My Team' => 'Mi Equipo',
     'Review Evidence' => 'Evaluar Evidencias',

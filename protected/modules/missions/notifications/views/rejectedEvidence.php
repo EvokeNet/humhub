@@ -4,7 +4,9 @@ use yii\helpers\Html;
 use app\modules\missions\models\Evidence;
 
 $vote = $source;
+
 $evidence = Evidence::findOne($vote->evidence_id);
+
 ?>
 <?php
 

@@ -91,7 +91,12 @@ class CreateController extends Controller
             }
 
             return $this->actionModules($model->id);
+        }else{
+            if($teamChecked){
+                $model->is_team = 1;
+            }
         }
+
 
         $visibilityOptions = [];
         if (Setting::Get('allowGuestAccess', 'authentication_internal') && Yii::$app->user->permissionmanager->can(new CreatePublicSpace)) {
