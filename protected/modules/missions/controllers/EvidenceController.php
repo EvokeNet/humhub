@@ -94,12 +94,30 @@ class EvidenceController extends ContentContainerController
     }
 
     public function getEvidenceCreatedMessage($activityPowers){
-       $message = Yii::t('MissionsModule.base', 'You just gained').' ';
 
-       $count = 0;
-       $powersTotal = count($activityPowers);
+        $message_initial = "";
 
-       foreach($activityPowers as $activity_power){
+        //ACTIVITY MESSAGE
+        $activity = Activities::findOne($activityPowers[0]->activity_id);
+
+
+        if(isset($activity->activityTranslations[0])){
+            if(isset($activity->activityTranslations[0]->message)){
+                $message_initial = $activity->activityTranslations[0]->message;
+            }
+        }
+
+        if($message_initial == "" && isset($activity->message)){
+            $message_initial = $activity->message;
+        }
+
+
+        $message = Yii::t('MissionsModule.base', 'You just gained').' ';
+
+        $count = 0;
+        $powersTotal = count($activityPowers);
+
+        foreach($activityPowers as $activity_power){
             $count++;
 
             if($count == $powersTotal - 1){
@@ -122,9 +140,13 @@ class EvidenceController extends ContentContainerController
                 $name = $activity_power->getPower()->powerTranslations[0]->title;
 
             $message = $message . $activity_power->value . ' '. $pointString .' '. Yii::t('MissionsModule.base', 'in').' '. $name . $separator;
-       }
+        }
 
-       return $message;
+        if($message_initial != ""){
+            return $message_initial . "<br>" .  $message;
+        }else{
+            return $message;
+        }
 
     }
 
