@@ -248,7 +248,7 @@ class FixedStream extends \yii\base\Action
             //delete conflict
             if ($underlyingObject === null) {
                 $wallEntry->delete();
-                break;
+                continue;
             }
 
             $underlyingObject->populateRelation('content', $wallEntry->content);
