@@ -19,7 +19,7 @@ echo humhub\modules\content\widgets\Stream::widget(array(
     'streamAction' => '/missions/evidence/userfeed',
     'messageStreamEmpty' => ($canCreateEvidences) ?
             Yii::t('MissionsModule.widgets_views_stream', 'There are no evidences yet! Be the first and create one...') :
-            Yii::t('MissionsModule.widgets_views_stream', 'There are no evidences yet!'),
+            Yii::t('MissionsModule.widgets_views_stream', 'Nothing here yet!'),
     'messageStreamEmptyCss' => ($canCreateEvidences) ? 'placeholder-empty-stream' : '',
     'filters' => [
     ]
