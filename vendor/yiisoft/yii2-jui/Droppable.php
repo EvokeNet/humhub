@@ -31,6 +31,19 @@ use yii\helpers\Html;
 class Droppable extends Widget
 {
     /**
+     * @inheritdoc
+     */
+    protected $clientEventMap = [
+        'activate' => 'dropactivate',
+        'create' => 'dropcreate',
+        'deactivate' => 'dropdeactivate',
+        'drop' => 'drop',
+        'out' => 'dropout',
+        'over' => 'dropover',
+    ];
+
+
+    /**
      * Initializes the widget.
      */
     public function init()

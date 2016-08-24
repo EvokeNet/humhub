@@ -1,5 +1,6 @@
 {
     "require": {
-        "janisto/yii2-timepicker": "*"
+        "janisto/yii2-timepicker": "*",
+        "yiisoft/yii2-redis": "^2.0"
     }
 }
