@@ -1,6 +1,7 @@
 <?php
 
 namespace app\modules\novel\models;
+use app\modules\languages\models\Languages;
 
 use Yii;
 
@@ -28,6 +29,7 @@ use Yii;
        return [
          ['page_image', 'string', 'max' => 256],
          ['page_number', 'integer', 'min' => 1],
+         [['language_id'], 'exist', 'skipOnError' => true, 'targetClass' => Languages::className(), 'targetAttribute' => ['language_id' => 'id']],
        ];
      }
 

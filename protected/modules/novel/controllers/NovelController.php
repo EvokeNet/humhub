@@ -10,6 +10,7 @@ use humhub\modules\user\models\User;
 use app\modules\powers\models\UserPowers;
 use app\modules\powers\models\Powers;
 use app\modules\matching_questions\controllers\MatchingQuestionsController;
+use app\modules\languages\models\Languages;
 
 
 /**
@@ -27,13 +28,15 @@ class NovelController extends Controller
 
     public function actionGraphicNovel($page)
     {
-      $page_count = count(NovelPage::find()->all());
+      $language = Languages::find()->where(['code' => Yii::$app->language])->one();
+
+      $page_count = count(NovelPage::find()->where(['language_id' => $language->id])->all());
 
       if ($page > $page_count) {
         return $this->redirect(['transformation']);
       }
 
-      $page = NovelPage::find()->where(['page_number' => $page])->one();
+      $page = NovelPage::find()->where(['page_number' => $page, 'language_id' => $language->id])->one();
 
       return $this->render('novel/page', array('page' => $page));
     }
