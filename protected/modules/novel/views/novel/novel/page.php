@@ -53,7 +53,7 @@ use app\modules\novel\models\NovelPage;
 </style>
 
 <div class="row">
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-xs-8 col-xs-offset-2">
     <?php if ($page->page_number === 1 && !Yii::$app->user->getIdentity()->has_read_novel && !Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
       <div class="panel panel-default">
         <div class="panel-body">
