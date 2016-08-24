@@ -357,6 +357,9 @@ input[type=select] {
 .topbar .dropdown-header:hover {
   color: #bebebe;
 }
+.dropdown-menu > li > a {
+  padding: 15px 30px;
+}
 #topbar-first {
   background-color: #254054;
   top: 0;

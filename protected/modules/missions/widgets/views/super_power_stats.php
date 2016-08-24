@@ -31,10 +31,10 @@ use app\modules\missions\models\Evidence;
             <div class="col-xs-6 <?= $unavailable_power ? 'unavailable-power' : '' ?>" style = "margin-bottom:50px">
                 
                 <div class="row" style = "margin-bottom:20px">
-                    <div class="col-xs-4">
+                    <div class="col-sm-4">
                         <img src = "<?php echo $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->image; ?>" width=100 class = "power-border"></img>
                     </div>
-                    <div class="col-xs-8">
+                    <div class="col-sm-8">
                         <h5 style = "margin-left:5px; min-height: 40px;"><?= $name; ?></h5>
                         <span style = "color: #28C503; margin-left:5px"><?php echo Yii::t('MissionsModule.base', 'Level {level}', array('level' => null != $userQuality[0]->getUserQuality() ? $userQuality[0]->getUserQuality()->getLevel() : 0)); ?></span>
                     </div>
