@@ -28,6 +28,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
       if ($model->load(Yii::$app->request->post())) {
 
         $uploadedFile = UploadedFile::getInstance($model, 'page_image');
+
         // only upload a file if it was attached
         if ($uploadedFile !== null) {
           $model->page_image = UploadedFile::getInstance($model, 'page_image');
@@ -45,6 +46,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
     public function actionUpdate($id)
     {
         $model = NovelPage::findOne(['id' => Yii::$app->request->get('id')]);
+        $old_image = $model->page_image;
 
         if ($model->load(Yii::$app->request->post())) {
           $uploadedFile = UploadedFile::getInstance($model, 'page_image');
@@ -54,6 +56,8 @@ class AdminController extends \humhub\modules\admin\components\Controller
             $model->page_image = UploadedFile::getInstance($model, 'page_image');
             $model->page_image->saveAs('uploads/' . $model->page_image->baseName . '.' . $model->page_image->extension);
             $model->page_image = 'uploads/' . $model->page_image->baseName . '.' . $model->page_image->extension;
+          } else {
+            $model->page_image = $old_image;
           }
 
           if($model->save())
