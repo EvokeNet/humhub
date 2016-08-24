@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\modules\languages\models\Languages;
 
 use yii\widgets\Breadcrumbs;
 
@@ -23,13 +24,20 @@ echo Breadcrumbs::widget([
           <tr>
               <th><?php echo Yii::t('NovelModule.base', 'Page Image'); ?></th>
               <th><?php echo Yii::t('NovelModule.base', 'Page Number') ?></th>
+              <th><?php echo Yii::t('NovelModule.base', 'Language') ?></th>
               <th>&nbsp;</th>
               <th>&nbsp;</th>
           </tr>
           <?php foreach ($pages as $page): ?>
+              <?php $language = Languages::find()->where(['id' => $page->language_id])->one() ?>
               <tr>
                   <td><?php echo $page->page_image; ?></td>
                   <td><?php echo $page->page_number; ?></td>
+                  <td>
+                    <?php if(isset($language)): ?>
+                      <?php echo $language->language ?>
+                    <?php endif; ?>
+                  </td>
                   <td>
                       <?php echo Html::a(
                           Yii::t('NovelModule.base', 'Edit'),

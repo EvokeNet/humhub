@@ -39,14 +39,14 @@ use yii\helpers\Html;
 
                                                     <td valign="top" align="left" style="padding-right:20px;">
                                                         <!-- START: USER IMAGE -->
-                                                        <a href="<?php echo $originator->createUrl('/user/profile', [], true); ?>">
+                                                        <!--<a href="<?php //echo $originator->createUrl('/user/profile', [], true); ?>">
                                                             <img
-                                                                src="<?php echo $originator->getProfileImage()->getUrl("", true); ?>"
+                                                                src="<?php //echo $originator->getProfileImage()->getUrl("", true); ?>"
                                                                 width="50"
                                                                 alt=""
                                                                 style="max-width:50px; display:block !important; border-radius: 4px;"
                                                                 border="0" hspace="0" vspace="0"/>
-                                                        </a>
+                                                        </a>-->
                                                         <!-- END: USER IMAGE -->
                                                     </td>
 

@@ -34,4 +34,6 @@ return [
     'Update' => '',
     'Uploaded Image: {file}' => '',
     'novel intro' => 'Before begining your journey, I want to share the story of Marta with you. Her case can help you understand the problems of your own community. She will be your guide and will be available to help you in the missions, activities, and evokations to come.',
+    'Select Language' => '',
+    'Language' => '',
 ];

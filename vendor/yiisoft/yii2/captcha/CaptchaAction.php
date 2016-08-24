@@ -348,6 +348,7 @@ class CaptchaAction extends Action
         }
 
         $image->setImageFormat('png');
+        var_dump($image->getImageBlob());
         return $image->getImageBlob();
     }
 

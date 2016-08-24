@@ -9,6 +9,33 @@ use humhub\modules\missions\components\ContentContainerController;
 class SpaceController extends ContentContainerController
 {
 
+
+	/**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'acl' => [
+                'class' => \humhub\components\behaviors\AccessControl::className(),
+                'guestAllowedActions' => ['index', 'stream']
+            ]
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function actions()
+    {
+        return array(
+            'stream' => array(
+                'class' => \humhub\modules\missions\components\actions\ContentContainerStream::className(),
+                'contentContainer' => $this->contentContainer
+            ),
+        );
+    }
+
     public function actionMembers()
     {
         $memberQuery = $this->space->getMemberships();

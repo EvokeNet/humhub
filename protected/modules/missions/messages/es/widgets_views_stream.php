@@ -21,4 +21,5 @@ return [
     'There are no evokations yet! Be the first and create one...' => 'No hay Evokaciones aún! Sea el primero y cree una...',
     'There are no evidences yet!' => 'No hay Evidencias aún!',
     'There are no evidences yet! Be the first and create one...' => 'No hay Evidencias aún! Sea el primero y cree una...',
+    'Nothing here yet!' => 'No hay nada aquí aún!',
 ];

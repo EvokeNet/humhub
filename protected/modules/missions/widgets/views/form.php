@@ -61,6 +61,9 @@ $firstSecondary = true;
 
             </div>
         </div>
+        
+        <br />
+
         <p class="description"><?= Yii::t('MissionsModule.widgets_views_evidenceForm', "<strong>Rubric:</strong> {rubric}", array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></p>
 
     </div>
