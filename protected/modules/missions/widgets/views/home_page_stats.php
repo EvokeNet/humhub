@@ -38,7 +38,6 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
 
                     <div class = "col-sm-5 text-center">
                         <div class = "home-widget-evocoins" style = "margin-left:30px">
-
                             <img src="<?php echo Url::to('@web/themes/Evoke/img/evocoin_bg.png') ?>" width = "120px">
                             <div><p style = "font-size:15pt"><?= $wallet->amount ?></p></div>
                         </div>
@@ -90,13 +89,14 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
 
             <div class = "grey_box row">
                 
-                <div class="col-xs-7 col-xs-7 col-sm-7">
+                <div class="col-xs-7 col-md-7 col-sm-7">
                     <h6><?= Yii::t('MissionsModule.base', 'Your Evocoins') ?></h6>
                     <p style = "font-size:9pt"><?= Yii::t('MissionsModule.base', 'Earn Evocoins by reviewing evidence.') ?></p>
                 
                 </div>
                             
-                <div class="col-xs-5 col-xs-5 col-sm-5" style = "margin-top:10px">
+
+                <div class="col-xs-5 col-md-5 col-sm-5" style = "margin-top:10px">
 
                     <div style = "position:relative; text-align:center; float: left;">
                         <div class = "home-widget-evocoins">

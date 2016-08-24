@@ -12,12 +12,76 @@ use humhub\compat\CActiveForm;
     ?>
 
     <?php echo $form->textArea($evidence, 'title', array('class' => 'form-control', 'id' => 'evidence_input_title_' . $evidence->id, 'placeholder' => Yii::t('MissionsModule.widgets_views_evidenceForm', 'Edit your Evidence title...'))); ?>
-
-    <?php
-    echo $form->label($evidence, "content", ['class' => 'control-label']);
-    ?>
+    
+    <br>
+    
+    <?php echo $form->label($evidence, "content", ['class' => 'control-label']); ?>
 
     <?php echo $form->textArea($evidence, 'text', array('class' => 'form-control', 'id' => 'evidence_input_text_' . $evidence->id, 'placeholder' => Yii::t('MissionsModule.widgets_views_evidenceForm', 'Edit your Evidence content...'))); ?>    
+
+    <br><hr />
+    
+    <?php
+    // Creates Uploading Button
+    echo humhub\modules\file\widgets\FileUploadButton::widget(array(
+        'uploaderId' => 'post_upload_' . $evidence->id,
+        'object' => $evidence
+    ));
+    ?>
+    
+    <br><br>
+ 
+    <div class="content_edit">
+        <?php if(version_compare(Yii::$app->version, '1.0.0-beta.1', 'gt')) : ?>
+        <?php echo \humhub\widgets\LoaderWidget::widget(["id" => 'evidenceform-loader_'.$evidence->id, 'cssClass' => 'loader-postform hidden']); ?>
+        <?php endif; ?>
+            <?php
+        echo \humhub\widgets\AjaxButton::widget([
+            'label' => Yii::t('MissionsModule.widgets_EvidenceFormWidget', 'Save'),
+            'ajaxOptions' => [
+                'dataType' => 'json',
+                'type' => 'POST',
+                'beforeSend' => 'editEvidenceBeforeSendHandler',
+                'success' => 'editEvidenceResultHandler',
+                'url' => $evidence->content->container->createUrl('/missions/evidence/edit', ['id' => $evidence->id]),
+            ],
+            'htmlOptions' => [
+                'class' => 'btn btn-primary btn-comment-submit',
+                'id' => 'evidence_edit_post_' . $evidence->id,
+                'type' => 'submit'
+            ]
+        ]);
+        echo '&nbsp;';
+        echo \humhub\widgets\AjaxButton::widget([
+            'label' => Yii::t('MissionsModule.widgets_EvidenceFormWidget', 'Cancel'),
+            'ajaxOptions' => [
+                'type' => 'POST',
+                'success' => new yii\web\JsExpression('function(html){ $(".wall_' . $evidence->getUniqueId() . '").replaceWith(html); }'),
+                'url' => $evidence->content->container->createUrl('/missions/evidence/reload', ['id' => $evidence->id]),
+            ],
+            'htmlOptions' => [
+                'class' => 'btn btn-danger btn-comment-submit',
+                'id' => 'evidence_edit_cancel_post_' . $evidence->id
+            ]
+        ]);
+        ?>
+        <br />
+    </div>
+
+    <?php
+        // Creates a list of already uploaded Files
+        echo \humhub\modules\file\widgets\FileUploadList::widget(array(
+            'uploaderId' => 'post_upload_' . $evidence->id,
+            'object' => $evidence
+        ));
+        ?>
+
+
+
+    <?php CActiveForm::end(); ?>
+</div>    
+
+
 
 <script type="text/javascript">
     
@@ -42,42 +106,3 @@ use humhub\compat\CActiveForm;
     };
     
 </script>
-    <div class="content_edit">
-        <hr />
-        <?php if(version_compare(Yii::$app->version, '1.0.0-beta.1', 'gt')) : ?>
-        <?php echo \humhub\widgets\LoaderWidget::widget(["id" => 'evidenceform-loader_'.$evidence->id, 'cssClass' => 'loader-postform hidden']); ?>
-        <?php endif; ?>
-            <?php
-        echo \humhub\widgets\AjaxButton::widget([
-            'label' => 'Save',
-            'ajaxOptions' => [
-                'dataType' => 'json',
-                'type' => 'POST',
-                'beforeSend' => 'editEvidenceBeforeSendHandler',
-                'success' => 'editEvidenceResultHandler',
-                'url' => $evidence->content->container->createUrl('/missions/evidence/edit', ['id' => $evidence->id]),
-            ],
-            'htmlOptions' => [
-                'class' => 'btn btn-primary btn-comment-submit',
-                'id' => 'evidence_edit_post_' . $evidence->id,
-                'type' => 'submit'
-            ]
-        ]);
-        echo '&nbsp;';
-        echo \humhub\widgets\AjaxButton::widget([
-            'label' => 'Cancel',
-            'ajaxOptions' => [
-                'type' => 'POST',
-                'success' => new yii\web\JsExpression('function(html){ $(".wall_' . $evidence->getUniqueId() . '").replaceWith(html); }'),
-                'url' => $evidence->content->container->createUrl('/missions/evidence/reload', ['id' => $evidence->id]),
-            ],
-            'htmlOptions' => [
-                'class' => 'btn btn-danger btn-comment-submit',
-                'id' => 'evidence_edit_cancel_post_' . $evidence->id
-            ]
-        ]);
-        ?>
-        <br />
-    </div>
-    <?php CActiveForm::end(); ?>
-</div>    

@@ -5,8 +5,9 @@ namespace humhub\modules\missions\components;
 use Yii;
 use humhub\modules\content\models\Content;
 use humhub\modules\content\components\actions\Stream;
+use humhub\modules\missions\components\actions\FixedStream;
 
-class UserContentContainerStream extends Stream
+class UserContentContainerStream extends FixedStream
 {
 
     public $contentContainer;

@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use app\modules\languages\models\Languages;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\novel\models\NovelPage */
@@ -30,6 +32,11 @@ use yii\widgets\ActiveForm;
     <?php endif; ?>
 
     <?= $form->field($model, 'page_number')->input('number') ?>
+
+    <?= $form->field($model, 'language_id')->dropdownList(
+            ArrayHelper::map(Languages::find()->all(), 'id', 'language'),
+            ['prompt' => Yii::t('NovelModule.base', 'Select Language')]
+        ) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('NovelModule.base', 'Create') : Yii::t('NovelModule.base', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
