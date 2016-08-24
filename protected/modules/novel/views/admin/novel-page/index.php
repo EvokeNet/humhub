@@ -32,7 +32,7 @@ echo Breadcrumbs::widget([
               <tr>
                   <td><?php echo $page->page_image; ?></td>
                   <td><?php echo $page->page_number; ?></td>
-                  <td><?php echo Languages::find()->where(['id' => $page->language_id])->one()->language ?></td>
+                  <td><?php // echo Languages::find()->where(['id' => $page->language_id])->one()->language ?></td>
                   <td>
                       <?php echo Html::a(
                           Yii::t('NovelModule.base', 'Edit'),
