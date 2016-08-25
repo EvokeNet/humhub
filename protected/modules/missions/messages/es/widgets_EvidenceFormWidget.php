@@ -17,5 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Cancel' => '',
+    'Save' => '',
     'Submit Evidence' => 'Enviar Evidencia',
 ];

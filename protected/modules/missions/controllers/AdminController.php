@@ -65,6 +65,12 @@ class AdminController extends \humhub\modules\admin\components\Controller
         $evidences = Evidence::find()->all();
         return $this->render('evokation-evidences/index', array('evidences' => $evidences));
     }
+    
+    public function actionViewEvidences($id)
+    {
+        $model = Evidence::findOne(['id' => Yii::$app->request->get('id')]);
+        return $this->render('evokation-evidences/view', array('model' => $model));
+    }
 
     public function actionDeleteEvidences()
     {

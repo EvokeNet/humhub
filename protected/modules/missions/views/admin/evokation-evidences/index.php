@@ -24,7 +24,7 @@ echo Breadcrumbs::widget([
             <table class="table">
                 <tr>
                     <th><?php echo Yii::t('MissionsModule.base', 'Title'); ?></th>
-                    <th><?php echo Yii::t('MissionsModule.base', 'Text'); ?></th>
+                    <!--<th><?php //echo Yii::t('MissionsModule.base', 'Text'); ?></th>-->
                     <th><?php echo Yii::t('MissionsModule.base', 'Author'); ?></th>
                     <th>&nbsp;</th>
                 </tr>
@@ -32,15 +32,18 @@ echo Breadcrumbs::widget([
                     <tr>
                         <!--<td><?php //echo $category->id_code; ?></td>-->
                         <td><?php echo $evidence->title; ?></td>
-                        <td class="text_min"><?php echo $evidence->text; ?></td>
+                        <!--<td class="text_min"><?php //echo $evidence->text; ?></td>-->
                         <td>
                             <a href="<?= Url::to(['/user/profile', 'uguid' => $evidence->author->guid]) ?>">
                                 <?php echo $evidence->author->username; ?>
                             </a>
                         </td>
                         <td>
-                            <a class = "btn btn-warning btn-sm" target="_blank" href="<?= Url::to(['/content/perma', 'id' => $evidence->getContentObject()->id]) ?>">
+                            <!--<a class = "btn btn-warning btn-sm" target="_blank" href="<?= Url::to(['/content/perma', 'id' => $evidence->getContentObject()->id]) ?>">
                                 <?= Yii::t('MissionsModule.base', 'View') ?>
+                            </a>-->
+                            <a class = "btn btn-warning btn-sm" target="_blank" href="<?= Url::to(['view-evidences', 'id' => $evidence->id]) ?>">
+                                <?= Yii::t('MissionsModule.base', 'View Content') ?>
                             </a>
                             &nbsp;&nbsp;
                             <?php echo Html::a(
