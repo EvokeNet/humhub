@@ -40,7 +40,7 @@ use app\modules\novel\models\NovelPage;
     right: 1em;
   }
 
-  <?php if (!Yii::$app->user->getIdentity()->has_read_novel && !Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
+  <?php if (!Yii::$app->user->getIdentity()->has_read_novel && Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
     .topbar, .footer {
       display: none;
     }
@@ -53,7 +53,7 @@ use app\modules\novel\models\NovelPage;
 
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
-    <?php if ($page->page_number === 1 && !Yii::$app->user->getIdentity()->has_read_novel && !Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
+    <?php if ($page->page_number === 1 && !Yii::$app->user->getIdentity()->has_read_novel && Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="alchemy">
