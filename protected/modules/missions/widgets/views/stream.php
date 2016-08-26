@@ -93,7 +93,7 @@ $this->registerJs($jsLoadWall, View::POS_READY);
 </div>
 
 <!-- show "Load More" button on mobile devices -->
-<div class="col-md-12 text-center visible-xs visible-sm">
+<div class="col-xs-12 text-center visible-xs visible-sm">
     <button id="btn-load-more" class="btn btn-primary btn-lg ">Load more</button>
     <br/><br/>
 </div>

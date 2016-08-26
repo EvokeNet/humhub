@@ -95,6 +95,7 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
                 
                 </div>
                             
+
                 <div class="col-xs-5 col-md-5 col-sm-5" style = "margin-top:10px">
 
                     <div style = "position:relative; text-align:center; float: left;">
