@@ -12,7 +12,7 @@ use Yii;
 use yii\helpers\Url;
 use yii\web\HttpException;
 use humhub\modules\admin\components\Controller;
-use humhub\models\Setting;
+use humhub\models\Setting; 
 use humhub\modules\space\models\Space;
 
 /**
