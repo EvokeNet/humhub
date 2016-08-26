@@ -19,29 +19,15 @@ use humhub\compat\CActiveForm;
 
     <?php echo $form->textArea($evidence, 'text', array('class' => 'form-control', 'id' => 'evidence_input_text_' . $evidence->id, 'placeholder' => Yii::t('MissionsModule.widgets_views_evidenceForm', 'Edit your Evidence content...'))); ?>    
 
-<script type="text/javascript">
-    
-    var editEvidenceResultHandler = function(json) {
-        $("#evidenceform-loader_<?= $evidence->id ?>").addClass("hidden");
-        var $entry = $(".wall_<?= $evidence->getUniqueId() ?>");
-        if(json.success) {
-            $entry.replaceWith(json.output);
-        } else if(json.errors) {
-            var $errorMessage = $entry.find('.errorMessage');
-            var errors = '';
-            $.each(json.errors, function(key, value) {
-                errors += value +'<br />';
-            });
-            $errorMessage.html(errors).show();
-        }
-    };
-    
-    var editEvidenceBeforeSendHandler = function() {
-        $(".wall_<?= $evidence->getUniqueId() ?>").find('.errorMessage').empty().hide();
-        $("#evidenceform-loader_<?= $evidence->id ?>").removeClass("hidden");
-    };
-    
-</script>
+
+    <?php
+    // Creates Uploading Button
+    echo humhub\modules\file\widgets\FileUploadButton::widget(array(
+        'uploaderId' => 'post_upload_' . $evidence->id,
+        'object' => $evidence
+    ));
+    ?>
+
     <div class="content_edit">
         <hr />
         <?php if(version_compare(Yii::$app->version, '1.0.0-beta.1', 'gt')) : ?>
@@ -79,5 +65,42 @@ use humhub\compat\CActiveForm;
         ?>
         <br />
     </div>
+
+    <?php
+        // Creates a list of already uploaded Files
+        echo \humhub\modules\file\widgets\FileUploadList::widget(array(
+            'uploaderId' => 'post_upload_' . $evidence->id,
+            'object' => $evidence
+        ));
+        ?>
+
+
+
     <?php CActiveForm::end(); ?>
 </div>    
+
+
+
+<script type="text/javascript">
+    
+    var editEvidenceResultHandler = function(json) {
+        $("#evidenceform-loader_<?= $evidence->id ?>").addClass("hidden");
+        var $entry = $(".wall_<?= $evidence->getUniqueId() ?>");
+        if(json.success) {
+            $entry.replaceWith(json.output);
+        } else if(json.errors) {
+            var $errorMessage = $entry.find('.errorMessage');
+            var errors = '';
+            $.each(json.errors, function(key, value) {
+                errors += value +'<br />';
+            });
+            $errorMessage.html(errors).show();
+        }
+    };
+    
+    var editEvidenceBeforeSendHandler = function() {
+        $(".wall_<?= $evidence->getUniqueId() ?>").find('.errorMessage').empty().hide();
+        $("#evidenceform-loader_<?= $evidence->id ?>").removeClass("hidden");
+    };
+    
+</script>

@@ -7,7 +7,7 @@ use yii\web\JsExpression;
 ?>
 <li>
     <?php
-    if(!$this->context->content instanceof \app\modules\missions\models\Evidence || Yii::$app->user->getIdentity()->super_admin){
+    
         echo \humhub\widgets\AjaxButton::widget([
             'label' => '<i class="fa fa-pencil"></i> ' . Yii::t('ContentModule.widgets_views_editLink', 'Edit'),
             'tag' => 'a',
@@ -20,6 +20,6 @@ use yii\web\JsExpression;
                 'href' => '#'
             ]
         ]);
-    }
+    
     ?>
 </li>
