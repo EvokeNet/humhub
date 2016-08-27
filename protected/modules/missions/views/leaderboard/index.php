@@ -14,11 +14,9 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
     <div class="row">
         <div class="col-sm-8">
             
-            <!--<div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 style = "padding: 20px; font-weight:bold"><?php echo Yii::t('MissionsModule.leaderboard', 'Leaderboard') ?></h3>
-                </div>
-            </div>-->
+            <div class="panel panel-default">
+                <h3 style = "padding: 20px; font-weight:bold"><?php echo Yii::t('MissionsModule.leaderboard', 'Leaderboard') ?></h3>
+            </div>
             
             <!--<h3 style = "padding: 20px; font-weight:bold"><?php echo Yii::t('MissionsModule.leaderboard', 'Leaderboard') ?></h3>-->
             
