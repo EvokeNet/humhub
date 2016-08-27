@@ -6,7 +6,7 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
 ?>
 <div class="container">
     <div class="row">
-        <div class="col-xs-8 layout-content-container">
+        <div class="col-sm-8 layout-content-container">
           <div class="panel-group">
             <div class="panel panel-default">
               <div class="panel-heading">
@@ -34,13 +34,13 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
 
                   <div class="row" id="evokeToolsButton">
                     <?php if ($wallet->amount >= 5): ?>
-                      <div class="col-xs-7">
+                      <div class="col-sm-7">
                         <?php echo Html::a(
                             Yii::t('PrizeModule.base', 'Pay 5 Evocoins to play'),
                             ['search'], array('class' => 'btn btn-cta1', 'id' => 'toolSearch')); ?>
                       </div>
 
-                      <div class="col-xs-5">
+                      <div class="col-sm-5">
                         <div class="row text-right" style = "margin-top:10px; margin-right:5px">
                           <p><strong><?php echo Yii::t('PrizeModule.base', 'Tools remaining: {total}', array('total' => $total_prizes)) ?></strong></p>
 
@@ -52,7 +52,7 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                         <?php endforeach; ?>
                       </div>
                     <?php else: ?>
-                      <div class="col-xs-7">
+                      <div class="col-sm-7">
                         <?php echo Yii::t('PrizeModule.base', 'Not Enough Evocoin!'); ?>
                       </div>
                     <?php endif; ?>
@@ -123,7 +123,7 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                       </div>
                     </div>
                   </br>
-                    <div id="results" class="row col-xs-12">
+                    <div id="results" class="row col-sm-12">
                       <?php if(isset($results)): ?>
                         <span><?php echo $results ?></span>
                       <?php endif; ?>
@@ -148,8 +148,8 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                     <br>
 
                     <div class="row">
-                      <span class="col-xs-7"><img src="<?php echo Url::to('@web/themes/Evoke/img/evoke_board.png') ?>" alt="evoke board" class="img-responsive" /></span>
-                      <span class="dowload col-xs-5 well well-lg">
+                      <span class="col-sm-7"><img src="<?php echo Url::to('@web/themes/Evoke/img/evoke_board.png') ?>" alt="evoke board" class="img-responsive" /></span>
+                      <span class="dowload col-sm-5 well well-lg">
                         <p class = "text-center">
                           <?php echo Yii::t('PrizeModule.base', 'Download here instructions to the boardgame.') ?>
                         </p>
@@ -166,7 +166,7 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                     </div>
                     <div class="panel-body">
                       <div class="row">
-                        <div class="col-xs-12">
+                        <div class="col-sm-12">
                           <?php //echo Yii::t('PrizeModule.base', 'Earn super powers') ?>
                         </div>
                       </div>
@@ -182,23 +182,19 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
             </div>
           </div>
         </div>
-        <div class="col-xs-4 layout-sidebar-container">
-          <div class = "panel">
-              <div style = "position:relative; height:90px" class="panel-body">
-
-                <div class="col-xs-6">
-                    <h6><?= Yii::t('MissionsModule.base', 'Your Evocoins') ?></h6>
-                    <p style = "font-size:9pt"><?= Yii::t('MissionsModule.base', 'Earn Evocoins by reviewing evidence.') ?></p>
-                </div>
-
-                <div class="col-xs-6">
-                    <div class = "home-widget-evocoins">
-                        <img src="<?php echo Url::to('@web/themes/Evoke/img/evocoin_bg.png') ?>" width = "70px">
-                        <div><p id="userEvocoin"><?= $wallet->amount ?></p></div>
-                    </div>
-                </div>
+        <div class="col-sm-4 layout-sidebar-container">
+          <div class="panel panel-default">
+              <div class="panel-heading">
+                  <strong><?= Yii::t('MissionsModule.base', 'Your Evocoins') ?></strong>
               </div>
-            </br>
+              <div class="panel-body text-center">
+                  <div class = "evocoins">
+                      <img src="<?php echo Url::to('@web/themes/Evoke/img/evocoin_bg.png') ?>">
+                      <div><p><?= $wallet->amount ?></p></div>
+                  </div>
+                  <br>
+                  <p style = "font-size:9pt"><?= Yii::t('MissionsModule.base', 'Earn Evocoins by reviewing evidence.') ?></p>
+              </div>
           </div>
             <?php
             echo \humhub\modules\dashboard\widgets\Sidebar::widget(['widgets' => [
@@ -401,7 +397,7 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
 
                // if user now has less than 5 evocoin, disable the evoke tools button
                if(result.evocoin < 5) {
-                 $('#evokeToolsButton').html('<div class="col-xs-7"><?php echo Yii::t("PrizeModule.base", "Not Enough Evocoin!"); ?></div>')
+                 $('#evokeToolsButton').html('<div class="col-sm-7"><?php echo Yii::t("PrizeModule.base", "Not Enough Evocoin!"); ?></div>')
                }
              }
             }

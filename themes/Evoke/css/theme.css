@@ -1695,9 +1695,9 @@ input:-moz-placeholder {
   color: white !important;
 }
 .label-border {
-  background: transparent;
+  background: #FB656F;
   color: #2A2E32 !important;
-  border: 3px solid #254054;
+  border: 3px solid #c20512;
   font-weight: 700;
   padding: 3px 4px 4px;
 }
@@ -2929,7 +2929,7 @@ img.bounceIn {
 }
 .evidence-mission-box {
   padding: 10px 15px 2px;
-  background: transparent;
+  background: #ECE046;
   color: #2A2E32 !important;
   border: 3px solid #254054;
   margin-top: 30px;
