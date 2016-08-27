@@ -81,6 +81,10 @@ foreach($evidences as $key => $evidence){
             </ul>
             
             <li><span style="font-size:13pt"><?php echo Yii::t('StatsModule.base', 'Number of Likes Given: {list}', array('list' => $likes)); ?></span></li>
+            <ul>
+                <li><span style="font-size:13pt"><?php echo Yii::t('StatsModule.base', 'Player comments: {list}', array('list' => $like_comment_user)); ?></span></li>
+                <li><span style="font-size:13pt"><?php echo Yii::t('StatsModule.base', 'Mentors comments: {list}', array('list' => $like_comment_mentor)); ?></span></li>
+            </ul>
             
         </ul><br><br>
         

@@ -110,14 +110,27 @@ class AdminController extends \humhub\modules\admin\components\Controller
         
         $likes = Like::find()
         ->count();
+        
+        $like_comment_user = Like::find()
+        ->joinWith(['user u'], true, 'INNER JOIN')
+        ->where(['u.group_id' => '2'])
+        ->count();
                 
-        // $like_comment_user = (new \yii\db\Query())
-        // ->select(['l.*'])
-        // ->from('like as l')
-        // ->join('INNER JOIN', 'user as u', 'l.created_by = `u`.`id` AND `u`.`group_id` = `1`')
-        // ->where('`l`.`object_model`=\''.str_replace("\\", "\\\\", Comment::classname()).'\'')
-        // // ->where('g.name != "Mentors"')
-        // ->all();
+        $like_comment_user = (new \yii\db\Query())
+        ->select(['l.*'])
+        ->from('like as l')
+        ->join('INNER JOIN', 'user as u', 'l.created_by = `u`.`id`')
+        ->where('l.object_model=\''.str_replace("\\", "\\\\", Comment::classname()).'\' AND u.group_id = 1')
+        // ->where('g.name != "Mentors"')
+        ->all();
+        
+        $like_comment_mentor = (new \yii\db\Query())
+        ->select(['l.*'])
+        ->from('like as l')
+        ->join('INNER JOIN', 'user as u', 'l.created_by = `u`.`id`')
+        ->where('l.object_model=\''.str_replace("\\", "\\\\", Comment::classname()).'\' AND u.group_id = 2')
+        // ->where('g.name != "Mentors"')
+        ->all();
         
         // var_dump($like_comment_user);
         
@@ -148,6 +161,8 @@ class AdminController extends \humhub\modules\admin\components\Controller
             'comments_user' => $comments_user,
             'comments_mentor' => $comments_mentor,
             'likes' => $likes,
+            'like_comment_user' => $like_comment_user,
+            'like_comment_mentor' => $like_comment_mentor
         ));
     }
     
