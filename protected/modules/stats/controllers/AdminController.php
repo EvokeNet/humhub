@@ -122,7 +122,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
         ->join('INNER JOIN', 'user as u', 'l.created_by = `u`.`id`')
         ->where('l.object_model=\''.str_replace("\\", "\\\\", Comment::classname()).'\' AND u.group_id = 1')
         // ->where('g.name != "Mentors"')
-        ->all();
+        ->count();
         
         $like_comment_mentor = (new \yii\db\Query())
         ->select(['l.*'])
@@ -130,7 +130,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
         ->join('INNER JOIN', 'user as u', 'l.created_by = `u`.`id`')
         ->where('l.object_model=\''.str_replace("\\", "\\\\", Comment::classname()).'\' AND u.group_id = 2')
         // ->where('g.name != "Mentors"')
-        ->all();
+        ->count();
         
         // var_dump($like_comment_user);
         
@@ -222,4 +222,25 @@ class AdminController extends \humhub\modules\admin\components\Controller
             'spaces' => $spaces,
         ));
     }
+    
+    public function actionActivitiesStats(){
+        $evidences = Evidence::find()->all();
+        
+        $activities = Activities::find()
+        ->all();
+        
+        // $activities = (new \yii\db\Query())
+        // ->select(['a.*'])
+        // ->from('activities as a')
+        // ->join('LEFT JOIN', 'missions as m', 'a.mission_id = `m`.`id`')
+        // ->join('LEFT JOIN', 'evidence as e', 'a.id = `e`.`activities_id`')
+        // ->orderBy('mission_id asc')
+        // ->all();
+        
+        return $this->render('activities-stats', array(
+            'evidences' => $evidences,
+            'activities' => $activities,
+        ));    
+    }
+    
 }
