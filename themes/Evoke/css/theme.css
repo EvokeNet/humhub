@@ -188,7 +188,7 @@ textarea {
   font-weight: 500;
   font-family: 'Ubuntu', sans-serif;
   color: #254054;
-  background-color: #1cbfbf;
+  background-color: #1bb6b6;
   border: none;
   padding: 10px;
   font-size: 12pt;
@@ -536,7 +536,7 @@ input[type=select] {
 }
 #topbar-second {
   top: 50px;
-  background-color: #1ECCCC;
+  background-color: #355b77;
   z-index: 1029;
   background-image: none;
   -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
@@ -588,7 +588,7 @@ input[type=select] {
   font-size: 10pt;
   text-align: center;
   min-height: 49px;
-  color: #254054;
+  color: #d7dce5;
   padding: 13px 16px;
 }
 #topbar-second .nav > li > a:hover,
@@ -864,7 +864,7 @@ input[type=select] {
   font-weight: 500;
   font-family: 'Ubuntu', sans-serif;
   color: #254054;
-  background-color: #1cbfbf;
+  background-color: #1bb6b6;
   border: none;
   padding: 10px;
   font-size: 12pt;
@@ -2929,7 +2929,7 @@ img.bounceIn {
 }
 .evidence-mission-box {
   padding: 10px 15px 2px;
-  background: #ECE046;
+  background: #e9f0f5;
   color: #2A2E32 !important;
   border: 3px solid #254054;
   margin-top: 30px;
