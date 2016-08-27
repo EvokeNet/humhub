@@ -323,13 +323,13 @@ textarea {
   font-weight: 500;
   font-family: @heading_font;
   color: @primary1;
-  background-color: darken(@primary3, 3%); //@secondary2; //white;
+  background-color: white;
   border: none;
   padding: 10px;
   // padding: 15px 10px;
   font-size: 12pt;
-  // margin: 5px 10px;
-  border-bottom: 2px solid darken(@primary3, 10%); //darken(@secondary2, 5%); //#EDEDED;
+  margin: 5px 10px;
+  border-bottom: 2px solid #EDEDED;
 }
 
 .text-center {
@@ -732,7 +732,7 @@ input[type=select] {
 
 #topbar-second {
   top: 50px;
-  background-color: @primary3; //#1CEEEE; //@white; //#2B2C31;
+  background-color: @white; //#2B2C31;
   z-index: 1029;
   background-image: none;
   -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
@@ -2022,11 +2022,11 @@ a.label-info:hover {
 }
 
 .label-danger {
-  background-color: @secondary2;
+  background-color: @danger;
 }
 
 a.label-danger:hover {
-  background: darken(@secondary2, 5%) !important;
+  background: darken(@danger, 5%) !important;
 }
 
 .label-success {

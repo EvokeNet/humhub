@@ -188,12 +188,11 @@ textarea {
   font-weight: 500;
   font-family: 'Ubuntu', sans-serif;
   color: #254054;
-  background-color: white;
+  background-color: #1cbfbf;
   border: none;
   padding: 10px;
   font-size: 12pt;
-  margin: 5px 10px;
-  border-bottom: 2px solid #EDEDED;
+  border-bottom: 2px solid #17a0a0;
 }
 .text-center {
   text-align: center !important;
@@ -537,7 +536,7 @@ input[type=select] {
 }
 #topbar-second {
   top: 50px;
-  background-color: #FFFFFF;
+  background-color: #1ECCCC;
   z-index: 1029;
   background-image: none;
   -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
@@ -865,12 +864,11 @@ input[type=select] {
   font-weight: 500;
   font-family: 'Ubuntu', sans-serif;
   color: #254054;
-  background-color: white;
+  background-color: #1cbfbf;
   border: none;
   padding: 10px;
   font-size: 12pt;
-  margin: 5px 10px;
-  border-bottom: 2px solid #EDEDED;
+  border-bottom: 2px solid #17a0a0;
   border-radius: 4px;
 }
 .panel .panel-body {
@@ -1717,10 +1715,10 @@ a.label-info:hover {
   background: #1bb6b6 !important;
 }
 .label-danger {
-  background-color: #ff8989;
+  background-color: #FB656F;
 }
 a.label-danger:hover {
-  background: #ff6f6f !important;
+  background: #fa4c58 !important;
 }
 .label-success {
   background-color: #1ECCCC;
