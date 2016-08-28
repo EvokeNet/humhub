@@ -7,7 +7,7 @@ use humhub\modules\content\components\ContentActiveRecord;
 use yii\db\ActiveRecord;
 use app\modules\languages\models\Languages;
 use app\modules\space\models\Space;
-use app\modules\user\models\User;
+use humhub\modules\user\models\User;
 use yii\db\Expression;
 use yii\behaviors\TimestampBehavior;
 use app\modules\missions\models\Portfolio;
@@ -116,6 +116,15 @@ class Evokations extends ContentActiveRecord implements \humhub\modules\search\i
         return $this->title;
     }
 
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'created_by']);
+    }
+
     /**
      * @inheritdoc
      */
@@ -163,5 +172,20 @@ class Evokations extends ContentActiveRecord implements \humhub\modules\search\i
 
         return parent::beforeDelete();
     }    
+
+    public function hasUserSubmittedEvokation($userId = "")
+    {
+
+        if ($userId == "")
+            $userId = Yii::$app->user->id;
+
+        $evokation = Evokations::findOne(['created_by' => $userId]);
+
+        if($evokation){
+            return true;
+        }
+
+        return false;
+    }
 
 }
