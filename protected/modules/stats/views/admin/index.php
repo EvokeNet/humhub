@@ -26,7 +26,7 @@ foreach($evidences as $key => $evidence){
         
         <?php echo Html::a(
             Yii::t('StatsModule.base', 'User Statistics'), 
-            ['user-stats'], array('class' => 'btn btn-warning')); ?>
+            ['user-stats'], array('class' => 'btn btn-danger')); ?>
         &nbsp;&nbsp;
         <?php echo Html::a(
             Yii::t('StatsModule.base', 'Space Statistics'), 
