@@ -188,11 +188,12 @@ textarea {
   font-weight: 500;
   font-family: 'Ubuntu', sans-serif;
   color: #254054;
-  background-color: #1bb6b6;
+  background-color: white;
   border: none;
   padding: 10px;
   font-size: 12pt;
-  border-bottom: 2px solid #17a0a0;
+  margin: 5px 10px;
+  border-bottom: 2px solid #EDEDED;
 }
 .text-center {
   text-align: center !important;
@@ -536,7 +537,7 @@ input[type=select] {
 }
 #topbar-second {
   top: 50px;
-  background-color: #355b77;
+  background-color: #FFFFFF;
   z-index: 1029;
   background-image: none;
   -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
@@ -588,7 +589,7 @@ input[type=select] {
   font-size: 10pt;
   text-align: center;
   min-height: 49px;
-  color: #d7dce5;
+  color: #254054;
   padding: 13px 16px;
 }
 #topbar-second .nav > li > a:hover,
@@ -864,11 +865,12 @@ input[type=select] {
   font-weight: 500;
   font-family: 'Ubuntu', sans-serif;
   color: #254054;
-  background-color: #1bb6b6;
+  background-color: white;
   border: none;
   padding: 10px;
   font-size: 12pt;
-  border-bottom: 2px solid #17a0a0;
+  margin: 5px 10px;
+  border-bottom: 2px solid #EDEDED;
   border-radius: 4px;
 }
 .panel .panel-body {
@@ -1695,9 +1697,9 @@ input:-moz-placeholder {
   color: white !important;
 }
 .label-border {
-  background: #FB656F;
+  background: transparent;
   color: #2A2E32 !important;
-  border: 3px solid #c20512;
+  border: 3px solid #254054;
   font-weight: 700;
   padding: 3px 4px 4px;
 }
@@ -1715,10 +1717,10 @@ a.label-info:hover {
   background: #1bb6b6 !important;
 }
 .label-danger {
-  background-color: #FB656F;
+  background-color: #ff8989;
 }
 a.label-danger:hover {
-  background: #fa4c58 !important;
+  background: #ff6f6f !important;
 }
 .label-success {
   background-color: #1ECCCC;
@@ -2929,7 +2931,7 @@ img.bounceIn {
 }
 .evidence-mission-box {
   padding: 10px 15px 2px;
-  background: #e9f0f5;
+  background: transparent;
   color: #2A2E32 !important;
   border: 3px solid #254054;
   margin-top: 30px;
