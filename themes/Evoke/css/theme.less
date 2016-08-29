@@ -41,7 +41,6 @@
 @background_grey2: #F6F7F9;
 @background_grey3: #EAEAEA;
 @background_grey4: #F8F8F8;
-@topbar-first-color: #254054;
 
 @btn-blue-light: #4DAEF2;
 @btn-blue-dark: #2273AC;
@@ -51,6 +50,8 @@
 
 @btn-purple-light: #A748FA;
 @btn-purple-dark: #760ED1;
+
+@heading-color: #76ced6;
 
 @white: #FFFFFF;
 
@@ -320,16 +321,16 @@ textarea {
 // Mixins
 .heading {
   // font-size: 16px;
-  font-weight: 500;
+  font-weight: 700;
   font-family: @heading_font;
-  color: @primary1;
-  background-color: white;
+  color: @primary1 !important;
+  background-color:  #ADBCFF; //lighten(@primary3, 30%); //@heading-color; //darken(@primary3, 5%); //@secondary2; //white;
   border: none;
   padding: 10px;
   // padding: 15px 10px;
   font-size: 12pt;
-  margin: 5px 10px;
-  border-bottom: 2px solid #EDEDED;
+  // margin: 5px 10px;
+  border-bottom: 2px solid darken(#ADBCFF, 10%); //2px solid darken(@heading-color, 10%); //2px solid darken(@primary3, 10%); //darken(@secondary2, 5%); //#EDEDED;
 }
 
 .text-center {
@@ -540,13 +541,13 @@ input[type=select] {
 }
 
 #topbar-first {
-  background-color: @topbar-first-color;
+  background-color: @primary1;
   top: 0;
   z-index: 1030;
   color: white;
   .nav > li > a:hover,
   .nav > .open > a {
-    background-color: lighten(@topbar-first-color, 10%);
+    background-color: lighten(@primary1, 10%);
   }
   .nav > .account {
     height: 50px;
@@ -673,14 +674,14 @@ input[type=select] {
     border-top-color: @font4;
   }
   .btn-group > a {
-    background-color: @topbar-first-color; //lighten(@topbar-first-color, 5%);
+    background-color: @primary1; //lighten(@primary1, 5%);
   }
   .btn-enter {
-    background-color: @topbar-first-color; //lighten(@topbar-first-color, 5%);
+    background-color: @primary1; //lighten(@primary1, 5%);
     margin: 6px 0;
   }
   .btn-enter:hover {
-    background-color: @topbar-first-color; //lighten(@topbar-first-color, 8%);
+    background-color: @primary1; //lighten(@primary1, 8%);
   }
   .media-list {
     a {
@@ -715,7 +716,7 @@ input[type=select] {
   .dropdown.account.open > a,
   .dropdown.account > a:hover,
   .dropdown.account.open > a:hover {
-    background-color: @topbar-first-color;
+    background-color: @primary1;
   }
 }
 
@@ -732,7 +733,7 @@ input[type=select] {
 
 #topbar-second {
   top: 50px;
-  background-color: @white; //#2B2C31;
+  background-color: lighten(@primary1, 10%); //darken(@primary3, 5%); //#1CEEEE; //@white; //#2B2C31;
   z-index: 1029;
   background-image: none;
   -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
@@ -785,7 +786,7 @@ input[type=select] {
     // text-transform: uppercase;
     text-align: center;
     min-height: 49px;
-    color: @primary1;
+    color: darken(@background_grey2, 10%); //@primary1;
     padding: 13px 16px;
     &:hover,
     &:active,
@@ -1400,15 +1401,15 @@ input[type=select] {
 .nav-tabs,
 .account {
   .dropdown-menu {
-    background-color: @topbar-first-color;
+    background-color: @primary1;
     border: none;
     li.divider {
-      background-color: darken(@topbar-first-color, 5%);
+      background-color: darken(@primary1, 5%);
       border-bottom: none;
       margin: 9px 1px !important;
     }
     li {
-      border-left: 3px solid @topbar-first-color;
+      border-left: 3px solid @primary1;
       a {
         color: white;
         font-weight: 400;
@@ -1997,11 +1998,11 @@ input:-moz-placeholder {
 }
 
 .label-border {
-  background: transparent;
-  color: @primary !important;
-  border: 3px solid @primary1;
+  background: @secondary2; //transparent;
+  color: white; //@primary !important;
+  border: 3px solid darken(@secondary2, 35%); //@primary1;
   font-weight:700;
-  padding: 3px 4px 4px;
+  padding: 4px 4px 3px;
 }
 
 .label-default {
@@ -2022,11 +2023,11 @@ a.label-info:hover {
 }
 
 .label-danger {
-  background-color: @danger;
+  background-color: @secondary2;
 }
 
 a.label-danger:hover {
-  background: darken(@danger, 5%) !important;
+  background: darken(@secondary2, 5%) !important;
 }
 
 .label-success {
@@ -3531,7 +3532,7 @@ img.bounceIn {
 
 .evidence-mission-box{
   padding: 10px 15px 2px;
-  background: transparent;
+  background: lighten(@primary1, 70%); //transparent;
   color: #2A2E32 !important;
   border: 3px solid #254054;
   margin-top: 30px;
