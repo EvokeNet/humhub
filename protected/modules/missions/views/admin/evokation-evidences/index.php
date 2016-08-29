@@ -32,7 +32,7 @@ echo Breadcrumbs::widget([
                     <tr>
                         <!--<td><?php //echo $category->id_code; ?></td>-->
                         <td><?php echo $evidence->title; ?></td>
-                        <td class="text_min"><?php echo $evidence->text; ?></td>
+                        <td class="text_min"><?php echo strip_tags($evidence->text); ?></td>
                         <td>
                             <a href="<?= Url::to(['/user/profile', 'uguid' => $evidence->author->guid]) ?>">
                                 <?php echo $evidence->author->username; ?>
