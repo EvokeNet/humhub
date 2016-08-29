@@ -7,10 +7,11 @@ use humhub\modules\content\components\ContentActiveRecord;
 use yii\db\ActiveRecord;
 use app\modules\languages\models\Languages;
 use app\modules\space\models\Space;
-use app\modules\user\models\User;
 use yii\db\Expression;
 use yii\behaviors\TimestampBehavior;
 use app\modules\missions\models\Votes;
+use app\modules\matching_questions\models\User;
+use humhub\modules\content\models\Content;
 
 /**
  * This is the model class for table "evidence".
@@ -163,10 +164,18 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
         return array(
             'title' => $this->title
         );
-    }    
+    }  
+
+    public function getContentObject(){
+        return Content::findOne(['object_id' => $this->id, 'object_model' => $this->classname()]);
+    }
 
     public function getId(){
         return $this->id;
+    }
+
+    public function getAuthor(){
+        return User::findOne($this->created_by);
     }
 
     public function hasUserVoted($userId = "")

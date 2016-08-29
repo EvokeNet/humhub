@@ -125,6 +125,9 @@ class Events
                 && Yii::$app->controller->action->id != 'create-deadline'
                 && Yii::$app->controller->action->id != 'update-deadline'
 
+                && Yii::$app->controller->action->id == 'index-evidences'
+                && Yii::$app->controller->action->id == 'update-evidences'
+
            ),
         ));
 
@@ -158,6 +161,24 @@ class Events
                     || Yii::$app->controller->action->id == 'create-category-translations'
                     || Yii::$app->controller->action->id == 'update-category-translations'
                     
+                )
+            ),
+        ));
+    }
+
+    public static function onEvidencesAdminMenuInit($event)
+    {
+        $event->sender->addItem(array(
+            'label' => Yii::t('MissionsModule.event', 'Evidences'),
+            'url' => Url::to(['/missions/admin/index-evidences']),
+            'group' => 'manage',
+            'sortOrder' => 950,
+            'icon' => '<i class="fa fa-file-text-o"></i>',
+            'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'admin'
+            &&
+                (
+                    Yii::$app->controller->action->id == 'index-evidences'
+                    || Yii::$app->controller->action->id == 'update-evidences'
                 )
             ),
         ));
