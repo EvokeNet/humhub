@@ -7,7 +7,7 @@ use app\modules\novel\models\NovelPage;
 ?>
 
 <div class="row">
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-xs-8 col-xs-offset-2">
     <div class="panel panel-default">
       <div class="panel-body text-center">
         <img src="<?php echo Url::to('@web/themes/Evoke/img/alchemy.png') ?>" width = "120px" style = "border-radius: 50%; border: 3px solid #254054; margin-bottom:10px">

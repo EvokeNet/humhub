@@ -26,14 +26,14 @@ $this->registerCssFile('@web/resources/space/colorpicker/css/bootstrap-colorpick
             <hr>
             <br>
             <div class="row">
-                <div class="col-md-8"> 
+                <div class="col-xs-8"> 
                     <?php if($model->is_team == 1): ?>
                         <?php echo $form->field($model, 'name')->textInput(['id' => 'space-name', 'placeholder' => Yii::t('TeamsModule.views_create_create', 'team name'), 'maxlength' => 45]); ?>
                     <?php else: ?>
                         <?php echo $form->field($model, 'name')->textInput(['id' => 'space-name', 'placeholder' => Yii::t('SpaceModule.views_create_create', 'space name'), 'maxlength' => 45]); ?>
                     <?php endif; ?>
                 </div>
-                <div class="col-md-4">            
+                <div class="col-xs-4">            
                     <strong><?php echo Yii::t('SpaceModule.views_create_create', 'Color'); ?>
                 </strong>
 
@@ -76,10 +76,10 @@ $this->registerCssFile('@web/resources/space/colorpicker/css/bootstrap-colorpick
             <div id="collapse-access-settings" class="panel-collapse collapse">
                 <br/>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-xs-6">
                         <?= $form->field($model, 'join_policy')->radioList($joinPolicyOptions); ?>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-xs-6">
                         <?= $form->field($model, 'visibility')->radioList($visibilityOptions); ?>
                     </div>
                 </div>

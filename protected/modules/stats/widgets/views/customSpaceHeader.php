@@ -181,7 +181,7 @@ if ($space->isAdmin()) {
         <div class="panel-profile-controls">
             <!-- start: User statistics -->
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-xs-12">
                     <div class="statistics pull-left">
 
                         <!--<div class="pull-left entry">

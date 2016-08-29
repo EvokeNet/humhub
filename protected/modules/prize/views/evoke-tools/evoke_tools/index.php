@@ -6,7 +6,7 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
 ?>
 <div class="container">
     <div class="row">
-        <div class="col-md-8 layout-content-container">
+        <div class="col-xs-8 layout-content-container">
           <div class="panel-group">
             <div class="panel panel-default">
               <div class="panel-heading">
@@ -182,7 +182,7 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
             </div>
           </div>
         </div>
-        <div class="col-md-4 layout-sidebar-container">
+        <div class="col-xs-4 layout-sidebar-container">
           <div class = "panel">
               <div style = "position:relative; height:90px" class="panel-body">
 

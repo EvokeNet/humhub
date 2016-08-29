@@ -8,7 +8,7 @@ use app\modules\matching_questions\models\MatchingQuestions;
 
 ?>
 <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-xs-8 col-xs-offset-2">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 style = "text-align:center; line-height:40px; padding: 10px 30px">

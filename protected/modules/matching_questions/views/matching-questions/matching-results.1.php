@@ -13,7 +13,7 @@
  ?>
 <div class="container">
   <div class="row">
-      <div class="col-md-8 layout-content-container">
+      <div class="col-xs-8 layout-content-container">
           <div class="panel panel-default">
               <!--<div class="panel-heading"><strong><?php echo $this->title; ?></strong></div>-->
 
@@ -128,7 +128,7 @@
                 </div>
               </div>
       </div>
-      <div class="col-md-4 layout-sidebar-container">
+      <div class="col-xs-4 layout-sidebar-container">
         <div class="panel panel-default">
           <div class="panel-heading">
             <?php echo Yii::t('MatchingModule.base', 'Getting started') ?>

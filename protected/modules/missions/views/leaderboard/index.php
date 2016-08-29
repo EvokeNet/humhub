@@ -12,7 +12,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-xs-8">
 
             <div class="panel panel-default">
 
@@ -27,7 +27,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                     <div class="row">
                         <?php foreach($ranking['rank_teams_evidences'] as $key => $r): ?>
 
-                            <div class="col-md-6">
+                            <div class="col-xs-6">
                                 <div class = "grey-box" style = "padding: 15px 20px; margin-bottom:15px">
                                     
                                     <div class="row">
@@ -63,7 +63,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                     <div class="row">
                         <?php foreach($ranking['rank_teams_reviews'] as $key => $r): ?>
 
-                            <div class="col-md-6">
+                            <div class="col-xs-6">
                                 <div class = "grey-box" style = "padding: 15px 20px; margin-bottom:15px">
                                     
                                     <div class="row">
@@ -99,7 +99,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                     <div class="row">
                         <?php foreach($ranking['rank_agents_evidences'] as $key => $r): ?>
 
-                        <div class="col-md-6">
+                        <div class="col-xs-6">
                             <div class = "grey-box" style = "padding: 15px 20px; margin-bottom:15px">
                                 
                                 <div class="row">
@@ -135,7 +135,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                     <div class="row">
                         <?php foreach($ranking['rank_agents_reviews'] as $key => $r): ?>
 
-                        <div class="col-md-6">
+                        <div class="col-xs-6">
                             <div class = "grey-box" style = "padding: 15px 20px; margin-bottom:15px">
                                 
                                 <div class="row">
@@ -173,7 +173,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                     <div class="row">
                         <?php foreach($ranking['rank_mentors_reviews'] as $key => $r): ?>
 
-                        <div class="col-md-6">
+                        <div class="col-xs-6">
                             <div class = "grey-box" style = "padding: 15px 20px; margin-bottom:15px">
                                 
                                 <div class="row">
@@ -205,7 +205,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
 
         </div>
 
-        <div class="col-md-4">
+        <div class="col-xs-4">
             <?php
             echo \humhub\modules\dashboard\widgets\Sidebar::widget(['widgets' => [
                     [\humhub\modules\activity\widgets\Stream::className(), ['streamAction' => '/dashboard/dashboard/stream'], ['sortOrder' => 150]]

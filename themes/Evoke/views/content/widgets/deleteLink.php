@@ -8,7 +8,8 @@ use yii\helpers\Url;
     <!-- load modal confirm widget -->
     <?php
 
-    if(!$this->context->content instanceof \app\modules\missions\models\Evidence){
+    // must not be an evidence unless it's admin
+    if(!$this->context->content instanceof \app\modules\missions\models\Evidence || Yii::$app->user->getIdentity()->super_admin){
         echo humhub\widgets\ModalConfirm::widget(array(
         'uniqueID' => 'modal_postdelete_' . $id,
         'linkOutput' => 'a',
