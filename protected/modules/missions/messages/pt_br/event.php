@@ -17,6 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Evidences' => '',
     'Evokation' => '',
     'Evokation Categories' => '',
     'Evokation Deadline' => '',
