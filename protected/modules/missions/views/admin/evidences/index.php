@@ -30,7 +30,6 @@ echo Breadcrumbs::widget([
                 </tr>
                 <?php foreach ($evidences as $evidence): ?>
                     <tr>
-                        <!--<td><?php //echo $category->id_code; ?></td>-->
                         <td><?php echo $evidence->title; ?></td>
                         <td class="text_min"><?php echo strip_tags($evidence->text); ?></td>
                         <td>
@@ -39,8 +38,12 @@ echo Breadcrumbs::widget([
                             </a>
                         </td>
                         <td>
-                            <a class = "btn btn-warning btn-sm" target="_blank" href="<?= Url::to(['/content/perma', 'id' => $evidence->getContentObject()->id]) ?>">
-                                <?= Yii::t('MissionsModule.base', 'View') ?>
+                            <a class = "btn btn-warning btn-sm" href="<?= Url::to(['view-evidences', 'id' => $evidence->id]) ?>">
+                                <?= Yii::t('MissionsModule.base', 'View Content') ?>
+                            </a>
+                            &nbsp;&nbsp;
+                             <a class = "btn btn-success btn-sm" target="_blank" href="<?= Url::to(['/content/perma', 'id' => $evidence->getContentObject()->id]) ?>">
+                                <?= Yii::t('MissionsModule.base', 'Jump to Post') ?>
                             </a>
                             &nbsp;&nbsp;
                             <?php echo Html::a(
