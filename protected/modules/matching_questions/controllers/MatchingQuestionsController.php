@@ -6,6 +6,7 @@ use Yii;
 use app\modules\matching_questions\models\MatchingAnswers;
 use app\modules\matching_questions\models\MatchingQuestions;
 use app\modules\matching_questions\models\MatchingQuestionsSearch;
+use app\modules\matching_questions\models\UserMatchingAnswers;
 
 use app\modules\matching_questions\models\Qualities;
 use app\modules\matching_questions\models\SuperheroIdentities;
@@ -88,6 +89,12 @@ class MatchingQuestionsController extends Controller
                     //get matching answer id
                     $matching_answer = $answer;
 
+                    //save answer
+                    $user_matching_answer = new UserMatchingAnswers();
+                    $user_matching_answer->user_id = Yii::$app->user->getIdentity()->id;
+                    $user_matching_answer->matching_answer_id = (int) $matching_answer;
+                    $user_matching_answer->save();
+
                     // get quality id
                     $quality_id = MatchingAnswers::findOne(['id' => $matching_answer])->quality_id;
 
@@ -102,6 +109,14 @@ class MatchingQuestionsController extends Controller
                     $matching_answer = str_replace('matching_answer_', '', $key);
                     //remove matching question info
                     $matching_answer = (int) substr($matching_answer, 0, strpos($matching_answer, "_"));
+
+                    //save answer
+
+                    $user_matching_answer = new UserMatchingAnswers();
+                    $user_matching_answer->user_id = Yii::$app->user->getIdentity()->id;
+                    $user_matching_answer->matching_answer_id = (int) $matching_answer;
+                    $user_matching_answer->order = (int) $answer;
+                    $user_matching_answer->save();
 
                     // get matching question id
                     $matching_question = (int) substr($key, strrpos($key, "_") + 1, strlen($key) - 1);
