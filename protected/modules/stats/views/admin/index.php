@@ -28,8 +28,10 @@ echo Breadcrumbs::widget([
         <h4><?php echo Yii::t('StatsModule.base', 'Participation'); ?></h4><br>
         <ul>
             <li><span style="font-size:13pt"><?php echo Yii::t('StatsModule.base', 'Total Number of Users: {list}', array('list' => $users)); ?></span></li>
-            <li><span style="font-size:13pt"><?php echo Yii::t('StatsModule.base', 'Total Number of Agents: {list}', array('list' => $agents)); ?></span></li>
-            <li><span style="font-size:13pt"><?php echo Yii::t('StatsModule.base', 'Total Number of Mentors: {list}', array('list' => $mentors)); ?></span></li>
+            <ul>
+                <li><span style="font-size:13pt"><?php echo Yii::t('StatsModule.base', 'Agents: {list}', array('list' => $agents)); ?></span></li>
+                <li><span style="font-size:13pt"><?php echo Yii::t('StatsModule.base', 'Mentors: {list}', array('list' => $mentors)); ?></span></li>
+            </ul>
         </ul><br><br>
         
         <h4><?php echo Yii::t('StatsModule.base', 'Content Creation'); ?></h4><br>
