@@ -13,17 +13,17 @@ use yii\helpers\Url;
 class Events extends \yii\base\Object
 {
 
-    // public static function onAdminMenuInit($event)
-    // {
-    //     $event->sender->addItem(array(
-    //         'label' => Yii::t('LanguagesModule.base', 'Languages'),
-    //         'url' => Url::to(['/languages/admin']),
-    //         'group' => 'manage',
-    //         'icon' => '<i class="fa fa-th"></i>',
-    //         'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'languages' && Yii::$app->controller->id == 'admin'),
-    //         'sortOrder' => 300,
-    //     ));
-    // }
+    public static function onAdminMenuInit($event)
+    {
+        $event->sender->addItem(array(
+            'label' => Yii::t('StatsModule.base', 'Statistics Reports'),
+            'url' => Url::to(['/stats/admin']),
+            'group' => 'manage',
+            'icon' => '<i class="fa fa-th"></i>',
+            'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'stats' && Yii::$app->controller->id == 'admin'),
+            'sortOrder' => 300,
+        ));
+    }
     
     // public static function onSpaceAdminMenuInit($event)
     // {

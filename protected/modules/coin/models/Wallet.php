@@ -85,6 +85,14 @@ use humhub\modules\user\models\User;
        {
          return User::find()->where(['id' => $this->owner_id])->one();
        }
+       
+       /**
+      * @return \yii\db\ActiveQuery
+      */
+      public function getUser()
+      {
+          return $this->hasOne(User::className(), ['id' => 'owner_id']);
+      } 
 
        /**
         * @return \yii\db\ActiveQuery

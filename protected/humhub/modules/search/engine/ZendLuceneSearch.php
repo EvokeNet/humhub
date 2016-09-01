@@ -118,10 +118,6 @@ class ZendLuceneSearch extends Search
 
         $hits = new \LimitIterator($hits->getIterator(), ($options['page'] - 1) * $options['pageSize'], $options['pageSize']);
 
-        echo "<pre>";
-        print_r($this->buildQuery($keyword, $options));
-        echo "</pre>";
-
         foreach ($hits as $hit) {
             $document = $hit->getDocument();
 
