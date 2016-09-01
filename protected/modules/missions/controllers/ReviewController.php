@@ -9,8 +9,37 @@ use yii\helpers\Json;
 use humhub\modules\content\components\ContentContainerController;
 use app\modules\teams\models\Team;
 
+use humhub\modules\space\models\Space;
+use yii\web\HttpException;
+
 class ReviewController extends ContentContainerController
 {
+
+    //Overwrite
+    public function checkAccess(){
+        if (\humhub\models\Setting::Get('allowGuestAccess', 'authentication_internal') && Yii::$app->user->isGuest && $this->space->visibility != Space::VISIBILITY_ALL) {
+            throw new HttpException(401, Yii::t('SpaceModule.behaviors_SpaceControllerBehavior', 'You need to login to view contents of this space!'));
+        }
+
+        // Save users last action on this space
+        $membership = $this->space->getMembership(Yii::$app->user->id);
+        if ($membership != null) {
+            $membership->updateLastVisit();
+        } else {
+
+            // Super Admin can always enter
+            if (!Yii::$app->user->isAdmin()) {
+                // Space invisible?
+                if ($this->space->visibility == Space::VISIBILITY_NONE) {
+                    // Not Space Member
+                    // Redirect to request access page
+                     if(Yii::$app->requestedRoute != 'missions/review/contact'){
+                         Yii::$app->response->redirect($this->contentContainer->createUrl('/missions/review/contact'));
+                     }
+                }
+            }
+        }
+    }
 
     public function actions()
     {
@@ -102,6 +131,10 @@ class ReviewController extends ContentContainerController
         }
 
         return $this->render('index', array('contentContainer' => $this->contentContainer, 'evidence' => $evidence, 'files' => $files, 'evidence_count' => $totalEvidence, 'evidence_to_review_count' => $evidence_to_review_count));
+    }
+
+    public function actionContact(){
+        return $this->render('contact', ['space' => $this->contentContainer]);
     }
 
 }
