@@ -8,9 +8,38 @@ use humhub\modules\file\models\File;
 use yii\helpers\Json;
 use humhub\modules\content\components\ContentContainerController;
 use app\modules\teams\models\Team;
+use humhub\modules\space\models\Membership;
+use humhub\modules\space\models\Space;
+use yii\web\HttpException;
 
 class ReviewController extends ContentContainerController
 {
+
+    //Overwrite
+    public function checkAccess(){
+        if (\humhub\models\Setting::Get('allowGuestAccess', 'authentication_internal') && Yii::$app->user->isGuest && $this->space->visibility != Space::VISIBILITY_ALL) {
+            throw new HttpException(401, Yii::t('SpaceModule.behaviors_SpaceControllerBehavior', 'You need to login to view contents of this space!'));
+        }
+
+        // Save users last action on this space
+        $membership = $this->space->getMembership(Yii::$app->user->id);
+        
+        $membership= null;
+        if ($membership != null && $membership->status == Membership::STATUS_MEMBER) {
+            $membership->updateLastVisit();
+        } else {
+
+            // Super Admin can always enter
+            if (!Yii::$app->user->isAdmin()) {
+                // Space invisible?
+                if ($this->space->visibility == Space::VISIBILITY_NONE) {
+                    // Not Space Member
+                    // Redirect to request access page
+                    Yii::$app->response->redirect($this->contentContainer->createUrl('/missions/membership/contact'));
+                }
+            }
+        }
+    }
 
     public function actions()
     {
