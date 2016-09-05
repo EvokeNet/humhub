@@ -1,10 +1,13 @@
 <?php
 
 use yii\helpers\Html;
+use app\modules\missions\models\Evokations;
 
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\missions\models\Evokations */
+
+$hasUserSubmittedEvokation = Evokations::hasUserSubmittedEvokation();
 
 $this->title = Yii::t('app', 'Create Evokations');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Evokations'), 'url' => ['index']];
@@ -14,10 +17,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?php // Html::encode($this->title) ?></h1>
     
-    <?= \humhub\modules\missions\widgets\WallCreateEvokationForm::widget([
-    'contentContainer' => $contentContainer,
-    'submitButtonText' => Yii::t('MissionsModule.widgets_EvokationFormWidget', 'Submit Evokation')
-        ]) ?>
+    <?php
+        if(!$hasUserSubmittedEvokation){
+            echo \humhub\modules\missions\widgets\WallCreateEvokationForm::widget([
+            'contentContainer' => $contentContainer,
+            'submitButtonText' => Yii::t('MissionsModule.widgets_EvokationFormWidget', 'Submit Evokation')
+                ]);
+        }
+    ?>
     
 
 <?php
