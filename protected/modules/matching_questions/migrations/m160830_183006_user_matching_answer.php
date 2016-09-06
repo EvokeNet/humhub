@@ -10,9 +10,6 @@ class m160830_183006_user_matching_answer extends Migration
         $this->dropColumn('user_matching_answers', 'matching_question_id');
         $this->dropColumn('user_matching_answers', 'description');
 
-        $this->renameColumn('user_matching_answers', 'created', 'created_at');
-        $this->renameColumn('user_matching_answers', 'modified_at', 'updated_at');
-
         $this->alterColumn('user_matching_answers', 'created_at', 'datetime');
         $this->alterColumn('user_matching_answers', 'updated_at', 'datetime');
 
@@ -45,9 +42,6 @@ class m160830_183006_user_matching_answer extends Migration
 
         $this->alterColumn('user_matching_answers', 'created_at', 'datetime NOT NULL');
         $this->alterColumn('user_matching_answers', 'updated_at', 'datetime NOT NULL');
-
-        $this->renameColumn('user_matching_answers', 'created_at', 'created');
-        $this->renameColumn('user_matching_answers', 'updated_at', 'modified_at');
         
         $this->dropForeignKey('fk-user_matching_answers-matching_answer_id', 'user_matching_answers');
         $this->renameColumn('user_matching_answers', 'matching_answer_id', 'matching_aswer_id');
