@@ -111,7 +111,7 @@ echo Html::beginForm();
     <div class="panel panel-default">
         <div class="panel-heading">
             <h6 class="panel-title">
-                <a data-toggle="collapse" href="#collapseEvidenceReviews<?= $evidence->id ?>">
+                <a data-toggle="collapse" href="#collapseEvidenceReviews<?= $evidence->id ?>" style="color:white">
                     <?= Yii::t('MissionsModule.base', 'Reviews') ?>
                 </a>
             </h6>
