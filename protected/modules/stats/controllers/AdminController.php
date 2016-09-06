@@ -122,7 +122,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
         ->join('INNER JOIN', 'user as u', 'l.created_by = `u`.`id`')
         ->where('l.object_model=\''.str_replace("\\", "\\\\", Comment::classname()).'\' AND u.group_id = 1')
         // ->where('g.name != "Mentors"')
-        ->all();
+        ->count();
         
         $like_comment_mentor = (new \yii\db\Query())
         ->select(['l.*'])
@@ -130,7 +130,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
         ->join('INNER JOIN', 'user as u', 'l.created_by = `u`.`id`')
         ->where('l.object_model=\''.str_replace("\\", "\\\\", Comment::classname()).'\' AND u.group_id = 2')
         // ->where('g.name != "Mentors"')
-        ->all();
+        ->count();
         
         // var_dump($like_comment_user);
         

@@ -19,6 +19,7 @@ foreach($evidences as $key => $evidence){
 }
 
 ?>
+
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3><?php echo Yii::t('StatsModule.base', 'Statistics Overview'); ?></h3>
@@ -30,6 +31,10 @@ foreach($evidences as $key => $evidence){
         <?php echo Html::a(
             Yii::t('StatsModule.base', 'Space Statistics'), 
             ['space-stats'], array('class' => 'btn btn-success')); ?>
+        &nbsp;&nbsp;
+        <?php echo Html::a(
+            Yii::t('StatsModule.base', 'Activities Statistics'), 
+            ['activities-stats'], array('class' => 'btn btn-info')); ?>
 
     </div>
     <div class="panel-body">
