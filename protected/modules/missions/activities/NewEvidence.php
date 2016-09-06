@@ -50,7 +50,9 @@ class NewEvidence extends BaseActivity
 
             return;
         }else{
+
             return parent::render();
+
         }
 
     }

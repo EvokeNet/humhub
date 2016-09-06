@@ -3,6 +3,11 @@
 namespace app\modules\matching_questions\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use humhub\modules\content\components\ContentActiveRecord;
+use app\modules\matching_questions\models\MatchingAnswers;
+use yii\db\ActiveRecord;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "user_matching_answers".
@@ -10,14 +15,14 @@ use Yii;
  * @property integer $id
  * @property integer $user_id
  * @property integer $matching_question_id
- * @property integer $matching_aswer_id
+ * @property integer $matching_answer_id
  * @property string $description
  * @property integer $order
  * @property string $created
  * @property string $modified
  *
  * @property User $user
- * @property UserMatchingAnswers $matchingAswer
+ * @property UserMatchingAnswers $matchingAnswer
  * @property UserMatchingAnswers[] $userMatchingAnswers
  * @property MatchingQuestions $matchingQuestion
  */
@@ -31,19 +36,32 @@ class UserMatchingAnswers extends \yii\db\ActiveRecord
         return 'user_matching_answers';
     }
 
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+                // if you're using datetime instead of UNIX timestamp:
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['user_id', 'matching_question_id', 'matching_aswer_id', 'description', 'order', 'created', 'modified'], 'required'],
-            [['user_id', 'matching_question_id', 'matching_aswer_id', 'order'], 'integer'],
-            [['created', 'modified'], 'safe'],
-            [['description'], 'string', 'max' => 255],
+            [['user_id', 'matching_answer_id'], 'required'],
+            [['user_id', 'matching_answer_id'], 'integer'],
+            [['created_at', 'updated_at'], 'safe'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
-            [['matching_aswer_id'], 'exist', 'skipOnError' => true, 'targetClass' => UserMatchingAnswers::className(), 'targetAttribute' => ['matching_aswer_id' => 'id']],
-            [['matching_question_id'], 'exist', 'skipOnError' => true, 'targetClass' => MatchingQuestions::className(), 'targetAttribute' => ['matching_question_id' => 'id']],
+            [['matching_answer_id'], 'exist', 'skipOnError' => true, 'targetClass' => MatchingAnswers::className(), 'targetAttribute' => ['matching_answer_id' => 'id']],
         ];
     }
 
@@ -55,10 +73,7 @@ class UserMatchingAnswers extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('MatchingModule.base', 'ID'),
             'user_id' => Yii::t('MatchingModule.base', 'User ID'),
-            'matching_question_id' => Yii::t('MatchingModule.base', 'Matching Question ID'),
-            'matching_aswer_id' => Yii::t('MatchingModule.base', 'Matching Aswer ID'),
-            'description' => Yii::t('MatchingModule.base', 'Description'),
-            'order' => Yii::t('MatchingModule.base', 'Order'),
+            'matching_answer_id' => Yii::t('MatchingModule.base', 'Matching Answer ID'),
             'created' => Yii::t('MatchingModule.base', 'Created'),
             'modified' => Yii::t('MatchingModule.base', 'Modified'),
         ];
@@ -75,9 +90,9 @@ class UserMatchingAnswers extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMatchingAswer()
+    public function getMatchingAnswer()
     {
-        return $this->hasOne(UserMatchingAnswers::className(), ['id' => 'matching_aswer_id']);
+        return $this->hasOne(UserMatchingAnswers::className(), ['id' => 'matching_answer_id']);
     }
 
     /**
@@ -85,7 +100,7 @@ class UserMatchingAnswers extends \yii\db\ActiveRecord
      */
     public function getUserMatchingAnswers()
     {
-        return $this->hasMany(UserMatchingAnswers::className(), ['matching_aswer_id' => 'id']);
+        return $this->hasMany(UserMatchingAnswers::className(), ['matching_answer_id' => 'id']);
     }
 
     /**
@@ -93,6 +108,6 @@ class UserMatchingAnswers extends \yii\db\ActiveRecord
      */
     public function getMatchingQuestion()
     {
-        return $this->hasOne(MatchingQuestions::className(), ['id' => 'matching_question_id']);
+        return $this->matchingAnswer->matchingQuestion;
     }
 }

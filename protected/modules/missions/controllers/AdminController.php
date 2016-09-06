@@ -12,6 +12,7 @@ use app\modules\missions\models\DifficultyLevels;
 use app\modules\missions\models\EvokationCategories;
 use app\modules\missions\models\EvokationCategoryTranslations;
 use app\modules\missions\models\EvokationDeadline;
+use app\modules\missions\models\Evidence;
 
 /**
  * AdminController
@@ -57,6 +58,29 @@ class AdminController extends \humhub\modules\admin\components\Controller
         }
 
         return $this->redirect(['index-deadline']);
+    }
+
+    public function actionIndexEvidences()
+    {
+        $evidences = Evidence::find()->all();
+        return $this->render('evidences/index', array('evidences' => $evidences));
+    }
+    
+    public function actionViewEvidences($id)
+    {
+        $model = Evidence::findOne(['id' => Yii::$app->request->get('id')]);
+        return $this->render('evidences/view', array('model' => $model));
+    }
+
+    public function actionDeleteEvidences()
+    {
+        $model = Evidence::findOne(['id' => Yii::$app->request->get('id')]);
+
+        if ($model !== null) {
+            $model->getContentObject()->delete();
+        }
+
+        return $this->redirect(['index-evidences']);
     }
     
     public function actionIndexCategories()

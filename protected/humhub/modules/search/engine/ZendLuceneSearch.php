@@ -117,6 +117,7 @@ class ZendLuceneSearch extends Search
         $resultSet->page = $options['page'];
 
         $hits = new \LimitIterator($hits->getIterator(), ($options['page'] - 1) * $options['pageSize'], $options['pageSize']);
+
         foreach ($hits as $hit) {
             $document = $hit->getDocument();
 
@@ -127,6 +128,8 @@ class ZendLuceneSearch extends Search
 
             $resultSet->results[] = $result;
         }
+
+
 
         return $resultSet;
     }

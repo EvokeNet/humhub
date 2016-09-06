@@ -95,7 +95,7 @@ class LeaderboardController extends \yii\web\Controller
         ->join('INNER JOIN', 'profile as p', 'u.id = `p`.`user_id`')
         ->join('INNER JOIN', 'group as g', 'u.group_id = `g`.`id`')
         ->join('INNER JOIN', 'votes as v', 'u.id = `v`.`user_id`')
-        ->where('g.name != "Mentors"')
+        ->where('g.name != "Mentors"') 
         ->limit($limit)
         ->groupBy('u.id')
         ->orderBy('reviews desc')

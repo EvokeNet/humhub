@@ -143,7 +143,7 @@ class EvidenceController extends ContentContainerController
         }
 
         if($message_initial != ""){
-            return $message_initial . "<br>" .  $message;
+            return $message_initial . "<p>" .  $message . "</p>";
         }else{
             return $message;
         }
