@@ -279,6 +279,12 @@ class EvidenceController extends ContentContainerController
 
         $vote = Votes::findOne(['user_id' => $user->id, 'evidence_id' => $evidenceId]);
 
+        if (empty($comment) && $user->group->name == "Mentors") {
+            //mentors must comment
+            AlertController::createAlert("Error", "Oops! Something's wrong.");
+            return; 
+        }
+
         /*
             Check if review is valid:
             *** - it has a 'no' vote or a 1-5 'yes' vote
@@ -293,10 +299,11 @@ class EvidenceController extends ContentContainerController
 
                 // mentor votes are worth twice as much
                 if ($user->group->name == "Mentors") {
-                  $pointChange = $pointChange * 2;
+                    $pointChange = $pointChange * 2;
                 }
 
                 if(empty($vote->comment) && !empty($comment)){
+
                     $wallet = Wallet::find()->where(['owner_id' => $user->id])->one();
                     $wallet->addCoin(5);
                     $evocoin_earned += 5;
@@ -323,6 +330,7 @@ class EvidenceController extends ContentContainerController
 
 
             }else{
+
                 //SAVE VOTE
                 $vote = new Votes();
                 $vote->user_id = $user->id;

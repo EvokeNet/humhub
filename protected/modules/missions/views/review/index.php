@@ -254,6 +254,15 @@ function validateReview(id){
 	opt = opt? opt.value : null;
 	grade = grade? grade.value : null;
 
+/*Comment is required for mentors */
+<?php if(Yii::$app->user->getIdentity()->group->name == "Mentors"):  ?>    
+    if(comment == ""){
+        showMessage("Error", "<?= Yii::t('MissionsModule.base', 'You must submit a comment.') ?>");
+        return false;
+    }
+<?php endif; ?>
+
+
 /*
 ***Comment isn't required anymore.***
     if(comment == ""){
