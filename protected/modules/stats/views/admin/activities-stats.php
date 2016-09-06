@@ -18,22 +18,18 @@ echo Breadcrumbs::widget([
         <h3><?php echo $this->title; ?></h3>
     </div>
     <div class="panel-body">
-        
+        <h4><?php echo Yii::t('StatsModule.base', 'Total number of evidences: {evidences}', array('evidences' => count($evidences))); ?></h4><br>
         <table class="table">
             <tr>
                 <th><?php echo Yii::t('StatsModule.base', 'Name'); ?></th>
-                <!--<th><?php //echo Yii::t('StatsModule.base', 'Username'); ?></th>-->
-                <th><?php echo Yii::t('StatsModule.base', 'Total Users on each team'); ?></th>
-                <th><?php echo Yii::t('StatsModule.base', 'Evidences Submitted by team'); ?></th>
-                <th><?php echo Yii::t('StatsModule.base', 'Total reviews by team'); ?></th>
+                <th><?php echo Yii::t('StatsModule.base', 'Number of evidences'); ?></th>
+                <th><?php echo Yii::t('StatsModule.base', '% of submitted evidence for this activity'); ?></th>
             </tr>
-            <?php foreach ($spaces as $space): ?>
+            <?php foreach ($activities as $activity): ?>
                 <tr>
-                    <td><?php echo $space['name']; ?></td>
-                    <td><?php echo $space['members']; ?></td>
-                    <td><?php echo $space['evidences']; ?></td>
-                    <td><?php echo $space['reviews']; ?></td>
-                    <!--<td><?php //echo $mission->description; ?></td>-->
+                    <td><?php echo $activity['title']; ?></td>
+                    <td><?php echo count($activity->evidences); ?></td>
+                    <td><?php echo number_format((float)(count($activity->evidences)/count($evidences)), 2, '.', ''); ?></td>
                 </tr>
             <?php endforeach; ?>
         </table>
