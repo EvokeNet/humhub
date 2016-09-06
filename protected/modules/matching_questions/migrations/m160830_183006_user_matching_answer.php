@@ -31,7 +31,7 @@ class m160830_183006_user_matching_answer extends Migration
 
     public function down()
     {
-        $this->addColumn('user_matching_answers', 'matching_question_id', 'int(11) NOT NULL');
+        $this->addColumn('user_matching_answers', 'matching_question_id', 'int(11) NULL');
         $this->addForeignKey(
             'fk-user_matching_answers-matching_question_id',
             'user_matching_answers',
