@@ -234,4 +234,29 @@ class EvokationsController extends ContentContainerController //extends Controll
         return $this->render('portfolio', []);
     }
 
+    public function actionUpdate_gdrive_url(){
+        $user = Yii::$app->user->getIdentity();
+        $new_url = Yii::$app->request->post("url");
+        $id = Yii::$app->request->post("id");
+
+        $model = $this->findModel($id);
+        $model->scenario = Evokations::SCENARIO_EDIT;
+        
+        $edited = false;
+
+        if($model && $model->created_by == $user->id){
+            $model->gdrive_url = $new_url;
+            $model->scenario = Evokations::SCENARIO_EDIT;
+            $model->save();
+
+            header('Content-type: application/json');
+            $response_array['status'] = 'success'; 
+        }else{
+            header('Content-type: application/json');
+            $response_array['status'] = 'error'; 
+        }
+        Yii::$app->end();
+
+    }
+
 }
