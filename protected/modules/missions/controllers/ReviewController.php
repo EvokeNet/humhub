@@ -23,8 +23,7 @@ class ReviewController extends ContentContainerController
 
         // Save users last action on this space
         $membership = $this->space->getMembership(Yii::$app->user->id);
-        
-        $membership= null;
+
         if ($membership != null && $membership->status == Membership::STATUS_MEMBER) {
             $membership->updateLastVisit();
         } else {
@@ -44,7 +43,7 @@ class ReviewController extends ContentContainerController
     public function actions()
     {
 
-    }   
+    }
 
     public function getEvidenceToReviewCount($currentSpace){
 
@@ -100,7 +99,7 @@ class ReviewController extends ContentContainerController
         }
         $nextEvidence['evidence'] = $evidence;
         $nextEvidence['files'] = $files;
-        
+
 
         return $nextEvidence;
     }
@@ -108,16 +107,16 @@ class ReviewController extends ContentContainerController
     public function actionQueue(){
 
         $nextEvidence = $this->getNextEvidence();
-        $nextEvidence['activity'] =  $nextEvidence['evidence']->getActivities();  
+        $nextEvidence['activity'] =  $nextEvidence['evidence']->getActivities();
 
         header('Content-Type: application/json; charset="UTF-8"');
         $nextEvidence = Json::encode($nextEvidence);
         echo $nextEvidence;
         Yii::$app->end();
     }
-   
+
     public function actionIndex()
-    {   
+    {
         $user = Yii::$app->user->getIdentity();
 
         $nextEvidence = $this->getNextEvidence($this->contentContainer);
