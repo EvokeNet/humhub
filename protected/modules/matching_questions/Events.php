@@ -14,7 +14,9 @@ use humhub\models\Setting;
 use app\modules\matching_questions\models\SuperheroIdentities;
 use app\modules\matching_questions\models\User;
 use humhub\modules\matching_questions\widgets\SuperHeroWidget;
+use humhub\modules\matching_questions\widgets\CompleteProfileWidget;
 // use humhub\modules\matching_questions\models\MatchingQuestions;
+
 
 /**
  * Description of Events
@@ -51,10 +53,11 @@ class Events extends \yii\base\Object
 
             $user = $event->sender->user;
 
-            /*
-            $superhero_id = SuperheroIdentities::findOne([$user->superhero_identity_id]);
-            $event->sender->addWidget(SuperHeroWidget::className(), ['superhero_id' => $superhero_id, 'user' => $user], array('sortOrder' => 8));
-            */
+            if(null != Yii::$app->user->getIdentity()) {
+              if (!isset(Yii::$app->user->getIdentity()->superhero_identity_id) && Yii::$app->user->getIdentity()->group->name != "Mentors"){
+                  $event->sender->addWidget(CompleteProfileWidget::className(), ['user' => $user], array('sortOrder' => 0));
+              }
+            }
         }
 
     }
@@ -67,7 +70,7 @@ class Events extends \yii\base\Object
             if(null != Yii::$app->user->getIdentity()) {
               if (!isset(Yii::$app->user->getIdentity()->superhero_identity_id) && Yii::$app->user->getIdentity()->has_read_novel == true && Yii::$app->user->getIdentity()->group->name != "Mentors"){
                   $event->action->controller->redirect(Url::toRoute('/matching_questions/matching-questions/matching'));
-            }
+              }
             }
         }
 
