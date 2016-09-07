@@ -17,7 +17,7 @@ class CompleteProfileWidget extends Widget
     {
       $user = $this->user;
 
-      if ($user->has_read_novel === true) {
+      if ($user->has_read_novel == true) {
         $url = Url::toRoute('/matching_questions/matching-questions/matching');
       } else {
         $url = Url::toRoute(['/novel/novel/graphic-novel', 'page' => 1]);
