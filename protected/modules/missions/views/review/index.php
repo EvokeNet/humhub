@@ -83,7 +83,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                     </div>
 
                     <div class="panel-body">
-                        <div id="collapseEvidenceReviews<?= $evidence->id ?>" class="panel-collapse collapse">
+                        <div id="collapseEvidenceReviews<?= $evidence->id ?>" class="panel-collapse collapse in">
                             <div class="">
                                 <?php
                                 $votes = $evidence->getVotes();
