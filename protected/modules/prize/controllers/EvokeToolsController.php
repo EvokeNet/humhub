@@ -12,6 +12,7 @@ use app\modules\coin\models\Wallet;
 use humhub\modules\user\models\User;
 use app\modules\powers\models\UserQualities;
 use app\modules\matching_questions\models\Qualities;
+use app\modules\prize\models\SlotMachineStats;
 
 /**
  * Evoke Tools Controller
@@ -45,6 +46,7 @@ class EvokeToolsController extends Controller
 
     public function actionSearch()
     {
+      $user = Yii::$app->user->getIdentity();
       $prizes = Prize::find()->where('quantity > :quantity', [':quantity' => '0'])->all();
       $coin_id = Coin::find()->where(['name' => 'EvoCoin'])->one()->id;
       $wallet = Wallet::find()->where(['owner_id' => Yii::$app->user->id, 'coin_id' => $coin_id])->one();
@@ -57,6 +59,19 @@ class EvokeToolsController extends Controller
       // minus the 5 evocoin this action costs
       $wallet->amount -= 5;
       $wallet->save();
+
+      // track the slotmachine use
+      $user->slot_machine_uses++;
+      $user->save();
+
+      $slot_machine_stats = SlotMachineStats::find()->where(['id' => 1])->one();
+
+      if ($slot_machine_stats == null) {
+        $slot_machine_stats = new SlotMachineStats();
+        $slot_machine_stats->id = 1;
+      }
+
+      $slot_machine_stats->uses++;
 
       // workout the probabilities for each prize
       // this is tied to when the prize was set to be available
@@ -106,6 +121,7 @@ class EvokeToolsController extends Controller
           $prize_won_description = '';
           $prize_won_id = 'evocoin50';
           $wallet->addCoin(50);
+          $slot_machine_stats->evocoin_created += 50;
           $wallet->save();
         }
         elseif ($roll >= ($this->max_prob * 0.95)) {
@@ -113,6 +129,7 @@ class EvokeToolsController extends Controller
           $prize_won_description = '';
           $prize_won_id = 'evocoin20';
           $wallet->addCoin(20);
+          $slot_machine_stats->evocoin_created += 20;
           $wallet->save();
         }
         elseif ($roll >= ($this->max_prob * 0.8)) {
@@ -120,6 +137,7 @@ class EvokeToolsController extends Controller
           $prize_won_description = '';
           $prize_won_id = 'evocoin10';
           $wallet->addCoin(10);
+          $slot_machine_stats->evocoin_created += 10;
           $wallet->save();
         }
         elseif ($roll >= ($this->max_prob * 0.65)) {
@@ -127,6 +145,7 @@ class EvokeToolsController extends Controller
           $prize_won_description = '';
           $prize_won_id = 'evocoin5';
           $wallet->addCoin(5);
+          $slot_machine_stats->evocoin_created += 5;
           $wallet->save();
         }
         else {
@@ -134,8 +153,12 @@ class EvokeToolsController extends Controller
           $prize_won_description = '';
           $prize_won_id = 'evocoin1';
           $wallet->amount += 1;
+          $slot_machine_stats->evocoin_created += 1;
+          $wallet->save();
         }
       }
+
+      $slot_machine_stats->save();
 
 
       if (Yii::$app->request->isAjax) {
