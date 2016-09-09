@@ -133,9 +133,9 @@ class EvidenceController extends ContentContainerController
             }else{
                 $pointString = Yii::t('MissionsModule.base', 'point');
             }
-            
+
             $name = $activity_power->getPower()->title;
-            
+
             if(Yii::$app->language == 'es' && isset($activity_power->getPower()->powerTranslations[0]))
                 $name = $activity_power->getPower()->powerTranslations[0]->title;
 
@@ -282,7 +282,7 @@ class EvidenceController extends ContentContainerController
         if (empty($comment) && $user->group->name == "Mentors") {
             //mentors must comment
             AlertController::createAlert("Error", "Oops! Something's wrong.");
-            return; 
+            return;
         }
 
         /*
