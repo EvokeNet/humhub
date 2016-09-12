@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+
 ?>
 
 <div class="panel panel-default members" id="space-members-panel">
@@ -8,7 +9,7 @@ use yii\helpers\Html;
         <?php echo Yii::t('SpaceModule.widgets_views_spaceMembers', '<strong>Space</strong> members'); ?>
     </div>
 
-    <div class="panel-body">
+    <div class="panel-body fix">
         <?php foreach ($members as $membership) : ?>
             <?php $user = $membership->user; ?>
             <?php if($membership->status === \humhub\modules\space\models\Membership::STATUS_MEMBER) : ?>
@@ -25,7 +26,7 @@ use yii\helpers\Html;
 
 <style>
 
- .panel-body img {
+ .panel-body.fix img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
