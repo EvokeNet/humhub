@@ -83,7 +83,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                     </div>
 
                     <div class="panel-body">
-                        <div id="collapseEvidenceReviews<?= $evidence->id ?>" class="panel-collapse collapse">
+                        <div id="collapseEvidenceReviews<?= $evidence->id ?>" class="panel-collapse collapse in">
                             <div class="">
                                 <?php
                                 $votes = $evidence->getVotes();
@@ -253,6 +253,15 @@ function validateReview(id){
     var comment = document.getElementById("review_comment").value;
 	opt = opt? opt.value : null;
 	grade = grade? grade.value : null;
+
+/*Comment is required for mentors */
+<?php if(Yii::$app->user->getIdentity()->group->name == "Mentors"):  ?>    
+    if(comment == ""){
+        showMessage("Error", "<?= Yii::t('MissionsModule.base', 'You must submit a comment.') ?>");
+        return false;
+    }
+<?php endif; ?>
+
 
 /*
 ***Comment isn't required anymore.***
