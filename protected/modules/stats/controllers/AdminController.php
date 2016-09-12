@@ -252,6 +252,12 @@ class AdminController extends \humhub\modules\admin\components\Controller
       $evocoin_from_reviews = Votes::find()->count() * 5;
       $evocoin_from_comments = Votes::find()->where(['comment' => 'NOT NULL'])->count() * 5;
 
+      if ($slot_machine_stats == null) {
+        $slot_machine_stats = new SlotMachineStats();
+        $slot_machine_stats->id = 1;
+        $slot_machine_stats->save();
+      }
+
       return $this->render('evocoin-stats', [
         'total_coin' => $coin,
         'total_coin_created' => $total_coin_created,
