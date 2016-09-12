@@ -187,7 +187,7 @@ textarea {
 .heading {
   font-weight: 700;
   font-family: 'Ubuntu', sans-serif;
-  color: #254054 !important;
+  color: #254054;
   background-color: #ADBCFF;
   border: none;
   padding: 10px;
@@ -863,7 +863,7 @@ input[type=select] {
 .panel .panel-heading {
   font-weight: 700;
   font-family: 'Ubuntu', sans-serif;
-  color: #254054 !important;
+  color: #254054;
   background-color: #ADBCFF;
   border: none;
   padding: 10px;
