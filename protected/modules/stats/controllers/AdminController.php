@@ -24,6 +24,7 @@ use app\modules\coin\models\Wallet;
 use app\modules\coin\models\Coin;
 use app\modules\missions\models\Votes;
 use app\modules\prize\models\SlotMachineStats;
+use humhub\modules\space\models\Membership;
 
 /**
  * AdminController
@@ -175,10 +176,10 @@ class AdminController extends \humhub\modules\admin\components\Controller
             'u.*, 
             p.firstname, 
             p.lastname, 
-            count(c.id) as evidences, 
-            count(v.id) as votes,
-            count(f.id) as followers,
-            count(fg.id) as following, 
+            count(distinct c.id) as evidences, 
+            count(distinct v.id) as votes,
+            count(distinct f.id) as followers,
+            count(distinct fg.id) as following, 
             w.amount as coins'
         ])
         ->from('user as u')
@@ -206,9 +207,9 @@ class AdminController extends \humhub\modules\admin\components\Controller
         $spaces = (new \yii\db\Query())
         ->select([
             's.*, 
-            count(u.id) as members, 
-            count(e.id) as evidences, 
-            count(v.id) as reviews
+            count(distinct u.id) as members, 
+            count(distinct e.id) as evidences, 
+            count(distinct v.id) as reviews
             '])
         ->from('space as s')
         ->join('LEFT JOIN', 'space_membership as m', 's.id = `m`.`space_id`')
@@ -217,6 +218,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
         ->join('LEFT JOIN', 'content as c', 's.id = `c`.`space_id`')
         ->join('LEFT JOIN', 'evidence as e', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
         ->where('s.is_team = 1')
+        ->andWhere(['m.status' => Membership::STATUS_MEMBER])
         ->groupBy('s.id')
         // ->orderBy('reviews desc')
 
