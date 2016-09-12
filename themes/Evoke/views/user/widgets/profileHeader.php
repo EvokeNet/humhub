@@ -6,17 +6,16 @@ use humhub\modules\user\models\User;
 use humhub\modules\space\models\Space;
 use humhub\modules\coin\widgets\UserWallet;
 
+$user_fixed = app\modules\matching_questions\models\User::findOne($user->id);
+
 if ($isProfileOwner) {
     $this->registerJsFile('@web/resources/user/profileHeaderImageUpload.js');
     $this->registerJs("var profileImageUploaderUserGuid='" . $user->guid . "';", \yii\web\View::POS_BEGIN);
     $this->registerJs("var profileImageUploaderCurrentUserGuid='" . Yii::$app->user->getIdentity()->guid . "';", \yii\web\View::POS_BEGIN);
     $this->registerJs("var profileImageUploaderUrl='" . Url::to(['/user/account/profile-image-upload', 'userGuid' => $user->guid]) . "';", \yii\web\View::POS_BEGIN);
     $this->registerJs("var profileHeaderUploaderUrl='" . Url::to(['/user/account/banner-image-upload', 'userGuid' => $user->guid]) . "';", \yii\web\View::POS_BEGIN);
-
-
-    $user_fixed = app\modules\matching_questions\models\User::findOne($user->id);
-
 }
+
 ?>
 <div class="panel panel-default panel-profile">
 
@@ -207,7 +206,12 @@ if ($isProfileOwner) {
                         </div>
 
                         <div class="pull-left entry">
-                            <span class="count"><?php echo count($user_fixed->spaces); ?></span><br>
+                            <span class="count">
+                                <?php 
+                                    echo count($user_fixed->spaces); 
+                                ?>
+                            </span>
+                            <br>
                             <span
                                 class="title"><?php echo Yii::t('UserModule.widgets_views_profileHeader', 'Spaces'); ?></span>
                         </div>
