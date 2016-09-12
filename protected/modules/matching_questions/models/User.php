@@ -42,6 +42,8 @@ class User extends \yii\db\ActiveRecord
         return 'user';
     }
 
+
+
     /**
      * @inheritdoc
      */
@@ -110,4 +112,22 @@ class User extends \yii\db\ActiveRecord
     {
         return $this->hasMany(UserMatchingAnswers::className(), ['user_id' => 'id']);
     }
+
+    /**
+     *
+     * @return type
+     */
+    public function getSpaces()
+    {
+
+        // TODO: SHOW ONLY REAL MEMBERSHIPS
+        return $this->hasMany
+        (\humhub\modules\space\models\Space::className(), ['id' => 'space_id'])
+            ->viaTable('space_membership', ['user_id' => 'id'])
+            ->innerJoin('space_membership as m', '`m`.`space_id` = `space`.`id`')
+            ->where('m.status = 3')
+            ->andWhere('m.user_id ='. $this->id);
+    }
+
+
 }
