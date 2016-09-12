@@ -63,7 +63,7 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
 <div class="panel panel-default">
     <div class="panel-body row">
         <div class="col-sm-6">
-            <div class="panel-heading">
+            <div class="panel-heading" style="background-color:#FFF">
                 <h4 class = "display-inline">
                     <strong>
                         <?= Yii::t('MissionsModule.base', 'Mission Progress') ?>

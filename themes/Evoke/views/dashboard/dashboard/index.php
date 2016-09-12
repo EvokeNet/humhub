@@ -10,7 +10,7 @@ $userPowers = UserPowers::getUserPowers($user->id);
 ?>
 <div class="container">
     <div class="row">
-        <div class="col-xs-8 layout-content-container">
+        <div class="col-sm-8 layout-content-container">
 
             <?php //if($user->group->name != "Mentors"): ?>
             <div class="panel-group">
@@ -39,7 +39,7 @@ $userPowers = UserPowers::getUserPowers($user->id);
             ?>
         </div>
         
-        <div class="col-xs-4 layout-sidebar-container">
+        <div class="col-sm-4 layout-sidebar-container">
             <?php
             echo \humhub\modules\dashboard\widgets\Sidebar::widget(['widgets' => [
                     [\humhub\modules\activity\widgets\Stream::className(), ['streamAction' => '/dashboard/dashboard/stream'], ['sortOrder' => 150, ['label' => 'yay']]]

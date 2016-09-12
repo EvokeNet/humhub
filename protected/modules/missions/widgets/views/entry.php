@@ -12,11 +12,11 @@ echo Html::beginForm();
 
 <div class = "evidence-mission-box">
   <div>
-    <p style = "display:inline; float:left; font-weight: 700;"><?= isset($activity->mission->missionTranslations[0]) ? $activity->mission->missionTranslations[0]->title : $activity->mission->title ?></p>
+    <p style = "display:inline; float:left; font-weight: 700;"><?= Yii::t('MissionsModule.base', 'Mission {position}: {text}', array('position' => $activity->mission->position, 'text' => isset($activity->mission->missionTranslations[0]) ? $activity->mission->missionTranslations[0]->title : $activity->mission->title)) ?></p>
     <p style = "text-align:end; font-weight: 700;"><?= Yii::t('MissionsModule.base', 'Votes: {votes}', array('votes' => $evidence->getVoteCount()? $evidence->getVoteCount() : "0")) ?></p>
   </div>
   <div>
-    <p style = "display:inline; float:left; font-weight: 700;"><?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title ?></p>
+    <p style = "display:inline; float:left; font-weight: 700;"><?= Yii::t('MissionsModule.base', 'Activity {position}: {text}', array('position' => $activity->position, 'text' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title)) ?></p>
     <p style = "text-align:end; font-weight: 700;"><?= Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $evidence->getAverageRating()? number_format((float)$evidence->getAverageRating(), 1, '.', '') : "-")) ?></p>
   </div>
 </div>
@@ -111,7 +111,8 @@ echo Html::beginForm();
     <div class="panel panel-default">
         <div class="panel-heading">
             <h6 class="panel-title">
-                <a data-toggle="collapse"  href="#collapseEvidenceReviews<?= $evidence->id ?>" style="color:white">
+
+                <a data-toggle="collapse" href="#collapseEvidenceReviews<?= $evidence->id ?>" style="color:#254054">
                     <?= Yii::t('MissionsModule.base', 'Reviews') ?>
                 </a>
             </h6>

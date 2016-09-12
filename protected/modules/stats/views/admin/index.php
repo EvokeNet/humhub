@@ -25,20 +25,18 @@ foreach($evidences as $key => $evidence){
         <h3><?php echo Yii::t('StatsModule.base', 'Statistics Overview'); ?></h3>
 
         <?php echo Html::a(
-            Yii::t('StatsModule.base', 'User Statistics'),
-            ['user-stats'], array('class' => 'btn btn-warning')); ?>
+
+            Yii::t('StatsModule.base', 'User Statistics'), 
+            ['user-stats'], array('class' => 'btn btn-danger')); ?>
         &nbsp;&nbsp;
         <?php echo Html::a(
             Yii::t('StatsModule.base', 'Space Statistics'),
             ['space-stats'], array('class' => 'btn btn-success')); ?>
         &nbsp;&nbsp;
         <?php echo Html::a(
-            Yii::t('StatsModule.base', 'Activities Statistics'),
+
+            Yii::t('StatsModule.base', 'Activities Statistics'), 
             ['activities-stats'], array('class' => 'btn btn-info')); ?>
-        &nbsp;&nbsp;
-        <?php echo Html::a(
-            Yii::t('StatsModule.base', 'Evocoin Statistics'),
-            ['evocoin-stats'], array('class' => 'btn btn-standard')); ?>
 
     </div>
     <div class="panel-body">
@@ -81,7 +79,9 @@ foreach($evidences as $key => $evidence){
 
             <li><span style="font-size:13pt"><?php echo Yii::t('StatsModule.base', 'Average number of reviews received per player: {list}', array('list' => number_format((float)(($votes_agents+$votes_mentors)/$users), 2, '.', ''))); ?></span></li>
 
+            
             <li><span style="font-size:13pt"><?php echo Yii::t('StatsModule.base', 'Average number of reviews per evidence: {list}', array('list' => number_format((float)(($votes_agents+$votes_mentors)/$num_evidences), 2, '.', ''))); ?></span></li>
+            
 
             <li><span style="font-size:13pt"><?php echo Yii::t('StatsModule.base', 'Number of Comments Given'); ?></span></li>
             <ul>

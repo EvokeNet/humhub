@@ -21,8 +21,9 @@ echo Breadcrumbs::widget([
         
         <table class="table">
             <tr>
-                <th><?php echo Yii::t('StatsModule.base', 'Name'); ?></th>
-                <!--<th><?php //echo Yii::t('StatsModule.base', 'Username'); ?></th>-->
+
+                <!--<th><?php //echo Yii::t('StatsModule.base', 'Name'); ?></th>-->
+                <th><?php echo Yii::t('StatsModule.base', 'Username'); ?></th>
                 <th><?php echo Yii::t('StatsModule.base', '# of Evocoins'); ?></th>
                 <th><?php echo Yii::t('StatsModule.base', '# of Followers'); ?></th>
                 <th><?php echo Yii::t('StatsModule.base', '# of Followees'); ?></th>
@@ -34,8 +35,10 @@ echo Breadcrumbs::widget([
             </tr>
             <?php foreach ($users as $user): ?>
                 <tr>
-                    <td><?php echo $user['firstname'].' '.$user['lastname']; ?></td>
-                    <!--<td><?php //echo $user['username']; ?></td>-->
+
+                    <!--<td><?php //echo $user['firstname'].' '.$user['lastname']; ?></td>-->
+                    <td><?php echo $user['username']; ?></td>
+
                     <td><?php echo $user['coins']; ?></td>
                     <td><?php echo $user['followers']; ?></td>
                     <td><?php echo $user['following']; ?></td>

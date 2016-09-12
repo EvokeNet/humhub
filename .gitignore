@@ -24,6 +24,7 @@ protected/runtime/searchdb/*
 uploads/*
 ​
 protected/modules/books
+protected/modules/cfiles
 protected/modules/custom_pages
 protected/modules/mail
 protected/modules/notes
@@ -33,6 +34,7 @@ protected/modules/breakingnews
 protected/modules/wiki
 
 protected/modules/books/*
+protected/modules/cfiles/*
 protected/modules/custom_pages/*
 protected/modules/mail/*
 protected/modules/notes/*
