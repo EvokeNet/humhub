@@ -35,10 +35,9 @@ echo Breadcrumbs::widget([
             </tr>
             <?php foreach ($users as $user): ?>
                 <tr>
-
-                    <!--<td><?php //echo $user['firstname'].' '.$user['lastname']; ?></td>-->
-                    <td><?php echo $user['username']; ?></td>
-
+                    <td>
+                        <?= Html::a($user['username'], ['/user/profile', 'uguid' => $user['guid']], ['style' => ' font-weight: 700; color: #2273AC;']) ?>
+                    </td>
                     <td><?php echo $user['coins']; ?></td>
                     <td><?php echo $user['followers']; ?></td>
                     <td><?php echo $user['following']; ?></td>

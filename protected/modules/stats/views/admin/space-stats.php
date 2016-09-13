@@ -29,7 +29,9 @@ echo Breadcrumbs::widget([
             </tr>
             <?php foreach ($spaces as $space): ?>
                 <tr>
-                    <td><?php echo $space['name']; ?></td>
+                    <td>
+                        <?= Html::a($space['name'], ['/space/space', 'sguid' => $space['guid']], ['style' => ' font-weight: 700; color: #2273AC;']) ?>
+                    </td>
                     <td><?php echo $space['members']; ?></td>
                     <td><?php echo $space['evidences']; ?></td>
                     <td><?php echo $space['reviews']; ?></td>
