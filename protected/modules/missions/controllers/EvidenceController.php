@@ -20,6 +20,7 @@ use app\modules\missions\models\Votes;
 use humhub\modules\missions\controllers\AlertController;
 use humhub\modules\user\models\User;
 use app\modules\coin\models\Wallet;
+use app\modules\missions\models\EvokationCategories;
 
 class EvidenceController extends ContentContainerController
 {
@@ -172,6 +173,34 @@ class EvidenceController extends ContentContainerController
         ])->one();
 
         return $this->render('show', array(
+            'contentContainer' => $this->contentContainer,
+            'activity' => $activity,
+            'space' => $this->space,
+        ));
+    }
+
+     /**
+     * Posts a new question  throu the question form
+     *
+     * @return type
+     */
+    public function actionMentor($activityId)
+    {
+        $activity = Activities::find()
+        ->where(['=', 'id', $activityId])
+        ->with([
+            'activityTranslations' => function ($query) {
+                $lang = Languages::findOne(['code' => Yii::$app->language]);
+                if(isset($lang))
+                    $query->andWhere(['language_id' => $lang->id]);
+                else{
+                    $lang = Languages::findOne(['code' => 'en-US']);
+                    $query->andWhere(['language_id' => $lang->id]);
+                }
+            },
+        ])->one();
+
+        return $this->render('mentor', array(
             'contentContainer' => $this->contentContainer,
             'activity' => $activity,
             'space' => $this->space,
@@ -373,6 +402,43 @@ class EvidenceController extends ContentContainerController
             AlertController::createAlert("Error", "Oops! Something's wrong.");
         }
 
+    }
+
+     /**
+    * Custom actions
+    */
+    public function actionMentor_activities()
+    {   
+        $categories = EvokationCategories::find()
+        ->with([
+            'activities.mission.missionTranslations' => function ($query) {
+                $lang = Languages::findOne(['code' => Yii::$app->language]);
+                if(isset($lang))
+                    $query->andWhere(['language_id' => $lang->id]);
+                else{
+                    $lang = Languages::findOne(['code' => 'en-US']);
+                    $query->andWhere(['language_id' => $lang->id]);
+                }
+            },
+            'activities.activityTranslations' => function ($query) {
+                $lang = Languages::findOne(['code' => Yii::$app->language]);
+                if(isset($lang))
+                    $query->andWhere(['language_id' => $lang->id]);
+                else{
+                    $lang = Languages::findOne(['code' => 'en-US']);
+                    $query->andWhere(['language_id' => $lang->id]);
+                }
+            },
+            // 'activities.evidences' => function($query){
+            //     $query->andWhere([$this->contentContainer->id]);
+            // }
+        ])->all();
+        
+        $missions = Missions::find()
+        ->where(['locked' => 0])
+        ->all();
+                
+        return $this->render('mentor_activities', array('categories' => $categories, 'missions' => $missions, 'contentContainer' => $this->contentContainer));
     }
 
 

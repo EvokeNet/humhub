@@ -263,6 +263,19 @@ class Events
         $team_id = Team::getUserTeam($user->id);
         $space = $event->sender->space;
 
+        if($space->name=="Mentors"){
+            $event->sender->addItem(array(
+                'label' => Yii::t('MissionsModule.event', 'All Evidences'),
+                'group' => 'modules',
+                'url' => $space->createUrl('/missions/evidence/mentor_activities'),
+                'icon' => '<i class="fa fa-sitemap"></i>',
+                'sortOrder' => 400,
+                'isActive' => (Yii::$app->controller->module
+                && Yii::$app->controller->module->id == 'missions'
+                && Yii::$app->controller->id == 'evidence'),
+            ));
+        }
+
         if ($space->isModuleEnabled('missions') ) {
 
             //MEMBERS
