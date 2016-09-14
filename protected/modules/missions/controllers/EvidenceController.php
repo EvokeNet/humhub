@@ -39,6 +39,11 @@ class EvidenceController extends ContentContainerController
                 'mode' => \humhub\modules\missions\components\UserStreamAction::MODE_NORMAL,
                 'contentContainer' => $this->contentContainer
             ),
+            'mentorfeed' => array(
+                'class' => \humhub\modules\missions\components\MentorStreamAction::className(),
+                'mode' => \humhub\modules\missions\components\MentorStreamAction::MODE_NORMAL,
+                'contentContainer' => $this->contentContainer
+            ),
         );
     }
 
