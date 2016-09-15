@@ -7,14 +7,19 @@ class m160914_045637_activities_stats extends Migration
     public function up()
     {
         $this->createTable('stats_activities', array(
-            'id' => 'pk',
-            'activities_id' => 'int(32) NOT NULL',
-            'evidence_id' => 'int(32) NOT NULL',
-            'name' => 'text NOT NULL',
-            'total_evidences' => 'int(32) NOT NULL',
-            'avg_evidences' => 'float(32) NOT NULL',
-            'created_at' => 'datetime NOT NULL',
-            'updated_at' => 'datetime NOT NULL',
+            'id' => $this->primaryKey(),
+            'activities_id' => $this->integer(32)->defaultValue(0),
+            'mission_id' => $this->integer(32)->defaultValue(0),
+            
+            'name' => $this->text(),
+            'mission_name' => $this->text(),
+
+            'total_evidences' => $this->integer(32)->defaultValue(0),
+            'number_evidences' => $this->integer(32)->defaultValue(0),
+            'avg_evidences' => $this->float(32)->defaultValue(0),
+            
+            'created_at' => $this->dateTime()->notNull(),
+            'updated_at' => $this->dateTime()->notNull(),
                 ), '');
     }
 

@@ -2,7 +2,7 @@
       
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4><?php echo Yii::t('StaticPagesModule.base', 'Terms and Conditions of Use & Privacy Policy') ?></h4>
+                <h4><?php echo Yii::t('StaticsModule.base', 'Terms and Conditions of Use & Privacy Policy') ?></h4>
             </div>
             <div class="panel-body">
                 <p>

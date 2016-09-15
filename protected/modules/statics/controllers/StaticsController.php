@@ -1,13 +1,13 @@
 <?php
 
-namespace humhub\modules\static_pages\controllers;
+namespace humhub\modules\statics\controllers;
 
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-class StaticPagesController extends Controller
+class StaticsController extends Controller
 {
     /**
      * @inheritdoc

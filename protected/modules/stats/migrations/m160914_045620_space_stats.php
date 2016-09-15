@@ -7,14 +7,16 @@ class m160914_045620_space_stats extends Migration
     public function up()
     {
         $this->createTable('stats_spaces', array(
-            'id' => 'pk',
-            'space_id' => 'int(32) NOT NULL',
-            'name' => 'text NOT NULL',
-            'total_users' => 'int(32) NOT NULL',
-            'total_evidences' => 'int(32) NOT NULL',
-            'total_reviews' => 'int(32) NOT NULL',
-            'created_at' => 'datetime NOT NULL',
-            'updated_at' => 'datetime NOT NULL',
+            'id' => $this->primaryKey(),
+            'space_id' => $this->integer(32)->defaultValue(0),
+            'name' => $this->text(),
+
+            'total_users' => $this->integer(32)->defaultValue(0),
+            'total_evidences' => $this->integer(32)->defaultValue(0),
+            'total_reviews' => $this->integer(32)->defaultValue(0),
+            
+            'created_at' => $this->dateTime()->notNull(),
+            'updated_at' => $this->dateTime()->notNull(),
                 ), '');
     }
 

@@ -1,16 +1,16 @@
 <?php
 
-namespace app\modules\static_pages;
+namespace app\modules\static;
 
 /**
- * static_pages module definition class
+ * statics module definition class
  */
-class StaticPages extends \yii\base\Module
+class Statics extends \yii\base\Module
 {
     /**
      * @inheritdoc
      */
-    public $controllerNamespace = 'app\modules\static_pages\controllers';
+    public $controllerNamespace = 'app\modules\statics\controllers';
 
     /**
      * @inheritdoc
@@ -25,19 +25,19 @@ class StaticPages extends \yii\base\Module
     
     public function registerTranslations()
     {
-        Yii::$app->i18n->translations['modules/static_pages/*'] = [
+        Yii::$app->i18n->translations['modules/statics/*'] = [
             'class' => 'yii\i18n\PhpMessageSource',
             'sourceLanguage' => 'en-US',
-            'basePath' => 'humhub/modules/static_pages/messages',
+            'basePath' => 'humhub/modules/statics/messages',
             'fileMap' => [
-                'modules/static_pages/views' => 'static_pages.php',
+                'modules/statics/views' => 'statics.php',
             ],
         ];
     }
     
     public static function t($category, $message, $params = [], $language = null)
     {
-        return Yii::t('modules/static_pages/' . $category, $message, $params, $language);
+        return Yii::t('modules/statics/' . $category, $message, $params, $language);
     }
         
 }

@@ -18,4 +18,5 @@
  */
 return [
     'How To Play' => '',
+    'Terms and Conditions of Use & Privacy Policy' => '',
 ];

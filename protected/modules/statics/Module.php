@@ -1,6 +1,6 @@
 <?php
 
-namespace humhub\modules\static_pages;
+namespace humhub\modules\statics;
 
 use Yii;
 use humhub\models\Setting;
@@ -14,7 +14,7 @@ class Module extends \humhub\components\Module
      */
     public function getConfigUrl()
     {
-        return Url::to(['/static_pages/config']); 
+        return Url::to(['/statics/config']); 
     }
 
     /**

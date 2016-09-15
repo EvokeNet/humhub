@@ -17,8 +17,6 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'How To Play' => '',
-    'About' => 'Sobre Evoke',
-    'Privacy Policy' => 'Política de Privacidad',
-    'Terms & Conditions' => 'Términos y Condiciones',
+    'How To Play' => 'Cómo jugar',
+    'Terms and Conditions of Use & Privacy Policy' => 'Terms and Conditions of Use & Privacy Policy',
 ];

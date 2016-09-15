@@ -1,6 +1,6 @@
 <?php
 
-namespace humhub\modules\static_pages;
+namespace humhub\modules\statics;
 
 use Yii;
 use yii\helpers\Url;
@@ -18,18 +18,18 @@ class Events extends \yii\base\Object
      *
      * @param type $event
      */
-    // public static function onAboutTopMenuInit($event)
+    // public statics function onAboutTopMenuInit($event)
     // {
     //     if(Yii::$app->user->getIdentity()->super_admin == 1){
 
     //         $event->sender->addItem(array(
-    //         'label' => Yii::t('StaticPagesModule.base', 'About'),
-    //         'id' => 'static_pages_about',
+    //         'label' => Yii::t('StaticsModule.base', 'About'),
+    //         'id' => 'statics_about',
     //         'icon' => '<i class="fa fa-th"></i>',
-    //         'url' => Url::toRoute('/static_pages/static-pages/about'),
+    //         'url' => Url::toRoute('/static/static-pages/about'),
     //         'sortOrder' => 1000,
     //         'isActive' => (
-    //             Yii::$app->controller->module && Yii::$app->controller->module->id == 'static_pages' 
+    //             Yii::$app->controller->module && Yii::$app->controller->module->id == 'static' 
     //             && Yii::$app->controller->id != 'admin'
     //             && Yii::$app->controller->action->id == 'about'
     //             &&(
@@ -48,13 +48,13 @@ class Events extends \yii\base\Object
         if(Yii::$app->user->getIdentity()->super_admin == 1){
 
             $event->sender->addItem(array(
-            'label' => Yii::t('StaticPagesModule.base', 'How To Play'),
-            'id' => 'static_pages_how_to',
+            'label' => Yii::t('StaticsModule.base', 'How To Play'),
+            'id' => 'statics_how_to',
             'icon' => '<i class="fa fa-th"></i>',
-            'url' => Url::toRoute('/static_pages/static-pages/how-to'),
+            'url' => Url::toRoute('/statics/statics/how-to'),
             'sortOrder' => 1000,
             'isActive' => (
-                Yii::$app->controller->module && Yii::$app->controller->module->id == 'static_pages' 
+                Yii::$app->controller->module && Yii::$app->controller->module->id == 'statics' 
                 && Yii::$app->controller->id != 'admin'
                 && Yii::$app->controller->action->id == 'how-to'
                 // &&(
@@ -73,13 +73,13 @@ class Events extends \yii\base\Object
     //     if(Yii::$app->user->getIdentity()->super_admin == 1){
 
     //         $event->sender->addItem(array(
-    //         'label' => Yii::t('StaticPagesModule.base', 'Privacy Policy'),
-    //         'id' => 'static_pages_privacy-policy',
+    //         'label' => Yii::t('StaticModule.base', 'Privacy Policy'),
+    //         'id' => 'static_privacy-policy',
     //         'icon' => '<i class="fa fa-th"></i>',
-    //         'url' => Url::toRoute('/static_pages/static-pages/privacy-policy'),
+    //         'url' => Url::toRoute('/static/static-pages/privacy-policy'),
     //         'sortOrder' => 1000,
     //         'isActive' => (
-    //             Yii::$app->controller->module && Yii::$app->controller->module->id == 'static_pages' 
+    //             Yii::$app->controller->module && Yii::$app->controller->module->id == 'static' 
     //             && Yii::$app->controller->id != 'admin'
     //             && Yii::$app->controller->action->id == 'privacy-policy'
     //             &&(
@@ -98,13 +98,13 @@ class Events extends \yii\base\Object
     //     if(Yii::$app->user->getIdentity()->super_admin == 1){
 
     //         $event->sender->addItem(array(
-    //         'label' => Yii::t('StaticPagesModule.base', 'Terms & Conditions'),
-    //         'id' => 'static_pages_terms_conditions',
+    //         'label' => Yii::t('StaticModule.base', 'Terms & Conditions'),
+    //         'id' => 'static_terms_conditions',
     //         'icon' => '<i class="fa fa-th"></i>',
-    //         'url' => Url::toRoute('/static_pages/static-pages/terms-conditions'),
+    //         'url' => Url::toRoute('/static/static-pages/terms-conditions'),
     //         'sortOrder' => 1000,
     //         'isActive' => (
-    //             Yii::$app->controller->module && Yii::$app->controller->module->id == 'static_pages' 
+    //             Yii::$app->controller->module && Yii::$app->controller->module->id == 'static' 
     //             && Yii::$app->controller->id != 'admin'
     //             && Yii::$app->controller->action->id == 'terms-conditions'
     //             &&(

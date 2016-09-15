@@ -7,18 +7,20 @@ class m160914_045607_user_stats extends Migration
     public function up()
     {
         $this->createTable('stats_users', array(
-            'id' => 'pk',
-            'user_id' => 'int(32) NOT NULL',
-            'username' => 'text NOT NULL',
-            'number_evocoins' => 'int(32) NOT NULL',
-            'number_followers' => 'int(32) NOT NULL',
-            'number_followees' => 'int(32) NOT NULL',
-            'number_reviews' => 'int(32) NOT NULL',
-            'number_evidences' => 'int(32) NOT NULL',
-            'user_or_mentor' => 'int(32) NOT NULL',
-            'read_novel' => 'int(32) NOT NULL',
-            'created_at' => 'datetime NOT NULL',
-            'updated_at' => 'datetime NOT NULL',
+            'id' => $this->primaryKey(),
+            'user_id' => $this->integer(32)->defaultValue(0),
+            'username' => $this->text(),
+
+            'number_evocoins' => $this->integer(32)->defaultValue(0),
+            'number_followers' => $this->integer(32)->defaultValue(0),
+            'number_followees' => $this->integer(32)->defaultValue(0),
+            'number_reviews' => $this->integer(32)->defaultValue(0),
+            'number_evidences' => $this->integer(32)->defaultValue(0),
+            'user_or_mentor' => $this->string(),
+            'read_novel' => $this->integer(32)->defaultValue(0),
+            
+            'created_at' => $this->dateTime()->notNull(),
+            'updated_at' => $this->dateTime()->notNull(),
                 ), '');
     }
 

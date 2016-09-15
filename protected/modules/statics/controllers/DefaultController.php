@@ -1,11 +1,11 @@
 <?php
 
-namespace app\modules\static_pages\controllers;
+namespace app\modules\statics\controllers;
 
 use yii\web\Controller;
 
 /**
- * Default controller for the `static_pages` module
+ * Default controller for the `statics` module
  */
 class DefaultController extends Controller
 {

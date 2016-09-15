@@ -5,7 +5,11 @@ use yii\widgets\Breadcrumbs;
 use yii\helpers\ArrayHelper;
 use backend\models\Standard;
 use yii\helpers\Url;
+
+use app\modules\stats\models\StatsActivities;
+use app\modules\stats\models\StatsGeneral;
 use app\modules\stats\models\StatsUsers;
+use app\modules\stats\models\StatsSpaces;
 
 $this->title = Yii::t('StatsModule.base', 'User Statistics');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('StatsModule.base', 'Statistics Reports'), 'url' => ['index']];
@@ -25,13 +29,40 @@ echo Breadcrumbs::widget([
     </div>
     <div class="panel-body">
         
-        <?= Html::dropDownList("created_at", '', ArrayHelper::map(StatsUsers::find()->groupBy('created_at')->all(), 'id', 'created_at'), ['prompt' => '--- select ---', 'id' => 'dates']) ?>
+        <?php
 
-        &nbsp;&nbsp;&nbsp;
+        // Html::dropdownList(
+        //     ArrayHelper::map(StatsUsers::find()->all(), 'id', 'created_at'),
+        //     ['prompt' => Yii::t('StatsModule.base', 'Select Category')]
+        // ) 
+        // Html::dropdownList('created_at',
+        //     ArrayHelper::map(StatsUsers::find()->all(), 'id', 'created_at'),
+        //     ['prompt' => Yii::t('StatsModule.base', 'Select Category')]
+        // ) 
 
-        <a href="#" id="stats_link" class="btn-sm btn-info"><?php echo Yii::t('StatsModule.base', 'Download Report'); ?></a>
+        // echo Html::dropDownList('listname', array('empty' => '(Select a gender)'), 
+        //       array('M' => 'Male', 'F' => 'Female'),
+        //       array('empty' => '(Select a gender)'));
         
-        <br /><br />
+        //echo Html::dropDownList("created_at", '', ArrayHelper::map(StatsUsers::find()->groupBy('created_at')->all(), 'id', 'created_at'), array('empty' => '(Select a gender)'));
+
+        echo Html::dropDownList("created_at", '', ArrayHelper::map(StatsUsers::find()->groupBy('created_at')->all(), 'id', 'created_at'), ['prompt' => '--- select ---', 'id' => 'dates']);
+
+        echo '&nbsp;&nbsp;&nbsp;';
+
+        // echo Html::a(
+        //     Yii::t('StatsModule.base', 'Download Report'), 
+        //     [''], array('class' => 'btn-sm btn-danger')); 
+
+        echo '<a href="#" id="stats_link" class="btn-sm btn-info">'.'Download Report'.'</a>';
+        
+        echo '<br /><br />';
+
+        // echo Html::dropDownList('created_at', array(), 
+        //       ArrayHelper::map(StatsUsers::find()->groupBy('created_at')->all(), 'id', 'created_at'),
+        //       array('empty' => '(Select a gender)'));
+
+              ?>
 
         <table class="table">
             <tr>

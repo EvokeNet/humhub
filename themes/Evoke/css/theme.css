@@ -190,7 +190,7 @@ textarea {
   color: #254054;
   background-color: #ADBCFF;
   border: none;
-  padding: 10px;
+  padding: 12px 12px 10px;
   font-size: 12pt;
   border-bottom: 2px solid #7a92ff;
 }
@@ -589,7 +589,7 @@ input[type=select] {
   text-align: center;
   min-height: 49px;
   color: #d7dce5;
-  padding: 13px 16px;
+  padding: 14px 10px 10px;
 }
 #topbar-second .nav > li > a:hover,
 #topbar-second .nav > li > a:active,
@@ -866,7 +866,7 @@ input[type=select] {
   color: #254054;
   background-color: #ADBCFF;
   border: none;
-  padding: 10px;
+  padding: 12px 12px 10px;
   font-size: 12pt;
   border-bottom: 2px solid #7a92ff;
   border-radius: 4px;

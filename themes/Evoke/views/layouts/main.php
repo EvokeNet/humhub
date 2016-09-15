@@ -140,14 +140,14 @@ AppAsset::register($this);
         <p class="text-muted"><i class="fa fa-copyright" aria-hidden="true"></i> Copyright 2016 - World Bank</p>
         <p class = "right">
         <?php //echo Html::a(
-            //Yii::t('StaticPagesModule.base', 'About'), 
+            //Yii::t('StaticsModule.base', 'About'), 
             //['/static_pages/static-pages/about'], array('class' => 'bordered')); ?>
         <?php //echo Html::a(
-            //Yii::t('StaticPagesModule.base', 'Privacy Policy'), 
+            //Yii::t('StaticsModule.base', 'Privacy Policy'), 
             //['/static_pages/static-pages/privacy-policy'], array('class' => 'bordered')); ?>
         <?php echo Html::a(
-            Yii::t('StaticPagesModule.base', 'Terms & Conditions'), 
-            ['/static_pages/static-pages/terms-conditions'], array('class' => '')); ?>
+            Yii::t('StaticsModule.base', 'Terms & Conditions'), 
+            ['/statics/statics/terms-conditions'], array('class' => '')); ?>
          </p>                       
       </div>
     </footer>
