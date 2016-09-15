@@ -32,7 +32,6 @@ class EvidenceController extends ContentContainerController
                 'class' => \humhub\modules\missions\components\StreamAction::className(),
                 'mode' => \humhub\modules\missions\components\StreamAction::MODE_NORMAL,
                 'contentContainer' => $this->contentContainer,
-                'activity_id' => Yii::$app->request->get('activity_id'),
              ),
             'userfeed' => array(
                 'class' => \humhub\modules\missions\components\UserStreamAction::className(),
@@ -42,7 +41,8 @@ class EvidenceController extends ContentContainerController
             'mentorfeed' => array(
                 'class' => \humhub\modules\missions\components\MentorStreamAction::className(),
                 'mode' => \humhub\modules\missions\components\MentorStreamAction::MODE_NORMAL,
-                'contentContainer' => $this->contentContainer
+                'contentContainer' => $this->contentContainer,
+                'activity_id' => Yii::$app->request->get('activity_id'),
             ),
         );
     }

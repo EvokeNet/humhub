@@ -12,8 +12,11 @@ use humhub\modules\user\models\User;
 class MentorStreamAction extends MentorContentContainerStream
 {
 
+	public $activity_id;
+
     public function setupFilters()
     {
+
         $spaces = (new \yii\db\Query())
         ->select(['f.object_id'])
         ->from('user as u')
@@ -28,11 +31,16 @@ class MentorStreamAction extends MentorContentContainerStream
         ->select(['f.object_id'])
         ->from('user as u')
         ->join('INNER JOIN', 'user_follow as f', 'u.id = `f`.`user_id`')
-        ->where('f.object_model = \'' .str_replace("\\", "\\\\", User::classname()).'\'') 
+        ->where('f.object_model =:userClass', [':userClass' => User::className()]) 
         ->andWhere('u.id = '.$this->user->id)
         ->all();
 
         $users_query = $this->returnIdQuery($users);
+
+        if(isset($this->activity_id)){
+            $this->activeQuery->leftJoin('evidence', 'content.object_id=evidence.id AND content.object_model=:evidenceClass', [':evidenceClass' => Evidence::className()]);
+            $this->activeQuery->andWhere(['evidence.activities_id' => $this->activity_id]);
+        }
 
         $this->activeQuery->andWhere(
            'content.space_id in '.$spaces_query.
