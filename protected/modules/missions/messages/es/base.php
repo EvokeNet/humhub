@@ -123,6 +123,7 @@ return [
     'Points to Level: {total}' => 'Puntos para Nivel: {total}',
     'Portfolio' => 'Portafolio',
     'Portfolio updated successfully!' => 'Portafolio actualizado con éxito!',
+    'Post too short.' => 'Please write more.',
     'Powers' => 'Poderes',
     'Primary Power' => 'Poder Primario',
     'Rating: {rating}' => 'Clasificación: {rating}',

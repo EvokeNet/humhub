@@ -103,6 +103,7 @@ return [
     'Points to Level: {total}' => '',
     'Portfolio' => '',
     'Portfolio updated successfully!' => '',
+    'Post too short.' => 'Post too short. Please respond more thouroughly.',
     'Powers' => '',
     'Primary Power' => '',
     'Rating: {rating}' => '',

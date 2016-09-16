@@ -172,7 +172,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
             			  </div>
             			  <br>
 
-                          <?php echo Html::textArea("text", $comment , array('id' => 'review_comment', 'class' => 'text-margin form-control ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Comment"))); ?>
+                          <?php echo Html::textArea("text", $comment , array('id' => 'review_comment', 'class' => 'text-margin form-control count-chars ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Comment"))); ?>
                           <br>
 
                           <!--
@@ -255,7 +255,7 @@ function validateReview(id){
 	grade = grade? grade.value : null;
 
 /*Comment is required for mentors */
-<?php if(Yii::$app->user->getIdentity()->group->name == "Mentors"):  ?>    
+<?php if(Yii::$app->user->getIdentity()->group->name == "Mentors"):  ?>
     if(comment == ""){
         showMessage("Error", "<?= Yii::t('MissionsModule.base', 'You must submit a comment.') ?>");
         return false;

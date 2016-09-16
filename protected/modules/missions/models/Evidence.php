@@ -30,8 +30,8 @@ use humhub\modules\content\models\Content;
  * @property Space $space
  * @property Activities $activities
  * @property User $user
- */ 
-class Evidence extends ContentActiveRecord implements \humhub\modules\search\interfaces\Searchable 
+ */
+class Evidence extends ContentActiveRecord implements \humhub\modules\search\interfaces\Searchable
 {
 
     const SCENARIO_CREATE = 'create';
@@ -39,7 +39,7 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
     const SCENARIO_CLOSE = 'close';
     public $autoAddToWall = true;
     public $wallEntryClass = 'humhub\modules\missions\widgets\WallEntry';
-    
+
     public function behaviors()
     {
         return [
@@ -54,7 +54,7 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
             ],
         ];
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -79,7 +79,7 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
     {
         return array(
             [['title', 'text'], 'required'],
-            [['text'], 'string'],
+            [['text'], 'string', 'min' => 140],
             [['title'], 'string', 'max' => 120],
             [['created_at', 'updated_at'], 'safe'],
             [['created_by', 'updated_by'], 'integer'],
@@ -113,7 +113,7 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
     public function getActivities()
     {
         // $activity = Activities::findOne($this->activities_id);
-        
+
         $activity = Activities::find()
         ->where(['=', 'id', $this->activities_id])
         ->with([
@@ -136,7 +136,7 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
                 }
             },
         ])->one();
-        
+
         return $activity;
     }
 
@@ -164,7 +164,7 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
         return array(
             'title' => $this->title
         );
-    }  
+    }
 
     public function getContentObject(){
         return Content::findOne(['object_id' => $this->id, 'object_model' => $this->classname()]);
@@ -190,7 +190,7 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
             return false;
 
         return true;
-    }    
+    }
 
     public function hasUserSubmittedEvidence($activityId = "", $userId = "")
     {
@@ -218,7 +218,7 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
             $userId = Yii::$app->user->id;
 
         return Votes::findOne(array('user_id' => $userId, 'evidence_id' => $this->id));
-    } 
+    }
 
     public function getAverageRating()
     {
@@ -247,7 +247,7 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
 
         return $query['average'];
 
-    }    
+    }
 
     public function getVotes()
     {
@@ -266,7 +266,7 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
 
         return $query['count'];
 
-    }    
+    }
 
     /**
      * After Saving of comments, fire an activity
@@ -275,17 +275,17 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
      */
     public function afterSave($insert, $changedAttributes)
     {
-        
+
         $activity = new  \humhub\modules\missions\activities\NewEvidence();
         $activity->source = $this;
         $activity->originator = Yii::$app->user->getIdentity();
         $activity->create();
-        
+
 
         // Handle mentioned users
         // Execute before NewCommentNotification to avoid double notification when mentioned.
         \humhub\modules\user\models\Mentioning::parse($this, $this->text);
-        
+
         if ($insert) {
             $notification = new \humhub\modules\missions\notifications\NewEvidence();
             $notification->source = $this;
@@ -295,7 +295,7 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
 
         return parent::afterSave($insert, $changedAttributes);
 
-    }    
+    }
 
 
     public function beforeDelete()
@@ -307,6 +307,6 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
         }
 
         return parent::beforeDelete();
-    }       
+    }
 
 }
