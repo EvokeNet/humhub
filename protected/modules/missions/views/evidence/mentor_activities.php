@@ -32,9 +32,9 @@ $this->pageTitle = Yii::t('MissionsModule.base', "{name}'s Evokation", array('na
 
         <?php 
         $x = 0;
-        if (count($categories) != 0): 
+        if (count($missions) != 0): 
         
-        foreach ($categories as $category): $x++;?>
+        foreach ($missions as $mission): $x++;?>
 
         <div class="panel-group" role="tablist"> 
             <div class="panel panel-default"> 
@@ -42,14 +42,14 @@ $this->pageTitle = Yii::t('MissionsModule.base', "{name}'s Evokation", array('na
                 <div class="panel-heading" role="tab" id="collapseListGroupHeading1"> 
                     <h4 class="panel-title"> 
                         <a class="" role="button" data-toggle="collapse" href="#collapseListGroup<?=$x?>" aria-expanded="true" aria-controls="collapseListGroup1"> 
-                            <?= isset($category->evokationCategoryTranslations[0]) ? $category->evokationCategoryTranslations[0]->title : $category->title ?> 
+                            <?= isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title ?> 
                         </a> 
                     </h4> 
                 </div> 
                 
                 <div id="collapseListGroup<?=$x?>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="true"> 
                     <ul class="list-group"> 
-                        <?php foreach ($category->activities as $activity):  ?>
+                        <?php foreach ($mission->activities as $activity):  ?>
                             <li class="list-group-item">
                                 
                                 <?php 
@@ -57,7 +57,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', "{name}'s Evokation", array('na
                                 echo Html::a($a, ['evidence/mentor', 'activityId' => $activity->id, 'sguid' => $contentContainer->guid], ['class' => 'profile-link']);
                                 ?>
                                 
-                                <span class="label label-default" style = "margin-left:10px"><?= isset($activity->mission->missionTranslations[0]) ? $activity->mission->missionTranslations[0]->title : $activity->mission->title ?></span> 
+                                <span class="label label-default" style = "margin-left:10px"><?= isset($activity->evokationCategory->evokationCategoryTranslations[0]) ? $activity->evokationCategory->evokationCategoryTranslations[0]->title : $activity->evokationCategory->title ?></span> 
                                 
                             </li>
                         <?php endforeach; ?>
