@@ -91,7 +91,7 @@ class Votes extends ContentActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
-    }    
+    }
 
     public function beforeSave($insert){
         $this->content->user_id = $this->user_id;
@@ -111,7 +111,7 @@ class Votes extends ContentActiveRecord
             $notification->source = $this;
 
             if(Yii::$app->user->getIdentity()->group->name == "Mentors"){
-                $notification->originator = Yii::$app->user->getIdentity();  
+                $notification->originator = Yii::$app->user->getIdentity();
             }
             $notification->send($author);
         }else if($insert) {
@@ -121,14 +121,14 @@ class Votes extends ContentActiveRecord
             $notification = new \humhub\modules\missions\notifications\ReviewedEvidence();
             $notification->source = $this;
             if(Yii::$app->user->getIdentity()->group->name == "Mentors"){
-                $notification->originator = Yii::$app->user->getIdentity();  
+                $notification->originator = Yii::$app->user->getIdentity();
             }
             $notification->send($author);
         }
 
         return parent::afterSave($insert, $changedAttributes);
 
-    }   
+    }
 
     public function getUrl(){
         $evidence = Evidence::findOne($this->evidence_id);
@@ -144,7 +144,7 @@ class Votes extends ContentActiveRecord
         }
 
         return parent::beforeDelete();
-    }  
+    }
 
 
 }

@@ -12,15 +12,15 @@ use humhub\compat\CActiveForm;
     ?>
 
     <?php echo $form->textArea($evidence, 'title', array('class' => 'form-control', 'id' => 'evidence_input_title_' . $evidence->id, 'placeholder' => Yii::t('MissionsModule.widgets_views_evidenceForm', 'Edit your Evidence title...'))); ?>
-    
+
     <br>
-    
+
     <?php echo $form->label($evidence, "content", ['class' => 'control-label']); ?>
 
     <?php echo $form->textArea($evidence, 'text', array('class' => 'form-control', 'id' => 'evidence_input_text_' . $evidence->id, 'placeholder' => Yii::t('MissionsModule.widgets_views_evidenceForm', 'Edit your Evidence content...'))); ?>    
 
     <br><hr />
-    
+
     <?php
     // Creates Uploading Button
     echo humhub\modules\file\widgets\FileUploadButton::widget(array(
@@ -28,9 +28,9 @@ use humhub\compat\CActiveForm;
         'object' => $evidence
     ));
     ?>
-    
+
     <br><br>
- 
+
     <div class="content_edit">
         <?php if(version_compare(Yii::$app->version, '1.0.0-beta.1', 'gt')) : ?>
         <?php echo \humhub\widgets\LoaderWidget::widget(["id" => 'evidenceform-loader_'.$evidence->id, 'cssClass' => 'loader-postform hidden']); ?>
@@ -79,12 +79,12 @@ use humhub\compat\CActiveForm;
 
 
     <?php CActiveForm::end(); ?>
-</div>    
+</div>
 
 
 
 <script type="text/javascript">
-    
+
     var editEvidenceResultHandler = function(json) {
         $("#evidenceform-loader_<?= $evidence->id ?>").addClass("hidden");
         var $entry = $(".wall_<?= $evidence->getUniqueId() ?>");
@@ -99,10 +99,10 @@ use humhub\compat\CActiveForm;
             $errorMessage.html(errors).show();
         }
     };
-    
+
     var editEvidenceBeforeSendHandler = function() {
         $(".wall_<?= $evidence->getUniqueId() ?>").find('.errorMessage').empty().hide();
         $("#evidenceform-loader_<?= $evidence->id ?>").removeClass("hidden");
     };
-    
+
 </script>

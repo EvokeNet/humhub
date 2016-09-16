@@ -12,7 +12,7 @@
         'namespace' => 'humhub\modules\prize',
         'events' => [
             ['class' => \humhub\modules\admin\widgets\AdminMenu::className(), 'event' => AdminMenu::EVENT_INIT, 'callback' => ['humhub\modules\prize\Events', 'onAdminMenuInit']],
-            // ['class' => \humhub\modules\user\widgets\ProfileSidebar::className(), 'event' => ProfileSidebar::EVENT_INIT, 'callback' => ['\humhub\modules\coin\Events', 'onProfileSidebarInit']],
+            ['class' => \humhub\modules\user\widgets\ProfileSidebar::className(), 'event' => ProfileSidebar::EVENT_INIT, 'callback' => ['\humhub\modules\prize\Events', 'onProfileSidebarInit']],
             ['class' => \humhub\widgets\TopMenu::className(), 'event' => TopMenu::EVENT_INIT, 'callback' => ['\humhub\modules\prize\Events', 'onTopMenuInit']],
         ],
         'urlManagerRules' => [
