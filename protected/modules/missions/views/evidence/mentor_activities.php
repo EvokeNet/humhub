@@ -26,7 +26,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', "{name}'s Evokation", array('na
     </div>
     <div class="panel-body">
         
-        Choose an Activity:
+        <b><?php echo Yii::t('MissionsModule.base', "Choose an Activity:"); ?></b>
 
         <br><br>
 

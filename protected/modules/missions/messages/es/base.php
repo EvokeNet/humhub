@@ -17,8 +17,10 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Jump to Post' => 'Ir a Evidencía',
-    'View Content' => 'Ver Contenido',
+    'Activity {position}: {text}' => '',
+    'Choose an Activity:' => 'Elija una actividad:',
+    'Evokation updated!' => '',
+    'Mission {position}: {text}' => '',
     '<strong>Activity Rubric:</strong> {rubric}' => '<strong>Rúbrica de Actividad:</strong> {rubric}',
     '<strong>Evoke</strong> settings' => 'Ajustes de <strong>Evoke</strong>',
     '<strong>Google Drive URL:</strong>' => '<strong>URL de Google Drive:</strong>',
@@ -90,6 +92,7 @@ return [
     'ID Code' => 'Código ID',
     'Invalid Data! Input only numbers.' => '¡Datos inválidos! De entrada sólo números',
     'Investment' => 'Inversión',
+    'Jump to Post' => 'Ir a Evidencía',
     'Language' => 'Idioma',
     'Leaderboard' => 'Líderes',
     'Level {level}' => 'Nivel {level}',
@@ -171,6 +174,7 @@ return [
     'Updated' => 'Actualizado',
     'View' => 'Ver',
     'View Activities' => 'Ver Actividades',
+    'View Content' => 'Ver Contenido',
     'View Powers' => 'Ver Poderes',
     'View Translations' => 'Ver Traducciones',
     'View translations' => 'Ver traducciones',

@@ -17,15 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'All Evidences' => '',
-    'Evidences' => '',
-    'Evokation' => 'Evokación',
-    'Evokation Categories' => 'Categorías de Evokación',
-    'Evokation Deadline' => 'Fin de plazo de Evokación',
-    'Evoke Settings' => 'Ajustes de Evoke',
-    'Leaderboard' => 'Clasificación',
-    'Members' => 'Miembros',
-    'Missions' => 'Misiones',
-    'My Team' => 'Mi Equipo',
-    'Review Evidence' => 'Evaluar Evidencias',
+    ' space.' => '',
+    'Become a member to obtain access to ' => '',
+    'Please, wait until the space owner responds to your requisition.' => '',
+    'Request membership to obtain access to ' => '',
+    'You\'ve already sent a membership request to access ' => '',
 ];
