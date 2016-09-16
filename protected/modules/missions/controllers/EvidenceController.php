@@ -233,6 +233,8 @@ class EvidenceController extends ContentContainerController
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Title cannot be blank.'));
         } else if(!Yii::$app->request->post('text')){
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Text cannot be blank.'));
+        } else if (strlen(Yii::$app->request->post('text')) < 140) {
+          AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
         } else{
 
             //ACTIVITY POWER POINTS
@@ -316,6 +318,12 @@ class EvidenceController extends ContentContainerController
         if (empty($comment) && $user->group->name == "Mentors") {
             //mentors must comment
             AlertController::createAlert("Error", "Oops! Something's wrong.");
+            return;
+        }
+
+        if (!empty($comment) && strlen($comment) < 140) {
+            //mentors must comment
+            AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
             return;
         }
 
@@ -413,7 +421,7 @@ class EvidenceController extends ContentContainerController
     * Custom actions
     */
     public function actionMentor_activities()
-    {   
+    {
         $categories = EvokationCategories::find()
         ->with([
             'activities.mission.missionTranslations' => function ($query) {
@@ -438,11 +446,11 @@ class EvidenceController extends ContentContainerController
             //     $query->andWhere([$this->contentContainer->id]);
             // }
         ])->all();
-        
+
         $missions = Missions::find()
         ->where(['locked' => 0])
         ->all();
-                
+
         return $this->render('mentor_activities', array('categories' => $categories, 'missions' => $missions, 'contentContainer' => $this->contentContainer));
     }
 
