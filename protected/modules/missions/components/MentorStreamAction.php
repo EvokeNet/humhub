@@ -42,10 +42,20 @@ class MentorStreamAction extends MentorContentContainerStream
             $this->activeQuery->andWhere(['evidence.activities_id' => $this->activity_id]);
         }
 
-        $this->activeQuery->andWhere(
+        if(sizeof($spaces) > 0 && sizeof($users) >= 0){
+            $this->activeQuery->andWhere(
            'content.space_id in '.$spaces_query.
            ' OR content.user_id in '.$users_query
-           );        
+           ); 
+        }elseif(sizeof($spaces) > 0){
+            $this->activeQuery->andWhere(
+            'content.space_id in '.$spaces_query
+            ); 
+        }elseif(sizeof($users) > 0){
+            $this->activeQuery->andWhere(
+            'content.user_id in '.$users_query
+            );
+        }
 
         $this->activeQuery->andFilterWhere(
            ['content.object_model' => Evidence::className()]);
