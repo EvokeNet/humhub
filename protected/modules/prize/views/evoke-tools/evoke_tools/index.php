@@ -318,7 +318,11 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
 
   $('#toolSearch').on('click', function(event){
     event.preventDefault();
-    var $toolSearch = $(event.target);
+    var $toolSearch   = $(event.target),
+        $userEvocoins = $('#userEvocoins');
+
+    // show the subtracted 5 evocoin
+    $userEvocoins.text(parseInt($userEvocoins.text()) - 5);
 
     if (!$toolSearch.hasClass('disabled')) {
 
@@ -369,7 +373,6 @@ $this->pageTitle = Yii::t('PrizeModule.base', 'Evoke Tools');
                $toolSearch.removeClass('disabled');
                // adjust evocoin
                $('#userEvocoins').html(result.evocoin);
-               console.log($("#userEvocoins"));
 
                // show prize (if available)
                $('#results').html(
