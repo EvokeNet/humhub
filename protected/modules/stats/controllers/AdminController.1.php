@@ -21,15 +21,7 @@ use humhub\modules\post\models\Post;
 use humhub\modules\comment\models\Comment;
 use humhub\modules\like\models\Like;
 use app\modules\coin\models\Wallet;
-use app\modules\coin\models\Coin;
 use app\modules\missions\models\Votes;
-use app\modules\prize\models\SlotMachineStats;
-use humhub\modules\space\models\Membership;
-
-use app\modules\stats\models\StatsActivities;
-use app\modules\stats\models\StatsGeneral;
-use app\modules\stats\models\StatsUsers;
-use app\modules\stats\models\StatsSpaces;
 
 /**
  * AdminController
@@ -39,49 +31,49 @@ class AdminController extends \humhub\modules\admin\components\Controller
 {
     public function actionIndex(){
         $evidences = Evidence::find()->all();
-
+        
         $users = User::find()->count();
-
+        
         $agents = User::find()
         ->andWhere(['!=','group_id', '2'])
         ->count();
-
+        
         $mentors = User::find()
         ->where(['group_id' => '2'])
         ->count();
-
+        
         $spaces = Space::find()->all();
-
+        
         $comments = Comment::find()->count();
-
+        
         $comments_agents = Comment::find()
         ->joinWith(['user u'], true, 'INNER JOIN')
         ->where(['u.group_id' => '1'])
         ->count();
-
+        
         $comments_mentors = Comment::find()
         ->joinWith(['user u'], true, 'INNER JOIN')
         ->where(['u.group_id' => '2'])
         ->count();
-
+        
         $votes_agents = Votes::find()
         ->joinWith(['user u'], true, 'INNER JOIN')
         ->where(['u.group_id' => '1'])
         ->count();
-
+        
         $votes_mentors = Votes::find()
         ->joinWith(['user u'], true, 'INNER JOIN')
         ->where(['u.group_id' => '2'])
         ->count();
-
+        
         $coin=Wallet::find()
         ->sum('amount');
-
+        
         $coins_agents = Wallet::find()
         ->joinWith(['user u'], true, 'INNER JOIN')
         ->where(['u.group_id' => '1'])
         ->sum('amount');
-
+        
         $coins_mentors = Wallet::find()
         ->joinWith(['user u'], true, 'INNER JOIN')
         ->where(['u.group_id' => '2'])
@@ -96,11 +88,11 @@ class AdminController extends \humhub\modules\admin\components\Controller
         
         $posts = Post::find()
         ->count();
+        
         $images = File::find()
         ->where('mime_type LIKE :substr', array(':substr' => '%image%'))
         // ->where('mime_type LIKE :substr AND object_model LIKE :evidence', array(':substr' => '%image%', ':evidence' => '%Evidence%'))
         ->count();
-
         
         $videos = File::find()
         ->where('mime_type LIKE :substr', array(':substr' => '%video%'))
@@ -110,7 +102,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
         ->joinWith(['user u'], true, 'INNER JOIN')
         ->where(['u.group_id' => '1'])
         ->count();
-
+        
         $comments_mentor = Comment::find()
         ->joinWith(['user u'], true, 'INNER JOIN')
         ->where(['u.group_id' => '2'])
@@ -123,7 +115,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
         ->joinWith(['user u'], true, 'INNER JOIN')
         ->where(['u.group_id' => '2'])
         ->count();
-
+                
         $like_comment_user = (new \yii\db\Query())
         ->select(['l.*'])
         ->from('like as l')
@@ -131,7 +123,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
         ->where('l.object_model=\''.str_replace("\\", "\\\\", Comment::classname()).'\' AND u.group_id = 1')
         // ->where('g.name != "Mentors"')
         ->count();
-
+        
         $like_comment_mentor = (new \yii\db\Query())
         ->select(['l.*'])
         ->from('like as l')
@@ -141,12 +133,13 @@ class AdminController extends \humhub\modules\admin\components\Controller
         ->count();
         
         // var_dump($like_comment_user);
+        
         // var_dump($team_evidences);
         // var_dump($team_evidence);
         // var_dump($commentsx);
         // var_dump($commentsx2);
         // var_dump($commentsx3);
-
+                
         return $this->render('index', array(
             'evidences' => $evidences,
             'users' => $users,
@@ -172,19 +165,18 @@ class AdminController extends \humhub\modules\admin\components\Controller
             'like_comment_mentor' => $like_comment_mentor
         ));
     }
-
+    
     public function actionUserStats(){
-
         
         $users = (new \yii\db\Query())
         ->select([
             'u.*, 
             p.firstname, 
             p.lastname, 
-            count(distinct c.id) as evidences, 
-            count(distinct v.id) as votes,
-            count(distinct f.id) as followers,
-            count(distinct fg.id) as following, 
+            count(c.id) as evidences, 
+            count(v.id) as votes,
+            count(f.id) as followers,
+            count(fg.id) as following, 
             w.amount as coins'
         ])
         ->from('user as u')
@@ -205,16 +197,15 @@ class AdminController extends \humhub\modules\admin\components\Controller
             'users' => $users,
         ));
     }
-
+    
     public function actionSpaceStats(){
-
         
         $spaces = (new \yii\db\Query())
         ->select([
             's.*, 
-            count(distinct u.id) as members, 
-            count(distinct e.id) as evidences, 
-            count(distinct v.id) as reviews
+            count(u.id) as members, 
+            count(e.id) as evidences, 
+            count(v.id) as reviews
             '])
         ->from('space as s')
         ->join('LEFT JOIN', 'space_membership as m', 's.id = `m`.`space_id`')
@@ -223,10 +214,8 @@ class AdminController extends \humhub\modules\admin\components\Controller
         ->join('LEFT JOIN', 'content as c', 's.id = `c`.`space_id`')
         ->join('LEFT JOIN', 'evidence as e', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
         ->where('s.is_team = 1')
-        ->andWhere(['m.status' => Membership::STATUS_MEMBER])
         ->groupBy('s.id')
         // ->orderBy('reviews desc')
-
         ->all();
                 
         return $this->render('space-stats', array(
@@ -254,7 +243,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
         ));    
     }
 
-    public function actionExports() {
+    public function actionExports($columns = null) {
 
         // $this->autoRender = false;
         // Yii::app()->end();
@@ -275,12 +264,10 @@ class AdminController extends \humhub\modules\admin\components\Controller
 		// $header_row = array('AVA', utf8_decode('Endereço do AVA'), utf8_decode('Descrição'), 'Quantidade de Cursos', 'Quantidade de Alunos Matriculados');
 
 		$header_row = array(
-            'Week ended on',
-
+            'Week of',
             'Total number of Users',
             'Total number of Agents',
             'Total number of Mentors',
-
             'Number of Evidences',
             'Average number of evidences per player',
             'Number of Status Updates (Posts)',
@@ -293,7 +280,6 @@ class AdminController extends \humhub\modules\admin\components\Controller
             'Total number of comments provided by agents',
             'Total number of comments provided by mentors',
             'Number of comments per user',
-
             'Total number of Reviews',
             'Average of Reviews by Agents',
             'Average of Reviews by Mentors',
@@ -305,7 +291,6 @@ class AdminController extends \humhub\modules\admin\components\Controller
             'Total number of likes',
             'Number of liken given by Agents',
             'Number of liken given by Mentors',
-
             'Total Number of Evocoins',
             'Total Number Earned by Agents',
             'Total Number Earned by Mentors',
@@ -314,203 +299,126 @@ class AdminController extends \humhub\modules\admin\components\Controller
             'Average number of Evocoin earned by Mentors',
         );
 
-		fputcsv($csv_file, $header_row);
+		// $c = explode(',', $columns);
 
-        $stats = StatsGeneral::find()->all();
+		// $check = true;
+		// if(in_array('0', $c)){
+		// 	array_push($header_row, 'AVA');
+		// 	$check = false;
+		// } if(in_array('1', $c)){
+		// 	array_push($header_row, utf8_decode('Endereço do AVA'));
+		// 	$check = false;
+		// } if(in_array('2', $c)){
+		// 	array_push($header_row, utf8_decode('Descrição'));
+		// 	$check = false;
+		// } if(in_array('3', $c)){
+		// 	array_push($header_row, utf8_decode('Quantidade de Cursos'));
+		// 	$check = false;
+		// } if(in_array('4', $c)){
+		// 	array_push($header_row, utf8_decode('Quantidade de Alunos Matriculados'));
+		// 	$check = false;
+		// } else if($check){
+		// 	$header_row = array('AVA', utf8_decode('Endereço do AVA'), utf8_decode('Descrição'), 'Quantidade de Cursos', 'Quantidade de Alunos Matriculados');
+		// }
 
-        foreach($stats as $stat):
-            $row = array();
-            
-            $date = date_create($stat['created_at']);
-            // date_sub($week, date_interval_create_from_date_string('6 days'));
-            array_push($row, date_format($date, "Y-m-d"));
+		fputcsv($csv_file, $header_row, ';', '"');
 
-            array_push($row, $stat['total_users']);
-            array_push($row, $stat['total_agents']);
-            array_push($row, $stat['total_mentors']);
+		// Each iteration of this while loop will be a row in your .csv file where each field corresponds to the heading of the column
 
-            array_push($row, $stat['total_evidences']);
-            array_push($row, $stat['avg_evidence_player']);
-            array_push($row, $stat['total_posts']);
-            array_push($row, $stat['total_spaces']);
-            array_push($row, $stat['total_teams']);
-            array_push($row, $stat['total_images']);
-            array_push($row, $stat['total_videos']);
-            array_push($row, $stat['avg_evidence_words']);
-            array_push($row, $stat['total_comments']);
-            array_push($row, $stat['total_comments_mentors']);
-            array_push($row, $stat['total_comments_players']);
-            array_push($row, $stat['comments_by_user']);
+			// $row = array();
+			// $check = true;
 
-            array_push($row, $stat['total_reviews']);
-            array_push($row, $stat['avg_review_by_agents']);
-            array_push($row, $stat['avg_review_by_mentors']);
-            array_push($row, $stat['avg_review_received']);
-            array_push($row, $stat['avg_review_per_evidence']);
-            array_push($row, $stat['total_review_comments']);
-            array_push($row, $stat['total_review_comments_agents']);
-            array_push($row, $stat['total_review_comments_mentors']);
-            array_push($row, $stat['total_review_likes']);
-            array_push($row, $stat['total_review_likes_agents']);
-            array_push($row, $stat['total_review_likes_mentors']);
+		// foreach($results as $result){
+		// 	// Array indexes correspond to the field names in your db table(s)
+		// 	//$enrollments = $this->Enrollment->find('all', array('conditions' => array('Enrollment.ava_id' => $result['Ava']['ava_id'])));
+		// 	//$courses = $this->Course->find('all', array('conditions' => array('Course.ava_id' =>$result['Ava']['ava_id'])));
 
-            array_push($row, $stat['total_evocoins']);
-            array_push($row, $stat['total_evocoins_agents']);
-            array_push($row, $stat['total_evocoins_mentors']);
-            array_push($row, $stat['avg_evocoins_users']);
-            array_push($row, $stat['avg_evocoins_agents']);
-            array_push($row, $stat['avg_evocoins_mentors']);
+		// 	$row = array();
+		// 	$check = true;
 
-            fputcsv($csv_file, $row);
-        endforeach;
+		// 	if(in_array('0', $c)){
+		// 		array_push($row, utf8_decode($result['Ava']['name']));
+		// 		$check = false;
+		// 	} if(in_array('1', $c)){
+		// 		array_push($row, $result['Ava']['url']);
+		// 		$check = false;
+		// 	} if(in_array('2', $c)){
+		// 		array_push($row, utf8_decode($result['Ava']['description']));
+		// 		$check = false;
+		// 	} if(in_array('3', $c)){
+		// 		array_push($row, count($result['Course']));
+		// 		$check = false;
+		// 	} if(in_array('4', $c)){
+		// 		array_push($row, count($result['Enrollment']));
+		// 		$check = false;
+		// 	} else if($check){
+		// 		$row = array(
+		// 			utf8_decode($result['Ava']['name']),
+		// 			$result['Ava']['url'],
+		// 			utf8_decode($result['Ava']['description']),
+		// 			count($result['Course']),
+		// 			count($result['Enrollment'])
+
+		// 		);
+		// 	}
+
+		// 	// debug($row);
+
+		// 	fputcsv($csv_file, $row, ';', '"');
+		// }
 
 		fclose($csv_file);
-
         exit();
 	}
 
-    public function actionExportsUsers($date = null) {
+    public function actionExportCSV() {
+        $data = "Product Name; Article; Price; Description; Amount; Manufacturer\r\n";
+        $model = Goods::model()->findAll();
+        foreach ($model as $value) {
+        $data .= $value->name.
+        ';' . $value->article .
+        ';' . $value->cost .
+        ';' . $value->description .
+        ';' . $value->count .
+        ';' . $value->producer .
+        "\r\n";
+        }
+        header('Content-type: text/csv');
+        header('Content-Disposition: attachment; filename="export_' . date('d.m.Y') . '.csv"');
+        //echo iconv('utf-8', 'windows-1251', $data); //If suddenly in Windows will gibberish
+        Yii::app()->end();
+    }
 
-        $week = date_create($date);
+    public function actionExport(){
+        // $model = Mahasiswa::find()->All();
+        $filename = 'Data-'.Date('YmdGis').'-Mahasiswa.csv';
+        header("Content-type: application/vnd-ms-excel");
+        header("Content-Disposition: attachment; filename=".$filename);
+        echo '<table border="1" width="100%">
+            <thead>
+                <tr>
+                    <th>Mim</th>
+                    <th>Nama</th>
+                    <th>Jurusan</th>
+                    <th>Angkatan</th>
+                    <th>Alamat</th>
+                    <th>Foto</th>
+                </tr>
+            </thead>';
+            // foreach($model as $data){
+                echo '
+                    <tr>
+                        <td>Mim</td>
+                        <td>Mim</td>
+                        <td>Mim</td>
+                        <td>Mim</td>
+                        <td>Mim</td>
+                        <td>Mim</td>
+                    </tr>
+                ';
+            // }
+        echo '</table>';
 
-		$filename = "weekly_report_users_stats_".date_format($week, "Y-m-d").".csv";
-		$csv_file = fopen('php://output', 'w');
-
-		header('Content-type: text/csv; charset=utf-8');
-		header('Content-Disposition: attachment; filename="'.$filename.'"');
-
-		$header_row = array(
-            'Week ended on',
-
-            'Username',
-            'Number of Evocoins',
-            'Number of Followers',
-
-            'Number of Followees',
-            'Number of Reviews',
-            'Number of Evidences',
-
-            'User or Mentor?',
-            'Has read novel?',
-        );
-
-		fputcsv($csv_file, $header_row);
-
-        $stats = StatsUsers::find()->where(['created_at' => $date])->all();
-
-        foreach($stats as $stat):
-            $row = array();
-            
-            $date = date_create($stat['created_at']);
-            // date_sub($week, date_interval_create_from_date_string('6 days'));
-            array_push($row, date_format($date, "Y-m-d"));
-
-            array_push($row, $stat['username']);
-            array_push($row, $stat['number_evocoins']);
-            array_push($row, $stat['number_followers']);
-            array_push($row, $stat['number_followees']);
-            array_push($row, $stat['number_reviews']);
-            array_push($row, $stat['number_evidences']);
-            array_push($row, $stat['user_or_mentor']);
-            array_push($row, ($stat['read_novel'] == 1) ? 'Yes' : 'No');
-
-            fputcsv($csv_file, $row);
-        endforeach;
-
-		fclose($csv_file);
-        
-        exit();
-	}
-
-    public function actionExportsSpaces($date = null) {
-
-        $week = date_create($date);
-
-		$filename = "weekly_report_spaces_stats_".date_format($week, "Y-m-d").".csv";
-		$csv_file = fopen('php://output', 'w');
-
-		header('Content-type: text/csv; charset=utf-8');
-		header('Content-Disposition: attachment; filename="'.$filename.'"');
-
-		$header_row = array(
-            'Week ended on',
-
-            'Name',
-            'Number of Members',
-            'Number of Evidences',
-            'Number of Reviews',
-        );
-
-		fputcsv($csv_file, $header_row);
-
-        $stats = StatsSpaces::find()->where(['created_at' => $date])->all();
-
-        foreach($stats as $stat):
-            $row = array();
-            
-            $date = date_create($stat['created_at']);
-            // date_sub($week, date_interval_create_from_date_string('6 days'));
-            array_push($row, date_format($date, "Y-m-d"));
-
-            array_push($row, $stat['name']);
-            array_push($row, $stat['total_users']);
-            array_push($row, $stat['total_evidences']);
-            array_push($row, $stat['total_reviews']);
-
-            fputcsv($csv_file, $row);
-        endforeach;
-
-		fclose($csv_file);
-        
-        exit();
-	}
-
-    public function actionExportsActivities($date = null) {
-
-        $week = date_create($date);
-
-		$filename = "weekly_report_activities_stats_".date_format($week, "Y-m-d").".csv";
-		$csv_file = fopen('php://output', 'w');
-
-		header('Content-type: text/csv; charset=utf-8');
-		header('Content-Disposition: attachment; filename="'.$filename.'"');
-
-        $stats = StatsActivities::find()->where(['created_at' => $date])->all();
-
-        $header_row = array('Total Number of Evidences Created: '.$stats[0]['total_evidences']);
-
-		$header_row1 = array(
-            'Week ended on',
-
-            'Activity',
-            'Mission',
-            'Number of Evidences',
-
-            'Average of Evidences for this Activity',
-
-        );
-
-        fputcsv($csv_file, $header_row);
-		fputcsv($csv_file, $header_row1);
-
-        foreach($stats as $stat):
-            $row = array();
-            
-            $date = date_create($stat['created_at']);
-            // date_sub($week, date_interval_create_from_date_string('6 days'));
-            array_push($row, date_format($date, "Y-m-d"));
-
-            array_push($row, $stat['name']);
-            array_push($row, $stat['mission_name']);
-            array_push($row, $stat['number_evidences']);
-            array_push($row, $stat['avg_evidences']);
-
-            fputcsv($csv_file, $row);
-        endforeach;
-
-		fclose($csv_file);
-        
-        exit();
-	}
+    }
     
 }
