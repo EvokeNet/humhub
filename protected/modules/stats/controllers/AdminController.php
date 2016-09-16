@@ -86,14 +86,14 @@ class AdminController extends \humhub\modules\admin\components\Controller
         ->joinWith(['user u'], true, 'INNER JOIN')
         ->where(['u.group_id' => '2'])
         ->sum('amount');
-        
+
         $spaces = Space::find()
         ->count();
-        
+
         $teams = Space::find()
         ->where(['is_team' => '1'])
         ->count();
-        
+
         $posts = Post::find()
         ->count();
         $images = File::find()
@@ -101,11 +101,11 @@ class AdminController extends \humhub\modules\admin\components\Controller
         // ->where('mime_type LIKE :substr AND object_model LIKE :evidence', array(':substr' => '%image%', ':evidence' => '%Evidence%'))
         ->count();
 
-        
+
         $videos = File::find()
         ->where('mime_type LIKE :substr', array(':substr' => '%video%'))
         ->count();
-        
+
         $comments_user = Comment::find()
         ->joinWith(['user u'], true, 'INNER JOIN')
         ->where(['u.group_id' => '1'])
@@ -115,10 +115,10 @@ class AdminController extends \humhub\modules\admin\components\Controller
         ->joinWith(['user u'], true, 'INNER JOIN')
         ->where(['u.group_id' => '2'])
         ->count();
-        
+
         $likes = Like::find()
         ->count();
-        
+
         $like_comment_user = Like::find()
         ->joinWith(['user u'], true, 'INNER JOIN')
         ->where(['u.group_id' => '2'])
@@ -139,7 +139,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
         ->where('l.object_model=\''.str_replace("\\", "\\\\", Comment::classname()).'\' AND u.group_id = 2')
         // ->where('g.name != "Mentors"')
         ->count();
-        
+
         // var_dump($like_comment_user);
         // var_dump($team_evidences);
         // var_dump($team_evidence);
@@ -175,16 +175,16 @@ class AdminController extends \humhub\modules\admin\components\Controller
 
     public function actionUserStats(){
 
-        
+
         $users = (new \yii\db\Query())
         ->select([
-            'u.*, 
-            p.firstname, 
-            p.lastname, 
-            count(distinct c.id) as evidences, 
+            'u.*,
+            p.firstname,
+            p.lastname,
+            count(distinct c.id) as evidences,
             count(distinct v.id) as votes,
             count(distinct f.id) as followers,
-            count(distinct fg.id) as following, 
+            count(distinct fg.id) as following,
             w.amount as coins'
         ])
         ->from('user as u')
@@ -200,7 +200,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
         ->groupBy('u.id')
         ->orderBy('evidences desc')
         ->all();
-        
+
         return $this->render('user-stats', array(
             'users' => $users,
         ));
@@ -208,12 +208,12 @@ class AdminController extends \humhub\modules\admin\components\Controller
 
     public function actionSpaceStats(){
 
-        
+
         $spaces = (new \yii\db\Query())
         ->select([
-            's.*, 
-            count(distinct u.id) as members, 
-            count(distinct e.id) as evidences, 
+            's.*,
+            count(distinct u.id) as members,
+            count(distinct e.id) as evidences,
             count(distinct v.id) as reviews
             '])
         ->from('space as s')
@@ -228,18 +228,34 @@ class AdminController extends \humhub\modules\admin\components\Controller
         // ->orderBy('reviews desc')
 
         ->all();
-                
+
         return $this->render('space-stats', array(
             'spaces' => $spaces,
         ));
     }
-    
+
+    public function actionEvocoinStats(){
+      $coin = Wallet::find()->sum('amount');
+      $total_coin_created = Coin::find()->where(['name' => 'evocoin'])->one()->total_created;
+      $slot_machine_stats = SlotMachineStats::find()->where(['id' => 1])->one();
+      $evocoin_from_reviews = Votes::find()->count() * 5;
+      $evocoin_from_comments = Votes::find()->where(['comment' => 'NOT NULL'])->count() * 5;
+
+      return $this->render('evocoin-stats', [
+        'total_coin' => $coin,
+        'total_coin_created' => $total_coin_created,
+        'slot_machine_stats' => $slot_machine_stats,
+        'evocoin_from_reviews' => $evocoin_from_reviews,
+        'evocoin_from_comments' => $evocoin_from_comments
+      ]);
+    }
+
     public function actionActivitiesStats(){
         $evidences = Evidence::find()->all();
-        
+
         $activities = Activities::find()
         ->all();
-        
+
         // $activities = (new \yii\db\Query())
         // ->select(['a.*'])
         // ->from('activities as a')
@@ -247,11 +263,11 @@ class AdminController extends \humhub\modules\admin\components\Controller
         // ->join('LEFT JOIN', 'evidence as e', 'a.id = `e`.`activities_id`')
         // ->orderBy('mission_id asc')
         // ->all();
-        
+
         return $this->render('activities-stats', array(
             'evidences' => $evidences,
             'activities' => $activities,
-        ));    
+        ));
     }
 
     public function actionExports() {
@@ -320,7 +336,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
 
         foreach($stats as $stat):
             $row = array();
-            
+
             $date = date_create($stat['created_at']);
             // date_sub($week, date_interval_create_from_date_string('6 days'));
             array_push($row, date_format($date, "Y-m-d"));
@@ -400,7 +416,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
 
         foreach($stats as $stat):
             $row = array();
-            
+
             $date = date_create($stat['created_at']);
             // date_sub($week, date_interval_create_from_date_string('6 days'));
             array_push($row, date_format($date, "Y-m-d"));
@@ -418,7 +434,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
         endforeach;
 
 		fclose($csv_file);
-        
+
         exit();
 	}
 
@@ -447,7 +463,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
 
         foreach($stats as $stat):
             $row = array();
-            
+
             $date = date_create($stat['created_at']);
             // date_sub($week, date_interval_create_from_date_string('6 days'));
             array_push($row, date_format($date, "Y-m-d"));
@@ -461,7 +477,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
         endforeach;
 
 		fclose($csv_file);
-        
+
         exit();
 	}
 
@@ -495,7 +511,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
 
         foreach($stats as $stat):
             $row = array();
-            
+
             $date = date_create($stat['created_at']);
             // date_sub($week, date_interval_create_from_date_string('6 days'));
             array_push($row, date_format($date, "Y-m-d"));
@@ -509,8 +525,8 @@ class AdminController extends \humhub\modules\admin\components\Controller
         endforeach;
 
 		fclose($csv_file);
-        
+
         exit();
 	}
-    
+
 }
