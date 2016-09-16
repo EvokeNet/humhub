@@ -57,7 +57,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', "{name}'s Evokation", array('na
                                 echo Html::a($a, ['evidence/mentor', 'activityId' => $activity->id, 'sguid' => $contentContainer->guid], ['class' => 'profile-link']);
                                 ?>
                                 
-                                <span class="label label-default" style = "margin-left:10px"><?= $activity->evokationCategory->title ?></span> 
+                                
                                 
                             </li>
                         <?php endforeach; ?>
