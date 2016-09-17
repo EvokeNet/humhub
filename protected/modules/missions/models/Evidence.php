@@ -12,6 +12,9 @@ use yii\behaviors\TimestampBehavior;
 use app\modules\missions\models\Votes;
 use app\modules\matching_questions\models\User;
 use humhub\modules\content\models\Content;
+// use humhub\modules\user\models\User;
+use app\modules\missions\models\ActivityPowers;
+use app\modules\powers\models\UserPowers;
 
 /**
  * This is the model class for table "evidence".
@@ -82,7 +85,9 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
             [['text'], 'string'],
             [['title'], 'string', 'max' => 120],
             [['created_at', 'updated_at'], 'safe'],
-            [['created_by', 'updated_by'], 'integer'],
+            // [['created_by', 'updated_by'], 'integer'],
+            [['updated_by'], 'integer'],
+            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['activities_id'], 'exist', 'skipOnError' => true, 'targetClass' => Activities::className(), 'targetAttribute' => ['activities_id' => 'id']],
         );
     }
@@ -180,7 +185,6 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
 
     public function hasUserVoted($userId = "")
     {
-
         if ($userId == "")
             $userId = Yii::$app->user->id;
 
@@ -304,6 +308,14 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
 
         foreach($votes as $vote){
             $vote->delete();
+        }
+
+        $activityPowers = ActivityPowers::findAll(['activity_id' => $this->activities_id]);
+        $user = Yii::$app->user->getIdentity();
+
+        //USER POWER POINTS
+        foreach($activityPowers as $activity_power){
+            UserPowers::removePowerPoint($activity_power->getPower(), $user, $activity_power->value);
         }
 
         return parent::beforeDelete();

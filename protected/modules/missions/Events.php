@@ -184,6 +184,24 @@ class Events
         ));
     }
     
+    public static function onReviewsAdminMenuInit($event)
+    {
+        $event->sender->addItem(array(
+            'label' => Yii::t('MissionsModule.event', 'Reviews'),
+            'url' => Url::to(['/missions/admin/index-reviews']),
+            'group' => 'manage',
+            'sortOrder' => 950,
+            'icon' => '<i class="fa fa-file-text-o"></i>',
+            'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'admin'
+            &&
+                (
+                    Yii::$app->controller->action->id == 'index-reviews'
+                    || Yii::$app->controller->action->id == 'update-reviews'
+                )
+            ),
+        ));
+    }
+
     public static function onLockdownAdminMenuInit($event)
     {
         $event->sender->addItem(array(

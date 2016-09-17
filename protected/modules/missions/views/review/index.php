@@ -151,9 +151,9 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
               					<?= Yii::t('MissionsModule.base', 'Yes') ?>
               				</label>
 
-                            <br>
-              				<div id="yes-opt" class="collapse <?= $collapse ?>">
-                                <br><p><?= Yii::t('MissionsModule.base', 'How many points will you award this evidence?') ?></p>
+                            <!--<br>-->
+              				<div id="yes-opt" class="collapse <?= $collapse ?>" style="margin-top:10px; margin-bottom:-20px">
+                                <!--<br><p><?php // Yii::t('MissionsModule.base', 'How many points will you award this evidence?') ?></p>-->
               					<?php for ($x=1; $x <= 5; $x++): ?>
               					<label class="radio-inline">
               						<input type="radio" name="grade" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> >
@@ -201,6 +201,8 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
 
 
 <style type="text/css">
+
+
 
 .statistics{
     font-size: 12px;

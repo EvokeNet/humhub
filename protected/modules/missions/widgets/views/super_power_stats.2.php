@@ -28,17 +28,29 @@ use app\modules\missions\models\Evidence;
                 $name = $quality->qualityTranslations[0]->name;
             
         ?>
-            <div class="col-xs-6 <?= $unavailable_power ? 'unavailable-power' : '' ?>" style = "margin-bottom:50px">
+            <div class="<?= $unavailable_power ? 'unavailable-power' : '' ?>" style = "margin-bottom:50px">
                 
-                <div class="row" style = "margin-bottom:20px">
-                    <div class="col-sm-4">
-                        <img src = "<?php echo $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->image; ?>" width=90 class = "power-border"></img>
+
+                <div class="row">
+                    <div class="col-xs-3">
+
+
+                    <div style = "margin-bottom:20px; text-align: center">
+                        <div>
+                            <img src = "<?php echo $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->image; ?>" width=80 class = "power-border"></img>
+                        </div>
+                        <div>
+                            <h6 style = "margin-left:4px;"><?= $name; ?></h6>
+                            <span style = "color: #28C503; margin-left:5px"><?php echo Yii::t('MissionsModule.base', 'Level {level}', array('level' => null != $userQuality[0]->getUserQuality() ? $userQuality[0]->getUserQuality()->getLevel() : 0)); ?></span>
+                        </div>
                     </div>
-                    <div class="col-sm-8">
-                        <h5 style = "margin-left:5px; min-height: 40px;"><?= $name; ?></h5>
-                        <span style = "color: #28C503; margin-left:5px"><?php echo Yii::t('MissionsModule.base', 'Level {level}', array('level' => null != $userQuality[0]->getUserQuality() ? $userQuality[0]->getUserQuality()->getLevel() : 0)); ?></span>
-                    </div>
+
+                
                 </div>
+                
+
+
+                <div class="col-xs-9">
                 
                 <?php 
                 
@@ -55,23 +67,26 @@ use app\modules\missions\models\Evidence;
                 ?>
                 
                     <div style = "margin-bottom:20px">
-                
+                        
                         <div class="row">
-                            <div class="col-xs-2">
+                            <div class="col-xs-1">
                                 <h1 style = "font-size: 40pt; margin-top:0"><?= $userPower->getLevel() ?></h1>
                             </div>
-                            <div class="col-xs-10" style = "margin-top:5px">
+                            <div class="col-xs-11">
                         
-                                <span style="font-size:11pt"><?= $power_name ?></span>
-                                
+                                <div style = "margin-bottom:10px">     
+                                    <div style="display:inline">
+                                        <span style="display:inline"><?= $power_name ?></span>
+                                    </div>                         
+                                    <div style = "float: right; display:inline">
+                                        <span><?php echo Yii::t('MissionsModule.base', 'Points to Level: {total}', array('total' => ($userPower->getRemainingPointsToLevelUp()))) ?></span>
+                                    </div>
+                                </div>
+
                                 <div class="progress">
                                     <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?= $percentage ?>%;">
                                         <span class="sr-only"></span>
                                     </div>
-                                </div>
-                                
-                                <div style = "text-align:end; font-size:10pt">
-                                    <?php echo Yii::t('MissionsModule.base', 'Points to Level: {total}', array('total' => ($userPower->getRemainingPointsToLevelUp()))) ?>
                                 </div>
 
                             </div>
@@ -79,6 +94,9 @@ use app\modules\missions\models\Evidence;
 
                     </div>
                 <?php endforeach; ?>
+
+                </div>
+                </div>
   
             </div>
         <?php endforeach; ?>

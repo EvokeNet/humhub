@@ -24,9 +24,23 @@ foreach($evidences as $key => $evidence){
     <div class="panel-heading">
         <h3><?php echo Yii::t('StatsModule.base', 'Statistics Overview'); ?></h3>
         
-        <?php echo Html::a(
+        <?php 
+        
+        if(empty($stats)){
+
+            echo Html::a(
             Yii::t('StatsModule.base', 'Download Report'), 
-            ['exports'], array('class' => 'btn btn-warning')); ?>
+            ['exports'], array('class' => 'btn btn-warning disabled')); 
+
+        } else{
+
+            echo Html::a(
+            Yii::t('StatsModule.base', 'Download Report'), 
+            ['exports'], array('class' => 'btn btn-warning')); 
+
+        }
+            
+        ?>
         &nbsp;&nbsp;
 
         <?php echo Html::a(

@@ -13,6 +13,8 @@ use app\modules\missions\models\EvokationCategories;
 use app\modules\missions\models\EvokationCategoryTranslations;
 use app\modules\missions\models\EvokationDeadline;
 use app\modules\missions\models\Evidence;
+use app\modules\missions\models\EvidenceSearch;
+use app\modules\missions\models\Votes;
 
 /**
  * AdminController
@@ -62,8 +64,17 @@ class AdminController extends \humhub\modules\admin\components\Controller
 
     public function actionIndexEvidences()
     {
-        $evidences = Evidence::find()->all();
-        return $this->render('evidences/index', array('evidences' => $evidences));
+        // $evidences = Evidence::find()->all();
+        // return $this->render('evidences/index', array('evidences' => $evidences));
+
+        $searchModel = new EvidenceSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('evidences/index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+
     }
     
     public function actionViewEvidences($id)
@@ -81,6 +92,29 @@ class AdminController extends \humhub\modules\admin\components\Controller
         }
 
         return $this->redirect(['index-evidences']);
+    }
+
+    public function actionIndexReviews()
+    {
+        $reviews = Votes::find()->all();
+        return $this->render('votes/index', array('reviews' => $reviews));
+    }
+    
+    public function actionViewReviews($id)
+    {
+        $model = Votes::findOne(['id' => Yii::$app->request->get('id')]);
+        return $this->render('votes/view', array('model' => $model));
+    }
+
+    public function actionDeleteReviews()
+    {
+        $model = Votes::findOne(['id' => Yii::$app->request->get('id')]);
+
+        if ($model !== null) {
+            $model->getContentObject()->delete();
+        }
+
+        return $this->redirect(['index-reviews']);
     }
     
     public function actionIndexCategories()
