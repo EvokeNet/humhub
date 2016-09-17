@@ -111,7 +111,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
         $model = Votes::findOne(['id' => Yii::$app->request->get('id')]);
 
         if ($model !== null) {
-            $model->getContentObject()->delete();
+            $model->delete();
         }
 
         return $this->redirect(['index-reviews']);

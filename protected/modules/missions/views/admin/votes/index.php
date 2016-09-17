@@ -48,7 +48,7 @@ echo Breadcrumbs::widget([
                                     'confirm' => Yii::t('MissionsModule.base', 'Are you sure you want to delete this review?'),
                                     'method' => 'post',
                                 ],
-                                )); ?>
+                                )); ?> 
                         </td>
                     </tr>
                 <?php endforeach; ?>
