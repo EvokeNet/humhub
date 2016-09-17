@@ -17,5 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'activities' => 'actividades',
+    '<strong>My Teams</strong>' => '',
+    '<strong>Teams</strong>' => '',
+    'Follow a team to add it to the list.' => '',
+    'Oops, there is no team here yet.' => '',
 ];
