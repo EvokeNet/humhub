@@ -104,6 +104,7 @@ return [
     'Portfolio' => '',
     'Portfolio updated successfully!' => '',
     'Post too short.' => 'Post too short. Please respond more thouroughly.',
+    'Please explain 0' => 'Please explain why the evidence does not meet the requirements of the activity.'
     'Powers' => '',
     'Primary Power' => '',
     'Rating: {rating}' => '',

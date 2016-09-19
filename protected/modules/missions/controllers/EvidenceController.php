@@ -322,8 +322,14 @@ class EvidenceController extends ContentContainerController
         }
 
         if (!empty($comment) && strlen($comment) < 140) {
-            //mentors must comment
+            //comments must be at least 140 characters long
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
+            return;
+        }
+
+        if (empty($comment) && $grade == 0) {
+            //must leave comment if giving a grade of 0
+            AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Please explain 0'));
             return;
         }
 
