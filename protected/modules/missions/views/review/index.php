@@ -293,16 +293,27 @@ jQuery(document).ready(function () {
   var $submitButton = $('#post_submit_review');
 
   $submitButton.on('click', function(e){
-    if (confirm("<?php echo Yii::t('MissionsModule.base', 'Are you sure you want to submit this review?'); ?>")){
+    var opt = document.querySelector('input[name="yes-no-opt"]:checked');
+
+    if (opt == 'no') {
+      if (confirm("<?php echo Yii::t('MissionsModule.base', 'Are you sure you want to submit this review?'); ?>")){
+        $('#review').submit(
+            function(){
+                return validateReview(document.getElementById("evidence_id").value);
+            }
+        );
+      } else {
+        e.preventDefault();
+        return false;
+      }
+    } else {
       $('#review').submit(
           function(){
               return validateReview(document.getElementById("evidence_id").value);
           }
       );
-    } else {
-      e.preventDefault();
-      return false;
     }
+
   });
 });
 
