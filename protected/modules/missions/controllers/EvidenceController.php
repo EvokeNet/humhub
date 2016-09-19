@@ -347,8 +347,8 @@ class EvidenceController extends ContentContainerController
                 if(empty($vote->comment) && !empty($comment)){
 
                     $wallet = Wallet::find()->where(['owner_id' => $user->id])->one();
-                    $wallet->addCoin(5);
-                    $evocoin_earned += 5;
+                    $wallet->addCoin(4);
+                    $evocoin_earned += 4;
                     $wallet->save();
                 }else if(!empty($vote->comment) && empty($comment)){
                     $comment = $vote->comment;
@@ -384,15 +384,15 @@ class EvidenceController extends ContentContainerController
                 $vote->save();
                 $evocoin_earned = 0;
 
-                //Reward reviewer 5 evocoin
+                //Reward reviewer 1 evocoin
                 $wallet = Wallet::find()->where(['owner_id' => $user->id])->one();
-                $wallet->addCoin(5);
-                $evocoin_earned += 5;
+                $wallet->addCoin(1);
+                $evocoin_earned += 1;
 
-                //give an extra 5 for adding a comment
+                //give an extra 4 for adding a comment
                 if (!empty($comment)) {
-                    $wallet->addCoin(5);
-                    $evocoin_earned += 5;
+                    $wallet->addCoin(4);
+                    $evocoin_earned += 4;
                 }
 
                 $wallet->save();
