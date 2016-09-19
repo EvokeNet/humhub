@@ -290,12 +290,21 @@ function validateReview(id){
 }
 
 jQuery(document).ready(function () {
-        $('#review').submit(
-            function(){
-                return validateReview(document.getElementById("evidence_id").value);
-            }
-        );
-    });
+  var $submitButton = $('#post_submit_review');
+
+  $submitButton.on('click', function(e){
+    if (confirm("<?php echo Yii::t('MissionsModule.base', 'Are you sure you want to submit this review?'); ?>")){
+      $('#review').submit(
+          function(){
+              return validateReview(document.getElementById("evidence_id").value);
+          }
+      );
+    } else {
+      e.preventDefault();
+      return false;
+    }
+  });
+});
 
 
 $(document).ready(function(){

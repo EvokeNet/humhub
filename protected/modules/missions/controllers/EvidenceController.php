@@ -322,7 +322,7 @@ class EvidenceController extends ContentContainerController
         }
 
         if (!empty($comment) && strlen($comment) < 140) {
-            //mentors must comment
+            //comments must be at least 140 characters long
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
             return;
         }
@@ -334,6 +334,12 @@ class EvidenceController extends ContentContainerController
             *** - evidence author isn't the same user who's reviewing
         */
         if(($flag == 0 || $grade >= 1) && $evidenceId && $evidence->content->user_id != $user->id){
+
+            if (empty($comment) && $flag == 0) {
+                //must leave comment if giving a grade of 0
+                AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Please explain 0'));
+                return;
+            }
 
             //if user's editing vote
             if($vote){
@@ -347,8 +353,8 @@ class EvidenceController extends ContentContainerController
                 if(empty($vote->comment) && !empty($comment)){
 
                     $wallet = Wallet::find()->where(['owner_id' => $user->id])->one();
-                    $wallet->addCoin(5);
-                    $evocoin_earned += 5;
+                    $wallet->addCoin(4);
+                    $evocoin_earned += 4;
                     $wallet->save();
                 }else if(!empty($vote->comment) && empty($comment)){
                     $comment = $vote->comment;
@@ -384,15 +390,15 @@ class EvidenceController extends ContentContainerController
                 $vote->save();
                 $evocoin_earned = 0;
 
-                //Reward reviewer 5 evocoin
+                //Reward reviewer 1 evocoin
                 $wallet = Wallet::find()->where(['owner_id' => $user->id])->one();
-                $wallet->addCoin(5);
-                $evocoin_earned += 5;
+                $wallet->addCoin(1);
+                $evocoin_earned += 1;
 
-                //give an extra 5 for adding a comment
+                //give an extra 4 for adding a comment
                 if (!empty($comment)) {
-                    $wallet->addCoin(5);
-                    $evocoin_earned += 5;
+                    $wallet->addCoin(4);
+                    $evocoin_earned += 4;
                 }
 
                 $wallet->save();
