@@ -17,7 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Evidences' => '',
+    'All Evidences' => 'Todas las Evidencias',
+    'Evidences' => 'Evidencias',
     'Evokation' => 'Evokación',
     'Evokation Categories' => 'Categorías de Evokación',
     'Evokation Deadline' => 'Fin de plazo de Evokación',

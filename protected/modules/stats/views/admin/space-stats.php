@@ -2,6 +2,10 @@
 
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
+use yii\helpers\ArrayHelper;
+use backend\models\Standard;
+use yii\helpers\Url;
+use app\modules\stats\models\StatsSpaces;
 
 $this->title = Yii::t('StatsModule.base', 'Space Statistics');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('StatsModule.base', 'Statistics Reports'), 'url' => ['index']];
@@ -19,6 +23,14 @@ echo Breadcrumbs::widget([
     </div>
     <div class="panel-body">
         
+        <?= Html::dropDownList("created_at", '', ArrayHelper::map(StatsSpaces::find()->groupBy('created_at')->all(), 'id', 'created_at'), ['prompt' => '--- select ---', 'id' => 'dates']) ?>
+
+        &nbsp;&nbsp;&nbsp;
+
+        <a href="#" id="stats_link" class="btn-sm btn-info"><?php echo Yii::t('StatsModule.base', 'Download Report'); ?></a>
+        
+        <br /><br />
+        
         <table class="table">
             <tr>
                 <th><?php echo Yii::t('StatsModule.base', 'Name'); ?></th>
@@ -29,7 +41,9 @@ echo Breadcrumbs::widget([
             </tr>
             <?php foreach ($spaces as $space): ?>
                 <tr>
-                    <td><?php echo $space['name']; ?></td>
+                    <td>
+                        <?= Html::a($space['name'], ['/space/space', 'sguid' => $space['guid']], ['style' => ' font-weight: 700; color: #2273AC;']) ?>
+                    </td>
                     <td><?php echo $space['members']; ?></td>
                     <td><?php echo $space['evidences']; ?></td>
                     <td><?php echo $space['reviews']; ?></td>
@@ -40,3 +54,27 @@ echo Breadcrumbs::widget([
         
     </div>
 </div>
+
+<script>
+    var x = document.getElementById("dates").value;
+
+    console.log(x);
+
+    $('#dates').change(function() {
+        // console.log('The option with value ' + $(this).val() + ' and text ' + $(this).text() + ' was selected.');
+
+        var x = document.getElementById("dates");
+        
+        if (x.val == -1)
+            console.log(null);
+        
+        console.log(x.value);
+        console.log(x.options[x.selectedIndex].text);
+
+        var chosen = x.options[x.selectedIndex].text;
+
+        $("a#stats_link").attr("href", "<?= Url::to(['/stats/admin/exports-spaces']) ?>&date="+chosen);
+
+    });
+
+</script>

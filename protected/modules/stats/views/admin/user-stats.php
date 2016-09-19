@@ -2,6 +2,10 @@
 
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
+use yii\helpers\ArrayHelper;
+use backend\models\Standard;
+use yii\helpers\Url;
+use app\modules\stats\models\StatsUsers;
 
 $this->title = Yii::t('StatsModule.base', 'User Statistics');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('StatsModule.base', 'Statistics Reports'), 'url' => ['index']];
@@ -11,6 +15,8 @@ echo Breadcrumbs::widget([
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
 ]);
 
+//var_dump(StatsUsers::find()->all());
+
 ?>
 
 <div class="panel panel-default">
@@ -19,6 +25,14 @@ echo Breadcrumbs::widget([
     </div>
     <div class="panel-body">
         
+        <?= Html::dropDownList("created_at", '', ArrayHelper::map(StatsUsers::find()->groupBy('created_at')->all(), 'id', 'created_at'), ['prompt' => '--- select ---', 'id' => 'dates']) ?>
+
+        &nbsp;&nbsp;&nbsp;
+
+        <a href="#" id="stats_link" class="btn-sm btn-info"><?php echo Yii::t('StatsModule.base', 'Download Report'); ?></a>
+        
+        <br /><br />
+
         <table class="table">
             <tr>
 
@@ -35,10 +49,9 @@ echo Breadcrumbs::widget([
             </tr>
             <?php foreach ($users as $user): ?>
                 <tr>
-
-                    <!--<td><?php //echo $user['firstname'].' '.$user['lastname']; ?></td>-->
-                    <td><?php echo $user['username']; ?></td>
-
+                    <td>
+                        <?= Html::a($user['username'], ['/user/profile', 'uguid' => $user['guid']], ['style' => ' font-weight: 700; color: #2273AC;']) ?>
+                    </td>
                     <td><?php echo $user['coins']; ?></td>
                     <td><?php echo $user['followers']; ?></td>
                     <td><?php echo $user['following']; ?></td>
@@ -53,3 +66,27 @@ echo Breadcrumbs::widget([
         
     </div>
 </div>
+
+<script>
+    var x = document.getElementById("dates").value;
+
+    console.log(x);
+
+    $('#dates').change(function() {
+        // console.log('The option with value ' + $(this).val() + ' and text ' + $(this).text() + ' was selected.');
+
+        var x = document.getElementById("dates");
+        
+        if (x.val == -1)
+            console.log(null);
+        
+        console.log(x.value);
+        console.log(x.options[x.selectedIndex].text);
+
+        var chosen = x.options[x.selectedIndex].text;
+
+        $("a#stats_link").attr("href", "<?= Url::to(['/stats/admin/exports-users']) ?>&date="+chosen);
+
+    });
+
+</script>

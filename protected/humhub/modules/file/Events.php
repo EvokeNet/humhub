@@ -35,7 +35,7 @@ class Events extends \yii\base\Object
      *
      * @param type $event
      */
-    public static function onCronDailyRun($event)
+    public static function onCronDailyRun($event) 
     {
 
         $controller = $event->sender;

@@ -1,0 +1,11 @@
+{
+    "id": "statics",
+    "name": "Evoke Static Pages for Static Content",
+    "description": "Evoke Static Pages for Static Content",
+    "keywords": ["statics"],
+    "version": "0.0.1",
+    "humhub": {
+        "minVersion": "0.20"
+    },
+    "screenshots": []
+}

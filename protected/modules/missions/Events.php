@@ -263,6 +263,19 @@ class Events
         $team_id = Team::getUserTeam($user->id);
         $space = $event->sender->space;
 
+        if($space->name=="Mentors"){
+            $event->sender->addItem(array(
+                'label' => Yii::t('MissionsModule.event', 'All Evidences'),
+                'group' => 'modules',
+                'url' => $space->createUrl('/missions/evidence/mentor_activities'),
+                'icon' => '<i class="fa fa-sitemap"></i>',
+                'sortOrder' => 400,
+                'isActive' => (Yii::$app->controller->module
+                && Yii::$app->controller->module->id == 'missions'
+                && Yii::$app->controller->id == 'evidence'),
+            ));
+        }
+
         if ($space->isModuleEnabled('missions') ) {
 
             //MEMBERS
@@ -301,7 +314,9 @@ class Events
                     'sortOrder' => 500,
                     'isActive' => (Yii::$app->controller->module
                     && Yii::$app->controller->module->id == 'missions'
-                    && Yii::$app->controller->id == 'review'),
+                    && Yii::$app->controller->id == 'review'
+
+                    ),
                 ));
 
                 if(Setting::Get('enabled_evokation_page_visibility')){
@@ -358,7 +373,11 @@ class Events
 
             if(!$team && $user->group->name == "Mentors"){
                 $team = Space::findOne(['name' => 'Mentors']);
+                $review_evidence_link = $team->createUrl('/missions/evidence/mentor_activities');
+
             }else if($team){
+
+                $review_evidence_link = Url::to(['/missions/review/index', 'sguid' => $team->guid]);
 
                 //MY TEAM
                 $event->sender->addItem(array(
@@ -390,15 +409,23 @@ class Events
             }
 
             if($team){
+
+
                 $event->sender->addItem(array(
                 'label' => Yii::t('MissionsModule.event', 'Review Evidence'),
                 'id' => 'review_evidence',
                 'icon' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i>',
-                'url' => Url::to(['/missions/review/index', 'sguid' => $team->guid]),
+                'url' => $review_evidence_link,
                 'sortOrder' => 500,
                 'isActive' => (Yii::$app->controller->module
                     && Yii::$app->controller->module->id == 'missions'
-                    && Yii::$app->controller->id == 'review'),
+                    && 
+                        ( 
+                            Yii::$app->controller->id == 'review'
+                            || (Yii::$app->controller->id == 'evidence' && Yii::$app->controller->action->id == 'mentor_activities')
+                            || Yii::$app->controller->action->id == 'mentor'
+                        )
+                    ),
                 ));
             }
 
