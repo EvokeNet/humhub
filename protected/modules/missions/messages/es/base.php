@@ -40,6 +40,7 @@ return [
     'Are you sure you want to delete this mission?' => '¿Estás seguro que quieres eliminar esta misión?',
     'Are you sure you want to delete this power?' => '¿Estás seguro que quieres eliminar este poder?',
     'Are you sure you want to delete this translation?' => '¿Estás seguro que quieres eliminar esta traducción?',
+    'Are you sure you want to submit this review?' => '¿Estás seguro que quieres enviar esta evaluación?',
     'Author' => 'Autor',
     'Average Rating: {rating}' => 'Tu clasificación media: {rating}',
     'Average Rating: {votes}' => 'Tu clasificación media: {votes}',
@@ -124,7 +125,7 @@ return [
     'Portfolio' => 'Portafolio',
     'Portfolio updated successfully!' => 'Portafolio actualizado con éxito!',
     'Post too short.' => 'Por favor, escribir más.',
-    'Please explain 0' => 'Por favor, explique por qué la evidencia no cumple con los requisitos de la actividad.'
+    'Please explain 0' => 'Por favor, explique por qué la evidencia no cumple con los requisitos de la actividad.',
     'Powers' => 'Poderes',
     'Primary Power' => 'Poder Primario',
     'Rating: {rating}' => 'Clasificación: {rating}',

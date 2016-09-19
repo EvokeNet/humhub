@@ -327,12 +327,6 @@ class EvidenceController extends ContentContainerController
             return;
         }
 
-        if (empty($comment) && $grade == 0) {
-            //must leave comment if giving a grade of 0
-            AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Please explain 0'));
-            return;
-        }
-
         /*
             Check if review is valid:
             *** - it has a 'no' vote or a 1-5 'yes' vote
@@ -340,6 +334,12 @@ class EvidenceController extends ContentContainerController
             *** - evidence author isn't the same user who's reviewing
         */
         if(($flag == 0 || $grade >= 1) && $evidenceId && $evidence->content->user_id != $user->id){
+
+            if (empty($comment) && $flag == 0) {
+                //must leave comment if giving a grade of 0
+                AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Please explain 0'));
+                return;
+            }
 
             //if user's editing vote
             if($vote){
