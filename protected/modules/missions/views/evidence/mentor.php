@@ -42,7 +42,9 @@ $team_filters = [];
 
 foreach($spaces as $space){
     $space = Space::findOne($space['object_id']);
-    $team_filters["team".$space->id] = $space->name;
+    if($space){
+        $team_filters["team".$space->id] = $space->name;    
+    }
 }
 
 
