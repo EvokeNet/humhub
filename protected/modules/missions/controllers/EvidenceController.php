@@ -43,6 +43,8 @@ class EvidenceController extends ContentContainerController
                 'mode' => \humhub\modules\missions\components\MentorStreamAction::MODE_NORMAL,
                 'contentContainer' => $this->contentContainer,
                 'activity_id' => Yii::$app->request->get('activity_id'),
+                'users_id' => Yii::$app->request->get('users_id'),
+                'spaces_id' => Yii::$app->request->get('spaces_id'),
             ),
         );
     }
