@@ -26,6 +26,7 @@ use app\modules\missions\models\Portfolio;
 use app\modules\powers\models\UserPowers;
 use humhub\modules\user\models\User;
 use app\modules\teams\models\Team;
+use humhub\modules\missions\controllers\MentorController;
 
 /**
  * Description of Events
@@ -372,6 +373,20 @@ class Events
             $team = Team::findOne($team_id);        
 
             if(!$team && $user->group->name == "Mentors"){
+
+                //MY TEAM
+                $event->sender->addItem(array(
+                'label' => Yii::t('MissionsModule.event', 'My Teams'),
+                'id' => 'my_team',
+                'icon' => '<i class="fa fa-users" aria-hidden="true"></i>',
+                'url' => Url::to(['/missions/mentor/myteams']),
+                'sortOrder' => 300,
+                'isActive' => (Yii::$app->controller
+                    && Yii::$app->controller->id == 'mentor'
+                    && Yii::$app->controller->action->id == 'myteams'
+                    ),
+                ));
+
                 $team = Space::findOne(['name' => 'Mentors']);
                 $review_evidence_link = $team->createUrl('/missions/evidence/mentor_activities');
 
