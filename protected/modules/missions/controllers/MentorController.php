@@ -36,6 +36,7 @@ class MentorController extends Controller
         ->from('user_follow as u')
         ->join('INNER JOIN', 'space as s', '`u`.`object_id` = `s`.`id`')
         ->where(['s.is_team' => '1'])
+        ->andWhere(['u.user_id' => Yii::$app->user->getIdentity()->id])
         ->andFilterWhere(
            ['u.object_model' => Space::className()])
         ->all();
