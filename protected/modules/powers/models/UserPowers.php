@@ -254,10 +254,10 @@ class UserPowers extends \yii\db\ActiveRecord
                 $userPower->value = 0;
             }
             $userPower->value -= $value;
-        }
 
-        $userPower->save();
-        $userPower->updateLevel();
+            $userPower->save();
+            $userPower->updateLevel();
+        }
     }
 
     public function getUserPowers($user_id){
