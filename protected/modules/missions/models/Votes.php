@@ -8,6 +8,8 @@ use humhub\modules\notification\models\Notification;
 use app\modules\missions\models\Evidence;
 use app\modules\coin\models\Wallet;
 use humhub\modules\content\components\ContentActiveRecord;
+use app\modules\missions\models\Activities;
+use app\modules\powers\models\UserPowers;
 
 /**
  * This is the model class for table "votes".
@@ -144,9 +146,42 @@ class Votes extends ContentActiveRecord
             $notification->delete();
         }
 
-        $wallet = Wallet::find()->where(['owner_id' => Yii::$app->user->getIdentity()->id])->one();
-        $wallet->removeCoin(5);
-        $wallet->save();
+        $wallet = Wallet::find()->where(['owner_id' => $this->user_id])->one();
+        
+        if(empty($this->comment)){
+            $coins = 1;
+        }else{
+            $coins = 5;
+        }
+
+        //Remove reviewer coins
+        
+        if(isset($wallet)){
+            $wallet->removeCoin($coins);
+            $wallet->save();
+        }
+
+        //Remove evidence owner power points
+
+        $user = User::findOne($this->evidence->created_by);
+        $reviewer = User::findOne($this->user_id);
+
+        $value = $this->value;
+
+        if($this->flag){
+            if (isset($reviewer) && $reviewer->group->name == "Mentors") {
+                $value *= 2;
+            }
+        }
+
+        if(isset($user)){
+            //REMOVE USER POWER POINT
+            $activity_power = Activities::findOne($this->activity_id)->getPrimaryPowers()[0];
+            if(isset($activity_power)){
+                UserPowers::removePowerPoint($activity_power->getPower(), $user, $value);
+            }
+            
+        }
 
         return parent::beforeDelete();
     }

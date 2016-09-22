@@ -12,7 +12,6 @@ use yii\behaviors\TimestampBehavior;
 use app\modules\missions\models\Votes;
 use app\modules\matching_questions\models\User;
 use humhub\modules\content\models\Content;
-// use humhub\modules\user\models\User;
 use app\modules\missions\models\ActivityPowers;
 use app\modules\powers\models\UserPowers;
 
@@ -311,11 +310,13 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
         }
 
         $activityPowers = ActivityPowers::findAll(['activity_id' => $this->activities_id]);
-        $user = Yii::$app->user->getIdentity();
+        $user = User::findOne($this->created_by);
 
-        //USER POWER POINTS
-        foreach($activityPowers as $activity_power){
-            UserPowers::removePowerPoint($activity_power->getPower(), $user, $activity_power->value);
+        if(isset($user)){
+            //REMOVE USER POWER POINTS
+            foreach($activityPowers as $activity_power){
+                UserPowers::removePowerPoint($activity_power->getPower(), $user, $activity_power->value);
+            }   
         }
 
         return parent::beforeDelete();
