@@ -246,6 +246,20 @@ class UserPowers extends \yii\db\ActiveRecord
         $userPower->updateLevel();
     }
 
+    public function removePowerPoint($power, $user, $value){
+        $userPower = UserPowers::findOne(['power_id' => $power->id, 'user_id' => $user->id]);
+
+        if(isset($userPower)){
+            if(!isset($userPower->value)){
+                $userPower->value = 0;
+            }
+            $userPower->value -= $value;
+        }
+
+        $userPower->save();
+        $userPower->updateLevel();
+    }
+
     public function getUserPowers($user_id){
      $powers = UserPowers::find()
         ->where(['user_id' => $user_id])

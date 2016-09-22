@@ -6,6 +6,7 @@ use Yii;
 use humhub\modules\user\models\User;
 use humhub\modules\notification\models\Notification;
 use app\modules\missions\models\Evidence;
+use app\modules\coin\models\Wallet;
 use humhub\modules\content\components\ContentActiveRecord;
 
 /**
@@ -142,6 +143,10 @@ class Votes extends ContentActiveRecord
         foreach($notifications as $notification){
             $notification->delete();
         }
+
+        $wallet = Wallet::find()->where(['owner_id' => Yii::$app->user->getIdentity()->id])->one();
+        $wallet->removeCoin(5);
+        $wallet->save();
 
         return parent::beforeDelete();
     }

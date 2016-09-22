@@ -1897,8 +1897,8 @@ a.list-group-item.active:focus {
   color: #2A2E32;
 }
 .progress {
-  height: 20px;
-  margin-bottom: 5px;
+  height: 12px;
+  margin: 3px 0;
   box-shadow: none;
   background: #D5D8DA;
   border-radius: 10px;
