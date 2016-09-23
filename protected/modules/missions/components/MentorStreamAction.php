@@ -12,53 +12,71 @@ use humhub\modules\user\models\User;
 class MentorStreamAction extends MentorContentContainerStream
 {
 
-	public $activity_id;
+	public $activity_id = null;
+    public $users_id = null;
+    public $spaces_id = null;
 
     public function setupFilters()
     {
 
-        $spaces = (new \yii\db\Query())
-        ->select(['f.object_id'])
-        ->from('user as u')
-        ->join('INNER JOIN', 'user_follow as f', 'u.id = `f`.`user_id`')
-        ->where('f.object_model = \'' .str_replace("\\", "\\\\", Space::classname()).'\'') 
-        ->andWhere('u.id = '.$this->user->id)
-        ->all();
+        // if (in_array('id', $this->filters)) {
+        //     print_r($this->filters);
+        // }
 
-        $spaces_query = $this->returnIdQuery($spaces);
-
-        $users = (new \yii\db\Query())
-        ->select(['f.object_id'])
-        ->from('user as u')
-        ->join('INNER JOIN', 'user_follow as f', 'u.id = `f`.`user_id`')
-        ->where('f.object_model =:userClass', [':userClass' => User::className()]) 
-        ->andWhere('u.id = '.$this->user->id)
-        ->all();
-
-        $users_query = $this->returnIdQuery($users);
+        $spaces_query = $this->returnIdQuery($this->spaces_id);
+        $users_query = $this->returnIdQuery($this->users_id);
 
         if(isset($this->activity_id)){
             $this->activeQuery->leftJoin('evidence', 'content.object_id=evidence.id AND content.object_model=:evidenceClass', [':evidenceClass' => Evidence::className()]);
             $this->activeQuery->andWhere(['evidence.activities_id' => $this->activity_id]);
         }
 
-        if(sizeof($spaces) > 0 && sizeof($users) >= 0){
+        if(sizeof($this->spaces_id) > 0 && sizeof($this->users_id) > 0){
             $this->activeQuery->andWhere(
-           'content.space_id in '.$spaces_query.
-           ' OR content.user_id in '.$users_query
+               'content.space_id in '.$spaces_query.
+               ' OR content.user_id in '.$users_query
            ); 
-        }elseif(sizeof($spaces) > 0){
+        }elseif(sizeof($this->spaces_id) > 0){
             $this->activeQuery->andWhere(
             'content.space_id in '.$spaces_query
             ); 
-        }elseif(sizeof($users) > 0){
+        }elseif(sizeof($this->users_id) > 0){
             $this->activeQuery->andWhere(
             'content.user_id in '.$users_query
             );
+        }else{
+            $this->activeQuery->andWhere('1 = 2');
         }
 
         $this->activeQuery->andFilterWhere(
            ['content.object_model' => Evidence::className()]);
+
+        $teams_filter = [];
+
+        foreach($this->filters as $filter){
+
+            $length = strlen($filter);
+
+            //filter may be a team filter
+            if($length > 4){
+                //filter it is a team filter
+                if(substr($filter, 0, 4) === 'team'){
+                    //add id to array
+                    $object['object_id'] = (int) substr($filter, 4, $length);
+                    array_push($teams_filter, $object);
+                }    
+            }
+           
+        }
+
+        if(sizeof($teams_filter) > 0){
+
+            $teamsfilter_query = $this->returnIdQuery($teams_filter);
+            $this->activeQuery->andWhere(
+                'content.space_id in '.$teamsfilter_query
+            ); 
+        }
+        
            
     }
 
@@ -66,6 +84,10 @@ class MentorStreamAction extends MentorContentContainerStream
     	$object_query = "(";
         $objects_size = sizeof($objects);
         $count = 0;
+
+        if($objects_size <= 0){
+            return "()";
+        }
 
         foreach($objects as $object){
         	$count++;

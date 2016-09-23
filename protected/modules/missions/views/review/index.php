@@ -125,7 +125,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                   $collapse = "";
                   $yes = "";
                   $no = "";
-                  $grade = 1;
+                  $grade = 0;
                   $vote = $evidence->getUserVote();
                   $comment = "";
                   if($vote){
@@ -144,14 +144,42 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                     <p style = "margin-bottom:25px"><?= Yii::t('MissionsModule.base', '<strong>Activity Rubric:</strong> {rubric}', array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></p>
 
                 	<form id = "review" class="review">
-                    <input type="hidden" id="evidence_id" value="<?= $evidence->id ?>">
-                    <?php for ($x=1; $x <= 5; $x++): ?>
-                    <label class="radio-inline">
-                      <input type="radio" name="grade" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> >
-                      <?php echo $x; ?>
-                    </label>
-                    <?php endfor; ?>
 
+                    <?php if Yii::$app->user->getIdentity()->group->name != "Mentors" ?>
+                      <input type="hidden" id="evidence_id" value="<?= $evidence->id ?>">
+                      <?php for ($x=1; $x <= 5; $x++): ?>
+                      <label class="radio-inline">
+                        <input type="radio" name="grade" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> >
+                        <?php echo $x; ?>
+                      </label>
+                      <?php endfor; ?>
+
+                    <?php else: ?>
+                  		<div class="radio" style = "margin-bottom:15px">
+                				<label>
+                					<input type="radio" name="yes-no-opt" class="btn-show" value="yes" <?= $yes ?> >
+                					<?= Yii::t('MissionsModule.base', 'Yes') ?>
+                				</label>
+
+                				<div id="yes-opt" class="collapse <?= $collapse ?>" style="margin-top:10px; margin-bottom:-20px">
+                                  <!--<br><p><?php // Yii::t('MissionsModule.base', 'How many points will you award this evidence?') ?></p>-->
+                					<?php for ($x=1; $x <= 5; $x++): ?>
+                					<label class="radio-inline">
+                						<input type="radio" name="grade" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> >
+                						<?php echo $x; ?>
+                					</label>
+                					<?php endfor; ?>
+                                    <br><br><br>
+                				</div>
+
+              			  </div>
+              			  <div class="radio" style = "margin-bottom:15px">
+              				  <label>
+              					<input type="radio" name="yes-no-opt" class="btn-hide" value="no" <?= $no ?>>
+              					 <?= Yii::t('MissionsModule.base', 'No') ?>
+              				  </label>
+              			  </div>
+                    <?php endif; ?>
             			  <br>
 
                           <?php echo Html::textArea("text", $comment , array('id' => 'review_comment', 'class' => 'text-margin form-control count-chars ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Comment"))); ?>
@@ -183,6 +211,8 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
 
 
 <style type="text/css">
+
+
 
 .statistics{
     font-size: 12px;

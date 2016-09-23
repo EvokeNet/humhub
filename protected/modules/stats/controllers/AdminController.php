@@ -147,6 +147,9 @@ class AdminController extends \humhub\modules\admin\components\Controller
         // var_dump($commentsx2);
         // var_dump($commentsx3);
 
+
+        $stats = StatsGeneral::find()->all();
+                
         return $this->render('index', array(
             'evidences' => $evidences,
             'users' => $users,
@@ -169,7 +172,8 @@ class AdminController extends \humhub\modules\admin\components\Controller
             'comments_mentor' => $comments_mentor,
             'likes' => $likes,
             'like_comment_user' => $like_comment_user,
-            'like_comment_mentor' => $like_comment_mentor
+            'like_comment_mentor' => $like_comment_mentor,
+            'stats' => $stats
         ));
     }
 

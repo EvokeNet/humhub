@@ -17,6 +17,6 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    '%contentTitle% has been marked  as: ' => '',
+    '%contentTitle% has been marked  as: ' => '%contentTitle% ha sido marcado como: ',
     '%contentTitle% has been reviewed.' => '%contentTitle% ha sido revisado.',
 ];

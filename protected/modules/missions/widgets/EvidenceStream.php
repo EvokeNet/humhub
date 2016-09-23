@@ -69,7 +69,9 @@ class EvidenceStream extends \yii\base\Widget
     public $messageStreamEmptyCss = "";
 
 
-    public $activity_id;
+    public $activity_id = null;
+    public $spaces_id = null;
+    public $users_id = null;
 
     /**
      * Inits the Wall Stream Widget
@@ -78,18 +80,6 @@ class EvidenceStream extends \yii\base\Widget
     {
         if ($this->streamAction == "") {
             throw new \yii\web\HttpException(500, 'You need to set the streamAction attribute to use this widget!');
-        }
-
-        // Add default Filters
-        if (count($this->filters) === 0) {
-            $this->filters['filter_entry_userinvoled'] = Yii::t('ContentModule.widgets_views_stream', 'Where I´m involved');
-            $this->filters['filter_entry_mine'] = Yii::t('ContentModule.widgets_views_stream', 'Created by me');
-            $this->filters['filter_entry_files'] = Yii::t('ContentModule.widgets_views_stream', 'Content with attached files');
-            $this->filters['filter_posts_links'] = Yii::t('ContentModule.widgets_views_stream', 'Posts with links');
-            $this->filters['filter_model_posts'] = Yii::t('ContentModule.widgets_views_stream', 'Posts only');
-            $this->filters['filter_entry_archived'] = Yii::t('ContentModule.widgets_views_stream', 'Include archived posts');
-            $this->filters['filter_visibility_public'] = Yii::t('ContentModule.widgets_views_stream', 'Only public posts');
-            $this->filters['filter_visibility_private'] = Yii::t('ContentModule.widgets_views_stream', 'Only private posts');
         }
 
 
@@ -121,6 +111,8 @@ class EvidenceStream extends \yii\base\Widget
             'sort' => '-sort-',
             'from' => '-from-',
             'activity_id' => $this->activity_id,
+            'users_id' => $this->users_id,
+            'spaces_id' => $this->spaces_id,
             'mode' => \humhub\modules\content\components\actions\Stream::MODE_NORMAL
         ];
 
