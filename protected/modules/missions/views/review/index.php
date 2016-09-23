@@ -96,7 +96,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                                 <?php endif; ?>
 
                                 <?php foreach($votes as $vote): ?>
-                                    <div style = "padding: 10px 10px 3px; margin-bottom: 20px; border: 3px solid #9013FE;">
+                                    <div class="submitted-review" style = "padding: 10px 10px 3px; margin-bottom: 20px; border: 3px solid #9013FE;">
                                         <p><?php echo Yii::t('MissionsModule.base', 'Comment: {comment}', array('comment' => $vote->comment)); ?></p>
                                         <p><?php echo Yii::t('MissionsModule.base', 'Rating: {rating}', array('rating' => $vote->value)); ?></p>
 
@@ -144,32 +144,42 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                     <p style = "margin-bottom:25px"><?= Yii::t('MissionsModule.base', '<strong>Activity Rubric:</strong> {rubric}', array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></p>
 
                 	<form id = "review" class="review">
-                        <input type="hidden" id="evidence_id" value="<?= $evidence->id ?>">
-                		<div class="radio" style = "margin-bottom:15px">
-              				<label>
-              					<input type="radio" name="yes-no-opt" class="btn-show" value="yes" <?= $yes ?> >
-              					<?= Yii::t('MissionsModule.base', 'Yes') ?>
-              				</label>
 
-                            <!--<br>-->
-              				<div id="yes-opt" class="collapse <?= $collapse ?>" style="margin-top:10px; margin-bottom:-20px">
-                                <!--<br><p><?php // Yii::t('MissionsModule.base', 'How many points will you award this evidence?') ?></p>-->
-              					<?php for ($x=1; $x <= 5; $x++): ?>
-              					<label class="radio-inline">
-              						<input type="radio" name="grade" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> >
-              						<?php echo $x; ?>
-              					</label>
-              					<?php endfor; ?>
-                                  <br><br><br>
-              				</div>
+                    <?php if Yii::$app->user->getIdentity()->group->name != "Mentors" ?>
+                      <input type="hidden" id="evidence_id" value="<?= $evidence->id ?>">
+                      <?php for ($x=1; $x <= 5; $x++): ?>
+                      <label class="radio-inline">
+                        <input type="radio" name="grade" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> >
+                        <?php echo $x; ?>
+                      </label>
+                      <?php endfor; ?>
 
-            			  </div>
-            			  <div class="radio" style = "margin-bottom:15px">
-            				  <label>
-            					<input type="radio" name="yes-no-opt" class="btn-hide" value="no" <?= $no ?>>
-            					 <?= Yii::t('MissionsModule.base', 'No') ?>
-            				  </label>
-            			  </div>
+                    <?php else: ?>
+                  		<div class="radio" style = "margin-bottom:15px">
+                				<label>
+                					<input type="radio" name="yes-no-opt" class="btn-show" value="yes" <?= $yes ?> >
+                					<?= Yii::t('MissionsModule.base', 'Yes') ?>
+                				</label>
+
+                				<div id="yes-opt" class="collapse <?= $collapse ?>" style="margin-top:10px; margin-bottom:-20px">
+                                  <!--<br><p><?php // Yii::t('MissionsModule.base', 'How many points will you award this evidence?') ?></p>-->
+                					<?php for ($x=1; $x <= 5; $x++): ?>
+                					<label class="radio-inline">
+                						<input type="radio" name="grade" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> >
+                						<?php echo $x; ?>
+                					</label>
+                					<?php endfor; ?>
+                                    <br><br><br>
+                				</div>
+
+              			  </div>
+              			  <div class="radio" style = "margin-bottom:15px">
+              				  <label>
+              					<input type="radio" name="yes-no-opt" class="btn-hide" value="no" <?= $no ?>>
+              					 <?= Yii::t('MissionsModule.base', 'No') ?>
+              				  </label>
+              			  </div>
+                    <?php endif; ?>
             			  <br>
 
                           <?php echo Html::textArea("text", $comment , array('id' => 'review_comment', 'class' => 'text-margin form-control count-chars ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Comment"))); ?>
@@ -226,6 +236,10 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
     text-align: center;
 }
 
+.submitted-review {
+  word-wrap: break-word;
+}
+
 </style>
 
 <script>
@@ -272,39 +286,35 @@ function validateReview(id){
         return false;
     }
 */
-
-	if(opt == "yes"){
-
-		if(grade >= 1){
-			return review(id, comment, opt, grade);
-		}
-
-    showMessage("Error", "<?= Yii::t('MissionsModule.base', 'Choose how many points you will award this evidence.') ?>");
-
-	} else if(opt == "no"){
-		return review(id, comment, opt);
-	} else{
-
-    showMessage("Error", "<?= Yii::t('MissionsModule.base', 'Please, Answer yes or no.') ?>");
-  }
-
-	return false;
+  opt = 'yes';
+  return review(id, comment, opt, grade);
 }
 
 jQuery(document).ready(function () {
   var $submitButton = $('#post_submit_review');
 
   $submitButton.on('click', function(e){
-    if (confirm("<?php echo Yii::t('MissionsModule.base', 'Are you sure you want to submit this review?'); ?>")){
+    var opt = document.querySelector('input[name="yes-no-opt"]:checked');
+
+    if (opt == 'no') {
+      if (confirm("<?php echo Yii::t('MissionsModule.base', 'Are you sure you want to submit this review?'); ?>")){
+        $('#review').submit(
+            function(){
+                return validateReview(document.getElementById("evidence_id").value);
+            }
+        );
+      } else {
+        e.preventDefault();
+        return false;
+      }
+    } else {
       $('#review').submit(
           function(){
               return validateReview(document.getElementById("evidence_id").value);
           }
       );
-    } else {
-      e.preventDefault();
-      return false;
     }
+
   });
 });
 
