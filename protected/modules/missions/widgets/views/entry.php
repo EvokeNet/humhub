@@ -8,6 +8,9 @@ echo Html::beginForm();
 ?>
 
 <h5><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h5>
+<?php if (Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
+  <h6><?php echo Yii::t('MissionsModule.base', 'By'); ?> <?php echo $name ?></h4>
+<?php endif; ?>
 <p><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]);?></p>
 
 <div class = "evidence-mission-box">
