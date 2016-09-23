@@ -89,7 +89,7 @@ echo Html::beginForm();
     				  </label>
     			  </div>
     			  <br>
-            <?php echo Html::textArea("text", $comment , array('id' => 'review_comment_'.$evidence->id, 'class' => 'text-margin form-control ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Comment"))); ?>
+            <?php echo Html::textArea("text", $comment , array('id' => 'review_comment_'.$evidence->id, 'class' => 'text-margin form-control count-chars ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Comment"))); ?>
     			  <br>
 
     			  <br>
@@ -132,7 +132,7 @@ echo Html::beginForm();
                     <?php endif; ?>
 
                     <?php foreach($votes as $vote): ?>
-                        <div style = "padding: 10px 10px 3px; margin-bottom: 20px; border: 3px solid #9013FE;">
+                        <div style = "padding: 10px 10px 3px; margin-bottom: 20px; border: 3px solid #9013FE; word-wrap: break-word;">
                             <p><?php echo Yii::t('MissionsModule.base', 'Comment: {comment}', array('comment' => $vote->comment)); ?></p>
                             <p><?php echo Yii::t('MissionsModule.base', 'Rating: {rating}', array('rating' => $vote->value)); ?></p>
 
@@ -171,7 +171,6 @@ echo Html::beginForm();
 </style>
 
 <script>
-
 function review(id, comment, opt, grade){
     grade = grade? grade : 0;
     var xhttp = new XMLHttpRequest();
@@ -226,12 +225,33 @@ function validateReview<?= $evidence->id ?>(id){
 }
 
 jQuery(document).ready(function () {
-        $('#review<?= $evidence->id ?>').submit(
+  var $submitButton = $('#post_submit_review');
+
+  $submitButton.on('click', function(e){
+    var id  = document.getElementById("evidence_id").value;
+    var opt = document.querySelector('input[name="yes-no-opt'+id+'"]:checked');
+
+    if (opt == 'no') {
+      if (confirm("<?php echo Yii::t('MissionsModule.base', 'Are you sure you want to submit this review?'); ?>")){
+        $('#review').submit(
             function(){
-                return validateReview<?= $evidence->id ?>(<?= $evidence->id ?>);
+                return validateReview(id);
             }
         );
-    });
+      } else {
+        e.preventDefault();
+        return false;
+      }
+    } else {
+      $('#review').submit(function(e){
+          e.preventDefault();
+          return validateReview(document.getElementById("evidence_id").value);
+        }
+      );
+    }
+
+  });
+});
 
 
 $(document).ready(function(){
