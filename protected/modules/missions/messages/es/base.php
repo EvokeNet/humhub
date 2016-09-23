@@ -96,6 +96,11 @@ return [
     'Evokation removed!' => 'Evokación eliminada!',
     'Evokation\'s Page' => 'Página de la Evokación',
     'Evokations' => 'Evokaciones',
+    'Evokation Prompt' => 'Agente, aquí puedes revisar en conjunto con tu equipo el borrador de tu Evokación.
+
+    Tu Evokación final, y el video resumen de la misma, serán la base que tomarán otros agentes y mentores para saber si invierten o no en ella. Si logras suficiente inversión, un comité experto evaluará el documento de tu Evokación final para decidir cuáles son las ganadoras.
+
+    Recuerda revisar la retroalimentación que recibiste de los mentores y de otros agentes, así como las reflexiones semanales, para actualizar el documento de la Evokación. Puedes accederlo a través del siguiente enlace:',
     'Google Drive URL cannot be blank.' => 'URL de Google Drive no puede estar en blanco.',
     'How many evocoins do you want to invest?' => '¿Cuántas evocoins quieres invertir?',
     'How many points will you award this evidence?' => '¿Cuántos puntos se le concederá esta evidencia?',

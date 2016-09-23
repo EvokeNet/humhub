@@ -30,21 +30,21 @@ foreach($missions as $m):
 
     foreach($m->activities as $activity):
         $total++;
-        foreach ($activity->evidences as $evidence):                     
-            if($evidence->content->space_id == $contentContainer->id){ 
-                $done++;    
+        foreach ($activity->evidences as $evidence):
+            if($evidence->content->space_id == $contentContainer->id){
+                $done++;
                 break;
             }
         endforeach;
     endforeach;
-                                
+
 endforeach;
 
 ?>
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        
+
         <?php if(Setting::Get('enabled_evokations')): ?>
             <?php if($user->id == $contentContainer->created_by): ?>
                 <a class = "btn btn-cta2" href='<?= Url::to(['/missions/evokations/submit', 'sguid' => $contentContainer->guid]); ?>' style = "margin-top:10px">
@@ -65,19 +65,23 @@ endforeach;
             </div>
             <p><?= Yii::t('MissionsModule.base', 'Team Progress: {number}%', array('number' => floor(($done/$total)*100))) ?></p>
         </div>-->
-        
+
         <h2><strong><?php echo Yii::t('MissionsModule.base', "{name}'s Evokation", array('name' => $contentContainer->name)); ?></strong></h2>
 
     </div>
     <div class="panel-body">
-
-        <?php if($evokation): ?>    
+      <div class="evokation-prompt">
+        <p>
+          <?php echo nl2br(Yii::t('MissionsModule.base', "Evokation Prompt")); ?>
+        </p>
+      </div>
+        <?php if($evokation): ?>
             <div id="gdrive_url">
                 <b>
                     Google drive URL:
                 </b>
 
-                <?php 
+                <?php
 
                     //fix url
                     if(substr( $evokation->gdrive_url, 0, 7 ) != "http://" && substr( $evokation->gdrive_url, 0, 8 ) != "https://"){
@@ -101,73 +105,73 @@ endforeach;
         <br>
 
         <!--<div class="panel-group" role="tablist"> <div class="panel panel-default"> <div class="panel-heading" role="tab" id="collapseListGroupHeading1"> <h4 class="panel-title"> <a class="" role="button" data-toggle="collapse" href="#collapseListGroup1" aria-expanded="true" aria-controls="collapseListGroup1"> Collapsible list group </a> </h4> </div> <div id="collapseListGroup1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="true"> <ul class="list-group"> <li class="list-group-item">Bootply</li> <li class="list-group-item">One itmus ac facilin</li> <li class="list-group-item">Second eros</li> </ul> <div class="panel-footer">Footer</div> </div> </div> </div>-->
-        
-        
-        <?php 
+
+
+        <?php
         $x = 0;
-        if (count($categories) != 0): 
-        
+        if (count($categories) != 0):
+
         foreach ($categories as $category): $x++;?>
 
-        <div class="panel-group" role="tablist"> 
-            <div class="panel panel-default"> 
-                
-                <div class="panel-heading" role="tab" id="collapseListGroupHeading1"> 
-                    <h4 class="panel-title"> 
-                        <a class="" role="button" data-toggle="collapse" href="#collapseListGroup<?=$x?>" aria-expanded="true" aria-controls="collapseListGroup1"> 
-                            <?= isset($category->evokationCategoryTranslations[0]) ? $category->evokationCategoryTranslations[0]->title : $category->title ?> 
-                        </a> 
-                    </h4> 
-                </div> 
-                
-                <div id="collapseListGroup<?=$x?>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="true"> 
-                    <ul class="list-group"> 
-                        <?php foreach ($category->activities as $activity): 
+        <div class="panel-group" role="tablist">
+            <div class="panel panel-default">
+
+                <div class="panel-heading" role="tab" id="collapseListGroupHeading1">
+                    <h4 class="panel-title">
+                        <a class="" role="button" data-toggle="collapse" href="#collapseListGroup<?=$x?>" aria-expanded="true" aria-controls="collapseListGroup1">
+                            <?= isset($category->evokationCategoryTranslations[0]) ? $category->evokationCategoryTranslations[0]->title : $category->title ?>
+                        </a>
+                    </h4>
+                </div>
+
+                <div id="collapseListGroup<?=$x?>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="true">
+                    <ul class="list-group">
+                        <?php foreach ($category->activities as $activity):
                             if($activity->mission->locked == 0): ?>
                             <li class="list-group-item">
-                                
-                                <?php 
-                                
+
+                                <?php
+
                                 $a = isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title;
                                 // echo Html::a(
                                 // $a,
-                                // ['evidences', 'activities', 'categoryId' => $mission->id, 'sguid' => $contentContainer->guid]); 
-                                                                
+                                // ['evidences', 'activities', 'categoryId' => $mission->id, 'sguid' => $contentContainer->guid]);
+
                                 echo Html::a($a, ['evidence/show', 'activityId' => $activity->id, 'sguid' => $contentContainer->guid], ['class' => 'profile-link']);
-                                
+
                                 $is_complete = false;
-                                
-                                foreach ($activity->evidences as $evidence):                     
-                                    if($evidence->content->space_id==$contentContainer->id) 
-                                        $is_complete = true;    
+
+                                foreach ($activity->evidences as $evidence):
+                                    if($evidence->content->space_id==$contentContainer->id)
+                                        $is_complete = true;
                                 endforeach;
-                                
-                                if($is_complete): ?>      
-                                    <span style = "float:left; margin-right:10px"><i class="fa fa-check-circle-o" aria-hidden="true"></i></span>                                
-                                <?php else: ?>                                   
-                                    <span style = "float:left; margin-right:10px"><i class="fa fa-circle-o" aria-hidden="true"></i></span>                          
+
+                                if($is_complete): ?>
+                                    <span style = "float:left; margin-right:10px"><i class="fa fa-check-circle-o" aria-hidden="true"></i></span>
+                                <?php else: ?>
+                                    <span style = "float:left; margin-right:10px"><i class="fa fa-circle-o" aria-hidden="true"></i></span>
                                 <?php endif;  ?>
-                                
-                                <span class="label label-default" style = "margin-left:10px"><?= isset($activity->mission->missionTranslations[0]) ? $activity->mission->missionTranslations[0]->title : $activity->mission->title ?></span> 
-                                
+
+                                <span class="label label-default" style = "margin-left:10px"><?= isset($activity->mission->missionTranslations[0]) ? $activity->mission->missionTranslations[0]->title : $activity->mission->title ?></span>
+
                             </li>
                         <?php endif; endforeach; ?>
-                        <!--<li class="list-group-item">Bootply</li> 
-                        <li class="list-group-item">One itmus ac facilin</li> 
+                        <!--<li class="list-group-item">Bootply</li>
+                        <li class="list-group-item">One itmus ac facilin</li>
                         <li class="list-group-item">Second eros</li> -->
-                    </ul> 
+                    </ul>
                     <!--<div class="panel-footer">Footer</div> -->
                 </div>
-                
+
              </div>
         </div>
-        
+
         <?php endforeach; ?>
-            
+
                 <?php else: ?>
                     <p><?php echo Yii::t('MissionsModule.base', 'No categories created yet!'); ?></p>
                 <?php endif; ?>
-        
+
     </div>
 </div>
 

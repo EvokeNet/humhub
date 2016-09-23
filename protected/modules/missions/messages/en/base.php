@@ -80,6 +80,9 @@ return [
     'Evokation updated!' => '',
     'Evokation\'s Page' => '',
     'Evokations' => '',
+    'Evokation Prompt' => 'Agent, this is the space for you and your team to review your Evokation draft.   Your final Evokation consists of the final Evokation document and the elevator pitch. They will be the basis on which other agents and mentors will decide if they should invest in your Evokation or not. If you manage to attract enough investment, an expert committee will evaluate your final Evokation document to decide on winners.
+
+    Remember to review the feedback from mentors and other agents, as well as weekly team reflections, to update the Evokation document.  Your Evokation will evolve as you complete your missions.  You can access the document at the following link.',
     'Google Drive URL cannot be blank.' => '',
     'How many evocoins do you want to invest?' => '',
     'How many points will you award this evidence?' => '',
