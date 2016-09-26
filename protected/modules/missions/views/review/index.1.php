@@ -145,7 +145,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                     <p style = "margin:20px 0"><?= Yii::t('MissionsModule.base', '<strong>Activity Difficulty Level:</strong> {level}', array('level' => $activity->difficultyLevel->title)) ?></p>
                     <p style = "margin-bottom:25px"><?= Yii::t('MissionsModule.base', '<strong>Activity Rubric:</strong> {rubric}', array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></p>
 
-                    <div id = "review" class="review">
+                	<div id = "review" class="review">
 
                     <?php if (Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
                       <input type="hidden" id="evidence_id" value="<?= $evidence->id ?>">
@@ -157,49 +157,48 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                       <?php endfor; ?>
 
                     <?php else: ?>
-                        <div class="radio" style = "margin-bottom:15px">
-                                <label>
-                                    <input type="radio" name="yes-no-opt" class="btn-show" value="yes" <?= $yes ?> >
-                                    <?= Yii::t('MissionsModule.base', 'Yes') ?>
-                                </label>
+                  		<div class="radio" style = "margin-bottom:15px">
+                				<label>
+                					<input type="radio" name="yes-no-opt" class="btn-show" value="yes" <?= $yes ?> >
+                					<?= Yii::t('MissionsModule.base', 'Yes') ?>
+                				</label>
 
-                                <div id="yes-opt" class="collapse <?= $collapse ?>" style="margin-top:10px; margin-bottom:-20px">
+                				<div id="yes-opt" class="collapse <?= $collapse ?>" style="margin-top:10px; margin-bottom:-20px">
                                   <!--<br><p><?php // Yii::t('MissionsModule.base', 'How many points will you award this evidence?') ?></p>-->
                                     <span class="rating">
-                                        <?php for ($x=5; $x >= 1; $x--): ?>
+                    					<?php for ($x=5; $x >= 1; $x--): ?>
                                         <input id="grade<?= $x ?>"type="radio" name="grade" class="rating-input" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> />
-                                        <label for ="grade<?= $x ?>" class="rating-star">
+                    					<label for ="grade<?= $x ?>" class="rating-star">
                                         </label>
-                                        <?php endfor; ?>
+                    					<?php endfor; ?>
                                     </span>
                                     <br><br><br>
-                                </div>
+                				</div>
 
-                          </div>
-                          <div class="radio" style = "margin-bottom:15px">
-                              <label>
-                                <input type="radio" name="yes-no-opt" class="btn-hide" value="no" <?= $no ?>>
-                                 <?= Yii::t('MissionsModule.base', 'No') ?>
-                              </label>
-                          </div>
-                        <?php endif; ?>
-                        
-                        <br /><br />
+              			  </div>
+              			  <div class="radio" style = "margin-bottom:15px">
+              				  <label>
+              					<input type="radio" name="yes-no-opt" class="btn-hide" value="no" <?= $no ?>>
+              					 <?= Yii::t('MissionsModule.base', 'No') ?>
+              				  </label>
+              			  </div>
+                    <?php endif; ?>
+            			  <br>
 
                         <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
                             <p style="float:right"><?php echo Yii::t('MissionsModule.base', '{user} awarded + {value} {title}', array('user' => '', 'title' => $primaryPowerTitle, 'value' => $activity->getPrimaryPowers()[0]->value)); ?></p>
                         <?php endif; ?>
 
-                        <?php echo Html::textArea("text", $comment , array('id' => 'review_comment', 'class' => 'text-margin form-control count-chars ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Leave a comment and earn an additional 5 Evocoins."))); ?>
-                        <br>
+                          <?php echo Html::textArea("text", $comment , array('id' => 'review_comment', 'class' => 'text-margin form-control count-chars ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Leave a comment and earn an additional 5 Evocoins."))); ?>
+                          <br>
 
-                        <!--
-                        <label class = "label label-secondary2"><?php // Yii::t('MissionsModule.base', 'For every piece of evidence you review, you receive 10 points in {title}', array('title' => $primaryPowerTitle)) ?></label><br>
-                        -->
-                        <button type="submit" id="post_submit_review" class="btn btn-cta2" style = "padding: 8px 16px 6px;">
-                        <?= Yii::t('MissionsModule.base', 'Submit Review') ?>
-                        </button>
-                    
+                          <!--
+                          <label class = "label label-secondary2"><?php // Yii::t('MissionsModule.base', 'For every piece of evidence you review, you receive 10 points in {title}', array('title' => $primaryPowerTitle)) ?></label><br>
+            			  -->
+            			  <button type="submit" id="post_submit_review" class="btn btn-cta2" style = "padding: 8px 16px 6px;">
+                            <?= Yii::t('MissionsModule.base', 'Submit Review') ?>
+            			  </button>
+                	</form>
                 </div>
             </div>
         <?php endif; ?>
@@ -216,7 +215,6 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
         </div>
     <?php endif; ?>
 
-    </div>
 </div>
 
 
@@ -233,7 +231,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
 
 .activity_area{
     background: #e2e2e2;
-    font-size: 12px;
+	font-size: 12px;
     padding: 15px;
     font-weight: bold;
     border-radius: 4px
@@ -274,11 +272,11 @@ function review(id, comment, opt, grade){
 
 function validateReview(id){
 
-    var opt = document.querySelector('input[name="yes-no-opt"]:checked');
-    var grade = document.querySelector('input[name="grade"]:checked');
+	var opt = document.querySelector('input[name="yes-no-opt"]:checked');
+	var grade = document.querySelector('input[name="grade"]:checked');
     var comment = document.getElementById("review_comment").value;
-    opt = opt? opt.value : null;
-    grade = grade? grade.value : null;
+	opt = opt? opt.value : null;
+	grade = grade? grade.value : null;
 
 /*Comment is required for mentors */
 <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors"):  ?>

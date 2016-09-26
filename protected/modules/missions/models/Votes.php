@@ -131,14 +131,14 @@ class Votes extends ContentActiveRecord
 
         Yii::$app->mailer->compose('ReviewEvidence', [
             'user' => $author,
-            'evidence_link' => $evidence->content->id,
-            "message" => 'hey'
+            'evidence_link' => $evidence->content->id
         ])
         ->setFrom([\humhub\models\Setting::Get('systemEmailAddress', 'mailing') => \humhub\models\Setting::Get('systemEmailName', 'mailing')])
-        ->setTo($author->email)
+        // ->setTo($author->email)
+        ->setTo('rjapur@quanti.ca')
         ->setSubject(Yii::t('MissionsModule.base', 'Evidence Reviewed'))
-        ->setTextBody('Plain text content')
-        ->setHtmlBody('<b>Your evidence was reviewed</b>')
+        // ->setTextBody('Plain text content')
+        // ->setHtmlBody('<b>Your evidence was reviewed</b>')
         ->send();
 
         return parent::afterSave($insert, $changedAttributes);
