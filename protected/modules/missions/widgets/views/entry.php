@@ -78,7 +78,7 @@ echo Html::beginForm();
   .panel .evidence-mission-box h5 {
     text-transform: uppercase;
     text-align: center;
-    margin: 0;
+    margin: 0 0 0.5em 0;
     text-decoration: underline;
   }
 
