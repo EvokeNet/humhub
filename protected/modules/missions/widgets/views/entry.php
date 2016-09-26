@@ -96,7 +96,7 @@ echo Html::beginForm();
     			  <br>
 
     			  <br>
-    			  <button type="submit" id="post_submit_review" class="btn btn-cta1">
+    			  <button type="submit" id="post_submit_review<?= $evidence->id ?>" class="btn btn-cta1 submit">
               <?= Yii::t('MissionsModule.base', 'Submit Review') ?>
     			  </button>
         	</form>
@@ -192,21 +192,14 @@ function review(id, comment, opt, grade){
     return false;
 }
 
-function validateReview<?= $evidence->id ?>(id){
+function validateReview(id){
 
-	var opt = document.querySelector('input[name="yes-no-opt'+id+'"]:checked');
-	var grade = document.querySelector('input[name="grade'+id+'"]:checked');
-  var comment = document.getElementById("review_comment_"+id).value;
-	opt = opt? opt.value : null;
-	grade = grade? grade.value : null;
+	var opt = $('#review' + id).find('input[name="yes-no-opt'+id+'"]:checked'),
+      grade = $('input[name="grade'+id+'"]:checked'),
+      comment = $("#review_comment_"+id).val();
 
-/*
-***Comment isn't required anymore.***
-    if(comment == ""){
-        showMessage("Error", "<?= Yii::t('MissionsModule.base', 'You must submit a comment.') ?>");
-        return false;
-    }
-*/
+	opt = opt? opt.val() : null;
+	grade = grade? grade.val() : null;
 
 	if(opt == "yes"){
 
@@ -227,33 +220,42 @@ function validateReview<?= $evidence->id ?>(id){
 	return false;
 }
 
-jQuery(document).ready(function () {
-  var $submitButton = $('#post_submit_review');
+jQuery(document).on('ajaxComplete', function () {
+  var $forms    = $('form.review'),
+      formCount = $forms.length,
+      i         = 0;
 
-  $submitButton.on('click', function(e){
-    var id  = document.getElementById("evidence_id").value;
-    var opt = document.querySelector('input[name="yes-no-opt'+id+'"]:checked');
+  for (i; i < formCount; i++) {
+    var id            = $forms[i].id.replace('review', ''),
+        $form         = $('#review' + id),
+        $submitButton = $('#post_submit_review' + id);
 
-    if (opt == 'no') {
-      if (confirm("<?php echo Yii::t('MissionsModule.base', 'Are you sure you want to submit this review?'); ?>")){
-        $('#review').submit(
-            function(){
-                return validateReview(id);
-            }
-        );
-      } else {
-        e.preventDefault();
-        return false;
-      }
-    } else {
-      $('#review').submit(function(e){
+    $submitButton.off();
+    $submitButton.on('click', function(e){
+      var id  = e.target.id.replace('post_submit_review', ''),
+          opt = $('#review' + id).find('input[name="yes-no-opt'+id+'"]:checked').val();
+
+      if (opt == 'no') {
+        if (confirm("<?php echo Yii::t('MissionsModule.base', 'Are you sure you want to submit this review?'); ?>")){
+          $('#review' + id).submit(
+              function(){
+                  return validateReview(id);
+              }
+          );
+        } else {
           e.preventDefault();
-          return validateReview(document.getElementById("evidence_id").value);
+          return false;
         }
-      );
-    }
+      } else {
+        $('#review' + id).submit(function(e){
+            e.preventDefault();
+            return validateReview(id);
+          }
+        );
+      }
 
-  });
+    });
+  }
 });
 
 
