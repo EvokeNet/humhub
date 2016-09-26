@@ -22,7 +22,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
 
         <div class="formatted" style = "margin-bottom:40px">
             <h4>
-                <?= Yii::t('MissionsModule.base', 'Mission {mission}: Activity {activity}', array('mission' => $activity->mission->position, 'activity' => $activity->position)) ?>
+                <?= Yii::t('MissionsModule.base', 'Mission {mission}: Activity {activity}', array('mission' => $activity->mission->position, 'activity' => $activity->position)); ?>
             </h4>
 
             <p><?php echo nl2br(isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description) ?></p>
@@ -77,7 +77,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                     <div class="panel-heading">
                         <h6 class="panel-title">
                             <a data-toggle="collapse" href="#collapseEvidenceReviews<?= $evidence->id ?>">
-                                <?= Yii::t('MissionsModule.base', 'Reviews') ?>
+                                <?= Yii::t('MissionsModule.base', 'Reviews'); ?>
                             </a>
                         </h6>
                     </div>
@@ -145,7 +145,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
 
                 	<form id = "review" class="review">
 
-                    <?php if Yii::$app->user->getIdentity()->group->name != "Mentors" ?>
+                    <?php if (Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
                       <input type="hidden" id="evidence_id" value="<?= $evidence->id ?>">
                       <?php for ($x=1; $x <= 5; $x++): ?>
                       <label class="radio-inline">
