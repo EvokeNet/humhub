@@ -8,6 +8,9 @@ echo Html::beginForm();
 ?>
 
 <h5><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h5>
+<?php if (Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
+  <h6><?php echo Yii::t('MissionsModule.base', 'By'); ?> <?php echo $name ?></h4>
+<?php endif; ?>
 <p><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]);?></p>
 
 <div class = "evidence-mission-box">
@@ -89,11 +92,11 @@ echo Html::beginForm();
     				  </label>
     			  </div>
     			  <br>
-            <?php echo Html::textArea("text", $comment , array('id' => 'review_comment_'.$evidence->id, 'class' => 'text-margin form-control ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Comment"))); ?>
+            <?php echo Html::textArea("text", $comment , array('id' => 'review_comment_'.$evidence->id, 'class' => 'text-margin form-control count-chars ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Comment"))); ?>
     			  <br>
 
     			  <br>
-    			  <button type="submit" id="post_submit_review" class="btn btn-cta1">
+    			  <button type="submit" id="post_submit_review<?= $evidence->id ?>" class="btn btn-cta1 submit">
               <?= Yii::t('MissionsModule.base', 'Submit Review') ?>
     			  </button>
         	</form>
@@ -132,7 +135,7 @@ echo Html::beginForm();
                     <?php endif; ?>
 
                     <?php foreach($votes as $vote): ?>
-                        <div style = "padding: 10px 10px 3px; margin-bottom: 20px; border: 3px solid #9013FE;">
+                        <div style = "padding: 10px 10px 3px; margin-bottom: 20px; border: 3px solid #9013FE; word-wrap: break-word;">
                             <p><?php echo Yii::t('MissionsModule.base', 'Comment: {comment}', array('comment' => $vote->comment)); ?></p>
                             <p><?php echo Yii::t('MissionsModule.base', 'Rating: {rating}', array('rating' => $vote->value)); ?></p>
 
@@ -171,7 +174,6 @@ echo Html::beginForm();
 </style>
 
 <script>
-
 function review(id, comment, opt, grade){
     grade = grade? grade : 0;
     var xhttp = new XMLHttpRequest();
@@ -190,21 +192,14 @@ function review(id, comment, opt, grade){
     return false;
 }
 
-function validateReview<?= $evidence->id ?>(id){
+function validateReview(id){
 
-	var opt = document.querySelector('input[name="yes-no-opt'+id+'"]:checked');
-	var grade = document.querySelector('input[name="grade'+id+'"]:checked');
-  var comment = document.getElementById("review_comment_"+id).value;
-	opt = opt? opt.value : null;
-	grade = grade? grade.value : null;
+	var opt = $('#review' + id).find('input[name="yes-no-opt'+id+'"]:checked'),
+      grade = $('input[name="grade'+id+'"]:checked'),
+      comment = $("#review_comment_"+id).val();
 
-/*
-***Comment isn't required anymore.***
-    if(comment == ""){
-        showMessage("Error", "<?= Yii::t('MissionsModule.base', 'You must submit a comment.') ?>");
-        return false;
-    }
-*/
+	opt = opt? opt.val() : null;
+	grade = grade? grade.val() : null;
 
 	if(opt == "yes"){
 
@@ -225,13 +220,43 @@ function validateReview<?= $evidence->id ?>(id){
 	return false;
 }
 
-jQuery(document).ready(function () {
-        $('#review<?= $evidence->id ?>').submit(
-            function(){
-                return validateReview<?= $evidence->id ?>(<?= $evidence->id ?>);
-            }
+jQuery(document).on('ajaxComplete', function () {
+  var $forms    = $('form.review'),
+      formCount = $forms.length,
+      i         = 0;
+
+  for (i; i < formCount; i++) {
+    var id            = $forms[i].id.replace('review', ''),
+        $form         = $('#review' + id),
+        $submitButton = $('#post_submit_review' + id);
+
+    $submitButton.off();
+    $submitButton.on('click', function(e){
+      var id  = e.target.id.replace('post_submit_review', ''),
+          opt = $('#review' + id).find('input[name="yes-no-opt'+id+'"]:checked').val();
+
+      if (opt == 'no') {
+        if (confirm("<?php echo Yii::t('MissionsModule.base', 'Are you sure you want to submit this review?'); ?>")){
+          $('#review' + id).submit(
+              function(){
+                  return validateReview(id);
+              }
+          );
+        } else {
+          e.preventDefault();
+          return false;
+        }
+      } else {
+        $('#review' + id).submit(function(e){
+            e.preventDefault();
+            return validateReview(id);
+          }
         );
+      }
+
     });
+  }
+});
 
 
 $(document).ready(function(){

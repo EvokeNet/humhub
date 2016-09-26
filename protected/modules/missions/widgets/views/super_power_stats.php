@@ -32,7 +32,7 @@ use app\modules\missions\models\Evidence;
                 
                 <div class="row" style = "margin-bottom:20px">
                     <div class="col-sm-4">
-                        <img src = "<?php echo $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->image; ?>" width=100 class = "power-border"></img>
+                        <img src = "<?php echo $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->image; ?>" width=90 class = "power-border"></img>
                     </div>
                     <div class="col-sm-8">
                         <h5 style = "margin-left:5px; min-height: 40px;"><?= $name; ?></h5>
@@ -58,11 +58,11 @@ use app\modules\missions\models\Evidence;
                 
                         <div class="row">
                             <div class="col-xs-2">
-                                <h1 style = "font-size: 50pt; margin-top:0"><?= $userPower->getLevel() ?></h1>
+                                <h1 style = "font-size: 40pt; margin-top:0"><?= $userPower->getLevel() ?></h1>
                             </div>
                             <div class="col-xs-10" style = "margin-top:5px">
                         
-                                <p style = "margin-bottom:2px"><?= $power_name ?></p>
+                                <span style="font-size:11pt"><?= $power_name ?></span>
                                 
                                 <div class="progress">
                                     <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?= $percentage ?>%;">

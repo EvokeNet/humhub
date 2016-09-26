@@ -27,5 +27,7 @@ return [
     'Members' => '',
     'Missions' => '',
     'My Team' => '',
+    'My Teams' => '',
     'Review Evidence' => '',
+    'Reviews' => '',
 ];
