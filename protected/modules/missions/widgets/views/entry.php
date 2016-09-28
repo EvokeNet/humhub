@@ -151,12 +151,13 @@ echo Html::beginForm();
       					Yes
       				</label>
       				<div id="yes-opt<?= $evidence->id ?>" class="collapse <?= $collapse ?>">
-      					<?php for ($x=1; $x <= 5; $x++): ?>
-      					<label class="radio-inline">
-      						<input type="radio" name="grade<?= $evidence->id ?>" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> >
-      						<?php echo $x; ?>
-      					</label>
-      					<?php endfor; ?>
+      					<span class="rating">
+                            <?php for ($x=5; $x >= 1; $x--): ?>
+                                <input id="grade<?= $x ?>" type="radio" name="grade" class="rating-input" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> />
+                                <label for ="grade<?= $x ?>" class="rating-star">
+                                </label>
+                            <?php endfor; ?>
+                        </span>
       					<p>
                   <?= Yii::t('MissionsModule.base', 'How many points will you award this evidence?') ?>
       					</p>
@@ -169,7 +170,7 @@ echo Html::beginForm();
     				  </label>
     			  </div>
     			  <br>
-            <?php echo Html::textArea("text", $comment , array('id' => 'review_comment_'.$evidence->id, 'class' => 'text-margin form-control count-chars ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Comment"))); ?>
+            <?php echo Html::textArea("text", $comment , array('id' => 'review_comment_'.$evidence->id, 'class' => 'text-margin form-control count-chars ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Leave a comment and earn an additional 5 Evocoins."))); ?>
     			  <br>
 
     			  <br>
@@ -318,7 +319,7 @@ function review(id, comment, opt, grade){
 function validateReview(id){
 
 	var opt = $('#review' + id).find('input[name="yes-no-opt'+id+'"]:checked'),
-      grade = $('input[name="grade'+id+'"]:checked'),
+      grade = $('input[name="grade"]:checked'),
       comment = $("#review_comment_"+id).val();
 
 	opt = opt? opt.val() : null;
@@ -391,3 +392,42 @@ $(document).ready(function(){
     });
 });
 </script>
+
+
+<style>
+
+/* 
+Reference: 
+https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
+*/
+
+.rating {
+    overflow: hidden;
+    display: inline-block;
+    font-size: 0;
+    position: relative;
+}
+.rating-input {
+    float: right;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    margin: 0 0 0 -16px;
+    opacity: 0;
+}
+.rating:hover .rating-star:hover,
+.rating:hover .rating-star:hover ~ .rating-star,
+.rating-input:checked ~ .rating-star {
+    background-position: 0 0;
+}
+.rating-star,
+.rating:hover .rating-star {
+    position: relative;
+    float: right;
+    display: block;
+    width: 16px;
+    height: 16px;
+    background: url('http://kubyshkin.ru/samples/star-rating/star.png') 0 -16px;
+}
+
+</style>
