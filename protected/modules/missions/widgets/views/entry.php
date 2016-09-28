@@ -28,7 +28,9 @@ echo Html::beginForm();
         </p>
       </div>
       <div class="stars">
-
+        <?php for($i = 0; $i < 5; $i++): ?>
+          <i class="fa-jpy" aria-hidden="true"></i>
+        <?php endfor; ?>
       </div>
     </div>
     <div class="agent-votes col-xs-4">
@@ -62,6 +64,15 @@ echo Html::beginForm();
     text-align: center;
     margin: 0;
     text-decoration: underline;
+  }
+
+  .panel .evidence-mission-box em {
+    text-transform: uppercase;
+    font-style: normal;
+  }
+
+  .mentor-votes {
+    border-right: 1px solid;
   }
 </style>
 
