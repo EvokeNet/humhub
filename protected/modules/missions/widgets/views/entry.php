@@ -20,11 +20,11 @@ echo Html::beginForm();
           (isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title),
           ['show', 'activityId' => $activity->id, 'sguid' => $contentContainer->guid], array('class' => '')); ?></h5>
   <div class="votes-container row">
-    <div class="mentor-votes col-xs-8">
-      <div class="col-xs-12">
+    <div class="mentor-votes col-xs-9">
+      <div class="col-xs-12 no-padding-left">
         <em><?php echo Yii::t('MissionsModule.base', 'Mentor Reviews'); ?></em>
       </div>
-      <div class="rating col-xs-6">
+      <div class="rating col-xs-5 no-padding-left">
         <p>
           <?php echo Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $mentor_average_votes? number_format((float)$mentor_average_votes, 1, '.', '') : "-")); ?>
         </p>
@@ -49,7 +49,7 @@ echo Html::beginForm();
         </p>
       </div>
     </div>
-    <div class="agent-votes col-xs-4">
+    <div class="agent-votes col-xs-3">
       <em><?php echo Yii::t('MissionsModule.base', 'Agent Reviews'); ?></em>
       <div class="rating">
         <p>
@@ -83,37 +83,50 @@ echo Html::beginForm();
   }
 
   .panel .evidence-mission-box h5 a {
-    color: #000;
+    color: #254054;
     font-weight: 100;
   }
 
   .panel .evidence-mission-box h5 a:hover {
-    color:  #555;
+    color:  #4B667A;
   }
 
   .panel .evidence-mission-box em {
     text-transform: uppercase;
     font-style: normal;
     font-size: 0.8em;
-  }
-
-  .mentor-votes {
-    border-right: 2px solid #254054;
+    color: #254054;
   }
 
   .stars {
     text-align: center;
     font-size: 2em;
     color: #ece046;
+    margin-top: -14px;
   }
 
   .evidence-mission-box .stars p {
     text-transform: uppercase;
     font-size: 8pt;
+    font-weight: bold;
   }
 
   .panel .evidence-mission-box p {
     margin: 0;
+  }
+
+  .panel .evidence-mission-box .agent-votes {
+    text-align: right;
+    float: right;
+    border-left: 2px solid #254054;
+  }
+
+  .panel .evidence-mission-box .agent-votes p {
+    font-size: 0.9em;
+  }
+
+  .no-padding-left {
+    padding-left: 0 !important;
   }
 </style>
 
