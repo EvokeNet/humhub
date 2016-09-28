@@ -145,7 +145,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                     <p style = "margin:20px 0"><?= Yii::t('MissionsModule.base', '<strong>Activity Difficulty Level:</strong> {level}', array('level' => $activity->difficultyLevel->title)) ?></p>
                     <p style = "margin-bottom:25px"><?= Yii::t('MissionsModule.base', '<strong>Activity Rubric:</strong> {rubric}', array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></p>
 
-                	< id = "review" class="review">
+                	<div id = "review" class="review">
 
                     <?php if (Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
                       <input type="hidden" id="evidence_id" value="<?= $evidence->id ?>">
