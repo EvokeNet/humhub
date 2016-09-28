@@ -14,19 +14,56 @@ echo Html::beginForm();
 <p><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]);?></p>
 
 <div class = "evidence-mission-box">
-  <div>
-    <p style = "display:inline; float:left; font-weight: 700;"><?= Yii::t('MissionsModule.base', 'Mission {position}: {text}', array('position' => $activity->mission->position, 'text' => isset($activity->mission->missionTranslations[0]) ? $activity->mission->missionTranslations[0]->title : $activity->mission->title)) ?></p>
-    <p style = "text-align:end; font-weight: 700;"><?= Yii::t('MissionsModule.base', 'Votes: {votes}', array('votes' => $evidence->getVoteCount()? $evidence->getVoteCount() : "0")) ?></p>
-  </div>
-  <div>
-    <p style = "display:inline; float:left; font-weight: 700;"><?= Yii::t('MissionsModule.base', 'Activity {position}: {text}', array('position' => $activity->position, 'text' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title)) ?></p>
-    <p style = "text-align:end; font-weight: 700;"><?= Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $evidence->getAverageRating()? number_format((float)$evidence->getAverageRating(), 1, '.', '') : "-")) ?></p>
+  <h6><?= Yii::t('MissionsModule.base', 'Mission {mission}, Activity {activity}:', array('mission' => $activity->mission->position, 'activity' => $activity->position)); ?></h6>
+  <h5><?php echo isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title; ?></h5>
+  <div class="votes-container row">
+    <div class="mentor-votes col-xs-8">
+      <em><?php echo Yii::t('MissionsModule.base', 'Mentor Reviews'); ?></em>
+      <div class="rating">
+        <p>
+          <?php echo Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $evidence->getAverageRating()? number_format((float)$evidence->getAverageRating('Mentors'), 1, '.', '') : "-")); ?>
+        </p>
+        <p>
+          <?php echo Yii::t('MissionsModule.base', 'Mentor Reviews: {votes}', array('votes' => $evidence->getVoteCount()? $evidence->getVoteCount('Mentors') : "0")) ?>
+        </p>
+      </div>
+      <div class="stars">
+
+      </div>
+    </div>
+    <div class="agent-votes col-xs-4">
+      <em><?php echo Yii::t('MissionsModule.base', 'Agent Reviews'); ?></em>
+      <div class="rating">
+        <p>
+          <?php echo Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $evidence->getAverageRating()? number_format((float)$evidence->getAverageRating('Users'), 1, '.', '') : "-")); ?>
+        </p>
+        <p>
+          <?php echo Yii::t('MissionsModule.base', 'Agent Reviews: {votes}', array('votes' => $evidence->getVoteCount()? $evidence->getVoteCount('Users') : "0")) ?>
+        </p>
+      </div>
+    </div>
   </div>
 </div>
 
 <?php echo Html::endForm(); ?>
 
-<BR>
+</br>
+
+<style media="screen">
+  .panel .evidence-mission-box h6 {
+    font-size: 10pt;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 10px 0 0 0;
+  }
+
+  .panel .evidence-mission-box h5 {
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0;
+    text-decoration: underline;
+  }
+</style>
 
 <?php if($evidence->content->user_id != Yii::$app->user->getIdentity()->id && Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
 <div class="panel-group">

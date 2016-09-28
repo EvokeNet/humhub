@@ -230,7 +230,8 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
 
         ->select(['sum(value) / count(id) as average'])
         ->from('votes')
-        ->where(['evidence_id' => $this->id])
+        ->where(['evidence_id' => $this->id,
+                 'user_type'   => $user_type])
         ->one();
 
         return $query['average'];
@@ -258,13 +259,14 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
     }
 
 
-    public function getVoteCount()   {
+    public function getVoteCount($user_type = "Mentors")   {
 
         $query = (new \yii\db\Query())
 
         ->select(['count(id) as count'])
         ->from('votes')
-        ->where(['evidence_id' => $this->id])
+        ->where(['evidence_id' => $this->id,
+                 'user_type'   => $user_type])
         ->one();
 
         return $query['count'];
