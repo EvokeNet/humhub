@@ -420,6 +420,7 @@ class EvidenceController extends ContentContainerController
                 $vote->comment = $comment;
                 $vote->flag = $flag;
                 $vote->value = $grade;
+                $vote->user_type = $user->group->name;
                 $vote->save();
                 $evocoin_earned = 0;
 
