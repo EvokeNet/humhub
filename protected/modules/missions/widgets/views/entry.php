@@ -4,7 +4,8 @@ use yii\helpers\Html;
 
 echo Html::beginForm();
   $activity = $evidence->getActivities();
-
+  $mentor_average_votes = $evidence->getAverageRating('Mentors');
+  $user_average_votes = $evidence->getAverageRating('Users')
 ?>
 
 <h5><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h5>
@@ -18,29 +19,42 @@ echo Html::beginForm();
   <h5><?php echo isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title; ?></h5>
   <div class="votes-container row">
     <div class="mentor-votes col-xs-8">
-      <em><?php echo Yii::t('MissionsModule.base', 'Mentor Reviews'); ?></em>
-      <div class="rating">
+      <div class="col-xs-12">
+        <em><?php echo Yii::t('MissionsModule.base', 'Mentor Reviews'); ?></em>
+      </div>
+      <div class="rating col-xs-6">
         <p>
-          <?php echo Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $evidence->getAverageRating()? number_format((float)$evidence->getAverageRating('Mentors'), 1, '.', '') : "-")); ?>
+          <?php echo Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $mentor_average_votes? number_format((float)$mentor_average_votes, 1, '.', '') : "-")); ?>
         </p>
         <p>
-          <?php echo Yii::t('MissionsModule.base', 'Mentor Reviews: {votes}', array('votes' => $evidence->getVoteCount()? $evidence->getVoteCount('Mentors') : "0")) ?>
+          <?php echo Yii::t('MissionsModule.base', 'Mentor Reviews: {votes}', array('votes' => $evidence->getVoteCount('Mentors')? $evidence->getVoteCount('Mentors') : "0")) ?>
         </p>
       </div>
-      <div class="stars">
-        <?php for($i = 0; $i < 5; $i++): ?>
-          <i class="fa-jpy" aria-hidden="true"></i>
+      <div class="stars col-xs-6">
+        <?php for ($i = 0; $i < 5; $i++): ?>
+          <?php if ($mentor_average_votes > $i): ?>
+            <?php if (($mentor_average_votes - $i) < 1): ?>
+              <i class="fa fa-star-half-o" aria-hidden="true"></i>
+            <?php else: ?>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            <?php endif; ?>
+          <?php else: ?>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          <?php endif; ?>
         <?php endfor; ?>
+        <p>
+          <?php echo Yii::t('MissionsModule.base', 'Avg Mentor Rating'); ?>
+        </p>
       </div>
     </div>
     <div class="agent-votes col-xs-4">
       <em><?php echo Yii::t('MissionsModule.base', 'Agent Reviews'); ?></em>
       <div class="rating">
         <p>
-          <?php echo Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $evidence->getAverageRating()? number_format((float)$evidence->getAverageRating('Users'), 1, '.', '') : "-")); ?>
+          <?php echo Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $user_average_votes? number_format((float)$user_average_votes, 1, '.', '') : "-")); ?>
         </p>
         <p>
-          <?php echo Yii::t('MissionsModule.base', 'Agent Reviews: {votes}', array('votes' => $evidence->getVoteCount()? $evidence->getVoteCount('Users') : "0")) ?>
+          <?php echo Yii::t('MissionsModule.base', 'Agent Reviews: {votes}', array('votes' => $evidence->getVoteCount('Users')? $evidence->getVoteCount('Users') : "0")) ?>
         </p>
       </div>
     </div>
@@ -72,7 +86,22 @@ echo Html::beginForm();
   }
 
   .mentor-votes {
-    border-right: 1px solid;
+    border-right: 2px solid #254054;
+  }
+
+  .stars {
+    text-align: center;
+    font-size: 2em;
+    color: #ece046;
+  }
+
+  .evidence-mission-box .stars p {
+    text-transform: uppercase;
+    font-size: 8pt;
+  }
+
+  .panel .evidence-mission-box p {
+    margin: 0;
   }
 </style>
 
