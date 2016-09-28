@@ -145,7 +145,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                     <p style = "margin:20px 0"><?= Yii::t('MissionsModule.base', '<strong>Activity Difficulty Level:</strong> {level}', array('level' => $activity->difficultyLevel->title)) ?></p>
                     <p style = "margin-bottom:25px"><?= Yii::t('MissionsModule.base', '<strong>Activity Rubric:</strong> {rubric}', array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></p>
 
-                	<form id = "review" class="review">
+                	< id = "review" class="review">
 
                     <?php if (Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
                       <input type="hidden" id="evidence_id" value="<?= $evidence->id ?>">
@@ -369,9 +369,10 @@ https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
     position: relative;
     float: right;
     display: block;
-    width: 16px;
-    height: 16px;
-    background: url('http://kubyshkin.ru/samples/star-rating/star.png') 0 -16px;
+    width: 40px;
+    height: 40px;
+    background: url('http://kubyshkin.ru/samples/star-rating/star.png') 0 -40px;
+    background-size: cover;
 }
 
 </style>

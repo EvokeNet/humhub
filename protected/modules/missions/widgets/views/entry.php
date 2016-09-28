@@ -425,9 +425,10 @@ https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
     position: relative;
     float: right;
     display: block;
-    width: 16px;
-    height: 16px;
-    background: url('http://kubyshkin.ru/samples/star-rating/star.png') 0 -16px;
+    width: 40px;
+    height: 40px;
+    background: url('http://kubyshkin.ru/samples/star-rating/star.png') 0 -40px;
+    background-size: cover;
 }
 
 </style>
