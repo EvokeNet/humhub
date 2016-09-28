@@ -163,17 +163,63 @@ echo Html::beginForm();
         <div class="panel-heading">
             <h6 class="panel-title">
 
-                <a data-toggle="collapse" href="#collapseEvidenceReviews<?= $evidence->id ?>" style="color:#254054">
-                    <?= Yii::t('MissionsModule.base', 'Reviews') ?>
+                <a data-toggle="collapse" href="#collapseMentorEvidenceReviews<?= $evidence->id ?>" style="color:#254054" aria-expanded="false" class="collapsed">
+                    <?= Yii::t('MissionsModule.base', 'Mentor Reviews') ?>
                 </a>
             </h6>
         </div>
 
         <div class="panel-body">
-            <div id="collapseEvidenceReviews<?= $evidence->id ?>"  class="panel-collapse collapse in">
+            <div id="collapseMentorEvidenceReviews<?= $evidence->id ?>"  class="panel-collapse collapse" aria-expanded="false">
                 <div class="">
                     <?php
-                    $votes = $evidence->getVotes();
+                    $votes = $evidence->getVotes('Mentors');
+                    ?>
+
+                    <?php if(!$votes || sizeof($votes) <= 0): ?>
+                        <p>
+                            <?php echo Yii::t('MissionsModule.base', 'There are no reviews yet.'); ?>
+                        </p>
+                    <?php endif; ?>
+
+                    <?php foreach($votes as $vote): ?>
+                        <div style = "padding: 10px 10px 3px; margin-bottom: 20px; border: 3px solid #9013FE; word-wrap: break-word;">
+                            <p><?php echo Yii::t('MissionsModule.base', 'Comment: {comment}', array('comment' => $vote->comment)); ?></p>
+                            <p><?php echo Yii::t('MissionsModule.base', 'Rating: {rating}', array('rating' => $vote->value)); ?></p>
+
+                            <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors" || $vote->user->group->name == "Mentors"): ?>
+                                <p><?php echo Yii::t('MissionsModule.base', 'By'); ?>
+                                <a href="<?= ($vote->user->getUrl()) ?>">
+                                    <?= ($vote->user->username) ?>
+                                </a>,
+                                <?php echo \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]); ?></p>
+                            <?php else: ?>
+                                <p><?php echo Yii::t('MissionsModule.base', 'By Anonymous, {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]))); ?></p>
+                            <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="panel-group">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h6 class="panel-title">
+
+                <a data-toggle="collapse" href="#collapseAgentEvidenceReviews<?= $evidence->id ?>" style="color:#254054" aria-expanded="false" class="collapsed">
+                    <?= Yii::t('MissionsModule.base', 'Agent Reviews') ?>
+                </a>
+            </h6>
+        </div>
+
+        <div class="panel-body">
+            <div id="collapseAgentEvidenceReviews<?= $evidence->id ?>"  class="panel-collapse collapse" aria-expanded="false">
+                <div class="">
+                    <?php
+                    $votes = $evidence->getVotes('Users');
                     ?>
 
                     <?php if(!$votes || sizeof($votes) <= 0): ?>

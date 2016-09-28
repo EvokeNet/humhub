@@ -253,9 +253,13 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
 
     }
 
-    public function getVotes()
+    public function getVotes($user_type = null)
     {
+      if (isset($user_type)){
+        return Votes::findAll(['evidence_id' => $this->id, 'user_type'   => $user_type]);
+      } else {
         return Votes::findAll(['evidence_id' => $this->id]);
+      }
     }
 
 
