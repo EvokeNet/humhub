@@ -376,27 +376,6 @@ class EvidenceController extends ContentContainerController
                 $vote->comment = $comment;
                 $vote->value = $grade;
                 $vote->save();
-                
-                Yii::$app->mailer->compose('ReviewEvidence', [
-                    'user' => $user,
-                    'evidence_link' => $evidence->content->id,
-                    "message" => 'hey'
-                ])
-                ->setFrom([\humhub\models\Setting::Get('systemEmailAddress', 'mailing') => \humhub\models\Setting::Get('systemEmailName', 'mailing')])
-                // ->setTo($user->email)
-                ->setTo('rjapur@quanti.ca')
-                ->setSubject(Yii::t('MissionsModule.base', 'Evidence Reviewed'))
-                ->send();
-
-                // Yii::$app->mailer->compose([
-                //     'html' => 'contact-html'
-                // ])
-                // ->setFrom('rjapur@quanti.ca')
-                // ->setTo('rjapur@quanti.ca')
-                // ->setSubject('Evidence reviews')
-                // ->setTextBody('Plain text content')
-                // ->setHtmlBody('<b>Your evidence was reviews</b>')
-                // ->send();
 
                 //updated evidence author's reward
                 $activityPower = Activities::findOne($vote->activity_id)->getPrimaryPowers()[0];
@@ -420,29 +399,9 @@ class EvidenceController extends ContentContainerController
                 $vote->comment = $comment;
                 $vote->flag = $flag;
                 $vote->value = $grade;
+                $vote->user_type = $user->group->name;
                 $vote->save();
                 $evocoin_earned = 0;
-
-                Yii::$app->mailer->compose('ReviewEvidence', [
-                    'user' => $user,
-                    'evidence_link' => $evidence->content->id,
-                    "message" => 'hey'
-                ])
-                ->setFrom([\humhub\models\Setting::Get('systemEmailAddress', 'mailing') => \humhub\models\Setting::Get('systemEmailName', 'mailing')])
-                // ->setTo($user->email)
-                ->setTo('rjapur@quanti.ca')
-                ->setSubject(Yii::t('MissionsModule.base', 'Evidence Reviewed'))
-                ->send();
-
-                // Yii::$app->mailer->compose([
-                //     'html' => 'contact-html'
-                // ])
-                // ->setFrom('rjapur@quanti.ca')
-                // ->setTo('rjapur@quanti.ca')
-                // ->setSubject('Evidence reviews')
-                // ->setTextBody('Plain text content')
-                // ->setHtmlBody('<b>Your evidence was reviews</b>')
-                // ->send();
 
                 //Reward reviewer 1 evocoin
                 $wallet = Wallet::find()->where(['owner_id' => $user->id])->one();

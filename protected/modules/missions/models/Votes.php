@@ -10,6 +10,7 @@ use app\modules\coin\models\Wallet;
 use humhub\modules\content\components\ContentActiveRecord;
 use app\modules\missions\models\Activities;
 use app\modules\powers\models\UserPowers;
+use humhub\modules\admin\models\forms\MailingSettingsForm;
 
 /**
  * This is the model class for table "votes".
@@ -106,9 +107,10 @@ class Votes extends ContentActiveRecord
     public function afterSave($insert, $changedAttributes)
     {
 
+        $evidence = Evidence::findOne($this->evidence_id);
+        $author = User::findOne($this->evidence->content->user_id);
+
         if ($insert && !$this->flag) {
-            $evidence = Evidence::findOne($this->evidence_id);
-            $author = User::findOne($this->evidence->content->user_id);
 
             $notification = new \humhub\modules\missions\notifications\RejectedEvidence();
             $notification->source = $this;
@@ -118,8 +120,6 @@ class Votes extends ContentActiveRecord
             }
             $notification->send($author);
         }else if($insert) {
-            $evidence = Evidence::findOne($this->evidence_id);
-            $author = User::findOne($this->evidence->content->user_id);
 
             $notification = new \humhub\modules\missions\notifications\ReviewedEvidence();
             $notification->source = $this;
@@ -128,6 +128,18 @@ class Votes extends ContentActiveRecord
             }
             $notification->send($author);
         }
+
+        Yii::$app->mailer->compose('ReviewEvidence', [
+            'user' => $author,
+            'evidence_link' => $evidence->content->id,
+            "message" => 'hey'
+        ])
+        ->setFrom([\humhub\models\Setting::Get('systemEmailAddress', 'mailing') => \humhub\models\Setting::Get('systemEmailName', 'mailing')])
+        ->setTo($author->email)
+        ->setSubject(Yii::t('MissionsModule.base', 'Evidence Reviewed'))
+        ->setTextBody('Plain text content')
+        ->setHtmlBody('<b>Your evidence was reviewed</b>')
+        ->send();
 
         return parent::afterSave($insert, $changedAttributes);
 
