@@ -223,14 +223,15 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
         return Votes::findOne(array('user_id' => $userId, 'evidence_id' => $this->id));
     }
 
-    public function getAverageRating()
+    public function getAverageRating($user_type = "Mentors")
     {
 
         $query = (new \yii\db\Query())
 
         ->select(['sum(value) / count(id) as average'])
         ->from('votes')
-        ->where(['evidence_id' => $this->id])
+        ->where(['evidence_id' => $this->id,
+                 'user_type'   => $user_type])
         ->one();
 
         return $query['average'];
@@ -252,19 +253,24 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
 
     }
 
-    public function getVotes()
+    public function getVotes($user_type = null)
     {
+      if (isset($user_type)){
+        return Votes::findAll(['evidence_id' => $this->id, 'user_type'   => $user_type]);
+      } else {
         return Votes::findAll(['evidence_id' => $this->id]);
+      }
     }
 
 
-    public function getVoteCount()   {
+    public function getVoteCount($user_type = "Mentors")   {
 
         $query = (new \yii\db\Query())
 
         ->select(['count(id) as count'])
         ->from('votes')
-        ->where(['evidence_id' => $this->id])
+        ->where(['evidence_id' => $this->id,
+                 'user_type'   => $user_type])
         ->one();
 
         return $query['count'];
@@ -316,7 +322,7 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
             //REMOVE USER POWER POINTS
             foreach($activityPowers as $activity_power){
                 UserPowers::removePowerPoint($activity_power->getPower(), $user, $activity_power->value);
-            }   
+            }
         }
 
         return parent::beforeDelete();
