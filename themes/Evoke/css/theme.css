@@ -190,7 +190,7 @@ textarea {
   color: #254054;
   background-color: #ADBCFF;
   border: none;
-  padding: 12px 12px 10px;
+  padding: 12px 20px 9px;
   font-size: 12pt;
   border-bottom: 2px solid #7a92ff;
 }
@@ -866,7 +866,7 @@ input[type=select] {
   color: #254054;
   background-color: #ADBCFF;
   border: none;
-  padding: 12px 12px 10px;
+  padding: 12px 20px 9px;
   font-size: 12pt;
   border-bottom: 2px solid #7a92ff;
   border-radius: 4px;
@@ -2896,19 +2896,27 @@ img.bounceIn {
   border: 3px solid #ECE046;
   border-radius: 50%;
 }
-.activity-number {
+.activity2-number {
   padding: 3px 10px 5px;
   border: 2px solid #FB656F;
   border-radius: 50%;
   margin-right: 10px;
   color: #FB656F;
 }
-.mission-number {
-  padding: 6px 18px 8px;
+.activity-number {
+  padding: 3px 5px 5px 10px;
   border: 2px solid #FB656F;
   border-radius: 50%;
   margin-right: 10px;
   color: #FB656F;
+}
+.mission-number {
+  padding: 6px 15px 8px;
+  border: 2px solid #FB656F;
+  border-radius: 50%;
+  margin-right: 10px;
+  color: #FB656F;
+  line-height: 40pt;
 }
 .blue-border {
   border-bottom: 3px solid #3399E1;

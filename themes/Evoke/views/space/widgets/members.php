@@ -22,5 +22,5 @@ use yii\helpers\Html;
             <br>
             <a href="<?php echo $space->createUrl('/space/membership/members-list'); ?>" data-target="#globalModal" class="btn btn-default btn-sm"><?php echo Yii::t('SpaceModule.widgets_views_spaceMembers', 'Show all'); ?></a>
         <?php endif; ?>
-    </div>
+    </div> 
 </div>

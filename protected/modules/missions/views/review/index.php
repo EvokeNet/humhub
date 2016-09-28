@@ -12,7 +12,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3><?php echo Yii::t('MissionsModule.base', 'Review Evidence'); ?></h3>
+        <h3 style="margin-top:10px"><?php echo Yii::t('MissionsModule.base', 'Review Evidence'); ?></h3>
         <?php if($activity): ?>
         <h6><?php echo Yii::t('MissionsModule.base', '{first} of {total}', array('first' => ($evidence_count - $evidence_to_review_count + 1), 'total' => $evidence_count)); ?></h6>
         <?php endif; ?>
@@ -21,16 +21,17 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
     <div class="panel-body">
 
         <div class="formatted" style = "margin-bottom:40px">
-            <h4>
-                <?= Yii::t('MissionsModule.base', 'Mission {mission}: Activity {activity}', array('mission' => $activity->mission->position, 'activity' => $activity->position)); ?>
-            </h4>
+
+            <h5>
+                <?= Yii::t('MissionsModule.base', 'Mission {mission}: Activity {activity}', array('mission' => $activity->mission->position, 'activity' => $activity->position)) ?>
+            </h5>
 
             <p><?php echo nl2br(isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description) ?></p>
         </div>
 
         <div class="grey-box evidence_area">
-            <h3><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h3>
-            <br>
+            <h4><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h4>
+            <br />
             <p><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]); ?></p>
 
 
@@ -141,6 +142,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                     $power = $activity->getPrimaryPowers()[0]->getPower();
                     $primaryPowerTitle = isset($power->powerTranslations[0]) ? $power->powerTranslations[0]->title : $power->title; ?>
                     <h4><?= Yii::t('MissionsModule.base', 'Distribute points for {title}', array('title' => $primaryPowerTitle)) ?></h4>
+                    <p style = "margin:20px 0"><?= Yii::t('MissionsModule.base', '<strong>Activity Difficulty Level:</strong> {level}', array('level' => $activity->difficultyLevel->title)) ?></p>
                     <p style = "margin-bottom:25px"><?= Yii::t('MissionsModule.base', '<strong>Activity Rubric:</strong> {rubric}', array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></p>
 
                 	<form id = "review" class="review">
@@ -181,6 +183,10 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
               			  </div>
                     <?php endif; ?>
             			  <br>
+
+                        <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
+                            <p style="float:right"><?php echo Yii::t('MissionsModule.base', '{user} awarded + {value} {title}', array('user' => '', 'title' => $primaryPowerTitle, 'value' => $activity->getPrimaryPowers()[0]->value)); ?></p>
+                        <?php endif; ?>
 
                           <?php echo Html::textArea("text", $comment , array('id' => 'review_comment', 'class' => 'text-margin form-control count-chars ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Comment"))); ?>
                           <br>
