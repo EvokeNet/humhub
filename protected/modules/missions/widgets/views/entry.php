@@ -16,7 +16,9 @@ echo Html::beginForm();
 
 <div class = "evidence-mission-box">
   <h6><?= Yii::t('MissionsModule.base', 'Mission {mission}, Activity {activity}:', array('mission' => $activity->mission->position, 'activity' => $activity->position)); ?></h6>
-  <h5><?php echo isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title; ?></h5>
+  <h5><?php echo Html::a(
+          (isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title),
+          ['show', 'activityId' => $activity->id, 'sguid' => $contentContainer->guid], array('class' => '')); ?></h5>
   <div class="votes-container row">
     <div class="mentor-votes col-xs-8">
       <div class="col-xs-12">
@@ -80,9 +82,19 @@ echo Html::beginForm();
     text-decoration: underline;
   }
 
+  .panel .evidence-mission-box h5 a {
+    color: #000;
+    font-weight: 100;
+  }
+
+  .panel .evidence-mission-box h5 a:hover {
+    color:  #555;
+  }
+
   .panel .evidence-mission-box em {
     text-transform: uppercase;
     font-style: normal;
+    font-size: 0.8em;
   }
 
   .mentor-votes {
