@@ -183,7 +183,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                               </label>
                           </div>
                         <?php endif; ?>
-                        
+
                         <br /><br />
 
                         <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
@@ -199,7 +199,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                         <button type="submit" id="post_submit_review" class="btn btn-cta2" style = "padding: 8px 16px 6px;">
                         <?= Yii::t('MissionsModule.base', 'Submit Review') ?>
                         </button>
-                    
+
                 </div>
             </div>
         <?php endif; ?>
@@ -209,7 +209,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
             </a>
         </div>
     </div>
-    
+
     <?php else: ?>
         <div class="panel-body">
             <?php echo Yii::t('MissionsModule.base', 'There are no more evidences left to review.'); ?>
@@ -343,8 +343,8 @@ $(document).ready(function(){
 
 <style>
 
-/* 
-Reference: 
+/*
+Reference:
 https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
 */
 
