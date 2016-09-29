@@ -12,7 +12,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3><?php echo Yii::t('MissionsModule.base', 'Review Evidence'); ?></h3>
+        <h3 style="margin-top:10px"><?php echo Yii::t('MissionsModule.base', 'Review Evidence'); ?></h3>
         <?php if($activity): ?>
         <h6><?php echo Yii::t('MissionsModule.base', '{first} of {total}', array('first' => ($evidence_count - $evidence_to_review_count + 1), 'total' => $evidence_count)); ?></h6>
         <?php endif; ?>
@@ -21,16 +21,17 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
     <div class="panel-body">
 
         <div class="formatted" style = "margin-bottom:40px">
-            <h4>
-                <?= Yii::t('MissionsModule.base', 'Mission {mission}: Activity {activity}', array('mission' => $activity->mission->position, 'activity' => $activity->position)); ?>
-            </h4>
+
+            <h5>
+                <?= Yii::t('MissionsModule.base', 'Mission {mission}: Activity {activity}', array('mission' => $activity->mission->position, 'activity' => $activity->position)) ?>
+            </h5>
 
             <p><?php echo nl2br(isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description) ?></p>
         </div>
 
         <div class="grey-box evidence_area">
-            <h3><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h3>
-            <br>
+            <h4><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h4>
+            <br />
             <p><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]); ?></p>
 
 
@@ -141,48 +142,27 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                     $power = $activity->getPrimaryPowers()[0]->getPower();
                     $primaryPowerTitle = isset($power->powerTranslations[0]) ? $power->powerTranslations[0]->title : $power->title; ?>
                     <h4><?= Yii::t('MissionsModule.base', 'Distribute points for {title}', array('title' => $primaryPowerTitle)) ?></h4>
+                    <p style = "margin:20px 0"><?= Yii::t('MissionsModule.base', '<strong>Activity Difficulty Level:</strong> {level}', array('level' => $activity->difficultyLevel->title)) ?></p>
                     <p style = "margin-bottom:25px"><?= Yii::t('MissionsModule.base', '<strong>Activity Rubric:</strong> {rubric}', array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></p>
 
                 	<form id = "review" class="review">
 
-                    <?php if (Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
-                      <input type="hidden" id="evidence_id" value="<?= $evidence->id ?>">
-                      <?php for ($x=1; $x <= 5; $x++): ?>
-                      <label class="radio-inline">
-                        <input type="radio" name="grade" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> >
-                        <?php echo $x; ?>
-                      </label>
-                      <?php endfor; ?>
+                    <input type="hidden" id="evidence_id" value="<?= $evidence->id ?>">
+                    <?php for ($x=1; $x <= 5; $x++): ?>
+                    <label class="radio-inline">
+                      <input type="radio" name="grade" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> >
+                      <?php echo $x; ?>
+                    </label>
+                    <?php endfor; ?>
 
-                    <?php else: ?>
-                  		<div class="radio" style = "margin-bottom:15px">
-                				<label>
-                					<input type="radio" name="yes-no-opt" class="btn-show" value="yes" <?= $yes ?> >
-                					<?= Yii::t('MissionsModule.base', 'Yes') ?>
-                				</label>
+                    </br>
+                    </br>
 
-                				<div id="yes-opt" class="collapse <?= $collapse ?>" style="margin-top:10px; margin-bottom:-20px">
-                                  <!--<br><p><?php // Yii::t('MissionsModule.base', 'How many points will you award this evidence?') ?></p>-->
-                					<?php for ($x=1; $x <= 5; $x++): ?>
-                					<label class="radio-inline">
-                						<input type="radio" name="grade" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> >
-                						<?php echo $x; ?>
-                					</label>
-                					<?php endfor; ?>
-                                    <br><br><br>
-                				</div>
+                        <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
+                            <p style="float:right"><?php echo Yii::t('MissionsModule.base', '{user} awarded + {value} {title}', array('user' => '', 'title' => $primaryPowerTitle, 'value' => $activity->getPrimaryPowers()[0]->value)); ?></p>
+                        <?php endif; ?>
 
-              			  </div>
-              			  <div class="radio" style = "margin-bottom:15px">
-              				  <label>
-              					<input type="radio" name="yes-no-opt" class="btn-hide" value="no" <?= $no ?>>
-              					 <?= Yii::t('MissionsModule.base', 'No') ?>
-              				  </label>
-              			  </div>
-                    <?php endif; ?>
-            			  <br>
-
-                          <?php echo Html::textArea("text", $comment , array('id' => 'review_comment', 'class' => 'text-margin form-control count-chars ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Comment"))); ?>
+                          <?php echo Html::textArea("text", $comment , array('id' => 'review_comment', 'class' => 'text-margin form-control count-chars ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Leave a comment and earn an additional 5 Evocoins."))); ?>
                           <br>
 
                           <!--
@@ -264,67 +244,66 @@ function review(id, comment, opt, grade){
 
 function validateReview(id){
 
-	var opt = document.querySelector('input[name="yes-no-opt"]:checked');
+	var opt = 'yes'; //always yes for agents
 	var grade = document.querySelector('input[name="grade"]:checked');
-    var comment = document.getElementById("review_comment").value;
-	opt = opt? opt.value : null;
+  var comment = document.getElementById("review_comment").value;
 	grade = grade? grade.value : null;
-
-/*Comment is required for mentors */
-<?php if(Yii::$app->user->getIdentity()->group->name == "Mentors"):  ?>
-    if(comment == ""){
-        showMessage("Error", "<?= Yii::t('MissionsModule.base', 'You must submit a comment.') ?>");
-        return false;
-    }
-<?php endif; ?>
-
-
-/*
-***Comment isn't required anymore.***
-    if(comment == ""){
-        showMessage("Error", "<?= Yii::t('MissionsModule.base', 'You must submit a comment.') ?>");
-        return false;
-    }
-*/
-  opt = 'yes';
+  console.log(grade);
   return review(id, comment, opt, grade);
 }
 
 jQuery(document).ready(function () {
   var $submitButton = $('#post_submit_review');
-
+  console.log($submitButton);
   $submitButton.on('click', function(e){
-    var opt = document.querySelector('input[name="yes-no-opt"]:checked');
-
-    if (opt == 'no') {
-      if (confirm("<?php echo Yii::t('MissionsModule.base', 'Are you sure you want to submit this review?'); ?>")){
-        $('#review').submit(
-            function(){
-                return validateReview(document.getElementById("evidence_id").value);
-            }
-        );
-      } else {
-        e.preventDefault();
-        return false;
-      }
-    } else {
-      $('#review').submit(
-          function(){
-              return validateReview(document.getElementById("evidence_id").value);
-          }
-      );
-    }
+    console.log('click');
+    $('#review').submit(
+        function(){
+            return validateReview(document.getElementById("evidence_id").value);
+        }
+    );
 
   });
 });
-
-
-$(document).ready(function(){
-    $(".btn-hide").click(function(){
-        $("#yes-opt").collapse('hide');
-    });
-    $(".btn-show").click(function(){
-        $("#yes-opt").collapse('show');
-    });
-});
 </script>
+
+
+
+<style>
+
+/*
+Reference:
+https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
+*/
+
+.rating {
+    overflow: hidden;
+    display: inline-block;
+    font-size: 0;
+    position: relative;
+}
+.rating-input {
+    float: right;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    margin: 0 0 0 -16px;
+    opacity: 0;
+}
+.rating:hover .rating-star:hover,
+.rating:hover .rating-star:hover ~ .rating-star,
+.rating-input:checked ~ .rating-star {
+    background-position: 0 0;
+}
+.rating-star,
+.rating:hover .rating-star {
+    position: relative;
+    float: right;
+    display: block;
+    width: 40px;
+    height: 40px;
+    background: url('http://kubyshkin.ru/samples/star-rating/star.png') 0 -40px;
+    background-size: cover;
+}
+
+</style>

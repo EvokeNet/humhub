@@ -18,7 +18,7 @@ use \yii\base\Widget;
  */
 class Members extends Widget
 {
-
+    
     /**
      * @var int maximum members to display
      */

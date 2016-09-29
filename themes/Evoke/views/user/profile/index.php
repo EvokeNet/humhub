@@ -6,7 +6,9 @@ $this->pageTitle = $user->username;
 
 $userPowers = UserPowers::getUserPowers($user->id);
 
-echo \humhub\modules\missions\widgets\MyReviews::widget(['powers' => $userPowers]);
+if($user->id == Yii::$app->user->id){
+	echo \humhub\modules\missions\widgets\MyReviews::widget(['powers' => $userPowers]);
+}
 
 if($user->group->name != "Mentors"){
 	echo \humhub\modules\missions\widgets\SuperPowerStats::widget(['powers' => $userPowers]);

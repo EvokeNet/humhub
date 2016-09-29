@@ -22,6 +22,11 @@ use humhub\modules\user\models\User;
 use app\modules\coin\models\Wallet;
 use app\modules\missions\models\EvokationCategories;
 
+use humhub\modules\space\models\Membership;
+use humhub\modules\space\models\Space;
+
+use humhub\modules\admin\models\forms\MailingSettingsForm;
+
 class EvidenceController extends ContentContainerController
 {
 
@@ -75,7 +80,12 @@ class EvidenceController extends ContentContainerController
             },
         ])->one();
 
-        return $this->render('activities', array('mission' => $mission, 'contentContainer' => $this->contentContainer));
+        $members = Membership::find()
+        ->joinWith('user')
+        ->where(['space_id' => $this->contentContainer->id, 'user.status' => \humhub\modules\user\models\User::STATUS_ENABLED])
+        ->all();
+
+        return $this->render('activities', array('mission' => $mission, 'contentContainer' => $this->contentContainer, 'members' => $members));
     }
 
     public function actionMissions()
