@@ -145,7 +145,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                     <p style = "margin:20px 0"><?= Yii::t('MissionsModule.base', '<strong>Activity Difficulty Level:</strong> {level}', array('level' => $activity->difficultyLevel->title)) ?></p>
                     <p style = "margin-bottom:25px"><?= Yii::t('MissionsModule.base', '<strong>Activity Rubric:</strong> {rubric}', array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></p>
 
-                <form id = "review" class="review">
+                	<form id = "review" class="review">
 
                     <input type="hidden" id="evidence_id" value="<?= $evidence->id ?>">
                     <?php for ($x=1; $x <= 5; $x++): ?>
@@ -169,8 +169,9 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                         <button type="submit" id="post_submit_review" class="btn btn-cta2" style = "padding: 8px 16px 6px;">
                         <?= Yii::t('MissionsModule.base', 'Submit Review') ?>
                         </button>
-                            
+                        
                 </div>
+            </div>
         <?php endif; ?>
             <hr>
             <a id="next_evidence" class="btn btn-cta3" disabled="disabled" style="float: right;" onClick="return false" href="<?= $contentContainer->createUrl('/missions/review/index') ?>">
@@ -178,7 +179,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
             </a>
         </div>
     </div>
-    
+
     <?php else: ?>
         <div class="panel-body">
             <?php echo Yii::t('MissionsModule.base', 'There are no more evidences left to review.'); ?>
@@ -187,6 +188,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
 
     </div>
 </div>
+
 
 
 <style type="text/css">
@@ -268,10 +270,10 @@ function validateReview(id){
 */
   opt = 'yes';
 =======
-    var opt = 'yes'; //always yes for agents
-    var grade = document.querySelector('input[name="grade"]:checked');
+	var opt = 'yes'; //always yes for agents
+	var grade = document.querySelector('input[name="grade"]:checked');
   var comment = document.getElementById("review_comment").value;
-    grade = grade? grade.value : null;
+	grade = grade? grade.value : null;
   console.log(grade);
 >>>>>>> origin/jg-agent_review_form_fix
   return review(id, comment, opt, grade);
@@ -296,8 +298,8 @@ jQuery(document).ready(function () {
 
 <style>
 
-/* 
-Reference: 
+/*
+Reference:
 https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
 */
 
