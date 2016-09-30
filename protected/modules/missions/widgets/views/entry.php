@@ -67,69 +67,6 @@ echo Html::beginForm();
 
 </br>
 
-<style media="screen">
-  .panel .evidence-mission-box h6 {
-    font-size: 10pt;
-    text-transform: uppercase;
-    text-align: center;
-    margin: 10px 0 0 0;
-  }
-
-  .panel .evidence-mission-box h5 {
-    text-transform: uppercase;
-    text-align: center;
-    margin: 0;
-    text-decoration: underline;
-  }
-
-  .panel .evidence-mission-box h5 a {
-    color: #254054;
-    font-weight: 100;
-  }
-
-  .panel .evidence-mission-box h5 a:hover {
-    color:  #4B667A;
-  }
-
-  .panel .evidence-mission-box em {
-    text-transform: uppercase;
-    font-style: normal;
-    font-size: 0.8em;
-    color: #254054;
-  }
-
-  .stars {
-    text-align: center;
-    font-size: 2em;
-    color: #ece046;
-    margin-top: -14px;
-  }
-
-  .evidence-mission-box .stars p {
-    text-transform: uppercase;
-    font-size: 8pt;
-    font-weight: bold;
-  }
-
-  .panel .evidence-mission-box p {
-    margin: 0;
-  }
-
-  .panel .evidence-mission-box .agent-votes {
-    text-align: right;
-    float: right;
-    border-left: 2px solid #254054;
-  }
-
-  .panel .evidence-mission-box .agent-votes p {
-    font-size: 0.9em;
-  }
-
-  .no-padding-left {
-    padding-left: 0 !important;
-  }
-</style>
-
 <?php if($evidence->content->user_id != Yii::$app->user->getIdentity()->id && Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
 <div class="panel-group">
   <div class="panel panel-default">
@@ -421,8 +358,8 @@ $(document).ready(function(){
 
 <style>
 
-/* 
-Reference: 
+/*
+Reference:
 https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
 */
 
@@ -456,4 +393,64 @@ https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
     background-size: cover;
 }
 
+  .panel .evidence-mission-box h6 {
+    font-size: 10pt;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 10px 0 0 0;
+  }
+
+  .panel .evidence-mission-box h5 {
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0;
+    text-decoration: underline;
+  }
+
+  .panel .evidence-mission-box h5 a {
+    color: #254054;
+    font-weight: 100;
+  }
+
+  .panel .evidence-mission-box h5 a:hover {
+    color:  #4B667A;
+  }
+
+  .panel .evidence-mission-box em {
+    text-transform: uppercase;
+    font-style: normal;
+    font-size: 0.8em;
+    color: #254054;
+  }
+
+  .stars {
+    text-align: center;
+    font-size: 2em;
+    color: #ece046;
+    margin-top: -14px;
+  }
+
+  .evidence-mission-box .stars p {
+    text-transform: uppercase;
+    font-size: 8pt;
+    font-weight: bold;
+  }
+
+  .panel .evidence-mission-box p {
+    margin: 0;
+  }
+
+  .panel .evidence-mission-box .agent-votes {
+    text-align: right;
+    float: right;
+    border-left: 2px solid #254054;
+  }
+
+  .panel .evidence-mission-box .agent-votes p {
+    font-size: 0.9em;
+  }
+
+  .no-padding-left {
+    padding-left: 0 !important;
+  }
 </style>
