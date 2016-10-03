@@ -78,7 +78,7 @@ echo Html::beginForm();
       </h6>
     </div>
 
-    <div id="collapseEvidence<?= $evidence->id ?>" class="panel-collapse collapse">
+    <div id="collapseEvidence<?= $evidence->id ?>" class="panel-collapse collapse in">
         <?php
           $collapse = "";
           $yes = "";
@@ -112,7 +112,7 @@ echo Html::beginForm();
       					<input type="radio" name="yes-no-opt<?= $evidence->id ?>" class="btn-show<?= $evidence->id ?>" value="yes" <?= $yes ?> >
       					Yes
       				</label>
-      				<div id="yes-opt<?= $evidence->id ?>" class="collapse <?= $collapse ?>">
+      				<div id="yes-opt<?= $evidence->id ?>" class="radio regular-radio-container collapse <?= $collapse ?>">
       					<span class="rating">
                     <?php for ($x=1; $x <= 5; $x++): ?>
                     <label class="radio-inline">
