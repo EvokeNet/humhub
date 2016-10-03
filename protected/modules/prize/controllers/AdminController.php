@@ -5,6 +5,7 @@ namespace humhub\modules\prize\controllers;
 use Yii;
 use app\modules\prize\models\Prize;
 use app\modules\prize\models\WonPrize;
+use humhub\modules\user\models\User;
 use app\models\UploadForm;
 use yii\web\UploadedFile;
 

@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use humhub\modules\user\models\Profile;
 
 use yii\widgets\Breadcrumbs;
 
@@ -21,30 +22,15 @@ echo Breadcrumbs::widget([
     <div class="panel-body">
       <table class="table">
           <tr>
-              <th><?php echo Yii::t('PrizeModule.base', 'Name'); ?></th>
-              <th><?php echo Yii::t('PrizeModule.base', 'Quantity') ?></th>
-              <th><?php echo Yii::t('PrizeModule.base', 'Weight') ?></th>
-              <th><?php echo Yii::t('PrizeModule.base', 'Week of') ?></th>
-              <th>&nbsp;</th>
-              <th>&nbsp;</th>
+              <th><?php echo Yii::t('PrizeModule.base', 'User'); ?></th>
+              <th><?php echo Yii::t('PrizeModule.base', 'Prize') ?></th>
           </tr>
-          <?php foreach ($won_prizes as $prize): ?>
+          <?php foreach ($won_prizes as $won_prize): ?>
+              <?php $prize_user = $won_prize->getUser(); ?>
+              <?php $user_profile = Profile::find()->where(['user_id' => $prize_user->id])->one(); ?>
               <tr>
-                  <!--<td><?php //echo $coin->id_code; ?></td>-->
-                  <td><?php echo $prize->name; ?></td>
-                  <td><?php echo $prize->quantity; ?></td>
-                  <td><?php echo $prize->weight; ?></td>
-                  <td><?php echo $prize->week_of; ?></td>
-                  <td>
-                      <?php echo Html::a(
-                          Yii::t('PrizeModule.base', 'Edit'),
-                          ['update', 'id' => $prize->id], array('class' => 'btn btn-primary btn-sm')); ?>
-                  </td>
-                  <td>
-                    <?php echo Html::a(
-                        Yii::t('PrizeModule.base', 'Delete'),
-                        ['delete', 'id' => $prize->id], array('class' => 'btn btn-alert btn-sm')); ?>
-                  </td>
+                  <td><?php echo $user_profile->firstname . ' ' . $user_profile->lastname;?></td>
+                  <td><?php echo $won_prize->getPrizeName(); ?></td>
               </tr>
           <?php endforeach; ?>
       </table>
