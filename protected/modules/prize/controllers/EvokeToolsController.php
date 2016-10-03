@@ -55,6 +55,7 @@ class EvokeToolsController extends Controller
       $probabilities = [];
       $available_prizes = [];
       $prize_won = '';
+      $users_prizes = WonPrize::find()->where(['user_id' => $user->id])->all();
 
       // minus the 5 evocoin this action costs
       $wallet->amount -= 5;
@@ -97,20 +98,35 @@ class EvokeToolsController extends Controller
         $prob_checker -= $probability;
 
         if ($roll >= $prob_checker) { // they won!
+          $user_has_prize = false;
           $prize_won = $available_prizes[$key];
-          $prize_won->quantity -= 1; // minus a quantity from the prize
-          $prize_won->save();
 
-          $won_prize = new WonPrize();
-          $won_prize->prize_id = $prize_won->id;
-          $won_prize->user_id = Yii::$app->user->id;
-          $won_prize->save();
+          // check if user won this prize yet
+          foreach ($users_prizes as $users_prize) {
+            if ($users_prize->getPrize()->id == $prize_won->id) {
+              $user_has_prize = true;
+            }
+          }
 
-          $prize_won_id = "prize" . $prize->id;
-          $prize_won_name = $prize_won->name;
-          $prize_won_description = $prize_won->description;
+          // only give user the prize if they haven't won it yet, otherwise continue
+          if (!$user_has_prize) {
+            $prize_won->quantity -= 1; // minus a quantity from the prize
+            $prize_won->save();
 
-          break;
+            $won_prize = new WonPrize();
+            $won_prize->prize_id = $prize_won->id;
+            $won_prize->user_id = Yii::$app->user->id;
+            $won_prize->save();
+
+            $prize_won_id = "prize" . $prize->id;
+            $prize_won_name = $prize_won->name;
+            $prize_won_description = $prize_won->description;
+
+            break;
+          } else {
+            $prize_won = '';
+            continue;
+          }
         }
       }
 
@@ -132,7 +148,7 @@ class EvokeToolsController extends Controller
           $slot_machine_stats->evocoin_created += 20;
           $wallet->save();
         }
-        elseif ($roll >= ($this->max_prob * 0.8)) {
+        elseif ($roll >= ($this->max_prob * 0.9)) {
           $prize_won_name = Yii::t('PrizeModule.base', '10 Evocoin(s)!');
           $prize_won_description = '';
           $prize_won_id = 'evocoin10';
@@ -140,7 +156,7 @@ class EvokeToolsController extends Controller
           $slot_machine_stats->evocoin_created += 10;
           $wallet->save();
         }
-        elseif ($roll >= ($this->max_prob * 0.65)) {
+        elseif ($roll >= ($this->max_prob * 0.75)) {
           $prize_won_name = Yii::t('PrizeModule.base', '5 Evocoin(s)!');
           $prize_won_description = '';
           $prize_won_id = 'evocoin5';

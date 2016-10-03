@@ -7,6 +7,7 @@ use yii\db\ActiveRecord;
 use yii\db\Expression;
 use yii\behaviors\TimestampBehavior;
 use humhub\modules\user\models\User;
+use app\modules\prize\models\Prize;
 
 /**
  * This is the model class for table `wallet`
@@ -49,6 +50,18 @@ use humhub\modules\user\models\User;
           'user_id' => Yii::t('CoinModule.base', 'Owner ID'),
           'prize_id' => Yii::t('CoinModule.base', 'Coin ID'),
         ];
+      }
+
+      public function getUser() {
+        return User::find()->where(['id' => $this->user_id])->one();
+      }
+
+      public function getPrize() {
+        return Prize::find()->where(['id' => $this->prize_id])->one();
+      }
+
+      public function getPrizeName() {
+        return Prize::find()->where(['id' => $this->prize_id])->one()->name;
       }
 
  }

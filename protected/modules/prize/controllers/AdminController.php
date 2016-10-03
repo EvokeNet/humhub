@@ -4,6 +4,8 @@ namespace humhub\modules\prize\controllers;
 
 use Yii;
 use app\modules\prize\models\Prize;
+use app\modules\prize\models\WonPrize;
+use humhub\modules\user\models\User;
 use app\models\UploadForm;
 use yii\web\UploadedFile;
 
@@ -76,5 +78,11 @@ class AdminController extends \humhub\modules\admin\components\Controller
         }
 
         return $this->redirect(['index']);
+    }
+
+    public function actionWonPrizes() {
+      $won_prizes = WonPrize::find()->all();
+
+      return $this->render('won-prize/index', array('won_prizes' => $won_prizes));
     }
 }
