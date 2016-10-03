@@ -114,12 +114,13 @@ echo Html::beginForm();
       				</label>
       				<div id="yes-opt<?= $evidence->id ?>" class="collapse <?= $collapse ?>">
       					<span class="rating">
-                            <?php for ($x=5; $x >= 1; $x--): ?>
-                                <input id="grade<?= $x ?>" type="radio" name="grade" class="rating-input" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> />
-                                <label for ="grade<?= $x ?>" class="rating-star">
-                                </label>
-                            <?php endfor; ?>
-                        </span>
+                    <?php for ($x=1; $x <= 5; $x++): ?>
+                    <label class="radio-inline">
+                      <input type="radio" name="grade" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> >
+                      <?php echo $x; ?>
+                    </label>
+                    <?php endfor; ?>
+                </span>
       					<p>
                   <?= Yii::t('MissionsModule.base', 'How many points will you award this evidence?') ?>
       					</p>
