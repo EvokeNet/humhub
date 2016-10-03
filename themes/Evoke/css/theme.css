@@ -2880,7 +2880,7 @@ img.bounceIn {
 }
 .regular-radio + .regular-radio-button {
   padding: 10px;
-  margin-top: -3px;
+  /*margin-top: -3px;*/
 }
 .regular-radio:checked + .regular-radio-button:after {
   width: 15px;
