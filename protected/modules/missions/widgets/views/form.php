@@ -11,16 +11,16 @@ $firstSecondary = true;
 <div class="panel panel-default">
     <div class="panel-body panel-body grey-box">
 
-        <h4><span class = "activity-number"><?= $activity->position ?></span><?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title ?></h4>
+        <h4><span class = "activity2-number"><?= $activity->position ?></span><?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title ?></h4>
         <br />
         <p class="description">
             <?php echo nl2br(isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description) ?>
         </p>
         <br />
 
-        <div class="row" style = "margin-top:20px">
-            <div class="col-xs-5 text-center">
-                <h6 style = "margin-bottom:15px"><?= Yii::t('MissionsModule.base', 'Primary Power') ?></h6>
+        <div class="row" style="margin-bottom:20px">
+            <div class="col-xs-4"><h6 style = "margin-bottom:15px"><?= Yii::t('MissionsModule.base', 'Primary Power') ?></h6></div>
+            <div class="col-xs-8">
 
                 <?php
                     foreach($activity->getPrimaryPowers() as $power):
@@ -33,40 +33,45 @@ $firstSecondary = true;
                             $name = $power->getPower()->powerTranslations[0]->title;
                 ?>
 
-                <img src = "<?php echo $power->getPower()->image; ?>" width=70px style = "margin-bottom:10px">
-                <p><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
-                <br />
-
-                <?php endforeach; ?>
-
-           </div>
-            <div class="col-xs-7 text-center">
-                <h6 style = "margin-bottom:15px"><?= Yii::t('MissionsModule.base', 'Secondary Power(s)') ?></h6>
-
-                <?php
-                    foreach($activity->getSecondaryPowers() as $power):
-                        if($firstSecondary)
-                            $firstSecondary = false;
-
-                        $name = $power->getPower()->title;
-
-                        if(Yii::$app->language == 'es' && isset($power->getPower()->powerTranslations[0]))
-                            $name = $power->getPower()->powerTranslations[0]->title;
-                ?>
-
-                <img src = "<?php echo $power->getPower()->image; ?>" width=70px style = "margin-bottom:15px">
-                <p><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
-                <br />
+                
+                    <div style="text-align: center; display:inline-block">
+                    <img src = "<?php echo $power->getPower()->image; ?>" width=50px>
+                    <span style="font-size:10pt"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></span>
+                </div>
+                    
                 <?php endforeach; ?>
 
             </div>
         </div>
 
-        <br />
+        <div class="row">
+            <div class="col-xs-4"><h6 style = "margin-bottom:15px"><?= Yii::t('MissionsModule.base', 'Secondary Power(s)') ?></h6></div>
+            <div class="col-xs-8">
 
-        <p class="description"><?= Yii::t('MissionsModule.widgets_views_evidenceForm', "<strong>Rubric:</strong> {rubric}", array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></p>
+                    <?php
+                        foreach($activity->getSecondaryPowers() as $power):
+                            if($firstSecondary)
+                                $firstSecondary = false;
 
-    </div>
+                            $name = $power->getPower()->title;
+
+                            if(Yii::$app->language == 'es' && isset($power->getPower()->powerTranslations[0]))
+                                $name = $power->getPower()->powerTranslations[0]->title;
+                    ?>
+                        
+                    <div style="text-align: center; display:inline-block; margin-bottom:10px">
+                        <img src = "<?php echo $power->getPower()->image; ?>" width=50px>
+                        <span style="font-size:10pt"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></span>
+                    </div>
+                    
+                <?php endforeach; ?>
+
+            </div>
+
+        </div>
+
+        <span style="margin-top:30px; padding: 0 10px"><?= Yii::t('MissionsModule.widgets_views_evidenceForm', "<strong>Rubric:</strong> {rubric}", array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></span>
+    </div>    
 </div>
 
     <h4 style = "margin-bottom:20px"><?= Yii::t('MissionsModule.base', 'Create an Evidence for this Activity:') ?></h4>

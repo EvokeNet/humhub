@@ -33,6 +33,17 @@ class Events extends \yii\base\Object
         Yii::$app->controller->module && Yii::$app->controller->module->id == 'prize'
       )
     ));
+
+    $event->sender->addItem(array(
+      'label' => Yii::t('PrizeModule.base', 'Won Prizes'),
+      'url' => Url::to(['/prize/admin/won-prizes']),
+      'group' => 'manage',
+      'sortOrder' => 1300,
+      'icon' => '<i class="fa fa-gift"></i>',
+      'isActive' => (
+        Yii::$app->controller->module && Yii::$app->controller->module->id == 'prize' && Yii::$app->controller->id == 'admin' && Yii::$app->controller->action->id == 'won-prizes'
+      )
+    ));
   }
 
   public static function onTopMenuInit($event)

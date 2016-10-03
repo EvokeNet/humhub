@@ -4,7 +4,8 @@ use yii\helpers\Html;
 
 echo Html::beginForm();
   $activity = $evidence->getActivities();
-
+  $mentor_average_votes = $evidence->getAverageRating('Mentors');
+  $user_average_votes = $evidence->getAverageRating('Users')
 ?>
 
 <h5><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h5>
@@ -14,19 +15,57 @@ echo Html::beginForm();
 <p><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]);?></p>
 
 <div class = "evidence-mission-box">
-  <div>
-    <p style = "display:inline; float:left; font-weight: 700;"><?= Yii::t('MissionsModule.base', 'Mission {position}: {text}', array('position' => $activity->mission->position, 'text' => isset($activity->mission->missionTranslations[0]) ? $activity->mission->missionTranslations[0]->title : $activity->mission->title)) ?></p>
-    <p style = "text-align:end; font-weight: 700;"><?= Yii::t('MissionsModule.base', 'Votes: {votes}', array('votes' => $evidence->getVoteCount()? $evidence->getVoteCount() : "0")) ?></p>
-  </div>
-  <div>
-    <p style = "display:inline; float:left; font-weight: 700;"><?= Yii::t('MissionsModule.base', 'Activity {position}: {text}', array('position' => $activity->position, 'text' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title)) ?></p>
-    <p style = "text-align:end; font-weight: 700;"><?= Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $evidence->getAverageRating()? number_format((float)$evidence->getAverageRating(), 1, '.', '') : "-")) ?></p>
+  <h6><?= Yii::t('MissionsModule.base', 'Mission {mission}, Activity {activity}:', array('mission' => $activity->mission->position, 'activity' => $activity->position)); ?></h6>
+  <h5><?php echo Html::a(
+          (isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title),
+          ['show', 'activityId' => $activity->id, 'sguid' => $contentContainer->guid], array('class' => '')); ?></h5>
+  <div class="votes-container row">
+    <div class="mentor-votes col-xs-9">
+      <div class="col-xs-12 no-padding-left">
+        <em><?php echo Yii::t('MissionsModule.base', 'Mentor Reviews'); ?></em>
+      </div>
+      <div class="rating col-xs-5 no-padding-left">
+        <p>
+          <?php echo Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $mentor_average_votes? number_format((float)$mentor_average_votes, 1, '.', '') : "-")); ?>
+        </p>
+        <p>
+          <?php echo Yii::t('MissionsModule.base', 'Mentor Reviews: {votes}', array('votes' => $evidence->getVoteCount('Mentors')? $evidence->getVoteCount('Mentors') : "0")) ?>
+        </p>
+      </div>
+      <div class="stars col-xs-6">
+        <?php for ($i = 0; $i < 5; $i++): ?>
+          <?php if ($mentor_average_votes > $i): ?>
+            <?php if (($mentor_average_votes - $i) < 1): ?>
+              <i class="fa fa-star-half-o" aria-hidden="true"></i>
+            <?php else: ?>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            <?php endif; ?>
+          <?php else: ?>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          <?php endif; ?>
+        <?php endfor; ?>
+        <p>
+          <?php echo Yii::t('MissionsModule.base', 'Avg Mentor Rating'); ?>
+        </p>
+      </div>
+    </div>
+    <div class="agent-votes col-xs-3">
+      <em><?php echo Yii::t('MissionsModule.base', 'Agent Reviews'); ?></em>
+      <div class="rating">
+        <p>
+          <?php echo Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $user_average_votes? number_format((float)$user_average_votes, 1, '.', '') : "-")); ?>
+        </p>
+        <p>
+          <?php echo Yii::t('MissionsModule.base', 'Agent Reviews: {votes}', array('votes' => $evidence->getVoteCount('Users')? $evidence->getVoteCount('Users') : "0")) ?>
+        </p>
+      </div>
+    </div>
   </div>
 </div>
 
 <?php echo Html::endForm(); ?>
 
-<BR>
+</br>
 
 <?php if($evidence->content->user_id != Yii::$app->user->getIdentity()->id && Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
 <div class="panel-group">
@@ -39,7 +78,7 @@ echo Html::beginForm();
       </h6>
     </div>
 
-    <div id="collapseEvidence<?= $evidence->id ?>" class="panel-collapse collapse">
+    <div id="collapseEvidence<?= $evidence->id ?>" class="panel-collapse collapse in">
         <?php
           $collapse = "";
           $yes = "";
@@ -73,13 +112,15 @@ echo Html::beginForm();
       					<input type="radio" name="yes-no-opt<?= $evidence->id ?>" class="btn-show<?= $evidence->id ?>" value="yes" <?= $yes ?> >
       					Yes
       				</label>
-      				<div id="yes-opt<?= $evidence->id ?>" class="collapse <?= $collapse ?>">
-      					<?php for ($x=1; $x <= 5; $x++): ?>
-      					<label class="radio-inline">
-      						<input type="radio" name="grade<?= $evidence->id ?>" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> >
-      						<?php echo $x; ?>
-      					</label>
-      					<?php endfor; ?>
+      				<div id="yes-opt<?= $evidence->id ?>" class="radio regular-radio-container collapse <?= $collapse ?>">
+      					<span class="rating">
+                    <?php for ($x=1; $x <= 5; $x++): ?>
+                    <label class="radio-inline">
+                      <input type="radio" name="grade" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> >
+                      <?php echo $x; ?>
+                    </label>
+                    <?php endfor; ?>
+                </span>
       					<p>
                   <?= Yii::t('MissionsModule.base', 'How many points will you award this evidence?') ?>
       					</p>
@@ -92,7 +133,7 @@ echo Html::beginForm();
     				  </label>
     			  </div>
     			  <br>
-            <?php echo Html::textArea("text", $comment , array('id' => 'review_comment_'.$evidence->id, 'class' => 'text-margin form-control count-chars ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Comment"))); ?>
+            <?php echo Html::textArea("text", $comment , array('id' => 'review_comment_'.$evidence->id, 'class' => 'text-margin form-control count-chars ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Leave a comment and earn an additional 5 Evocoins."))); ?>
     			  <br>
 
     			  <br>
@@ -115,17 +156,63 @@ echo Html::beginForm();
         <div class="panel-heading">
             <h6 class="panel-title">
 
-                <a data-toggle="collapse" href="#collapseEvidenceReviews<?= $evidence->id ?>" style="color:#254054">
-                    <?= Yii::t('MissionsModule.base', 'Reviews') ?>
+                <a data-toggle="collapse" href="#collapseMentorEvidenceReviews<?= $evidence->id ?>" style="color:#254054" aria-expanded="false" class="collapsed">
+                    <?= Yii::t('MissionsModule.base', 'Mentor Reviews') ?>
                 </a>
             </h6>
         </div>
 
         <div class="panel-body">
-            <div id="collapseEvidenceReviews<?= $evidence->id ?>"  class="panel-collapse collapse in">
+            <div id="collapseMentorEvidenceReviews<?= $evidence->id ?>"  class="panel-collapse collapse" aria-expanded="false">
                 <div class="">
                     <?php
-                    $votes = $evidence->getVotes();
+                    $votes = $evidence->getVotes('Mentors');
+                    ?>
+
+                    <?php if(!$votes || sizeof($votes) <= 0): ?>
+                        <p>
+                            <?php echo Yii::t('MissionsModule.base', 'There are no reviews yet.'); ?>
+                        </p>
+                    <?php endif; ?>
+
+                    <?php foreach($votes as $vote): ?>
+                        <div style = "padding: 10px 10px 3px; margin-bottom: 20px; border: 3px solid #9013FE; word-wrap: break-word;">
+                            <p><?php echo Yii::t('MissionsModule.base', 'Comment: {comment}', array('comment' => $vote->comment)); ?></p>
+                            <p><?php echo Yii::t('MissionsModule.base', 'Rating: {rating}', array('rating' => $vote->value)); ?></p>
+
+                            <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors" || $vote->user->group->name == "Mentors"): ?>
+                                <p><?php echo Yii::t('MissionsModule.base', 'By'); ?>
+                                <a href="<?= ($vote->user->getUrl()) ?>">
+                                    <?= ($vote->user->username) ?>
+                                </a>,
+                                <?php echo \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]); ?></p>
+                            <?php else: ?>
+                                <p><?php echo Yii::t('MissionsModule.base', 'By Anonymous, {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]))); ?></p>
+                            <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="panel-group">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h6 class="panel-title">
+
+                <a data-toggle="collapse" href="#collapseAgentEvidenceReviews<?= $evidence->id ?>" style="color:#254054" aria-expanded="false" class="collapsed">
+                    <?= Yii::t('MissionsModule.base', 'Agent Reviews') ?>
+                </a>
+            </h6>
+        </div>
+
+        <div class="panel-body">
+            <div id="collapseAgentEvidenceReviews<?= $evidence->id ?>"  class="panel-collapse collapse" aria-expanded="false">
+                <div class="">
+                    <?php
+                    $votes = $evidence->getVotes('Users');
                     ?>
 
                     <?php if(!$votes || sizeof($votes) <= 0): ?>
@@ -195,7 +282,7 @@ function review(id, comment, opt, grade){
 function validateReview(id){
 
 	var opt = $('#review' + id).find('input[name="yes-no-opt'+id+'"]:checked'),
-      grade = $('input[name="grade'+id+'"]:checked'),
+      grade = $('input[name="grade"]:checked'),
       comment = $("#review_comment_"+id).val();
 
 	opt = opt? opt.val() : null;
@@ -268,3 +355,103 @@ $(document).ready(function(){
     });
 });
 </script>
+
+
+<style>
+
+/*
+Reference:
+https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
+*/
+
+.rating {
+    overflow: hidden;
+    display: inline-block;
+    font-size: 0;
+    position: relative;
+}
+.rating-input {
+    float: right;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    margin: 0 0 0 -16px;
+    opacity: 0;
+}
+.rating:hover .rating-star:hover,
+.rating:hover .rating-star:hover ~ .rating-star,
+.rating-input:checked ~ .rating-star {
+    background-position: 0 0;
+}
+.rating-star,
+.rating:hover .rating-star {
+    position: relative;
+    float: right;
+    display: block;
+    width: 40px;
+    height: 40px;
+    background: url('http://kubyshkin.ru/samples/star-rating/star.png') 0 -40px;
+    background-size: cover;
+}
+
+  .panel .evidence-mission-box h6 {
+    font-size: 10pt;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 10px 0 0 0;
+  }
+
+  .panel .evidence-mission-box h5 {
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0;
+    text-decoration: underline;
+  }
+
+  .panel .evidence-mission-box h5 a {
+    color: #254054;
+    font-weight: 100;
+  }
+
+  .panel .evidence-mission-box h5 a:hover {
+    color:  #4B667A;
+  }
+
+  .panel .evidence-mission-box em {
+    text-transform: uppercase;
+    font-style: normal;
+    font-size: 0.8em;
+    color: #254054;
+  }
+
+  .stars {
+    text-align: center;
+    font-size: 2em;
+    color: #ece046;
+    margin-top: -14px;
+  }
+
+  .evidence-mission-box .stars p {
+    text-transform: uppercase;
+    font-size: 8pt;
+    font-weight: bold;
+  }
+
+  .panel .evidence-mission-box p {
+    margin: 0;
+  }
+
+  .panel .evidence-mission-box .agent-votes {
+    text-align: right;
+    float: right;
+    border-left: 2px solid #254054;
+  }
+
+  .panel .evidence-mission-box .agent-votes p {
+    font-size: 0.9em;
+  }
+
+  .no-padding-left {
+    padding-left: 0 !important;
+  }
+</style>
