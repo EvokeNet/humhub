@@ -255,38 +255,12 @@ function review(id, comment, opt, grade){
 }
 
 function validateReview(id){
-
-<<<<<<< HEAD
-    var opt = document.querySelector('input[name="yes-no-opt"]:checked');
-    var grade = document.querySelector('input[name="grade"]:checked');
-    var comment = document.getElementById("review_comment").value;
-    opt = opt? opt.value : null;
-    grade = grade? grade.value : null;
-
-/*Comment is required for mentors */
-<?php if(Yii::$app->user->getIdentity()->group->name == "Mentors"):  ?>
-    if(comment == ""){
-        showMessage("Error", "<?= Yii::t('MissionsModule.base', 'You must submit a comment.') ?>");
-        return false;
-    }
-<?php endif; ?>
-
-
-/*
-***Comment isn't required anymore.***
-    if(comment == ""){
-        showMessage("Error", "<?= Yii::t('MissionsModule.base', 'You must submit a comment.') ?>");
-        return false;
-    }
-*/
-  opt = 'yes';
-=======
     var opt = 'yes'; //always yes for agents
     var grade = document.querySelector('input[name="grade"]:checked');
   var comment = document.getElementById("review_comment").value;
     grade = grade? grade.value : null;
   console.log(grade);
->>>>>>> origin/jg-agent_review_form_fix
+  
   return review(id, comment, opt, grade);
 }
 
