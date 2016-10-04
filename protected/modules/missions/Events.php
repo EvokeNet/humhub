@@ -378,6 +378,62 @@ class Events
      *
      * @param type $event
      */
+    public static function onNewTopMenuInit($event)
+    {
+
+        $user = Yii::$app->user->getIdentity();
+
+        if(isset($user)){
+
+            // LEADERBOARD
+            $event->sender->addItem(array(
+            'label' => Yii::t('MissionsModule.event', 'Leaderboard'),
+            'id' => 'leaderboard',
+            'icon' => '<i class="fa fa-sort-numeric-asc" aria-hidden="true"></i>',
+            'url' => Url::to(['/missions/leaderboard/index']),
+            'sortOrder' => 700,
+            'isActive' => (Yii::$app->controller->module
+                && Yii::$app->controller->module->id == 'missions'
+                && Yii::$app->controller->id == 'leaderboard'),
+            ));
+
+            // REVIEW EVIDENCE
+
+            $team_id = Team::getUserTeam($user->id);
+            // $space = $event->sender->space;
+            $team = Team::findOne($team_id);        
+
+            if($team){
+
+                $event->sender->addItem(array(
+                'label' => Yii::t('MissionsModule.event', 'Evidences to be reviewed'),
+                'id' => 'evidence_reviewed',
+                'icon' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i>',
+                'url' => Url::to(['/missions/review/list', 'sguid' => $team->guid]),
+                'sortOrder' => 500,
+                'isActive' => (Yii::$app->controller->module
+                    && Yii::$app->controller->module->id == 'missions'
+                    && 
+                        ( 
+                            Yii::$app->controller->id == 'review'
+                            || (Yii::$app->controller->id == 'evidence' && Yii::$app->controller->action->id == 'mentor_activities' && Yii::$app->controller->action->id != 'review_evidence')
+                            || Yii::$app->controller->action->id == 'mentor'
+                        )
+                    ),
+                ));
+            }
+
+        }
+        
+        
+    }
+
+    /**
+     * On build of the TopMenu, check if module is enabled
+     * When enabled add a menu item
+     *
+     * @param type $event
+     */
     public static function onTopMenuInit($event)
     {
 
@@ -388,7 +444,7 @@ class Events
             // LEADERBOARD
             $event->sender->addItem(array(
             'label' => Yii::t('MissionsModule.event', 'Leaderboard'),
-            'id' => 'leaerboard',
+            'id' => 'leaderboard',
             'icon' => '<i class="fa fa-sort-numeric-asc" aria-hidden="true"></i>',
             'url' => Url::to(['/missions/leaderboard/index']),
             'sortOrder' => 700,
