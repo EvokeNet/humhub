@@ -104,6 +104,19 @@ class Events
 
     }
 
+    public static function onAccountMenuInit($event)
+    {
+        $event->sender->addItem(array(
+            'label' => Yii::t('MissionsModule.event', 'Evoke Settings'),
+            'url' => Url::to(['/missions/user-settings']),
+            'group' => 'account',
+            'sortOrder' => 105,
+            'icon' => '<i class="fa fa-university"></i>',
+            'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'user-settings'
+           ),
+        ));
+    }
+
     public static function onAdminMenuInit($event)
     {
         $event->sender->addItem(array(
