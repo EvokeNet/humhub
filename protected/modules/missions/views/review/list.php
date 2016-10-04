@@ -16,7 +16,12 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidences');
     <div class="panel-body">
         <?php foreach($evidences as $e): ?>
             <p><?php //echo $e['title'].'<br />'; ?></p> 
-            <?php echo Html::a($e['title'], ['index', 'sguid' => $contentContainer['guid'], 'id' => $e['id']], ['class' => 'profile-link']); ?>
+            <?php if($e['user_vote'] == Yii::$app->user->getIdentity()->id): ?>
+                <div style="color: #28C503; display: inline; float: right;" data-toggle="tooltip" title="<?php echo Yii::t('MissionsModule.base', "You've reviewed this evidence"); ?>">
+                    <i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i>
+                </div>
+            <?php endif; ?>
+            <?php echo Html::a($e['title'], ['index', 'sguid' => $contentContainer['guid'], 'id' => $e['id']], ['class' => 'profile-link', 'style' => 'font-size:12pt']); ?>
         <?php endforeach; ?>
     </div>
 </div>

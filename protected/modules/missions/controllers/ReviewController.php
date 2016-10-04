@@ -173,7 +173,7 @@ class ReviewController extends ContentContainerController
         $subquery = '(SELECT v2.evidence_id from votes as v2 where v2.user_id = '.$user->id.')';
 
         $query = (new \yii\db\Query())
-        ->select(['e.*, count(distinct v.id) as vote_count'])
+        ->select(['e.*, count(distinct v.id) as vote_count', 'v.user_id as user_vote'])
         ->from('evidence as e')
         ->join('INNER JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
         ->join('LEFT JOIN', 'votes v', '`v`.`evidence_id`=`e`.`id`')
