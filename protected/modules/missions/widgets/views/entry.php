@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use humhub\libs\Helpers;
 
 echo Html::beginForm();
   $activity = $evidence->getActivities();
@@ -13,6 +14,46 @@ echo Html::beginForm();
   <h6><?php echo Yii::t('MissionsModule.base', 'By'); ?> <?php echo $name ?></h4>
 <?php endif; ?>
 <p><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]);?></p>
+
+<hr>
+
+<!-- SHOW FILES -->
+
+<?php $files = \humhub\modules\file\models\File::getFilesOfObject($evidence); ?>
+
+<?php if(!empty($files)): ?>
+<ul class="files" style="list-style: none; margin: 0;" id="files-<?php echo $evidence->getPrimaryKey(); ?>">
+    <?php foreach ($files as $file) : ?>
+        <?php
+        if ($file->getMimeBaseType() == "image" && $hideImageFileInfo)
+            continue;
+        ?>
+        <li class="mime <?php echo \humhub\libs\MimeHelper::getMimeIconClassByExtension($file->getExtension()); ?>"><a
+                href="<?php echo $file->getUrl(); ?>" target="_blank"><span
+                    class="filename"><?php echo Html::encode(Helpers::trimText($file->file_name, 40)); ?></span></a>
+            <span class="time" style="padding-right: 20px;"> - <?php echo Yii::$app->formatter->asSize($file->size); ?></span>
+
+            <?php if ($file->getExtension() == "mp3") : ?>
+                <!-- Integrate jPlayer -->
+                <?php
+                echo xj\jplayer\AudioWidget::widget(array(
+                    'id' => $file->id,
+                    'mediaOptions' => [
+                        'mp3' => $file->getUrl(),
+                    ],
+                    'jsOptions' => [
+                        'smoothPlayBar' => true,
+                    ]
+                ));
+                ?>
+            <?php endif; ?>
+
+        </li>
+    <?php endforeach; ?>
+</ul>
+<?php endif; ?>
+
+<hr>
 
 <div class = "evidence-mission-box">
   <h6><?= Yii::t('MissionsModule.base', 'Mission {mission}, Activity {activity}:', array('mission' => $activity->mission->position, 'activity' => $activity->position)); ?></h6>
@@ -32,6 +73,10 @@ echo Html::beginForm();
           <?php echo Yii::t('MissionsModule.base', 'Mentor Reviews: {votes}', array('votes' => $evidence->getVoteCount('Mentors')? $evidence->getVoteCount('Mentors') : "0")) ?>
         </p>
       </div>
+
+
+
+
       <div class="stars col-xs-6">
         <?php for ($i = 0; $i < 5; $i++): ?>
           <?php if ($mentor_average_votes > $i): ?>
@@ -252,7 +297,13 @@ echo Html::beginForm();
                             <?php else: ?>
                                 <p><?php echo Yii::t('MissionsModule.base', 'By Anonymous, {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]))); ?></p>
                             <?php endif; ?>
+
+                            <?php echo \humhub\modules\comment\widgets\CommentLink::widget(['object' => $vote, 'mode' => \humhub\modules\comment\widgets\CommentLink::MODE_INLINE]); ?>
+                            <?php echo \humhub\modules\comment\widgets\Comments::widget(array('object' => $vote)); ?>
+
                         </div>
+
+                    
                     <?php endforeach; ?>
                 </div>
             </div>
@@ -299,6 +350,9 @@ echo Html::beginForm();
                                 <p><?php echo Yii::t('MissionsModule.base', 'By Anonymous, {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]))); ?></p>
                             <?php endif; ?>
                         </div>
+
+
+
                     <?php endforeach; ?>
                 </div>
             </div>
