@@ -224,6 +224,59 @@ class EvidenceController extends ContentContainerController
         ));
     }
 
+    public function actionPublish(){
+        $user = Yii::$app->user->getIdentity();
+        $id = Yii::$app->request->get('id');
+        $evidence = Evidence::findOne($id);
+
+        if($evidence && $evidence->content->visibility == 0 && $evidence->created_by == $user->id){
+            $evidence->content->visibility = 1;
+            $evidence->content->save();
+
+            //ACTIVITY POWER POINTS
+            $activityPowers = ActivityPowers::findAll(['activity_id' => $evidence->activities_id]);
+
+            //USER POWER POINTS
+            foreach($activityPowers as $activity_power){
+                UserPowers::addPowerPoint($activity_power->getPower(), $user, $activity_power->value);
+            }
+
+            $message = $this->getEvidenceCreatedMessage($activityPowers);
+            AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), $message);
+
+            $this->redirect($evidence->content->getUrl());
+
+        }else{
+            AlertController::createAlert(Yii::t('MissionsModule.base', 'Error!'), "Something's wrong");
+        }
+    }   
+
+    public function actionDraft(){
+        if (!$this->contentContainer->permissionManager->can(new \humhub\modules\missions\permissions\CreateEvidence())) {
+            throw new HttpException(400, 'Access denied!');
+        }
+
+        $evidence = new Evidence();
+        $evidence->scenario = Evidence::SCENARIO_CREATE;
+        $evidence->title = Yii::$app->request->post('title');
+        $evidence->text = Yii::$app->request->post('text');
+        $evidence->activities_id = Yii::$app->request->post('activityId');
+
+        if(!Yii::$app->request->post('title')){
+            AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Title cannot be blank.'));
+        } else if(!Yii::$app->request->post('text')){
+            AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Text cannot be blank.'));
+        } else if (strlen(Yii::$app->request->post('text')) < 140) {
+          AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
+        } else{
+
+            AlertController::createAlert(Yii::t('MissionsModule.base', 'Draft saved!'),Yii::t('MissionsModule.base', 'Your evidence\'s draft has been saved!'));
+
+        }
+
+        return \humhub\modules\missions\widgets\WallCreateForm::create($evidence, $this->contentContainer, true);
+    }
+
     /**
      * Posts a new question  throws the question form
      *
@@ -263,7 +316,7 @@ class EvidenceController extends ContentContainerController
 
         }
 
-        return \humhub\modules\missions\widgets\WallCreateForm::create($evidence, $this->contentContainer);
+        return \humhub\modules\missions\widgets\WallCreateForm::create($evidence, $this->contentContainer, false);
     }
 
 

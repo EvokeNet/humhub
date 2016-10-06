@@ -28,6 +28,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Activity {position} - {alias}'
 
 if(!$hasUserSubmittedEvidence){
 
+
     echo \humhub\modules\missions\widgets\WallCreateForm::widget([
         'contentContainer' => $contentContainer,
         'submitButtonText' => Yii::t('MissionsModule.widgets_EvidenceFormWidget', 'Submit Evidence'),

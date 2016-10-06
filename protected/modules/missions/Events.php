@@ -392,7 +392,7 @@ class Events
             $team = Team::findOne($team_id);        
 
             
-
+            if($team){
                 $event->sender->addItem(array(
                 'label' => Yii::t('MissionsModule.event', 'Evidences To Be Reviewed'),
                 'id' => 'evidence_reviewed',
@@ -409,8 +409,7 @@ class Events
                         )
                     ),
                 ));
-           
-
+            }
         }
         
         

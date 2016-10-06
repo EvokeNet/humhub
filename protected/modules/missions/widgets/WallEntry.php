@@ -11,6 +11,8 @@ class WallEntry extends \humhub\modules\content\widgets\WallEntry
 
     public $editRoute = "/missions/evidence/edit";
 
+    public $showFiles = false;
+
     public function run()
     {
       $user = $this->contentObject->content->user;

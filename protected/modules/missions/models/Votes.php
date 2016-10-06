@@ -102,6 +102,7 @@ class Votes extends ContentActiveRecord
         $this->content->user_id = $this->user_id;
         $this->content->object_model = Votes::classname();
         $this->content->object_id = $this->id;
+        $this->content->visibility = \humhub\modules\content\models\Content::VISIBILITY_PUBLIC;
         return parent::beforeSave($insert);
     }
 
