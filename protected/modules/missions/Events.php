@@ -338,16 +338,33 @@ class Events
                 ));
 
                 //REVIEW EVIDENCE
-                $event->sender->addItem(array(
-                    'label' => Yii::t('MissionsModule.event', 'Review Evidence'),
-                    'group' => 'modules',
-                    'url' => $space->createUrl('/missions/review/index'),
-                    'icon' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i>',
-                    'sortOrder' => 500,
-                    'isActive' => (Yii::$app->controller->module
-                    && Yii::$app->controller->module->id == 'missions'
-                    && Yii::$app->controller->id == 'review'
+                // $event->sender->addItem(array(
+                //     'label' => Yii::t('MissionsModule.event', 'Review Evidence'),
+                //     'group' => 'modules',
+                //     'url' => $space->createUrl('/missions/review/index'),
+                //     'icon' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i>',
+                //     'sortOrder' => 500,
+                //     'isActive' => (Yii::$app->controller->module
+                //     && Yii::$app->controller->module->id == 'missions'
+                //     && Yii::$app->controller->id == 'review'
 
+                //     ),
+                // ));
+
+                $event->sender->addItem(array(
+                'label' => Yii::t('MissionsModule.event', 'Evidences To Be Reviewed'),
+                'id' => 'evidence_reviewed',
+                'icon' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i>',
+                'url' => Url::to(['/missions/review/list', 'sguid' => $space->guid]),
+                'sortOrder' => 500,
+                'isActive' => (Yii::$app->controller->module
+                    && Yii::$app->controller->module->id == 'missions'
+                    && 
+                        ( 
+                            Yii::$app->controller->id == 'review'
+                            || (Yii::$app->controller->id == 'evidence' && Yii::$app->controller->action->id == 'mentor_activities' && Yii::$app->controller->action->id != 'review_evidence')
+                            || Yii::$app->controller->action->id == 'mentor'
+                        )
                     ),
                 ));
 
@@ -393,22 +410,22 @@ class Events
 
             
             if($team){
-                $event->sender->addItem(array(
-                'label' => Yii::t('MissionsModule.event', 'Evidences To Be Reviewed'),
-                'id' => 'evidence_reviewed',
-                'icon' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i>',
-                'url' => Url::to(['/missions/review/list', 'sguid' => $team->guid]),
-                'sortOrder' => 500,
-                'isActive' => (Yii::$app->controller->module
-                    && Yii::$app->controller->module->id == 'missions'
-                    && 
-                        ( 
-                            Yii::$app->controller->id == 'review'
-                            || (Yii::$app->controller->id == 'evidence' && Yii::$app->controller->action->id == 'mentor_activities' && Yii::$app->controller->action->id != 'review_evidence')
-                            || Yii::$app->controller->action->id == 'mentor'
-                        )
-                    ),
-                ));
+                // $event->sender->addItem(array(
+                // 'label' => Yii::t('MissionsModule.event', 'Evidences To Be Reviewed'),
+                // 'id' => 'evidence_reviewed',
+                // 'icon' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i>',
+                // 'url' => Url::to(['/missions/review/list', 'sguid' => $team->guid]),
+                // 'sortOrder' => 500,
+                // 'isActive' => (Yii::$app->controller->module
+                //     && Yii::$app->controller->module->id == 'missions'
+                //     && 
+                //         ( 
+                //             Yii::$app->controller->id == 'review'
+                //             || (Yii::$app->controller->id == 'evidence' && Yii::$app->controller->action->id == 'mentor_activities' && Yii::$app->controller->action->id != 'review_evidence')
+                //             || Yii::$app->controller->action->id == 'mentor'
+                //         )
+                //     ),
+                // ));
             }
         }
         
@@ -516,6 +533,24 @@ class Events
                 //         )
                 //     ),
                 // ));
+
+                $event->sender->addItem(array(
+                'label' => Yii::t('MissionsModule.event', 'Evidences To Be Reviewed'),
+                'id' => 'evidence_reviewed',
+                'icon' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i>',
+                'url' => Url::to(['/missions/review/list', 'sguid' => $team->guid]),
+                'sortOrder' => 500,
+                'isActive' => (Yii::$app->controller->module
+                    && Yii::$app->controller->module->id == 'missions'
+                    && 
+                        ( 
+                            Yii::$app->controller->id == 'review'
+                            || (Yii::$app->controller->id == 'evidence' && Yii::$app->controller->action->id == 'mentor_activities' && Yii::$app->controller->action->id != 'review_evidence')
+                            || Yii::$app->controller->action->id == 'mentor'
+                        )
+                    ),
+                ));
+
             }
 
         }
