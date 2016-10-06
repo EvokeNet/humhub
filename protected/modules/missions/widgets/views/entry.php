@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use humhub\libs\Helpers;
+use humhub\models\Setting;
+use yii\helpers\Url;
+use yii\web\JsExpression;
 
 echo Html::beginForm();
   $activity = $evidence->getActivities();
@@ -25,7 +28,7 @@ echo Html::beginForm();
 <ul class="files" style="list-style: none; margin: 0;" id="files-<?php echo $evidence->getPrimaryKey(); ?>">
     <?php foreach ($files as $file) : ?>
         <?php
-        if ($file->getMimeBaseType() == "image" && $hideImageFileInfo)
+        if ($file->getMimeBaseType() == "image" && Setting::Get('hideImageFileInfo', 'file'))
             continue;
         ?>
         <li class="mime <?php echo \humhub\libs\MimeHelper::getMimeIconClassByExtension($file->getExtension()); ?>"><a
@@ -357,8 +360,38 @@ echo Html::beginForm();
                 </div>
             </div>
         </div>
+    </div>
+
+    <br>
+
+    <?php if($evidence->content->visibility == 0): ?>
+
+     <div>
+        <a class="btn btn-success" href="<?= $contentContainer->createUrl('/missions/evidence/publish', ['id' => $evidence->id]) ?>">
+            Publish 
+        </a>
+
+    <?php
+    /*
+    echo \humhub\widgets\AjaxButton::widget([
+        'label' => Yii::t('ContentModule.widgets_views_editLink', 'Edit'),
+        'tag' => 'a',
+        'ajaxOptions' => [
+            'type' => 'POST',
+            'success' => new JsExpression('function(html){ $("#wall_content_' . $evidence->content->getUniqueId() . '").replaceWith(html); }'),
+            'url' => $evidence->content->container->createUrl('/missions/evidence/edit', ['id' => $evidence->id]),
+        ],
+        'htmlOptions' => [
+            'href' => '#',
+            'class' => 'btn btn-info'
+        ]
+    ]);
+    */
+    ?>
 
     </div>
+    <?php endif; ?>
+
 </div>
 <?php endif; ?>
 

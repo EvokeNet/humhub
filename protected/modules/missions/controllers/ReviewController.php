@@ -181,6 +181,7 @@ class ReviewController extends ContentContainerController
         // ->where('c.space_id != '.$currentSpace->id)
         ->andWhere('e.id NOT IN  '.$subquery)
         ->andWhere('c.user_id != '.$user->id)
+        ->andWhere('c.visibility != 0')
         ->groupBy('e.id')
         ->orderBy('vote_count ASC')
         ->all();
