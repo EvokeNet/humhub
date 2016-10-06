@@ -17,8 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    '<strong>My Teams</strong>' => '',
-    '<strong>Teams</strong>' => '',
-    'Follow a team to add it to the list.' => '',
-    'Oops, there is no team here yet.' => '',
+    '<strong>My Teams</strong>' => '<strong>Mis Equipos</strong>',
+    '<strong>Teams</strong>' => '<strong>Equipos</strong>',
+    'Follow a team to add it to the list.' => 'Siga a un equipo para añadirlo a la lista',
+    'Oops, there is no team here yet.' => 'No hay equipo aún!',
 ];
