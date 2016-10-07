@@ -23,6 +23,8 @@ namespace humhub\modules\missions\components\actions;
 use Yii;
 use humhub\modules\content\models\Content;
 use humhub\modules\missions\components\actions\FixedStream;
+use app\modules\missions\models\Evidence;
+use humhub\modules\post\models\Post;
 
 /**
  * ContentContainerStreamAction
@@ -56,6 +58,21 @@ class ContentContainerStream extends FixedStream
         if (!$this->contentContainer->canAccessPrivateContent($this->user)) {
             $this->activeQuery->andWhere("content.visibility=" . Content::VISIBILITY_PUBLIC);
         }
+
+        /**
+         * Hide draft
+        */
+        $this->activeQuery->andFilterWhere(
+            ['or',
+                ['content.object_model' => Post::className()],
+                ['and',
+                    ['content.object_model' => Evidence::className()],
+                    ['or',
+                       ['content.visibility' => 1],
+                       ['content.user_id' => Yii::$app->user->getIdentity()->id]
+                    ]
+                ]       
+            ]);
 
         /**
          * Handle sticked posts only in content containers

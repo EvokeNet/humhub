@@ -10,6 +10,8 @@ namespace humhub\modules\missions\components\actions;
 
 use Yii;
 use humhub\modules\missions\components\actions\FixedStream;
+use app\modules\missions\models\Evidence;
+use humhub\modules\post\models\Post;
 
 /**
  * DashboardStreamAction
@@ -97,10 +99,11 @@ class DashboardStream extends FixedStream
             );
 
             // In case of an space entry, we need to join the space membership to verify the user can see private space content
-            $condition = ' (wall.object_model=:userModel AND content.visibility=0 AND content.user_id = :userId) OR ';
-            $condition .= ' (wall.object_model=:spaceModel AND content.visibility = 0 AND space_membership.status = ' . \humhub\modules\space\models\Membership::STATUS_MEMBER . ') OR ';
-            $condition .= ' (content.visibility = 1 OR content.visibility IS NULL) ';
-            $this->activeQuery->andWhere($condition, [':userId' => $this->user->id, ':spaceModel' => \humhub\modules\space\models\Space::className(), ':userModel' => \humhub\modules\user\models\User::className()]);
+            $condition = ' (content.object_model =:postModel AND wall.object_model=:userModel AND content.visibility=0 AND content.user_id = :userId) OR ';
+            $condition .= ' (content.object_model =:postModel AND wall.object_model=:spaceModel AND content.visibility = 0 AND space_membership.status = ' . \humhub\modules\space\models\Membership::STATUS_MEMBER . ') OR ';
+            $condition .= ' (content.object_model =:postModel AND content.visibility = 1 OR content.visibility IS NULL) OR';
+            $condition .= ' (content.object_model =:evidenceModel AND (content.visibility = 1 OR content.user_id= :userId) ) ';
+            $this->activeQuery->andWhere($condition, [':postModel' => Post::className(), ':evidenceModel' => Evidence::className(), ':userId' => $this->user->id, ':spaceModel' => \humhub\modules\space\models\Space::className(), ':userModel' => \humhub\modules\user\models\User::className()]);
         }
     }
 
