@@ -11,6 +11,7 @@ use humhub\modules\content\components\ContentActiveRecord;
 use app\modules\missions\models\Activities;
 use app\modules\powers\models\UserPowers;
 use humhub\modules\admin\models\forms\MailingSettingsForm;
+use humhub\modules\user\models\Setting;
 
 /**
  * This is the model class for table "votes".
@@ -101,6 +102,7 @@ class Votes extends ContentActiveRecord
         $this->content->user_id = $this->user_id;
         $this->content->object_model = Votes::classname();
         $this->content->object_id = $this->id;
+        $this->content->visibility = \humhub\modules\content\models\Content::VISIBILITY_PUBLIC;
         return parent::beforeSave($insert);
     }
 
@@ -129,17 +131,21 @@ class Votes extends ContentActiveRecord
             $notification->send($author);
         }
 
-        Yii::$app->mailer->compose('ReviewEvidence', [
+
+        $enabled_review_notification_emails = Setting::Get($author->id,'enabled_review_notification_emails', 'Missions', 1);
+
+        if($enabled_review_notification_emails == 1){
+           Yii::$app->mailer->compose('ReviewEvidence', [
             'user' => $author,
-            'evidence_link' => $evidence->content->id,
-            "message" => 'hey'
-        ])
-        ->setFrom([\humhub\models\Setting::Get('systemEmailAddress', 'mailing') => \humhub\models\Setting::Get('systemEmailName', 'mailing')])
-        ->setTo($author->email)
-        ->setSubject(Yii::t('MissionsModule.base', 'Evidence Reviewed'))
-        ->setTextBody('Plain text content')
-        ->setHtmlBody('<b>Your evidence was reviewed</b>')
-        ->send();
+            'evidence_link' => $evidence->content->id
+            ])
+            ->setFrom([\humhub\models\Setting::Get('systemEmailAddress', 'mailing') => \humhub\models\Setting::Get('systemEmailName', 'mailing')])
+            ->setTo($author->email)
+            ->setSubject(Yii::t('MissionsModule.base', 'Evidence Reviewed'))
+            //->setTextBody('Plain text content')
+            //->setHtmlBody('<b>Your evidence was reviewed</b>')
+            ->send(); 
+        }
 
         return parent::afterSave($insert, $changedAttributes);
 
