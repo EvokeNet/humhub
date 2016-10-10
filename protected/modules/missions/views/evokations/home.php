@@ -9,11 +9,6 @@ use app\modules\missions\models\Evokations;
 
 $user = Yii::$app->user->getIdentity();
 
-$evokation = Evokations::find()
-    ->joinWith('user', false, "INNER JOIN")
-    ->where('evokations.created_by = user.id')
-    ->One();
-
 $this->title = Yii::t('MissionsModule.base', 'Evokations');
 $this->params['breadcrumbs'][] = Yii::t('MissionsModule.base', "{name}'s Evokation", array('name' => $contentContainer->name));
 
