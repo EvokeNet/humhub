@@ -212,9 +212,14 @@ class EvokationsController extends ContentContainerController //extends Controll
         ->where(['locked' => 0])
         ->all();
 
+        $evokation = Evokations::find()
+        ->join('INNER JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evokations::classname()).'\' AND `c`.`object_id` = `evokations`.`id`')
+        ->where('c.space_id = '.$this->contentContainer->id)
+        ->One();
+
         $gdrive_url = Setting::get($this->contentContainer->id, "gdrive_url");
                 
-        return $this->render('home', array('categories' => $categories, 'missions' => $missions, 'contentContainer' => $this->contentContainer, 'gdrive_url' => $gdrive_url));
+        return $this->render('home', array('categories' => $categories, 'missions' => $missions, 'contentContainer' => $this->contentContainer, 'gdrive_url' => $gdrive_url, 'evokation' => $evokation));
     }
     
     public function actionMissions()
