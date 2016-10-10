@@ -77,18 +77,13 @@ endforeach;
       </div>
 
       <?php
-
+        // If there's no evokation yet, gdrive url is edited by space setting
         if(!$evokation){
-
             $evokation_id = -1;
-
         }else{
-
             $evokation_id = $evokation->id;
             $gdrive_url = $evokation->gdrive_url;
-
         }
-
       ?>
 
             <div id="gdrive_url">
