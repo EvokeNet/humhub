@@ -75,7 +75,22 @@ endforeach;
           <?php echo nl2br(Yii::t('MissionsModule.base', "Evokation Prompt")); ?>
         </p>
       </div>
-        <?php if($evokation): ?>
+
+      <?php
+
+        if(!$evokation){
+
+            $evokation_id = -1;
+
+        }else{
+
+            $evokation_id = $evokation->id;
+            $gdrive_url = $evokation->gdrive_url;
+
+        }
+
+      ?>
+
             <div id="gdrive_url">
                 <b>
                     Google drive URL:
@@ -84,23 +99,22 @@ endforeach;
                 <?php
 
                     //fix url
-                    if(substr( $evokation->gdrive_url, 0, 7 ) != "http://" && substr( $evokation->gdrive_url, 0, 8 ) != "https://"){
-                        $evokation->gdrive_url = "http://" . $evokation->gdrive_url;
+                    if($gdrive_url != "" && substr( $gdrive_url, 0, 7 ) != "http://" && substr( $gdrive_url, 0, 8 ) != "https://"){
+                        $gdrive_url = "http://" . $gdrive_url;
                     }
                 ?>
 
-                <a id="gdrive_url<?= $evokation->id ?>" href='<?= $evokation->gdrive_url ?>' target="_blank">
-                    <?= $evokation->gdrive_url ?>
+                <a id="gdrive_url<?= $evokation_id ?>" href='<?= $gdrive_url ?>' target="_blank">
+                    <?= $gdrive_url ?>
                 </a>
                 <br>
 
                 <?php if($user->id == $contentContainer->created_by): ?>
-                    <a id="btn_update_url" class="btn btn-cta2" onClick='updateEvokationUrl(<?= $evokation->id ?>)' >
+                    <a id="btn_update_url" class="btn btn-cta2" onClick='updateEvokationUrl(<?= $evokation_id ?>)' >
                         Update
                     </a>
                 <?php endif; ?>
             </div>
-        <?php endif; ?>
 
         <br>
 
