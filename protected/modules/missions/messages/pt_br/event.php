@@ -19,6 +19,7 @@
 return [
     'All Evidences' => '',
     'Evidences' => '',
+    'Evidences To Be Reviewed' => '',
     'Evokation' => '',
     'Evokation Categories' => '',
     'Evokation Deadline' => '',
@@ -29,5 +30,6 @@ return [
     'My Team' => '',
     'My Teams' => '',
     'Review Evidence' => '',
+    'Review Evidences' => '',
     'Reviews' => '',
 ];

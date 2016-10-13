@@ -132,20 +132,20 @@ class Votes extends ContentActiveRecord
         }
 
 
-        $enabled_review_notification_emails = Setting::Get($author->id,'enabled_review_notification_emails', 'Missions', 1);
+        // $enabled_review_notification_emails = Setting::Get($author->id,'enabled_review_notification_emails', 'Missions', 1);
 
-        if($enabled_review_notification_emails == 1){
-           Yii::$app->mailer->compose('ReviewEvidence', [
-            'user' => $author,
-            'evidence_link' => $evidence->content->id
-            ])
-            ->setFrom([\humhub\models\Setting::Get('systemEmailAddress', 'mailing') => \humhub\models\Setting::Get('systemEmailName', 'mailing')])
-            ->setTo($author->email)
-            ->setSubject(Yii::t('MissionsModule.base', 'Evidence Reviewed'))
-            //->setTextBody('Plain text content')
-            //->setHtmlBody('<b>Your evidence was reviewed</b>')
-            ->send(); 
-        }
+        // if($enabled_review_notification_emails == 1){
+        //    Yii::$app->mailer->compose('ReviewEvidence', [
+        //     'user' => $author,
+        //     'evidence_link' => $evidence->content->id
+        //     ])
+        //     ->setFrom([\humhub\models\Setting::Get('systemEmailAddress', 'mailing') => \humhub\models\Setting::Get('systemEmailName', 'mailing')])
+        //     ->setTo($author->email)
+        //     ->setSubject(Yii::t('MissionsModule.base', 'Evidence Reviewed'))
+        //     //->setTextBody('Plain text content')
+        //     //->setHtmlBody('<b>Your evidence was reviewed</b>')
+        //     ->send(); 
+        // }
 
         return parent::afterSave($insert, $changedAttributes);
 

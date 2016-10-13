@@ -244,7 +244,7 @@ echo Html::beginForm();
     				  </label>
     			  </div>
     			  <br>
-            <?php echo Html::textArea("text", $comment , array('id' => 'review_comment_'.$evidence->id, 'class' => 'text-margin form-control count-chars ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Leave a comment and earn an additional 5 Evocoins."))); ?>
+            <?php echo Html::textArea("text", $comment , array('id' => 'review_comment_'.$evidence->id, 'class' => 'text-margin form-control count-chars ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "140 characters required"))); ?>
     			  <br>
 
     			  <br>
@@ -372,21 +372,21 @@ echo Html::beginForm();
         </a>
 
     <?php
-    /*
-    echo \humhub\widgets\AjaxButton::widget([
-        'label' => Yii::t('ContentModule.widgets_views_editLink', 'Edit'),
-        'tag' => 'a',
-        'ajaxOptions' => [
-            'type' => 'POST',
-            'success' => new JsExpression('function(html){ $("#wall_content_' . $evidence->content->getUniqueId() . '").replaceWith(html); }'),
-            'url' => $evidence->content->container->createUrl('/missions/evidence/edit', ['id' => $evidence->id]),
-        ],
-        'htmlOptions' => [
-            'href' => '#',
-            'class' => 'btn btn-info'
-        ]
-    ]);
-    */
+    
+    // echo \humhub\widgets\AjaxButton::widget([
+    //     'label' => Yii::t('ContentModule.widgets_views_editLink', 'Edit'),
+    //     'tag' => 'a',
+    //     'ajaxOptions' => [
+    //         'type' => 'POST',
+    //         'success' => new JsExpression('function(html){ $("#wall_content_' . $evidence->content->getUniqueId() . '").replaceWith(html); }'),
+    //         'url' => $evidence->content->container->createUrl('/missions/evidence/edit', ['id' => $evidence->id]),
+    //     ],
+    //     'htmlOptions' => [
+    //         'href' => '#',
+    //         'class' => 'btn btn-info'
+    //     ]
+    // ]);
+    
     ?>
 
     </div>
