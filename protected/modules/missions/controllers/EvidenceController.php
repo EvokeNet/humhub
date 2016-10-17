@@ -37,6 +37,7 @@ class EvidenceController extends ContentContainerController
                 'class' => \humhub\modules\missions\components\StreamAction::className(),
                 'mode' => \humhub\modules\missions\components\StreamAction::MODE_NORMAL,
                 'contentContainer' => $this->contentContainer,
+                'activity_id' => Yii::$app->request->get('activity_id'),
              ),
             'userfeed' => array(
                 'class' => \humhub\modules\missions\components\UserStreamAction::className(),
@@ -317,6 +318,35 @@ class EvidenceController extends ContentContainerController
         }
 
         return \humhub\modules\missions\widgets\WallCreateForm::create($evidence, $this->contentContainer, false);
+    }
+
+    public function actionUpdate()
+    {
+        $request = Yii::$app->request;
+        $id = $request->get('id');
+
+        $edited = false;
+        $model = Evidence::findOne(['id' => $id]);
+        $model->scenario = Evidence::SCENARIO_EDIT;
+
+        if (!$model->content->canWrite()) {
+            throw new HttpException(403, Yii::t('MissionsModule.controllers_PollController', 'Access denied!'));
+        }
+
+        if ($model->load($request->post())) {
+
+            if (strlen(Yii::$app->request->post('Evidence')['text']) < 140) {
+                AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
+            } else {
+                if ($model->validate() && $model->save()) {
+                    // Reload record to get populated updated_at field
+                    $model = Evidence::findOne(['id' => $id]);
+                    AlertController::createAlert(Yii::t('MissionsModule.base', 'Draft saved!'),Yii::t('MissionsModule.base', 'Your evidence\'s draft has been saved!'));
+                } else {
+                    AlertController::createAlert(Yii::t('MissionsModule.base', 'Error'),Yii::t('MissionsModule.base', 'Something went wrong.'));
+                }
+            }
+        }
     }
 
 

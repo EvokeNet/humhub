@@ -2,6 +2,8 @@
 
 namespace humhub\modules\missions\widgets;
 
+use humhub\modules\space\models\Setting;
+
 class WallCreateEvokationForm extends \humhub\modules\content\widgets\WallCreateContentForm
 {
 
@@ -16,7 +18,9 @@ class WallCreateEvokationForm extends \humhub\modules\content\widgets\WallCreate
      */
     public function renderForm()
     {
-        return $this->render('form_evokation');
+        $gdrive_url = Setting::get($this->contentContainer->id, "gdrive_url");
+
+        return $this->render('form_evokation', ['gdrive_url' => $gdrive_url]);
     }
 
     /**

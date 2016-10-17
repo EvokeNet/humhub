@@ -33,6 +33,7 @@ class CustomSpaceHeader extends Header
         ->join('INNER JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
         ->join('INNER JOIN', 'activities as a', '`e`.`activities_id`= `a`.`id`')
         ->where(['c.space_id' => $this->space->id])
+        ->andWhere(['c.visibility' => 1])
         ->one()['count'];
         
         $evidencesTotal = (new \yii\db\Query())
@@ -40,6 +41,7 @@ class CustomSpaceHeader extends Header
         ->from('evidence as e')
         ->join('INNER JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
         ->where(['c.space_id' => $this->space->id])
+        ->andWhere(['c.visibility' => 1])
         ->one()['count'];
 
         return $this->render('customSpaceHeader', array(
