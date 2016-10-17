@@ -96,7 +96,7 @@ $firstSecondary = true;
             ],
             'htmlOptions' => [
                 'id' => "post_draft_button",
-                'class' => 'btn btn-info btn-draft',
+                'class' => 'btn btn-primary btn-comment-submit',
                 'type' => 'submit'
         ]]);
         

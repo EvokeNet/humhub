@@ -270,9 +270,7 @@ class EvidenceController extends ContentContainerController
         } else if (strlen(Yii::$app->request->post('text')) < 140) {
           AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
         } else{
-
             AlertController::createAlert(Yii::t('MissionsModule.base', 'Draft saved!'),Yii::t('MissionsModule.base', 'Your evidence\'s draft has been saved!'));
-
         }
 
         return \humhub\modules\missions\widgets\WallCreateForm::create($evidence, $this->contentContainer, true);
