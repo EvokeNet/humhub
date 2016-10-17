@@ -19,5 +19,6 @@
 return [
     'Cancel' => '',
     'Save' => '',
+    'Save Draft' => '',
     'Submit Evidence' => '',
 ];

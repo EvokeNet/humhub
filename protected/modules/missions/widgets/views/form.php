@@ -85,7 +85,7 @@ $firstSecondary = true;
         echo "<br>";
 
         echo \humhub\widgets\AjaxButton::widget([
-            'label' => 'Publish as Draft',
+            'label' => Yii::t('MissionsModule.widgets_EvidenceFormWidget', 'Save Draft'),
             'ajaxOptions' => [
                 'url' => $contentContainer->createUrl('/missions/evidence/draft'),
                 'type' => 'POST',
@@ -96,7 +96,7 @@ $firstSecondary = true;
             ],
             'htmlOptions' => [
                 'id' => "post_draft_button",
-                'class' => 'btn btn-info btn-draft',
+                'class' => 'btn btn-primary btn-comment-submit',
                 'type' => 'submit'
         ]]);
         
