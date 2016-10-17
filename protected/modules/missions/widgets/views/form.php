@@ -85,7 +85,7 @@ $firstSecondary = true;
         echo "<br>";
 
         echo \humhub\widgets\AjaxButton::widget([
-            'label' => 'Publish as Draft',
+            'label' => 'Save as Draft',
             'ajaxOptions' => [
                 'url' => $contentContainer->createUrl('/missions/evidence/draft'),
                 'type' => 'POST',
