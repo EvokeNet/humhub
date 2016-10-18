@@ -368,6 +368,11 @@ class Events
                     ),
                 ));
 
+
+              }
+
+            if($team_id == $space->id || $user->super_admin == 1){
+
                 if(Setting::Get('enabled_evokation_page_visibility')){
 
                     //EVOKATION
@@ -383,8 +388,12 @@ class Events
                     ));
                 }
 
-
             }
+
+                
+
+
+          
         }
 
     }
