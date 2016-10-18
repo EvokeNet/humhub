@@ -263,7 +263,7 @@ class EvidenceController extends ContentContainerController
                         AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), $message);
 
                         $this->redirect($evidence->content->getUrl());
-                        
+
                     } else {
                         AlertController::createAlert(Yii::t('MissionsModule.base', 'Error'),Yii::t('MissionsModule.base', 'Something went wrong.'));
                     }
@@ -290,8 +290,6 @@ class EvidenceController extends ContentContainerController
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Title cannot be blank.'));
         } else if(!Yii::$app->request->post('text')){
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Text cannot be blank.'));
-        } else if (strlen(Yii::$app->request->post('text')) < 140) {
-          AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
         } else{
             AlertController::createAlert(Yii::t('MissionsModule.base', 'Draft saved!'),Yii::t('MissionsModule.base', 'Your evidence\'s draft has been saved!'));
         }
@@ -356,17 +354,14 @@ class EvidenceController extends ContentContainerController
 
         if ($model->load($request->post())) {
 
-            if (strlen(Yii::$app->request->post('Evidence')['text']) < 140) {
-                AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
+            if ($model->validate() && $model->save()) {
+                // Reload record to get populated updated_at field
+                $model = Evidence::findOne(['id' => $id]);
+                AlertController::createAlert(Yii::t('MissionsModule.base', 'Draft saved!'),Yii::t('MissionsModule.base', 'Your evidence\'s draft has been saved!'));
             } else {
-                if ($model->validate() && $model->save()) {
-                    // Reload record to get populated updated_at field
-                    $model = Evidence::findOne(['id' => $id]);
-                    AlertController::createAlert(Yii::t('MissionsModule.base', 'Draft saved!'),Yii::t('MissionsModule.base', 'Your evidence\'s draft has been saved!'));
-                } else {
-                    AlertController::createAlert(Yii::t('MissionsModule.base', 'Error'),Yii::t('MissionsModule.base', 'Something went wrong.'));
-                }
+                AlertController::createAlert(Yii::t('MissionsModule.base', 'Error'),Yii::t('MissionsModule.base', 'Something went wrong.'));
             }
+            
         }
     }
 
@@ -390,15 +385,24 @@ class EvidenceController extends ContentContainerController
 
             Yii::$app->response->format = 'json';
             $result = [];
-            if ($model->validate() && $model->save()) {
-                // Reload record to get populated updated_at field
-                $model = Evidence::findOne(['id' => $id]);
-                $result['success'] = true;
-                $result['output'] = $this->renderAjaxContent($model->getWallOut(['justEdited' => true]));
-            } else {
+
+            if (strlen(Yii::$app->request->post('Evidence')['text']) < 140) {
+
+                AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
                 $result['errors'] = $model->getErrors();
-            }
-            return $result;
+                return $result;
+
+            } else {
+                if ($model->validate() && $model->save()) {
+                    // Reload record to get populated updated_at field
+                    $model = Evidence::findOne(['id' => $id]);
+                    $result['success'] = true;
+                    $result['output'] = $this->renderAjaxContent($model->getWallOut(['justEdited' => true]));
+                } else {
+                    $result['errors'] = $model->getErrors();
+                }
+                return $result;
+            } 
         }
 
         return $this->renderAjax('edit', ['evidence' => $model, 'edited' => $edited]);
