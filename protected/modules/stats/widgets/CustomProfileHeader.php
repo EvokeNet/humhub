@@ -16,7 +16,9 @@ class CustomProfileHeader extends ProfileHeader
     public function run()
     {
         $evidences = Evidence::find()
-        ->where(['created_by' => $this->user->id])
+        ->join('INNER JOIN', 'content', ['evidence.id' => 'content.object_id', 'content.object_model' => Evidence::classname()])
+        ->where(['evidence.created_by' => $this->user->id])
+        ->andWhere(['visibility' => 1])
         ->count();
         
         $avg_rating = Evidence::getUserAverageRating($this->user->id);
