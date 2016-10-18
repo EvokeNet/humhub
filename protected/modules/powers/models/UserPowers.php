@@ -255,6 +255,8 @@ class UserPowers extends \yii\db\ActiveRecord
             }
             $userPower->value -= $value;
 
+            $userPower->value = $userPower->value < 0 ? 0 : $userPower->value;
+
             $userPower->save();
             $userPower->updateLevel();
         }
