@@ -398,11 +398,21 @@ echo Html::beginForm();
                 'type' => 'submit'
             ]
         ]);
-    ?>
 
-        <a class="btn btn-success" href="<?= $contentContainer->createUrl('/missions/evidence/publish', ['id' => $evidence->id]) ?>">
-            <?= Yii::t('MissionsModule.base', 'Publish') ?>
-        </a>
+        echo \humhub\widgets\AjaxButton::widget([
+            'label' => Yii::t('MissionsModule.base', 'Publish'),
+            'ajaxOptions' => [
+                'dataType' => 'json',
+                'type' => 'POST',
+                'url' => $evidence->content->container->createUrl('/missions/evidence/publish', ['id' => $evidence->id]),
+            ],
+            'htmlOptions' => [
+                'class' => 'btn btn-success',
+                'id' => 'evidence_publish_post_' . $evidence->id,
+                'type' => 'submit'
+            ]
+        ]);
+    ?>
 
         <?php
 

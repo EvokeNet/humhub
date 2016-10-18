@@ -229,23 +229,46 @@ class EvidenceController extends ContentContainerController
         $user = Yii::$app->user->getIdentity();
         $id = Yii::$app->request->get('id');
         $evidence = Evidence::findOne($id);
+        $request = Yii::$app->request;
 
         if($evidence && $evidence->content->visibility == 0 && $evidence->created_by == $user->id){
-            $evidence->content->visibility = 1;
-            $evidence->content->save();
 
-            //ACTIVITY POWER POINTS
-            $activityPowers = ActivityPowers::findAll(['activity_id' => $evidence->activities_id]);
+            $edited = false;
+            $model = Evidence::findOne(['id' => $id]);
+            $model->scenario = Evidence::SCENARIO_EDIT;
 
-            //USER POWER POINTS
-            foreach($activityPowers as $activity_power){
-                UserPowers::addPowerPoint($activity_power->getPower(), $user, $activity_power->value);
+            if (!$model->content->canWrite()) {
+                throw new HttpException(403, Yii::t('MissionsModule.controllers_PollController', 'Access denied!'));
             }
 
-            $message = $this->getEvidenceCreatedMessage($activityPowers);
-            AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), $message);
+            if ($model->load($request->post())) {
 
-            $this->redirect($evidence->content->getUrl());
+                if (strlen(Yii::$app->request->post('Evidence')['text']) < 140) {
+                    AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
+                } else {
+                    if ($model->validate() && $model->save()) {
+                        // Reload record to get populated updated_at field
+                        $evidence = Evidence::findOne($id);
+                        $evidence->content->visibility = 1;
+                        $evidence->content->save();
+                        //ACTIVITY POWER POINTS
+                        $activityPowers = ActivityPowers::findAll(['activity_id' => $evidence->activities_id]);
+
+                        //USER POWER POINTS
+                        foreach($activityPowers as $activity_power){
+                            UserPowers::addPowerPoint($activity_power->getPower(), $user, $activity_power->value);
+                        }
+
+                        $message = $this->getEvidenceCreatedMessage($activityPowers);
+                        AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), $message);
+
+                        $this->redirect($evidence->content->getUrl());
+                        
+                    } else {
+                        AlertController::createAlert(Yii::t('MissionsModule.base', 'Error'),Yii::t('MissionsModule.base', 'Something went wrong.'));
+                    }
+                }
+            }
 
         }else{
             AlertController::createAlert(Yii::t('MissionsModule.base', 'Error!'), "Something's wrong");
