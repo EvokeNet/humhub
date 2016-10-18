@@ -9,11 +9,6 @@ use app\modules\missions\models\Evokations;
 
 $user = Yii::$app->user->getIdentity();
 
-$evokation = Evokations::find()
-    ->joinWith('user', false, "INNER JOIN")
-    ->where('evokations.created_by = user.id')
-    ->One();
-
 $this->title = Yii::t('MissionsModule.base', 'Evokations');
 $this->params['breadcrumbs'][] = Yii::t('MissionsModule.base', "{name}'s Evokation", array('name' => $contentContainer->name));
 
@@ -75,7 +70,17 @@ endforeach;
           <?php echo nl2br(Yii::t('MissionsModule.base', "Evokation Prompt")); ?>
         </p>
       </div>
-        <?php if($evokation): ?>
+
+      <?php
+        // If there's no evokation yet, gdrive url is edited by space setting
+        if(!$evokation){
+            $evokation_id = -1;
+        }else{
+            $evokation_id = $evokation->id;
+            $gdrive_url = $evokation->gdrive_url;
+        }
+      ?>
+
             <div id="gdrive_url">
                 <b>
                     Google drive URL:
@@ -84,23 +89,22 @@ endforeach;
                 <?php
 
                     //fix url
-                    if(substr( $evokation->gdrive_url, 0, 7 ) != "http://" && substr( $evokation->gdrive_url, 0, 8 ) != "https://"){
-                        $evokation->gdrive_url = "http://" . $evokation->gdrive_url;
+                    if($gdrive_url != "" && substr( $gdrive_url, 0, 7 ) != "http://" && substr( $gdrive_url, 0, 8 ) != "https://"){
+                        $gdrive_url = "http://" . $gdrive_url;
                     }
                 ?>
 
-                <a id="gdrive_url<?= $evokation->id ?>" href='<?= $evokation->gdrive_url ?>' target="_blank">
-                    <?= $evokation->gdrive_url ?>
+                <a id="gdrive_url<?= $evokation_id ?>" href='<?= $gdrive_url ?>' target="_blank">
+                    <?= $contentContainer->name ?> Google Drive URL
                 </a>
                 <br>
 
-                <?php if($user->id == $contentContainer->created_by): ?>
-                    <a id="btn_update_url" class="btn btn-cta2" onClick='updateEvokationUrl(<?= $evokation->id ?>)' >
+                <?php if($user->super_admin == 1): ?>
+                    <a id="btn_update_url" class="btn btn-cta2" onClick='updateEvokationUrl(<?= $evokation_id ?>)' >
                         Update
                     </a>
                 <?php endif; ?>
             </div>
-        <?php endif; ?>
 
         <br>
 
@@ -230,7 +234,7 @@ function updateEvokationUrl(id){
         new_element = document.createElement('a');
         new_element.setAttribute("id", element.getAttribute("id"));
         new_element.setAttribute("href", element.getAttribute("value"));
-        new_element.innerHTML = element.getAttribute("value");
+        new_element.innerHTML = "<?= $contentContainer->name ?> Google Drive URL";
 
         //switch
         element.parentNode.replaceChild(new_element,element);

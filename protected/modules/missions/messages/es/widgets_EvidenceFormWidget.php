@@ -17,6 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Save Draft' => 'Guardar Borrador',
     'Cancel' => 'Cancelar',
     'Save' => 'Guardar',
     'Submit Evidence' => 'Enviar Evidencia',

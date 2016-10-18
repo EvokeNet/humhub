@@ -16,7 +16,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Missions');
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 style="margin-top:10px"><strong><?php echo Yii::t('MissionsModule.base', 'Missions'); ?></strong></h3>
+        <h4 style="margin-top:10px"><strong><?php echo Yii::t('MissionsModule.base', 'Missions'); ?></strong></h4>
     </div>
     <div class="panel-body">
 

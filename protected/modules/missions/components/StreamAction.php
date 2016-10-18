@@ -15,6 +15,7 @@ class StreamAction extends ContentContainerStream
     {
 
         $this->activeQuery->andWhere(['content.object_model' => Evidence::className()]);
+        $this->activeQuery->andWhere('content.visibility = 1 OR content.user_id ='.Yii::$app->user->getIdentity()->id);
 
         if(isset($this->activity_id)){
             $this->activeQuery->leftJoin('evidence', 'content.object_id=evidence.id AND content.object_model=:evidenceClass', [':evidenceClass' => Evidence::className()]);

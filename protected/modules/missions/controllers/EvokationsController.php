@@ -12,6 +12,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use humhub\modules\content\components\ContentContainerController;
+use humhub\modules\space\models\Setting;
 
 /**
  * EvokationsController implements the CRUD actions for Evokations model.
@@ -210,8 +211,15 @@ class EvokationsController extends ContentContainerController //extends Controll
         $missions = Missions::find()
         ->where(['locked' => 0])
         ->all();
+
+        $evokation = Evokations::find()
+        ->join('INNER JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evokations::classname()).'\' AND `c`.`object_id` = `evokations`.`id`')
+        ->where('c.space_id = '.$this->contentContainer->id)
+        ->One();
+
+        $gdrive_url = Setting::get($this->contentContainer->id, "gdrive_url");
                 
-        return $this->render('home', array('categories' => $categories, 'missions' => $missions, 'contentContainer' => $this->contentContainer));
+        return $this->render('home', array('categories' => $categories, 'missions' => $missions, 'contentContainer' => $this->contentContainer, 'gdrive_url' => $gdrive_url, 'evokation' => $evokation));
     }
     
     public function actionMissions()
@@ -239,12 +247,19 @@ class EvokationsController extends ContentContainerController //extends Controll
         $new_url = Yii::$app->request->post("url");
         $id = Yii::$app->request->post("id");
 
+        if($id == -1){
+            Setting::set($this->contentContainer->id, "gdrive_url", $new_url);
+            header('Content-type: application/json');
+            $response_array['status'] = 'success'; 
+            Yii::$app->end();
+        }
+
         $model = $this->findModel($id);
         $model->scenario = Evokations::SCENARIO_EDIT;
         
         $edited = false;
 
-        if($model && $model->created_by == $user->id){
+        if($model && $user->super_admin == 1){
             $model->gdrive_url = $new_url;
             $model->scenario = Evokations::SCENARIO_EDIT;
             $model->save();

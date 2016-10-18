@@ -17,9 +17,5 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    ' space.' => 'espacio',
-    'Become a member to obtain access to ' => 'Hágase miembro para obtener acceso a ',
-    'Please, wait until the space owner responds to your requisition.' => 'Por favor, espere hasta que el administrador del espacio responde a su solicitud',
-    'Request membership to obtain access to ' => 'Solicitar la afiliación para obtener acceso a',
-    'You\'ve already sent a membership request to access ' => 'Usted ya enviado una solicitud de afiliación para el acceso',
+    'Notifications' => '',
 ];

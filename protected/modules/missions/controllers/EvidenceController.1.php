@@ -37,7 +37,6 @@ class EvidenceController extends ContentContainerController
                 'class' => \humhub\modules\missions\components\StreamAction::className(),
                 'mode' => \humhub\modules\missions\components\StreamAction::MODE_NORMAL,
                 'contentContainer' => $this->contentContainer,
-                'activity_id' => Yii::$app->request->get('activity_id'),
              ),
             'userfeed' => array(
                 'class' => \humhub\modules\missions\components\UserStreamAction::className(),
@@ -225,78 +224,6 @@ class EvidenceController extends ContentContainerController
         ));
     }
 
-    public function actionPublish(){
-        $user = Yii::$app->user->getIdentity();
-        $id = Yii::$app->request->get('id');
-        $evidence = Evidence::findOne($id);
-        $request = Yii::$app->request;
-
-        if($evidence && $evidence->content->visibility == 0 && $evidence->created_by == $user->id){
-
-            $edited = false;
-            $model = Evidence::findOne(['id' => $id]);
-            $model->scenario = Evidence::SCENARIO_EDIT;
-
-            if (!$model->content->canWrite()) {
-                throw new HttpException(403, Yii::t('MissionsModule.controllers_PollController', 'Access denied!'));
-            }
-
-            if ($model->load($request->post())) {
-
-                if (mb_strlen(Yii::$app->request->post('Evidence')['text']) < 140) {
-                    AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
-                } else {
-                    if ($model->validate() && $model->save()) {
-                        // Reload record to get populated updated_at field
-                        $evidence = Evidence::findOne($id);
-                        $evidence->content->visibility = 1;
-                        $evidence->content->save();
-                        //ACTIVITY POWER POINTS
-                        $activityPowers = ActivityPowers::findAll(['activity_id' => $evidence->activities_id]);
-
-                        //USER POWER POINTS
-                        foreach($activityPowers as $activity_power){
-                            UserPowers::addPowerPoint($activity_power->getPower(), $user, $activity_power->value);
-                        }
-
-                        $message = $this->getEvidenceCreatedMessage($activityPowers);
-                        AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), $message);
-
-                        $this->redirect($evidence->content->getUrl());
-
-                    } else {
-                        AlertController::createAlert(Yii::t('MissionsModule.base', 'Error'),Yii::t('MissionsModule.base', 'Something went wrong.'));
-                    }
-                }
-            }
-
-        }else{
-            AlertController::createAlert(Yii::t('MissionsModule.base', 'Error!'), "Something's wrong");
-        }
-    }   
-
-    public function actionDraft(){
-        if (!$this->contentContainer->permissionManager->can(new \humhub\modules\missions\permissions\CreateEvidence())) {
-            throw new HttpException(400, 'Access denied!');
-        }
-
-        $evidence = new Evidence();
-        $evidence->scenario = Evidence::SCENARIO_CREATE;
-        $evidence->title = Yii::$app->request->post('title');
-        $evidence->text = Yii::$app->request->post('text');
-        $evidence->activities_id = Yii::$app->request->post('activityId');
-
-        if(!Yii::$app->request->post('title')){
-            AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Title cannot be blank.'));
-        } else if(!Yii::$app->request->post('text')){
-            AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Text cannot be blank.'));
-        } else{
-            AlertController::createAlert(Yii::t('MissionsModule.base', 'Draft saved!'),Yii::t('MissionsModule.base', 'Your evidence\'s draft has been saved!'));
-        }
-
-        return \humhub\modules\missions\widgets\WallCreateForm::create($evidence, $this->contentContainer, true);
-    }
-
     /**
      * Posts a new question  throws the question form
      *
@@ -314,17 +241,12 @@ class EvidenceController extends ContentContainerController
         $evidence->text = Yii::$app->request->post('text');
         $evidence->activities_id = Yii::$app->request->post('activityId');
 
-        Yii::$app->response->format = 'json';
-
         if(!Yii::$app->request->post('title')){
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Title cannot be blank.'));
-            return array('errors' => []);
         } else if(!Yii::$app->request->post('text')){
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Text cannot be blank.'));
-            return array('errors' => []);
-        } else if (mb_strlen(Yii::$app->request->post('text')) < 140) {
+        } else if (strlen(Yii::$app->request->post('text')) < 140) {
           AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
-            return array('errors' => []);
         } else{
 
             //ACTIVITY POWER POINTS
@@ -341,33 +263,7 @@ class EvidenceController extends ContentContainerController
 
         }
 
-        return \humhub\modules\missions\widgets\WallCreateForm::create($evidence, $this->contentContainer, false);
-    }
-
-    public function actionUpdate()
-    {
-        $request = Yii::$app->request;
-        $id = $request->get('id');
-
-        $edited = false;
-        $model = Evidence::findOne(['id' => $id]);
-        $model->scenario = Evidence::SCENARIO_EDIT;
-
-        if (!$model->content->canWrite()) {
-            throw new HttpException(403, Yii::t('MissionsModule.controllers_PollController', 'Access denied!'));
-        }
-
-        if ($model->load($request->post())) {
-
-            if ($model->validate() && $model->save()) {
-                // Reload record to get populated updated_at field
-                $model = Evidence::findOne(['id' => $id]);
-                AlertController::createAlert(Yii::t('MissionsModule.base', 'Draft saved!'),Yii::t('MissionsModule.base', 'Your evidence\'s draft has been saved!'));
-            } else {
-                AlertController::createAlert(Yii::t('MissionsModule.base', 'Error'),Yii::t('MissionsModule.base', 'Something went wrong.'));
-            }
-            
-        }
+        return \humhub\modules\missions\widgets\WallCreateForm::create($evidence, $this->contentContainer);
     }
 
 
@@ -390,24 +286,15 @@ class EvidenceController extends ContentContainerController
 
             Yii::$app->response->format = 'json';
             $result = [];
-
-            if (mb_strlen(Yii::$app->request->post('Evidence')['text']) < 140) {
-
-                AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
-                $result['errors'] = $model->getErrors();
-                return $result;
-
+            if ($model->validate() && $model->save()) {
+                // Reload record to get populated updated_at field
+                $model = Evidence::findOne(['id' => $id]);
+                $result['success'] = true;
+                $result['output'] = $this->renderAjaxContent($model->getWallOut(['justEdited' => true]));
             } else {
-                if ($model->validate() && $model->save()) {
-                    // Reload record to get populated updated_at field
-                    $model = Evidence::findOne(['id' => $id]);
-                    $result['success'] = true;
-                    $result['output'] = $this->renderAjaxContent($model->getWallOut(['justEdited' => true]));
-                } else {
-                    $result['errors'] = $model->getErrors();
-                }
-                return $result;
-            } 
+                $result['errors'] = $model->getErrors();
+            }
+            return $result;
         }
 
         return $this->renderAjax('edit', ['evidence' => $model, 'edited' => $edited]);
@@ -446,7 +333,7 @@ class EvidenceController extends ContentContainerController
             return;
         }
 
-        if (!empty($comment) && mb_strlen($comment) < 140) {
+        if (!empty($comment) && strlen($comment) < 140) {
             //comments must be at least 140 characters long
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
             return;
@@ -489,6 +376,27 @@ class EvidenceController extends ContentContainerController
                 $vote->comment = $comment;
                 $vote->value = $grade;
                 $vote->save();
+                
+                Yii::$app->mailer->compose('ReviewEvidence', [
+                    'user' => $user,
+                    'evidence_link' => $evidence->content->id,
+                    "message" => 'hey'
+                ])
+                ->setFrom([\humhub\models\Setting::Get('systemEmailAddress', 'mailing') => \humhub\models\Setting::Get('systemEmailName', 'mailing')])
+                // ->setTo($user->email)
+                ->setTo('rjapur@quanti.ca')
+                ->setSubject(Yii::t('MissionsModule.base', 'Evidence Reviewed'))
+                ->send();
+
+                // Yii::$app->mailer->compose([
+                //     'html' => 'contact-html'
+                // ])
+                // ->setFrom('rjapur@quanti.ca')
+                // ->setTo('rjapur@quanti.ca')
+                // ->setSubject('Evidence reviews')
+                // ->setTextBody('Plain text content')
+                // ->setHtmlBody('<b>Your evidence was reviews</b>')
+                // ->send();
 
                 //updated evidence author's reward
                 $activityPower = Activities::findOne($vote->activity_id)->getPrimaryPowers()[0];
@@ -512,9 +420,29 @@ class EvidenceController extends ContentContainerController
                 $vote->comment = $comment;
                 $vote->flag = $flag;
                 $vote->value = $grade;
-                $vote->user_type = $user->group->name;
                 $vote->save();
                 $evocoin_earned = 0;
+
+                Yii::$app->mailer->compose('ReviewEvidence', [
+                    'user' => $user,
+                    'evidence_link' => $evidence->content->id,
+                    "message" => 'hey'
+                ])
+                ->setFrom([\humhub\models\Setting::Get('systemEmailAddress', 'mailing') => \humhub\models\Setting::Get('systemEmailName', 'mailing')])
+                // ->setTo($user->email)
+                ->setTo('rjapur@quanti.ca')
+                ->setSubject(Yii::t('MissionsModule.base', 'Evidence Reviewed'))
+                ->send();
+
+                // Yii::$app->mailer->compose([
+                //     'html' => 'contact-html'
+                // ])
+                // ->setFrom('rjapur@quanti.ca')
+                // ->setTo('rjapur@quanti.ca')
+                // ->setSubject('Evidence reviews')
+                // ->setTextBody('Plain text content')
+                // ->setHtmlBody('<b>Your evidence was reviews</b>')
+                // ->send();
 
                 //Reward reviewer 1 evocoin
                 $wallet = Wallet::find()->where(['owner_id' => $user->id])->one();

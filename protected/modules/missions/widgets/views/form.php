@@ -80,7 +80,35 @@ $firstSecondary = true;
 
         echo Html::hiddenInput('activityId', $activity->id);
         echo Html::textArea("title", '', array('id' => 'contentForm_question', 'class' => 'form-control autosize contentForm', 'rows' => '1', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.widgets_views_evidenceForm', "Page Title")));
-        echo Html::textArea("text", '', array('id' => 'contentForm_question', 'class' => 'text-margin form-control autosize contentForm count-chars', 'rows' => '10', "tabindex" => "2", 'placeholder' => Yii::t('MissionsModule.widgets_views_evidenceForm', "Content"), 'pattern' => '.{0}|.{140,}', 'required' => true));
+        echo Html::textArea("text", '', array('id' => 'contentForm_question', 'class' => 'text-margin form-control autosize contentForm', 'rows' => '10', "tabindex" => "2", 'placeholder' => Yii::t('MissionsModule.widgets_views_evidenceForm', "Content"),  'required' => true));
+
+        ?>
+
+        <div id="counter" style="font-weight:bold">
+            <span id="current">0</span>
+            <span id="minimun">/ 140</span>
+        </div>
+
+        <?php
+
+        echo "<br>";
+
+        echo \humhub\widgets\AjaxButton::widget([
+            'label' => Yii::t('MissionsModule.widgets_EvidenceFormWidget', 'Save Draft'),
+            'ajaxOptions' => [
+                'url' => $contentContainer->createUrl('/missions/evidence/draft'),
+                'type' => 'POST',
+                'dataType' => 'json',
+                'beforeSend' => "function() { $('.contentForm').removeClass('error'); $('#contentFormError').hide(); $('#contentFormError').empty(); }",
+                'beforeSend' => 'function(){ $("#contentFormError").hide(); $("#contentFormError li").remove(); $(".contentForm_options .btn").hide(); $("#postform-loader").removeClass("hidden"); }',
+                'success' => "function(response) { handleResponse(response);}"
+            ],
+            'htmlOptions' => [
+                'id' => "post_draft_button",
+                'class' => 'btn btn-primary btn-comment-submit',
+                'type' => 'submit'
+        ]]);
+        
 
     ?>
 </div>
@@ -101,11 +129,35 @@ $( document ).ready(function() {
 
 });
 
+$('textarea[name=text]#contentForm_question').keyup(function() {
 
+    current = $('#current');
+    minimun = $('#minimun');
+
+    //change current
+    current.text($('textarea[name=text]#contentForm_question').val().length);
+
+    if(current.text() >= 140){
+        current.css('color', '#92CE92')
+    }else{
+        current.css('color', '#9B0000')
+    }
+
+})
 
 </script>
 
 <style type="text/css">
+
+.btn-draft{
+    background: #FB656F; 
+    border: 3px solid #a9040f;
+}
+
+.btn-draft:hover{
+    background: #e42a37 !important; 
+    border: 3px solid #7f030b !important;
+}
 
 .text-margin{
     margin-top: 5px;
