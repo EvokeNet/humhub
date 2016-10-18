@@ -243,7 +243,7 @@ class EvidenceController extends ContentContainerController
 
             if ($model->load($request->post())) {
 
-                if (strlen(Yii::$app->request->post('Evidence')['text']) < 140) {
+                if (mb_strlen(Yii::$app->request->post('Evidence')['text']) < 140) {
                     AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
                 } else {
                     if ($model->validate() && $model->save()) {
@@ -318,7 +318,7 @@ class EvidenceController extends ContentContainerController
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Title cannot be blank.'));
         } else if(!Yii::$app->request->post('text')){
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Text cannot be blank.'));
-        } else if (strlen(Yii::$app->request->post('text')) < 140) {
+        } else if (mb_strlen(Yii::$app->request->post('text')) < 140) {
           AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
         } else{
 
@@ -386,7 +386,7 @@ class EvidenceController extends ContentContainerController
             Yii::$app->response->format = 'json';
             $result = [];
 
-            if (strlen(Yii::$app->request->post('Evidence')['text']) < 140) {
+            if (mb_strlen(Yii::$app->request->post('Evidence')['text']) < 140) {
 
                 AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
                 $result['errors'] = $model->getErrors();
@@ -441,7 +441,7 @@ class EvidenceController extends ContentContainerController
             return;
         }
 
-        if (!empty($comment) && strlen($comment) < 140) {
+        if (!empty($comment) && mb_strlen($comment) < 140) {
             //comments must be at least 140 characters long
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
             return;
