@@ -314,12 +314,17 @@ class EvidenceController extends ContentContainerController
         $evidence->text = Yii::$app->request->post('text');
         $evidence->activities_id = Yii::$app->request->post('activityId');
 
+        Yii::$app->response->format = 'json';
+
         if(!Yii::$app->request->post('title')){
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Title cannot be blank.'));
+            return array('errors' => []);
         } else if(!Yii::$app->request->post('text')){
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Text cannot be blank.'));
+            return array('errors' => []);
         } else if (mb_strlen(Yii::$app->request->post('text')) < 140) {
           AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
+            return array('errors' => []);
         } else{
 
             //ACTIVITY POWER POINTS
