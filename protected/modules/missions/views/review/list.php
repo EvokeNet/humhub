@@ -21,7 +21,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidences');
                     <i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i>
                 </div>
             <?php endif; ?>
-            <?php echo Html::a($e['title'], ['index', 'sguid' => $contentContainer['guid'], 'id' => $e['id']], ['class' => 'profile-link', 'style' => 'font-size:12pt']); ?>
+            <?php echo Html::a($e['title'], ['show', 'sguid' => $contentContainer['guid'], 'id' => $e['id']], ['class' => 'profile-link', 'style' => 'font-size:12pt']); ?>
         <?php endforeach; ?>
     </div>
 </div>
