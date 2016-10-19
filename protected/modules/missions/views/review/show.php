@@ -169,7 +169,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
             </button>
         </div>
     </div>
-    
+
     <?php else: ?>
         <div class="panel-body">
             <?php echo Yii::t('MissionsModule.base', 'There are no more evidences left to review.'); ?>
@@ -214,16 +214,51 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
 
 <script>
 
+$(document).ready(function(){
+
+    current = $('#current<?= $evidence->id ?>');
+
+    if(current.text() >= 140){
+        current.css('color', '#92CE92')
+    }else{
+        current.css('color', '#9B0000')
+    }
+
+
+    $(".btn-hide<?= $evidence->id ?>").click(function(){
+        $("#yes-opt<?= $evidence->id ?>").collapse('hide');
+    });
+    $(".btn-show<?= $evidence->id ?>").click(function(){
+        $("#yes-opt<?= $evidence->id ?>").collapse('show');
+    });
+});
+
+$('#evidence_input_text_<?= $evidence->id ?>').keyup(function() {
+
+    current = $('#current<?= $evidence->id ?>');
+    minimun = $('#minimun<?= $evidence->id ?>');
+
+    //change current
+    current.text($('#evidence_input_text_<?= $evidence->id ?>').val().length);
+
+    if(current.text() >= 140){
+        current.css('color', '#92CE92')
+    }else{
+        current.css('color', '#9B0000')
+    }
+
+})
 
 function review(id, comment, opt, grade){
     grade = grade? grade : 0;
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
-            next_element = document.getElementById("next_evidence");
-            next_element.removeAttribute("disabled");
-            next_element.removeAttribute("onClick");
-            document.getElementById("post_submit_review").innerHTML = "<?php echo Yii::t('MissionsModule.base', 'Update Review'); ?>";
+            if(xhttp.responseText){
+              if(xhttp.responseText == "success"){
+                updateReview(id, opt, grade);
+              }
+            }
         }
     };
     xhttp.open("GET", "<?= $contentContainer->createUrl('/missions/evidence/review'); ?>&opt="+opt+"&grade="+grade+"&evidenceId="+id+"&comment="+comment , true);
@@ -234,61 +269,79 @@ function review(id, comment, opt, grade){
 
 function validateReview(id){
 
-<<<<<<< HEAD
-    var opt = document.querySelector('input[name="yes-no-opt"]:checked');
-    var grade = document.querySelector('input[name="grade"]:checked');
-    var comment = document.getElementById("review_comment").value;
-    opt = opt? opt.value : null;
-    grade = grade? grade.value : null;
+  var opt = $('#review' + id).find('input[name="yes-no-opt'+id+'"]:checked'),
+      grade = $('input[name="grade"]:checked'),
+      comment = $("#review_comment_"+id).val();
 
-/*Comment is required for mentors */
-<?php if(Yii::$app->user->getIdentity()->group->name == "Mentors"):  ?>
-    if(comment == ""){
-        showMessage("Error", "<?= Yii::t('MissionsModule.base', 'You must submit a comment.') ?>");
-        return false;
+  opt = opt? opt.val() : null;
+  grade = grade? grade.val() : null;
+
+  if(opt == "yes"){
+
+    if(grade >= 1){
+      return review(id, comment, opt, grade);
     }
-<?php endif; ?>
 
+    // showMessage("Error", "Choose how many points you will award this evidence.");
+    showMessage("Error", "<?= Yii::t('MissionsModule.base', 'Choose how many points you will award this evidence.') ?>");
 
-/*
-***Comment isn't required anymore.***
-    if(comment == ""){
-        showMessage("Error", "<?= Yii::t('MissionsModule.base', 'You must submit a comment.') ?>");
-        return false;
-    }
-*/
-  opt = 'yes';
-=======
-    var opt = 'yes'; //always yes for agents
-    var grade = document.querySelector('input[name="grade"]:checked');
-  var comment = document.getElementById("review_comment").value;
-    grade = grade? grade.value : null;
-  console.log(grade);
->>>>>>> origin/jg-agent_review_form_fix
-  return review(id, comment, opt, grade);
+  } else if(opt == "no"){
+    return review(id, comment, opt);
+  } else{
+    // showMessage("Error", "Please, Answer yes or no.");
+    showMessage("Error", "<?= Yii::t('MissionsModule.base', 'Please, Answer yes or no.') ?>");
+  }
+
+  return false;
 }
 
-jQuery(document).ready(function () {
-  var $submitButton = $('#post_submit_review');
-  console.log($submitButton);
-  $submitButton.on('click', function(e){
-    console.log('click');
-    $('#review').submit(
-        function(){
-            return validateReview(document.getElementById("evidence_id").value);
-        }
-    );
+jQuery(document).on('ajaxComplete', function () {
+  var $forms    = $('form.review'),
+      formCount = $forms.length,
+      i         = 0;
 
-  });
+  for (i; i < formCount; i++) {
+    var id            = $forms[i].id.replace('review', ''),
+        $form         = $('#review' + id),
+        $submitButton = $('#post_submit_review' + id);
+
+    $submitButton.off();
+    $submitButton.on('click', function(e){
+      var id  = e.target.id.replace('post_submit_review', ''),
+          opt = $('#review' + id).find('input[name="yes-no-opt'+id+'"]:checked').val();
+
+      if (opt == 'no') {
+        if (confirm("<?php echo Yii::t('MissionsModule.base', 'Are you sure you want to submit this review?'); ?>")){
+          $('#review' + id).submit(
+              function(){
+                  return validateReview(id);
+              }
+          );
+        } else {
+          e.preventDefault();
+          return false;
+        }
+      } else {
+        $('#review' + id).submit(function(e){
+            e.preventDefault();
+            return validateReview(id);
+          }
+        );
+      }
+
+    });
+  }
 });
+
 </script>
+
 
 
 
 <style>
 
-/* 
-Reference: 
+/*
+Reference:
 https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
 */
 
