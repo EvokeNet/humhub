@@ -1,6 +1,18 @@
 <?php
 
 use yii\helpers\Html;
+use yii\widgets\Breadcrumbs;
+use humhub\compat\CActiveForm;
+
+$this->title = Yii::t('MissionsModule.base', 'Review Evidence');
+
+$this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.base', 'Evidences To Be Reviewed'), 'url' => ['list', 'sguid' => $contentContainer->guid]];
+$this->params['breadcrumbs'][] = $this->title;
+        
+echo Breadcrumbs::widget([
+    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+]);
+
 $activity = null;
 
 if($evidence){
@@ -14,6 +26,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
     <div class="panel-heading">
         <h4 style="margin-top:10px"><?php echo Yii::t('MissionsModule.base', 'Review Evidence'); ?></h4>
         <?php if($activity): ?>
+            <!-- <h6><?php //echo Yii::t('MissionsModule.base', '{first} of {total}', array('first' => ($evidence_count - $evidence_to_review_count + 1), 'total' => $evidence_count)); ?></h6> -->
         <?php endif; ?>
     </div>
 <?php if($activity): ?>
@@ -22,8 +35,8 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
         <div class="formatted" style = "margin-bottom:40px">
 
             <h5>
-                <?= Yii::t('MissionsModule.base', 'Mission {mission}: Activity {activity}', array('mission' => $activity->mission->position, 'activity' => $activity->position)) ?>
-            </h5>
+                <?= Yii::t('MissionsModule.base', 'Mission #{mission} - Activity #{activity}', array('mission' => $activity->mission->position, 'activity' => $activity->position)) ?>
+            </h5><br />
 
             <p><?php echo nl2br(isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description) ?></p>
         </div>
@@ -32,6 +45,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
             <h4><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h4>
             <br />
             <p><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]); ?></p>
+            <br />
 
 
             <?php if(sizeof($files) > 0): ?>
@@ -120,74 +134,64 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
 
         <div class="review evidence_area">
         <?php if($evidence->content->user_id != Yii::$app->user->getIdentity()->id): ?>
-            <div id="collapseEvidence<?= $evidence->id ?>" class="panel-collapse collapse in">
-            <?php
-              $collapse = "";
-              $yes = "";
-              $no = "";
-              $grade = 0;
-              $vote = $evidence->getUserVote();
-              $comment = "";
-              if($vote){
-                $yes = $vote->flag ? "checked" : "";
-                $collapse = $yes ? "in" : "";
-                $no = !$vote->flag ? "checked" : "";
-                $grade = $vote->value;
-                $comment = $vote->comment;
-              }
-            ?>
             <div>
-              <?php
-                $primaryPowerTitle = $activity->getPrimaryPowers()[0]->getPower()->title;
+                <?php
+                  $collapse = "";
+                  $yes = "";
+                  $no = "";
+                  $grade = 0;
+                  $vote = $evidence->getUserVote();
+                  $comment = "";
+                  if($vote){
+                    $yes = $vote->flag ? "checked" : "";
+                    $collapse = $yes ? "in" : "";
+                    $no = !$vote->flag ? "checked" : "";
+                    $grade = $vote->value;
+                    $comment = $vote->comment;
+                  }
+                ?>
+                <div>
+                  <?php
+                    $power = $activity->getPrimaryPowers()[0]->getPower();
+                    $primaryPowerTitle = isset($power->powerTranslations[0]) ? $power->powerTranslations[0]->title : $power->title; ?>
+                    <h4><?= Yii::t('MissionsModule.base', 'Distribute points for {title}', array('title' => $primaryPowerTitle)) ?></h4>
+                    <p style = "margin:20px 0"><?= Yii::t('MissionsModule.base', '<strong>Activity Difficulty Level:</strong> {level}', array('level' => $activity->difficultyLevel->title)) ?></p>
+                    <p style = "margin-bottom:25px"><?= Yii::t('MissionsModule.base', '<strong>Activity Rubric:</strong> {rubric}', array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></p>
 
-                if(Yii::$app->language == 'es' && isset($activity->getPrimaryPowers()[0]->getPower()->powerTranslations[0]))
-                    $primaryPowerTitle = $activity->getPrimaryPowers()[0]->getPower()->powerTranslations[0]->title;
-              ?>
-              <h2><?= Yii::t('MissionsModule.base', 'Distribute points for {title}', array('title' => $primaryPowerTitle)) ?></h2>
-              <p>
-                <?php //$activity->rubric ?>
-                <?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric ?>
-              </p>
-              <form id = "review<?= $evidence->id ?>" class="review">
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="yes-no-opt<?= $evidence->id ?>" class="btn-show<?= $evidence->id ?>" value="yes" <?= $yes ?> >
-                    Yes
-                  </label>
-                  <div id="yes-opt<?= $evidence->id ?>" class="radio regular-radio-container collapse <?= $collapse ?>">
-                    <span class="rating">
-                        <?php for ($x=1; $x <= 5; $x++): ?>
-                        <label class="radio-inline">
-                          <input type="radio" name="grade" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> >
-                          <?php echo $x; ?>
-                        </label>
-                        <?php endfor; ?>
-                    </span>
-                    <p>
-                      <?= Yii::t('MissionsModule.base', 'How many points will you award this evidence?') ?>
-                    </p>
-                  </div>
-                </div>
-                <div class="radio">
-                  <label>
-                  <input type="radio" name="yes-no-opt<?= $evidence->id ?>" class="btn-hide<?= $evidence->id ?>" value="no" <?= $no ?>>
-                   No
-                  </label>
-                </div>
-                <br>
-                <?php echo Html::textArea("text", $comment , array('id' => 'review_comment_'.$evidence->id, 'class' => 'text-margin form-control count-chars ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Leave a comment and earn an additional 5 Evocoins."))); ?>
-                <br>
+                <form id = "review" class="review">
 
-                <br>
-                <button type="submit" id="post_submit_review<?= $evidence->id ?>" class="btn btn-cta1 submit">
-                  <?= Yii::t('MissionsModule.base', 'Submit Review') ?>
-                </button>
-              </form>
-            </div>       
-            <?php endif; ?>
+                    <input type="hidden" id="evidence_id" value="<?= $evidence->id ?>">
+                    <?php for ($x=1; $x <= 5; $x++): ?>
+                    <label class="radio-inline">
+                      <input type="radio" name="grade" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> >
+                      <?php echo $x; ?>
+                    </label>
+                    <?php endfor; ?>
+
+                    </br>
+                    </br>
+
+
+                        <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
+                            <p style="float:right"><?php echo Yii::t('MissionsModule.base', '{user} awarded + {value} {title}', array('user' => '', 'title' => $primaryPowerTitle, 'value' => $activity->getPrimaryPowers()[0]->value)); ?></p>
+                        <?php endif; ?>
+
+                        <?php echo Html::textArea("text", $comment , array('id' => 'review_comment', 'class' => 'text-margin form-control count-chars ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "140 characters required"))); ?>
+                        <br>
+                        
+                        <button type="submit" id="post_submit_review" class="btn btn-cta2" style = "padding: 8px 16px 6px;">
+                        <?= Yii::t('MissionsModule.base', 'Submit Review') ?>
+                        </button>
+                            
+                </div>
+        <?php endif; ?>
+            <hr>
+            <!-- <a id="next_evidence" class="btn btn-cta3" disabled="disabled" style="float: right;" onClick="return false" href="<?= $contentContainer->createUrl('/missions/review/index') ?>">
+                <?php //echo Yii::t('MissionsModule.base', 'Next Evidence'); ?>
+            </a> -->
         </div>
     </div>
-
+    
     <?php else: ?>
         <div class="panel-body">
             <?php echo Yii::t('MissionsModule.base', 'There are no more evidences left to review.'); ?>
@@ -232,51 +236,16 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
 
 <script>
 
-$(document).ready(function(){
-
-    current = $('#current<?= $evidence->id ?>');
-
-    if(current.text() >= 140){
-        current.css('color', '#92CE92')
-    }else{
-        current.css('color', '#9B0000')
-    }
-
-
-    $(".btn-hide<?= $evidence->id ?>").click(function(){
-        $("#yes-opt<?= $evidence->id ?>").collapse('hide');
-    });
-    $(".btn-show<?= $evidence->id ?>").click(function(){
-        $("#yes-opt<?= $evidence->id ?>").collapse('show');
-    });
-});
-
-$('#evidence_input_text_<?= $evidence->id ?>').keyup(function() {
-
-    current = $('#current<?= $evidence->id ?>');
-    minimun = $('#minimun<?= $evidence->id ?>');
-
-    //change current
-    current.text($('#evidence_input_text_<?= $evidence->id ?>').val().length);
-
-    if(current.text() >= 140){
-        current.css('color', '#92CE92')
-    }else{
-        current.css('color', '#9B0000')
-    }
-
-})
 
 function review(id, comment, opt, grade){
     grade = grade? grade : 0;
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
-            if(xhttp.responseText){
-              if(xhttp.responseText == "success"){
-                updateReview(id, opt, grade);
-              }
-            }
+            next_element = document.getElementById("next_evidence");
+            next_element.removeAttribute("disabled");
+            next_element.removeAttribute("onClick");
+            document.getElementById("post_submit_review").innerHTML = "<?php echo Yii::t('MissionsModule.base', 'Update Review'); ?>";
         }
     };
     xhttp.open("GET", "<?= $contentContainer->createUrl('/missions/evidence/review'); ?>&opt="+opt+"&grade="+grade+"&evidenceId="+id+"&comment="+comment , true);
@@ -286,80 +255,36 @@ function review(id, comment, opt, grade){
 }
 
 function validateReview(id){
-
-  var opt = $('#review' + id).find('input[name="yes-no-opt'+id+'"]:checked'),
-      grade = $('input[name="grade"]:checked'),
-      comment = $("#review_comment_"+id).val();
-
-  opt = opt? opt.val() : null;
-  grade = grade? grade.val() : null;
-
-  if(opt == "yes"){
-
-    if(grade >= 1){
-      return review(id, comment, opt, grade);
-    }
-
-    // showMessage("Error", "Choose how many points you will award this evidence.");
-    showMessage("Error", "<?= Yii::t('MissionsModule.base', 'Choose how many points you will award this evidence.') ?>");
-
-  } else if(opt == "no"){
-    return review(id, comment, opt);
-  } else{
-    // showMessage("Error", "Please, Answer yes or no.");
-    showMessage("Error", "<?= Yii::t('MissionsModule.base', 'Please, Answer yes or no.') ?>");
-  }
-
-  return false;
+    var opt = 'yes'; //always yes for agents
+    var grade = document.querySelector('input[name="grade"]:checked');
+  var comment = document.getElementById("review_comment").value;
+    grade = grade? grade.value : null;
+  console.log(grade);
+  
+  return review(id, comment, opt, grade);
 }
 
-jQuery(document).on('ajaxComplete', function () {
-  var $forms    = $('form.review'),
-      formCount = $forms.length,
-      i         = 0;
-
-  for (i; i < formCount; i++) {
-    var id            = $forms[i].id.replace('review', ''),
-        $form         = $('#review' + id),
-        $submitButton = $('#post_submit_review' + id);
-
-    $submitButton.off();
-    $submitButton.on('click', function(e){
-      var id  = e.target.id.replace('post_submit_review', ''),
-          opt = $('#review' + id).find('input[name="yes-no-opt'+id+'"]:checked').val();
-
-      if (opt == 'no') {
-        if (confirm("<?php echo Yii::t('MissionsModule.base', 'Are you sure you want to submit this review?'); ?>")){
-          $('#review' + id).submit(
-              function(){
-                  return validateReview(id);
-              }
-          );
-        } else {
-          e.preventDefault();
-          return false;
+jQuery(document).ready(function () {
+  var $submitButton = $('#post_submit_review');
+  console.log($submitButton);
+  $submitButton.on('click', function(e){
+    console.log('click');
+    $('#review').submit(
+        function(){
+            return validateReview(document.getElementById("evidence_id").value);
         }
-      } else {
-        $('#review' + id).submit(function(e){
-            e.preventDefault();
-            return validateReview(id);
-          }
-        );
-      }
+    );
 
-    });
-  }
+  });
 });
-
 </script>
-
 
 
 
 <style>
 
-/*
-Reference:
+/* 
+Reference: 
 https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
 */
 

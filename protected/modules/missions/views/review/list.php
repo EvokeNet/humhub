@@ -22,18 +22,8 @@ $user = Yii::$app->user->getIdentity();
                     <i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i>
                 </div>
             <?php endif; ?>
-
-            <?php 
-
-            if($user->group->name == "Mentors"){
-                $page = 'show';
-            }else{
-                $page = 'index';
-            }
-
-            ?>
             
-            <?php echo Html::a($e['title'], [$page, 'sguid' => $contentContainer['guid'], 'id' => $e['id']], ['class' => 'profile-link', 'style' => 'font-size:12pt']); ?>
+            <?php echo Html::a($e['title'], ['show', 'sguid' => $contentContainer['guid'], 'id' => $e['id']], ['class' => 'profile-link', 'style' => 'font-size:12pt']); ?>
 
         <?php endforeach; ?>
     </div>
