@@ -1,6 +1,18 @@
 <?php
 
 use yii\helpers\Html;
+use yii\widgets\Breadcrumbs;
+use humhub\compat\CActiveForm;
+
+$this->title = Yii::t('MissionsModule.base', 'Review Evidence');
+
+$this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.base', 'Evidences To Be Reviewed'), 'url' => ['list', 'sguid' => $contentContainer->guid]];
+$this->params['breadcrumbs'][] = $this->title;
+        
+echo Breadcrumbs::widget([
+    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+]);
+
 $activity = null;
 
 if($evidence){
@@ -14,7 +26,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
     <div class="panel-heading">
         <h4 style="margin-top:10px"><?php echo Yii::t('MissionsModule.base', 'Review Evidence'); ?></h4>
         <?php if($activity): ?>
-            <h6><?php echo Yii::t('MissionsModule.base', '{first} of {total}', array('first' => ($evidence_count - $evidence_to_review_count + 1), 'total' => $evidence_count)); ?></h6>
+            <!-- <h6><?php //echo Yii::t('MissionsModule.base', '{first} of {total}', array('first' => ($evidence_count - $evidence_to_review_count + 1), 'total' => $evidence_count)); ?></h6> -->
         <?php endif; ?>
     </div>
 <?php if($activity): ?>
@@ -23,8 +35,8 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
         <div class="formatted" style = "margin-bottom:40px">
 
             <h5>
-                <?= Yii::t('MissionsModule.base', 'Mission {mission}: Activity {activity}', array('mission' => $activity->mission->position, 'activity' => $activity->position)) ?>
-            </h5>
+                <?= Yii::t('MissionsModule.base', 'Mission #{mission} - Activity #{activity}', array('mission' => $activity->mission->position, 'activity' => $activity->position)) ?>
+            </h5><br />
 
             <p><?php echo nl2br(isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description) ?></p>
         </div>
@@ -33,6 +45,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
             <h4><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h4>
             <br />
             <p><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]); ?></p>
+            <br />
 
 
             <?php if(sizeof($files) > 0): ?>
@@ -173,9 +186,9 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                 </div>
         <?php endif; ?>
             <hr>
-            <a id="next_evidence" class="btn btn-cta3" disabled="disabled" style="float: right;" onClick="return false" href="<?= $contentContainer->createUrl('/missions/review/index') ?>">
-                <?php echo Yii::t('MissionsModule.base', 'Next Evidence'); ?>
-            </a>
+            <!-- <a id="next_evidence" class="btn btn-cta3" disabled="disabled" style="float: right;" onClick="return false" href="<?= $contentContainer->createUrl('/missions/review/index') ?>">
+                <?php //echo Yii::t('MissionsModule.base', 'Next Evidence'); ?>
+            </a> -->
         </div>
     </div>
     
@@ -242,38 +255,12 @@ function review(id, comment, opt, grade){
 }
 
 function validateReview(id){
-
-<<<<<<< HEAD
-    var opt = document.querySelector('input[name="yes-no-opt"]:checked');
-    var grade = document.querySelector('input[name="grade"]:checked');
-    var comment = document.getElementById("review_comment").value;
-    opt = opt? opt.value : null;
-    grade = grade? grade.value : null;
-
-/*Comment is required for mentors */
-<?php if(Yii::$app->user->getIdentity()->group->name == "Mentors"):  ?>
-    if(comment == ""){
-        showMessage("Error", "<?= Yii::t('MissionsModule.base', 'You must submit a comment.') ?>");
-        return false;
-    }
-<?php endif; ?>
-
-
-/*
-***Comment isn't required anymore.***
-    if(comment == ""){
-        showMessage("Error", "<?= Yii::t('MissionsModule.base', 'You must submit a comment.') ?>");
-        return false;
-    }
-*/
-  opt = 'yes';
-=======
     var opt = 'yes'; //always yes for agents
     var grade = document.querySelector('input[name="grade"]:checked');
   var comment = document.getElementById("review_comment").value;
     grade = grade? grade.value : null;
   console.log(grade);
->>>>>>> origin/jg-agent_review_form_fix
+  
   return review(id, comment, opt, grade);
 }
 
