@@ -136,34 +136,14 @@ class ReviewController extends ContentContainerController
     {
         $user = Yii::$app->user->getIdentity();
 
-        $subquery = '(SELECT v2.evidence_id from votes as v2 where v2.user_id = '.Yii::$app->user->getIdentity()->id.')';
-
-        $query = (new \yii\db\Query())
-        ->select(['e.*, count(distinct v.id) as vote_count'])
-        ->from('evidence as e')
-        // ->andWhere('e.id ='.$id)
-        ->join('INNER JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
-        ->join('LEFT JOIN', 'votes v', '`v`.`evidence_id`=`e`.`id`')
-        //->join('LEFT JOIN', 'space_membership s', '`s`.`user_id`=`c`.`user_id`')
-        // ->where('c.space_id != '.$currentSpace->id)
-        // ->andWhere('e.id NOT IN  '.$subquery)
-        // ->andWhere('c.user_id != '.$user_id)
-        // ->andWhere('c.guid = '.$id)
-        // ->groupBy('e.id')
-        // ->orderBy('vote_count ASC')
-        ->one();
-
-        // $nextEvidence = $this->getNextEvidence($this->contentContainer);
-        // $evidence = $nextEvidence['evidence'];
-        // $files = $nextEvidence['files'];
-        // $evidence_to_review_count = $nextEvidence['evidence_to_review_count'];
-        // $totalEvidence = $this->getEvidenceToReviewCount($this->contentContainer);
+        $evidence = Evidence::findOne($id);
+        $files = File::findAll(array('object_model' => Evidence::classname(), 'object_id' => $evidence->id));
 
         if($this->contentContainer->name == "Mentors" && $user->group->name != "Mentors"){
             $this->redirect($this->contentContainer->createUrl());
         }
 
-        return $this->render('show', array('contentContainer' => $this->contentContainer, 'evidence' => $evidence));
+        return $this->render('show', array('contentContainer' => $this->contentContainer, 'evidence' => $evidence, 'files' => $files));
     }
 
     public function actionList()
