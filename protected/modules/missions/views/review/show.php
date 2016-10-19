@@ -120,53 +120,71 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
 
         <div class="review evidence_area">
         <?php if($evidence->content->user_id != Yii::$app->user->getIdentity()->id): ?>
+            <div id="collapseEvidence<?= $evidence->id ?>" class="panel-collapse collapse in">
+            <?php
+              $collapse = "";
+              $yes = "";
+              $no = "";
+              $grade = 0;
+              $vote = $evidence->getUserVote();
+              $comment = "";
+              if($vote){
+                $yes = $vote->flag ? "checked" : "";
+                $collapse = $yes ? "in" : "";
+                $no = !$vote->flag ? "checked" : "";
+                $grade = $vote->value;
+                $comment = $vote->comment;
+              }
+            ?>
             <div>
-                <?php
-                  $collapse = "";
-                  $yes = "";
-                  $no = "";
-                  $grade = 0;
-                  $vote = $evidence->getUserVote();
-                  $comment = "";
-                  if($vote){
-                    $yes = $vote->flag ? "checked" : "";
-                    $collapse = $yes ? "in" : "";
-                    $no = !$vote->flag ? "checked" : "";
-                    $grade = $vote->value;
-                    $comment = $vote->comment;
-                  }
-                ?>
-                <div>
-                  <?php
-                    $power = $activity->getPrimaryPowers()[0]->getPower();
-                    $primaryPowerTitle = isset($power->powerTranslations[0]) ? $power->powerTranslations[0]->title : $power->title; ?>
-                    <h4><?= Yii::t('MissionsModule.base', 'Distribute points for {title}', array('title' => $primaryPowerTitle)) ?></h4>
-                    <p style = "margin:20px 0"><?= Yii::t('MissionsModule.base', '<strong>Activity Difficulty Level:</strong> {level}', array('level' => $activity->difficultyLevel->title)) ?></p>
-                    <p style = "margin-bottom:25px"><?= Yii::t('MissionsModule.base', '<strong>Activity Rubric:</strong> {rubric}', array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></p>
+              <?php
+                $primaryPowerTitle = $activity->getPrimaryPowers()[0]->getPower()->title;
 
-                <form id = "review" class="review">
-
-                    <input type="hidden" id="evidence_id" value="<?= $evidence->id ?>">
-                    <?php for ($x=1; $x <= 5; $x++): ?>
-                    <label class="radio-inline">
-                      <input type="radio" name="grade" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> >
-                      <?php echo $x; ?>
-                    </label>
-                    <?php endfor; ?>
-
-                    </br>
-                    </br>
-                        <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
-                            <p style="float:right"><?php echo Yii::t('MissionsModule.base', '{user} awarded + {value} {title}', array('user' => '', 'title' => $primaryPowerTitle, 'value' => $activity->getPrimaryPowers()[0]->value)); ?></p>
-                        <?php endif; ?>
-
-                        <?php echo Html::textArea("text", $comment , array('id' => 'review_comment', 'class' => 'text-margin form-control count-chars ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "140 characters required"))); ?>
-                        <br>
+                if(Yii::$app->language == 'es' && isset($activity->getPrimaryPowers()[0]->getPower()->powerTranslations[0]))
+                    $primaryPowerTitle = $activity->getPrimaryPowers()[0]->getPower()->powerTranslations[0]->title;
+              ?>
+              <h2><?= Yii::t('MissionsModule.base', 'Distribute points for {title}', array('title' => $primaryPowerTitle)) ?></h2>
+              <p>
+                <?php //$activity->rubric ?>
+                <?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric ?>
+              </p>
+              <form id = "review<?= $evidence->id ?>" class="review">
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="yes-no-opt<?= $evidence->id ?>" class="btn-show<?= $evidence->id ?>" value="yes" <?= $yes ?> >
+                    Yes
+                  </label>
+                  <div id="yes-opt<?= $evidence->id ?>" class="radio regular-radio-container collapse <?= $collapse ?>">
+                    <span class="rating">
+                        <?php for ($x=1; $x <= 5; $x++): ?>
+                        <label class="radio-inline">
+                          <input type="radio" name="grade" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> >
+                          <?php echo $x; ?>
+                        </label>
+                        <?php endfor; ?>
+                    </span>
+                    <p>
+                      <?= Yii::t('MissionsModule.base', 'How many points will you award this evidence?') ?>
+                    </p>
+                  </div>
                 </div>
-        <?php endif; ?>
-            <button type="submit" id="post_submit_review" class="btn btn-cta2" style = "padding: 8px 16px 6px;">
-                <?= Yii::t('MissionsModule.base', 'Submit Review') ?>
-            </button>
+                <div class="radio">
+                  <label>
+                  <input type="radio" name="yes-no-opt<?= $evidence->id ?>" class="btn-hide<?= $evidence->id ?>" value="no" <?= $no ?>>
+                   No
+                  </label>
+                </div>
+                <br>
+                <?php echo Html::textArea("text", $comment , array('id' => 'review_comment_'.$evidence->id, 'class' => 'text-margin form-control count-chars ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Leave a comment and earn an additional 5 Evocoins."))); ?>
+                <br>
+
+                <br>
+                <button type="submit" id="post_submit_review<?= $evidence->id ?>" class="btn btn-cta1 submit">
+                  <?= Yii::t('MissionsModule.base', 'Submit Review') ?>
+                </button>
+              </form>
+            </div>       
+            <?php endif; ?>
         </div>
     </div>
 
