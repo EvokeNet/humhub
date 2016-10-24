@@ -497,5 +497,13 @@ class AdminController extends \humhub\modules\admin\components\Controller
 
         return $this->redirect(['index-activity-powers', 'id' => $mid]);
     }
+
+    public function actionEvokeErrorsView(){
+
+        
+
+        
+        return $this->render('evoke-errors-view', array());
+    }
     
 }
