@@ -500,10 +500,51 @@ class AdminController extends \humhub\modules\admin\components\Controller
 
     public function actionEvokeErrorsView(){
 
-        
+        $evidences_total = (new \yii\db\Query())
+                    ->select('count(e.id) as count')
+                    ->from('evidence as e')
+                    ->one()['count'];
 
-        
-        return $this->render('evoke-errors-view', array());
+        $evidence_no_content_evidence = (new \yii\db\Query())
+                    ->select('count(e.id) as count')
+                    ->from('evidence as e')
+                    ->join('LEFT JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
+                    ->where('c.id IS NULL')
+                    ->one()['count'];
+
+        $evidence_no_content_percentage = $evidences_total > 0 ? $evidence_no_content_evidence / $evidences_total * 100 : 0;                    
+
+        $evidence_no_wall_entry_evidence = (new \yii\db\Query())
+                    ->select('count(e.id) as count')
+                    ->from('evidence as e')
+                    ->join('LEFT JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
+                    ->join('LEFT JOIN', 'wall_entry as w', '`c`.`id` = `w`.`content_id`')
+                    ->where('w.id IS NULL')
+                    ->one()['count'];
+
+        $evidence_no_wall_entry_percentage = $evidences_total > 0 ? $evidence_no_wall_entry_evidence / $evidences_total * 100 : 0;   
+
+        $votes_total = (new \yii\db\Query())
+                    ->select('count(v.id) as count')
+                    ->from('votes as v')
+                    ->one()['count'];
+
+        $votes_no_content_evidence = (new \yii\db\Query())
+                    ->select('count(v.id) as count')
+                    ->from('votes as v')
+                    ->join('LEFT JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Votes::classname()).'\' AND `c`.`object_id` = `v`.`id`')
+                    ->where('c.id IS NULL')
+                    ->one()['count'];
+
+        $votes_no_content_percentage = $votes_total > 0 ? $votes_no_content_evidence / $votes_total * 100 : 0;                    
+ 
+
+        return $this->render('evoke-errors-view', array(
+            'evidence_no_content_percentage' => $evidence_no_content_percentage, 
+            'evidence_no_wall_entry_percentage' => $evidence_no_wall_entry_percentage, 
+            'votes_no_content_percentage' => $votes_no_content_percentage, 
+            )
+        );
     }
     
 }

@@ -8,8 +8,13 @@ use humhub\compat\CHtml;
 $fa_check = "<i class=\"fa fa-check\"></i>";
 $fa_close = "<i class=\"fa fa-times\"></i>";
 
-$evidences_error = true;
-$reviews_error = false;
+$evidence_no_content_icon = $evidence_no_content_percentage == 0 ? $fa_check : $fa_close;
+$evidence_no_wall_entry_icon = $evidence_no_wall_entry_percentage == 0 ? $fa_check : $fa_close;
+
+$votes_no_content_icon = $votes_no_content_percentage == 0 ? $fa_check : $fa_close;
+
+$evidences_error = $evidence_no_content_percentage > 0 || $evidence_no_wall_entry_percentage > 0 ? true : false;
+$reviews_error = $votes_no_content_percentage > 0  ? true : false;
 
 
 ?>
@@ -24,9 +29,9 @@ $reviews_error = false;
         				Evidences
         			</div>
         			<div class="content">
-        				5% of evidences have no content <?= $fa_close ?>
+        				<?= $evidence_no_content_percentage ?>% of evidences have no content <?= $evidence_no_content_icon ?>
         				<br>
-        				15% of evidences have no wall entry <?= $fa_close ?>
+        				<?= $evidence_no_wall_entry_percentage ?>% of evidences have no wall entry <?= $evidence_no_wall_entry_icon ?>
         			</div>
         			<div class="check">
         				<?php if($evidences_error): ?>
@@ -36,7 +41,7 @@ $reviews_error = false;
         				<?php endif; ?>
         			</div>
         			<?php if($evidences_error): ?>
-        				<button type="button" class="btn btn-md btn-fix">
+        				<button type="button" class="btn btn-md btn-fix disabled" data-toggle="tooltip" title="Not working yet.">
         					Fix
         				</button>
         			<?php endif; ?>
@@ -49,9 +54,9 @@ $reviews_error = false;
         				Reviews
         			</div>
         			<div class="content">
-        				0% of reviews have no content <?= $fa_check ?>
+        				<?= $votes_no_content_percentage ?>% of reviews have no content <?= $votes_no_content_icon ?>
         				<br>
-        				0% of reviews have no wall entry <?= $fa_check ?>
+        				By default, all reviews have no wall entry <?= $fa_check ?>
         			</div>
         			<div class="check">
         				<?php if($reviews_error): ?>
@@ -61,7 +66,7 @@ $reviews_error = false;
         				<?php endif; ?>
         			</div>
         			<?php if($reviews_error): ?>
-        				<button type="button" class="btn btn-lg btn-fix">
+        				<button type="button" class="btn btn-lg btn-fix disabled" data-toggle="tooltip" title="Not working yet.">
         					Fix
         				</button>
         			<?php endif; ?>
