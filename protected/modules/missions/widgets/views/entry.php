@@ -589,8 +589,8 @@ https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
 .rating {
     overflow: hidden;
     display: inline-block;
-    font-size: 0;
     position: relative;
+    font-size: 10pt !important;
 }
 .rating-input {
     float: right;
