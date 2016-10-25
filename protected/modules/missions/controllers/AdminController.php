@@ -14,7 +14,9 @@ use app\modules\missions\models\EvokationCategoryTranslations;
 use app\modules\missions\models\EvokationDeadline;
 use app\modules\missions\models\Evidence;
 use app\modules\missions\models\EvidenceSearch;
+use app\modules\teams\models\Team;
 use app\modules\missions\models\Votes;
+use humhub\modules\content\models\Content;
 
 /**
  * AdminController
@@ -498,6 +500,184 @@ class AdminController extends \humhub\modules\admin\components\Controller
         return $this->redirect(['index-activity-powers', 'id' => $mid]);
     }
 
+    /*
+    *
+    *   Evoke Error's View
+    *
+    */
+
+    public function actionFixEvidences(){
+
+        $this->actionFixEvidencesContents();
+        $this->actionFixEvidencesWallEntries();
+
+        return $this->redirect(['evoke-errors-view']);
+    }
+
+    public function actionFixVotes(){
+
+        $this->actionFixVotesContents();
+
+        return $this->redirect(['evoke-errors-view']);
+    }
+
+    private function actionFixVotesContents(){
+
+        $votes_id = [];
+
+        //find all corrupt ids
+        $votes_no_content_evidence = (new \yii\db\Query())
+                    ->select('v.id as id')
+                    ->from('votes as v')
+                    ->join('LEFT JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Votes::classname()).'\' AND `c`.`object_id` = `v`.`id`')
+                    ->where('c.id IS NULL')
+                    ->all();
+
+        //get only the ids
+        foreach($votes_no_content_evidence as $vote){
+            array_push($votes_id, $vote['id']);
+        }  
+
+        //find votes' objects
+        $votes = Votes::findAll(['id' => $votes_id]);
+
+        //fix one by one
+        foreach($votes as $vote){
+            $this->fixContent($vote);
+        }
+    }
+
+    private function actionFixEvidencesContents(){
+
+        $evidences_id = [];
+
+        //find all corrupt ids
+        $evidence_no_content_evidence = (new \yii\db\Query())
+                    ->select('e.id as id')
+                    ->from('evidence as e')
+                    ->join('LEFT JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
+                    ->where('c.id IS NULL')
+                    ->all();
+
+        //get only the ids
+        foreach($evidence_no_content_evidence as $evidence){
+            array_push($evidences_id, $evidence['id']);
+        }  
+
+        //find evidences' objects
+        $evidences = Evidence::findAll(['id' => $evidences_id]);
+
+        //fix one by one
+        foreach($evidences as $evidence){
+            $this->fixContent($evidence);
+        }
+    }
+
+    private function actionFixEvidencesWallEntries(){
+
+        $contents_id = [];
+
+        //find all corrupt ids
+        $evidence_no_wall_entry_evidence = (new \yii\db\Query())
+                    ->select('c.id as content_id')
+                    ->from('evidence as e')
+                    ->join('LEFT JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
+                    ->join('LEFT JOIN', 'wall_entry as w', '`c`.`id` = `w`.`content_id`')
+                    ->where('w.id IS NULL AND c.id IS NOT NULL')
+                    ->all();
+
+        //get only the ids
+        foreach($evidence_no_wall_entry_evidence as $evidence){
+            array_push($contents_id, $evidence['content_id']);
+        }  
+
+        //find evidences' objects
+        $contents = Content::findAll(['id' => $contents_id]);
+
+        //fix one by one
+        foreach($contents as $content){
+            $this->fixWallEntry($content);
+        }
+    }
+
+    private function fixWallEntry($content){
+        Yii::$app->db->createCommand()->insert('wall_entry', [
+                "wall_id" => $content->space->wall_id, 
+                "content_id" => $content->id, 
+                "created_at" => $content->created_at, 
+                "created_by" => $content->created_by, 
+                "updated_at" => $content->updated_at, 
+                "updated_by" => $content->updated_by, 
+            ]
+        )->execute();      
+    }
+
+    private function fixContent($object){
+        $content = new Content();
+
+        $content->object_model = $object->className();
+        $content->object_id = $object->getPrimaryKey();
+        $content->visibility = Content::VISIBILITY_PUBLIC;
+        $content->sticked = 0;
+        $content->archived = 0;
+
+        if($object->className() == Votes::className()){
+            $content->user_id = $object->user_id;
+            $content->created_by = $object->user_id;
+            $content->updated_by = $object->user_id;
+        }else{
+            $content->user_id = $object->created_by;
+            $content->created_by = $object->created_by;
+            $content->updated_by = $object->created_by;
+        }
+ 
+        $content->created_at = $object->created_at;
+        $content->updated_at = $object->created_at;
+        
+
+        //get user's team
+        $team_id = Team::getUserTeam($content->created_by);
+
+        if($team_id){
+            $content->space_id = $team_id;
+        }
+
+        //SAVE AND INSERT INTO DB
+
+        $content->save();
+
+        if(!$content->id){
+
+            Yii::$app->db->createCommand()->insert('content', [
+                    "guid" => $content->guid, 
+                    "object_model" => $content->object_model, 
+                    "object_id" => $content->object_id, 
+                    "visibility" => $content->visibility, 
+                    "sticked" => $content->sticked, 
+                    "archived" => $content->archived, 
+                    "space_id" => $content->space_id, 
+                    "user_id" => $content->user_id, 
+                    "created_at" => $content->created_at, 
+                    "created_by" => $content->created_by, 
+                    "updated_at" => $content->updated_at, 
+                    "updated_by" => $content->updated_by, 
+                ]
+            )->execute();  
+
+        }
+
+        $content->addToWall();
+
+        if ($content->space) {
+            $membership = $content->space->getMembership();
+
+            if($membership){
+                $membership->updateLastVisit();    
+            }
+            
+        }    
+    }
+
     public function actionEvokeErrorsView(){
 
         $evidences_total = (new \yii\db\Query())
@@ -505,16 +685,16 @@ class AdminController extends \humhub\modules\admin\components\Controller
                     ->from('evidence as e')
                     ->one()['count'];
 
-        $evidence_no_content_evidence = (new \yii\db\Query())
+        $no_content_evidence = (new \yii\db\Query())
                     ->select('count(e.id) as count')
                     ->from('evidence as e')
                     ->join('LEFT JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
                     ->where('c.id IS NULL')
                     ->one()['count'];
 
-        $evidence_no_content_percentage = $evidences_total > 0 ? $evidence_no_content_evidence / $evidences_total * 100 : 0;                    
+        $evidence_no_content_percentage = $evidences_total > 0 ? $no_content_evidence / $evidences_total * 100 : 0;                    
 
-        $evidence_no_wall_entry_evidence = (new \yii\db\Query())
+        $no_wall_entry_evidence = (new \yii\db\Query())
                     ->select('count(e.id) as count')
                     ->from('evidence as e')
                     ->join('LEFT JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
@@ -522,27 +702,27 @@ class AdminController extends \humhub\modules\admin\components\Controller
                     ->where('w.id IS NULL')
                     ->one()['count'];
 
-        $evidence_no_wall_entry_percentage = $evidences_total > 0 ? $evidence_no_wall_entry_evidence / $evidences_total * 100 : 0;   
+        $evidence_no_wall_entry_percentage = $evidences_total > 0 ? $no_wall_entry_evidence / $evidences_total * 100 : 0;   
 
         $votes_total = (new \yii\db\Query())
                     ->select('count(v.id) as count')
                     ->from('votes as v')
                     ->one()['count'];
 
-        $votes_no_content_evidence = (new \yii\db\Query())
+        $no_content_votes = (new \yii\db\Query())
                     ->select('count(v.id) as count')
                     ->from('votes as v')
                     ->join('LEFT JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Votes::classname()).'\' AND `c`.`object_id` = `v`.`id`')
                     ->where('c.id IS NULL')
                     ->one()['count'];
 
-        $votes_no_content_percentage = $votes_total > 0 ? $votes_no_content_evidence / $votes_total * 100 : 0;                    
+        $votes_no_content_percentage = $votes_total > 0 ? $no_content_votes / $votes_total * 100 : 0;                    
  
 
         return $this->render('evoke-errors-view', array(
-            'evidence_no_content_percentage' => $evidence_no_content_percentage, 
-            'evidence_no_wall_entry_percentage' => $evidence_no_wall_entry_percentage, 
-            'votes_no_content_percentage' => $votes_no_content_percentage, 
+            'evidence_no_content_percentage' => number_format( (float) $evidence_no_content_percentage, 2, '.', '') , 
+            'evidence_no_wall_entry_percentage' => number_format( (float) $evidence_no_wall_entry_percentage, 2, '.', '') ,
+            'votes_no_content_percentage' => number_format( (float) $votes_no_content_percentage, 2, '.', '') , 
             )
         );
     }

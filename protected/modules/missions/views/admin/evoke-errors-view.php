@@ -41,9 +41,9 @@ $reviews_error = $votes_no_content_percentage > 0  ? true : false;
         				<?php endif; ?>
         			</div>
         			<?php if($evidences_error): ?>
-        				<button type="button" class="btn btn-md btn-fix disabled" data-toggle="tooltip" title="Not working yet.">
+        				<a type="button" href="<?= Url::to(['/missions/admin/fix-evidences']) ?>" class="btn btn-md btn-fix" >
         					Fix
-        				</button>
+        				</a>
         			<?php endif; ?>
         		</div>
 			</div>
@@ -66,9 +66,9 @@ $reviews_error = $votes_no_content_percentage > 0  ? true : false;
         				<?php endif; ?>
         			</div>
         			<?php if($reviews_error): ?>
-        				<button type="button" class="btn btn-lg btn-fix disabled" data-toggle="tooltip" title="Not working yet.">
+        				<a type="button" href="<?= Url::to(['/missions/admin/fix-votes']) ?>" class="btn btn-md btn-fix ">
         					Fix
-        				</button>
+        				</a>
         			<?php endif; ?>
         		</div>
 			</div>
