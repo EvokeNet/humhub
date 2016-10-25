@@ -154,6 +154,19 @@ class Events
             'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'settings'
            ),
         ));
+
+        $event->sender->addItem(array(
+            'label' => Yii::t('MissionsModule.event', 'Evoke Errors\' View'),
+            'url' => Url::to(['/missions/admin/evoke-errors-view']),
+            'group' => 'manage',
+            'sortOrder' => 1500,
+            'icon' => '<i class="fa fa-bug"></i>',
+            'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions'
+                && Yii::$app->controller->id == 'admin' 
+                && Yii::$app->controller->action->id == 'evoke-errors-view'
+           ),
+        ));
+
     }
 
     public static function onCategoriesAdminMenuInit($event)
