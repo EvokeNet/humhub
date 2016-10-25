@@ -21,6 +21,9 @@
         // 'urlManagerRules' => [
         //     'matching_questions' => 'matching_questions/matching-questions'
         // ]
+        'urlManagerRules' => [
+            'achievements' => 'achievements/achievements'
+        ]
     ];
 
 ?>
