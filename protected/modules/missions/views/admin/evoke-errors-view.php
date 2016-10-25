@@ -16,6 +16,9 @@ $votes_no_content_icon = $votes_no_content_percentage == 0 ? $fa_check : $fa_clo
 $evidences_error = $evidence_no_content_percentage > 0 || $evidence_no_wall_entry_percentage > 0 ? true : false;
 $reviews_error = $votes_no_content_percentage > 0  ? true : false;
 
+$evidence_no_content_log = $evidence_no_content_percentage > 0 ? "<a target=\"_blank\" class=\"log\" href=\"".Url::to(['/missions/admin/evidences-no-content-log'])."\">LOG</a>" : "";
+$evidence_no_wall_entry_log = $evidence_no_wall_entry_percentage > 0 ? "<a target=\"_blank\" class=\"log\" href=\"".Url::to(['/missions/admin/evidences-no-wall-entry-log'])."\">LOG</a>" : "";
+$votes_no_content_log = $votes_no_content_percentage > 0 ? "<a target=\"_blank\" class=\"log\" href=\"".Url::to(['/missions/admin/votes-no-content-log'])."\">LOG</a>" : "";
 
 ?>
 <div class="panel panel-default">
@@ -29,9 +32,9 @@ $reviews_error = $votes_no_content_percentage > 0  ? true : false;
         				Evidences
         			</div>
         			<div class="content">
-        				<?= $evidence_no_content_percentage ?>% of evidences have no content <?= $evidence_no_content_icon ?>
+        				<?= $evidence_no_content_percentage ?>% of evidences have no content <?= $evidence_no_content_icon ?> <?= $evidence_no_content_log ?>
         				<br>
-        				<?= $evidence_no_wall_entry_percentage ?>% of evidences have no wall entry <?= $evidence_no_wall_entry_icon ?>
+        				<?= $evidence_no_wall_entry_percentage ?>% of evidences have no wall entry <?= $evidence_no_wall_entry_icon ?> <?= $evidence_no_wall_entry_log ?>
         			</div>
         			<div class="check">
         				<?php if($evidences_error): ?>
@@ -54,7 +57,7 @@ $reviews_error = $votes_no_content_percentage > 0  ? true : false;
         				Reviews
         			</div>
         			<div class="content">
-        				<?= $votes_no_content_percentage ?>% of reviews have no content <?= $votes_no_content_icon ?>
+        				<?= $votes_no_content_percentage ?>% of reviews have no content <?= $votes_no_content_icon ?> <?= $votes_no_content_log ?>
         				<br>
         				By default, all reviews have no wall entry <?= $fa_check ?>
         			</div>
@@ -79,6 +82,26 @@ $reviews_error = $votes_no_content_percentage > 0  ? true : false;
 </div>
 
 <style>
+
+.log {
+	color: white;
+	background-color: #b50d0d;
+	font-size: 12px;
+	font-weight: bold;
+	margin-left: 3px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.log:hover{
+	color: #b50d0d;
+	background-color: white;
+}
+
+.log:active{
+	color: #b50d0d;
+	background-color: white;
+}
 
 .bug-box{
 	margin-top: 10%;

@@ -66,9 +66,6 @@ class AdminController extends \humhub\modules\admin\components\Controller
 
     public function actionIndexEvidences()
     {
-        // $evidences = Evidence::find()->all();
-        // return $this->render('evidences/index', array('evidences' => $evidences));
-
         $searchModel = new EvidenceSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -502,9 +499,24 @@ class AdminController extends \humhub\modules\admin\components\Controller
 
     /*
     *
-    *   Evoke Error's View
+    *   EVOKE ERRORS VIEW
     *
     */
+
+    public function actionEvidencesNoContentLog(){
+        $evidences = $this->getNoContentEvidences();
+        return $this->render('evidences/errors', array('evidences' => $evidences));
+    }
+
+    public function actionEvidencesNoWallEntryLog(){
+        $evidences = $this->getNoWallEntryEvidences();
+        return $this->render('evidences/errors', array('evidences' => $evidences));
+    }
+
+    public function actionVotesNoContentLog(){
+        $reviews = $this->getNoContentVotes();
+        return $this->render('votes/index', array('reviews' => $reviews));
+    }
 
     public function actionFixEvidences(){
 
@@ -521,8 +533,52 @@ class AdminController extends \humhub\modules\admin\components\Controller
         return $this->redirect(['evoke-errors-view']);
     }
 
-    private function actionFixVotesContents(){
+    private function getNoWallEntryEvidences(){
+        $evidences_id = [];
 
+        //find all corrupt ids
+        $evidence_no_content_evidence = (new \yii\db\Query())
+                    ->select('e.id as id')
+                    ->from('evidence as e')
+                    ->join('LEFT JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
+                    ->join('LEFT JOIN', 'wall_entry as w', '`c`.`id` = `w`.`content_id`')
+                    ->where('w.id IS NULL AND c.id IS NOT NULL')
+                    ->all();
+
+        //get only the ids
+        foreach($evidence_no_content_evidence as $evidence){
+            array_push($evidences_id, $evidence['id']);
+        }  
+
+        //find evidences' objects
+        $evidences = Evidence::findAll(['id' => $evidences_id]);
+
+        return $evidences;
+    }
+
+    private function getNoContentEvidences(){
+        $evidences_id = [];
+
+        //find all corrupt ids
+        $evidence_no_content_evidence = (new \yii\db\Query())
+                    ->select('e.id as id')
+                    ->from('evidence as e')
+                    ->join('LEFT JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
+                    ->where('c.id IS NULL')
+                    ->all();
+
+        //get only the ids
+        foreach($evidence_no_content_evidence as $evidence){
+            array_push($evidences_id, $evidence['id']);
+        }  
+
+        //find evidences' objects
+        $evidences = Evidence::findAll(['id' => $evidences_id]);
+
+        return $evidences;
+    }
+
+    private function getNoContentVotes(){
         $votes_id = [];
 
         //find all corrupt ids
@@ -541,6 +597,13 @@ class AdminController extends \humhub\modules\admin\components\Controller
         //find votes' objects
         $votes = Votes::findAll(['id' => $votes_id]);
 
+        return $votes;
+    }
+
+    private function actionFixVotesContents(){
+
+        $votes = $this->getNoContentVotes();
+
         //fix one by one
         foreach($votes as $vote){
             $this->fixContent($vote);
@@ -549,23 +612,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
 
     private function actionFixEvidencesContents(){
 
-        $evidences_id = [];
-
-        //find all corrupt ids
-        $evidence_no_content_evidence = (new \yii\db\Query())
-                    ->select('e.id as id')
-                    ->from('evidence as e')
-                    ->join('LEFT JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
-                    ->where('c.id IS NULL')
-                    ->all();
-
-        //get only the ids
-        foreach($evidence_no_content_evidence as $evidence){
-            array_push($evidences_id, $evidence['id']);
-        }  
-
-        //find evidences' objects
-        $evidences = Evidence::findAll(['id' => $evidences_id]);
+        $evidences = $this->getNoContentEvidences();
 
         //fix one by one
         foreach($evidences as $evidence){

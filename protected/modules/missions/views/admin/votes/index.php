@@ -26,6 +26,7 @@ echo Breadcrumbs::widget([
                     <th><?php echo Yii::t('MissionsModule.base', 'Author'); ?></th>
                     <th><?php echo Yii::t('MissionsModule.base', 'Yes or No'); ?></th>
                     <th><?php echo Yii::t('MissionsModule.base', 'Value'); ?></th>
+                    <th style="width: 400px;"><?php echo Yii::t('MissionsModule.base', 'Comment'); ?></th>
                     <th>&nbsp;</th>
                 </tr>
                 <?php foreach ($reviews as $review): ?>
@@ -35,6 +36,7 @@ echo Breadcrumbs::widget([
                             <?php echo ($review->flag == 0) ? Yii::t('MissionsModule.base', 'No') : Yii::t('MissionsModule.base', 'Yes') ?>
                         </td>
                         <td><?php echo $review->value; ?></td>
+                        <td><?php echo $review->comment; ?></td>
                         <td>
                             <a class = "btn btn-success btn-sm" target="_blank" href="<?= Url::to(['/content/perma', 'id' => $review->evidence->getContentObject()->id]) ?>">
                                 <?= Yii::t('MissionsModule.base', 'Jump to Post') ?>
