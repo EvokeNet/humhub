@@ -259,7 +259,7 @@ class EvokationsController extends ContentContainerController //extends Controll
         
         $edited = false;
 
-        if($model && $model->created_by == $user->id){
+        if($model && $user->super_admin == 1){
             $model->gdrive_url = $new_url;
             $model->scenario = Evokations::SCENARIO_EDIT;
             $model->save();

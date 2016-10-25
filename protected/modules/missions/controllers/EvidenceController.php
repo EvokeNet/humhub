@@ -229,23 +229,46 @@ class EvidenceController extends ContentContainerController
         $user = Yii::$app->user->getIdentity();
         $id = Yii::$app->request->get('id');
         $evidence = Evidence::findOne($id);
+        $request = Yii::$app->request;
 
         if($evidence && $evidence->content->visibility == 0 && $evidence->created_by == $user->id){
-            $evidence->content->visibility = 1;
-            $evidence->content->save();
 
-            //ACTIVITY POWER POINTS
-            $activityPowers = ActivityPowers::findAll(['activity_id' => $evidence->activities_id]);
+            $edited = false;
+            $model = Evidence::findOne(['id' => $id]);
+            $model->scenario = Evidence::SCENARIO_EDIT;
 
-            //USER POWER POINTS
-            foreach($activityPowers as $activity_power){
-                UserPowers::addPowerPoint($activity_power->getPower(), $user, $activity_power->value);
+            if (!$model->content->canWrite()) {
+                throw new HttpException(403, Yii::t('MissionsModule.controllers_PollController', 'Access denied!'));
             }
 
-            $message = $this->getEvidenceCreatedMessage($activityPowers);
-            AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), $message);
+            if ($model->load($request->post())) {
 
-            $this->redirect($evidence->content->getUrl());
+                if (mb_strlen(Yii::$app->request->post('Evidence')['text']) < 140) {
+                    AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
+                } else {
+                    if ($model->validate() && $model->save()) {
+                        // Reload record to get populated updated_at field
+                        $evidence = Evidence::findOne($id);
+                        $evidence->content->visibility = 1;
+                        $evidence->content->save();
+                        //ACTIVITY POWER POINTS
+                        $activityPowers = ActivityPowers::findAll(['activity_id' => $evidence->activities_id]);
+
+                        //USER POWER POINTS
+                        foreach($activityPowers as $activity_power){
+                            UserPowers::addPowerPoint($activity_power->getPower(), $user, $activity_power->value);
+                        }
+
+                        $message = $this->getEvidenceCreatedMessage($activityPowers);
+                        AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), $message);
+
+                        $this->redirect($evidence->content->getUrl());
+
+                    } else {
+                        AlertController::createAlert(Yii::t('MissionsModule.base', 'Error'),Yii::t('MissionsModule.base', 'Something went wrong.'));
+                    }
+                }
+            }
 
         }else{
             AlertController::createAlert(Yii::t('MissionsModule.base', 'Error!'), "Something's wrong");
@@ -267,12 +290,8 @@ class EvidenceController extends ContentContainerController
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Title cannot be blank.'));
         } else if(!Yii::$app->request->post('text')){
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Text cannot be blank.'));
-        } else if (strlen(Yii::$app->request->post('text')) < 140) {
-          AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
         } else{
-
             AlertController::createAlert(Yii::t('MissionsModule.base', 'Draft saved!'),Yii::t('MissionsModule.base', 'Your evidence\'s draft has been saved!'));
-
         }
 
         return \humhub\modules\missions\widgets\WallCreateForm::create($evidence, $this->contentContainer, true);
@@ -295,12 +314,17 @@ class EvidenceController extends ContentContainerController
         $evidence->text = Yii::$app->request->post('text');
         $evidence->activities_id = Yii::$app->request->post('activityId');
 
+        Yii::$app->response->format = 'json';
+
         if(!Yii::$app->request->post('title')){
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Title cannot be blank.'));
+            return array('errors' => []);
         } else if(!Yii::$app->request->post('text')){
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Text cannot be blank.'));
-        } else if (strlen(Yii::$app->request->post('text')) < 140) {
+            return array('errors' => []);
+        } else if (mb_strlen(Yii::$app->request->post('text')) < 140) {
           AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
+            return array('errors' => []);
         } else{
 
             //ACTIVITY POWER POINTS
@@ -335,17 +359,14 @@ class EvidenceController extends ContentContainerController
 
         if ($model->load($request->post())) {
 
-            if (strlen(Yii::$app->request->post('Evidence')['text']) < 140) {
-                AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
+            if ($model->validate() && $model->save()) {
+                // Reload record to get populated updated_at field
+                $model = Evidence::findOne(['id' => $id]);
+                AlertController::createAlert(Yii::t('MissionsModule.base', 'Draft saved!'),Yii::t('MissionsModule.base', 'Your evidence\'s draft has been saved!'));
             } else {
-                if ($model->validate() && $model->save()) {
-                    // Reload record to get populated updated_at field
-                    $model = Evidence::findOne(['id' => $id]);
-                    AlertController::createAlert(Yii::t('MissionsModule.base', 'Draft saved!'),Yii::t('MissionsModule.base', 'Your evidence\'s draft has been saved!'));
-                } else {
-                    AlertController::createAlert(Yii::t('MissionsModule.base', 'Error'),Yii::t('MissionsModule.base', 'Something went wrong.'));
-                }
+                AlertController::createAlert(Yii::t('MissionsModule.base', 'Error'),Yii::t('MissionsModule.base', 'Something went wrong.'));
             }
+            
         }
     }
 
@@ -369,15 +390,24 @@ class EvidenceController extends ContentContainerController
 
             Yii::$app->response->format = 'json';
             $result = [];
-            if ($model->validate() && $model->save()) {
-                // Reload record to get populated updated_at field
-                $model = Evidence::findOne(['id' => $id]);
-                $result['success'] = true;
-                $result['output'] = $this->renderAjaxContent($model->getWallOut(['justEdited' => true]));
-            } else {
+
+            if (mb_strlen(Yii::$app->request->post('Evidence')['text']) < 140) {
+
+                AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
                 $result['errors'] = $model->getErrors();
-            }
-            return $result;
+                return $result;
+
+            } else {
+                if ($model->validate() && $model->save()) {
+                    // Reload record to get populated updated_at field
+                    $model = Evidence::findOne(['id' => $id]);
+                    $result['success'] = true;
+                    $result['output'] = $this->renderAjaxContent($model->getWallOut(['justEdited' => true]));
+                } else {
+                    $result['errors'] = $model->getErrors();
+                }
+                return $result;
+            } 
         }
 
         return $this->renderAjax('edit', ['evidence' => $model, 'edited' => $edited]);
@@ -416,7 +446,7 @@ class EvidenceController extends ContentContainerController
             return;
         }
 
-        if (!empty($comment) && strlen($comment) < 140) {
+        if (!empty($comment) && mb_strlen($comment) < 140) {
             //comments must be at least 140 characters long
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
             return;

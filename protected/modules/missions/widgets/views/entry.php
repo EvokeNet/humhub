@@ -373,14 +373,19 @@ echo Html::beginForm();
     <?php
 
         $form = CActiveForm::begin(['id' => 'evidence-edit-form_' . $evidence->id]);
-        echo $form->label($evidence, "title", ['class' => 'control-label']);
 
         echo Html::hiddenInput('activityId', $activity->id);
 
         echo $form->textArea($evidence, 'title', array('class' => 'form-control autosize contentForm', 'id' => 'evidence_input_title_' . $evidence->id, 'rows' => '1', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.widgets_views_evidenceForm', 'Edit your Evidence title...'))); 
-        echo "<br>";
-        echo $form->label($evidence, "text", ['class' => 'control-label']);
         echo $form->textArea($evidence, 'text', array('class' => 'text-margin form-control autosize contentForm count-chars', 'id' => 'evidence_input_text_' . $evidence->id, 'rows' => '10', "tabindex" => "2", 'pattern' => '.{0}|.{140,}', 'required' => true, 'placeholder' => Yii::t('MissionsModule.widgets_views_evidenceForm', 'Edit your Evidence content...')));
+        ?>
+
+        <div id="counter" style="font-weight:bold">
+            <span id="current<?= $evidence->id ?>"><?= mb_strlen($evidence->text) ?></span>
+            <span id="minimun<?= $evidence->id ?>">/ 140</span>
+        </div>
+
+        <?php
 
         echo "<br>";
         echo "<div>";
@@ -398,18 +403,25 @@ echo Html::beginForm();
                 'type' => 'submit'
             ]
         ]);
-    ?>
 
-        <a class="btn btn-success" href="<?= $contentContainer->createUrl('/missions/evidence/publish', ['id' => $evidence->id]) ?>">
-            <?= Yii::t('MissionsModule.base', 'Publish') ?>
-        </a>
+        echo \humhub\widgets\AjaxButton::widget([
+            'label' => Yii::t('MissionsModule.base', 'Publish'),
+            'ajaxOptions' => [
+                'dataType' => 'json',
+                'type' => 'POST',
+                'url' => $evidence->content->container->createUrl('/missions/evidence/publish', ['id' => $evidence->id]),
+            ],
+            'htmlOptions' => [
+                'class' => 'btn btn-success',
+                'id' => 'evidence_publish_post_' . $evidence->id,
+                'type' => 'submit'
+            ]
+        ]);
 
-        <?php
-
-            echo humhub\modules\file\widgets\FileUploadButton::widget(array(
+        echo humhub\modules\file\widgets\FileUploadButton::widget(array(
             'uploaderId' => 'post_upload_' . $evidence->id,
             'object' => $evidence
-            ));
+        ));
 
         ?>
 
@@ -444,6 +456,42 @@ echo Html::beginForm();
 </style>
 
 <script>
+
+$(document).ready(function(){
+
+    current = $('#current<?= $evidence->id ?>');
+
+    if(current.text() >= 140){
+        current.css('color', '#92CE92')
+    }else{
+        current.css('color', '#9B0000')
+    }
+
+
+    $(".btn-hide<?= $evidence->id ?>").click(function(){
+        $("#yes-opt<?= $evidence->id ?>").collapse('hide');
+    });
+    $(".btn-show<?= $evidence->id ?>").click(function(){
+        $("#yes-opt<?= $evidence->id ?>").collapse('show');
+    });
+});
+
+$('#evidence_input_text_<?= $evidence->id ?>').keyup(function() {
+
+    current = $('#current<?= $evidence->id ?>');
+    minimun = $('#minimun<?= $evidence->id ?>');
+
+    //change current
+    current.text($('#evidence_input_text_<?= $evidence->id ?>').val().length);
+
+    if(current.text() >= 140){
+        current.css('color', '#92CE92')
+    }else{
+        current.css('color', '#9B0000')
+    }
+
+})
+
 function review(id, comment, opt, grade){
     grade = grade? grade : 0;
     var xhttp = new XMLHttpRequest();
@@ -528,15 +576,6 @@ jQuery(document).on('ajaxComplete', function () {
   }
 });
 
-
-$(document).ready(function(){
-    $(".btn-hide<?= $evidence->id ?>").click(function(){
-        $("#yes-opt<?= $evidence->id ?>").collapse('hide');
-    });
-    $(".btn-show<?= $evidence->id ?>").click(function(){
-        $("#yes-opt<?= $evidence->id ?>").collapse('show');
-    });
-});
 </script>
 
 
@@ -550,8 +589,8 @@ https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
 .rating {
     overflow: hidden;
     display: inline-block;
-    font-size: 0;
     position: relative;
+    font-size: 10pt !important;
 }
 .rating-input {
     float: right;
