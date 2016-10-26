@@ -95,11 +95,11 @@ endforeach;
                 ?>
 
                 <a id="gdrive_url<?= $evokation_id ?>" href='<?= $gdrive_url ?>' target="_blank">
-                    <?= $gdrive_url ?>
+                    <?= $contentContainer->name ?> Google Drive URL
                 </a>
                 <br>
 
-                <?php if($user->id == $contentContainer->created_by): ?>
+                <?php if($user->super_admin == 1): ?>
                     <a id="btn_update_url" class="btn btn-cta2" onClick='updateEvokationUrl(<?= $evokation_id ?>)' >
                         Update
                     </a>
@@ -234,7 +234,7 @@ function updateEvokationUrl(id){
         new_element = document.createElement('a');
         new_element.setAttribute("id", element.getAttribute("id"));
         new_element.setAttribute("href", element.getAttribute("value"));
-        new_element.innerHTML = element.getAttribute("value");
+        new_element.innerHTML = "<?= $contentContainer->name ?> Google Drive URL";
 
         //switch
         element.parentNode.replaceChild(new_element,element);

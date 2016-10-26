@@ -81,7 +81,7 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
     {
         return array(
             [['title', 'text'], 'required'],
-            [['text'], 'string', 'min' => 140],
+            [['text'], 'string'],
             [['title'], 'string', 'max' => 120],
             [['created_at', 'updated_at'], 'safe'],
             // [['created_by', 'updated_by'], 'integer'],
