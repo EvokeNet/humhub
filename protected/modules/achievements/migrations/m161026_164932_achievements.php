@@ -8,6 +8,7 @@ class m161026_164932_achievements extends Migration
     {
         $this->createTable('achievements', array(
             'id' => 'pk',
+            'code' => 'varchar(256) NOT NULL',
             'title' => 'varchar(256) NOT NULL',
             'description' => 'text NULL',
             'image' => 'varchar(256)',

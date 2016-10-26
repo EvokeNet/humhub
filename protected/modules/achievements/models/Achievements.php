@@ -8,6 +8,7 @@ use Yii;
  * This is the model class for table "achievements".
  *
  * @property integer $id
+ * @property string $code
  * @property string $title
  * @property string $description
  * @property string $image
@@ -36,7 +37,7 @@ class Achievements extends \yii\db\ActiveRecord
             [['title'], 'required'],
             [['description'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
-            [['title', 'image'], 'string', 'max' => 256],
+            [['title', 'code', 'image'], 'string', 'max' => 256],
         ];
     }
 
@@ -47,6 +48,7 @@ class Achievements extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'code' => 'Code',
             'title' => 'Title',
             'description' => 'Description',
             'image' => 'Image',
