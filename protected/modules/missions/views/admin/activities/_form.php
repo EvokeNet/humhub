@@ -15,17 +15,17 @@ use app\modules\missions\models\EvokationCategories;
 <div class="activities-form">
 
     <?php $form = ActiveForm::begin(); ?>
-    
+
     <?= $form->field($model, 'id_code')->textarea(['rows' => 1]) ?>
-    
+
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
-    
+
     <?= $form->field($model, 'rubric')->textarea(['rows' => 6]) ?>
-    
+
     <?= $form->field($model, 'position')->textarea(['rows' => 1]) ?>
-    
+
     <?= $form->field($model, 'message')->textarea(['rows' => 6]) ?>
 
     <!--<div class="form-group">
@@ -34,16 +34,18 @@ use app\modules\missions\models\EvokationCategories;
             ['prompt' => Yii::t('MissionsModule.base', 'Select Mission')]
         ) ?>
    </div>-->
-   
+
         <?= $form->field($model, 'evokation_category_id')->dropdownList(
             ArrayHelper::map(EvokationCategories::find()->all(), 'id', 'title'),
             ['prompt' => Yii::t('MissionsModule.base', 'Select Category')]
         ) ?>
-   
+
         <?= $form->field($model, 'difficulty_level_id')->dropdownList(
             ArrayHelper::map(DifficultyLevels::find()->all(), 'id', 'title'),
             ['prompt' => Yii::t('MissionsModule.base', 'Select Difficulty Level')]
         ) ?>
+
+    <?php echo $form->field($model, 'is_group')->checkbox(['label' => 'Is a Group Activity']); ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('MissionsModule.base', 'Create') : Yii::t('MissionsModule.base', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
