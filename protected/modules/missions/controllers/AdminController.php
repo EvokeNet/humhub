@@ -767,9 +767,14 @@ class AdminController extends \humhub\modules\admin\components\Controller
  
 
         return $this->render('evoke-errors-view', array(
-            'evidence_no_content_percentage' => number_format( (float) $evidence_no_content_percentage, 2, '.', '') , 
-            'evidence_no_wall_entry_percentage' => number_format( (float) $evidence_no_wall_entry_percentage, 2, '.', '') ,
-            'votes_no_content_percentage' => number_format( (float) $votes_no_content_percentage, 2, '.', '') , 
+            'evidences_total' => $evidences_total,
+            'votes_total' => $votes_total,
+            'evidence_no_content_total' => $no_content_evidence,
+            'evidence_no_wall_entry_total' => $no_wall_entry_evidence,
+            'votes_no_content_total' => $no_content_votes,
+            'evidence_no_content_percentage' => number_format( (float) $evidence_no_content_percentage, 1, '.', '') , 
+            'evidence_no_wall_entry_percentage' => number_format( (float) $evidence_no_wall_entry_percentage, 1, '.', '') ,
+            'votes_no_content_percentage' => number_format( (float) $votes_no_content_percentage, 1, '.', '') , 
             )
         );
     }

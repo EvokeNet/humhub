@@ -32,9 +32,9 @@ $votes_no_content_log = $votes_no_content_percentage > 0 ? "<a target=\"_blank\"
         				Evidences
         			</div>
         			<div class="content">
-        				<?= $evidence_no_content_percentage ?>% of evidences have no content <?= $evidence_no_content_icon ?> <?= $evidence_no_content_log ?>
+        				<?= $evidence_no_content_total ?> out of <?= $evidences_total ?> evidences have no content (<?= $evidence_no_content_percentage ?>%) <?= $evidence_no_content_icon ?> <?= $evidence_no_content_log ?>
         				<br>
-        				<?= $evidence_no_wall_entry_percentage ?>% of evidences have no wall entry <?= $evidence_no_wall_entry_icon ?> <?= $evidence_no_wall_entry_log ?>
+        				<?= $evidence_no_wall_entry_total ?> out of <?= $evidences_total ?> evidences have no wall entry (<?= $evidence_no_wall_entry_percentage ?>%) <?= $evidence_no_wall_entry_icon ?> <?= $evidence_no_wall_entry_log ?>
         			</div>
         			<div class="check">
         				<?php if($evidences_error): ?>
@@ -57,7 +57,7 @@ $votes_no_content_log = $votes_no_content_percentage > 0 ? "<a target=\"_blank\"
         				Reviews
         			</div>
         			<div class="content">
-        				<?= $votes_no_content_percentage ?>% of reviews have no content <?= $votes_no_content_icon ?> <?= $votes_no_content_log ?>
+        				<?= $votes_no_content_total ?> out of <?= $votes_total ?> reviews have no content (<?= $votes_no_content_percentage ?>%) <?= $votes_no_content_icon ?> <?= $votes_no_content_log ?>
         				<br>
         				By default, all reviews have no wall entry <?= $fa_check ?>
         			</div>
@@ -76,6 +76,14 @@ $votes_no_content_log = $votes_no_content_percentage > 0 ? "<a target=\"_blank\"
         		</div>
 			</div>
 
+			<div class="col-xs-12" style="text-align: left">
+				<ul>
+					<li>All <b>Humhub's</b> objects are <b>ContentActiveRecords</b>. They must be related to a <b>Content</b> object.</li>
+					<li>If it's desirable that a <b>Humhub's</b> object is loaded at a stream, then it must be related to a <b>Wall Entry</b> object.</li>
+					<li>Teams' Streams are loaded with <b>evidences</b> objects.</li>
+					<li><b>Reviews</b> aren't loaded by any stream on Evoke, then they don't require a <b>Wall Entry</b> object.</li>
+				</ul>
+			</div>
 
         </div>
     </div>
@@ -108,6 +116,7 @@ $votes_no_content_log = $votes_no_content_percentage > 0 ? "<a target=\"_blank\"
 	margin-bottom: 10%;
 	width: 380px;
 	height: 290px;
+	font-size: 12px;
 }
 
 .bug-box .title{
