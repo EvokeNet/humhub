@@ -246,11 +246,11 @@ class EvidenceController extends ContentContainerController
                 if (mb_strlen(Yii::$app->request->post('Evidence')['text']) < 140) {
                     AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
                 } else {
+
+                    $evidence->content->visibility = 1;
+                    $evidence->content->save();
+
                     if ($model->validate() && $model->save()) {
-                        // Reload record to get populated updated_at field
-                        $evidence = Evidence::findOne($id);
-                        $evidence->content->visibility = 1;
-                        $evidence->content->save();
                         //ACTIVITY POWER POINTS
                         $activityPowers = ActivityPowers::findAll(['activity_id' => $evidence->activities_id]);
 
@@ -265,6 +265,9 @@ class EvidenceController extends ContentContainerController
                         $this->redirect($evidence->content->getUrl());
 
                     } else {
+                        $evidence->content->visibility = 0;
+                        $evidence->content->save();
+                        
                         AlertController::createAlert(Yii::t('MissionsModule.base', 'Error'),Yii::t('MissionsModule.base', 'Something went wrong.'));
                     }
                 }
