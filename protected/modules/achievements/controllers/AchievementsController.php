@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\achievements\controllers;
+namespace humhub\modules\achievements\controllers;
 
 use Yii;
 use yii\web\Controller;
