@@ -4,6 +4,8 @@ namespace humhub\modules\achievements\controllers;
 
 use Yii;
 use yii\web\Controller;
+use app\modules\achievements\models\Achievements;
+use app\modules\achievements\models\UserAchievements;
 
 /**
  * Achievements controller for the `achievements` module
@@ -11,24 +13,19 @@ use yii\web\Controller;
 
 class AchievementsController extends Controller
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-    
     public function actionIndex()
     {
-        return $this->render('index');
+        $user = Yii::$app->user->getIdentity();
+
+        // $achievements = Achievements::find()->all();
+
+        $achievements = Achievements::find()->with([
+            'userAchievements' => function ($query) {
+                $query->andWhere(['user_id' => Yii::$app->user->id]);
+            }
+        ])->all();
+
+        return $this->render('index', array('user' => $user, 'achievements' => $achievements));
     }
 
 }

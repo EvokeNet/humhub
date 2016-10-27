@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\widgets\Breadcrumbs;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\missions\models\Votes */
@@ -10,34 +11,47 @@ $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Votes'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="votes-view">
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3><strong><?php echo $this->title; ?></strong></h3>
+    </div>
+    <div class="panel-body">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+        <div class="votes-view">
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+            <p>
+                <?php // echo Html::a(Yii::t('MissionsModule.base', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary btn-sm']) ?>
+                <?php 
+                    if($model->quality == 0){
+                        echo Html::a(Yii::t('MissionsModule.base', 'Mark as quality review'), ['update-quality-reviews', 'id' => $model->id, 'mark' => 1], ['class' => 'btn btn-primary btn-sm']);
+                    }
+                    else{
+                        echo Html::a(Yii::t('MissionsModule.base', 'Unmark as quality review'), ['update-quality-reviews', 'id' => $model->id, 'mark' => 0], ['class' => 'btn btn-primary btn-sm']); 
+                    }
+                ?>
+                <?php echo Html::a(
+                    Yii::t('MissionsModule.base', 'Delete'),
+                    ['delete-reviews', 'id' => $model->id], array(
+                    'class' => 'btn btn-danger btn-sm',
+                    'data' => [
+                        'confirm' => Yii::t('MissionsModule.base', 'Are you sure you want to delete this review?'),
+                        'method' => 'post',
+                    ],
+                    )); ?> 
+            </p><br>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'activity_id',
-            'evidence_id',
-            'user_id',
-            'flag',
-            'value',
-            'created_at',
-            'updated_at',
-            'comment:ntext',
-        ],
-    ]) ?>
+            <?= DetailView::widget([
+                'model' => $model,
+                'attributes' => [
+                    'id',
+                    'flag',
+                    'comment',
+                    'created_at',
+                    'updated_at',
+                ],
+            ]) ?>
 
+        </div>
+
+    </div>
 </div>

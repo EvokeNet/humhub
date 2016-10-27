@@ -33,16 +33,31 @@
 				    	<?php foreach($achievements as $a): ?>
 				    		<?php if($a->userAchievements): ?>
 
+				    			<!-- <div class="circle">
+				    				<i class="fa fa-trophy fa-2x" aria-hidden="true"></i>
+				    				<span class="info">123.456.7890</span>
+				    			</div> -->
+
+				    			<!-- <div class="trophy">
+				    				<div class="t-icon"><i class="fa fa-trophy fa-2x" aria-hidden="true"></i></div>
+				    				<div class="t-title"><?php echo $a->title; ?></div>
+				    			</div> -->
+
 				    			<div class="trophy-1">
 				    				<div class="t-icon"><i class="fa fa-trophy fa-2x" aria-hidden="true"></i></div>
-				    				<div class="t-titles"><span data-toggle="tooltip" data-placement="top" title="<?php echo $a->description; ?>"><?php echo $a->title; ?></span></div>
+				    				<div class="t-titles"><span><?php echo $a->title; ?></span></div>
 				    			</div>
 
 				    		<?php else: ?>
-	
-				    			<div class="trophy-1 t-opaque">
+				    			
+				    			<!-- <div class="trophy">
 				    				<div class="t-icon"><i class="fa fa-trophy fa-2x" aria-hidden="true"></i></div>
-				    				<div class="t-titles"><span data-toggle="tooltip" data-placement="top" title="<?php echo $a->description; ?>"><?php echo $a->title; ?></span></div>
+				    				<span><?php echo $a->title; ?></span>
+				    			</div> -->
+
+				    			<div class="trophy-1">
+				    				<div class="t-icon"><i class="fa fa-trophy fa-2x" aria-hidden="true"></i></div>
+				    				<div class="t-titles"><span><?php echo $a->title; ?></span></div>
 				    			</div>
 
 				    		<?php endif; ?>
@@ -79,6 +94,10 @@
 	float: left; background-color: #19B8B8; padding: 25px; border-radius: 50%; line-height: 10px; opacity: 0.99; color: #F8F8F8;
 }
 
+.t-title{
+	background-color: #34DADA; padding: 15px 40px; margin-left: -10px; color: #254054; font-weight: 700; display:inline; width: 100%;
+}
+
 .trophy-1{
 	line-height: 82px; margin-bottom:20px; background-color: #34DADA;     padding: 10px 15px 5px;
 }
@@ -92,10 +111,22 @@
     margin-top: -9px;
     vertical-align: middle;
     text-align: right;
+    
+	/*    background-color: #34DADA;
+    padding: 15px 40px;
+    margin-left: -15px;
+    color: #254054;
+    font-weight: 700;
+    display: inline-block;
+    width: 50%;
+    height: 50px;
+    margin-top: -9px;
+    vertical-align: middle;
+    display: inline-block;*/
 }
 
 .t-titles span{
-	font-size: 13pt;
+	font-size: 12pt;
 	margin-left:50px;
 }
 
@@ -106,10 +137,6 @@
     margin-left: -14px;
     margin-top: -10px;
     width:200px;
-}
-
-.t-opaque{
-	opacity: 0.3;
 }
 
 /*.circle{width:100px;height:100px;border-radius:50px;font-size:20px;color:#fff;line-height:100px;text-align:center;background:#000}*/
