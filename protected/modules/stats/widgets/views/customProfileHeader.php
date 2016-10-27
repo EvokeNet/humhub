@@ -231,7 +231,7 @@ if ($isProfileOwner) {
 
                     <div class="controls controls-header pull-right">
                         <?php
-                        echo Html::a(Yii::t("UserModule.widgets_views_profileEditButton", "See achievements"), Url::toRoute('/achievements/index'), array('class' => 'btn btn-primary edit-account'));
+                        echo Html::a(Yii::t("UserModule.widgets_views_profileEditButton", "See achievements"), Url::toRoute('achievements/index'), array('class' => 'btn btn-primary edit-account'));
                         ?>
                         &nbsp;&nbsp;
                         <?php
