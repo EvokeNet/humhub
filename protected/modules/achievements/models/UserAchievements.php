@@ -3,6 +3,9 @@
 namespace app\modules\achievements\models;
 
 use Yii;
+use yii\db\Expression;
+use yii\behaviors\TimestampBehavior;
+use humhub\modules\user\models\User;
 
 /**
  * This is the model class for table "user_achievements".
@@ -17,6 +20,23 @@ use Yii;
  */
 class UserAchievements extends \yii\db\ActiveRecord
 {
+
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    \yii\db\ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    \yii\db\ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+                // if you're using datetime instead of UNIX timestamp:
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
+
     /**
      * @inheritdoc
      */
