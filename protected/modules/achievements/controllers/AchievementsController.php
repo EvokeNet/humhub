@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\achievements\controllers;
+namespace humhub\modules\achievements\controllers;
 
 class AchievementsController extends \yii\web\Controller
 {
