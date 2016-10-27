@@ -6,7 +6,7 @@ use Yii;
 use humhub\models\Setting;
 use yii\helpers\Url;
 
-// use app\modules\achievements\models\Languages;
+use app\modules\achievements\models\Languages;
 
 class Module extends \humhub\components\Module
 {
@@ -32,9 +32,9 @@ class Module extends \humhub\components\Module
      */
     public function disable()
     {
-        // foreach (Languages::find()->all() as $item) {
-        //     $item->delete();
-        // }
+        foreach (Languages::find()->all() as $item) {
+            $item->delete();
+        }
 
         parent::disable();
     }

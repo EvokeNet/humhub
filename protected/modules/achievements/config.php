@@ -17,7 +17,7 @@
             ['class' => Evidence::className(), 'event' => Evidence::EVENT_AFTER_INSERT, 'callback' => ['\humhub\modules\achievements\Events', 'onEvidenceAfterSave']],
             ['class' => Evidence::className(), 'event' => Evidence::EVENT_AFTER_UPDATE, 'callback' => ['\humhub\modules\achievements\Events', 'onEvidenceAfterSave']],
         ],
+
     ];
 
 ?>
-
