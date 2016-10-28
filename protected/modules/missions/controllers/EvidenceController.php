@@ -500,6 +500,9 @@ class EvidenceController extends ContentContainerController
                 return;
             }
 
+            $user = User::findOne($evidence->content->user_id);
+            $is_group_activity = Activities::findOne(['id' => $evidence->activities_id])->is_group
+
             //if user's editing vote
             if($vote){
                 $pointChange = $grade - $vote->value;
@@ -525,8 +528,22 @@ class EvidenceController extends ContentContainerController
                 $vote->save();
 
                 //updated evidence author's reward
-                $activityPower = Activities::findOne($vote->activity_id)->getPrimaryPowers()[0];
-                UserPowers::addPowerPoint($activityPower->getPower(), User::findOne($evidence->content->user_id), $pointChange);
+                $activityPower = Activities::findOne($vote->activity_id)->getPrimaryPowers()[0];;
+
+                // if it's a group activity, we need to award points to all team members
+                if ($is_group_activity) {
+                  // find the team and it's members
+                  $team_id = Team::getUserTeam($user->id);
+                  $team = Team::findOne($team_id);
+                  $team_members = $team->getTeamMembers();
+
+                  foreach ($team_members as $team_member) {
+                    UserPowers::addPowerPoint($activity_power->getPower(), $team_member, $pointChange);
+                  }
+                } else { // just award the current user
+                  //USER POWER POINTS
+                  UserPowers::addPowerPoint($activityPower->getPower(), $user, $pointChange);
+                }
 
                 if($evocoin_earned <= 0){
                     AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', 'Your review was updated!'));
@@ -570,7 +587,21 @@ class EvidenceController extends ContentContainerController
                     if ($user->group->name == "Mentors") {
                         $grade *= 2;
                     }
-                    UserPowers::addPowerPoint($activityPower->getPower(), User::findOne($evidence->content->user_id), $grade);
+
+                    // if it's a group activity, we need to award points to all team members
+                    if ($is_group_activity) {
+                      // find the team and it's members
+                      $team_id = Team::getUserTeam($user->id);
+                      $team = Team::findOne($team_id);
+                      $team_members = $team->getTeamMembers();
+
+                      foreach ($team_members as $team_member) {
+                        UserPowers::addPowerPoint($activity_power->getPower(), $team_member, $grade);
+                      }
+                    } else { // just award the current user
+                      //USER POWER POINTS
+                      UserPowers::addPowerPoint($activityPower->getPower(), $user, $grade);
+                    }
                 }
 
                 $message = Yii::t('MissionsModule.base', 'You just gained {message} evocoins!', array('message' => $evocoin_earned));
