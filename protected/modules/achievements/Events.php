@@ -53,4 +53,23 @@ class Events extends \yii\base\Object
         }
     }
 
+    /**
+     * On build of the TopMenu, check if module is enabled
+     * When enabled add a menu item
+     *
+     * @param type $event
+     */
+    public static function onTopMenuInit($event){
+        $event->sender->addItem(array(
+        'label' => Yii::t('AchievementsModule.event', 'Achievements'),
+        'id' => 'achievements',
+        'icon' => '<i class="fa fa-trophy" aria-hidden="true"></i>',
+        'url' => Url::to(['/achievements/achievements/index']),
+        'sortOrder' => 700,
+        'isActive' => (Yii::$app->controller->module
+            && Yii::$app->controller->module->id == 'achievements'
+            && Yii::$app->controller->id == 'achievements'),
+        ));
+    }
+
 }

@@ -16,6 +16,7 @@
             //['class' => Menu::className(), 'event' => Menu::EVENT_INIT, 'callback' => ['\humhub\modules\achievements\Events', 'onSpaceMenuInit']],
             ['class' => Evidence::className(), 'event' => Evidence::EVENT_AFTER_INSERT, 'callback' => ['\humhub\modules\achievements\Events', 'onEvidenceAfterSave']],
             ['class' => Evidence::className(), 'event' => Evidence::EVENT_AFTER_UPDATE, 'callback' => ['\humhub\modules\achievements\Events', 'onEvidenceAfterSave']],
+            ['class' => \humhub\widgets\TopMenu::className(), 'event' => TopMenu::EVENT_INIT, 'callback' => ['\humhub\modules\achievements\Events', 'onTopMenuInit']],
         ],
         'urlManagerRules' => [
             'achievements' => 'achievements/achievements'
