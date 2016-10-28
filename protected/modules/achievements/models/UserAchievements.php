@@ -3,6 +3,7 @@
 namespace app\modules\achievements\models;
 
 use Yii;
+use humhub\modules\user\models\User;
 
 /**
  * This is the model class for table "user_achievements".

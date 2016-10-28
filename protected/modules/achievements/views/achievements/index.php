@@ -88,8 +88,7 @@
     color: #254054;
     font-weight: 700;
     display: inline-block;
-    width: 50%;
-    margin-top: -9px;
+    width: 55%;
     vertical-align: middle;
     text-align: right;
 }
