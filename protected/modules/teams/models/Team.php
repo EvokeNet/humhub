@@ -344,7 +344,7 @@ class Team extends ContentContainerActiveRecord implements \humhub\modules\searc
 
     /**
      * Checks if space has tags
-     * 
+     *
      * @return boolean has tags set
      */
     public function hasTags()
@@ -449,7 +449,7 @@ class Team extends ContentContainerActiveRecord implements \humhub\modules\searc
         if (Yii::$app->getModule('space')->globalAdminCanAccessPrivateContent && Yii::$app->user->getIdentity()->super_admin === 1) {
             return true;
         }
-        
+
         return ($this->isMember());
     }
 
@@ -467,6 +467,20 @@ class Team extends ContentContainerActiveRecord implements \humhub\modules\searc
         $query->andWhere(['space_membership.status' => Membership::STATUS_MEMBER]);
         $query->addOrderBy(['space_membership.group_id' => SORT_DESC]);
         return $query;
+    }
+
+    public function getTeamMembers() {
+      $member_query = $this->getMemberships();
+      $member_query->joinWith('user');
+      $member_query->where(['user.status' => \humhub\modules\user\models\User::STATUS_ENABLED]);
+      $memberships = $member_query->all();
+      $team_members = [];
+
+      foreach ($memberships as $membership) {
+        $team_members[] = $membership->user;
+      }
+
+      return $team_members;
     }
 
     public function getApplicants()
@@ -558,9 +572,9 @@ class Team extends ContentContainerActiveRecord implements \humhub\modules\searc
             ->andWhere('m.status ='. Membership::STATUS_MEMBER)
             ->one();
 
-            return $query['space_id']; 
+            return $query['space_id'];
         }
-        
+
         return null;
     }
 
@@ -572,6 +586,5 @@ class Team extends ContentContainerActiveRecord implements \humhub\modules\searc
         ->where(['c.space_id' => $this->id])
         ->one()['count'];
     }
-
 
 }

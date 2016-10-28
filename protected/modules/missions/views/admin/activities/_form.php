@@ -45,7 +45,7 @@ use app\modules\missions\models\EvokationCategories;
             ['prompt' => Yii::t('MissionsModule.base', 'Select Difficulty Level')]
         ) ?>
 
-    <?php echo $form->field($model, 'is_group')->checkbox(['label' => 'Is a Group Activity']); ?>
+    <?php echo $form->field($model, 'is_group')->checkbox(); ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('MissionsModule.base', 'Create') : Yii::t('MissionsModule.base', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
