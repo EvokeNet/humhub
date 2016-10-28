@@ -9,7 +9,7 @@ $user = $this->context->getUser();
             if($user->group->name != "Mentors"){
                 echo \humhub\modules\stats\widgets\CustomProfileHeader::widget(['user' => $user]); 
             }else{
-                echo \humhub\modules\user\widgets\ProfileHeader::widget(['user' => $user]);
+                echo \humhub\modules\stats\widgets\CustomUserProfileHeader::widget(['user' => $user]);
             }
              
             ?>

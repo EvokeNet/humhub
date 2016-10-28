@@ -102,7 +102,22 @@ class AdminController extends \humhub\modules\admin\components\Controller
     public function actionViewReviews($id)
     {
         $model = Votes::findOne(['id' => Yii::$app->request->get('id')]);
-        return $this->render('votes/view', array('model' => $model));
+        $evidence = Evidence::findOne(['id' => $model->evidence_id]);
+
+        return $this->render('votes/view', array('model' => $model, 'evidence' => $evidence));
+    }
+
+    public function actionUpdateQualityReviews($id)
+    {
+        $model = Votes::findOne(['id' => Yii::$app->request->get('id')]);
+
+        $model->quality = Yii::$app->request->get('mark');
+
+        if ($model->save()) {
+            return $this->redirect(['view-reviews', 'id' => $model->id]);
+        }
+
+        return $this->redirect(['view-reviews', 'id' => $model->id]);
     }
 
     public function actionDeleteReviews()

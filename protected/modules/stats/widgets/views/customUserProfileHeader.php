@@ -80,10 +80,10 @@ if ($isProfileOwner) {
                     echo \humhub\widgets\ModalConfirm::widget(array(
                         'uniqueID' => 'modal_bannerimagedelete',
                         'linkOutput' => 'a',
-                        'title' => Yii::t('StatsModule.widgets_views_deleteBanner', '<strong>Confirm</strong> image deleting'),
-                        'message' => Yii::t('StatsModule.widgets_views_deleteBanner', 'Do you really want to delete your title image?'),
-                        'buttonTrue' => Yii::t('StatsModule.widgets_views_deleteBanner', 'Delete'),
-                        'buttonFalse' => Yii::t('StatsModule.widgets_views_deleteBanner', 'Cancel'),
+                        'title' => Yii::t('UserModule.widgets_views_deleteBanner', '<strong>Confirm</strong> image deleting'),
+                        'message' => Yii::t('UserModule.widgets_views_deleteBanner', 'Do you really want to delete your title image?'),
+                        'buttonTrue' => Yii::t('UserModule.widgets_views_deleteBanner', 'Delete'),
+                        'buttonFalse' => Yii::t('UserModule.widgets_views_deleteBanner', 'Cancel'),
                         'linkContent' => '<i class="fa fa-times"></i>',
                         'cssClass' => 'btn btn-danger btn-sm',
                         'style' => $user->getProfileBannerImage()->hasImage() ? '' : 'display: none;',
@@ -160,10 +160,10 @@ if ($isProfileOwner) {
                     echo \humhub\widgets\ModalConfirm::widget(array(
                         'uniqueID' => 'modal_profileimagedelete',
                         'linkOutput' => 'a',
-                        'title' => Yii::t('StatsModule.widgets_views_deleteImage', '<strong>Confirm</strong> image deleting'),
-                        'message' => Yii::t('StatsModule.widgets_views_deleteImage', 'Do you really want to delete your profile image?'),
-                        'buttonTrue' => Yii::t('StatsModule.widgets_views_deleteImage', 'Delete'),
-                        'buttonFalse' => Yii::t('StatsModule.widgets_views_deleteImage', 'Cancel'),
+                        'title' => Yii::t('UserModule.widgets_views_deleteImage', '<strong>Confirm</strong> image deleting'),
+                        'message' => Yii::t('UserModule.widgets_views_deleteImage', 'Do you really want to delete your profile image?'),
+                        'buttonTrue' => Yii::t('UserModule.widgets_views_deleteImage', 'Delete'),
+                        'buttonFalse' => Yii::t('UserModule.widgets_views_deleteImage', 'Cancel'),
                         'linkContent' => '<i class="fa fa-times"></i>',
                         'cssClass' => 'btn btn-danger btn-sm',
                         'style' => $user->getProfileImage()->hasImage() ? '' : 'display: none;',
@@ -184,14 +184,14 @@ if ($isProfileOwner) {
         <div class="panel-profile-controls">
             <!-- start: User statistics -->
             <div class="row">
-                <div class="col-xs-12">
+                <div class="col-md-12">
                     <div class="statistics pull-left">
 
                         <div class="pull-left entry">
                             <span class="count"><?php echo $user->getFollowerCount(); ?></span></a>
                             <br>
                             <span
-                                class="title"><?php echo Yii::t('StatsModule.widgets_views_profileHeader', 'Followers'); ?></span>
+                                class="title"><?php echo Yii::t('UserModule.widgets_views_profileHeader', 'Followers'); ?></span>
                         </div>
 
                         <div class="pull-left entry">
@@ -199,31 +199,13 @@ if ($isProfileOwner) {
                                 class="count"><?php echo $user->getFollowingCount(User::className()) + $user->getFollowingCount(Space::className()); ?></span>
                             <br>
                             <span
-                                class="title"><?php echo Yii::t('StatsModule.widgets_views_profileHeader', 'Following'); ?></span>
+                                class="title"><?php echo Yii::t('UserModule.widgets_views_profileHeader', 'Following'); ?></span>
                         </div>
 
                         <div class="pull-left entry">
                             <span class="count"><?php echo count($user->spaces); ?></span><br>
-                            <span 
-                                class="title"><?php echo Yii::t('StatsModule.widgets_views_profileHeader', 'Spaces'); ?></span>
-                        </div>
-                        
-                        <div class="pull-left entry">
-                            <span class="count"><?php echo $evidences; ?></span><br>
                             <span
-                                class="title"><?php echo Yii::t('StatsModule.widgets_views_profileHeader', 'Evidences'); ?></span>
-                        </div>
-                        
-                        <div class="pull-left entry">
-                            <span class="count"><?php echo isset($avg_rating) ? number_format((float) $avg_rating, 1, '.', '') : '0'; ?></span><br>
-                            <span
-                                class="title"><?php echo Yii::t('StatsModule.widgets_views_profileHeader', 'Avg Rating'); ?></span>
-                        </div>
-                        
-                        <div class="pull-left entry">
-                            <span class="count"><?php echo $wallet->amount; ?></span><br>
-                            <span
-                                class="title"><?php echo Yii::t('StatsModule.widgets_views_profileHeader', 'Evocoins'); ?></span>
+                                class="title"><?php echo Yii::t('UserModule.widgets_views_profileHeader', 'Spaces'); ?></span>
                         </div>
 
                     </div>
@@ -231,7 +213,7 @@ if ($isProfileOwner) {
 
                     <div class="controls controls-header pull-right">
                         <?php
-                        echo Html::a(Yii::t("UserModule.widgets_views_profileEditButton", "See achievements"), Url::toRoute('achievements/achievements/index'), array('class' => 'btn btn-primary edit-account'));
+                        echo Html::a(Yii::t("UserModule.widgets_views_profileEditButton", "See achievements"), Url::toRoute('/achievements/achievements/index'), array('class' => 'btn btn-primary edit-account'));
                         ?>
                         &nbsp;&nbsp;
                         <?php
@@ -259,14 +241,14 @@ if ($isProfileOwner) {
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title"
-                    id="myModalLabel"><?php echo Yii::t('StatsModule.widgets_views_profileHeader', '<strong>Something</strong> went wrong'); ?></h4>
+                    id="myModalLabel"><?php echo Yii::t('UserModule.widgets_views_profileHeader', '<strong>Something</strong> went wrong'); ?></h4>
             </div>
             <div class="modal-body text-center">
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary"
-                        data-dismiss="modal"><?php echo Yii::t('StatsModule.widgets_views_profileHeader', 'Ok'); ?></button>
+                        data-dismiss="modal"><?php echo Yii::t('UserModule.widgets_views_profileHeader', 'Ok'); ?></button>
             </div>
         </div>
     </div>
