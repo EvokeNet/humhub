@@ -11,6 +11,7 @@ use humhub\modules\content\models\Content;
 use humhub\modules\content\components\ContentContainerActiveRecord;
 use humhub\modules\user\models\User;
 use app\modules\missions\models\Evidence;
+use humhub\modules\space\models\Space;
 
 /**
  * This is the model class for table "space".
@@ -585,6 +586,20 @@ class Team extends ContentContainerActiveRecord implements \humhub\modules\searc
         ->join('INNER JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
         ->where(['c.space_id' => $this->id])
         ->one()['count'];
+    }
+
+    public function getTeamsFollowed($user_id) {
+      $teams_following = (new \yii\db\Query())
+      ->select(['s.id'])
+      ->from('user_follow as u')
+      ->join('INNER JOIN', 'space as s', '`u`.`object_id` = `s`.`id`')
+      ->where(['s.is_team' => '1'])
+      ->andWhere(['u.user_id' => $user_id])
+      ->andFilterWhere(
+         ['u.object_model' => Space::className()])
+      ->all();
+
+      return Team::find()->where(['id' => $teams_following])->all();
     }
 
 }
