@@ -34,7 +34,6 @@ class MentorController extends Controller
         $teams = Team::getTeamsFollowed(Yii::$app->user->getIdentity()->id);
 
         return $this->render('teams', ['teams' => $teams]);
-
     }
 
     public function actionTeams()

@@ -150,25 +150,9 @@ class ReviewController extends ContentContainerController
     {
         $user = Yii::$app->user->getIdentity();
 
-        // $subquery = '(SELECT v2.evidence_id from votes as v2 where v2.user_id = '.$user->id.')';
-        //
-        // $query = (new \yii\db\Query())
-        // ->select(['e.*, count(distinct v.id) as vote_count', 'v.user_id as user_vote'])
-        // ->from('evidence as e')
-        // ->join('INNER JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
-        // ->join('LEFT JOIN', 'votes v', '`v`.`evidence_id`=`e`.`id`')
-        // //->join('LEFT JOIN', 'space_membership s', '`s`.`user_id`=`c`.`user_id`')
-        // // ->where('c.space_id != '.$currentSpace->id)
-        // ->andWhere('e.id NOT IN  '.$subquery)
-        // ->andWhere('c.user_id != '.$user->id)
-        // ->andWhere('c.visibility != 0')
-        // ->groupBy('e.id')
-        // ->orderBy('vote_count ASC')
-        // ->all();
-        //
-        $query = [];
+        $teams = Team::getTeamsFollowed($user->id);
 
-        return $this->render('list', array('contentContainer' => $this->contentContainer, 'evidences' => $query));
+        return $this->render('list', array('contentContainer' => $this->contentContainer, 'teams' => $teams));
     }
 
 }
