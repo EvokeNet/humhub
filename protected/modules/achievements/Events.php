@@ -8,6 +8,7 @@ use app\modules\missions\models\Evidence;
 use app\modules\achievements\models\Achievements;
 use app\modules\achievements\models\UserAchievements;
 use humhub\modules\missions\controllers\AlertController;
+use app\modules\missions\models\Portfolio;
 
 /**
  * Description of Events
@@ -15,6 +16,47 @@ use humhub\modules\missions\controllers\AlertController;
  */
 class Events extends \yii\base\Object
 {
+
+    public static function onEvokationVoteAfterSave($event){
+
+        //get user id (evokation vote's author)
+        $user_id = $event->sender->user_id;
+
+        // get achievement
+        $user_achievement = (new \yii\db\Query())
+                    ->select(['a.code as code'])
+                    ->from('user_achievements as ua')
+                    ->join('INNER JOIN', 'achievements as a', '`a`.`id` = `ua`.`achievement_id`')
+                    ->where('ua.user_id = '.$user_id." AND a.code like '%evokation_vote%'")
+                    ->one()['code'];        
+
+        //if no achievement
+        if(!$user_achievement){
+
+            //get user's evokation vote count
+            $evokation_vote_count = Portfolio::find()
+            ->where(['portfolio.user_id' => $user_id])
+            ->count();
+
+            //if no achievement and has more than 0 evokation votes
+            if($evokation_vote_count > 0){
+
+                $achievement = Achievements::findOne(['code' => 'evokation_vote']);
+
+                if($achievement){
+                    //create new user achievement
+                    $user_achievement = new UserAchievements();
+                    $user_achievement->achievement_id = $achievement->id;
+                    $user_achievement->user_id = $user_id;
+                    $user_achievement->save();
+
+                    AlertController::createAlert("Congratulations", "You've just gained a new achievement!<BR>".$achievement->title." <div><i style=\"font-size: 60px; padding-top: 20px;\" class=\"fa fa-trophy\" aria-hidden=\"true\"></i></div>");
+                }
+
+            }
+        }
+
+    }
 
     public static function onEvidenceAfterSave($event){
 
@@ -66,7 +108,7 @@ class Events extends \yii\base\Object
                     $user_achievement->user_id = $user_id;
                     $user_achievement->save();
 
-                    AlertController::createAlert("Congratulations", $achievement->title." <div><i style=\"font-size: 60px; padding-top: 20px;\" class=\"fa fa-trophy\" aria-hidden=\"true\"></i></div>");
+                    AlertController::createAlert("Congratulations", "You've just gained a new achievement!<BR>".$achievement->title." <div><i style=\"font-size: 60px; padding-top: 20px;\" class=\"fa fa-trophy\" aria-hidden=\"true\"></i></div>");
                 }
 
             }else{
