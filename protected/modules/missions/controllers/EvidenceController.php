@@ -251,7 +251,7 @@ class EvidenceController extends ContentContainerController
                         // Reload record to get populated updated_at field
                         $evidence = Evidence::findOne($id);
                         $evidence->content->visibility = 1;
-                        $evidence->content->save();
+
                         //ACTIVITY POWER POINTS
                         $activityPowers = ActivityPowers::findAll(['activity_id' => $evidence->activities_id]);
                         $is_group_activity = Activities::findOne(['id' => $evidence->activities_id])->is_group;
@@ -259,7 +259,7 @@ class EvidenceController extends ContentContainerController
                         // if it's a group activity, we need to award points to all team members
                         if ($is_group_activity) {
                           // find the team and it's members
-                          $team_id = Team::getUserTeam($userId);
+                          $team_id = Team::getUserTeam($user->id);
                           $team = Team::findOne($team_id);
                           $team_members = $team->getTeamMembers();
 
@@ -274,6 +274,8 @@ class EvidenceController extends ContentContainerController
                               UserPowers::addPowerPoint($activity_power->getPower(), $user, $activity_power->value);
                           }
                         }
+
+                        $evidence->content->save();
 
                         $message = $this->getEvidenceCreatedMessage($activityPowers);
                         AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), $message);
@@ -347,9 +349,25 @@ class EvidenceController extends ContentContainerController
             $activityPowers = ActivityPowers::findAll(['activity_id' => $evidence->activities_id]);
             $user = Yii::$app->user->getIdentity();
 
-            //USER POWER POINTS
-            foreach($activityPowers as $activity_power){
-                UserPowers::addPowerPoint($activity_power->getPower(), $user, $activity_power->value);
+            $is_group_activity = Activities::findOne(['id' => $evidence->activities_id])->is_group;
+
+            // if it's a group activity, we need to award points to all team members
+            if ($is_group_activity) {
+              // find the team and it's members
+              $team_id = Team::getUserTeam($user->id);
+              $team = Team::findOne($team_id);
+              $team_members = $team->getTeamMembers();
+
+              foreach ($team_members as $team_member) {
+                foreach($activityPowers as $activity_power){
+                    UserPowers::addPowerPoint($activity_power->getPower(), $team_member, $activity_power->value);
+                }
+              }
+            } else { // just award the current user
+              //USER POWER POINTS
+              foreach($activityPowers as $activity_power){
+                  UserPowers::addPowerPoint($activity_power->getPower(), $user, $activity_power->value);
+              }
             }
 
             $message = $this->getEvidenceCreatedMessage($activityPowers);

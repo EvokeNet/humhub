@@ -39,7 +39,7 @@ class UserPowers extends \yii\db\ActiveRecord
             ],
         ];
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -151,8 +151,8 @@ class UserPowers extends \yii\db\ActiveRecord
 
             while($level_aux < $level){
                 $level_aux++;
-                $level_points += floor(floatval($improve_multiplier) * pow( $level_aux , 1.95 ) + floatval($improve_offset));            
-            } 
+                $level_points += floor(floatval($improve_multiplier) * pow( $level_aux , 1.95 ) + floatval($improve_offset));
+            }
 
             return $level_points;
         }else{
@@ -178,8 +178,8 @@ class UserPowers extends \yii\db\ActiveRecord
 
             while($level_aux < $level){
                 $level_aux++;
-                $level_points += floor(floatval($improve_multiplier) * pow( $level_aux , 1.95 ) + floatval($improve_offset));             
-            } 
+                $level_points += floor(floatval($improve_multiplier) * pow( $level_aux , 1.95 ) + floatval($improve_offset));
+            }
 
             return $this->value - $level_points;
         }else{
@@ -206,9 +206,9 @@ class UserPowers extends \yii\db\ActiveRecord
 
         while($value_aux < $this->value){
             $level_aux++;
-            $value_aux += floor(floatval($improve_multiplier) * pow( $level_aux , 1.95 ) + floatval($improve_offset)); 
-        } 
-        
+            $value_aux += floor(floatval($improve_multiplier) * pow( $level_aux , 1.95 ) + floatval($improve_offset));
+        }
+
 
         if($value_aux > $this->value){
             $level_aux--;
@@ -240,7 +240,7 @@ class UserPowers extends \yii\db\ActiveRecord
             $userPower->user_id = $user->id;
             $userPower->power_id = $power->id;
             $userPower->value = $value;
-        }  
+        }
 
         $userPower->save();
         $userPower->updateLevel();
@@ -275,7 +275,7 @@ class UserPowers extends \yii\db\ActiveRecord
         $qualities = array();
         $quality_powers = array();
 
-        foreach($powers as $power){                
+        foreach($powers as $power){
 
 /*
             echo "<pre>";
