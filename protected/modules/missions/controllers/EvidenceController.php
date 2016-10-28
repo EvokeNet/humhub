@@ -9,7 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\HttpException;
 use yii\filters\VerbFilter;
-use humhub\modules\missions\components\ContentContainerController;
+
 use app\modules\missions\models\Missions;
 use app\modules\missions\models\Activities;
 use app\modules\languages\models\Languages;
@@ -17,14 +17,15 @@ use app\modules\powers\models\UserPowers;
 use app\modules\powers\models\Powers;
 use app\modules\missions\models\ActivityPowers;
 use app\modules\missions\models\Votes;
-use humhub\modules\missions\controllers\AlertController;
-use humhub\modules\user\models\User;
 use app\modules\coin\models\Wallet;
 use app\modules\missions\models\EvokationCategories;
+use app\modules\teams\models\Team;
 
 use humhub\modules\space\models\Membership;
 use humhub\modules\space\models\Space;
-
+use humhub\modules\missions\controllers\AlertController;
+use humhub\modules\user\models\User;
+use humhub\modules\missions\components\ContentContainerController;
 use humhub\modules\admin\models\forms\MailingSettingsForm;
 
 class EvidenceController extends ContentContainerController
@@ -253,10 +254,25 @@ class EvidenceController extends ContentContainerController
                         $evidence->content->save();
                         //ACTIVITY POWER POINTS
                         $activityPowers = ActivityPowers::findAll(['activity_id' => $evidence->activities_id]);
+                        $is_group_activity = Activities::findOne(['id' => $evidence->activities_id])->is_group;
 
-                        //USER POWER POINTS
-                        foreach($activityPowers as $activity_power){
-                            UserPowers::addPowerPoint($activity_power->getPower(), $user, $activity_power->value);
+                        // if it's a group activity, we need to award points to all team members
+                        if ($is_group_activity) {
+                          // find the team and it's members
+                          $team_id = Team::getUserTeam($userId);
+                          $team = Team::findOne($team_id);
+                          $team_members = $team->getTeamMembers();
+
+                          foreach ($team_members as $team_member) {
+                            foreach($activityPowers as $activity_power){
+                                UserPowers::addPowerPoint($activity_power->getPower(), $team_member, $activity_power->value);
+                            }
+                          }
+                        } else { // just award the current user
+                          //USER POWER POINTS
+                          foreach($activityPowers as $activity_power){
+                              UserPowers::addPowerPoint($activity_power->getPower(), $user, $activity_power->value);
+                          }
                         }
 
                         $message = $this->getEvidenceCreatedMessage($activityPowers);
@@ -273,7 +289,7 @@ class EvidenceController extends ContentContainerController
         }else{
             AlertController::createAlert(Yii::t('MissionsModule.base', 'Error!'), "Something's wrong");
         }
-    }   
+    }
 
     public function actionDraft(){
         if (!$this->contentContainer->permissionManager->can(new \humhub\modules\missions\permissions\CreateEvidence())) {
@@ -366,7 +382,7 @@ class EvidenceController extends ContentContainerController
             } else {
                 AlertController::createAlert(Yii::t('MissionsModule.base', 'Error'),Yii::t('MissionsModule.base', 'Something went wrong.'));
             }
-            
+
         }
     }
 
@@ -407,7 +423,7 @@ class EvidenceController extends ContentContainerController
                     $result['errors'] = $model->getErrors();
                 }
                 return $result;
-            } 
+            }
         }
 
         return $this->renderAjax('edit', ['evidence' => $model, 'edited' => $edited]);

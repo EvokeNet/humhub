@@ -123,16 +123,19 @@ $firstSecondary = true;
                                 Yii::t('MissionsModule.base', 'Enter Activity'),
                                 ['show', 'activityId' => $activity->id, 'sguid' => $contentContainer->guid], array('class' => 'btn btn-cta2')); ?>
 
-                            <?php $count = 0; foreach ($members as $membership) : $userSubmittedEvidence = Evidence::hasUserSubmittedEvidence($activity->id, $membership->user->id);?>
-                                <?php $user = $membership->user; ?>
-                                <?php if($membership->status === \humhub\modules\space\models\Membership::STATUS_MEMBER && $userSubmittedEvidence && $membership->user->id != Yii::$app->user->id) : $count++; ?>
-                                    <a href=/content/perma/"<?php echo $user->getUrl(); ?>" style="margin-left:10px">
-                                        <img src="<?php echo $user->getProfileImage()->getUrl(); ?>" class="img-rounded tt img_margin member-img" id = "space-members"
-                                            data-toggle="tooltip" data-placement="top" title=""
-                                            data-original-title="<?php echo Yii::t('MissionsModule.base', "{user} completed this activity", array('user' => Html::encode($user->displayName))); ?>">
-                                    </a>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
+                            <?php if(!$activity->is_group): ?>
+
+                              <?php $count = 0; foreach ($members as $membership) : $userSubmittedEvidence = Evidence::hasUserSubmittedEvidence($activity->id, $membership->user->id);?>
+                                  <?php $user = $membership->user; ?>
+                                  <?php if($membership->status === \humhub\modules\space\models\Membership::STATUS_MEMBER && $userSubmittedEvidence && $membership->user->id != Yii::$app->user->id) : $count++; ?>
+                                      <a href=/content/perma/"<?php echo $user->getUrl(); ?>" style="margin-left:10px">
+                                          <img src="<?php echo $user->getProfileImage()->getUrl(); ?>" class="img-rounded tt img_margin member-img" id = "space-members"
+                                              data-toggle="tooltip" data-placement="top" title=""
+                                              data-original-title="<?php echo Yii::t('MissionsModule.base', "{user} completed this activity", array('user' => Html::encode($user->displayName))); ?>">
+                                      </a>
+                                  <?php endif; ?>
+                              <?php endforeach; ?>
+                            <?php endif; ?>
 
                             <?php if($count == 0): ?>
                                 <span><?php //echo Yii::t('MissionsModule.base', 'No member of this group has submitted an evidence for this activity'); ?></span>
