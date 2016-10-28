@@ -31,20 +31,10 @@ class MentorController extends Controller
 
     public function actionMyteams()
     {
-        $teams_following = (new \yii\db\Query())
-        ->select(['s.id'])
-        ->from('user_follow as u')
-        ->join('INNER JOIN', 'space as s', '`u`.`object_id` = `s`.`id`')
-        ->where(['s.is_team' => '1'])
-        ->andWhere(['u.user_id' => Yii::$app->user->getIdentity()->id])
-        ->andFilterWhere(
-           ['u.object_model' => Space::className()])
-        ->all();
+        $teams = Team::getTeamsFollowed(Yii::$app->user->getIdentity()->id);
 
-        $teamsQuery = Team::find()->where(['id' => $teams_following]);
+        return $this->render('teams', ['teams' => $teams]);
 
-        return $this->render('teams', ['teams' => $teamsQuery->all()]);
-        
     }
 
     public function actionTeams()
@@ -53,7 +43,7 @@ class MentorController extends Controller
         $teamsQuery = Team::find()->where(['is_team' => '1']);
 
         return $this->render('teams', ['teams' => $teamsQuery->all()]);
-        
+
     }
 
 }

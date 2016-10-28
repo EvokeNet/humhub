@@ -48,7 +48,7 @@ class Activities extends \yii\db\ActiveRecord
             ],
         ];
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -72,6 +72,7 @@ class Activities extends \yii\db\ActiveRecord
             [['difficulty_level_id'], 'exist', 'skipOnError' => true, 'targetClass' => DifficultyLevels::className(), 'targetAttribute' => ['difficulty_level_id' => 'id']],
             [['evokation_category_id'], 'exist', 'skipOnError' => true, 'targetClass' => EvokationCategories::className(), 'targetAttribute' => ['evokation_category_id' => 'id']],
             [['mission_id'], 'exist', 'skipOnError' => true, 'targetClass' => Missions::className(), 'targetAttribute' => ['mission_id' => 'id']],
+            [['is_group'], 'boolean'],
         ];
     }
 
@@ -93,6 +94,7 @@ class Activities extends \yii\db\ActiveRecord
             'evokation_category_id' => Yii::t('MissionsModule.model', 'Evokation Category ID'),
             'position' => Yii::t('MissionsModule.model', 'Position'),
             'message' => Yii::t('MissionsModule.model', 'Evidence Success Message'),
+            'is_group' => Yii::t('MissionsModule.model', 'Is a Group Activity'),
         ];
     }
 
@@ -159,7 +161,7 @@ class Activities extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Votes::className(), ['activity_id' => 'id']);
     }
-    
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -177,7 +179,7 @@ class Activities extends \yii\db\ActiveRecord
         $powers = ActivityPowers::findAll(['activity_id' => $this->id, 'flag' => 1]);
         return $powers;
     }
-    
+
     /**
      * @return \yii\db\ActiveQuery
      */
