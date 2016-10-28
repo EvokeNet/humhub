@@ -17,6 +17,9 @@ use app\modules\missions\models\EvidenceSearch;
 use app\modules\teams\models\Team;
 use app\modules\missions\models\Votes;
 use humhub\modules\content\models\Content;
+use humhub\modules\user\models\User;
+use app\modules\achievements\models\UserAchievements;
+use app\modules\achievements\models\Achievements;
 
 /**
  * AdminController
@@ -112,6 +115,18 @@ class AdminController extends \humhub\modules\admin\components\Controller
         $model = Votes::findOne(['id' => Yii::$app->request->get('id')]);
 
         $model->quality = Yii::$app->request->get('mark');
+
+        $achievement = Achievements::findOne(['code' => 'quality_review']);
+        $user_achievement = UserAchievements::findOne(['user_id' => Yii::$app->request->get('user_id'), 'achievement_id' => $achievement->id]);
+
+        if(Yii::$app->request->get('mark') == 1 && empty($user_achievement)){
+            $new_model = new UserAchievements();
+            $new_model->user_id = Yii::$app->request->get('user_id');
+            $new_model->achievement_id = $achievement->id;
+            $new_model->save();
+        } else if(Yii::$app->request->get('mark') == 0 && !empty($user_achievement)){
+            $user_achievement->delete();
+        }
 
         if ($model->save()) {
             return $this->redirect(['view-reviews', 'id' => $model->id]);

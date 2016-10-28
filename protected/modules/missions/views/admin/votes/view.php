@@ -23,10 +23,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php // echo Html::a(Yii::t('MissionsModule.base', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary btn-sm']) ?>
                 <?php 
                     if($model->quality == 0){
-                        echo Html::a(Yii::t('MissionsModule.base', 'Mark as quality review'), ['update-quality-reviews', 'id' => $model->id, 'mark' => 1], ['class' => 'btn btn-primary btn-sm']);
+                        echo Html::a(Yii::t('MissionsModule.base', 'Mark as quality review'), ['update-quality-reviews', 'id' => $model->id, 'mark' => 1, 'user_id' => $model->user_id], ['class' => 'btn btn-primary btn-sm']);
                     }
                     else{
-                        echo Html::a(Yii::t('MissionsModule.base', 'Unmark as quality review'), ['update-quality-reviews', 'id' => $model->id, 'mark' => 0], ['class' => 'btn btn-primary btn-sm']); 
+                        echo Html::a(Yii::t('MissionsModule.base', 'Unmark as quality review'), ['update-quality-reviews', 'id' => $model->id, 'mark' => 0, 'user_id' => $model->user_id], ['class' => 'btn btn-primary btn-sm']); 
                     }
                 ?>
                 <?php echo Html::a(
