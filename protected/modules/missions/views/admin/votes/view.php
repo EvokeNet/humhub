@@ -8,7 +8,7 @@ use yii\widgets\Breadcrumbs;
 /* @var $model app\modules\missions\models\Votes */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Votes'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.base', 'Votes'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="panel panel-default">
@@ -40,10 +40,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     )); ?> 
             </p><br>
 
+            <?php echo Yii::t('MissionsModule.base', 'Activity {position}: {title}', array('position' => $evidence->activities->position, 'title' => $evidence->activities->title)); ?><br /><br />
+            <?php echo Yii::t('MissionsModule.base', 'Evidence: {title}', array('title' => $evidence->title)); ?><br />
+            <?php echo $evidence->text; ?><br /><br />
+
             <?= DetailView::widget([
                 'model' => $model,
                 'attributes' => [
-                    'id',
+                    // 'id',
                     'flag',
                     'comment',
                     'created_at',
