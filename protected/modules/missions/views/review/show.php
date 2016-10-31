@@ -119,20 +119,6 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                                             <?= ($vote->user->username) ?>
                                         </a>,
                                         <?php echo \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]); ?></p>
-
-                                        <div style="margin:20px 0 10px">
-                                            <?php if(Yii::$app->user->isAdmin()): ?>
-                                                <?php 
-                                                    if($vote->quality == 0){
-                                                        echo Html::a(Yii::t('MissionsModule.base', 'Mark as quality review'), ['admin/update-quality-reviews-on-site', 'id' => $vote->id, 'mark' => 1, 'user_id' => $vote->user_id], ['class' => 'btn btn-primary btn-sm']);
-                                                    }
-                                                    else{
-                                                        echo Html::a(Yii::t('MissionsModule.base', 'Unmark as quality review'), ['admin/update-quality-reviews-on-site', 'id' => $vote->id, 'mark' => 0, 'user_id' => $vote->user_id], ['class' => 'btn btn-primary btn-sm']); 
-                                                    }
-                                                ?>
-                                            <?php endif; ?>
-                                        </div>
-
                                     </div>
                                 <?php endforeach; ?>
                             </div>
