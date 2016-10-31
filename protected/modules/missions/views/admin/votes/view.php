@@ -47,7 +47,11 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= DetailView::widget([
                 'model' => $model,
                 'attributes' => [
-                    // 'id',
+                    // 'user.username',
+                    [                      // the owner name of the model
+                        'label' => 'Author',
+                        'value' => $model->user->username,
+                    ],
                     'flag',
                     'comment',
                     'created_at',

@@ -135,6 +135,31 @@ class AdminController extends \humhub\modules\admin\components\Controller
         return $this->redirect(['view-reviews', 'id' => $model->id]);
     }
 
+    public function actionUpdateQualityReviewsOnSite($id)
+    {
+        $model = Votes::findOne(['id' => Yii::$app->request->get('id')]);
+
+        $model->quality = Yii::$app->request->get('mark');
+
+        $achievement = Achievements::findOne(['code' => 'quality_review']);
+        $user_achievement = UserAchievements::findOne(['user_id' => Yii::$app->request->get('user_id'), 'achievement_id' => $achievement->id]);
+
+        if(Yii::$app->request->get('mark') == 1 && empty($user_achievement)){
+            $new_model = new UserAchievements();
+            $new_model->user_id = Yii::$app->request->get('user_id');
+            $new_model->achievement_id = $achievement->id;
+            $new_model->save();
+        } else if(Yii::$app->request->get('mark') == 0 && !empty($user_achievement)){
+            $user_achievement->delete();
+        }
+
+        if ($model->save()) {
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+
     public function actionDeleteReviews()
     {
         $model = Votes::findOne(['id' => Yii::$app->request->get('id')]);
