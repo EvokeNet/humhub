@@ -141,8 +141,7 @@ class UserQualities extends \yii\db\ActiveRecord
                 Yii::t(
                     'PowersModule.base', 'You have earned the {super_power_name} super power!', 
                     array('super_power_name' => $name)
-                ),
-                'secondary'
+                )
             );
         }
 
