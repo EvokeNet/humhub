@@ -132,13 +132,6 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                                                 if ($vote->quality == 1) {
                                                     $enable = "hidden";
                                                     $disable = "";
-
-                                                    // if ($vote->quality == 1) {
-                                                    //     $disable = "disabled";
-                                                    // } else {
-                                                    //     $disable = "";
-                                                    // }
-
                                                 } 
 
                                                 echo \humhub\widgets\AjaxButton::widget([
@@ -177,10 +170,6 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                                                     ]
                                                 ]);
                                                 ?>
-
-                                                <!-- <button id="btn-enable-module-"<?= $vote->id ?>><?php echo Yii::t('MissionsModule.base', 'Mark as quality review'); ?></button>
-
-                                                <button id="btn-disable-module-"<?= $vote->id ?>><?php echo Yii::t('MissionsModule.base', 'Mark as quality review'); ?></button> -->
 
                                                 <?php 
                                                     // if($vote->quality == 0){
