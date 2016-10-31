@@ -129,10 +129,18 @@ class AdminController extends \humhub\modules\admin\components\Controller
         }
 
         if ($model->save()) {
-            return $this->redirect(['view-reviews', 'id' => $model->id]);
+            // return $this->redirect(['view-reviews', 'id' => $model->id]);
+
+            if (!Yii::$app->request->isAjax) {
+                return $this->redirect(['view-reviews', 'id' => $model->id]);
+            } else {
+                Yii::$app->response->format = 'json';
+                return $model->id;
+            }
+
         }
 
-        return $this->redirect(['view-reviews', 'id' => $model->id]);
+        // return $this->redirect(['view-reviews', 'id' => $model->id]);
     }
 
     public function actionUpdateQualityReviewsOnSite($id)
