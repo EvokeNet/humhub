@@ -45,7 +45,7 @@ $firstSecondary = true;
                 <div class="panel panel-default">
                     <div class="panel-body panel-body grey-box">
 
-                        <h5 style="line-height: 35px;padding-right: 31px;">
+                        <h5 style = "line-height: 35px; padding-right: 30px;">
                             <span class = "activity-number">
                             <?php echo $activity->position >= 1 ?$activity->position : "#" ?>
                             </span>
