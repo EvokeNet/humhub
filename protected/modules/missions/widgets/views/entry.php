@@ -65,7 +65,7 @@ echo Html::beginForm();
       <h6><?= Yii::t('MissionsModule.base', 'Mission {mission}, Activity {activity}:', array('mission' => $activity->mission->position, 'activity' => $activity->position)); ?></h6>
       <h5><?php echo Html::a(
               (isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title),
-              ['show', 'activityId' => $activity->id, 'sguid' => $contentContainer->guid], array('class' => '')); ?></h5>
+              ['/missions/evidence/show', 'activityId' => $activity->id, 'sguid' => $contentContainer->guid], array('class' => '')); ?></h5>
       <div class="votes-container row">
         <div class="mentor-votes col-xs-9">
           <div class="col-xs-12 no-padding-left">
@@ -357,7 +357,7 @@ echo Html::beginForm();
                                           ?>
                                     <?php endif; ?>
                                 </div>
-                                        
+
                             </div>
 
                         
