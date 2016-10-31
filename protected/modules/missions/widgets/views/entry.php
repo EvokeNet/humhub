@@ -309,14 +309,52 @@ echo Html::beginForm();
 
                                 <div style="margin:20px 0 10px">
                                     <?php if(Yii::$app->user->isAdmin()): ?>
-                                        <?php 
-                                            if($vote->quality == 0){
-                                                echo Html::a(Yii::t('MissionsModule.base', 'Mark as quality review'), ['admin/update-quality-reviews-on-site', 'id' => $vote->id, 'mark' => 1, 'user_id' => $vote->user_id], ['class' => 'btn btn-primary btn-sm']);
-                                            }
-                                            else{
-                                                echo Html::a(Yii::t('MissionsModule.base', 'Unmark as quality review'), ['admin/update-quality-reviews-on-site', 'id' => $vote->id, 'mark' => 0, 'user_id' => $vote->user_id], ['class' => 'btn btn-primary btn-sm']); 
-                                            }
-                                        ?>
+                                        <?php
+
+                                          $enable = "";
+                                          $disable = "hidden";
+
+                                          if ($vote->quality == 1) {
+                                              $enable = "hidden";
+                                              $disable = "";
+                                          } 
+
+                                          echo \humhub\widgets\AjaxButton::widget([
+                                              'label' => Yii::t('MissionsModule.base', 'Mark as quality review'),
+                                              'ajaxOptions' => [
+                                                  'type' => 'POST',
+                                                  'success' => new yii\web\JsExpression('function(){
+                                              $("#btn-enable-module-' . $vote->id . '").addClass("hidden");
+                                              $("#btn-disable-module-' . $vote->id . '").removeClass("hidden");
+                                              }'),
+                                                  'url' => Url::to(['admin/update-quality-reviews', 'id' => $vote->id, 'mark' => 1, 'user_id' => $vote->user_id]),
+                                              ],
+                                              'htmlOptions' => [
+                                                  'class' => 'btn btn-sm btn-primary '. $enable,
+                                                  'id' => 'btn-enable-module-' . $vote->id
+                                              ]
+                                          ]);
+                                          ?>
+
+
+                                          <?php
+
+                                          echo \humhub\widgets\AjaxButton::widget([
+                                              'label' => Yii::t('MissionsModule.base', 'Unmark as quality review'),
+                                              'ajaxOptions' => [
+                                                  'type' => 'POST',
+                                                  'success' => new yii\web\JsExpression('function(){
+                                              $("#btn-enable-module-' . $vote->id . '").removeClass("hidden");
+                                              $("#btn-disable-module-' . $vote->id . '").addClass("hidden");
+                                               }'),
+                                                  'url' => Url::to(['admin/update-quality-reviews', 'id' => $vote->id, 'mark' => 0, 'user_id' => $vote->user_id]),
+                                              ],
+                                              'htmlOptions' => [
+                                                  'class' => 'btn btn-sm btn-info '. $disable,
+                                                  'id' => 'btn-disable-module-' . $vote->id
+                                              ]
+                                          ]);
+                                          ?>
                                     <?php endif; ?>
                                 </div>
                                         

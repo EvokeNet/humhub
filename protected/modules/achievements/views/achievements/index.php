@@ -31,12 +31,19 @@
 				    <div class="panel-body">
 
 				    	<?php foreach($achievements as $a): ?>
-				    		<?php if($a->userAchievements): ?>
 
-				    			<div class="trophy-1">
-				    				<div class="t-icon"><i class="fa fa-trophy fa-2x" aria-hidden="true"></i></div>
-				    				<div class="t-titles"><span data-toggle="tooltip" data-placement="top" title="<?php echo $a->description; ?>"><?php echo $a->title; ?></span></div>
-				    			</div>
+                            <?php $is_there = false; 
+                                foreach($user_achievements as $u): 
+                                    if($a->id == $u->achievement_id): $is_there = true; break; endif; 
+                                endforeach;?>
+                                 
+
+                            <?php if($is_there): ?>
+
+                                <div class="trophy-1">
+                                    <div class="t-icon"><i class="fa fa-trophy fa-2x" aria-hidden="true"></i></div>
+                                    <div class="t-titles"><span data-toggle="tooltip" data-placement="top" title="<?php echo $a->description; ?>"><?php echo $a->title; ?></span></div>
+                                </div>
 
 				    		<?php else: ?>
 	

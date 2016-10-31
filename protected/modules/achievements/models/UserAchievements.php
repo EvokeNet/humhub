@@ -87,4 +87,29 @@ class UserAchievements extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
+
+    /**
+     * After Saving of user achievements, fire a notification
+     *
+     * @return type
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+        $user = User::findOne($this->user_id);
+
+        if ($insert && $this->achievement->code === "quality_review") {
+            $notification = new \humhub\modules\achievements\notifications\NewAchievement();
+            $notification->source = $this->achievement;
+            $notification->originator = Yii::$app->user->getIdentity();
+            $notification->send($user);
+            echo "<pre>";
+            //print_r($notification);
+            echo "</pre>";
+        }
+
+        return parent::afterSave($insert, $changedAttributes);
+
+    }
+
+
 }
