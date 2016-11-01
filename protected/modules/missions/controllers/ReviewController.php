@@ -166,6 +166,7 @@ class ReviewController extends ContentContainerController
         ->orderBy('vote_count ASC')
         ->all();
 
+
         return $this->render('list', array('contentContainer' => $this->contentContainer, 'evidences' => $query));
     }
 

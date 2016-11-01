@@ -26,7 +26,8 @@ class EvokationsController extends ContentContainerController //extends Controll
             'stream' => array(
                 'class' => \humhub\modules\missions\components\EvokationStreamAction::className(),
                 'mode' => \humhub\modules\missions\components\EvokationStreamAction::MODE_NORMAL,
-                'contentContainer' => $this->contentContainer
+                'contentContainer' => $this->contentContainer,
+                'filterContentContainer' => Yii::$app->request->get('filterContentContainer'),
              ),
         );
     }  
@@ -106,7 +107,6 @@ class EvokationsController extends ContentContainerController //extends Controll
         $evokation->title = Yii::$app->request->post('title');
         $evokation->description = Yii::$app->request->post('description');
         $evokation->youtube_url = Yii::$app->request->post('youtube_url');
-        $evokation->gdrive_url = Yii::$app->request->post('gdrive_url');
             
         if(!Yii::$app->request->post('title')){
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Title cannot be blank.'));
@@ -114,8 +114,6 @@ class EvokationsController extends ContentContainerController //extends Controll
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Description cannot be blank.'));
         } else if(!Yii::$app->request->post('youtube_url')){
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'YouTube URL cannot be blank.'));
-        } else if(!Yii::$app->request->post('gdrive_url')){
-            AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Google Drive URL cannot be blank.'));
         }
 
         return \humhub\modules\missions\widgets\WallCreateEvokationForm::create($evokation, $this->contentContainer);

@@ -158,6 +158,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                                                     $enable = "hidden";
                                                     $disable = "";
                                                     $disables = "";
+
                                                 } 
 
                                                 echo \humhub\widgets\AjaxButton::widget([
@@ -167,7 +168,9 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                                                         'success' => new yii\web\JsExpression('function(){
                                                     $("#btn-enable-module-' . $vote->id . '").addClass("hidden");
                                                     $("#btn-disable-module-' . $vote->id . '").removeClass("hidden");
+
                                                     $("#btn-disables-module-' . $vote->id . '").removeClass("hidden");
+
                                                     }'),
                                                         'url' => Url::to(['admin/update-quality-reviews', 'id' => $vote->id, 'mark' => 1, 'user_id' => $vote->user_id]),
                                                     ],
@@ -188,7 +191,9 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                                                         'success' => new yii\web\JsExpression('function(){
                                                     $("#btn-enable-module-' . $vote->id . '").removeClass("hidden");
                                                     $("#btn-disable-module-' . $vote->id . '").addClass("hidden");
+
                                                     $("#btn-disables-module-' . $vote->id . '").addClass("hidden");
+
                                                      }'),
                                                         'url' => Url::to(['admin/update-quality-reviews', 'id' => $vote->id, 'mark' => 0, 'user_id' => $vote->user_id]),
                                                     ],

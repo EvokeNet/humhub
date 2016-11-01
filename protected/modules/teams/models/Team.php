@@ -11,6 +11,7 @@ use humhub\modules\content\models\Content;
 use humhub\modules\content\components\ContentContainerActiveRecord;
 use humhub\modules\user\models\User;
 use app\modules\missions\models\Evidence;
+use humhub\modules\space\models\Space;
 
 /**
  * This is the model class for table "space".
@@ -344,7 +345,7 @@ class Team extends ContentContainerActiveRecord implements \humhub\modules\searc
 
     /**
      * Checks if space has tags
-     * 
+     *
      * @return boolean has tags set
      */
     public function hasTags()
@@ -449,7 +450,7 @@ class Team extends ContentContainerActiveRecord implements \humhub\modules\searc
         if (Yii::$app->getModule('space')->globalAdminCanAccessPrivateContent && Yii::$app->user->getIdentity()->super_admin === 1) {
             return true;
         }
-        
+
         return ($this->isMember());
     }
 
@@ -467,6 +468,20 @@ class Team extends ContentContainerActiveRecord implements \humhub\modules\searc
         $query->andWhere(['space_membership.status' => Membership::STATUS_MEMBER]);
         $query->addOrderBy(['space_membership.group_id' => SORT_DESC]);
         return $query;
+    }
+
+    public function getTeamMembers() {
+      $member_query = $this->getMemberships();
+      $member_query->joinWith('user');
+      $member_query->where(['user.status' => \humhub\modules\user\models\User::STATUS_ENABLED]);
+      $memberships = $member_query->all();
+      $team_members = [];
+
+      foreach ($memberships as $membership) {
+        $team_members[] = $membership->user;
+      }
+
+      return $team_members;
     }
 
     public function getApplicants()
@@ -558,9 +573,9 @@ class Team extends ContentContainerActiveRecord implements \humhub\modules\searc
             ->andWhere('m.status ='. Membership::STATUS_MEMBER)
             ->one();
 
-            return $query['space_id']; 
+            return $query['space_id'];
         }
-        
+
         return null;
     }
 
@@ -573,5 +588,18 @@ class Team extends ContentContainerActiveRecord implements \humhub\modules\searc
         ->one()['count'];
     }
 
+    public function getTeamsFollowed($user_id) {
+      $teams_following = (new \yii\db\Query())
+      ->select(['s.id'])
+      ->from('user_follow as u')
+      ->join('INNER JOIN', 'space as s', '`u`.`object_id` = `s`.`id`')
+      ->where(['s.is_team' => '1'])
+      ->andWhere(['u.user_id' => $user_id])
+      ->andFilterWhere(
+         ['u.object_model' => Space::className()])
+      ->all();
+
+      return Team::find()->where(['id' => $teams_following])->all();
+    }
 
 }

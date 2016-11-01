@@ -40,6 +40,7 @@ echo \app\modules\missions\widgets\EvokationStream::widget(array(
     'messageStreamEmptyCss' => ($canCreateEvokations) ? 'placeholder-empty-stream' : '',
     'filters' => [
     ],
+    'filterContentContainer' => true,
 ));
 
 ?>

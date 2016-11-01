@@ -26,7 +26,7 @@ $firstSecondary = true;
     <div class="panel-heading">
 
         <h4 class = "bold"><span class = "mission-number"><?= $mission->position ?></span><?php echo Yii::t('MissionsModule.base', 'Mission:'); ?>&nbsp;<?= $mission_title ?></h4>
-        
+
     </div>
     <div class="panel-body">
 
@@ -45,13 +45,18 @@ $firstSecondary = true;
                 <div class="panel panel-default">
                     <div class="panel-body panel-body grey-box">
 
+                      <?php if ($activity->is_group): ?>
+                        <span class="label label-border"><?php echo Yii::t('MissionsModule.model', 'Group Activity'); ?></span>
+                      <?php endif; ?>
+
                         <h5 style = "line-height: 35px; padding-right: 30px;">
+
                             <span class = "activity-number">
                             <?php echo $activity->position >= 1 ?$activity->position : "#" ?>
                             </span>
                             <?php echo isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title ?>
                         </h5>
-                        
+
                         <?php if($hasUserSubmittedEvidence): ?>
                             <div style="position: absolute; top: 25px; right: 25px; color: #28C503;" data-toggle="tooltip" title="<?php echo Yii::t('MissionsModule.base', "You've completed this activity"); ?>"><i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i></div>
                         <?php endif; ?>
@@ -77,12 +82,12 @@ $firstSecondary = true;
                                                 $name = $power->getPower()->powerTranslations[0]->title;
                                     ?>
 
-                                    
+
                                         <div style="text-align: center; display:inline-block">
                                         <img src = "<?php echo $power->getPower()->image; ?>" width=50px>
                                         <span style="font-size:10pt"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></span>
                                     </div>
-                                        
+
                                     <?php endforeach; ?>
 
                                 </div>
@@ -102,12 +107,12 @@ $firstSecondary = true;
                                             if(Yii::$app->language == 'es' && isset($power->getPower()->powerTranslations[0]))
                                                 $name = $power->getPower()->powerTranslations[0]->title;
                                     ?>
-                                        
+
                                     <div style="text-align: center; display:inline-block; margin-bottom:10px">
                                         <img src = "<?php echo $power->getPower()->image; ?>" width=50px>
                                         <span style="font-size:10pt"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></span>
                                     </div>
-                                    
+
                                 <?php endforeach; ?>
 
                             </div>
@@ -118,22 +123,20 @@ $firstSecondary = true;
                             <?php echo Html::a(
                                 Yii::t('MissionsModule.base', 'Enter Activity'),
                                 ['show', 'activityId' => $activity->id, 'sguid' => $contentContainer->guid], array('class' => 'btn btn-cta2')); ?>
-                            
-                            <?php $count = 0; foreach ($members as $membership) : $userSubmittedEvidence = Evidence::hasUserSubmittedEvidence($activity->id, $membership->user->id);?>
-                                <?php $user = $membership->user; ?>
-                                <?php if($membership->status === \humhub\modules\space\models\Membership::STATUS_MEMBER && $userSubmittedEvidence && $membership->user->id != Yii::$app->user->id) : $count++; ?>
-                                    <a href=/content/perma/"<?php echo $user->getUrl(); ?>" style="margin-left:10px">
-                                        <img src="<?php echo $user->getProfileImage()->getUrl(); ?>" class="img-rounded tt img_margin member-img" id = "space-members"
-                                            data-toggle="tooltip" data-placement="top" title=""
-                                            data-original-title="<?php echo Yii::t('MissionsModule.base', "{user} completed this activity", array('user' => Html::encode($user->displayName))); ?>">
-                                    </a>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
-                            
-                            <?php if($count == 0): ?>
-                                <span><?php //echo Yii::t('MissionsModule.base', 'No member of this group has submitted an evidence for this activity'); ?></span>
-                            <?php endif; ?>
 
+                            <?php if(!$activity->is_group): ?>
+
+                              <?php $count = 0; foreach ($members as $membership) : $userSubmittedEvidence = Evidence::hasUserSubmittedEvidence($activity->id, $membership->user->id);?>
+                                  <?php $user = $membership->user; ?>
+                                  <?php if($membership->status === \humhub\modules\space\models\Membership::STATUS_MEMBER && $userSubmittedEvidence && $membership->user->id != Yii::$app->user->id) : $count++; ?>
+                                      <a href=/content/perma/"<?php echo $user->getUrl(); ?>" style="margin-left:10px">
+                                          <img src="<?php echo $user->getProfileImage()->getUrl(); ?>" class="img-rounded tt img_margin member-img" id = "space-members"
+                                              data-toggle="tooltip" data-placement="top" title=""
+                                              data-original-title="<?php echo Yii::t('MissionsModule.base', "{user} completed this activity", array('user' => Html::encode($user->displayName))); ?>">
+                                      </a>
+                                  <?php endif; ?>
+                              <?php endforeach; ?>
+                            <?php endif; ?>
                     </div>
                 </div>
 

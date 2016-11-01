@@ -61,4 +61,6 @@ return [
     'Updated By' => 'Actualizado por',
     'Value' => 'Valor',
     'Youtube Url' => 'Url de Youtube',
+    'Group Activity' => 'Actividad Grupal',
+    'Is a Group Activity' => 'Es una Actividad Grupal'
 ];

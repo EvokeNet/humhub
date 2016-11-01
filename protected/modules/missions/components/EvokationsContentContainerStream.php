@@ -11,6 +11,7 @@ class EvokationsContentContainerStream extends FixedStream
 {
 
     public $contentContainer;
+    public $filterContentContainer;
 
     public function init()
     {

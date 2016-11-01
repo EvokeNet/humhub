@@ -132,7 +132,7 @@ class Votes extends ContentActiveRecord
         }
 
 
-        // $enabled_review_notification_emails = Setting::Get($author->id,'enabled_review_notification_emails', 'Missions', 1);
+        // $enabled_review_notification_emails = Setting::Get($author->id,'enabled_review_notification_emails', 'Missions', 0);
 
         // if($enabled_review_notification_emails == 1){
         //    Yii::$app->mailer->compose('ReviewEvidence', [
