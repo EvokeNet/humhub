@@ -24,7 +24,7 @@ class EvokeToolsController extends Controller
 
     public function actionIndex()
     {
-        $prizes = Prize::find()->where(['<=', 'week_of', date('Y-m-d')])->all();
+        $prizes = Prize::find()->where(['<=', 'week_of', date('Y-m-d')])->andWhere('quantity > :quantity', [':quantity' => '0'])->all();
         $coin_id = Coin::find()->where(['name' => 'EvoCoin'])->one()->id;
         $wallet = Wallet::find()->where(['owner_id' => Yii::$app->user->id, 'coin_id' => $coin_id])->one();
         $super_powers = Qualities::find()->all();
