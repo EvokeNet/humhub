@@ -44,15 +44,10 @@ $user = Yii::$app->user->getIdentity();
              <li>
                   <?php $space = Space::findOne($team->id) ?>
 
-                  <!-- Follow Handling -->
+                  <!-- Evidence Count -->
                   <div class="pull-right">
-                      <?php
-                      if (!Yii::$app->user->isGuest) {
-                          $followed = $space->isFollowedByUser();
-                          echo Html::a(Yii::t('DirectoryModule.views_directory_members', 'Follow'), 'javascript:setFollow("' . $space->createUrl('/teams/team/follow') . '", "' . $space->id . '")', array('class' => 'btn btn-info btn-sm ' . (($followed) ? 'hide' : ''), 'id' => 'button_follow_' . $space->id));
-                          echo Html::a(Yii::t('DirectoryModule.views_directory_members', 'Unfollow'), 'javascript:setUnfollow("' . $space->createUrl('/teams/team/unfollow') . '", "' . $space->id . '")', array('class' => 'btn btn-primary btn-sm ' . (($followed) ? '' : 'hide'), 'id' => 'button_unfollow_' . $space->id));
-                      }
-                      ?>
+                      <?php echo $team->getEvidenceCount();?>
+                      <?php echo $team->getReviewedEvidenceCount($user->id); ?>
                   </div>
 
                   <div class="media">

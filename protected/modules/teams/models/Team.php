@@ -588,6 +588,20 @@ class Team extends ContentContainerActiveRecord implements \humhub\modules\searc
         ->one()['count'];
     }
 
+    public function getReviewedEvidenceCount($user_id) {
+
+      $query = (new \yii\db\Query())
+      ->select(['count(distinct v.id) as vote_count'])
+      ->from('evidence as e')
+      ->join('INNER JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
+      ->join('LEFT JOIN', 'votes v', '`v`.`evidence_id`=`e`.`id`')
+      ->where('c.space_id = '.$this->id)
+      ->andWhere('c.user_id = '.$user_id)
+      ->one();
+
+      return $query['vote_count'];
+    }
+
     public function getTeamsFollowed($user_id) {
       $teams_following = (new \yii\db\Query())
       ->select(['s.id'])

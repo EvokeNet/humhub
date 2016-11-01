@@ -501,7 +501,7 @@ class EvidenceController extends ContentContainerController
             }
 
             $user = User::findOne($evidence->content->user_id);
-            $is_group_activity = Activities::findOne(['id' => $evidence->activities_id])->is_group
+            $is_group_activity = Activities::findOne(['id' => $evidence->activities_id])->is_group;
 
             //if user's editing vote
             if($vote){
