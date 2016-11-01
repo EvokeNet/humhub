@@ -288,7 +288,7 @@ class EvidenceController extends ContentContainerController
                     } else {
                         $evidence->content->visibility = 0;
                         $evidence->content->save();
-                        
+
                         AlertController::createAlert(Yii::t('MissionsModule.base', 'Error'),Yii::t('MissionsModule.base', 'Something went wrong.'));
                     }
                 }
@@ -506,7 +506,7 @@ class EvidenceController extends ContentContainerController
                 return;
             }
 
-            $user = User::findOne($evidence->content->user_id);
+            $author = User::findOne($evidence->content->user_id);
             $is_group_activity = Activities::findOne(['id' => $evidence->activities_id])->is_group;
 
             //if user's editing vote
@@ -539,7 +539,7 @@ class EvidenceController extends ContentContainerController
                 // if it's a group activity, we need to award points to all team members
                 if ($is_group_activity) {
                   // find the team and it's members
-                  $team_id = Team::getUserTeam($user->id);
+                  $team_id = Team::getUserTeam($author->id);
                   $team = Team::findOne($team_id);
                   $team_members = $team->getTeamMembers();
 
@@ -548,7 +548,7 @@ class EvidenceController extends ContentContainerController
                   }
                 } else { // just award the current user
                   //USER POWER POINTS
-                  UserPowers::addPowerPoint($activityPower->getPower(), $user, $pointChange);
+                  UserPowers::addPowerPoint($activityPower->getPower(), $author, $pointChange);
                 }
 
                 if($evocoin_earned <= 0){
