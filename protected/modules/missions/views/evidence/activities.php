@@ -136,11 +136,6 @@ $firstSecondary = true;
                                   <?php endif; ?>
                               <?php endforeach; ?>
                             <?php endif; ?>
-
-                            <?php if($count == 0): ?>
-                                <span><?php //echo Yii::t('MissionsModule.base', 'No member of this group has submitted an evidence for this activity'); ?></span>
-                            <?php endif; ?>
-
                     </div>
                 </div>
 
