@@ -14,19 +14,19 @@ use yii\helpers\Url;
 class UserSettingsController extends \humhub\modules\user\controllers\AccountController
 {
     
-    // public function actionIndex()
-    // {
-    //     $user = Yii::$app->user->getIdentity();
-    //     $form = new AccountEvokeSettingsForm;
-    //     $form->enabled_review_notification_emails = Setting::Get($user->id,'enabled_review_notification_emails', 'Missions', 1);
+    public function actionIndex()
+    {
+        $user = Yii::$app->user->getIdentity();
+        $form = new AccountEvokeSettingsForm;
+        $form->enabled_review_notification_emails = Setting::Get($user->id,'enabled_review_notification_emails', 'Missions', 0);
 
-    //     if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-    //         Setting::Set($user->id,'enabled_review_notification_emails', $form->enabled_review_notification_emails,'Missions');
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            Setting::Set($user->id,'enabled_review_notification_emails', $form->enabled_review_notification_emails,'Missions');
 
-    //         Yii::$app->getSession()->setFlash('data-saved', Yii::t('AdminModule.controllers_SettingController', 'Saved'));
-    //         return Yii::$app->response->redirect(Url::toRoute('/missions/user-settings'));
-    //     }
+            Yii::$app->getSession()->setFlash('data-saved', Yii::t('AdminModule.controllers_SettingController', 'Saved'));
+            return Yii::$app->response->redirect(Url::toRoute('/missions/user-settings'));
+        }
 
-    //     return $this->render('index', ['model' => $form]);  
-    // }    
+        return $this->render('index', ['model' => $form]);  
+    }    
 }

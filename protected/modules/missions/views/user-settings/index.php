@@ -18,7 +18,9 @@ use yii\widgets\ActiveForm;
         <strong><?php echo Yii::t('MissionsModule.views_setting_evoke', 'Notifications'); ?></strong>
         <br>
         <br>
-        <?php echo $form->field($model, 'enabled_review_notification_emails')->checkbox(); ?>
+        <div class="radio disabled">
+            <?php echo $form->field($model, 'enabled_review_notification_emails')->checkbox(array('disabled'=>'true')); ?>
+        </div>
 
         <hr>
 
