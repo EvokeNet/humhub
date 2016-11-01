@@ -23,6 +23,7 @@ return [
     'Evokation' => '',
     'Evokation Categories' => '',
     'Evokation Deadline' => '',
+    'Evoke Errors\' View' => '',
     'Evoke Settings' => '',
     'Leaderboard' => '',
     'Members' => '',

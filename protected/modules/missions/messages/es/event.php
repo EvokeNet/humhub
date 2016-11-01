@@ -17,10 +17,10 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Evidences To Be Reviewed' => 'Evidencias que evaluar',
-    'Review Evidences' => 'Evaluar Evidencias',
+    'Evoke Errors\' View' => 'Visualización de Errors de Evoke',
     'All Evidences' => 'Todas las Evidencias',
     'Evidences' => 'Evidencias',
+    'Evidences To Be Reviewed' => 'Evidencias que evaluar',
     'Evokation' => 'Evokación',
     'Evokation Categories' => 'Categorías de Evokación',
     'Evokation Deadline' => 'Fin de plazo de Evokación',
@@ -31,5 +31,6 @@ return [
     'My Team' => 'Mi Equipo',
     'My Teams' => 'Mis equipos',
     'Review Evidence' => 'Evaluar Evidencias',
+    'Review Evidences' => 'Evaluar Evidencias',
     'Reviews' => 'Evaluaciones',
 ];

@@ -17,9 +17,5 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Description' => '',
-    'Edit your evokation content...' => '',
-    'Edit your evokation title...' => '',
-    'Title' => '',
-    'YouTube URL' => '',
+    'Actions' => '',
 ];
