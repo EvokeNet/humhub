@@ -23,6 +23,25 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
 <?php endif; ?>
 
 <br><br>
+<!-- INVESTMENT -->
+<div class= "">
+    <div class="">
+        <h5>Investment</h5>
+    </div>
+        <div class="">
+        <p>
+            <b>Total Invesment:</b> <?= $total_investment ?> evokoins
+        </p>
+        <p>
+            <b>Median Investment:</b>  <?= $median_investment ?> evokoins
+        </p>
+        <p>
+            <b>Total Investors:</b> <?= $total_investors ?> agents
+        </p>
+    </div>
+</div>
+
+<br>
 
 <div>
     <div style = "float:left">
