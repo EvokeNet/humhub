@@ -534,7 +534,7 @@ class EvidenceController extends ContentContainerController
                 $vote->save();
 
                 //updated evidence author's reward
-                $activityPower = Activities::findOne($vote->activity_id)->getPrimaryPowers()[0];;
+                $activityPower = Activities::findOne($vote->activity_id)->getPrimaryPowers()[0];
 
                 // if it's a group activity, we need to award points to all team members
                 if ($is_group_activity) {
@@ -597,7 +597,7 @@ class EvidenceController extends ContentContainerController
                     // if it's a group activity, we need to award points to all team members
                     if ($is_group_activity) {
                       // find the team and it's members
-                      $team_id = Team::getUserTeam($user->id);
+                      $team_id = Team::getUserTeam($author->id);
                       $team = Team::findOne($team_id);
                       $team_members = $team->getTeamMembers();
 
@@ -606,7 +606,7 @@ class EvidenceController extends ContentContainerController
                       }
                     } else { // just award the current user
                       //USER POWER POINTS
-                      UserPowers::addPowerPoint($activityPower->getPower(), $user, $grade);
+                      UserPowers::addPowerPoint($activityPower->getPower(), $author, $grade);
                     }
                 }
 
