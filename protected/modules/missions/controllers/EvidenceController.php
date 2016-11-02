@@ -544,7 +544,7 @@ class EvidenceController extends ContentContainerController
                   $team_members = $team->getTeamMembers();
 
                   foreach ($team_members as $team_member) {
-                    UserPowers::addPowerPoint($activity_power->getPower(), $team_member, $pointChange);
+                    UserPowers::addPowerPoint($activityPower->getPower(), $team_member, $pointChange);
                   }
                 } else { // just award the current user
                   //USER POWER POINTS
@@ -602,7 +602,7 @@ class EvidenceController extends ContentContainerController
                       $team_members = $team->getTeamMembers();
 
                       foreach ($team_members as $team_member) {
-                        UserPowers::addPowerPoint($activity_power->getPower(), $team_member, $grade);
+                        UserPowers::addPowerPoint($activityPower->getPower(), $team_member, $grade);
                       }
                     } else { // just award the current user
                       //USER POWER POINTS
