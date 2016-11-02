@@ -52,7 +52,7 @@ echo Html::beginForm();
                         ]
                     ));
                     ?> 
-                <?php elseif ($file->getExtension() == "png" || $file->getExtension() == "jpg" || $file->getExtension() == "jpeg") : ?>
+                <?php elseif ($file->canRead() && ($file->getExtension() == "png" || $file->getExtension() == "jpg" || $file->getExtension() == "jpeg")) : ?>
 
                   <br /><br />
 
