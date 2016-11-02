@@ -17,5 +17,5 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Actions' => 'Acciones',
+    'You\'ve gained a new achievement:<br> %message%.' => 'Has ganado una nueva realización:<br> %message%.',
 ];

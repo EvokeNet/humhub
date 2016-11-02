@@ -17,6 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'See achievements' => 'Ver realizaciones',
     '<strong>Something</strong> went wrong' => '<strong>Algo</strong> salió mal',
     'Avg Rating' => 'Clasificación media',
     'Evidences' => 'Evidencias',

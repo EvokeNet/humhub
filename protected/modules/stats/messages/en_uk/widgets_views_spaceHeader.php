@@ -20,7 +20,6 @@ return [
     '# Evidences' => '',
     '<strong>Something</strong> went wrong' => '',
     'Activities Completed' => '',
-    'Evokation Progress' => '',
     'Followers' => '',
     'Members' => '',
     'Ok' => '',
