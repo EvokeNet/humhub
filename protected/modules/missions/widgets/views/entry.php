@@ -51,7 +51,13 @@ echo Html::beginForm();
                             'smoothPlayBar' => true,
                         ]
                     ));
-                    ?>
+                    ?> 
+                <?php elseif ($file->getExtension() == "png" || $file->getExtension() == "jpg" || $file->getExtension() == "jpeg") : ?>
+
+                  <br /><br />
+
+                  <a href="<?php echo $file->getPreviewImageUrl(); ?>"><img src="<?php echo $file->getPreviewImageUrl(); ?>" width="200"/></a>
+
                 <?php endif; ?>
 
             </li>
