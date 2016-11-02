@@ -9,6 +9,7 @@ class EvokeSettingsForm extends \yii\base\Model
 
     public $enabled_evokations;
     public $enabled_evokation_page_visibility;
+    public $investment_limit;
 
     /**
      * Declares the validation rules.
@@ -17,7 +18,8 @@ class EvokeSettingsForm extends \yii\base\Model
     {
         return array(
             array(['enabled_evokations'], 'in', 'range' => array(0, 1)),
-            array(['enabled_evokation_page_visibility'], 'in', 'range' => array(0, 1))
+            array(['enabled_evokation_page_visibility'], 'in', 'range' => array(0, 1)),
+            array(['investment_limit'], 'number', 'integerOnly' => true),
         );
     }
 
@@ -31,6 +33,7 @@ class EvokeSettingsForm extends \yii\base\Model
         return array(
             'enabled_evokations' => Yii::t('MissionsModule.base', 'Allow Evokation Submissions'),
             'enabled_evokation_page_visibility' => Yii::t('MissionsModule.base', 'Show Evokation Page on Team Page'),
+            'investment_limit' => Yii::t('MissionsModule.base', 'Set Investment Limit'),
         );
     }
 }

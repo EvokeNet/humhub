@@ -7,7 +7,7 @@ use app\modules\coin\models\Wallet;
 use app\modules\missions\models\Portfolio;
 use app\modules\missions\models\EvokationDeadline;
 
-$deadline = EvokationDeadline::find()->one();
+$deadline = EvokationDeadline::getVotingDeadline();
 $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
 $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id);
 
@@ -50,7 +50,7 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                     </div>
                 </div>
 
-                <?php if (!$deadline || (strtotime(date('Y-m-d H:i:s')) > strtotime($deadline->start_date)) && (strtotime(date('Y-m-d H:i:s')) < strtotime($deadline->finish_date))): ?>
+                <?php if ($deadline && $deadline->isOccurring()): ?>
                 <div class="col-xs-5">
                     <div class="container2" style = "display:inline-flex">
                         <div class="input-group spinner">
@@ -329,6 +329,9 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                     }else if(data.status == 'error'){
                         $('#portfolio_status').hide();
                         showMessage("<?= Yii::t('MissionsModule.base', 'Error') ?>", "<?= Yii::t('MissionsModule.base', 'Something went wrong') ?>");
+                    }else if(data.status == 'error_limit'){
+                        $('#portfolio_status').hide();
+                        showMessage("<?= Yii::t('MissionsModule.base', 'Error') ?>", "<?= Yii::t('MissionsModule.base', 'You can not invest more than {investment_limit} evocoins total.', ['investment_limit' => intval(humhub\models\Setting::Get('investment_limit'))]) ?>");
                     }
                 }
             });
@@ -374,6 +377,9 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                 }else if(data.status == 'error'){
                     $('#portfolio_status').hide();
                     showMessage("<?= Yii::t('MissionsModule.base', 'Error') ?>", "<?= Yii::t('MissionsModule.base', 'Something went wrong') ?>");
+                }else if(data.status == 'error_limit'){
+                    $('#portfolio_status').hide();
+                    showMessage("<?= Yii::t('MissionsModule.base', 'Error') ?>", "<?= Yii::t('MissionsModule.base', 'You can\'t invest more than {investment_limit} evocoins.', ['investment_limit' => intval(humhub\models\Setting::Get('investment_limit'))]) ?>");
                 }
 
             },

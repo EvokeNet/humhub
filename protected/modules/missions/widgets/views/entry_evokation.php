@@ -20,13 +20,11 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
 <h5><?php print humhub\widgets\RichText::widget(['text' => $evokation->title]); ?></h5>
 <p><?php print humhub\widgets\RichText::widget(['text' => $evokation->description]);?></p>
 
-<!--
+
 <?php if($youtube_code): ?>
-    
-    video disabled
-    <iframe width="630" height="420" src="http://www.youtube.com/embed/<?php echo $youtube_code; ?>" frameborder="0" allowfullscreen></iframe>
+    <iframe width="598" height="398" src="http://www.youtube.com/embed/<?php echo $youtube_code; ?>" frameborder="0" allowfullscreen></iframe>
 <?php endif; ?>
--->
+
 
 <!-- YOUTUBE LINK -->
 <a target="_blank" href="<?=$evokation->youtube_url?>">Youtube video</a>
@@ -69,7 +67,7 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
     </div>
     -->
 
-    <?php if (!$deadline || (strtotime(date('Y-m-d H:i:s')) > strtotime($deadline->start_date)) && (strtotime(date('Y-m-d H:i:s')) < strtotime($deadline->finish_date))): ?>
+    <?php if ($deadline && $deadline->isOccurring() ): ?>
     <div style = "float:right">
         <a class = "btn btn-cta1" href="" onClick="addEvokationToPortfolio<?= $evokation->id ?>();return false;">
             <?= Yii::t('MissionsModule.base', 'Add to Portfolio') ?>
@@ -120,6 +118,9 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
                     }else if(data.status == 'error'){
                         $('#portfolio_status').hide();
                         showMessage("<?= Yii::t('MissionsModule.base', 'Error') ?>", "<?= Yii::t('MissionsModule.base', 'Something went wrong') ?>");
+                    }else if(data.status == 'error_limit'){
+                        $('#portfolio_status').hide();
+                        showMessage("<?= Yii::t('MissionsModule.base', 'Error') ?>", "<?= Yii::t('MissionsModule.base', 'You can not invest more than {investment_limit} evocoins total.', ['investment_limit' => intval(humhub\models\Setting::Get('investment_limit'))]) ?>");
                     }
                 }
             });      

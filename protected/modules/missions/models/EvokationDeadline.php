@@ -18,6 +18,10 @@ use yii\behaviors\TimestampBehavior;
  */
 class EvokationDeadline extends \yii\db\ActiveRecord
 {
+
+    const EVOKATION_DEADLINE = "evokation_deadline";
+    const VOTING_DEADLINE = "voting_deadline";
+
     public function behaviors()
     {
         return [
@@ -64,5 +68,56 @@ class EvokationDeadline extends \yii\db\ActiveRecord
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
+    }
+
+    /*
+    *   Finish date is the latest minute of the finish day.
+    */
+    public function getFinishDate(){
+        $finish_date = date_create($this->finish_date);
+        date_add($finish_date, date_interval_create_from_date_string('23 hours 59 minutes 59 seconds'));
+        return date_format($finish_date, 'Y-m-d H:i:s');
+    }
+
+    public function hasEnded(){
+        $finish_date = $this->getFinishDate();
+
+        if(strtotime($finish_date) >= (strtotime(date('Y-m-d H:i:s')))){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    public function hasStarted(){
+        if(strtotime($this->start_date) > (strtotime(date('Y-m-d H:i:s')))){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    public function isOccurring(){
+        return ($this->hasStarted() && !$this->hasEnded());
+    }
+
+    public static function getEvokationDeadline(){
+        return EvokationDeadline::findOne(['code' => EvokationDeadline::EVOKATION_DEADLINE]);
+    }
+
+    public static function createNewEvokationDeadline(){
+        $deadline = new EvokationDeadline();
+        $deadline->code = EvokationDeadLine::EVOKATION_DEADLINE;
+        return $deadline;
+    }
+
+    public static function getVotingDeadline(){
+        return EvokationDeadline::findOne(['code' => EvokationDeadline::VOTING_DEADLINE]);
+    }
+
+    public static function createNewVotingDeadline(){
+        $deadline = new EvokationDeadline();
+        $deadline->code = EvokationDeadLine::VOTING_DEADLINE;
+        return $deadline;
     }
 }

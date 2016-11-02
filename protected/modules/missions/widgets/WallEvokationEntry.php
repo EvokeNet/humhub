@@ -13,7 +13,7 @@ class WallEvokationEntry extends \humhub\modules\content\widgets\WallEntry
     
     public function run()
     {
-        $deadline = EvokationDeadline::find()->one();
+        $deadline = EvokationDeadline::getVotingDeadline();
 
         $total_investment =  (new \yii\db\Query())
                     ->select(["SUM(p.investment) as total_investment"])
