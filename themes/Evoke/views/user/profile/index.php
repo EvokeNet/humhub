@@ -8,6 +8,7 @@ $userPowers = UserPowers::getUserPowers($user->id);
 
 if($user->id == Yii::$app->user->id){
 	echo \humhub\modules\missions\widgets\MyReviews::widget(['powers' => $userPowers]);
+    echo \humhub\modules\achievements\widgets\MyQualityReviews::widget(['powers' => $userPowers]);
 }
 
 if($user->group->name != "Mentors"){

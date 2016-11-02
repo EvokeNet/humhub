@@ -231,6 +231,10 @@ if ($isProfileOwner) {
 
                     <div class="controls controls-header pull-right">
                         <?php
+                        echo Html::a(Yii::t("UserModule.widgets_views_profileEditButton", "See achievements"), Url::toRoute(['/achievements/achievements/index', 'id' => $user->id]), array('class' => 'btn btn-primary edit-account'));
+                        ?>
+                        &nbsp;&nbsp;
+                        <?php
                         echo \humhub\modules\user\widgets\ProfileHeaderControls::widget(
                             array(
                                 'user' => $user,

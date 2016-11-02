@@ -22,6 +22,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'modified')->textInput() ?>
 
+    <?php echo $form->($model, 'is_group')->checkbox()->label('Is a Group Activity: '); ?>
+
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('MissionsModule.model', 'Create') : Yii::t('MissionsModule.model', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

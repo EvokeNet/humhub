@@ -14,6 +14,7 @@ use app\modules\matching_questions\models\User;
 use humhub\modules\content\models\Content;
 use app\modules\missions\models\ActivityPowers;
 use app\modules\powers\models\UserPowers;
+use app\modules\teams\models\Team;
 
 /**
  * This is the model class for table "evidence".
@@ -204,9 +205,32 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
         if ($userId == "")
             $userId = Yii::$app->user->id;
 
-        $evidence = Evidence::findOne(['activities_id' => $activityId, 'created_by' => $userId]);
+        $activity = Activities::findOne(['id' => $activityId]);
 
-        if($evidence){
+        // check if activity is a group activity
+        // if so we must look for anyone in the team with a submitted evidence
+        if ($activity->is_group) {
+          // find the team and it's members
+          $team_id = Team::getUserTeam($userId);
+          $team = Team::findOne($team_id);
+
+          $team_members = $team->getTeamMembers();
+
+          foreach ($team_members as $team_member) {
+            $evidence_exists = Evidence::find()->where(['activities_id' => $activityId, 'created_by' => $team_member->id])->exists();
+
+            if ($evidence_exists) {
+              return true;
+            }
+
+          }
+
+
+        } else { // it's not a group activity, so just find the users evidence
+          $evidence_exists = Evidence::find()->where(['activities_id' => $activityId, 'created_by' => $userId])->exists();
+        }
+
+        if($evidence_exists){
             return true;
         }
 
@@ -278,7 +302,7 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
     }
 
     /**
-     * After Saving of comments, fire an activity
+     * After Saving of evidences, fire an activity
      *
      * @return type
      */
