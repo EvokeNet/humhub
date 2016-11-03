@@ -17,5 +17,12 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    '<strong>Comment:</strong> {comment}' => '<strong>Commentário:</strong> {comment}',
+    '<strong>Review:</strong> {points} points' => '<strong>Evalución:</strong> {points} points',
+    '<strong>Review:</strong> {vote}' => 'strong>Evalución:</strong> {vote}',
+    'Evidence: {evidence}' => 'Evidencía: {evidence}',
+    'My Quality Reviews' => 'Mis Evaluaciones de Calidad',
+    'No' => 'No',
+    'Yes' => 'Sí',
     'Achievements' => 'Realizaciones',
 ];
