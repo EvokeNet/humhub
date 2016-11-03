@@ -52,7 +52,7 @@ endforeach;
             <?php endif; ?>
         </div>
         <?php if(Setting::Get('enabled_evokations')): ?>
-            <?php if($user->id == $contentContainer->created_by && $deadline && $deadline->isOccurring()): ?>
+            <?php if(Yii::$app->user->getIdentity()->id == $contentContainer->created_by && $deadline && $deadline->isOccurring()): ?>
                 <a class = "btn btn-cta2" href='<?= Url::to(['/missions/evokations/submit', 'sguid' => $contentContainer->guid]); ?>' style = "margin-top:10px">
                     <?= Yii::t('MissionsModule.base', 'Submit evokation') ?>
                 </a>

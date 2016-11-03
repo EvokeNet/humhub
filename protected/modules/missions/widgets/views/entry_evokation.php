@@ -17,7 +17,7 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
 
 ?>
 
-<h5><?php print humhub\widgets\RichText::widget(['text' => $evokation->title]); ?></h5>
+<h5><?php print humhub\widgets\RichText::widget(['text' => $evokation->getTitle()]); ?></h5>
 <p><?php print humhub\widgets\RichText::widget(['text' => $evokation->description]);?></p>
 
 
@@ -69,7 +69,7 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
 
     <?php if ($deadline && $deadline->isOccurring() ): ?>
     <div style = "float:right">
-        <a class = "btn btn-cta1" href="" onClick="addEvokationToPortfolio<?= $evokation->id ?>();return false;">
+        <a class = "btn btn-cta1" onClick="addEvokationToPortfolio<?= $evokation->id ?>();">
             <?= Yii::t('MissionsModule.base', 'Add to Portfolio') ?>
         </a>
     </div>
@@ -86,6 +86,7 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
 
 <div class="clearFloats"></div>
 
+<?php echo Html::endForm(); ?>
 
 <script type="text/javascript">
 
@@ -110,7 +111,7 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
                     if(data.status == 'success'){
                         addEvokation(
                             <?= $evokation->id ?>, 
-                            '<?= $evokation->title ?>', 
+                            '<?= $evokation->getTitle() ?>', 
                             '<?= Url::to(['/missions/evokations/view', 'id' => $evokation->id, 'sguid' => $contentContainer->guid]); ?>', 
                             investment);
                         $('#portfolio_status').hide();

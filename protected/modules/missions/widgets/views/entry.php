@@ -10,7 +10,9 @@ use humhub\compat\CActiveForm;
 echo Html::beginForm();
   $activity = $evidence->getActivities();
   $mentor_average_votes = $evidence->getAverageRating('Mentors');
-  $user_average_votes = $evidence->getAverageRating('Users')
+  $user_average_votes = $evidence->getAverageRating('Users');
+  $agent_vote_count = $evidence->getVoteCount('Users');
+  $agent_vote_count = $agent_vote_count ? $agent_vote_count : 0;
 ?>
 
 <!-- EVIDENCE -->
@@ -112,7 +114,7 @@ echo Html::beginForm();
               <?php echo Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $user_average_votes? number_format((float)$user_average_votes, 1, '.', '') : "-")); ?>
             </em>
             <em>
-              <?php echo Yii::t('MissionsModule.base', 'Agent Reviews: {votes}', array('votes' => $evidence->getVoteCount('Users')? $evidence->getVoteCount('Users') : "0")) ?>
+              <?php echo Yii::t('MissionsModule.base', 'Agent Reviews: {votes}', array('votes' => $agent_vote_count)) ?>
             </em>
           </div>
         </div>
@@ -188,85 +190,16 @@ echo Html::beginForm();
       }
     </style>
 
-    <?php if($evidence->content->user_id != Yii::$app->user->getIdentity()->id && Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
-    <div class="panel-group">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h6 class="panel-title">
-            <a data-toggle="collapse" href="#collapseEvidence<?= $evidence->id ?>"  style="color:#254054">
-              <?= Yii::t('MissionsModule.base', 'Review') ?>
-            </a>
-          </h6>
-        </div>
-
-        <div id="collapseEvidence<?= $evidence->id ?>" class="panel-collapse collapse in">
-            <?php
-              $collapse = "";
-              $yes = "";
-              $no = "";
-              $grade = 0;
-              $vote = $evidence->getUserVote();
-              $comment = "";
-              if($vote){
-                $yes = $vote->flag ? "checked" : "";
-                $collapse = $yes ? "in" : "";
-                $no = !$vote->flag ? "checked" : "";
-                $grade = $vote->value;
-                $comment = $vote->comment;
-              }
-            ?>
-            <div>
-              <?php
-                $primaryPowerTitle = $activity->getPrimaryPowers()[0]->getPower()->title;
-
-                if(Yii::$app->language == 'es' && isset($activity->getPrimaryPowers()[0]->getPower()->powerTranslations[0]))
-                    $primaryPowerTitle = $activity->getPrimaryPowers()[0]->getPower()->powerTranslations[0]->title;
-              ?>
-              <h2><?= Yii::t('MissionsModule.base', 'Distribute points for {title}', array('title' => $primaryPowerTitle)) ?></h2>
-              <p>
-                <?php //$activity->rubric ?>
-                <?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric ?>
-              </p>
-              <form id = "review<?= $evidence->id ?>" class="review">
-                <div class="radio">
-                  <label>
-                    <input id="yes-input<?= $evidence->id ?>" type="radio" name="yes-no-opt<?= $evidence->id ?>" class="btn-show<?= $evidence->id ?>" value="yes" <?= $yes ?> >
-                    Yes
-                  </label >                 
-                  <div id="yes-opt<?= $evidence->id ?>" class="radio">
-                    <span class="rating">
-                        <?php for ($x=5; $x >= 1; $x--): ?>
-                          <input id="grade<?= $x ?>_<?= $evidence->id ?>" onClick="$('#yes-input<?= $evidence->id ?>').prop('checked', true)" type="radio" name="grade_<?= $evidence->id ?>" class="rating-input" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> />
-                          <label for ="grade<?= $x ?>_<?= $evidence->id ?>" class="rating-star"></label>
-                        <?php endfor; ?>
-                    </span>
-                    <p>
-                      <?= Yii::t('MissionsModule.base', 'How many points will you award this evidence?') ?>
-                    </p>
-                  </div>
-                </div>
-                <div class="radio">
-                  <label>
-                  <input type="radio" name="yes-no-opt<?= $evidence->id ?>" onClick="$('#yes-opt<?= $evidence->id ?>').find('input').prop('checked', false)" class="btn-hide<?= $evidence->id ?>" value="no" <?= $no ?>>
-                   No
-                  </label>
-                </div>
-                <br>
-                <?php echo Html::textArea("text", $comment , array('id' => 'review_comment_'.$evidence->id, 'class' => 'text-margin form-control count-chars ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Leave a comment and earn an additional 5 Evocoins."))); ?>
-                <br>
-
-                <br>
-                <button type="submit" id="post_submit_review<?= $evidence->id ?>" class="btn btn-cta1 submit">
-                  <?= Yii::t('MissionsModule.base', 'Submit Review') ?>
-                </button>
-              </form>
-            </div>
-        </div>
-      </div>
-    </div>
-    <?php endif; ?>
-
-    <?php if($evidence->content->user_id == Yii::$app->user->getIdentity()->id || Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
+    <?php 
+      if($evidence->content->user_id != Yii::$app->user->getIdentity()->id){
+        //already voted
+        if($vote = $evidence->getUserVote()){
+          echo $this->render('user_vote_view', array('vote' => $vote, 'contentContainer' => $contentContainer));  
+        }elseif( Yii::$app->user->getIdentity()->group->name == "Mentors"){
+          echo $this->render('mentor_review', array('evidence' => $evidence, 'activity' => $activity));  
+        }
+      } 
+    ?>
 
     <BR>
 
@@ -275,14 +208,14 @@ echo Html::beginForm();
             <div class="panel-heading">
                 <h6 class="panel-title">
 
-                    <a data-toggle="collapse" href="#collapseMentorEvidenceReviews<?= $evidence->id ?>" style="color:#254054" aria-expanded="false" class="collapsed">
+                    <a  style="color:#254054; cursor: default" aria-expanded="false" class="collapsed">
                         <?= Yii::t('MissionsModule.base', 'Mentor Reviews') ?>
                     </a>
                 </h6>
             </div>
 
             <div class="panel-body">
-                <div id="collapseMentorEvidenceReviews<?= $evidence->id ?>"  class="panel-collapse collapse" aria-expanded="false">
+                <div id="collapseMentorEvidenceReviews<?= $evidence->id ?>"  class="panel-collapse" aria-expanded="false">
                     <div class="">
                         <?php
                         $votes = $evidence->getVotes('Mentors');
@@ -290,14 +223,31 @@ echo Html::beginForm();
 
                         <?php if(!$votes || sizeof($votes) <= 0): ?>
                             <p>
-                                <?php echo Yii::t('MissionsModule.base', 'There are no reviews yet.'); ?>
+                                <?php echo Yii::t('MissionsModule.base', 'No mentor reviews'); ?>
                             </p>
                         <?php endif; ?>
 
                         <?php foreach($votes as $vote): ?>
                             <div style = "padding: 10px 10px 3px; margin-bottom: 20px; border: 3px solid #9013FE; word-wrap: break-word;">
                                 <p><?php echo Yii::t('MissionsModule.base', 'Comment: {comment}', array('comment' => $vote->comment)); ?></p>
-                                <p><?php echo Yii::t('MissionsModule.base', 'Rating: {rating}', array('rating' => $vote->value)); ?></p>
+
+                                <?php if($vote->value > 0 ): ?>
+                                    <div class="stars" style="text-align:left;">
+                                      <?php for ($i = 0; $i < 5; $i++): ?>
+                                        <?php if ($vote->value > $i): ?>
+                                          <?php if (($vote->value - $i) < 1): ?>
+                                            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                                          <?php else: ?>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                          <?php endif; ?>
+                                        <?php else: ?>
+                                          <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <?php endif; ?>
+                                      <?php endfor; ?>
+                                    </div>
+                                <?php else: ?>
+                                  <p style="color:red"><?php echo Yii::t('MissionsModule.base', 'Does not meet rubric'); ?></p>
+                                <?php endif; ?>
 
                                 <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors" || $vote->user->group->name == "Mentors"): ?>
                                     <p><?php echo Yii::t('MissionsModule.base', 'By'); ?>
@@ -318,19 +268,25 @@ echo Html::beginForm();
 
                                           $enable = "";
                                           $disable = "hidden";
+                                          $disables = "hidden";
 
                                           if ($vote->quality == 1) {
                                               $enable = "hidden";
                                               $disable = "";
-                                          }
+                                              $disables = "";
+
+                                          } 
+
 
                                           echo \humhub\widgets\AjaxButton::widget([
                                               'label' => Yii::t('MissionsModule.base', 'Mark as quality review'),
+                                              'beforeSend' => new yii\web\JsExpression("function(html){  if(!confirm('".Yii::t('MissionsModule.base', 'Are you sure?')."')){return false;} }"),
                                               'ajaxOptions' => [
                                                   'type' => 'POST',
                                                   'success' => new yii\web\JsExpression('function(){
                                               $("#btn-enable-module-' . $vote->id . '").addClass("hidden");
                                               $("#btn-disable-module-' . $vote->id . '").removeClass("hidden");
+                                              $("#btn-disables-module-' . $vote->id . '").removeClass("hidden");
                                               }'),
                                                   'url' => Url::to(['admin/update-quality-reviews', 'id' => $vote->id, 'mark' => 1, 'user_id' => $vote->user_id]),
                                               ],
@@ -346,11 +302,13 @@ echo Html::beginForm();
 
                                           echo \humhub\widgets\AjaxButton::widget([
                                               'label' => Yii::t('MissionsModule.base', 'Unmark as quality review'),
+                                              'beforeSend' => new yii\web\JsExpression("function(html){  if(!confirm('".Yii::t('MissionsModule.base', 'Are you sure?')."')){return false;} }"),
                                               'ajaxOptions' => [
                                                   'type' => 'POST',
                                                   'success' => new yii\web\JsExpression('function(){
                                               $("#btn-enable-module-' . $vote->id . '").removeClass("hidden");
                                               $("#btn-disable-module-' . $vote->id . '").addClass("hidden");
+                                              $("#btn-disables-module-' . $vote->id . '").addClass("hidden");
                                                }'),
                                                   'url' => Url::to(['admin/update-quality-reviews', 'id' => $vote->id, 'mark' => 0, 'user_id' => $vote->user_id]),
                                               ],
@@ -360,6 +318,9 @@ echo Html::beginForm();
                                               ]
                                           ]);
                                           ?>
+
+                                          <div class="trophy-icon <?= $disables ?>" id="btn-disables-module-<?php echo $vote->id; ?>"><i class="fa fa-trophy fa-lg" aria-hidden="true"></i></div>
+
                                     <?php endif; ?>
                                 </div>
 
@@ -377,102 +338,43 @@ echo Html::beginForm();
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h6 class="panel-title">
-
-                    <a data-toggle="collapse" href="#collapseAgentEvidenceReviews<?= $evidence->id ?>" style="color:#254054" aria-expanded="false" class="collapsed">
+                    <a style="color:#254054; cursor: default" aria-expanded="false" class="collapsed">
                         <?= Yii::t('MissionsModule.base', 'Agent Reviews') ?>
                     </a>
                 </h6>
             </div>
 
             <div class="panel-body">
+                <?php
+                    $votes = $evidence->getVotes('Users');
+                    $vote = array_shift($votes);
+                    if($vote){
+                      echo $this->render('user_vote_view', array('vote' => $vote, 'contentContainer' => $contentContainer));
+                    }
+                ?>
                 <div id="collapseAgentEvidenceReviews<?= $evidence->id ?>"  class="panel-collapse collapse" aria-expanded="false">
                     <div class="">
-                        <?php
-                        $votes = $evidence->getVotes('Users');
+                        <?php 
+                          foreach($votes as $vote){
+                            echo $this->render('user_vote_view', array('vote' => $vote, 'contentContainer' => $contentContainer));
+                          }
                         ?>
-
-                        <?php if(!$votes || sizeof($votes) <= 0): ?>
-                            <p>
-                                <?php echo Yii::t('MissionsModule.base', 'There are no reviews yet.'); ?>
-                            </p>
-                        <?php endif; ?>
-
-                        <?php foreach($votes as $vote): ?>
-                            <div style = "padding: 10px 10px 3px; margin-bottom: 20px; border: 3px solid #9013FE; word-wrap: break-word;">
-                                <p><?php echo Yii::t('MissionsModule.base', 'Comment: {comment}', array('comment' => $vote->comment)); ?></p>
-                                <p><?php echo Yii::t('MissionsModule.base', 'Rating: {rating}', array('rating' => $vote->value)); ?></p>
-
-                                <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors" || $vote->user->group->name == "Mentors"): ?>
-                                    <p><?php echo Yii::t('MissionsModule.base', 'By'); ?>
-                                    <a href="<?= ($vote->user->getUrl()) ?>">
-                                        <?= ($vote->user->username) ?>
-                                    </a>,
-                                    <?php echo \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]); ?></p>
-                                <?php else: ?>
-                                    <p><?php echo Yii::t('MissionsModule.base', 'By Anonymous, {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]))); ?></p>
-                                <?php endif; ?>
-                            </div>
-
-                            <div style="margin:20px 0 10px">
-                                <?php if(Yii::$app->user->isAdmin()): ?>
-                                    <?php
-                                    
-                                      $enable = "";
-                                      $disable = "hidden";
-
-                                      if ($vote->quality == 1) {
-                                          $enable = "hidden";
-                                          $disable = "";
-                                      } 
-
-                                      echo \humhub\widgets\AjaxButton::widget([
-                                          'label' => Yii::t('MissionsModule.base', 'Mark as quality review'),
-                                          'ajaxOptions' => [
-                                              'type' => 'POST',
-                                              'success' => new yii\web\JsExpression('function(){
-                                          $("#btn-enable-module-' . $vote->id . '").addClass("hidden");
-                                          $("#btn-disable-module-' . $vote->id . '").removeClass("hidden");
-                                          }'),
-                                              'url' => Url::to(['admin/update-quality-reviews', 'id' => $vote->id, 'mark' => 1, 'user_id' => $vote->user_id]),
-                                          ],
-                                          'htmlOptions' => [
-                                              'class' => 'btn btn-sm btn-primary '. $enable,
-                                              'id' => 'btn-enable-module-' . $vote->id
-                                          ]
-                                      ]);
-                                      ?>
-
-
-                                      <?php
-
-                                      echo \humhub\widgets\AjaxButton::widget([
-                                          'label' => Yii::t('MissionsModule.base', 'Unmark as quality review'),
-                                          'ajaxOptions' => [
-                                              'type' => 'POST',
-                                              'success' => new yii\web\JsExpression('function(){
-                                          $("#btn-enable-module-' . $vote->id . '").removeClass("hidden");
-                                          $("#btn-disable-module-' . $vote->id . '").addClass("hidden");
-                                           }'),
-                                              'url' => Url::to(['admin/update-quality-reviews', 'id' => $vote->id, 'mark' => 0, 'user_id' => $vote->user_id]),
-                                          ],
-                                          'htmlOptions' => [
-                                              'class' => 'btn btn-sm btn-info '. $disable,
-                                              'id' => 'btn-disable-module-' . $vote->id
-                                          ]
-                                      ]);
-                                      ?>
-
-                                <?php endif; ?>
-                            </div>
-
-                        <?php endforeach; ?>
                     </div>
                 </div>
+
+            <?php if($agent_vote_count > 1): ?>
+            <a href="#collapseAgentEvidenceReviews<?= $evidence->id ?>"  class="btn btn-sm btn-primary " data-toggle="collapse">
+               <?= Yii::t('MissionsModule.base', 'Show {total_reviews} agent reviews', ['total_reviews' => $agent_vote_count - 1]) ?>
+            </a>      
+            <?php elseif($agent_vote_count == 0): ?>
+              <p>
+                <?= Yii::t('MissionsModule.base', 'No agent reviews') ?>
+              </p>
+            <?php endif; ?>   
             </div>
         </div>
 
     </div>
-    <?php endif; ?>
 
 <!-- DRAFT -->
 <?php else: ?>
@@ -559,6 +461,11 @@ echo Html::beginForm();
   font-size: 12px;
 }
 
+.trophy-icon{
+    float: right;
+    color: #DED017;
+}
+
 </style>
 
 <script>
@@ -606,6 +513,8 @@ function review(id, comment, opt, grade){
             if(xhttp.responseText){
               if(xhttp.responseText == "success"){
                 updateReview(id, opt, grade);
+              }else{
+                $("#review_tab_" + id).replaceWith(xhttp.responseText);
               }
             }
         }

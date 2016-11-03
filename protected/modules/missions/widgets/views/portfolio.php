@@ -45,7 +45,7 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                 <div class="col-xs-7">
                     <div class="padding-fromtop-5px">
                         <a href='<?= Url::to(['/missions/evokations/view', 'id' => $evokation_investment->getEvokationObject()->id, 'sguid' => $evokation_investment->getEvokationObject()->content->container->guid]); ?>'>
-                            <?= $evokation_investment->getEvokationObject()->title ?>
+                            <?= $evokation_investment->getEvokationObject()->getTitle() ?>
                         </a>
                     </div>
                 </div>
@@ -88,7 +88,7 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
 
     <div class="panel-body">
         <div class="col-xs-4">
-            <?php if (!$deadline || (strtotime(date('Y-m-d H:i:s')) > strtotime($deadline->start_date)) && (strtotime(date('Y-m-d H:i:s')) < strtotime($deadline->finish_date))): ?>
+            <?php if ($deadline && $deadline->isOccurring()): ?>
                 <a class = "btn btn-cta2" href='#' onclick="updatePortfolio();" style = "width:90px">
                     <?= Yii::t('MissionsModule.base', 'Save') ?>
                 </a>

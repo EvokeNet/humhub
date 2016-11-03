@@ -136,6 +136,10 @@ class Evokations extends ContentActiveRecord implements \humhub\modules\search\i
     public function getId(){
         return $this->id;
     }
+
+    public function getTitle(){
+        return(preg_replace("/\r|\n/", '', $this->title));
+    }
     
     /**
         * Get YouTube code from YouTube link
@@ -145,10 +149,17 @@ class Evokations extends ContentActiveRecord implements \humhub\modules\search\i
     public function getYouTubeCode($link)
     {
             $pos = explode('v=', $link);
-            if($pos != false && count($pos) > 1) 
+            if($pos != false && count($pos) > 1){
+                $pos = explode('&', $pos['1']);
+                return $pos['0'];
+            }
+
+            $pos = explode('youtu.be', $link);
+
+            if($pos && count($pos) > 1)
                 return $pos['1'];
-            else
-                return null;
+
+            return null;
     }
 
 
