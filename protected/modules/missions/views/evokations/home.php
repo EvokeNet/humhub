@@ -6,8 +6,11 @@ use yii\widgets\Breadcrumbs;
 use yii\helpers\Url;
 use humhub\models\Setting;
 use app\modules\missions\models\Evokations;
+use app\modules\missions\models\EvokationDeadline;
 
 $user = Yii::$app->user->getIdentity();
+
+$deadline = EvokationDeadline::find()->one();
 
 $this->title = Yii::t('MissionsModule.base', 'Evokations');
 $this->params['breadcrumbs'][] = Yii::t('MissionsModule.base', "{name}'s Evokation", array('name' => $contentContainer->name));
@@ -39,7 +42,15 @@ endforeach;
 
 <div class="panel panel-default">
     <div class="panel-heading">
-
+        <div style="color: red">
+            <?php if($deadline): ?>
+                <?php if(strtotime(date('Y-m-d H:i:s')) > strtotime($deadline->finish_date)): ?>
+                    Voting Closed
+                <?php else: ?>
+                    Evokation Deadline: <?= date_format(date_create($deadline->finish_date), "d/M/Y") ?>
+                <?php endif; ?>
+            <?php endif; ?>
+        </div>
         <?php if(Setting::Get('enabled_evokations')): ?>
             <?php if($user->id == $contentContainer->created_by): ?>
                 <a class = "btn btn-cta2" href='<?= Url::to(['/missions/evokations/submit', 'sguid' => $contentContainer->guid]); ?>' style = "margin-top:10px">
