@@ -48,6 +48,7 @@ endforeach;
                     Voting Closed
                 <?php else: ?>
                     Evokation Deadline: <?= date_format(date_create($deadline->finish_date), "d/M/Y") ?>
+                    (<?= Yii::$app->timeZone ?>)
                 <?php endif; ?>
             <?php endif; ?>
         </div>

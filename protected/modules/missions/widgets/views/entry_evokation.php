@@ -45,20 +45,22 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
     </div>
         <div class="">
         <p>
-            <b>Total Invesment:</b> <?= $total_investment ?> evokoins
+            <b>Total Invesment:</b> <?= $total_investment ?> <?= $total_investment > 1 ? 'evocoins' : 'evocoin' ?>
         </p>
         <p>
-            <b>Median Investment:</b>  <?= $median_investment ?> evokoins
+            <b>Median Investment:</b>  <?= $median_investment ?> <?= $median_investment > 1 ? 'evocoins' : 'evocoin' ?>
         </p>
         <p>
-            <b>Total Investors:</b> <?= $total_investors ?> agents
+            <b>Total Investors:</b> <?= $total_investors ?> <?= $total_investors > 1 ? Yii::t('MissionsModule.base', 'agents') : Yii::t('MissionsModule.base', 'agent') ?>
         </p>
     </div>
 </div>
 
 <br>
 
+<?php if(!$evokation_investment && $evokation->content->user_id != Yii::$app->user->getIdentity()->id): ?>
 <div>
+    
     <!-- DISABLED
     <div style = "float:left">
         <a class = "btn btn-cta2" href='<?= Url::to(['/missions/evokations/view', 'id' => $evokation->id, 'sguid' => $contentContainer->guid]); ?>'>
@@ -67,26 +69,22 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
     </div>
     -->
 
-    <?php if(!$evokation_investment && $evokation->content->user_id != Yii::$app->user->getIdentity()->id): ?>
-
-        <?php if (!$deadline || (strtotime(date('Y-m-d H:i:s')) > strtotime($deadline->start_date)) && (strtotime(date('Y-m-d H:i:s')) < strtotime($deadline->finish_date))): ?>
+    <?php if (!$deadline || (strtotime(date('Y-m-d H:i:s')) > strtotime($deadline->start_date)) && (strtotime(date('Y-m-d H:i:s')) < strtotime($deadline->finish_date))): ?>
+    <div style = "float:right">
+        <a class = "btn btn-cta1" href="" onClick="addEvokationToPortfolio<?= $evokation->id ?>();return false;">
+            <?= Yii::t('MissionsModule.base', 'Add to Portfolio') ?>
+        </a>
+    </div>
+    <?php else: ?>
         <div style = "float:right">
-            <a class = "btn btn-cta1" href="#" onClick="addEvokationToPortfolio<?= $evokation->id ?>();">
-                <?= Yii::t('MissionsModule.base', 'Add to Portfolio') ?>
+            <a class = "btn btn-default" href='#'>
+                <?= Yii::t('MissionsModule.base', 'Voting Closed') ?>
             </a>
         </div>
-        <?php else: ?>
-            <div style = "float:right">
-                <a class = "btn btn-default" href='#'>
-                    <?= Yii::t('MissionsModule.base', 'Voting Closed') ?>
-                </a>
-            </div>
-        <?php endif; ?>
-
     <?php endif; ?>
 </div>
-            
 <br><br>
+<?php endif; ?>
 
 <div class="clearFloats"></div>
 
