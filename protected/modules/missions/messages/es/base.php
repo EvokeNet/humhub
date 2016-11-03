@@ -17,7 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Are you sure?' => 'Estas seguro?',
+    'No agent reviews' => 'No hay evaluaciones de agentes',
+    'No mentor reviews' => 'No hat evaluaciones de mentores',
+    'Show {total_reviews} agent reviews' => 'Mostrar {total_reviews} evaluaciones de agentes',
     '140 characters required' => '140 caracteres requeridos',
     '<strong>Activity Difficulty Level:</strong> {level}' => '<strong>Nivel de dificultad de la evidencía:</strong> {level}',
     '<strong>Activity Rubric:</strong> {rubric}' => '<strong>Rúbrica de Actividad:</strong> {rubric}',
@@ -49,6 +51,7 @@ return [
     'Are you sure you want to delete this review?' => '¿Estás seguro que quieres eliminar esta evaluación?',
     'Are you sure you want to delete this translation?' => '¿Estás seguro que quieres eliminar esta traducción?',
     'Are you sure you want to submit this review?' => '¿Estás seguro que quieres enviar esta evaluación?',
+    'Are you sure?' => 'Estas seguro?',
     'Author' => 'Autor',
     'Average Rating: {rating}' => 'Tu clasificación media: {rating}',
     'Average Rating: {votes}' => 'Tu clasificación media: {votes}',

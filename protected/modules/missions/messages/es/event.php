@@ -17,13 +17,14 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Evoke Errors\' View' => 'Visualización de Errors de Evoke',
+    'Evokations' => 'Evokations',
     'All Evidences' => 'Todas las Evidencias',
     'Evidences' => 'Evidencias',
     'Evidences To Be Reviewed' => 'Evidencias que evaluar',
     'Evokation' => 'Evokación',
     'Evokation Categories' => 'Categorías de Evokación',
     'Evokation Deadline' => 'Fin de plazo de Evokación',
+    'Evoke Errors\' View' => 'Visualización de Errors de Evoke',
     'Evoke Settings' => 'Ajustes de Evoke',
     'Leaderboard' => 'Clasificación',
     'Members' => 'Miembros',

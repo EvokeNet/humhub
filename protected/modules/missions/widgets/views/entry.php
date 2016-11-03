@@ -54,11 +54,11 @@ echo Html::beginForm();
                         ]
                     ));
                     ?> 
-                <?php elseif ($file->canRead() && ($file->getExtension() == "png" || $file->getExtension() == "jpg" || $file->getExtension() == "jpeg")) : ?>
+                <?php //elseif ($file->canRead() && ($file->getExtension() == "png" || $file->getExtension() == "jpg" || $file->getExtension() == "jpeg")) : ?>
 
-                  <br /><br />
+                  <!-- <br /><br />
 
-                  <a href="<?php echo $file->getPreviewImageUrl(); ?>"><img src="<?php echo $file->getPreviewImageUrl(); ?>" width="200"/></a>
+                  <a href="<?php //echo $file->getPreviewImageUrl(); ?>"><img src="<?php //echo $file->getPreviewImageUrl(); ?>" width="200"/></a> -->
 
                 <?php endif; ?>
 
