@@ -3,8 +3,11 @@
 use yii\helpers\Html;
 use \yii\helpers\Url;
 use app\modules\missions\models\Portfolio;
+use humhub\modules\space\models\Setting;
 
 echo Html::beginForm(); 
+
+$user = Yii::$app->user->getIdentity();
 
 $evokation_investment = Portfolio::find()
     ->where(['user_id' => Yii::$app->user->getIdentity()->id,'evokation_id' => $evokation->id])
@@ -16,13 +19,25 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
 
 <h5><?php print humhub\widgets\RichText::widget(['text' => $evokation->title]); ?></h5>
 <p><?php print humhub\widgets\RichText::widget(['text' => $evokation->description]);?></p>
-<br>
 
+<!--
 <?php if($youtube_code): ?>
+    
+    video disabled
     <iframe width="630" height="420" src="http://www.youtube.com/embed/<?php echo $youtube_code; ?>" frameborder="0" allowfullscreen></iframe>
 <?php endif; ?>
+-->
 
-<br><br>
+<!-- YOUTUBE LINK -->
+<a target="_blank" href="<?=$evokation->youtube_url?>">Youtube video</a>
+
+<!-- GDRIVE LINK -->
+<?php if($user->group->name === "Mentors"): ?>
+    <br><br>
+    <a target="_blank" href="<?=Setting::get($contentContainer->id, "gdrive_url")?>">Google Drive</a>
+<?php endif; ?>    
+
+<hr>
 <!-- INVESTMENT -->
 <div class= "">
     <div class="">
@@ -44,11 +59,13 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
 <br>
 
 <div>
+    <!-- DISABLED
     <div style = "float:left">
         <a class = "btn btn-cta2" href='<?= Url::to(['/missions/evokations/view', 'id' => $evokation->id, 'sguid' => $contentContainer->guid]); ?>'>
             <?= Yii::t('MissionsModule.base', 'Read More') ?>
         </a>
     </div>
+    -->
 
     <?php if(!$evokation_investment && $evokation->content->user_id != Yii::$app->user->getIdentity()->id): ?>
 
