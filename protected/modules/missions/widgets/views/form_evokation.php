@@ -17,5 +17,12 @@ use yii\helpers\ArrayHelper;
     margin-top: 5px;
 }
 </style>
-    
+
+<!-- REMOVE FILE UPLOAD -->
+<script>
+	$( document ).ready(function() {
+	    $('.fileinput-button').remove();
+	    $('.fa.fa-cogs').remove();
+	});
+</script>    
 

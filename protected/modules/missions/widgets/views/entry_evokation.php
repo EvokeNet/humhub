@@ -20,13 +20,11 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
 <h5><?php print humhub\widgets\RichText::widget(['text' => $evokation->title]); ?></h5>
 <p><?php print humhub\widgets\RichText::widget(['text' => $evokation->description]);?></p>
 
-<!--
+
 <?php if($youtube_code): ?>
-    
-    video disabled
-    <iframe width="630" height="420" src="http://www.youtube.com/embed/<?php echo $youtube_code; ?>" frameborder="0" allowfullscreen></iframe>
+    <iframe width="598" height="398" src="http://www.youtube.com/embed/<?php echo $youtube_code; ?>" frameborder="0" allowfullscreen></iframe>
 <?php endif; ?>
--->
+
 
 <!-- YOUTUBE LINK -->
 <a target="_blank" href="<?=$evokation->youtube_url?>">Youtube video</a>
