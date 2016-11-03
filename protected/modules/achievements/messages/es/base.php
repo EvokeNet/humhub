@@ -18,7 +18,7 @@
  */
 return [
     '<strong>Comment:</strong> {comment}' => '<strong>Commentário:</strong> {comment}',
-    '<strong>Review:</strong> {points} points' => '<strong>Evalución:</strong> {points} points',
+    '<strong>Review:</strong> {points} points' => '<strong>Evalución:</strong> {points} puntos',
     '<strong>Review:</strong> {vote}' => 'strong>Evalución:</strong> {vote}',
     'Evidence: {evidence}' => 'Evidencía: {evidence}',
     'My Quality Reviews' => 'Mis Evaluaciones de Calidad',
