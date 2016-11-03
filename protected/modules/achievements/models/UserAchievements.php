@@ -102,9 +102,6 @@ class UserAchievements extends \yii\db\ActiveRecord
             $notification->source = $this->achievement;
             $notification->originator = Yii::$app->user->getIdentity();
             $notification->send($user);
-            echo "<pre>";
-            //print_r($notification);
-            echo "</pre>";
         }
 
         return parent::afterSave($insert, $changedAttributes);
