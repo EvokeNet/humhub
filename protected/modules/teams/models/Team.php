@@ -596,7 +596,7 @@ class Team extends ContentContainerActiveRecord implements \humhub\modules\searc
       ->join('INNER JOIN', 'content as c', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
       ->join('LEFT JOIN', 'votes v', '`v`.`evidence_id`=`e`.`id`')
       ->where('c.space_id = '.$this->id)
-      ->andWhere('c.user_id = '.$user_id)
+      ->andWhere('v.user_id = '.$user_id)
       ->one();
 
       return $query['vote_count'];
