@@ -339,11 +339,15 @@ echo Html::beginForm();
 
                                           $enable = "";
                                           $disable = "hidden";
+                                          $disables = "hidden";
 
                                           if ($vote->quality == 1) {
                                               $enable = "hidden";
                                               $disable = "";
-                                          }
+                                              $disables = "";
+
+                                          } 
+
 
                                           echo \humhub\widgets\AjaxButton::widget([
                                               'label' => Yii::t('MissionsModule.base', 'Mark as quality review'),
@@ -353,6 +357,7 @@ echo Html::beginForm();
                                                   'success' => new yii\web\JsExpression('function(){
                                               $("#btn-enable-module-' . $vote->id . '").addClass("hidden");
                                               $("#btn-disable-module-' . $vote->id . '").removeClass("hidden");
+                                              $("#btn-disables-module-' . $vote->id . '").removeClass("hidden");
                                               }'),
                                                   'url' => Url::to(['admin/update-quality-reviews', 'id' => $vote->id, 'mark' => 1, 'user_id' => $vote->user_id]),
                                               ],
@@ -374,6 +379,7 @@ echo Html::beginForm();
                                                   'success' => new yii\web\JsExpression('function(){
                                               $("#btn-enable-module-' . $vote->id . '").removeClass("hidden");
                                               $("#btn-disable-module-' . $vote->id . '").addClass("hidden");
+                                              $("#btn-disables-module-' . $vote->id . '").addClass("hidden");
                                                }'),
                                                   'url' => Url::to(['admin/update-quality-reviews', 'id' => $vote->id, 'mark' => 0, 'user_id' => $vote->user_id]),
                                               ],
@@ -383,6 +389,9 @@ echo Html::beginForm();
                                               ]
                                           ]);
                                           ?>
+
+                                          <div class="trophy-icon <?= $disables ?>" id="btn-disables-module-<?php echo $vote->id; ?>"><i class="fa fa-trophy fa-lg" aria-hidden="true"></i></div>
+
                                     <?php endif; ?>
                                 </div>
 
@@ -522,6 +531,11 @@ echo Html::beginForm();
 
 .activity_area{
   font-size: 12px;
+}
+
+.trophy-icon{
+    float: right;
+    color: #DED017;
 }
 
 </style>

@@ -156,8 +156,8 @@ class AdminController extends \humhub\modules\admin\components\Controller
             if (!Yii::$app->request->isAjax) {
                 return $this->redirect(['view-reviews', 'id' => $model->id]);
             } else {
-                Yii::$app->response->format = 'json';
-                return $model->id;
+                // Yii::$app->response->format = 'json';
+                // return $model->id;
             }
 
         }
