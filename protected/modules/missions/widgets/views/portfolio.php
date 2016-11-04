@@ -7,7 +7,7 @@ use app\modules\coin\models\Wallet;
 use app\modules\missions\models\Portfolio;
 use app\modules\missions\models\EvokationDeadline;
 
-$deadline = EvokationDeadline::find()->one();
+$deadline = EvokationDeadline::getVotingDeadline();
 $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
 $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id);
 
@@ -50,7 +50,7 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                     </div>
                 </div>
 
-                <?php if (!$deadline || (strtotime(date('Y-m-d H:i:s')) > strtotime($deadline->start_date)) && (strtotime(date('Y-m-d H:i:s')) < strtotime($deadline->finish_date))): ?>
+                <?php if ($deadline && $deadline->isOccurring()): ?>
                 <div class="col-xs-5">
                     <div class="container2" style = "display:inline-flex">
                         <div class="input-group spinner">

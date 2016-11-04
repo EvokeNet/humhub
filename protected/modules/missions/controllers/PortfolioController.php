@@ -16,7 +16,7 @@ class PortfolioController extends \yii\web\Controller
     }
 
     public function actionAdd($evokation_id, $investment){
-        $deadline = EvokationDeadline::find()->one();
+        $deadline = EvokationDeadline::getVotingDeadline();
 
         //if voting is closed
         if ($deadline && ((strtotime(date('Y-m-d H:i:s')) <= strtotime($deadline->start_date)) || (strtotime(date('Y-m-d H:i:s')) >= strtotime($deadline->finish_date)))){
@@ -62,7 +62,7 @@ class PortfolioController extends \yii\web\Controller
     }
 
     public function actionDelete($evokation_id){
-        $deadline = EvokationDeadline::find()->one();
+        $deadline = EvokationDeadline::getVotingDeadline();
 
         //if voting is closed
         if ($deadline && ((strtotime(date('Y-m-d H:i:s')) <= strtotime($deadline->start_date)) || (strtotime(date('Y-m-d H:i:s')) >= strtotime($deadline->finish_date)))){
@@ -97,7 +97,7 @@ class PortfolioController extends \yii\web\Controller
     }
 
     public function actionUpdate(){
-        $deadline = EvokationDeadline::find()->one();
+        $deadline = EvokationDeadline::getVotingDeadline();
 
 
         //if voting is closed

@@ -29,20 +29,32 @@ class AdminController extends \humhub\modules\admin\components\Controller
 {
     public function actionIndexDeadline()
     {
-        $model = EvokationDeadline::find()->one();
+        $evokation_deadline = EvokationDeadline::getEvokationDeadline();
+        $voting_deadline = EvokationDeadline::getVotingDeadline();
         
-        return $this->render('evokation-deadline/index', array('model' => $model));
+        return $this->render('evokation-deadline/index', array('evokation_deadline' => $evokation_deadline, 'voting_deadline' => $voting_deadline));
     }
     
     public function actionCreateDeadline()
     {
-        $model = new EvokationDeadline();
+        $model = EvokationDeadline::createNewEvokationDeadline();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index-deadline']);
         } 
         
         return $this->render('evokation-deadline/create', array('model' => $model));
+    }
+
+    public function actionCreateVotingDeadline()
+    {
+        $model = EvokationDeadline::createNewVotingDeadline();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index-deadline']);
+        } 
+        
+        return $this->render('evokation-deadline/voting-create', array('model' => $model));
     }
     
     public function actionUpdateDeadline($id)

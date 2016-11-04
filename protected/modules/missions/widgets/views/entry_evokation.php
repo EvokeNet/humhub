@@ -67,7 +67,7 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
     </div>
     -->
 
-    <?php if (!$deadline || (strtotime(date('Y-m-d H:i:s')) > strtotime($deadline->start_date)) && (strtotime(date('Y-m-d H:i:s')) < strtotime($deadline->finish_date))): ?>
+    <?php if ($deadline && $deadline->isOccurring() ): ?>
     <div style = "float:right">
         <a class = "btn btn-cta1" href="" onClick="addEvokationToPortfolio<?= $evokation->id ?>();return false;">
             <?= Yii::t('MissionsModule.base', 'Add to Portfolio') ?>
