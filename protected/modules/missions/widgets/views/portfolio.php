@@ -329,6 +329,9 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                     }else if(data.status == 'error'){
                         $('#portfolio_status').hide();
                         showMessage("<?= Yii::t('MissionsModule.base', 'Error') ?>", "<?= Yii::t('MissionsModule.base', 'Something went wrong') ?>");
+                    }else if(data.status == 'error_limit'){
+                        $('#portfolio_status').hide();
+                        showMessage("<?= Yii::t('MissionsModule.base', 'Error') ?>", "<?= Yii::t('MissionsModule.base', 'You can not invest more than {investment_limit} evocoins total.', ['investment_limit' => intval(humhub\models\Setting::Get('investment_limit'))]) ?>");
                     }
                 }
             });
@@ -374,6 +377,9 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                 }else if(data.status == 'error'){
                     $('#portfolio_status').hide();
                     showMessage("<?= Yii::t('MissionsModule.base', 'Error') ?>", "<?= Yii::t('MissionsModule.base', 'Something went wrong') ?>");
+                }else if(data.status == 'error_limit'){
+                    $('#portfolio_status').hide();
+                    showMessage("<?= Yii::t('MissionsModule.base', 'Error') ?>", "<?= Yii::t('MissionsModule.base', 'You can\'t invest more than {investment_limit} evocoins.', ['investment_limit' => intval(humhub\models\Setting::Get('investment_limit'))]) ?>");
                 }
 
             },
