@@ -24,7 +24,7 @@ class EvokeToolsController extends Controller
 
     public function actionIndex()
     {
-        $prizes = Prize::find()->where(['<=', 'week_of', date('Y-m-d')])->all();
+        $prizes = Prize::find()->where(['<=', 'week_of', date('Y-m-d')])->andWhere('quantity > :quantity', [':quantity' => '0'])->all();
         $coin_id = Coin::find()->where(['name' => 'EvoCoin'])->one()->id;
         $wallet = Wallet::find()->where(['owner_id' => Yii::$app->user->id, 'coin_id' => $coin_id])->one();
         $super_powers = Qualities::find()->all();
@@ -132,7 +132,7 @@ class EvokeToolsController extends Controller
 
       // if they didn't win a prize, check if they might have won some evocoin
       if ($prize_won === '') {
-        if ($roll >= ($this->max_prob * 0.99)) {
+        if ($roll >= ($this->max_prob * 0.999)) {
           $prize_won_name = Yii::t('PrizeModule.base', '50 Evocoin(s)!');
           $prize_won_description = '';
           $prize_won_id = 'evocoin50';
@@ -140,7 +140,7 @@ class EvokeToolsController extends Controller
           $slot_machine_stats->evocoin_created += 50;
           $wallet->save();
         }
-        elseif ($roll >= ($this->max_prob * 0.95)) {
+        elseif ($roll >= ($this->max_prob * 0.98)) {
           $prize_won_name = Yii::t('PrizeModule.base', '20 Evocoin(s)!');
           $prize_won_description = '';
           $prize_won_id = 'evocoin20';
@@ -148,7 +148,7 @@ class EvokeToolsController extends Controller
           $slot_machine_stats->evocoin_created += 20;
           $wallet->save();
         }
-        elseif ($roll >= ($this->max_prob * 0.9)) {
+        elseif ($roll >= ($this->max_prob * 0.95)) {
           $prize_won_name = Yii::t('PrizeModule.base', '10 Evocoin(s)!');
           $prize_won_description = '';
           $prize_won_id = 'evocoin10';
@@ -156,7 +156,7 @@ class EvokeToolsController extends Controller
           $slot_machine_stats->evocoin_created += 10;
           $wallet->save();
         }
-        elseif ($roll >= ($this->max_prob * 0.75)) {
+        elseif ($roll >= ($this->max_prob * 0.85)) {
           $prize_won_name = Yii::t('PrizeModule.base', '5 Evocoin(s)!');
           $prize_won_description = '';
           $prize_won_id = 'evocoin5';

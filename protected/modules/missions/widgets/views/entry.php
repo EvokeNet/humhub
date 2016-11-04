@@ -324,7 +324,7 @@ echo Html::beginForm();
                                           if ($vote->quality == 1) {
                                               $enable = "hidden";
                                               $disable = "";
-                                          } 
+                                          }
 
                                           echo \humhub\widgets\AjaxButton::widget([
                                               'label' => Yii::t('MissionsModule.base', 'Mark as quality review'),
@@ -367,7 +367,7 @@ echo Html::beginForm();
 
                             </div>
 
-                        
+
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -418,7 +418,7 @@ echo Html::beginForm();
                             <div style="margin:20px 0 10px">
                                 <?php if(Yii::$app->user->isAdmin()): ?>
                                     <?php
-
+                                    
                                       $enable = "";
                                       $disable = "hidden";
 
@@ -463,6 +463,7 @@ echo Html::beginForm();
                                           ]
                                       ]);
                                       ?>
+
                                 <?php endif; ?>
                             </div>
 
@@ -483,7 +484,7 @@ echo Html::beginForm();
 
         echo Html::hiddenInput('activityId', $activity->id);
 
-        echo $form->textArea($evidence, 'title', array('class' => 'form-control autosize contentForm', 'id' => 'evidence_input_title_' . $evidence->id, 'rows' => '1', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.widgets_views_evidenceForm', 'Edit your Evidence title...'))); 
+        echo $form->textArea($evidence, 'title', array('class' => 'form-control autosize contentForm', 'id' => 'evidence_input_title_' . $evidence->id, 'rows' => '1', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.widgets_views_evidenceForm', 'Edit your Evidence title...')));
         echo $form->textArea($evidence, 'text', array('class' => 'text-margin form-control autosize contentForm count-chars', 'id' => 'evidence_input_text_' . $evidence->id, 'rows' => '10', "tabindex" => "2", 'pattern' => '.{0}|.{140,}', 'required' => true, 'placeholder' => Yii::t('MissionsModule.widgets_views_evidenceForm', 'Edit your Evidence content...')));
         ?>
 
@@ -534,7 +535,7 @@ echo Html::beginForm();
 
     </div>
 
-    <?php 
+    <?php
 
          // Creates a list of already uploaded Files
         echo \humhub\modules\file\widgets\FileUploadList::widget(array(
@@ -542,7 +543,7 @@ echo Html::beginForm();
             'object' => $evidence
         ));
 
-        CActiveForm::end(); 
+        CActiveForm::end();
 
     ?>
 
