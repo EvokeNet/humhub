@@ -162,6 +162,7 @@ return [
     'Review Evidence' => 'Evalúar evidencias aquí',
     'Review evidences' => 'Evalúar evidencias aquí',
     'Reviews' => 'Revisiones',
+    'Reviewed' => 'Evaluado',
     'Save' => 'Salvar',
     'Search' => 'Buscar',
     'Secondary Power' => 'Poder Secundario',
