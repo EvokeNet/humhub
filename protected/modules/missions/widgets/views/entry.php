@@ -10,7 +10,9 @@ use humhub\compat\CActiveForm;
 echo Html::beginForm();
   $activity = $evidence->getActivities();
   $mentor_average_votes = $evidence->getAverageRating('Mentors');
-  $user_average_votes = $evidence->getAverageRating('Users')
+  $user_average_votes = $evidence->getAverageRating('Users');
+  $agent_vote_count = $evidence->getVoteCount('Users');
+  $agent_vote_count = $agent_vote_count ? $agent_vote_count : 0;
 ?>
 
 <!-- EVIDENCE -->
@@ -112,7 +114,7 @@ echo Html::beginForm();
               <?php echo Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $user_average_votes? number_format((float)$user_average_votes, 1, '.', '') : "-")); ?>
             </em>
             <em>
-              <?php echo Yii::t('MissionsModule.base', 'Agent Reviews: {votes}', array('votes' => $evidence->getVoteCount('Users')? $evidence->getVoteCount('Users') : "0")) ?>
+              <?php echo Yii::t('MissionsModule.base', 'Agent Reviews: {votes}', array('votes' => $agent_vote_count)) ?>
             </em>
           </div>
         </div>
@@ -277,7 +279,7 @@ echo Html::beginForm();
             <div class="panel-heading">
                 <h6 class="panel-title">
 
-                    <a href="#collapseMentorEvidenceReviews<?= $evidence->id ?>" style="color:#254054; cursor: default" aria-expanded="false" class="collapsed">
+                    <a  style="color:#254054; cursor: default" aria-expanded="false" class="collapsed">
                         <?= Yii::t('MissionsModule.base', 'Mentor Reviews') ?>
                     </a>
                 </h6>
@@ -292,14 +294,31 @@ echo Html::beginForm();
 
                         <?php if(!$votes || sizeof($votes) <= 0): ?>
                             <p>
-                                <?php echo Yii::t('MissionsModule.base', 'There are no reviews yet.'); ?>
+                                <?php echo Yii::t('MissionsModule.base', 'No mentor reviews'); ?>
                             </p>
                         <?php endif; ?>
 
                         <?php foreach($votes as $vote): ?>
                             <div style = "padding: 10px 10px 3px; margin-bottom: 20px; border: 3px solid #9013FE; word-wrap: break-word;">
                                 <p><?php echo Yii::t('MissionsModule.base', 'Comment: {comment}', array('comment' => $vote->comment)); ?></p>
-                                <p><?php echo Yii::t('MissionsModule.base', 'Rating: {rating}', array('rating' => $vote->value)); ?></p>
+
+                                <?php if($vote->value > 0 ): ?>
+                                    <div class="stars" style="text-align:left;">
+                                      <?php for ($i = 0; $i < 5; $i++): ?>
+                                        <?php if ($vote->value > $i): ?>
+                                          <?php if (($vote->value - $i) < 1): ?>
+                                            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                                          <?php else: ?>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                          <?php endif; ?>
+                                        <?php else: ?>
+                                          <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <?php endif; ?>
+                                      <?php endfor; ?>
+                                    </div>
+                                <?php else: ?>
+                                  <p style="color:red"><?php echo Yii::t('MissionsModule.base', 'Does not meet rubric'); ?></p>
+                                <?php endif; ?>
 
                                 <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors" || $vote->user->group->name == "Mentors"): ?>
                                     <p><?php echo Yii::t('MissionsModule.base', 'By'); ?>
@@ -379,8 +398,7 @@ echo Html::beginForm();
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h6 class="panel-title">
-
-                    <a href="#collapseAgentEvidenceReviews<?= $evidence->id ?>" style="color:#254054; cursor: default" aria-expanded="false" class="collapsed">
+                    <a style="color:#254054; cursor: default" aria-expanded="false" class="collapsed">
                         <?= Yii::t('MissionsModule.base', 'Agent Reviews') ?>
                     </a>
                 </h6>
@@ -393,16 +411,26 @@ echo Html::beginForm();
                         $votes = $evidence->getVotes('Users');
                         ?>
 
-                        <?php if(!$votes || sizeof($votes) <= 0): ?>
-                            <p>
-                                <?php echo Yii::t('MissionsModule.base', 'There are no reviews yet.'); ?>
-                            </p>
-                        <?php endif; ?>
-
                         <?php foreach($votes as $vote): ?>
                             <div style = "padding: 10px 10px 3px; margin-bottom: 20px; border: 3px solid #9013FE; word-wrap: break-word;">
                                 <p><?php echo Yii::t('MissionsModule.base', 'Comment: {comment}', array('comment' => $vote->comment)); ?></p>
-                                <p><?php echo Yii::t('MissionsModule.base', 'Rating: {rating}', array('rating' => $vote->value)); ?></p>
+                                <?php if($vote->value > 0 ): ?>
+                                    <div class="stars" style="text-align:left;">
+                                      <?php for ($i = 0; $i < 5; $i++): ?>
+                                        <?php if ($vote->value > $i): ?>
+                                          <?php if (($vote->value - $i) < 1): ?>
+                                            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                                          <?php else: ?>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                          <?php endif; ?>
+                                        <?php else: ?>
+                                          <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <?php endif; ?>
+                                      <?php endfor; ?>
+                                    </div>
+                                <?php else: ?>
+                                  <p style="color:red"><?php echo Yii::t('MissionsModule.base', 'Does not meet rubric'); ?></p>
+                                <?php endif; ?>
 
                                 <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors" || $vote->user->group->name == "Mentors"): ?>
                                     <p><?php echo Yii::t('MissionsModule.base', 'By'); ?>
@@ -470,6 +498,16 @@ echo Html::beginForm();
                         <?php endforeach; ?>
                     </div>
                 </div>
+
+            <?php if($agent_vote_count > 0): ?>
+            <a href="#collapseAgentEvidenceReviews<?= $evidence->id ?>"  class="btn btn-sm btn-primary " data-toggle="collapse">
+               <?= Yii::t('MissionsModule.base', 'Show {total_reviews} agent reviews', ['total_reviews' => $agent_vote_count]) ?>
+            </a>      
+            <?php else: ?>
+              <p>
+                <?= Yii::t('MissionsModule.base', 'No agent reviews') ?>
+              </p>
+            <?php endif; ?>   
             </div>
         </div>
 
