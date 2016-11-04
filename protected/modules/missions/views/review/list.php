@@ -5,6 +5,7 @@ use humhub\modules\space\models\Space;
 use yii\helpers\Url;
 use app\modules\teams\models\Team;
 use app\modules\missions\models\Votes;
+use app\modules\missions\models\Evidence;
 
 $teams_count = count($teams);
 
@@ -50,7 +51,7 @@ $user = Yii::$app->user->getIdentity();
                   <div class="pull-right">
                       <span><?php echo Yii::t('MissionsModule.base', 'Reviewed'); ?>:</span>
                       <?php echo $team->getReviewedEvidenceCount($user->id); ?>
-                       /
+                      &nbsp;/&nbsp;
                       <?php echo $team->getEvidenceCount();?>
                   </div>
 
@@ -91,8 +92,10 @@ $user = Yii::$app->user->getIdentity();
                   <?php $team_members = $team->getTeamMembers(); ?>
                   <ul>
                     <?php foreach ($team_members as $team_member): ?>
-                      <li><?php echo $team_member->id; ?>
-                        <?php echo Votes::getReviewsByUsers($user->id, $team_member->id); ?>
+                      <li><?php echo $team_member->getName(); ?>
+                        <?php echo Votes::getReviewCountByUsers($user->id, $team_member->id); ?>
+                        &nbsp;/&nbsp;
+                        <?php echo Evidence::getEvidenceCountForUser($team_member->id); ?>
                       </li>
                     <?php endforeach; ?>
                   </ul>

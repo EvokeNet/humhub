@@ -151,7 +151,7 @@ class Votes extends ContentActiveRecord
 
     }
 
-    public function getReviewsByUsers($reviewer_id, $author_id) {
+    public function getReviewCountByUsers($reviewer_id, $author_id) {
       $query = (new \yii\db\Query())
       ->select(['count(distinct v.id) as vote_count'])
       ->from('evidence as e')
