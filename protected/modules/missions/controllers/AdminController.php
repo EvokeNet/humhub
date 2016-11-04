@@ -16,6 +16,7 @@ use app\modules\missions\models\Evidence;
 use app\modules\missions\models\EvidenceSearch;
 use app\modules\teams\models\Team;
 use app\modules\missions\models\Votes;
+use app\modules\missions\models\VotesSearch;
 use humhub\modules\content\models\Content;
 use humhub\modules\user\models\User;
 use app\modules\achievements\models\UserAchievements;
@@ -29,20 +30,32 @@ class AdminController extends \humhub\modules\admin\components\Controller
 {
     public function actionIndexDeadline()
     {
-        $model = EvokationDeadline::find()->one();
+        $evokation_deadline = EvokationDeadline::getEvokationDeadline();
+        $voting_deadline = EvokationDeadline::getVotingDeadline();
         
-        return $this->render('evokation-deadline/index', array('model' => $model));
+        return $this->render('evokation-deadline/index', array('evokation_deadline' => $evokation_deadline, 'voting_deadline' => $voting_deadline));
     }
     
     public function actionCreateDeadline()
     {
-        $model = new EvokationDeadline();
+        $model = EvokationDeadline::createNewEvokationDeadline();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index-deadline']);
         } 
         
         return $this->render('evokation-deadline/create', array('model' => $model));
+    }
+
+    public function actionCreateVotingDeadline()
+    {
+        $model = EvokationDeadline::createNewVotingDeadline();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index-deadline']);
+        } 
+        
+        return $this->render('evokation-deadline/voting-create', array('model' => $model));
     }
     
     public function actionUpdateDeadline($id)
@@ -98,8 +111,17 @@ class AdminController extends \humhub\modules\admin\components\Controller
 
     public function actionIndexReviews()
     {
-        $reviews = Votes::find()->all();
-        return $this->render('votes/index', array('reviews' => $reviews));
+        // $reviews = Votes::find()->all();
+        // return $this->render('votes/index', array('reviews' => $reviews));
+
+        $searchModel = new VotesSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('votes/index', array(
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel
+        ));
+
     }
     
     public function actionViewReviews($id)

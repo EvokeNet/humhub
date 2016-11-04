@@ -7,6 +7,7 @@ use app\modules\missions\models\Portfolio;
 use app\modules\coin\models\Wallet;
 use app\modules\missions\models\Evokations;
 use app\modules\missions\models\EvokationDeadline;
+use humhub\models\Setting;
 
 class PortfolioController extends \yii\web\Controller
 {
@@ -15,19 +16,29 @@ class PortfolioController extends \yii\web\Controller
         return $this->render('index');
     }
 
-    public function actionAdd($evokation_id, $investment){
-        $deadline = EvokationDeadline::find()->one();
+    private function checkVotingClosed(){
+        $deadline = EvokationDeadline::getVotingDeadline();
 
         //if voting is closed
-        if ($deadline && ((strtotime(date('Y-m-d H:i:s')) <= strtotime($deadline->start_date)) || (strtotime(date('Y-m-d H:i:s')) >= strtotime($deadline->finish_date)))){
+        if ($deadline && $deadline->hasEnded()){
             header('Content-type: application/json');
             $response_array['status'] = 'error'; 
             echo json_encode($response_array);
             Yii::$app->end();
         }
+    }
+
+    public function actionAdd($evokation_id, $investment){
+
+        $this->checkVotingClosed();
 
         $user = Yii::$app->user->getIdentity();
         $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
+        $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id);
+
+        $this->checkCanInvestWallet($investment, $wallet);
+        $this->checkCanInvestLimit($investment, $totalAmount);
+
 
          if(intval($investment)){
             if($investment >= 0){
@@ -61,16 +72,27 @@ class PortfolioController extends \yii\web\Controller
         Yii::$app->end();
     }
 
-    public function actionDelete($evokation_id){
-        $deadline = EvokationDeadline::find()->one();
-
-        //if voting is closed
-        if ($deadline && ((strtotime(date('Y-m-d H:i:s')) <= strtotime($deadline->start_date)) || (strtotime(date('Y-m-d H:i:s')) >= strtotime($deadline->finish_date)))){
+    private function checkCanInvestLimit($investment, $totalInvestment){
+        $investment_limit = intval(Setting::Get('investment_limit'));
+        
+         if($investment_limit > 0 && ($investment + $totalInvestment > Setting::Get('investment_limit'))){
             header('Content-type: application/json');
-            $response_array['status'] = 'error'; 
+            $response_array['status'] = 'error_limit'; 
             echo json_encode($response_array);
             Yii::$app->end();
         }
+    }
+
+    private function checkCanInvestWallet($investment, $wallet){
+        if($investment > $wallet){
+            $response_array['status'] = 'no_enough_evocoins'; 
+            echo json_encode($response_array);
+            Yii::$app->end();
+        }
+    }
+
+    public function actionDelete($evokation_id){
+        $this->checkVotingClosed();
 
         $user = Yii::$app->user->getIdentity();
         $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
@@ -96,28 +118,9 @@ class PortfolioController extends \yii\web\Controller
 
     }
 
-    public function actionUpdate(){
-        $deadline = EvokationDeadline::find()->one();
-
-
-        //if voting is closed
-        if ($deadline && ((strtotime(date('Y-m-d H:i:s')) <= strtotime($deadline->start_date)) || (strtotime(date('Y-m-d H:i:s')) >= strtotime($deadline->finish_date)))){
-            header('Content-type: application/json');
-            $response_array['status'] = 'error'; 
-            echo json_encode($response_array);
-            Yii::$app->end();
-        }
-
-    	$user = Yii::$app->user->getIdentity();
-    	$portfolio = Yii::$app->request->post();
-        $totalInvestment = 0;
-
-        $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
-        $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id);
-
+    private function isDataValid($portfolio, $totalInvestment){
         //check if data is valid
         foreach($portfolio as $investment){
-
 
             if(intval($investment) || $investment == 0){
                 if($investment >= 0){
@@ -134,13 +137,33 @@ class PortfolioController extends \yii\web\Controller
                 Yii::$app->end(); 
             }
         }
+        return $totalInvestment;
+    }
 
+    private function isInvestmentPossible($totalInvestment, $wallet, $totalAmount){
         // check if investment is possible
         if($totalInvestment > ($wallet->amount + $totalAmount)){
             $response_array['status'] = 'no_enough_evocoins'; 
             echo json_encode($response_array);
             Yii::$app->end();
         }
+    }
+
+    public function actionUpdate(){
+        $this->checkVotingClosed();
+
+    	$user = Yii::$app->user->getIdentity();
+    	$portfolio = Yii::$app->request->post();
+        $totalInvestment = 0;
+
+        $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
+        $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id);
+
+        $totalInvestment = $this->isDataValid($portfolio, $totalInvestment);
+
+        $this->isInvestmentPossible($totalInvestment, $wallet, $totalAmount);
+
+        $this->checkCanInvestLimit($totalInvestment, 0);
 
     	foreach($portfolio as $id => $investment){
     		$evokation_investment = Portfolio::findOne(['user_id' => $user->id, 'evokation_id' => $id]);  

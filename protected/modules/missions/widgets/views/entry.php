@@ -51,7 +51,13 @@ echo Html::beginForm();
                             'smoothPlayBar' => true,
                         ]
                     ));
-                    ?>
+                    ?> 
+                <?php elseif ($file->getExtension() == "png" || $file->getExtension() == "jpg" || $file->getExtension() == "jpeg") : ?>
+
+                  <br /><br />
+
+                  <a href="<?php echo $file->getPreviewImageUrl(); ?>"><img src="<?php echo $file->getPreviewImageUrl(); ?>" width="200"/></a>
+
                 <?php endif; ?>
 
             </li>
@@ -62,56 +68,57 @@ echo Html::beginForm();
     <hr>
 
     <div class = "evidence-mission-box">
-      <h6><?= Yii::t('MissionsModule.base', 'Mission {mission}, Activity {activity}:', array('mission' => $activity->mission->position, 'activity' => $activity->position)); ?></h6>
+      <h6 style="margin-bottom:10px"><?= Yii::t('MissionsModule.base', 'Mission {mission}, Activity {activity}:', array('mission' => $activity->mission->position, 'activity' => $activity->position)); ?></h6>
       <h5><?php echo Html::a(
               (isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title),
-              ['show', 'activityId' => $activity->id, 'sguid' => $contentContainer->guid], array('class' => '')); ?></h5>
-      <div class="votes-container row">
-        <div class="mentor-votes col-xs-9">
-          <div class="col-xs-12 no-padding-left">
-            <em><?php echo Yii::t('MissionsModule.base', 'Mentor Reviews'); ?></em>
-          </div>
-          <div class="rating col-xs-5 no-padding-left">
-            <p>
+              ['/missions/evidence/show', 'activityId' => $activity->id, 'sguid' => $contentContainer->guid], array('class' => '')); ?></h5>
+
+      <div class="votes-container row" style="margin-top:10px">
+
+        <div class="mentor-votes col-sm-4" style="margin-top:10px; border-right: 2px solid #254054;">
+          <em><?php echo Yii::t('MissionsModule.base', 'Mentor Reviews'); ?></em>
+
+          <div class="rating no-padding-left">
+            <em>
               <?php echo Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $mentor_average_votes? number_format((float)$mentor_average_votes, 1, '.', '') : "-")); ?>
-            </p>
-            <p>
+            </em>
+            <em>
               <?php echo Yii::t('MissionsModule.base', 'Mentor Reviews: {votes}', array('votes' => $evidence->getVoteCount('Mentors')? $evidence->getVoteCount('Mentors') : "0")) ?>
-            </p>
-          </div>
-
-
-
-
-          <div class="stars col-xs-6">
-            <?php for ($i = 0; $i < 5; $i++): ?>
-              <?php if ($mentor_average_votes > $i): ?>
-                <?php if (($mentor_average_votes - $i) < 1): ?>
-                  <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                <?php else: ?>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                <?php endif; ?>
-              <?php else: ?>
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-              <?php endif; ?>
-            <?php endfor; ?>
-            <p>
-              <?php echo Yii::t('MissionsModule.base', 'Avg Mentor Rating'); ?>
-            </p>
+            </em>
           </div>
         </div>
-        <div class="agent-votes col-xs-3">
+
+        <div class="stars col-sm-4">
+          <?php for ($i = 0; $i < 5; $i++): ?>
+            <?php if ($mentor_average_votes > $i): ?>
+              <?php if (($mentor_average_votes - $i) < 1): ?>
+                <i class="fa fa-star-half-o" aria-hidden="true"></i>
+              <?php else: ?>
+                <i class="fa fa-star" aria-hidden="true"></i>
+              <?php endif; ?>
+            <?php else: ?>
+              <i class="fa fa-star-o" aria-hidden="true"></i>
+            <?php endif; ?>
+          <?php endfor; ?>
+          <p>
+            <?php echo Yii::t('MissionsModule.base', 'Avg Mentor Rating'); ?>
+          </p>
+        </div>
+        
+        <div class="agent-votes col-sm-4" style="margin-top:10px">
           <em><?php echo Yii::t('MissionsModule.base', 'Agent Reviews'); ?></em>
           <div class="rating">
-            <p>
+            <em>
               <?php echo Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $user_average_votes? number_format((float)$user_average_votes, 1, '.', '') : "-")); ?>
-            </p>
-            <p>
+            </em>
+            <em>
               <?php echo Yii::t('MissionsModule.base', 'Agent Reviews: {votes}', array('votes' => $evidence->getVoteCount('Users')? $evidence->getVoteCount('Users') : "0")) ?>
-            </p>
+            </em>
           </div>
         </div>
+
       </div>
+
     </div>
 
     <?php echo Html::endForm(); ?>
@@ -153,7 +160,7 @@ echo Html::beginForm();
         text-align: center;
         font-size: 2em;
         color: #ece046;
-        margin-top: -14px;
+        /*margin-top: -14px;*/
       }
 
       .evidence-mission-box .stars p {
@@ -411,13 +418,52 @@ echo Html::beginForm();
                             <div style="margin:20px 0 10px">
                                 <?php if(Yii::$app->user->isAdmin()): ?>
                                     <?php
-                                        if($vote->quality == 0){
-                                            echo Html::a(Yii::t('MissionsModule.base', 'Mark as quality review'), ['admin/update-quality-reviews-on-site', 'id' => $vote->id, 'mark' => 1, 'user_id' => $vote->user_id], ['class' => 'btn btn-primary btn-sm']);
-                                        }
-                                        else{
-                                            echo Html::a(Yii::t('MissionsModule.base', 'Unmark as quality review'), ['admin/update-quality-reviews-on-site', 'id' => $vote->id, 'mark' => 0, 'user_id' => $vote->user_id], ['class' => 'btn btn-primary btn-sm']);
-                                        }
-                                    ?>
+                                    
+                                      $enable = "";
+                                      $disable = "hidden";
+
+                                      if ($vote->quality == 1) {
+                                          $enable = "hidden";
+                                          $disable = "";
+                                      } 
+
+                                      echo \humhub\widgets\AjaxButton::widget([
+                                          'label' => Yii::t('MissionsModule.base', 'Mark as quality review'),
+                                          'ajaxOptions' => [
+                                              'type' => 'POST',
+                                              'success' => new yii\web\JsExpression('function(){
+                                          $("#btn-enable-module-' . $vote->id . '").addClass("hidden");
+                                          $("#btn-disable-module-' . $vote->id . '").removeClass("hidden");
+                                          }'),
+                                              'url' => Url::to(['admin/update-quality-reviews', 'id' => $vote->id, 'mark' => 1, 'user_id' => $vote->user_id]),
+                                          ],
+                                          'htmlOptions' => [
+                                              'class' => 'btn btn-sm btn-primary '. $enable,
+                                              'id' => 'btn-enable-module-' . $vote->id
+                                          ]
+                                      ]);
+                                      ?>
+
+
+                                      <?php
+
+                                      echo \humhub\widgets\AjaxButton::widget([
+                                          'label' => Yii::t('MissionsModule.base', 'Unmark as quality review'),
+                                          'ajaxOptions' => [
+                                              'type' => 'POST',
+                                              'success' => new yii\web\JsExpression('function(){
+                                          $("#btn-enable-module-' . $vote->id . '").removeClass("hidden");
+                                          $("#btn-disable-module-' . $vote->id . '").addClass("hidden");
+                                           }'),
+                                              'url' => Url::to(['admin/update-quality-reviews', 'id' => $vote->id, 'mark' => 0, 'user_id' => $vote->user_id]),
+                                          ],
+                                          'htmlOptions' => [
+                                              'class' => 'btn btn-sm btn-info '. $disable,
+                                              'id' => 'btn-disable-module-' . $vote->id
+                                          ]
+                                      ]);
+                                      ?>
+
                                 <?php endif; ?>
                             </div>
 
@@ -712,7 +758,7 @@ https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
     text-align: center;
     font-size: 2em;
     color: #ece046;
-    margin-top: -14px;
+    /*margin-top: -14px;*/
   }
 
   .evidence-mission-box .stars p {

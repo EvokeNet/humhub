@@ -18,43 +18,73 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <div class="panel-body">
         
-        <?php if (isset($model)): ?>
-        
-        <p>
-            <?= Html::a(Yii::t('MissionsModule.base', 'Update'), ['update-deadline', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-            <?= Html::a(Yii::t('MissionsModule.base', 'Delete'), ['delete-deadline', 'id' => $model->id], [
-                'class' => 'btn btn-danger',
-                'data' => [
-                    'confirm' => Yii::t('MissionsModule.base', 'Are you sure you want to delete this item?'),
-                    'method' => 'post',
-                ],
-            ]) ?>
-        </p>
-        
         <table class="table">
         <thead>
             <tr>
+                <th><?= Yii::t('MissionsModule.base', 'Deadline') ?></th>
                 <th><?= Yii::t('MissionsModule.base', 'Start Date') ?></th>
                 <th><?= Yii::t('MissionsModule.base', 'Close Date') ?></th>
+                <th><?= Yii::t('MissionsModule.base', 'Options') ?></th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td scope="row"><?= date_format(date_create($model->start_date), "d/m/Y") ?></td>
-                <td><?= date_format(date_create($model->finish_date), "d/m/Y") ?></td>
-            </tr>
-        </tbody>
-        </table>
-
-        <?php else: ?>
-            
-            <p>
-                <?= Html::a(Yii::t('MissionsModule.base', 'Create Deadline'), ['create-deadline'], ['class' => 'btn btn-success']) ?>
-            </p>
-        
-            <p><?php echo Yii::t('MissionsModule.base', 'No deadline defined yet!'); ?></p>
-
-        <?php endif; ?>
-            
-</div>
+            <tbody>
+                <?php if (isset($evokation_deadline)): ?>
+                    <tr>
+                        <td scope="row"><?php echo Yii::t('MissionsModule.base', 'Evokation'); ?></td>
+                        <td><?= date_format(date_create($evokation_deadline->start_date), "d/M/Y") ?></td>
+                        <td><?= date_format(date_create($evokation_deadline->finish_date), "d/M/Y") ?></td>
+                        <td><?= Html::a(Yii::t('MissionsModule.base', 'Update'), ['update-deadline', 'id' => $evokation_deadline->id], ['class' => 'btn btn-primary']) ?>
+                            <?= Html::a(Yii::t('MissionsModule.base', 'Delete'), ['delete-deadline', 'id' => $evokation_deadline->id], [
+                                'class' => 'btn btn-danger',
+                                'data' => [
+                                    'confirm' => Yii::t('MissionsModule.base', 'Are you sure you want to delete this item?'),
+                                    'method' => 'post',
+                                ],
+                            ]) 
+                            ?>
+                        </td>
+                    </tr>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="3">
+                            <p>
+                                <?php echo Yii::t('MissionsModule.base', 'No evokation deadline defined yet!'); ?>
+                            </p>
+                        </td>
+                        <td>
+                            <?= Html::a(Yii::t('MissionsModule.base', 'Create Evokation Deadline'), ['create-deadline'], ['class' => 'btn btn-success', 'style' => 'width: 200px']) ?>
+                        </td>
+                    </tr>                
+                <?php endif; ?>
+                <?php if (isset($voting_deadline)): ?>
+                    <tr>
+                        <td scope="row"><?php echo Yii::t('MissionsModule.base', 'Voting'); ?></td>
+                        <td><?= date_format(date_create($voting_deadline->start_date), "d/M/Y") ?></td>
+                        <td><?= date_format(date_create($voting_deadline->finish_date), "d/M/Y") ?></td>
+                        <td><?= Html::a(Yii::t('MissionsModule.base', 'Update'), ['update-deadline', 'id' => $voting_deadline->id], ['class' => 'btn btn-primary']) ?>
+                            <?= Html::a(Yii::t('MissionsModule.base', 'Delete'), ['delete-deadline', 'id' => $voting_deadline->id], [
+                                'class' => 'btn btn-danger',
+                                'data' => [
+                                    'confirm' => Yii::t('MissionsModule.base', 'Are you sure you want to delete this item?'),
+                                    'method' => 'post',
+                                ],
+                            ]) 
+                            ?>
+                        </td>
+                    </tr>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="3">
+                            <p>
+                                <?php echo Yii::t('MissionsModule.base', 'No voting deadline defined yet!'); ?>
+                            </p>
+                        </td>
+                        <td>
+                            <?= Html::a(Yii::t('MissionsModule.base', 'Create Voting Deadline'), ['create-voting-deadline'], ['class' => 'btn btn-success', 'style' => 'width: 200px']) ?>
+                        </td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>    
+    </div>
 </div>

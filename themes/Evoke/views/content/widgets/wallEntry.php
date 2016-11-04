@@ -77,9 +77,9 @@ if($team_id){
                 <h4 class="media-heading" style = "margin-bottom:5px">
                     <a href="<?php echo $user->getUrl(); ?>">
                         <?php if($team): ?>
-                            <?php echo Yii::t('ContentModule.views_wallLayout', '{name} @ {team}', array('name' => $user->displayName, 'team' => $team->name)); ?>
+                            <?php echo Yii::t('ContentModule.views_wallLayout', '{name} @ {team} {date}', array('name' => $user->displayName, 'team' => $team->name, 'date' => date('F j, Y', strtotime($object->content->created_at)))); ?>
                         <?php else: ?>
-                            <?php echo Yii::t('ContentModule.views_wallLayout', '{name}', array('name' => $user->displayName)); ?>
+                            <?php echo Yii::t('ContentModule.views_wallLayout', '{name} {date}', array('name' => $user->displayName, 'date' => date('F j, Y', strtotime($object->content->created_at)))); ?>
                         <?php endif ?> 
                     </a>
                 </h4>

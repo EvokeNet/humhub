@@ -38,9 +38,10 @@ return [
     'Evidence Success Message' => '',
     'Evokation Category ID' => '',
     'Flag' => '',
-    'Gdrive Url' => '',
+    'Group Activity' => '',
     'ID' => '',
     'Id Code' => '',
+    'Is a Group Activity' => '',
     'Language ID' => '',
     'Locked' => '',
     'Mission ID' => '',
@@ -61,6 +62,4 @@ return [
     'Updated By' => '',
     'Value' => '',
     'Youtube Url' => '',
-    'Group Activity' => '',
-    'Is a Group Activity' => '',
 ];
