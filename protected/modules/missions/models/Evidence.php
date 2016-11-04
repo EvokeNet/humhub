@@ -301,6 +301,17 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
 
     }
 
+    public function getEvidenceCountForUser($user_id) {
+      $query = (new \yii\db\Query())
+
+      ->select(['count(id) as count'])
+      ->from('evidence')
+      ->where(['created_by' => $user_id])
+      ->one();
+
+      return $query['count'];
+    }
+
     /**
      * After Saving of evidences, fire an activity
      *

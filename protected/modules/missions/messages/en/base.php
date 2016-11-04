@@ -133,6 +133,7 @@ return [
     'Review Evidence' => '',
     'Review evidences' => '',
     'Reviews' => '',
+    'Reviewed' => '',
     'Save' => '',
     'Secondary Power' => '',
     'Secondary Power(s)' => '',
