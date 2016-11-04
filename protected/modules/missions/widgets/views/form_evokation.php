@@ -2,6 +2,10 @@
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 
+?>
+<div id="evokation_form">
+<?php
+
     echo Html::tag('h4', Html::encode(Yii::t('MissionsModule.base', 'Submit Your Evokation')), ['class' => 'font-weight-bold']);
     echo Html::tag('br');
     // echo Html::hiddenInput('missionId', $mission->id);    
@@ -10,6 +14,7 @@ use yii\helpers\ArrayHelper;
     echo Html::textArea("youtube_url", '', array('id' => 'contentForm_question', 'class' => 'text-margin form-control autosize contentForm', 'rows' => '1', "tabindex" => "2", 'placeholder' => Yii::t('MissionsModule.widgets_views_evokationForm', "YouTube URL")));
 
 ?>
+</div>
 
 <style type="text/css">
 
@@ -23,6 +28,21 @@ use yii\helpers\ArrayHelper;
 	$( document ).ready(function() {
 	    $('.fileinput-button').remove();
 	    $('.fa.fa-cogs').remove();
-	});
+
+
+    var oldHandleResponse = handleResponse;
+
+        handleResponse = function(response) {
+          oldHandleResponse(response);
+          if (!response.errors) {
+                $('#evokation_form').parent().parent().remove();
+                window.location.hash = "";
+                window.location.hash = "wallEntry_" + response.wallEntryId;
+          }
+        }
+
+    });
+
+
 </script>    
 
