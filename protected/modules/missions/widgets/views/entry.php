@@ -277,14 +277,14 @@ echo Html::beginForm();
             <div class="panel-heading">
                 <h6 class="panel-title">
 
-                    <a data-toggle="collapse" href="#collapseMentorEvidenceReviews<?= $evidence->id ?>" style="color:#254054" aria-expanded="false" class="collapsed">
+                    <a href="#collapseMentorEvidenceReviews<?= $evidence->id ?>" style="color:#254054; cursor: default" aria-expanded="false" class="collapsed">
                         <?= Yii::t('MissionsModule.base', 'Mentor Reviews') ?>
                     </a>
                 </h6>
             </div>
 
             <div class="panel-body">
-                <div id="collapseMentorEvidenceReviews<?= $evidence->id ?>"  class="panel-collapse collapse" aria-expanded="false">
+                <div id="collapseMentorEvidenceReviews<?= $evidence->id ?>"  class="panel-collapse" aria-expanded="false">
                     <div class="">
                         <?php
                         $votes = $evidence->getVotes('Mentors');
@@ -380,7 +380,7 @@ echo Html::beginForm();
             <div class="panel-heading">
                 <h6 class="panel-title">
 
-                    <a data-toggle="collapse" href="#collapseAgentEvidenceReviews<?= $evidence->id ?>" style="color:#254054" aria-expanded="false" class="collapsed">
+                    <a href="#collapseAgentEvidenceReviews<?= $evidence->id ?>" style="color:#254054; cursor: default" aria-expanded="false" class="collapsed">
                         <?= Yii::t('MissionsModule.base', 'Agent Reviews') ?>
                     </a>
                 </h6>
