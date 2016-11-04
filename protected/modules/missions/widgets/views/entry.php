@@ -405,103 +405,26 @@ echo Html::beginForm();
             </div>
 
             <div class="panel-body">
+                <?php
+                    $votes = $evidence->getVotes('Users');
+                    $vote = array_shift($votes);
+                    if($vote){
+                      echo $this->render('user_vote', array('vote' => $vote));
+                    }
+                ?>
                 <div id="collapseAgentEvidenceReviews<?= $evidence->id ?>"  class="panel-collapse collapse" aria-expanded="false">
                     <div class="">
-                        <?php
-                        $votes = $evidence->getVotes('Users');
+                        <?php 
+                          foreach($votes as $vote){
+                            echo $this->render('user_vote', array('vote' => $vote));
+                          }
                         ?>
-
-                        <?php foreach($votes as $vote): ?>
-                            <div style = "padding: 10px 10px 3px; margin-bottom: 20px; border: 3px solid #9013FE; word-wrap: break-word;">
-                                <p><?php echo Yii::t('MissionsModule.base', 'Comment: {comment}', array('comment' => $vote->comment)); ?></p>
-                                <?php if($vote->value > 0 ): ?>
-                                    <div class="stars" style="text-align:left;">
-                                      <?php for ($i = 0; $i < 5; $i++): ?>
-                                        <?php if ($vote->value > $i): ?>
-                                          <?php if (($vote->value - $i) < 1): ?>
-                                            <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                                          <?php else: ?>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                          <?php endif; ?>
-                                        <?php else: ?>
-                                          <i class="fa fa-star-o" aria-hidden="true"></i>
-                                        <?php endif; ?>
-                                      <?php endfor; ?>
-                                    </div>
-                                <?php else: ?>
-                                  <p style="color:red"><?php echo Yii::t('MissionsModule.base', 'Does not meet rubric'); ?></p>
-                                <?php endif; ?>
-
-                                <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors" || $vote->user->group->name == "Mentors"): ?>
-                                    <p><?php echo Yii::t('MissionsModule.base', 'By'); ?>
-                                    <a href="<?= ($vote->user->getUrl()) ?>">
-                                        <?= ($vote->user->username) ?>
-                                    </a>,
-                                    <?php echo \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]); ?></p>
-                                <?php else: ?>
-                                    <p><?php echo Yii::t('MissionsModule.base', 'By Anonymous, {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]))); ?></p>
-                                <?php endif; ?>
-                            </div>
-
-                            <div style="margin:20px 0 10px">
-                                <?php if(Yii::$app->user->isAdmin()): ?>
-                                    <?php
-                                    
-                                      $enable = "";
-                                      $disable = "hidden";
-
-                                      if ($vote->quality == 1) {
-                                          $enable = "hidden";
-                                          $disable = "";
-                                      } 
-
-                                      echo \humhub\widgets\AjaxButton::widget([
-                                          'label' => Yii::t('MissionsModule.base', 'Mark as quality review'),
-                                          'ajaxOptions' => [
-                                              'type' => 'POST',
-                                              'success' => new yii\web\JsExpression('function(){
-                                          $("#btn-enable-module-' . $vote->id . '").addClass("hidden");
-                                          $("#btn-disable-module-' . $vote->id . '").removeClass("hidden");
-                                          }'),
-                                              'url' => Url::to(['admin/update-quality-reviews', 'id' => $vote->id, 'mark' => 1, 'user_id' => $vote->user_id]),
-                                          ],
-                                          'htmlOptions' => [
-                                              'class' => 'btn btn-sm btn-primary '. $enable,
-                                              'id' => 'btn-enable-module-' . $vote->id
-                                          ]
-                                      ]);
-                                      ?>
-
-
-                                      <?php
-
-                                      echo \humhub\widgets\AjaxButton::widget([
-                                          'label' => Yii::t('MissionsModule.base', 'Unmark as quality review'),
-                                          'ajaxOptions' => [
-                                              'type' => 'POST',
-                                              'success' => new yii\web\JsExpression('function(){
-                                          $("#btn-enable-module-' . $vote->id . '").removeClass("hidden");
-                                          $("#btn-disable-module-' . $vote->id . '").addClass("hidden");
-                                           }'),
-                                              'url' => Url::to(['admin/update-quality-reviews', 'id' => $vote->id, 'mark' => 0, 'user_id' => $vote->user_id]),
-                                          ],
-                                          'htmlOptions' => [
-                                              'class' => 'btn btn-sm btn-info '. $disable,
-                                              'id' => 'btn-disable-module-' . $vote->id
-                                          ]
-                                      ]);
-                                      ?>
-
-                                <?php endif; ?>
-                            </div>
-
-                        <?php endforeach; ?>
                     </div>
                 </div>
 
-            <?php if($agent_vote_count > 0): ?>
+            <?php if($agent_vote_count > 1): ?>
             <a href="#collapseAgentEvidenceReviews<?= $evidence->id ?>"  class="btn btn-sm btn-primary " data-toggle="collapse">
-               <?= Yii::t('MissionsModule.base', 'Show {total_reviews} agent reviews', ['total_reviews' => $agent_vote_count]) ?>
+               <?= Yii::t('MissionsModule.base', 'Show {total_reviews} agent reviews', ['total_reviews' => $agent_vote_count - 1]) ?>
             </a>      
             <?php else: ?>
               <p>
