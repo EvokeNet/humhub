@@ -44,12 +44,12 @@ $user = Yii::$app->user->getIdentity();
           <?php endif; ?>
 
           <?php foreach ($teams as $team) : ?>
-             <li>
+             <li class="with-sub-list">
                   <?php $space = Space::findOne($team->id) ?>
 
                   <!-- Evidence Count -->
                   <div class="pull-right">
-                      <span><?php echo Yii::t('MissionsModule.base', 'Reviewed'); ?>:</span>
+                      <strong><?php echo Yii::t('MissionsModule.base', 'Reviewed'); ?>:</strong>
                       <?php echo $team->getReviewedEvidenceCount($user->id); ?>
                       &nbsp;/&nbsp;
                       <?php echo $team->getEvidenceCount();?>
@@ -70,32 +70,25 @@ $user = Yii::$app->user->getIdentity();
 
                       <div class="media-body">
                           <h4 class="media-heading"><a
-                                  href="<?php echo $team->getUrl(); ?>"><?php echo Html::encode($team->name); ?></a>
+                                  href="<?php echo $team->getUrl(); ?>" class="link-text"><?php echo Html::encode($team->name); ?></a>
                           </h4>
                           <h5><?php echo Html::encode(humhub\libs\Helpers::truncateText($team->description, 100)); ?></h5>
-
-                          <?php $tag_count = 0; ?>
-                          <?php if ($team->hasTags()) : ?>
-                              <?php foreach ($team->getTags() as $tag): ?>
-                                  <?php if ($tag_count <= 5) { ?>
-                                      <?php echo Html::a(Html::encode($tag), ['/directory/directory/spaces', 'keyword' => $tag], array('class' => 'label label-default')); ?>
-                                      <?php
-                                      $tag_count++;
-                                  }
-                                  ?>
-                              <?php endforeach; ?>
-                          <?php endif; ?>
-
                       </div>
                   </div>
 
                   <?php $team_members = $team->getTeamMembers(); ?>
-                  <ul>
+                  <ul class="media-list">
                     <?php foreach ($team_members as $team_member): ?>
-                      <li><?php echo $team_member->getName(); ?>
-                        <?php echo Votes::getReviewCountByUsers($user->id, $team_member->id); ?>
-                        &nbsp;/&nbsp;
-                        <?php echo Evidence::getEvidenceCountForUser($team_member->id); ?>
+                      <li class="link">
+                        <a href="<?php echo $team_member->getUrl(); ?>">
+                          <?php echo $team_member->getName(); ?>
+                          <div class="pull-right">
+                            <strong><?php echo Yii::t('MissionsModule.base', 'Reviewed'); ?>:</strong>
+                            <?php echo Votes::getReviewCountByUsers($user->id, $team_member->id); ?>
+                            &nbsp;/&nbsp;
+                            <?php echo Evidence::getEvidenceCountForUser($team_member->id); ?>
+                          </div>
+                        </a>
                       </li>
                     <?php endforeach; ?>
                   </ul>
@@ -122,3 +115,18 @@ $user = Yii::$app->user->getIdentity();
       </ul>
     </div>
 </div>
+
+<style media="screen">
+  .link {
+    cursor: pointer;
+  }
+
+  .media-list li.with-sub-list:hover {
+    background-color: #fff;
+    border-left: 1px solid #EDEDED;
+  }
+
+  .link-text:hover {
+    border-bottom: 1px dotted #000;
+  }
+</style>
