@@ -149,7 +149,6 @@ class ReviewController extends ContentContainerController
     public function actionList()
     {
         $user = Yii::$app->user->getIdentity();
-
         $teams = Team::getTeamsFollowed($user->id);
 
         return $this->render('list', array('contentContainer' => $this->contentContainer, 'teams' => $teams));

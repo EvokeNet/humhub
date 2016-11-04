@@ -302,7 +302,7 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
     }
 
     /**
-     * After Saving of comments, fire an activity
+     * After Saving of evidences, fire an activity
      *
      * @return type
      */
