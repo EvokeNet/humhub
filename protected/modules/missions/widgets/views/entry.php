@@ -347,6 +347,7 @@ echo Html::beginForm();
 
                                           echo \humhub\widgets\AjaxButton::widget([
                                               'label' => Yii::t('MissionsModule.base', 'Mark as quality review'),
+                                              'beforeSend' => new yii\web\JsExpression("function(html){  if(!confirm('".Yii::t('MissionsModule.base', 'Are you sure?')."')){return false;} }"),
                                               'ajaxOptions' => [
                                                   'type' => 'POST',
                                                   'success' => new yii\web\JsExpression('function(){
@@ -367,6 +368,7 @@ echo Html::beginForm();
 
                                           echo \humhub\widgets\AjaxButton::widget([
                                               'label' => Yii::t('MissionsModule.base', 'Unmark as quality review'),
+                                              'beforeSend' => new yii\web\JsExpression("function(html){  if(!confirm('".Yii::t('MissionsModule.base', 'Are you sure?')."')){return false;} }"),
                                               'ajaxOptions' => [
                                                   'type' => 'POST',
                                                   'success' => new yii\web\JsExpression('function(){
@@ -426,7 +428,7 @@ echo Html::beginForm();
             <a href="#collapseAgentEvidenceReviews<?= $evidence->id ?>"  class="btn btn-sm btn-primary " data-toggle="collapse">
                <?= Yii::t('MissionsModule.base', 'Show {total_reviews} agent reviews', ['total_reviews' => $agent_vote_count - 1]) ?>
             </a>      
-            <?php else: ?>
+            <?php elseif($agent_vote_count == 0): ?>
               <p>
                 <?= Yii::t('MissionsModule.base', 'No agent reviews') ?>
               </p>

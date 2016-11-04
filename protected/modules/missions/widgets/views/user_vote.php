@@ -1,3 +1,14 @@
+
+<?php
+
+use yii\helpers\Html;
+use humhub\libs\Helpers;
+use humhub\models\Setting;
+use yii\helpers\Url;
+use yii\web\JsExpression;
+use humhub\compat\CActiveForm;
+
+?>
 <div style = "padding: 10px 10px 3px; margin-bottom: 20px; border: 3px solid #9013FE; word-wrap: break-word;">
   <p><?php echo Yii::t('MissionsModule.base', 'Comment: {comment}', array('comment' => $vote->comment)); ?></p>
   <?php if($vote->value > 0 ): ?>
@@ -45,6 +56,7 @@
     'label' => Yii::t('MissionsModule.base', 'Mark as quality review'),
     'ajaxOptions' => [
     'type' => 'POST',
+    'beforeSend' => new yii\web\JsExpression("function(html){  if(!confirm('".Yii::t('MissionsModule.base', 'Are you sure?')."')){return false;} }"),
     'success' => new yii\web\JsExpression('function(){
       $("#btn-enable-module-' . $vote->id . '").addClass("hidden");
       $("#btn-disable-module-' . $vote->id . '").removeClass("hidden");
@@ -65,6 +77,7 @@
       'label' => Yii::t('MissionsModule.base', 'Unmark as quality review'),
       'ajaxOptions' => [
       'type' => 'POST',
+      'beforeSend' => new yii\web\JsExpression("function(html){  if(!confirm('".Yii::t('MissionsModule.base', 'Are you sure?')."')){return false;} }"),
       'success' => new yii\web\JsExpression('function(){
         $("#btn-enable-module-' . $vote->id . '").removeClass("hidden");
         $("#btn-disable-module-' . $vote->id . '").addClass("hidden");
