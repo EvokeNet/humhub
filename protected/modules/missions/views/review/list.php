@@ -79,17 +79,17 @@ $user = Yii::$app->user->getIdentity();
                   <?php $team_members = $team->getTeamMembers(); ?>
                   <ul class="media-list">
                     <?php foreach ($team_members as $team_member): ?>
-                      <li class="link">
-                        <a href="<?php echo $team_member->getUrl(); ?>">
-                          <?php echo $team_member->getName(); ?>
-                          <div class="pull-right">
-                            <strong><?php echo Yii::t('MissionsModule.base', 'Reviewed'); ?>:</strong>
-                            <?php echo Votes::getReviewCountByUsers($user->id, $team_member->id); ?>
-                            &nbsp;/&nbsp;
-                            <?php echo Evidence::getEvidenceCountForUser($team_member->id); ?>
-                          </div>
-                        </a>
-                      </li>
+                      <a href="<?php echo $team_member->getUrl(); ?>">
+                        <li class="link">
+                            <?php echo $team_member->getName(); ?>
+                            <div class="pull-right">
+                              <strong><?php echo Yii::t('MissionsModule.base', 'Reviewed'); ?>:</strong>
+                              <?php echo Votes::getReviewCountByUsers($user->id, $team_member->id); ?>
+                              &nbsp;/&nbsp;
+                              <?php echo Evidence::getEvidenceCountForUser($team_member->id); ?>
+                            </div>
+                        </li>
+                      </a>
                     <?php endforeach; ?>
                   </ul>
 
