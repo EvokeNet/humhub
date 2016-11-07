@@ -190,85 +190,16 @@ echo Html::beginForm();
       }
     </style>
 
-    <?php if($evidence->content->user_id != Yii::$app->user->getIdentity()->id && Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
-    <div class="panel-group">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h6 class="panel-title">
-            <a data-toggle="collapse" href="#collapseEvidence<?= $evidence->id ?>"  style="color:#254054">
-              <?= Yii::t('MissionsModule.base', 'Review') ?>
-            </a>
-          </h6>
-        </div>
-
-        <div id="collapseEvidence<?= $evidence->id ?>" class="panel-collapse collapse in">
-            <?php
-              $collapse = "";
-              $yes = "";
-              $no = "";
-              $grade = 0;
-              $vote = $evidence->getUserVote();
-              $comment = "";
-              if($vote){
-                $yes = $vote->flag ? "checked" : "";
-                $collapse = $yes ? "in" : "";
-                $no = !$vote->flag ? "checked" : "";
-                $grade = $vote->value;
-                $comment = $vote->comment;
-              }
-            ?>
-            <div>
-              <?php
-                $primaryPowerTitle = $activity->getPrimaryPowers()[0]->getPower()->title;
-
-                if(Yii::$app->language == 'es' && isset($activity->getPrimaryPowers()[0]->getPower()->powerTranslations[0]))
-                    $primaryPowerTitle = $activity->getPrimaryPowers()[0]->getPower()->powerTranslations[0]->title;
-              ?>
-              <h2><?= Yii::t('MissionsModule.base', 'Distribute points for {title}', array('title' => $primaryPowerTitle)) ?></h2>
-              <p>
-                <?php //$activity->rubric ?>
-                <?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric ?>
-              </p>
-              <form id = "review<?= $evidence->id ?>" class="review">
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="yes-no-opt<?= $evidence->id ?>" class="btn-show<?= $evidence->id ?>" value="yes" <?= $yes ?> >
-                    Yes
-                  </label>
-                  <div id="yes-opt<?= $evidence->id ?>" class="radio regular-radio-container collapse <?= $collapse ?>">
-                    <span class="rating">
-                        <?php for ($x=1; $x <= 5; $x++): ?>
-                        <label class="radio-inline">
-                          <input type="radio" name="grade" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> >
-                          <?php echo $x; ?>
-                        </label>
-                        <?php endfor; ?>
-                    </span>
-                    <p>
-                      <?= Yii::t('MissionsModule.base', 'How many points will you award this evidence?') ?>
-                    </p>
-                  </div>
-                </div>
-                <div class="radio">
-                  <label>
-                  <input type="radio" name="yes-no-opt<?= $evidence->id ?>" class="btn-hide<?= $evidence->id ?>" value="no" <?= $no ?>>
-                   No
-                  </label>
-                </div>
-                <br>
-                <?php echo Html::textArea("text", $comment , array('id' => 'review_comment_'.$evidence->id, 'class' => 'text-margin form-control count-chars ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Leave a comment and earn an additional 5 Evocoins."))); ?>
-                <br>
-
-                <br>
-                <button type="submit" id="post_submit_review<?= $evidence->id ?>" class="btn btn-cta1 submit">
-                  <?= Yii::t('MissionsModule.base', 'Submit Review') ?>
-                </button>
-              </form>
-            </div>
-        </div>
-      </div>
-    </div>
-    <?php endif; ?>
+    <?php 
+      if($evidence->content->user_id != Yii::$app->user->getIdentity()->id && Yii::$app->user->getIdentity()->group->name == "Mentors"){
+        //already voted
+        if($vote = $evidence->getUserVote()){
+          echo $this->render('user_vote_view', array('vote' => $vote, 'contentContainer' => $contentContainer));  
+        }else{
+          echo $this->render('mentor_review', array('evidence' => $evidence, 'activity' => $activity));  
+        }
+      } 
+    ?>
 
     <?php if($evidence->content->user_id == Yii::$app->user->getIdentity()->id || Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
 
@@ -420,14 +351,14 @@ echo Html::beginForm();
                     $votes = $evidence->getVotes('Users');
                     $vote = array_shift($votes);
                     if($vote){
-                      echo $this->render('user_vote', array('vote' => $vote));
+                      echo $this->render('user_vote_view', array('vote' => $vote, 'contentContainer' => $contentContainer));
                     }
                 ?>
                 <div id="collapseAgentEvidenceReviews<?= $evidence->id ?>"  class="panel-collapse collapse" aria-expanded="false">
                     <div class="">
                         <?php 
                           foreach($votes as $vote){
-                            echo $this->render('user_vote', array('vote' => $vote));
+                            echo $this->render('user_vote_view', array('vote' => $vote, 'contentContainer' => $contentContainer));
                           }
                         ?>
                     </div>
@@ -585,6 +516,8 @@ function review(id, comment, opt, grade){
             if(xhttp.responseText){
               if(xhttp.responseText == "success"){
                 updateReview(id, opt, grade);
+              }else{
+                $("#review_tab_" + id).replaceWith(xhttp.responseText);
               }
             }
         }
@@ -598,7 +531,7 @@ function review(id, comment, opt, grade){
 function validateReview(id){
 
   var opt = $('#review' + id).find('input[name="yes-no-opt'+id+'"]:checked'),
-      grade = $('input[name="grade"]:checked'),
+      grade = $('input[name="grade_'+id+'"]:checked'),
       comment = $("#review_comment_"+id).val();
 
   opt = opt? opt.val() : null;
