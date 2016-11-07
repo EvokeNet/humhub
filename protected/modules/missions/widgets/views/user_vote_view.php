@@ -36,20 +36,24 @@ use humhub\compat\CActiveForm;
     </a>,
     <?php echo \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]); ?></p>
 
-    <?php echo \humhub\widgets\AjaxButton::widget([
-    'label' => Yii::t('MissionsModule.base', 'Edit'),
-    'ajaxOptions' => [
-    'type' => 'POST',
-    'success' => new yii\web\JsExpression('function(response){
-      $("#vote_tab_'. $vote->id .'").replaceWith(response);
-    }'),
-    'url' => $contentContainer->createUrl('/missions/evidence/edit_review', ['id' => $vote->evidence->id]),
-    ],
-    'htmlOptions' => [
-    'class' => 'btn btn-sm btn-primary',
-    'id' => 'btn-edit-' . $vote->id
-    ]
-    ]);
+
+    <?php 
+    if($vote->user_id == Yii::$app->user->getIdentity()->id){
+      echo \humhub\widgets\AjaxButton::widget([
+      'label' => Yii::t('MissionsModule.base', 'Edit'),
+      'ajaxOptions' => [
+      'type' => 'POST',
+      'success' => new yii\web\JsExpression('function(response){
+        $("#vote_tab_'. $vote->id .'").replaceWith(response);
+      }'),
+      'url' => $contentContainer->createUrl('/missions/evidence/edit_review', ['id' => $vote->evidence->id]),
+      ],
+      'htmlOptions' => [
+      'class' => 'btn btn-sm btn-primary',
+      'id' => 'btn-edit-' . $vote->id
+      ]
+      ]);
+    }
     ?>
 
   <?php else: ?>
