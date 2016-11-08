@@ -213,7 +213,7 @@ if ($isProfileOwner) {
 
                     <div class="controls controls-header pull-right">
                         <?php
-                        echo Html::a(Yii::t("StatsModules.widgets_views_profileHeader", "See achievements"), Url::toRoute(['/achievements/achievements/index', 'id' => $user->id]), array('class' => 'btn btn-primary edit-account'));
+                        echo Html::a(Yii::t("StatsModule.widgets_views_profileHeader", "See achievements"), Url::toRoute(['/achievements/achievements/index', 'id' => $user->id]), array('class' => 'btn btn-primary edit-account'));
                         ?>
                         &nbsp;&nbsp;
                         <?php
