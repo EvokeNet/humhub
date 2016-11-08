@@ -69,7 +69,7 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
 
     <?php if ($deadline && $deadline->isOccurring() ): ?>
     <div style = "float:right">
-        <a class = "btn btn-cta1" href="" onClick="addEvokationToPortfolio<?= $evokation->id ?>();return false;">
+        <a class = "btn btn-cta1" onClick="addEvokationToPortfolio<?= $evokation->id ?>();">
             <?= Yii::t('MissionsModule.base', 'Add to Portfolio') ?>
         </a>
     </div>
