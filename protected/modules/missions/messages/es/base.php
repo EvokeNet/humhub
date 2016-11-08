@@ -17,9 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'No agent reviews' => 'No hay evaluaciones de agentes',
-    'No mentor reviews' => 'No hay evaluaciones de mentores',
-    'Show {total_reviews} agent reviews' => 'Mostrar {total_reviews} evaluaciones de agentes',
+    'Are you sure?' => 'Estas seguro?',
     '140 characters required' => '140 caracteres requeridos',
     '<strong>Activity Difficulty Level:</strong> {level}' => '<strong>Nivel de dificultad de la evidencía:</strong> {level}',
     '<strong>Activity Rubric:</strong> {rubric}' => '<strong>Rúbrica de Actividad:</strong> {rubric}',
