@@ -17,10 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Activities Completed' => 'Actividades Completadas',
-    'Evokation Progress' => 'Progreso de la Evokación',
     '# Evidences' => '# Evidencias',
     '<strong>Something</strong> went wrong' => '<strong>Algo</strong> salió mal',
+    'Activities Completed' => 'Actividades Completadas',
     'Followers' => 'Seguidores',
     'Members' => 'Miembros',
     'Ok' => 'Ok',
