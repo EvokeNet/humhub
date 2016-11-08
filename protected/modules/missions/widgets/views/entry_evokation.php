@@ -86,6 +86,7 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
 
 <div class="clearFloats"></div>
 
+<?php echo Html::endForm(); ?>
 
 <script type="text/javascript">
 
