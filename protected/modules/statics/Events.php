@@ -45,23 +45,23 @@ class Events extends \yii\base\Object
 
     public static function onHowToTopMenuInit($event)
     {
-      $event->sender->addItem(array(
-      'label' => Yii::t('StaticsModule.base', 'How To Play'),
-      'id' => 'statics_how_to',
-      'icon' => '<i class="fa fa-th"></i>',
-      'url' => Url::toRoute('/statics/statics/how-to'),
-      'sortOrder' => 1000,
-      'isActive' => (
-          Yii::$app->controller->module && Yii::$app->controller->module->id == 'statics'
-          && Yii::$app->controller->id != 'admin'
-          && Yii::$app->controller->action->id == 'how-to'
-          // &&(
-          //     Yii::$app->controller->action->id != 'about'
-          //     || Yii::$app->controller->action->id != 'privacy-policy'
-          //     || Yii::$app->controller->action->id != 'terms-conditions'
-          // )
-       ),
-      ));
+      // $event->sender->addItem(array(
+      // 'label' => Yii::t('StaticsModule.base', 'How To Play'),
+      // 'id' => 'statics_how_to',
+      // 'icon' => '<i class="fa fa-th"></i>',
+      // 'url' => Url::toRoute('/statics/statics/how-to'),
+      // 'sortOrder' => 1000,
+      // 'isActive' => (
+      //     Yii::$app->controller->module && Yii::$app->controller->module->id == 'statics'
+      //     && Yii::$app->controller->id != 'admin'
+      //     && Yii::$app->controller->action->id == 'how-to'
+      //     // &&(
+      //     //     Yii::$app->controller->action->id != 'about'
+      //     //     || Yii::$app->controller->action->id != 'privacy-policy'
+      //     //     || Yii::$app->controller->action->id != 'terms-conditions'
+      //     // )
+      //  ),
+      // ));
     }
 
     // public static function onPrivacyPolicyTopMenuInit($event)

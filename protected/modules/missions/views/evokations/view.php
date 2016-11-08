@@ -16,14 +16,16 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="panel-heading">
         
         <p style = "text-align:right; margin-top:10px">
-            <?= Html::a(Yii::t('MissionsModule.base', 'Update'), ['update', 'id' => $model->id, 'sguid' => $contentContainer->guid], ['class' => 'btn btn-primary']) ?>
-            <?= Html::a(Yii::t('MissionsModule.base', 'Delete'), ['delete', 'id' => $model->id], [
-                'class' => 'btn btn-danger',
-                'data' => [
-                    'confirm' => Yii::t('MissionsModule.base', 'Are you sure you want to delete this item?'),
-                    'method' => 'post',
-                ],
-            ]) ?>
+            <?php if(Yii::$app->user->getIdentity()->id == $contentContainer->created_by): ?>
+                <?= Html::a(Yii::t('MissionsModule.base', 'Update'), ['update', 'id' => $model->id, 'sguid' => $contentContainer->guid], ['class' => 'btn btn-primary']) ?>
+                <?= Html::a(Yii::t('MissionsModule.base', 'Delete'), ['delete', 'id' => $model->id], [
+                    'class' => 'btn btn-danger',
+                    'data' => [
+                        'confirm' => Yii::t('MissionsModule.base', 'Are you sure you want to delete this item?'),
+                        'method' => 'post',
+                    ],
+                ]) ?>
+            <?php endif; ?>
         </p>
             
         
