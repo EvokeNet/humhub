@@ -191,17 +191,15 @@ echo Html::beginForm();
     </style>
 
     <?php 
-      if($evidence->content->user_id != Yii::$app->user->getIdentity()->id && Yii::$app->user->getIdentity()->group->name == "Mentors"){
+      if($evidence->content->user_id != Yii::$app->user->getIdentity()->id){
         //already voted
         if($vote = $evidence->getUserVote()){
           echo $this->render('user_vote_view', array('vote' => $vote, 'contentContainer' => $contentContainer));  
-        }else{
+        }elseif( Yii::$app->user->getIdentity()->group->name == "Mentors"){
           echo $this->render('mentor_review', array('evidence' => $evidence, 'activity' => $activity));  
         }
       } 
     ?>
-
-    <?php if($evidence->content->user_id == Yii::$app->user->getIdentity()->id || Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
 
     <BR>
 
@@ -377,7 +375,6 @@ echo Html::beginForm();
         </div>
 
     </div>
-    <?php endif; ?>
 
 <!-- DRAFT -->
 <?php else: ?>
