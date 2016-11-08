@@ -136,6 +136,10 @@ class Evokations extends ContentActiveRecord implements \humhub\modules\search\i
     public function getId(){
         return $this->id;
     }
+
+    public function getTitle(){
+        return(preg_replace("/\r|\n/", '', $this->title));
+    }
     
     /**
         * Get YouTube code from YouTube link

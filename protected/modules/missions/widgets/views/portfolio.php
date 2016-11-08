@@ -45,7 +45,7 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                 <div class="col-xs-7">
                     <div class="padding-fromtop-5px">
                         <a href='<?= Url::to(['/missions/evokations/view', 'id' => $evokation_investment->getEvokationObject()->id, 'sguid' => $evokation_investment->getEvokationObject()->content->container->guid]); ?>'>
-                            <?= $evokation_investment->getEvokationObject()->title ?>
+                            <?= $evokation_investment->getEvokationObject()->getTitle() ?>
                         </a>
                     </div>
                 </div>
