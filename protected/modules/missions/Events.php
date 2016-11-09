@@ -27,6 +27,7 @@ use app\modules\powers\models\UserPowers;
 use humhub\modules\user\models\User;
 use app\modules\teams\models\Team;
 use humhub\modules\missions\controllers\MentorController;
+use app\modules\missions\models\EvokationDeadline;
 
 /**
  * Description of Events
@@ -72,6 +73,7 @@ class Events
     public static function onSidebarInit($event)
     {
         $user = Yii::$app->user->getIdentity();
+        $voting_deadline = EvokationDeadline::getVotingDeadline();
 
         if (Yii::$app->user->isGuest || $user->getSetting("hideSharePanel", "share") != 1) {
             $space = $event->sender->space;
@@ -89,7 +91,7 @@ class Events
                 $userPowers = UserPowers::getUserPowers($user->id);
                 $event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers], array('sortOrder' => 9));
                 
-                if(Setting::Get('enabled_evokations') && Yii::$app->controller->action->id != 'submit'){
+                if(Setting::Get('enabled_evokations') && Yii::$app->controller->action->id != 'submit' && $voting_deadline->isOccurring()){
                     $portfolio = Portfolio::getUserPortfolio($user->id);
                     $event->sender->addWidget(PortfolioWidget::className(), ['portfolio' => $portfolio], array('sortOrder' => 8));    
                 }
