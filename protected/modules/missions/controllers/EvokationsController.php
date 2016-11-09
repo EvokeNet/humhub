@@ -98,6 +98,38 @@ class EvokationsController extends ContentContainerController //extends Controll
             'space' => $this->space
         ]);
     }
+
+    public function actionEdit(){
+
+        $request = Yii::$app->request;
+        $id = $request->get('id');
+
+        $edited = false;
+        $model = Evokations::findOne(['id' => $id]);
+        $model->scenario = Evokations::SCENARIO_EDIT;
+
+        if (!$model->content->canWrite()) {
+            throw new HttpException(403, Yii::t('MissionsModule.controllers_PollController', 'Access denied!'));
+        }
+
+
+        if ($model->load($request->post())) {
+
+            Yii::$app->response->format = 'json';
+            $result = [];
+            if ($model->validate() && $model->save()) {
+                // Reload record to get populated updated_at field
+                $model = Evokations::findOne(['id' => $id]);
+                $result['success'] = true;
+                $result['output'] = $this->renderAjaxContent($model->getWallOut(['justEdited' => true]));
+            } else {
+                $result['errors'] = $model->getErrors();
+            }
+            return $result;
+        }
+
+        return $this->renderAjax('edit', ['evokation' => $model, 'edited' => $edited]);
+    }
     
     /**
      * Creates a new Evokations model.
