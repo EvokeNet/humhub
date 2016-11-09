@@ -26,7 +26,7 @@
 
 	            <div class="panel panel-default">
 				    <div class="panel-heading">
-				        <h4 style="margin-top:10px"><strong><?php echo Yii::t('MissionsModule.base', 'Achievements'); ?></strong></h4>
+				        <h4 style="margin-top:10px"><strong><?php echo Yii::t('AchievementsModule.base', 'Achievements'); ?></strong></h4>
 				    </div>
 				    <div class="panel-body">
 
@@ -35,21 +35,24 @@
                             <?php $is_there = false; 
                                 foreach($user_achievements as $u): 
                                     if($a->id == $u->achievement_id): $is_there = true; break; endif; 
-                                endforeach;?>
+                                endforeach;
                                  
+                            $a_title = (isset($a->achievementTranslations[0]) && Yii::$app->language == 'es') ? $a->achievementTranslations[0]->title : $a->title;
 
-                            <?php if($is_there): ?>
+                            $a_desc = (isset($a->achievementTranslations[0]) && Yii::$app->language == 'es') ? $a->achievementTranslations[0]->description : $a->description;
+
+                            if($is_there): ?>
 
                                 <div class="trophy-1">
                                     <div class="t-icon"><i class="fa fa-trophy fa-2x" aria-hidden="true"></i></div>
-                                    <div class="t-titles"><span data-toggle="tooltip" data-placement="top" title="<?php echo $a->description; ?>"><?php echo $a->title; ?></span></div>
+                                    <div class="t-titles"><span data-toggle="tooltip" data-placement="top" title="<?php echo $a_desc; ?>"><?php echo $a_title; ?></span></div>
                                 </div>
 
 				    		<?php else: ?>
 	
 				    			<div class="trophy-1 t-opaque">
 				    				<div class="t-icon"><i class="fa fa-trophy fa-2x" aria-hidden="true"></i></div>
-				    				<div class="t-titles"><span data-toggle="tooltip" data-placement="top" title="<?php echo $a->description; ?>"><?php echo $a->title; ?></span></div>
+				    				<div class="t-titles"><span data-toggle="tooltip" data-placement="top"  title="<?php echo $a_desc; ?>"><?php echo $a_title; ?></span></div>
 				    			</div>
 
 				    		<?php endif; ?>
