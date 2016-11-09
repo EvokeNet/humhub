@@ -22,9 +22,6 @@ use humhub\compat\CActiveForm;
     <?= $form->label($evokation, "youtube_url", ['class' => 'control-label']); ?>
     <?= $form->textArea($evokation, 'youtube_url', array('class' => 'form-control', 'id' => 'evokation_input_text_' . $evokation->id, 'placeholder' => Yii::t('MissionsModule.widgets_views_evokationForm', 'Edit your evokation content...'))); ?>    
 
-    <?= $form->label($evokation, "gdrive_url", ['class' => 'control-label']); ?>
-    <?= $form->textArea($evokation, 'gdrive_url', array('class' => 'form-control', 'id' => 'evokation_input_text_' . $evokation->id, 'placeholder' => Yii::t('MissionsModule.widgets_views_evokationForm', 'Edit your evokation content...'))); ?>    
-
 <script type="text/javascript">
     
     var editevokationResultHandler = function(json) {
