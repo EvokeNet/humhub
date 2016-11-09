@@ -138,8 +138,17 @@ class AdminController extends \humhub\modules\admin\components\Controller
 
         $model->quality = Yii::$app->request->get('mark');
 
+        $user = User::findOne(Yii::$app->request->get('user_id'));
+
         $achievement = Achievements::findOne(['code' => 'quality_review']);
         $user_achievement = UserAchievements::findOne(['user_id' => Yii::$app->request->get('user_id'), 'achievement_id' => $achievement->id]);
+
+        if(Yii::$app->request->get('mark') == 1){
+            $notification = new \humhub\modules\missions\notifications\QualityReview();
+            $notification->source = $model->evidence;
+            $notification->originator = Yii::$app->user->getIdentity();
+            $notification->send($user);
+        }
 
         if(Yii::$app->request->get('mark') == 1 && empty($user_achievement)){
             $new_model = new UserAchievements();
