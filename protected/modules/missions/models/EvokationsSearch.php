@@ -70,7 +70,6 @@ class EvokationsSearch extends Evokations
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'youtube_url', $this->youtube_url])
-            ->andFilterWhere(['like', 'gdrive_url', $this->gdrive_url]);
 
         return $dataProvider;
     }

@@ -18,8 +18,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'youtube_url')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'gdrive_url')->textInput(['maxlength' => true]) ?>
-
     <?php // $form->field($model, 'created_at')->textInput() ?>
 
     <?php // $form->field($model, 'created_by')->textInput() ?>
