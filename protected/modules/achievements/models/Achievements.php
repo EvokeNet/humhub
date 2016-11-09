@@ -15,6 +15,7 @@ use Yii;
  * @property string $created_at
  * @property string $updated_at
  *
+ * @property AchievementTranslations[] $achievementTranslations
  * @property UserAchievements[] $userAchievements
  * @property User[] $users
  */
@@ -34,10 +35,10 @@ class Achievements extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title'], 'required'],
+            [['code', 'title'], 'required'],
             [['description'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
-            [['title', 'code', 'image'], 'string', 'max' => 256],
+            [['code', 'title', 'image'], 'string', 'max' => 256],
         ];
     }
 
@@ -47,14 +48,22 @@ class Achievements extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'code' => 'Code',
-            'title' => 'Title',
-            'description' => 'Description',
-            'image' => 'Image',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'id' => Yii::t('app', 'ID'),
+            'code' => Yii::t('app', 'Code'),
+            'title' => Yii::t('app', 'Title'),
+            'description' => Yii::t('app', 'Description'),
+            'image' => Yii::t('app', 'Image'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAchievementTranslations()
+    {
+        return $this->hasMany(AchievementTranslations::className(), ['achievement_id' => 'id']);
     }
 
     /**
