@@ -9,7 +9,7 @@ use app\modules\missions\models\EvokationDeadline;
 class WallEvokationEntry extends \humhub\modules\content\widgets\WallEntry
 {
 
-    public $editRoute = "/missions/evokation/edit";
+    public $editRoute = "/missions/evokations/edit";
     
     public function run()
     {
