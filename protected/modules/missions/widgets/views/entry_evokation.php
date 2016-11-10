@@ -27,29 +27,29 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
 
 
 <!-- YOUTUBE LINK -->
-<a target="_blank" href="<?=$evokation->youtube_url?>">Youtube video</a>
+<a target="_blank" href="<?=$evokation->youtube_url?>"><?= Yii::t('MissionsModule.base', 'Youtube video') ?></a>
 
 <!-- GDRIVE LINK -->
 <?php if($user->group->name === "Mentors"): ?>
     <br><br>
-    <a target="_blank" href="<?=Setting::get($contentContainer->id, "gdrive_url")?>">Google Drive</a>
+    <a target="_blank" href="<?=Setting::get($contentContainer->id, "gdrive_url")?>"><?= Yii::t('MissionsModule.base', 'Google Drive') ?></a>
 <?php endif; ?>    
 
 <hr>
 <!-- INVESTMENT -->
 <div class= "">
     <div class="">
-        <h5>Investment</h5>
+        <h5><?= Yii::t('MissionsModule.base', 'Investment') ?></h5>
     </div>
         <div class="">
         <p>
-            <b>Total Invesment:</b> <?= $total_investment ?> <?= $total_investment > 1 ? 'evocoins' : 'evocoin' ?>
+            <b><?= Yii::t('MissionsModule.base', 'Total Investment:') ?></b> <?= $total_investment ?> <?= $total_investment > 1 ? 'evocoins' : 'evocoin' ?>
         </p>
         <p>
-            <b>Median Investment:</b>  <?= $median_investment ?> <?= $median_investment > 1 ? 'evocoins' : 'evocoin' ?>
+            <b><?= Yii::t('MissionsModule.base', 'Median Investment:') ?></b>  <?= $median_investment ?> <?= $median_investment > 1 ? 'evocoins' : 'evocoin' ?>
         </p>
         <p>
-            <b>Total Investors:</b> <?= $total_investors ?> <?= $total_investors > 1 ? Yii::t('MissionsModule.base', 'agents') : Yii::t('MissionsModule.base', 'agent') ?>
+            <b><?= Yii::t('MissionsModule.base', 'Total Investors:') ?></b> <?= $total_investors ?> <?= $total_investors > 1 ? Yii::t('MissionsModule.base', 'agents') : Yii::t('MissionsModule.base', 'agent') ?>
         </p>
     </div>
 </div>
