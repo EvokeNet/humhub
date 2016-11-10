@@ -7,6 +7,7 @@ use yii\helpers\Url;
 use humhub\models\Setting;
 use app\modules\missions\models\Evokations;
 use app\modules\missions\models\EvokationDeadline;
+use app\modules\teams\models\Team;
 
 $user = Yii::$app->user->getIdentity();
 
@@ -91,6 +92,9 @@ endforeach;
 
       ?>
 
+        <?php if($user->super_admin == 1 || Team::getUserTeam($user->id) == $contentContainer->id): ?>
+        <!-- admin or user's team-->
+
             <div id="gdrive_url">
                 <b>
                     Google drive URL:
@@ -115,11 +119,8 @@ endforeach;
                     </a>
                 <?php endif; ?>
             </div>
-
         <br>
-
-        <!--<div class="panel-group" role="tablist"> <div class="panel panel-default"> <div class="panel-heading" role="tab" id="collapseListGroupHeading1"> <h4 class="panel-title"> <a class="" role="button" data-toggle="collapse" href="#collapseListGroup1" aria-expanded="true" aria-controls="collapseListGroup1"> Collapsible list group </a> </h4> </div> <div id="collapseListGroup1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="true"> <ul class="list-group"> <li class="list-group-item">Bootply</li> <li class="list-group-item">One itmus ac facilin</li> <li class="list-group-item">Second eros</li> </ul> <div class="panel-footer">Footer</div> </div> </div> </div>-->
-
+        <?php endif; ?>
 
         <?php
         $x = 0;
