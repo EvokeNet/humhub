@@ -32,7 +32,7 @@ return [
     'See Elevator Pitch' => 'Ver el Discurso del Ascensor',
     'See results' => 'Ver resultados',
     'Something went wrong' => 'Algo salió mal',
-    'Submit Elevator Pitch' => 'Enviar el Discurso del Ascensor',
+    'Submit Elevator Pitch' => 'Enviar el Discurso del Ascensor (Elevator Pitch)',
     'Team Progress: {number}%' => 'Progreso del equipo: {number}%',
     'Update' => 'Actualizar',
     'Updated' => 'Actualizado',
