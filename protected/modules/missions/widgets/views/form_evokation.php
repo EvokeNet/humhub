@@ -6,7 +6,7 @@ use yii\helpers\ArrayHelper;
 <div id="evokation_form">
 <?php
 
-    echo Html::tag('h4', Html::encode(Yii::t('MissionsModule.base', 'Submit Your Evokation')), ['class' => 'font-weight-bold']);
+    echo Html::tag('h4', Html::encode(Yii::t('MissionsModule.widgets_views_evokationForm', 'Elevator Pitch')), ['class' => 'font-weight-bold']);
     echo Html::tag('br');
     // echo Html::hiddenInput('missionId', $mission->id);    
     echo Html::textArea("title", '', array('id' => 'contentForm_question', 'class' => 'form-control autosize contentForm', 'rows' => '1', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.widgets_views_evokationForm', "Title"))); 
