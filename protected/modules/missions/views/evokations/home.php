@@ -49,8 +49,6 @@ endforeach;
         <div style="color: red">
             <?php if($voting_deadline && $voting_deadline->hasEnded()): ?>
                 <?php echo Yii::t('MissionsModule.evokation_Home', "Voting Closed"); ?>
-            <?php elseif($deadline && $deadline->isOccurring()): ?>
-                <?php echo Yii::t('MissionsModule.evokation_Home', "Evokation Deadline: {deadline} ({timezone})", array('deadline' => date_format(date_create($deadline->getFinishDate()), "d/M/Y H:i"), 'timezone' => Yii::$app->timeZone)); ?>
             <?php endif; ?>
         </div>
         <?php if(Setting::Get('enabled_evokations')): ?>
