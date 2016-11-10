@@ -21,6 +21,8 @@ echo Breadcrumbs::widget([
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
 ]);
 
+$hasTeamSubmittedEvokation = Evokations::hasTeamSubmittedEvokation($contentContainer->id);
+
 $this->pageTitle = Yii::t('MissionsModule.base', "{name}'s Evokation", array('name' => $contentContainer->name));
 
 $total = 0;
@@ -50,9 +52,13 @@ endforeach;
             <?php endif; ?>
         </div>
         <?php if(Setting::Get('enabled_evokations')): ?>
-            <?php if(Yii::$app->user->getIdentity()->id == $contentContainer->created_by && $deadline && $deadline->isOccurring()): ?>
+            <?php if(!$hasTeamSubmittedEvokation && Yii::$app->user->getIdentity()->id == $contentContainer->created_by && $deadline && $deadline->isOccurring()): ?>
                 <a class = "btn btn-cta2" href='<?= Url::to(['/missions/evokations/submit', 'sguid' => $contentContainer->guid]); ?>' style = "margin-top:10px">
-                    <?= Yii::t('MissionsModule.base', 'Submit evokation') ?>
+                    <?= Yii::t('MissionsModule.base', 'Submit Elevator Pitch') ?>
+                </a>
+            <?php elseif($hasTeamSubmittedEvokation && $deadline && $deadline->isOccurring()): ?>
+                <a class = "btn btn-cta2" href='<?= Url::to(['/missions/evokations/submit', 'sguid' => $contentContainer->guid]); ?>' style = "margin-top:10px">
+                    <?= Yii::t('MissionsModule.base', 'See Elevator Pitch') ?>
                 </a>
             <?php endif; ?>
 
