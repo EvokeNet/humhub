@@ -12,6 +12,7 @@ use yii\db\Expression;
 use yii\behaviors\TimestampBehavior;
 use app\modules\missions\models\Portfolio;
 use app\modules\coin\models\Wallet;
+use app\modules\teams\models\Team;
 
 /**
  * This is the model class for table "evokations".
@@ -182,13 +183,21 @@ class Evokations extends ContentActiveRecord implements \humhub\modules\search\i
         return parent::beforeDelete();
     }    
 
-    public function hasUserSubmittedEvokation($userId = "")
+    public function hasTeamSubmittedEvokation($teamId = "")
     {
 
-        if ($userId == "")
-            $userId = Yii::$app->user->id;
+        if ($teamId == "")
+            $team_id = Team::getUserTeam(Yii::$app->user->id);
 
-        $evokation = Evokations::findOne(['created_by' => $userId]);
+        if(!$teamId)
+            return false;
+
+        $evokation = (new \yii\db\Query())
+            ->select('(c.id) as id')
+            ->from('content as c')
+            ->join('INNER JOIN', 'evokations e', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evokations::classname()).'\' AND `c`.`object_id` = `e`.`id`')
+            ->where('c.space_id = '.$teamId)
+            ->one()['id'];
 
         if($evokation){
             return true;

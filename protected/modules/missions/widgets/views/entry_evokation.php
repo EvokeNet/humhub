@@ -113,7 +113,7 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
                     if(data.status == 'success'){
                         addEvokation(
                             <?= $evokation->id ?>, 
-                            '<?= $evokation->getTitle() ?>', 
+                            <?= json_encode($evokation->getTitle()) ?>, 
                             '<?= Url::to(['/missions/evokations/view', 'id' => $evokation->id, 'sguid' => $contentContainer->guid]); ?>', 
                             investment);
                         $('#portfolio_status').hide();
