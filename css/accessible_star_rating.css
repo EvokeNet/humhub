@@ -40,3 +40,6 @@ https://codepen.io/chrisdpratt/pen/dmyne
     -webkit-text-fill-color: transparent;
 }
 
+.rating .regular-radio-button{
+    visibility: hidden;
+}
