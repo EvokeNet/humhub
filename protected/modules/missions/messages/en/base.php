@@ -162,7 +162,6 @@ return [
     'Start Date' => '',
     'Submit Evidence' => '',
     'Submit Review' => '',
-    'Submit Your Evokation' => '',
     'Super Powers' => '',
     'Team Captains' => '',
     'Team Progress: {number}%' => '',

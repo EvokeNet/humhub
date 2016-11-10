@@ -188,7 +188,6 @@ return [
     'Start Date' => 'Fecha de inicio',
     'Submit Evidence' => 'Enviar evidencia',
     'Submit Review' => 'Enviar opinión',
-    'Submit Your Evokation' => 'Envia su Evokación',
     'Super Powers' => 'Súper Poderes',
     'Team Captains' => 'Agentes capitanes',
     'Team Progress: {number}%' => 'Progreso del equipo: {number}%',
