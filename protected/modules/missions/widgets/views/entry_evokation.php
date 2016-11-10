@@ -36,6 +36,7 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
 <?php endif; ?>    
 
 <hr>
+<?php if($deadline && $deadline->hasStarted()): ?>
 <!-- INVESTMENT -->
 <div class= "">
     <div class="">
@@ -53,6 +54,7 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
         </p>
     </div>
 </div>
+<?php endif; ?>
 
 <br>
 
