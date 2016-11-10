@@ -46,9 +46,6 @@ endforeach;
         <div style="color: red">
             <?php if($voting_deadline && $voting_deadline->hasEnded()): ?>
                 Voting Closed
-            <?php elseif($deadline && $deadline->isOccurring()): ?>
-                Evokation Deadline: <?= date_format(date_create($deadline->getFinishDate()), "d/M/Y H:i") ?>
-                (<?= Yii::$app->timeZone ?>)
             <?php endif; ?>
         </div>
         <?php if(Setting::Get('enabled_evokations')): ?>
