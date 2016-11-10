@@ -18,4 +18,5 @@
  */
 return [
     'You\'ve gained a new achievement:<br> %message%.' => 'Has ganado una nueva realización:<br> %message%.',
+    'Your review for {message} has been marked as a quality review.' -> 'Su evaluación de {message} fue marcada como evaluación de calidad',
 ];
