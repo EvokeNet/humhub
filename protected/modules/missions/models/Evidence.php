@@ -214,6 +214,10 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
           $team_id = Team::getUserTeam($userId);
           $team = Team::findOne($team_id);
 
+          if(!$team){
+            return true;
+          }
+
           $team_members = $team->getTeamMembers();
 
           foreach ($team_members as $team_member) {
