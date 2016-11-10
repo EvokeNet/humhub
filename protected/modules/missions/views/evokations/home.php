@@ -7,20 +7,23 @@ use yii\helpers\Url;
 use humhub\models\Setting;
 use app\modules\missions\models\Evokations;
 use app\modules\missions\models\EvokationDeadline;
+use app\modules\teams\models\Team;
 
 $user = Yii::$app->user->getIdentity();
 
 $voting_deadline = EvokationDeadline::getVotingDeadline();
 $deadline = EvokationDeadline::getEvokationDeadline();
 
-$this->title = Yii::t('MissionsModule.base', 'Evokations');
-$this->params['breadcrumbs'][] = Yii::t('MissionsModule.base', "{name}'s Evokation", array('name' => $contentContainer->name));
+$this->title = Yii::t('MissionsModule.evokation_Home', 'Evokations');
+$this->params['breadcrumbs'][] = Yii::t('MissionsModule.evokation_Home', "{name}'s Evokation", array('name' => $contentContainer->name));
 
 echo Breadcrumbs::widget([
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
 ]);
 
-$this->pageTitle = Yii::t('MissionsModule.base', "{name}'s Evokation", array('name' => $contentContainer->name));
+$hasTeamSubmittedEvokation = Evokations::hasTeamSubmittedEvokation($contentContainer->id);
+
+$this->pageTitle = Yii::t('MissionsModule.evokation_Home', "{name}'s Evokation", array('name' => $contentContainer->name));
 
 $total = 0;
 $done = 0;
@@ -45,25 +48,29 @@ endforeach;
     <div class="panel-heading">
         <div style="color: red">
             <?php if($voting_deadline && $voting_deadline->hasEnded()): ?>
-                <?php echo Yii::t('MissionsModule.base', "Voting Closed"); ?>
+                <?php echo Yii::t('MissionsModule.evokation_Home', "Voting Closed"); ?>
             <?php elseif($deadline && $deadline->isOccurring()): ?>
-                <?php echo Yii::t('MissionsModule.base', "Evokation Deadline: {deadline} ({timezone})", array('deadline' => date_format(date_create($deadline->getFinishDate()), "d/M/Y H:i"), 'timezone' => Yii::$app->timeZone)); ?>
+                <?php echo Yii::t('MissionsModule.evokation_Home', "Evokation Deadline: {deadline} ({timezone})", array('deadline' => date_format(date_create($deadline->getFinishDate()), "d/M/Y H:i"), 'timezone' => Yii::$app->timeZone)); ?>
             <?php endif; ?>
         </div>
         <?php if(Setting::Get('enabled_evokations')): ?>
-            <?php if(Yii::$app->user->getIdentity()->id == $contentContainer->created_by && $deadline && $deadline->isOccurring()): ?>
+            <?php if(!$hasTeamSubmittedEvokation && Yii::$app->user->getIdentity()->id == $contentContainer->created_by && $deadline && $deadline->isOccurring()): ?>
                 <a class = "btn btn-cta2" href='<?= Url::to(['/missions/evokations/submit', 'sguid' => $contentContainer->guid]); ?>' style = "margin-top:10px">
-                    <?= Yii::t('MissionsModule.base', 'Submit evokation') ?>
+                    <?= Yii::t('MissionsModule.evokation_Home', 'Submit Elevator Pitch') ?>
+                </a>
+            <?php elseif($hasTeamSubmittedEvokation && $deadline && $deadline->isOccurring()): ?>
+                <a class = "btn btn-cta2" href='<?= Url::to(['/missions/evokations/submit', 'sguid' => $contentContainer->guid]); ?>' style = "margin-top:10px">
+                    <?= Yii::t('MissionsModule.evokation_Home', 'See Elevator Pitch') ?>
                 </a>
             <?php endif; ?>
 
             <?php if($voting_deadline && $voting_deadline->isOccurring()): ?>
                 <a class = "btn btn-cta2" href='<?= Url::to(['/missions/evokations/voting', 'sguid' => $contentContainer->guid]); ?>' style = "margin-top:10px">
-                    <?= Yii::t('MissionsModule.base', 'Vote on Evokations') ?>
+                    <?= Yii::t('MissionsModule.evokation_Home', 'Vote on Evokations') ?>
                 </a>
             <?php elseif($voting_deadline && $voting_deadline->hasEnded()): ?>
                 <a class = "btn btn-cta2" href='<?= Url::to(['/missions/evokations/list', 'sguid' => $contentContainer->guid]); ?>' style = "margin-top:10px">
-                    <?= Yii::t('MissionsModule.base', 'See results') ?>
+                    <?= Yii::t('MissionsModule.evokation_Home', 'See results') ?>
                 </a>
             <?php endif; ?>
         <?php endif; ?>
@@ -74,16 +81,28 @@ endforeach;
                     <span class="sr-only"></span>
                 </div>
             </div>
-            <p><?= Yii::t('MissionsModule.base', 'Team Progress: {number}%', array('number' => floor(($done/$total)*100))) ?></p>
+            <p><?= Yii::t('MissionsModule.evokation_Home', 'Team Progress: {number}%', array('number' => floor(($done/$total)*100))) ?></p>
         </div>-->
 
-        <h2><strong><?php echo Yii::t('MissionsModule.base', "{name}'s Evokation", array('name' => $contentContainer->name)); ?></strong></h2>
+        <h2><strong><?php echo Yii::t('MissionsModule.evokation_Home', "{name}'s Evokation", array('name' => $contentContainer->name)); ?></strong></h2>
 
     </div>
     <div class="panel-body">
       <div class="evokation-prompt">
         <p>
-          <?php echo nl2br(Yii::t('MissionsModule.base', "Evokation Prompt")); ?>
+          <?php echo nl2br(Yii::t('MissionsModule.evokation_Home', "Agent, here you can check together with your team the draft of your Evokation. Remember that team captains should send the video summary about your proposed solution, or better known as Elevator Pitch.")); ?>
+        </p>
+        <p>
+          <?php echo nl2br(Yii::t('MissionsModule.evokation_Home', "<Strong> This video will be the basis that other agents and mentors will take to know whether or not to invest in your Evokation. </ Strong>")); ?>
+        </p>
+        <p>
+          <?php echo nl2br(Yii::t('MissionsModule.evokation_Home', "If you achieve enough investment (to be within the top 10), an expert committee will evaluate the final Evokation document to decide the winners.")); ?>
+        </p>
+        <p>
+          <?php echo nl2br(Yii::t('MissionsModule.evokation_Home', "Remember to review the feedback you received from mentors and other agents, as well as weekly reflections, to update the final Evokation document before handing it over to your mentor teachers and finalizing it on the platform.")); ?>
+        </p>
+        <p>
+          <?php echo nl2br(Yii::t('MissionsModule.evokation_Home', "You can access it through the following link:")); ?>
         </p>
       </div>
 
@@ -93,9 +112,12 @@ endforeach;
 
       ?>
 
+        <?php if($user->super_admin == 1 || Team::getUserTeam($user->id) == $contentContainer->id): ?>
+        <!-- admin or user's team-->
+
             <div id="gdrive_url">
                 <b>
-                    Google drive URL:
+                    <?= Yii::t('MissionsModule.evokation_Home', 'Google Drive URL:') ?>
                 </b>
 
                 <?php
@@ -107,21 +129,18 @@ endforeach;
                 ?>
 
                 <a id="gdrive_url<?= $evokation_id ?>" href='<?= $gdrive_url ?>' target="_blank">
-                    <?= $contentContainer->name ?> Google Drive URL
+                    <?= $contentContainer->name ?> <?= Yii::t('MissionsModule.evokation_Home', 'Google Drive URL') ?>
                 </a>
-                <br>
+                <br /><br />
 
                 <?php if($user->super_admin == 1): ?>
                     <a id="btn_update_url" class="btn btn-cta2" onClick='updateEvokationUrl(<?= $evokation_id ?>)' >
-                        Update
+                        <?= Yii::t('MissionsModule.evokation_Home', 'Update') ?>
                     </a>
                 <?php endif; ?>
             </div>
-
         <br>
-
-        <!--<div class="panel-group" role="tablist"> <div class="panel panel-default"> <div class="panel-heading" role="tab" id="collapseListGroupHeading1"> <h4 class="panel-title"> <a class="" role="button" data-toggle="collapse" href="#collapseListGroup1" aria-expanded="true" aria-controls="collapseListGroup1"> Collapsible list group </a> </h4> </div> <div id="collapseListGroup1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="true"> <ul class="list-group"> <li class="list-group-item">Bootply</li> <li class="list-group-item">One itmus ac facilin</li> <li class="list-group-item">Second eros</li> </ul> <div class="panel-footer">Footer</div> </div> </div> </div>-->
-
+        <?php endif; ?>
 
         <?php
         $x = 0;
@@ -185,7 +204,7 @@ endforeach;
         <?php endforeach; ?>
 
                 <?php else: ?>
-                    <p><?php echo Yii::t('MissionsModule.base', 'No categories created yet!'); ?></p>
+                    <p><?php echo Yii::t('MissionsModule.evokation_Home', 'No categories created yet!'); ?></p>
                 <?php endif; ?>
 
     </div>
@@ -234,9 +253,9 @@ function updateEvokationUrl(id){
                 dataType: 'json',
                 success: function (data) {
                     if(data.status == 'success'){
-                        showMessage("<?= Yii::t('MissionsModule.base', 'Updated') ?>", "<?= Yii::t('MissionsModule.base', 'Evokation updated!') ?>");
+                        showMessage("<?= Yii::t('MissionsModule.evokation_Home', 'Updated') ?>", "<?= Yii::t('MissionsModule.evokation_Home', 'Evokation updated!') ?>");
                     }else if(data.status == 'error'){
-                        showMessage("<?= Yii::t('MissionsModule.base', 'Error') ?>", "<?= Yii::t('MissionsModule.base', 'Something went wrong') ?>");
+                        showMessage("<?= Yii::t('MissionsModule.evokation_Home', 'Error') ?>", "<?= Yii::t('MissionsModule.evokation_Home', 'Something went wrong') ?>");
                     }
                 }
             }

@@ -28,7 +28,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'description:ntext',
             'youtube_url:ntext',
-            'gdrive_url:ntext',
             // 'mission_id',
             // 'created_at',
             // 'created_by',
