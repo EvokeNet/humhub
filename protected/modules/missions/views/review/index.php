@@ -148,12 +148,12 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                 <form id = "review" class="review">
 
                     <input type="hidden" id="evidence_id" value="<?= $evidence->id ?>">
-                    <?php for ($x=1; $x <= 5; $x++): ?>
-                    <label class="radio-inline">
-                      <input type="radio" name="grade" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> >
-                      <?php echo $x; ?>
-                    </label>
-                    <?php endfor; ?>
+                    <span class="rating">
+                        <?php for ($x=5; $x >= 1; $x--): ?>
+                          <input id="grade<?= $x ?>" onClick="$('#yes-input<?= $evidence->id ?>').prop('checked', true)" type="radio" name="grade" class="rating-input" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> />
+                          <label for ="grade<?= $x ?>" class="rating-star"></label>
+                        <?php endfor; ?>
+                    </span>
 
                     </br>
                     </br>

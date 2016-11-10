@@ -13,6 +13,7 @@ use yii\base\Exception;
 use humhub\modules\content\components\ContentContainerActiveRecord;
 use humhub\modules\user\models\GroupAdmin;
 use humhub\modules\user\components\ActiveQueryUser;
+use humhub\modules\user\models\Profile;
 
 /**
  * This is the model class for table "user".
@@ -173,11 +174,11 @@ class User extends ContentContainerActiveRecord implements \yii\web\IdentityInte
     {
         return static::findOne(['guid' => $token]);
     }
-    
+
 
     /**
      * @inheritdoc
-     * 
+     *
      * @return ActiveQueryContent
      */
     public static function find()
@@ -214,7 +215,7 @@ class User extends ContentContainerActiveRecord implements \yii\web\IdentityInte
     {
         return $this->hasOne(Group::className(), ['id' => 'group_id']);
     }
-    
+
     public function isActive()
     {
         return $this->status === User::STATUS_ENABLED;
@@ -415,7 +416,7 @@ class User extends ContentContainerActiveRecord implements \yii\web\IdentityInte
 
     /**
      * Checks if user has tags
-     * 
+     *
      * @return boolean has tags set
      */
     public function hasTags()
@@ -425,7 +426,7 @@ class User extends ContentContainerActiveRecord implements \yii\web\IdentityInte
 
     /**
      * Returns an array with assigned Tags
-     * 
+     *
      * @return array tags
      */
     public function getTags()
@@ -530,6 +531,13 @@ class User extends ContentContainerActiveRecord implements \yii\web\IdentityInte
         }
 
         return false;
+    }
+
+    public function getName() {
+      $profile = Profile::find()->where(['user_id' => $this->id])->one();
+      $name = $profile->firstname . ' ' . $profile->lastname;
+
+      return $name;
     }
 
 }

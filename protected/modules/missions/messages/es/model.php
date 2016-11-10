@@ -17,7 +17,6 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Evidence Success Message' => 'Mensaje de éxito de evidencía',
     'Activities' => 'Actividades',
     'Activities ID' => 'Identificación de Actividades',
     'Activity ID' => 'Identificación de Actividad',
@@ -36,11 +35,13 @@ return [
     'Description' => 'Descripción',
     'Develop' => 'Desarrollar',
     'Difficulty Level ID' => 'Identificación de nivel de dificultad',
+    'Evidence Success Message' => 'Mensaje de éxito de evidencía',
     'Evokation Category ID' => 'Identificación de Categoria de Evocation',
     'Flag' => 'Flag',
-    'Gdrive Url' => 'Url de Gdrive',
+    'Group Activity' => 'Actividad Grupal',
     'ID' => 'Identificación',
     'Id Code' => 'Código de identificación',
+    'Is a Group Activity' => 'Es una Actividad Grupal',
     'Language ID' => 'Identificación de idioma',
     'Locked' => 'Bloqueado',
     'Mission ID' => 'Identificación de misión',
@@ -61,6 +62,4 @@ return [
     'Updated By' => 'Actualizado por',
     'Value' => 'Valor',
     'Youtube Url' => 'Url de Youtube',
-    'Group Activity' => 'Actividad Grupal',
-    'Is a Group Activity' => 'Es una Actividad Grupal'
 ];

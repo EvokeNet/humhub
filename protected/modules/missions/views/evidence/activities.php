@@ -49,7 +49,8 @@ $firstSecondary = true;
                         <span class="label label-border"><?php echo Yii::t('MissionsModule.model', 'Group Activity'); ?></span>
                       <?php endif; ?>
 
-                        <h5>
+                        <h5 style = "line-height: 35px; padding-right: 30px;">
+
                             <span class = "activity-number">
                             <?php echo $activity->position >= 1 ?$activity->position : "#" ?>
                             </span>

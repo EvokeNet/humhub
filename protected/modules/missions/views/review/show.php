@@ -112,14 +112,38 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
 
                                 <?php foreach($votes as $vote): ?>
                                     <div class="submitted-review" style = "padding: 10px 10px 3px; margin-bottom: 20px; border: 3px solid #9013FE;">
-                                        <p><?php echo Yii::t('MissionsModule.base', 'Comment: {comment}', array('comment' => $vote->comment)); ?></p>
-                                        <p><?php echo Yii::t('MissionsModule.base', 'Rating: {rating}', array('rating' => $vote->value)); ?></p>
+                                        <span><?php echo Yii::t('MissionsModule.base', '<strong>Comment:</strong> {comment}', array('comment' => $vote->comment)); ?></span>
 
-                                        <p><?php echo Yii::t('MissionsModule.base', 'By'); ?>
+                                        <?php if($vote->value == 0): ?>
+                                            <div class="alert alert-danger" style="margin:10px 0">
+                                              <?php echo Yii::t('MissionsModule.base', 'Does not meet rubric'); ?>
+                                            </div>
+                                        <?php else: ?>
+
+                                            <div class="stars" style="margin:10px 0">
+                                                <?php for ($i = 0; $i < 5; $i++): ?>
+                                                    <?php if ($vote->value > $i): ?>
+                                                    <?php if (($vote->value - $i) < 1): ?>
+                                                      <i class="fa fa-star-half-o fa-lg" aria-hidden="true"></i>
+                                                    <?php else: ?>
+                                                      <i class="fa fa-star fa-lg" aria-hidden="true"></i>
+                                                    <?php endif; ?>
+                                                    <?php else: ?>
+                                                    <i class="fa fa-star-o fa-lg" aria-hidden="true"></i>
+                                                    <?php endif; ?>
+                                                <?php endfor; ?>
+                                            </div>
+
+                                        <?php endif; ?>
+
+                                        <!-- <p><?php //echo Yii::t('MissionsModule.base', 'Rating: {rating}', array('rating' => $vote->value)); ?></p> -->
+
+                                        <span><?php echo Yii::t('MissionsModule.base', 'By'); ?>
+
                                         <a href="<?= ($vote->user->getUrl()) ?>">
                                             <?= ($vote->user->username) ?>
                                         </a>,
-                                        <?php echo \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]); ?></p>
+                                        <?php echo \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]); ?></span>
 
                                         <div style="margin:20px 0 10px">
                                             <?php if(Yii::$app->user->isAdmin()): ?>
@@ -128,10 +152,13 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
 
                                                 $enable = "";
                                                 $disable = "hidden";
+                                                $disables = "hidden";
 
                                                 if ($vote->quality == 1) {
                                                     $enable = "hidden";
                                                     $disable = "";
+                                                    $disables = "";
+
                                                 } 
 
                                                 echo \humhub\widgets\AjaxButton::widget([
@@ -141,6 +168,9 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                                                         'success' => new yii\web\JsExpression('function(){
                                                     $("#btn-enable-module-' . $vote->id . '").addClass("hidden");
                                                     $("#btn-disable-module-' . $vote->id . '").removeClass("hidden");
+
+                                                    $("#btn-disables-module-' . $vote->id . '").removeClass("hidden");
+
                                                     }'),
                                                         'url' => Url::to(['admin/update-quality-reviews', 'id' => $vote->id, 'mark' => 1, 'user_id' => $vote->user_id]),
                                                     ],
@@ -161,6 +191,9 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                                                         'success' => new yii\web\JsExpression('function(){
                                                     $("#btn-enable-module-' . $vote->id . '").removeClass("hidden");
                                                     $("#btn-disable-module-' . $vote->id . '").addClass("hidden");
+
+                                                    $("#btn-disables-module-' . $vote->id . '").addClass("hidden");
+
                                                      }'),
                                                         'url' => Url::to(['admin/update-quality-reviews', 'id' => $vote->id, 'mark' => 0, 'user_id' => $vote->user_id]),
                                                     ],
@@ -170,6 +203,8 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                                                     ]
                                                 ]);
                                                 ?>
+
+                                                <div class="trophy-icon <?= $disables ?>" id="btn-disables-module-<?php echo $vote->id; ?>"><i class="fa fa-trophy fa-lg" aria-hidden="true"></i></div>
 
                                                 <?php 
                                                     // if($vote->quality == 0){
@@ -267,7 +302,10 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
 
 <style type="text/css">
 
-
+.trophy-icon{
+    float: right;
+    color: #DED017;
+}
 
 .statistics{
     font-size: 12px;
@@ -379,6 +417,13 @@ https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
     height: 40px;
     background: url('http://kubyshkin.ru/samples/star-rating/star.png') 0 -40px;
     background-size: cover;
+}
+
+.stars {
+    text-align: center;
+    /*font-size: 2em;*/
+    color: #ece046;
+    /*margin-top: -14px;*/
 }
 
 </style>

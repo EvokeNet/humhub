@@ -17,11 +17,11 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    '1 Evocoin!' => '',
     '10 Evocoin(s)!' => '',
     '20 Evocoin(s)!' => '',
     '5 Evocoin(s)!' => '',
     '50 Evocoin(s)!' => '',
-    'Better luck next time!' => '',
     'Create' => '',
     'Create Prize' => '',
     'Delete' => '',
@@ -40,16 +40,19 @@ return [
     'Not Enough Evocoin!' => '',
     'Pay 5 Evocoins to play' => '',
     'Powers' => '',
+    'Prize' => '',
     'Prizes' => '',
     'Quantity' => '',
     'Slot Machine' => '',
-    'Sorry!' => '',
     'The Boardgame' => '',
     'Tools remaining: {total}' => '',
     'Try your luck' => '',
     'Try your luck to win support in our slot machine. Every attempt will cost 5 evocoins.' => '',
     'Update' => '',
+    'User' => '',
     'We introduce some tools the network has made available to facilitate your agent work in Soacha.' => '',
     'Week of' => '',
     'Weight' => '',
+    'Won Prizes' => '',
+    'weight explanation' => '',
 ];

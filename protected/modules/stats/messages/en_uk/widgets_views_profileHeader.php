@@ -24,5 +24,6 @@ return [
     'Followers' => '',
     'Following' => '',
     'Ok' => '',
+    'See achievements' => '',
     'Spaces' => '',
 ];

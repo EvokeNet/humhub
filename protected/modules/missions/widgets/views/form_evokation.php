@@ -2,15 +2,19 @@
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 
-    echo Html::tag('h4', Html::encode(Yii::t('MissionsModule.base', 'Submit Your Evokation')), ['class' => 'font-weight-bold']);
+?>
+<div id="evokation_form">
+<?php
+
+    echo Html::tag('h4', Html::encode(Yii::t('MissionsModule.widgets_views_evokationForm', 'Elevator Pitch')), ['class' => 'font-weight-bold']);
     echo Html::tag('br');
     // echo Html::hiddenInput('missionId', $mission->id);    
     echo Html::textArea("title", '', array('id' => 'contentForm_question', 'class' => 'form-control autosize contentForm', 'rows' => '1', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.widgets_views_evokationForm', "Title"))); 
     echo Html::textArea("description", '', array('id' => 'contentForm_question', 'class' => 'text-margin form-control autosize contentForm', 'rows' => '10', "tabindex" => "2", 'placeholder' => Yii::t('MissionsModule.widgets_views_evokationForm', "Description")));
     echo Html::textArea("youtube_url", '', array('id' => 'contentForm_question', 'class' => 'text-margin form-control autosize contentForm', 'rows' => '1', "tabindex" => "2", 'placeholder' => Yii::t('MissionsModule.widgets_views_evokationForm', "YouTube URL")));
-    echo Html::textArea("gdrive_url", $gdrive_url , array('id' => 'contentForm_question', 'detail' => 'teste', 'class' => 'text-margin form-control autosize contentForm', 'rows' => '1', "tabindex" => "2", 'placeholder' => Yii::t('MissionsModule.widgets_views_evokationForm', "Google Drive File URL")));
 
 ?>
+</div>
 
 <style type="text/css">
 
@@ -18,5 +22,27 @@ use yii\helpers\ArrayHelper;
     margin-top: 5px;
 }
 </style>
-    
+
+<!-- REMOVE FILE UPLOAD -->
+<script>
+	$( document ).ready(function() {
+	    $('.fileinput-button').remove();
+	    $('.fa.fa-cogs').remove();
+
+
+    var oldHandleResponse = handleResponse;
+
+        handleResponse = function(response) {
+          oldHandleResponse(response);
+          if (!response.errors) {
+                $('#evokation_form').parent().parent().remove();
+                window.location.hash = "";
+                window.location.hash = "wallEntry_" + response.wallEntryId;
+          }
+        }
+
+    });
+
+
+</script>    
 
