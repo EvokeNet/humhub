@@ -16,13 +16,10 @@ class WallEntry extends \humhub\modules\content\widgets\WallEntry
     public function run()
     {
       $user = $this->contentObject->content->user;
-      $profile = Profile::find()->where(['user_id' => $user->id])->one();
-      $name = $profile->firstname . ' ' . $profile->lastname;
-
 
         return $this->render('entry', array('evidence' => $this->contentObject,
                     'user' => $user,
-                    'name' => $name,
+                    'name' => $user->getName(),
                     'contentContainer' => $this->contentObject->content->container));
     }
 

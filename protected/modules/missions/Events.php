@@ -27,6 +27,7 @@ use app\modules\powers\models\UserPowers;
 use humhub\modules\user\models\User;
 use app\modules\teams\models\Team;
 use humhub\modules\missions\controllers\MentorController;
+use app\modules\missions\models\EvokationDeadline;
 
 /**
  * Description of Events
@@ -72,6 +73,7 @@ class Events
     public static function onSidebarInit($event)
     {
         $user = Yii::$app->user->getIdentity();
+        $voting_deadline = EvokationDeadline::getVotingDeadline();
 
         if (Yii::$app->user->isGuest || $user->getSetting("hideSharePanel", "share") != 1) {
             $space = $event->sender->space;
@@ -89,7 +91,7 @@ class Events
                 $userPowers = UserPowers::getUserPowers($user->id);
                 $event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers], array('sortOrder' => 9));
                 
-                if(Setting::Get('enabled_evokations')){
+                if(Setting::Get('enabled_evokations') && Yii::$app->controller->action->id != 'submit' && $voting_deadline->isOccurring()){
                     $portfolio = Portfolio::getUserPortfolio($user->id);
                     $event->sender->addWidget(PortfolioWidget::className(), ['portfolio' => $portfolio], array('sortOrder' => 8));    
                 }
@@ -504,6 +506,22 @@ class Events
                 $team = Space::findOne(['name' => 'Mentors']);
                 $review_evidence_link = $team->createUrl('/missions/evidence/mentor_activities');
 
+                // EVOKATIONS
+                if(Setting::Get('enabled_evokation_page_visibility')){
+
+                    //EVOKATION
+                    $event->sender->addItem(array(
+                        'label' => Yii::t('MissionsModule.event', 'Evokations'),
+                        'id' => 'evokations',
+                        'icon' => '<i class="fa fa-users"></i>',
+                        'url' => $team->createUrl('/missions/evokations/list'),
+                        'sortOrder' => 325,
+                        'isActive' => (Yii::$app->controller->module
+                        && Yii::$app->controller->module->id == 'missions'
+                        && Yii::$app->controller->id == 'evokations'),
+                    ));
+                }
+
             }else if($team){
 
                 $review_evidence_link = Url::to(['/missions/review/index', 'sguid' => $team->guid]);
@@ -529,11 +547,28 @@ class Events
                 'id' => 'missions',
                 'icon' => '<i class="fa fa-sitemap"></i>',
                 'url' => $team->createUrl('/missions/evidence/missions'),
-                'sortOrder' => 400,
+                'sortOrder' => 350,
                 'isActive' => (Yii::$app->controller->module
                     && Yii::$app->controller->module->id == 'missions'
                     && Yii::$app->controller->id == 'evidence'),
                 ));
+
+                //EVOKATIONS PAGE
+
+                if(Setting::Get('enabled_evokation_page_visibility')){
+
+                    //EVOKATION
+                    $event->sender->addItem(array(
+                        'label' => Yii::t('MissionsModule.event', 'Evokation'),
+                        'id' => 'evokations',
+                        'icon' => '<i class="fa fa-users"></i>',
+                        'url' => $team->createUrl('/missions/evokations/home'),
+                        'sortOrder' => 325,
+                        'isActive' => (Yii::$app->controller->module
+                        && Yii::$app->controller->module->id == 'missions'
+                        && Yii::$app->controller->id == 'evokations'),
+                    ));
+                }
 
             }
 
@@ -551,7 +586,7 @@ class Events
                 'id' => 'evidence_reviewed',
                 'icon' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i>',
                 'url' => Url::to(['/missions/review/'.$page, 'sguid' => $team->guid]),
-                'sortOrder' => 500,
+                'sortOrder' => 375,
                 'isActive' => (Yii::$app->controller->module
                     && Yii::$app->controller->module->id == 'missions'
                     && 

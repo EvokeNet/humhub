@@ -17,10 +17,10 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Elevator Pitch' => 'Tu Discurso del Ascensor (Elevator Pitch)',
+    'Description' => 'Descripción',
     'Edit your evokation content...' => 'Editar el contenido de la Evokación',
     'Edit your evokation title...' => 'Editar el título de su Evokación',
-    'Description' => 'Descripción',
-    'Google Drive File URL' => 'URL de Archivo de Google Drive',
     'Title' => 'Título',
     'YouTube URL' => 'URL de Youtube',
-]; 
+];

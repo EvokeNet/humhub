@@ -20,7 +20,7 @@ return [
     'Description' => '',
     'Edit your evokation content...' => '',
     'Edit your evokation title...' => '',
-    'Google Drive File URL' => '',
+    'Elevator Pitch' => '',
     'Title' => '',
     'YouTube URL' => '',
 ];

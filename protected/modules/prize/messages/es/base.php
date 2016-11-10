@@ -17,11 +17,15 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    '1 Evocoin!' => '1 Evocoin!',
+    'Prize' => 'Premio',
+    'User' => 'Usuario',
+    'Won Prizes' => 'Premios Ganados',
+    'weight explanation' => 'Explicación de peso',
     '10 Evocoin(s)!' => '10 Evocoin(s)!',
     '20 Evocoin(s)!' => '20 Evocoin(s)!',
     '5 Evocoin(s)!' => '5 Evocoin(s)!',
     '50 Evocoin(s)!' => '50 Evocoin(s)!',
-    'Better luck next time!' => '¡Mejor suerte la próxima vez!',
     'Create' => 'Crear',
     'Create Prize' => 'Crear Premio',
     'Delete' => 'Borrar',
@@ -43,7 +47,6 @@ return [
     'Prizes' => 'Premios',
     'Quantity' => 'Cantidad',
     'Slot Machine' => 'Máquina Tragamonedas',
-    'Sorry!' => '¡Perdón!',
     'The Boardgame' => 'Juego de Mesa',
     'Tools remaining: {total}' => 'Herramientas restantes: {total}',
     'Try your luck' => 'Prueba tu suerte',

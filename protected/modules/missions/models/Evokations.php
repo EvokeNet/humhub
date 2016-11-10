@@ -12,6 +12,7 @@ use yii\db\Expression;
 use yii\behaviors\TimestampBehavior;
 use app\modules\missions\models\Portfolio;
 use app\modules\coin\models\Wallet;
+use app\modules\teams\models\Team;
 
 /**
  * This is the model class for table "evokations".
@@ -20,7 +21,6 @@ use app\modules\coin\models\Wallet;
  * @property string $title
  * @property string $description
  * @property string $youtube_url
- * @property string $gdrive_url
  * @property string $created_at
  * @property integer $created_by
  * @property string $updated_at
@@ -40,8 +40,8 @@ class Evokations extends ContentActiveRecord implements \humhub\modules\search\i
     {
         return [
             self::SCENARIO_CLOSE => [],
-            self::SCENARIO_CREATE => ['title', 'description', 'youtube_url', 'gdrive_url'],
-            self::SCENARIO_EDIT => ['title', 'description', 'youtube_url', 'gdrive_url']
+            self::SCENARIO_CREATE => ['title', 'description', 'youtube_url'],
+            self::SCENARIO_EDIT => ['title', 'description', 'youtube_url']
         ];
     }
     
@@ -74,8 +74,8 @@ class Evokations extends ContentActiveRecord implements \humhub\modules\search\i
     public function rules()
     {
         return [
-            [['title', 'description', 'youtube_url', 'gdrive_url'], 'required'],
-            [['description', 'youtube_url', 'gdrive_url'], 'string'],
+            [['title', 'description', 'youtube_url'], 'required'],
+            [['description', 'youtube_url'], 'string'],
             [['created_by', 'updated_by'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['title'], 'string', 'max' => 120]
@@ -92,7 +92,6 @@ class Evokations extends ContentActiveRecord implements \humhub\modules\search\i
             'title' => Yii::t('MissionsModule.model', 'Title'),
             'description' => Yii::t('MissionsModule.model', 'Description'),
             'youtube_url' => Yii::t('MissionsModule.model', 'Youtube Url'),
-            'gdrive_url' => Yii::t('MissionsModule.model', 'Gdrive Url'),
             'created_at' => Yii::t('MissionsModule.model', 'Created At'),
             'created_by' => Yii::t('MissionsModule.model', 'Created By'),
             'updated_at' => Yii::t('MissionsModule.model', 'Updated At'),
@@ -138,6 +137,10 @@ class Evokations extends ContentActiveRecord implements \humhub\modules\search\i
     public function getId(){
         return $this->id;
     }
+
+    public function getTitle(){
+        return(preg_replace("/\r|\n/", '', $this->title));
+    }
     
     /**
         * Get YouTube code from YouTube link
@@ -147,10 +150,17 @@ class Evokations extends ContentActiveRecord implements \humhub\modules\search\i
     public function getYouTubeCode($link)
     {
             $pos = explode('v=', $link);
-            if($pos != false && count($pos) > 1) 
+            if($pos != false && count($pos) > 1){
+                $pos = explode('&', $pos['1']);
+                return $pos['0'];
+            }
+
+            $pos = explode('youtu.be', $link);
+
+            if($pos && count($pos) > 1)
                 return $pos['1'];
-            else
-                return null;
+
+            return null;
     }
 
 
@@ -173,13 +183,21 @@ class Evokations extends ContentActiveRecord implements \humhub\modules\search\i
         return parent::beforeDelete();
     }    
 
-    public function hasUserSubmittedEvokation($userId = "")
+    public function hasTeamSubmittedEvokation($teamId = "")
     {
 
-        if ($userId == "")
-            $userId = Yii::$app->user->id;
+        if ($teamId == "")
+            $team_id = Team::getUserTeam(Yii::$app->user->id);
 
-        $evokation = Evokations::findOne(['created_by' => $userId]);
+        if(!$teamId)
+            return false;
+
+        $evokation = (new \yii\db\Query())
+            ->select('(c.id) as id')
+            ->from('content as c')
+            ->join('INNER JOIN', 'evokations e', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evokations::classname()).'\' AND `c`.`object_id` = `e`.`id`')
+            ->where('c.space_id = '.$teamId)
+            ->one()['id'];
 
         if($evokation){
             return true;

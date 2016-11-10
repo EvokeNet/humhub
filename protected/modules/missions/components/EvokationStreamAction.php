@@ -21,6 +21,9 @@ class EvokationStreamAction extends EvokationsContentContainerStream
             $this->activeQuery->leftJoin('missions', 'evokations.mission_id = missions.id');
             $this->activeQuery->andWhere(['missions.id' => $this->mission_id]);
         }
+        if(isset($this->filterContentContainer) && $this->filterContentContainer){
+            $this->activeQuery->andWhere(['content.space_id' => $this->contentContainer->id]);
+        }
 
     }
 

@@ -507,6 +507,7 @@ class EvidenceController extends ContentContainerController
             }
 
             $author = User::findOne($evidence->content->user_id);
+
             $is_group_activity = Activities::findOne(['id' => $evidence->activities_id])->is_group;
 
             //if user's editing vote
@@ -557,7 +558,7 @@ class EvidenceController extends ContentContainerController
                     $message = Yii::t('MissionsModule.base', 'You just gained {message} evocoins!', array('message' => $evocoin_earned));
                     AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', '{message}. <BR>Thank you for your review.', array('message' => $message)));
                 }
-
+                echo $this->renderPartial('..\..\widgets\views\user_vote_view.php', array('vote' => $vote, 'contentContainer' => $this->contentContainer));
 
             }else{
 
@@ -613,11 +614,24 @@ class EvidenceController extends ContentContainerController
                 $message = Yii::t('MissionsModule.base', 'You just gained {message} evocoins!', array('message' => $evocoin_earned));
 
                 AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', '{message}. <BR>Thank you for your review.', array('message' => $message)));
+                echo $this->renderPartial('..\..\widgets\views\user_vote_view.php', array('vote' => $vote, 'contentContainer' => $this->contentContainer));
             }
         } else{
             AlertController::createAlert("Error", "Oops! Something's wrong.");
         }
 
+    }
+
+    public function actionEdit_review(){
+        $evidence_id = Yii::$app->request->get("id");
+        $evidence = Evidence::findOne($evidence_id);
+        if($evidence){
+            $activity = $evidence->getActivities();
+            if(Yii::$app->user->getIdentity()->group->name == "Mentors"){
+                echo $this->renderPartial('..\..\widgets\views\mentor_review.php', array('evidence' => $evidence, 'activity' => $activity), true, false);  
+            }    
+        }
+        
     }
 
      /**

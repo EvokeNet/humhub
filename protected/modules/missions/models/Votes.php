@@ -144,11 +144,23 @@ class Votes extends ContentActiveRecord
         //     ->setSubject(Yii::t('MissionsModule.base', 'Evidence Reviewed'))
         //     //->setTextBody('Plain text content')
         //     //->setHtmlBody('<b>Your evidence was reviewed</b>')
-        //     ->send(); 
+        //     ->send();
         // }
 
         return parent::afterSave($insert, $changedAttributes);
 
+    }
+
+    public function getReviewCountByUsers($reviewer_id, $author_id) {
+      $query = (new \yii\db\Query())
+      ->select(['count(distinct v.id) as vote_count'])
+      ->from('evidence as e')
+      ->join('LEFT JOIN', 'votes v', '`v`.`evidence_id`=`e`.`id`')
+      ->where('e.created_by = '.$author_id)
+      ->andWhere('v.user_id = '.$reviewer_id)
+      ->one();
+
+      return $query['vote_count'];
     }
 
     public function getUrl(){
@@ -165,7 +177,7 @@ class Votes extends ContentActiveRecord
         }
 
         $wallet = Wallet::find()->where(['owner_id' => $this->user_id])->one();
-        
+
         if(empty($this->comment)){
             $coins = 1;
         }else{
@@ -173,7 +185,7 @@ class Votes extends ContentActiveRecord
         }
 
         //Remove reviewer coins
-        
+
         if(isset($wallet)){
             $wallet->removeCoin($coins);
             $wallet->save();
@@ -198,7 +210,7 @@ class Votes extends ContentActiveRecord
             if(isset($activity_power)){
                 UserPowers::removePowerPoint($activity_power->getPower(), $user, $value);
             }
-            
+
         }
 
         return parent::beforeDelete();

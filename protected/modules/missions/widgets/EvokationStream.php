@@ -68,6 +68,7 @@ class EvokationStream extends \yii\base\Widget
      */
     public $messageStreamEmptyCss = "";
 
+    public $filterContentContainer = null;
 
     public $mission_id;
 
@@ -121,6 +122,7 @@ class EvokationStream extends \yii\base\Widget
             'sort' => '-sort-',
             'from' => '-from-',
             // 'mission_id' => $this->mission_id,
+            'filterContentContainer' => $this->filterContentContainer,
             'mode' => \humhub\modules\content\components\actions\Stream::MODE_NORMAL
         ];
 

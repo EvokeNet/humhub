@@ -214,6 +214,10 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
           $team_id = Team::getUserTeam($userId);
           $team = Team::findOne($team_id);
 
+          if(!$team){
+            return true;
+          }
+
           $team_members = $team->getTeamMembers();
 
           foreach ($team_members as $team_member) {
@@ -280,9 +284,9 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
     public function getVotes($user_type = null)
     {
       if (isset($user_type)){
-        return Votes::findAll(['evidence_id' => $this->id, 'user_type'   => $user_type]);
+        return Votes::find()->where(['evidence_id' => $this->id, 'user_type'   => $user_type])->orderBy('created_at DESC')->all();
       } else {
-        return Votes::findAll(['evidence_id' => $this->id]);
+        return Votes::find()->where(['evidence_id' => $this->id])->orderBy('created_at DESC')->all();
       }
     }
 
@@ -299,6 +303,17 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
 
         return $query['count'];
 
+    }
+
+    public function getEvidenceCountForUser($user_id) {
+      $query = (new \yii\db\Query())
+
+      ->select(['count(id) as count'])
+      ->from('evidence')
+      ->where(['created_by' => $user_id])
+      ->one();
+
+      return $query['count'];
     }
 
     /**

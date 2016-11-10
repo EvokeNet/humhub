@@ -23,8 +23,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'youtube_url') ?>
 
-    <?= $form->field($model, 'gdrive_url') ?>
-
     <?php // echo $form->field($model, 'mission_id') ?>
 
     <?php // echo $form->field($model, 'created_at') ?>
