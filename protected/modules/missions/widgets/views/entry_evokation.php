@@ -58,7 +58,7 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
 
 <br>
 
-<?php if(!$evokation_investment && $evokation->content->user_id != Yii::$app->user->getIdentity()->id && $user->group->name != "Mentors"): ?>
+<?php if(!$evokation_investment && $evokation->content->user_id): ?>
 <div>
     
     <!-- DISABLED
