@@ -24,16 +24,16 @@ class Events extends \yii\base\Object
     public static function onAuthUser($event){
 
         //on login and create account actions
-        if(property_exists($event->action, "actionMethod") && (($event->action->actionMethod) && $event->action->actionMethod === 'actionLogin' || $event->action->actionMethod === 'actionCreateAccount')){
-          //make sure user is logged in
-          if (null != Yii::$app->user->getIdentity())
-          {
-            //Check if user hasn't read the graphic novel yet or if they are a mentor
-            if(Yii::$app->user->getIdentity()->has_read_novel == false && Yii::$app->user->getIdentity()->group->name != "Mentors"){
-                $event->action->controller->redirect(Url::toRoute(['/novel/novel/graphic-novel', 'page' => 1]));
-            }
-          }
-        }
+        // if(property_exists($event->action, "actionMethod") && (($event->action->actionMethod) && $event->action->actionMethod === 'actionLogin' || $event->action->actionMethod === 'actionCreateAccount')){
+        //   //make sure user is logged in
+        //   if (null != Yii::$app->user->getIdentity())
+        //   {
+        //     //Check if user hasn't read the graphic novel yet or if they are a mentor
+        //     if(Yii::$app->user->getIdentity()->has_read_novel == false && Yii::$app->user->getIdentity()->group->name != "Mentors"){
+        //         $event->action->controller->redirect(Url::toRoute(['/novel/novel/graphic-novel', 'page' => 1]));
+        //     }
+        //   }
+        // }
 
     }
 
