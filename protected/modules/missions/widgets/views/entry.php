@@ -596,41 +596,6 @@ jQuery(document).on('ajaxComplete', function () {
 
 <style>
 
-/*
-Reference:
-https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
-*/
-
-.rating {
-    overflow: hidden;
-    display: inline-block;
-    position: relative;
-    font-size: 10pt !important;
-}
-.rating-input {
-    float: right;
-    width: 16px;
-    height: 16px;
-    padding: 0;
-    margin: 0 0 0 -16px;
-    opacity: 0;
-}
-.rating:hover .rating-star:hover,
-.rating:hover .rating-star:hover ~ .rating-star,
-.rating-input:checked ~ .rating-star {
-    background-position: 0 0;
-}
-.rating-star,
-.rating:hover .rating-star {
-    position: relative;
-    float: right;
-    display: block;
-    width: 40px;
-    height: 40px;
-    background: url('http://kubyshkin.ru/samples/star-rating/star.png') 0 -40px;
-    background-size: cover;
-}
-
   .panel .evidence-mission-box h6 {
     font-size: 10pt;
     text-transform: uppercase;
@@ -661,12 +626,6 @@ https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
     color: #254054;
   }
 
-  .stars {
-    text-align: center;
-    font-size: 2em;
-    color: #ece046;
-    /*margin-top: -14px;*/
-  }
 
   .evidence-mission-box .stars p {
     text-transform: uppercase;
@@ -692,3 +651,6 @@ https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
     padding-left: 0 !important;
   }
 </style>
+
+<?= $this->registerCssFile("css/accessible_star_rating.css"); ?>
+<?= $this->registerJsFile("js/accessible_star_rating.js"); ?>

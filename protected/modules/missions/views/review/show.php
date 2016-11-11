@@ -380,50 +380,5 @@ jQuery(document).ready(function () {
 });
 </script>
 
-
-
-<style>
-
-/* 
-Reference: 
-https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
-*/
-
-.rating {
-    overflow: hidden;
-    display: inline-block;
-    font-size: 0;
-    position: relative;
-}
-.rating-input {
-    float: right;
-    width: 16px;
-    height: 16px;
-    padding: 0;
-    margin: 0 0 0 -16px;
-    opacity: 0;
-}
-.rating:hover .rating-star:hover,
-.rating:hover .rating-star:hover ~ .rating-star,
-.rating-input:checked ~ .rating-star {
-    background-position: 0 0;
-}
-.rating-star,
-.rating:hover .rating-star {
-    position: relative;
-    float: right;
-    display: block;
-    width: 40px;
-    height: 40px;
-    background: url('http://kubyshkin.ru/samples/star-rating/star.png') 0 -40px;
-    background-size: cover;
-}
-
-.stars {
-    text-align: center;
-    /*font-size: 2em;*/
-    color: #ece046;
-    /*margin-top: -14px;*/
-}
-
-</style>
+<?= $this->registerCssFile("css/accessible_star_rating.css"); ?>
+<?= $this->registerJsFile("js/accessible_star_rating.js"); ?>

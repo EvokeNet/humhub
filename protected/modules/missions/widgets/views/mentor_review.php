@@ -54,8 +54,9 @@ use humhub\compat\CActiveForm;
             <div id="yes-opt<?= $evidence->id ?>" class="radio">
               <span class="rating">
                   <?php for ($x=5; $x >= 1; $x--): ?>
-                    <input id="grade<?= $x ?>_<?= $evidence->id ?>" onClick="$('#yes-input<?= $evidence->id ?>').prop('checked', true)" type="radio" name="grade_<?= $evidence->id ?>" class="rating-input" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> />
-                    <label for ="grade<?= $x ?>_<?= $evidence->id ?>" class="rating-star"></label>
+                    <label>
+                      <input id="grade<?= $x ?>_<?= $evidence->id ?>" name="grade_<?= $evidence->id ?>" type="radio" name="rating" value="<?=$x ?>" title="<?=$x ?> stars" <?= $x == $grade ? 'checked' : '' ?> onClick="$('#yes-input<?= $evidence->id ?>').prop('checked', true)"> <?=$x ?>
+                    </label>
                   <?php endfor; ?>
               </span>
               <p>
