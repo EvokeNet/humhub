@@ -263,10 +263,8 @@ echo Html::beginForm();
                                 <?php echo \humhub\modules\comment\widgets\Comments::widget(array('object' => $vote)); ?>
 
                                 <div style="margin:20px 0 10px">
-                                    <?php if(Yii::$app->user->isAdmin()): ?>
-                                        <?php
-
-                                          $enable = "";
+                                  <?php 
+                                    $enable = "";
                                           $disable = "hidden";
                                           $disables = "hidden";
 
@@ -276,6 +274,9 @@ echo Html::beginForm();
                                               $disables = "";
 
                                           } 
+                                  ?>
+                                    <?php if(Yii::$app->user->isAdmin()): ?>
+                                        <?php
 
 
                                           echo \humhub\widgets\AjaxButton::widget([
@@ -318,10 +319,16 @@ echo Html::beginForm();
                                               ]
                                           ]);
                                           ?>
+                                      <div class="trophy-icon <?= $disables ?>" id="btn-disables-module-<?php echo $vote->id; ?>"><i class="fa fa-trophy fa-lg" aria-hidden="true"></i></div>
 
-                                          <div class="trophy-icon <?= $disables ?>" id="btn-disables-module-<?php echo $vote->id; ?>"><i class="fa fa-trophy fa-lg" aria-hidden="true"></i></div>
+                                    <?php else: ?>
+
+                                      <div class="trophy-icon agent <?= $disables ?>" id="btn-disables-module-<?php echo $vote->id; ?>"><i class="fa fa-trophy fa-lg" aria-hidden="true"></i></div>
 
                                     <?php endif; ?>
+
+                                    
+
                                 </div>
 
                             </div>
@@ -464,6 +471,12 @@ echo Html::beginForm();
 .trophy-icon{
     float: right;
     color: #DED017;
+}
+
+.trophy-icon.agent{
+  position: absolute;
+  right: 40px;
+  bottom: 50px;
 }
 
 </style>
