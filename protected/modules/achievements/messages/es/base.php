@@ -17,12 +17,14 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Congratulations' => 'Felicitaciones!',
+    'You\'ve just gained a new achievement!<BR>' => 'Ha ganado una nueva realización!<BR>',
     '<strong>Comment:</strong> {comment}' => '<strong>Commentário:</strong> {comment}',
     '<strong>Review:</strong> {points} points' => '<strong>Evalución:</strong> {points} puntos',
     '<strong>Review:</strong> {vote}' => 'strong>Evalución:</strong> {vote}',
+    'Achievements' => 'Realizaciones',
     'Evidence: {evidence}' => 'Evidencía: {evidence}',
     'My Quality Reviews' => 'Mis Evaluaciones de Calidad',
     'No' => 'No',
     'Yes' => 'Sí',
-    'Achievements' => 'Realizaciones',
 ];
