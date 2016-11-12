@@ -211,7 +211,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
 .files_area{
     padding: 15px;
     background: #e2e2e2;
-    border-radius: 4px;
+    border-radius: 5px;
     text-align: center;
 }
 
