@@ -49,9 +49,7 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
         <p>
             <b><?= Yii::t('MissionsModule.base', 'Median Investment:') ?></b>  <?= $median_investment ?> <?= $median_investment > 1 ? 'evocoins' : 'evocoin' ?>
         </p>
-        <p>
-            <b><?= Yii::t('MissionsModule.base', 'Total Investors:') ?></b> <?= $total_investors ?> <?= $total_investors > 1 ? Yii::t('MissionsModule.base', 'agents') : Yii::t('MissionsModule.base', 'agent') ?>
-        </p>
+        
     </div>
 </div>
 <?php endif; ?>
