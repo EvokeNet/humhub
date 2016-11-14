@@ -322,6 +322,8 @@ $deadline = EvokationDeadline::getVotingDeadline();
                 success: function (data) {
                     if(data.status == 'success'){
                         removeFromPortfolio(id);
+                        $('#evokation_vote_'+id).html("<?= Yii::t('MissionsModule.base', 'Add to Portfolio') ?>");
+                        $('#evokation_vote_'+id).attr("onclick", "addEvokationToPortfolio"+id+"();");
                         $('#portfolio_status').hide();
                         showMessage("<?= Yii::t('MissionsModule.base', 'Updated') ?>", "<?= Yii::t('MissionsModule.base', 'Evokation removed!') ?>");
                     }else if(data.status == 'error'){
