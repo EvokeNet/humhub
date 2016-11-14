@@ -8,8 +8,6 @@ use app\modules\missions\models\Portfolio;
 use app\modules\missions\models\EvokationDeadline;
 
 $deadline = EvokationDeadline::getVotingDeadline();
-$wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
-$totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id);
 
 ?>
 
@@ -37,7 +35,9 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
 
 
             <div id="empty_portfolio" <?php if(!empty($portfolio)): ?> style="display: none;" <?php endif;?> style = "text-align: center; margin: 15px 0px 0px">
-                <label class = "label-border"><?= Yii::t('MissionsModule.base', 'Add an evokation to invest') ?></label>
+                <a class = "btn btn-cta2" href='<?= $evokations_url ?>'>
+                    <?= Yii::t('MissionsModule.base', 'Add an evokation to invest') ?>
+                </a>
             </div>
 
             <?php foreach($portfolio as $evokation_investment): ?>
@@ -112,7 +112,7 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                     <?= Yii::t('MissionsModule.base', 'Remaining') ?>:
                 </strong>
                 <div id="remainingAmount" style="display: inline-block;">
-                    <?= $wallet->amount ?>
+                    <?= $remainingAmount ?>
                 </div>
             </div>
         </div>
@@ -324,6 +324,8 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                 success: function (data) {
                     if(data.status == 'success'){
                         removeFromPortfolio(id);
+                        $('#evokation_vote_'+id).html("<?= Yii::t('MissionsModule.base', 'Add to Portfolio') ?>");
+                        $('#evokation_vote_'+id).attr("onclick", "addEvokationToPortfolio"+id+"();");
                         $('#portfolio_status').hide();
                         showMessage("<?= Yii::t('MissionsModule.base', 'Updated') ?>", "<?= Yii::t('MissionsModule.base', 'Evokation removed!') ?>");
                     }else if(data.status == 'error'){
