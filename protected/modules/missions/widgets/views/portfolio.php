@@ -8,8 +8,6 @@ use app\modules\missions\models\Portfolio;
 use app\modules\missions\models\EvokationDeadline;
 
 $deadline = EvokationDeadline::getVotingDeadline();
-$wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
-$totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id);
 
 ?>
 
@@ -112,7 +110,7 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                     <?= Yii::t('MissionsModule.base', 'Remaining') ?>:
                 </strong>
                 <div id="remainingAmount" style="display: inline-block;">
-                    <?= $wallet->amount ?>
+                    <?= $remainingAmount ?>
                 </div>
             </div>
         </div>
