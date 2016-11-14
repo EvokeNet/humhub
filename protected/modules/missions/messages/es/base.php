@@ -103,7 +103,7 @@ return [
     'Evokation Categories' => 'Categorías de Evokación',
     'Evokation Category Translations' => 'Traducción de Categoría de Evokación',
     'Evokation Name' => 'Nombre de Evokación',
-    'Evokation Voting' => 'Votação de Evokación',
+    'Evokation Voting' => 'Votación de la Evokación',
     'Evokation added!' => 'Evokación añadida!',
     'Evokation removed!' => 'Evokación eliminada!',
     'Evokation\'s Page' => 'Página de la Evokación',
