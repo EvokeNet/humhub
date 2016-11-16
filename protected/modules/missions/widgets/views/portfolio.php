@@ -35,7 +35,7 @@ $deadline = EvokationDeadline::getVotingDeadline();
 
 
             <div id="empty_portfolio" <?php if(!empty($portfolio)): ?> style="display: none;" <?php endif;?> style = "text-align: center; margin: 15px 0px 0px">
-                <a class = "btn btn-cta2" href='<?= $evokations_url ?>'>
+                <a class = "btn btn-cta2" href='<?= $evokations_url ?>' style="margin-top: 20px; white-space: normal;">
                     <?= Yii::t('MissionsModule.base', 'Add an evokation to invest') ?>
                 </a>
             </div>
