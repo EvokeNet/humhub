@@ -211,7 +211,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
 .files_area{
     padding: 15px;
     background: #e2e2e2;
-    border-radius: 5px;
+    border-radius: 4px;
     text-align: center;
 }
 
@@ -303,7 +303,7 @@ https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
     display: block;
     width: 20px;
     height: 20px;
-    background: url('http://kubyshkin.ru/samples/star-rating/star.png') 0 -40px;
+    background: url('http://kubyshkin.ru/samples/star-rating/star.png') 0 -20px;
     background-size: cover;
 }
 
