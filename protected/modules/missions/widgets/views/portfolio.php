@@ -254,14 +254,14 @@ $deadline = EvokationDeadline::getVotingDeadline();
                         html += "<div class='input-group spinner'>";
                             html += "<input id = 'evokation_"+id+"' type='text' class='form-control investment_input' value='"+investment+"''>";
                             html += "<input id = 'oldvalue' type='hidden' value='"+investment+"'>";
-                            html += "<div class='input-group-btn-vertical'>";
-                                html += "<button class='btn btn-default' type='button'>";
-                                    html += "<i class='fa fa-caret-up'></i>"
-                                html += "</button>";
-                                html += "<button class='btn btn-default' type='button'>";
-                                    html += "<i class='fa fa-caret-down'></i>"
-                                html += "</button>";
-                            html += "</div>";
+                            // html += "<div class='input-group-btn-vertical'>";
+                            //     html += "<button class='btn btn-default' type='button'>";
+                            //         html += "<i class='fa fa-caret-up'></i>"
+                            //     html += "</button>";
+                            //     html += "<button class='btn btn-default' type='button'>";
+                            //         html += "<i class='fa fa-caret-down'></i>"
+                            //     html += "</button>";
+                            // html += "</div>";
                         html += "</div>";
                     html += "<a href='#' onclick='deleteEvokation("+ id + ");'>";
                         html += "<span class='glyphicon glyphicon-trash' style ='color: #FB656F; top:15px; left:5px'></span>";
