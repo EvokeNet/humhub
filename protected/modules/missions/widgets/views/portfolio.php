@@ -8,8 +8,6 @@ use app\modules\missions\models\Portfolio;
 use app\modules\missions\models\EvokationDeadline;
 
 $deadline = EvokationDeadline::getVotingDeadline();
-$wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
-$totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id);
 
 ?>
 
@@ -37,7 +35,9 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
 
 
             <div id="empty_portfolio" <?php if(!empty($portfolio)): ?> style="display: none;" <?php endif;?> style = "text-align: center; margin: 15px 0px 0px">
-                <label class = "label-border"><?= Yii::t('MissionsModule.base', 'Add an evokation to invest') ?></label>
+                <a class = "btn btn-cta2" href='<?= $evokations_url ?>' style="margin-top: 20px; white-space: normal;">
+                    <?= Yii::t('MissionsModule.base', 'Add an evokation to invest') ?>
+                </a>
             </div>
 
             <?php foreach($portfolio as $evokation_investment): ?>
@@ -56,6 +56,7 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                         <div class="input-group spinner">
                             <input id = "evokation_<?= $evokation_investment->evokation_id ?>" type="text" class="form-control investment_input" value="<?= $evokation_investment->investment ?>">
                             <input id = "oldvalue" type="hidden" value="<?= $evokation_investment->investment ?>">
+                            <!--
                             <div class="input-group-btn-vertical">
                                 <button class="btn btn-default" type="button">
                                     <i class="fa fa-caret-up"></i>
@@ -64,6 +65,7 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                                     <i class="fa fa-caret-down"></i>
                                 </button>
                             </div>
+                            -->
                         </div>
                         <a href='#' onclick="deleteEvokation(<?= $evokation_investment->evokation_id ?>);">
                             <span class="glyphicon glyphicon-trash" style ="color: #FB656F; top:15px; left:5px"></span>
@@ -112,7 +114,7 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                     <?= Yii::t('MissionsModule.base', 'Remaining') ?>:
                 </strong>
                 <div id="remainingAmount" style="display: inline-block;">
-                    <?= $wallet->amount ?>
+                    <?= $remainingAmount ?>
                 </div>
             </div>
         </div>
@@ -252,14 +254,14 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                         html += "<div class='input-group spinner'>";
                             html += "<input id = 'evokation_"+id+"' type='text' class='form-control investment_input' value='"+investment+"''>";
                             html += "<input id = 'oldvalue' type='hidden' value='"+investment+"'>";
-                            html += "<div class='input-group-btn-vertical'>";
-                                html += "<button class='btn btn-default' type='button'>";
-                                    html += "<i class='fa fa-caret-up'></i>"
-                                html += "</button>";
-                                html += "<button class='btn btn-default' type='button'>";
-                                    html += "<i class='fa fa-caret-down'></i>"
-                                html += "</button>";
-                            html += "</div>";
+                            // html += "<div class='input-group-btn-vertical'>";
+                            //     html += "<button class='btn btn-default' type='button'>";
+                            //         html += "<i class='fa fa-caret-up'></i>"
+                            //     html += "</button>";
+                            //     html += "<button class='btn btn-default' type='button'>";
+                            //         html += "<i class='fa fa-caret-down'></i>"
+                            //     html += "</button>";
+                            // html += "</div>";
                         html += "</div>";
                     html += "<a href='#' onclick='deleteEvokation("+ id + ");'>";
                         html += "<span class='glyphicon glyphicon-trash' style ='color: #FB656F; top:15px; left:5px'></span>";
@@ -324,6 +326,8 @@ $totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id)
                 success: function (data) {
                     if(data.status == 'success'){
                         removeFromPortfolio(id);
+                        $('#evokation_vote_'+id).html("<?= Yii::t('MissionsModule.base', 'Add to Portfolio') ?>");
+                        $('#evokation_vote_'+id).attr("onclick", "addEvokationToPortfolio"+id+"();");
                         $('#portfolio_status').hide();
                         showMessage("<?= Yii::t('MissionsModule.base', 'Updated') ?>", "<?= Yii::t('MissionsModule.base', 'Evokation removed!') ?>");
                     }else if(data.status == 'error'){

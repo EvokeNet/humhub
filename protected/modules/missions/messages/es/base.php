@@ -17,6 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Remove from Portfolio' => 'Borrar del Portafolio',
     '140 characters required' => '140 caracteres requeridos',
     '<strong>Activity Difficulty Level:</strong> {level}' => '<strong>Nivel de dificultad de la evidencía:</strong> {level}',
     '<strong>Activity Rubric:</strong> {rubric}' => '<strong>Rúbrica de Actividad:</strong> {rubric}',
@@ -102,7 +103,7 @@ return [
     'Evokation Categories' => 'Categorías de Evokación',
     'Evokation Category Translations' => 'Traducción de Categoría de Evokación',
     'Evokation Name' => 'Nombre de Evokación',
-    'Evokation Voting' => 'Votação de Evokación',
+    'Evokation Voting' => 'Votación de la Evokación',
     'Evokation added!' => 'Evokación añadida!',
     'Evokation removed!' => 'Evokación eliminada!',
     'Evokation\'s Page' => 'Página de la Evokación',
@@ -199,7 +200,6 @@ return [
     'Title cannot be blank.' => 'El título no puede estar en blanco.',
     'Total' => 'Total',
     'Total Investment:' => 'Inversión total:',
-    'Total Investors:' => 'Total de inversionistas:',
     'Translation' => 'Traducción',
     'Translations' => 'Traducciones',
     'Type (Primary/Secondary)' => 'Tipo (Primario/Secundario)',
@@ -239,8 +239,6 @@ return [
     'Your first mission is' => 'Tu primera misión es',
     'Your review was updated!' => 'Tu revisión fue actualizado!',
     'Youtube video' => 'Vídeo de Youtube',
-    'agent' => 'agente',
-    'agents' => 'agentes',
     'and' => 'y',
     'in' => 'en',
     'point' => 'punto',

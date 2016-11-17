@@ -20,7 +20,6 @@ return [
     '<Strong> This video will be the basis that other agents and mentors will take to know whether or not to invest in your Evokation. </ Strong>' => '',
     'Agent, here you can check together with your team the draft of your Evokation. Remember that team captains should send the video summary about your proposed solution, or better known as Elevator Pitch.' => '',
     'Error' => '',
-    'Evokation Deadline: {deadline} ({timezone})' => '',
     'Evokation updated!' => '',
     'Evokations' => '',
     'Google Drive URL' => '',
