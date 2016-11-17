@@ -9,7 +9,8 @@ use app\modules\missions\models\Evokations;
 use app\modules\missions\models\EvokationDeadline;
 use app\modules\teams\models\Team;
 
-$this->registerJsFile("js/missions.js"); 
+$this->registerJsFile("js/missions/gdrive.js"); 
+$this->registerJsFile("js/evoke.js"); 
 
 $user = Yii::$app->user->getIdentity();
 

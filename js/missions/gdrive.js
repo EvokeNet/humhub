@@ -1,5 +1,6 @@
 function updateEvokationUrl(id){
-    /* To call this function, it's needed declare these variables on your view file:
+
+    /* To call this function, it's needed to declare these variables in your view file:
     * - gdrive_action_url - action's url
     * - content_container_name - Team's name
     * - updated_message - Success message
@@ -62,9 +63,4 @@ function updateEvokationUrl(id){
         //switch
         element.parentNode.replaceChild(new_element,element);
     }
-}
-
-
-function updateInput(id, value){
-    document.getElementById(id).setAttribute("value", value);
 }
