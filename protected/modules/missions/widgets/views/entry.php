@@ -7,6 +7,9 @@ use yii\helpers\Url;
 use yii\web\JsExpression;
 use humhub\compat\CActiveForm;
 
+$this->registerJsFile("js/missions/review.js"); 
+$this->registerJsFile("js/missions/draft.js", [yii\web\View::POS_READY]); 
+
 echo Html::beginForm();
   $activity = $evidence->getActivities();
   $mentor_average_votes = $evidence->getAverageRating('Mentors');
@@ -483,24 +486,12 @@ echo Html::beginForm();
 
 <script>
 
-$(document).ready(function(){
+review_action_url = "<?= $contentContainer->createUrl('/missions/evidence/review'); ?>";
+review_no_points_message = "<?= Yii::t('MissionsModule.base', 'Choose how many points you will award this evidence.') ?>";
+review_yes_or_no_message = "<?= Yii::t('MissionsModule.base', 'Please, Answer yes or no.') ?>";
 
-    current = $('#current<?= $evidence->id ?>');
+evidence_id = <?= $evidence->id ?>;
 
-    if(current.text() >= 140){
-        current.css('color', '#92CE92')
-    }else{
-        current.css('color', '#9B0000')
-    }
-
-
-    $(".btn-hide<?= $evidence->id ?>").click(function(){
-        $("#yes-opt<?= $evidence->id ?>").collapse('hide');
-    });
-    $(".btn-show<?= $evidence->id ?>").click(function(){
-        $("#yes-opt<?= $evidence->id ?>").collapse('show');
-    });
-});
 
 $('#evidence_input_text_<?= $evidence->id ?>').keyup(function() {
 
@@ -517,54 +508,6 @@ $('#evidence_input_text_<?= $evidence->id ?>').keyup(function() {
     }
 
 })
-
-function review(id, comment, opt, grade){
-    grade = grade? grade : 0;
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (xhttp.readyState == 4 && xhttp.status == 200) {
-            if(xhttp.responseText){
-              if(xhttp.responseText == "success"){
-                updateReview(id, opt, grade);
-              }else{
-                $("#review_tab_" + id).replaceWith(xhttp.responseText);
-              }
-            }
-        }
-    };
-    xhttp.open("GET", "<?= $contentContainer->createUrl('/missions/evidence/review'); ?>&opt="+opt+"&grade="+grade+"&evidenceId="+id+"&comment="+comment , true);
-    xhttp.send();
-
-    return false;
-}
-
-function validateReview(id){
-
-  var opt = $('#review' + id).find('input[name="yes-no-opt'+id+'"]:checked'),
-      grade = $('input[name="grade_'+id+'"]:checked'),
-      comment = $("#review_comment_"+id).val();
-
-  opt = opt? opt.val() : null;
-  grade = grade? grade.val() : null;
-
-  if(opt == "yes"){
-
-    if(grade >= 1){
-      return review(id, comment, opt, grade);
-    }
-
-    // showMessage("Error", "Choose how many points you will award this evidence.");
-    showMessage("Error", "<?= Yii::t('MissionsModule.base', 'Choose how many points you will award this evidence.') ?>");
-
-  } else if(opt == "no"){
-    return review(id, comment, opt);
-  } else{
-    // showMessage("Error", "Please, Answer yes or no.");
-    showMessage("Error", "<?= Yii::t('MissionsModule.base', 'Please, Answer yes or no.') ?>");
-  }
-
-  return false;
-}
 
 jQuery(document).on('ajaxComplete', function () {
   var $forms    = $('form.review'),
