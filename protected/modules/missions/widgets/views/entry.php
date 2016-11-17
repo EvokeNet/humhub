@@ -8,7 +8,7 @@ use yii\web\JsExpression;
 use humhub\compat\CActiveForm;
 
 $this->registerJsFile("js/missions/review.js"); 
-$this->registerJsFile("js/missions/draft.js", [yii\web\View::POS_READY]); 
+$this->registerJsFile("js/missions/draft.js"); 
 
 echo Html::beginForm();
   $activity = $evidence->getActivities();
@@ -492,22 +492,6 @@ review_yes_or_no_message = "<?= Yii::t('MissionsModule.base', 'Please, Answer ye
 
 evidence_id = <?= $evidence->id ?>;
 
-
-$('#evidence_input_text_<?= $evidence->id ?>').keyup(function() {
-
-    current = $('#current<?= $evidence->id ?>');
-    minimun = $('#minimun<?= $evidence->id ?>');
-
-    //change current
-    current.text($('#evidence_input_text_<?= $evidence->id ?>').val().length);
-
-    if(current.text() >= 140){
-        current.css('color', '#92CE92')
-    }else{
-        current.css('color', '#9B0000')
-    }
-
-})
 
 jQuery(document).on('ajaxComplete', function () {
   var $forms    = $('form.review'),
