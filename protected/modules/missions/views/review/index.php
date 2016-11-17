@@ -1,6 +1,9 @@
 <?php
 
 use yii\helpers\Html;
+
+$this->registerJsFile("js/missions/review.js"); 
+
 $activity = null;
 
 if($evidence){
@@ -222,50 +225,8 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
 </style>
 
 <script>
-
-
-function review(id, comment, opt, grade){
-    grade = grade? grade : 0;
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (xhttp.readyState == 4 && xhttp.status == 200) {
-            next_element = document.getElementById("next_evidence");
-            next_element.removeAttribute("disabled");
-            next_element.removeAttribute("onClick");
-            document.getElementById("post_submit_review").innerHTML = "<?php echo Yii::t('MissionsModule.base', 'Update Review'); ?>";
-        }
-    };
-    xhttp.open("GET", "<?= $contentContainer->createUrl('/missions/evidence/review'); ?>&opt="+opt+"&grade="+grade+"&evidenceId="+id+"&comment="+comment , true);
-    xhttp.send();
-
-    return false;
-}
-
-function validateReview(id){
-
-
-    var opt = 'yes'; //always yes for agents
-    var grade = document.querySelector('input[name="grade"]:checked');
-  var comment = document.getElementById("review_comment").value;
-    grade = grade? grade.value : null;
-  console.log(grade);
-
-  return review(id, comment, opt, grade);
-}
-
-jQuery(document).ready(function () {
-  var $submitButton = $('#post_submit_review');
-  console.log($submitButton);
-  $submitButton.on('click', function(e){
-    console.log('click');
-    $('#review').submit(
-        function(){
-            return validateReview(document.getElementById("evidence_id").value);
-        }
-    );
-
-  });
-});
+    updated_message = "<?php echo Yii::t('MissionsModule.base', 'Update Review'); ?>";
+    review_action_url = "<?= $contentContainer->createUrl('/missions/evidence/review'); ?>";
 </script>
 
 
