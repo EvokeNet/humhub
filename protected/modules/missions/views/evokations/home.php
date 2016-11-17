@@ -9,6 +9,8 @@ use app\modules\missions\models\Evokations;
 use app\modules\missions\models\EvokationDeadline;
 use app\modules\teams\models\Team;
 
+$this->registerJsFile("js/missions.js"); 
+
 $user = Yii::$app->user->getIdentity();
 
 $voting_deadline = EvokationDeadline::getVotingDeadline();
@@ -209,72 +211,10 @@ endforeach;
 </div>
 
 <script>
-
-function updateEvokationUrl(id){
-
-    button = document.getElementById("btn_update_url");
-
-    if(button){
-
-        button = document.getElementById("btn_update_url");
-
-        button.innerHTML = "Save";
-        button.id = "btn_save_url";
-
-        // get current element
-        element = document.getElementById("gdrive_url"+id);
-
-        // create new one
-        new_element = document.createElement('input');
-        new_element.setAttribute("type","text");
-        new_element.setAttribute("id", element.getAttribute("id"));
-        new_element.setAttribute("value", element.getAttribute("href"));
-        new_element.setAttribute("onChange", "updateInput(this.id, this.value)");
-
-        //switch
-        element.parentNode.replaceChild(new_element,element);
-
-    }else{
-        button = document.getElementById("btn_save_url");
-
-        button.innerHTML = "Update";
-        button.id = "btn_update_url";
-
-        // get current element
-        element = document.getElementById("gdrive_url"+id);
-
-        // update url
-        $.ajax({
-                url: "<?= $contentContainer->createUrl('/missions/evokations/update_gdrive_url') ?>",
-                type: 'post',
-                data: {url: element.getAttribute("value"), id: id},
-                dataType: 'json',
-                success: function (data) {
-                    if(data.status == 'success'){
-                        showMessage("<?= Yii::t('MissionsModule.evokation_Home', 'Updated') ?>", "<?= Yii::t('MissionsModule.evokation_Home', 'Evokation updated!') ?>");
-                    }else if(data.status == 'error'){
-                        showMessage("<?= Yii::t('MissionsModule.evokation_Home', 'Error') ?>", "<?= Yii::t('MissionsModule.evokation_Home', 'Something went wrong') ?>");
-                    }
-                }
-            }
-        );
-
-        // create new one
-        new_element = document.createElement('a');
-        new_element.setAttribute("id", element.getAttribute("id"));
-        new_element.setAttribute("href", element.getAttribute("value"));
-        new_element.innerHTML = "<?= $contentContainer->name ?> Google Drive URL";
-
-        //switch
-        element.parentNode.replaceChild(new_element,element);
-    }
-}
-
-
-function updateInput(id, value){
-    document.getElementById(id).setAttribute("value", value);
-}
-
+    gdrive_action_url = "<?= $contentContainer->createUrl('/missions/evokations/update_gdrive_url') ?>";
+    content_container_name = "<?= $contentContainer->name ?>";
+    updated_message = "<?= Yii::t('MissionsModule.evokation_Home', 'Updated') ?>", "<?= Yii::t('MissionsModule.evokation_Home', 'Evokation updated!') ?>";
+    error_message = "<?= Yii::t('MissionsModule.evokation_Home', 'Error') ?>", "<?= Yii::t('MissionsModule.evokation_Home', 'Something went wrong') ?>";
 </script>
 
 <style type="text/css">
