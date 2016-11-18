@@ -147,19 +147,3 @@ $firstSecondary = true;
         <?php endif; ?>
     </div>
 </div>
-
-<style type="text/css">
-
-.description{
-    text-align: justify;
-}
-
-.member-img{
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    border: 3px solid #254054;
-    margin-right: 5px;
-}
-
-</style>

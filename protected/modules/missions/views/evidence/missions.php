@@ -76,11 +76,3 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Missions');
         <?php endif; ?>
     </div>
 </div>
-
-<style type="text/css">
-
-.description{
-    text-align: justify;
-}
-
-</style>

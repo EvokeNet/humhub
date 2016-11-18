@@ -188,39 +188,6 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
     </div>
 </div>
 
-
-<style type="text/css">
-
-
-
-.statistics{
-    font-size: 12px;
-    text-align: right;
-    margin-right: 2%;
-    padding-top: 10px;
-}
-
-.activity_area{
-    background: #e2e2e2;
-    font-size: 12px;
-    padding: 15px;
-    font-weight: bold;
-    border-radius: 4px
-}
-
-.files_area{
-    padding: 15px;
-    background: #e2e2e2;
-    border-radius: 4px;
-    text-align: center;
-}
-
-.submitted-review {
-  word-wrap: break-word;
-}
-
-</style>
-
 <script>
 
 
@@ -267,44 +234,3 @@ jQuery(document).ready(function () {
   });
 });
 </script>
-
-
-
-<style>
-
-/* 
-Reference: 
-https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
-*/
-
-.rating {
-    overflow: hidden;
-    display: inline-block;
-    font-size: 0;
-    position: relative;
-}
-.rating-input {
-    float: right;
-    width: 16px;
-    height: 16px;
-    padding: 0;
-    margin: 0 0 0 -16px;
-    opacity: 0;
-}
-.rating:hover .rating-star:hover,
-.rating:hover .rating-star:hover ~ .rating-star,
-.rating-input:checked ~ .rating-star {
-    background-position: 0 0;
-}
-.rating-star,
-.rating:hover .rating-star {
-    position: relative;
-    float: right;
-    display: block;
-    width: 40px;
-    height: 40px;
-    background: url('http://kubyshkin.ru/samples/star-rating/star.png') 0 -40px;
-    background-size: cover;
-}
-
-</style>

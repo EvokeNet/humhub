@@ -28,7 +28,7 @@ $reviews = Votes::find()
 
             <li>
                 <span><?php echo Html::a(Yii::t('AchievementsModule.base', "Evidence: {evidence}", array('evidence' => $review->evidence->title)), ['/content/perma', 'id' => $review->evidence->getContentObject()->id]); ?></span>
-                <span style="float:right; margin-right:30px">
+                <span class="my-quality-review">
                 <?php 
                 if($review->flag == 1){
                     // echo Yii::t('AchievementsModule.base', "<strong>Review:</strong> {vote} with {points} points", array('vote' => Yii::t('AchievementsModule.base', "Yes"), 'points' => $review->value));

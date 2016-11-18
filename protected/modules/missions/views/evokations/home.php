@@ -276,11 +276,3 @@ function updateInput(id, value){
 }
 
 </script>
-
-<style type="text/css">
-
-.description{
-    text-align: justify;
-}
-
-</style>

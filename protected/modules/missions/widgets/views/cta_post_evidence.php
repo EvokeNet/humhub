@@ -23,16 +23,3 @@ use yii\helpers\Url;
         </div>
     </div>
 </div>
-
-<style type="text/css">
-
-.unavailable{
-    color: white;
-    text-shadow: -0.5px 0 gray, 0 0.5px gray, 2px 0 gray, 0 -0.5px gray;
-}
-
-.unavailable:hover{
-    color: white;
-}
-
-</style>

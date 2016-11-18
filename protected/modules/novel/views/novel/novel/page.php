@@ -6,40 +6,7 @@ use app\modules\novel\models\NovelPage;
 
 ?>
 <style media="screen">
-  .graphic-novel-page{
-    min-height:200vh;
-    background-image:url('<?= $page->page_image ?>');
-    background-size:contain;
-    background-repeat:no-repeat;
-    background-position:center;
-  }
-
-  .graphic-novel-page .page-button{
-    top: 50%;
-    font-size:2em;
-    position: fixed;
-    width: 2em;
-    text-align: center;
-    line-height: 2em;
-    background-color: #1ecccc;
-    border: 2px solid #254054;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 1em;
-  }
-
-  .graphic-novel-page .page-button:hover{
-    background-color: #333;
-  }
-
-  .graphic-novel-page .button-back{
-    left: 1em;
-  }
-  .graphic-novel-page .button-next{
-    right: 1em;
-  }
-
+  
   <?php if (!Yii::$app->user->getIdentity()->has_read_novel && Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
     .topbar, .footer {
       display: none;
@@ -49,6 +16,7 @@ use app\modules\novel\models\NovelPage;
       padding-top: 1em;
     }
   <?php endif; ?>
+  
 </style>
 
 <div class="row">
