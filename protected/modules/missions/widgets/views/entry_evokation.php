@@ -5,6 +5,8 @@ use \yii\helpers\Url;
 use app\modules\missions\models\Portfolio;
 use humhub\modules\space\models\Setting;
 
+$this->registerJsFile("js/missions/evokation.js"); 
+
 echo Html::beginForm(); 
 
 $user = Yii::$app->user->getIdentity();
@@ -70,7 +72,12 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
     <?php if ($deadline && $deadline->isOccurring() ): ?>
     <div style = "float:right">
         <?php if(!$evokation_investment): ?>
-        <a id="evokation_vote_<?= $evokation->id ?>" class = "btn btn-cta1" onClick="addEvokationToPortfolio<?= $evokation->id ?>();">
+        <a id="evokation_vote_<?= $evokation->id ?>" class = "btn btn-cta1" onClick="addEvokationToPortfolio(
+            <?= $evokation->id ?>,
+            '<?= Url::to(['/missions/portfolio/add']); ?>',
+            '<?= $evokation->getTitle() ?>',
+            '<?= Url::to(['/missions/evokations/view', 'id' => $evokation->id, 'sguid' => $contentContainer->guid]); ?>' 
+            );">
             <?= Yii::t('MissionsModule.base', 'Add to Portfolio') ?>
         </a>
         <?php else: ?>
@@ -96,43 +103,14 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
 
 <script type="text/javascript">
 
-    function addEvokationToPortfolio<?= $evokation->id ?>(){
+evocoins_message = "<?= Yii::t('MissionsModule.base', 'How many evocoins do you want to invest?') ?>";
+no_enough_evocoins_message = "<?= Yii::t('MissionsModule.base', 'No enough Evocoins!') ?>";
+remove_from_portfolio_text = "<?= Yii::t('MissionsModule.base', 'Remove from Portfolio') ?>";
+updated_message = "<?= Yii::t('MissionsModule.base', 'Updated') ?>";
+evokation_added_message = "<?= Yii::t('MissionsModule.base', 'Evokation added!') ?>";
+error_message = "<?= Yii::t('MissionsModule.base', 'Error') ?>";
+something_went_wrong_message = "<?= Yii::t('MissionsModule.base', 'Something went wrong') ?>";
+investment_limit_message = "<?= Yii::t('MissionsModule.base', 'You can not invest more than {investment_limit} evocoins total.', ['investment_limit' => intval(humhub\models\Setting::Get('investment_limit'))]) ?>";
 
-        do{
-            var investment = parseInt(window.prompt("<?= Yii::t('MissionsModule.base', 'How many evocoins do you want to invest?') ?>",1), 10);
-        }while( (!isNaN(investment) && (isNaN(parseInt(investment)) || investment < 1)));
 
-        if(!isNaN(investment)){
-
-            if(investment > availableAmount){
-                showMessage("<?= Yii::t('MissionsModule.base', 'Error') ?>", "<?= Yii::t('MissionsModule.base', 'No enough Evocoins!') ?>");
-                return;
-            }
-
-            $.ajax({
-                url: '<?= Url::to(['/missions/portfolio/add']); ?>&evokation_id='+<?= $evokation->id ?>+"&investment="+investment,
-                type: 'get',
-                dataType: 'json',
-                success: function (data) {
-                    if(data.status == 'success'){
-                        addEvokation(
-                            <?= $evokation->id ?>, 
-                            <?= json_encode($evokation->getTitle()) ?>, 
-                            '<?= Url::to(['/missions/evokations/view', 'id' => $evokation->id, 'sguid' => $contentContainer->guid]); ?>', 
-                            investment);
-                        $('#portfolio_status').hide();
-                        $('#evokation_vote_<?= $evokation->id ?>').html("<?= Yii::t('MissionsModule.base', 'Remove from Portfolio') ?>");
-                        $('#evokation_vote_<?= $evokation->id ?>').attr("onclick", "deleteEvokation(<?= $evokation->id ?>);");
-                        showMessage("<?= Yii::t('MissionsModule.base', 'Updated') ?>", "<?= Yii::t('MissionsModule.base', 'Evokation added!') ?>");
-                    }else if(data.status == 'error'){
-                        $('#portfolio_status').hide();
-                        showMessage("<?= Yii::t('MissionsModule.base', 'Error') ?>", "<?= Yii::t('MissionsModule.base', 'Something went wrong') ?>");
-                    }else if(data.status == 'error_limit'){
-                        $('#portfolio_status').hide();
-                        showMessage("<?= Yii::t('MissionsModule.base', 'Error') ?>", "<?= Yii::t('MissionsModule.base', 'You can not invest more than {investment_limit} evocoins total.', ['investment_limit' => intval(humhub\models\Setting::Get('investment_limit'))]) ?>");
-                    }
-                }
-            });      
-        }
-    }
 </script>
