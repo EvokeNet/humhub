@@ -10,6 +10,7 @@ use app\modules\missions\models\Portfolio;
 use yii\helpers\Url;
 use app\modules\teams\models\Team;
 use humhub\modules\space\models\Space;
+use app\modules\missions\models\EvokationDeadline;
 
 class PortfolioWidget extends \yii\base\Widget
 {
@@ -42,12 +43,15 @@ class PortfolioWidget extends \yii\base\Widget
     		$remainingAmount = $wallet->amount;
     	}
 
+        $deadline = EvokationDeadline::getVotingDeadline();
+
         return $this->render('portfolio', [
         	'portfolio' => $this->portfolio, 
         	'wallet' => $wallet,
         	'remainingAmount' => $remainingAmount,
         	'totalAmount' => $totalAmount,
-        	'evokations_url' => $evokations_url
+        	'evokations_url' => $evokations_url,
+            'deadline' => $deadline
         	]
         );
 
