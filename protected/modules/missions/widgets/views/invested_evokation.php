@@ -28,7 +28,7 @@
                         </div>
                         -->
                 </div>
-                <a href='#' onclick="deleteEvokation(<?= $evokation_investment->evokation_id ?>);">
+                <a href='#' onclick="deleteEvokation(<?= $evokation_investment->evokation_id ?>, '<?= $evokation_investment->getEvokationObject()->title ?>');">
                     <span class="glyphicon glyphicon-trash" style ="color: #FB656F; top:15px; left:5px"></span>
                 </a>
             </div>

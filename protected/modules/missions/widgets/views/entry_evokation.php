@@ -78,7 +78,7 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
             <?= Yii::t('MissionsModule.base', 'Add to Portfolio') ?>
         </a>
         <?php else: ?>
-            <a id="evokation_vote_<?= $evokation->id ?>" class = "btn btn-cta1" onClick="deleteEvokation(<?= $evokation->id ?>);">
+            <a id="evokation_vote_<?= $evokation->id ?>" class = "btn btn-cta1" onClick="deleteEvokation(<?= $evokation->id ?>, <?= $evokation->getTitle() ?>);">
                 <?= Yii::t('MissionsModule.base', 'Remove from Portfolio') ?>
             </a>
         <?php endif; ?>

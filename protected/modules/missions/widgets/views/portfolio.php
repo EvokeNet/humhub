@@ -193,85 +193,57 @@ use app\modules\missions\models\Portfolio;
 
     }
 
-    function getNewElement(id, name, url, investment){
-        //===================
-        //html for element
-        var html = "<div id='evokation_row_"+id+"' class=''evokation_row'>";
-            html += "<div class='col-xs-7'>";
-                html += "<div class='padding-fromtop-5px margin-toleft-10'>";
-                    html += "<a href='"+url+"'>";
-                            html += name;
-                        html += "</a>";
-                html += "</div>";
-            html += "</div>";
-
-                html += "<div class='col-xs-5'>";
-                    html += "<div class='container2' style = 'display:inline-flex'>";
-                        html += "<div class='input-group spinner'>";
-                            html += "<input id = 'evokation_"+id+"' type='text' class='form-control investment_input' value='"+investment+"''>";
-                            html += "<input id = 'oldvalue' type='hidden' value='"+investment+"'>";
-                            // html += "<div class='input-group-btn-vertical'>";
-                            //     html += "<button class='btn btn-default' type='button'>";
-                            //         html += "<i class='fa fa-caret-up'></i>"
-                            //     html += "</button>";
-                            //     html += "<button class='btn btn-default' type='button'>";
-                            //         html += "<i class='fa fa-caret-down'></i>"
-                            //     html += "</button>";
-                            // html += "</div>";
-                        html += "</div>";
-                    html += "<a href='#' onclick='deleteEvokation("+ id + ");'>";
-                        html += "<span class='glyphicon glyphicon-trash' style ='color: #FB656F; top:15px; left:5px'></span>";
-                    html += "</a>";
-                    html += "</div>";
-                html += "</div>";
-
-        html += "</div>";
-        // end html
-        //===================
-
-        return html;
-    }
-
     function addEvokation(id, name, url, investment){
 
         //evokations total
         var elements = document.getElementsByClassName("evokation_row");
 
-        var html = getNewElement(id, name, url, investment);
-        var last_id = -1;
-        var evok_id;
+         $.ajax({
+            url: '<?= Url::to(['/missions/portfolio/get']); ?>&evokation_id='+id+'&investment='+investment,
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                if(data.status == 'success'){
+                    var html = data.html;
+                    var last_id = -1;
+                    var evok_id;
 
-        if(elements.length < 1){
-            $("#empty_portfolio").hide();
-            $("#empty_portfolio").after(html);
-        }else{
-            for(var x=0; x < elements.length; x++){
-                evok_id = elements[x].id.slice(14);
-                if(evok_id <= id){
-                    last_id = evok_id;
-                }else{
-                    break;
+                    if(elements.length < 1){
+                        $("#empty_portfolio").hide();
+                        $("#empty_portfolio").after(html);
+                    }else{
+                        for(var x=0; x < elements.length; x++){
+                            evok_id = elements[x].id.slice(14);
+                            if(evok_id <= id){
+                                last_id = evok_id;
+                            }else{
+                                break;
+                            }
+                        }
+
+                        if(last_id < 0){
+                            $("#empty_portfolio").hide();
+                            $("#empty_portfolio").after(html);
+                        }else{
+                            $("#evokation_row_"+last_id).after(html);
+                        }
+                    }
+
+                    newRemainingValue = parseInt(remainingAmount.innerHTML) - investment;
+
+                    if(newRemainingValue >=0){
+                      totalAmount.innerHTML = parseInt(totalAmount.innerHTML) + investment;
+                      remainingAmount.innerHTML = newRemainingValue;
+                      availableAmount = parseInt(remainingAmount.innerHTML);
+                    }
                 }
             }
+        });
 
-            if(last_id < 0){
-                $("#empty_portfolio").hide();
-                $("#empty_portfolio").after(html);
-            }else{
-                $("#evokation_row_"+last_id).after(html);
-            }
-        }
-
-        newRemainingValue = parseInt(remainingAmount.innerHTML) - investment;
-
-            if(newRemainingValue >=0){
-              totalAmount.innerHTML = parseInt(totalAmount.innerHTML) + investment;
-              remainingAmount.innerHTML = newRemainingValue;
-              availableAmount = parseInt(remainingAmount.innerHTML);
-            }
+        
     }
 
-    function deleteEvokation(id){
+    function deleteEvokation(id, title){
 
         var confirm = window.confirm("<?= Yii::t('MissionsModule.base', 'Do you really want to delete it?') ?>");
         if (confirm == true) {
@@ -283,7 +255,7 @@ use app\modules\missions\models\Portfolio;
                     if(data.status == 'success'){
                         removeFromPortfolio(id);
                         $('#evokation_vote_'+id).html("<?= Yii::t('MissionsModule.base', 'Add to Portfolio') ?>");
-                        $('#evokation_vote_'+id).attr("onclick", "addEvokationToPortfolio"+id+"();");
+                        $('#evokation_vote_'+id).attr("onclick", "addEvokationToPortfolio("+id+",'<?= Url::to(['/missions/portfolio/add']); ?>','"+title+"','<?= Url::to(['/missions/evokations/view','sguid' => $contentContainer->guid]); ?>&id="+id+"');");    
                         $('#portfolio_status').hide();
                         showMessage("<?= Yii::t('MissionsModule.base', 'Updated') ?>", "<?= Yii::t('MissionsModule.base', 'Evokation removed!') ?>");
                     }else if(data.status == 'error'){

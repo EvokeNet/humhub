@@ -190,4 +190,20 @@ class PortfolioController extends \yii\web\Controller
         Yii::$app->end();
     }
 
+    public function actionGet($evokation_id, $investment){
+
+        $deadline = EvokationDeadline::getVotingDeadline();
+        $user = Yii::$app->user->getIdentity();
+        $evokation_investment = new Portfolio();
+        $evokation_investment->user_id = $user->id;
+        $evokation_investment->evokation_id = $evokation_id;
+        $evokation_investment->investment = $investment;
+
+        header('Content-type: application/json');
+        $response_array['status'] = 'success'; 
+        $response_array['html'] = $this->renderPartial('../../widgets/views/invested_evokation', ['deadline' => $deadline, 'evokation_investment' => $evokation_investment]); 
+        echo json_encode($response_array);
+        Yii::$app->end();
+    }
+
 }

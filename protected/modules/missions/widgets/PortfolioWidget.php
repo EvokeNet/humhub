@@ -23,6 +23,7 @@ class PortfolioWidget extends \yii\base\Widget
     public function run()
     {
     
+        $user = Yii::$app->user->getIdentity();
     	$team_id = Team::getUserTeam(Yii::$app->user->getIdentity()->id);
     	$team = Team::findOne($team_id);
 
@@ -51,7 +52,8 @@ class PortfolioWidget extends \yii\base\Widget
         	'remainingAmount' => $remainingAmount,
         	'totalAmount' => $totalAmount,
         	'evokations_url' => $evokations_url,
-            'deadline' => $deadline
+            'deadline' => $deadline,
+            'contentContainer' => $team
         	]
         );
 
