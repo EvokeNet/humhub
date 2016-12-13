@@ -50,7 +50,9 @@ class Events extends \yii\base\Object
                     $user_achievement->user_id = $user_id;
                     $user_achievement->save();
 
-                    AlertController::createAlert("Congratulations", "You've just gained a new achievement!<BR>".$achievement->title." <div><i style=\"font-size: 60px; padding-top: 20px;\" class=\"fa fa-trophy\" aria-hidden=\"true\"></i></div>");
+                    $a_title = (isset($achievement->achievementTranslations[0]) && Yii::$app->language == 'es') ? $achievement->achievementTranslations[0]->title : $achievement->title;
+
+                    AlertController::createAlert(Yii::t('AchievementsModule.base', 'Congratulations'), Yii::t('AchievementsModule.base', "You've just gained a new achievement!<BR>").$a_title." <div><i style=\"font-size: 60px; padding-top: 20px;\" class=\"fa fa-trophy\" aria-hidden=\"true\"></i></div>");
                 }
 
             }
@@ -108,7 +110,9 @@ class Events extends \yii\base\Object
                     $user_achievement->user_id = $user_id;
                     $user_achievement->save();
 
-                    AlertController::createAlert("Congratulations", "You've just gained a new achievement!<BR>".$achievement->title." <div><i style=\"font-size: 60px; padding-top: 20px;\" class=\"fa fa-trophy\" aria-hidden=\"true\"></i></div>");
+                    $a_title = (isset($achievement->achievementTranslations[0]) && Yii::$app->language == 'es') ? $achievement->achievementTranslations[0]->title : $achievement->title;
+
+                    AlertController::createAlert(Yii::t('AchievementsModule.base', 'Congratulations'), Yii::t('AchievementsModule.base', "You've just gained a new achievement!<BR>").$a_title." <div><i style=\"font-size: 60px; padding-top: 20px;\" class=\"fa fa-trophy\" aria-hidden=\"true\"></i></div>");
                 }
 
             }else{

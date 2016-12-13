@@ -21,8 +21,10 @@ return [
     '<strong>Review:</strong> {points} points' => '',
     '<strong>Review:</strong> {vote}' => '',
     'Achievements' => '',
+    'Congratulations' => '',
     'Evidence: {evidence}' => '',
     'My Quality Reviews' => '',
     'No' => '',
     'Yes' => '',
+    'You\'ve just gained a new achievement!<BR>' => '',
 ];

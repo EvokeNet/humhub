@@ -21,9 +21,6 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
 <p><?php print humhub\widgets\RichText::widget(['text' => $evokation->description]);?></p>
 
 
-<?php if($youtube_code): ?>
-    <iframe width="598" height="398" src="http://www.youtube.com/embed/<?php echo $youtube_code; ?>" frameborder="0" allowfullscreen></iframe>
-<?php endif; ?>
 
 
 <!-- YOUTUBE LINK -->
@@ -49,16 +46,14 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
         <p>
             <b><?= Yii::t('MissionsModule.base', 'Median Investment:') ?></b>  <?= $median_investment ?> <?= $median_investment > 1 ? 'evocoins' : 'evocoin' ?>
         </p>
-        <p>
-            <b><?= Yii::t('MissionsModule.base', 'Total Investors:') ?></b> <?= $total_investors ?> <?= $total_investors > 1 ? Yii::t('MissionsModule.base', 'agents') : Yii::t('MissionsModule.base', 'agent') ?>
-        </p>
+        
     </div>
 </div>
 <?php endif; ?>
 
 <br>
 
-<?php if(!$evokation_investment && $evokation->content->user_id != Yii::$app->user->getIdentity()->id && $user->group->name != "Mentors"): ?>
+<?php if($evokation->content->user_id): ?>
 <div>
     
     <!-- DISABLED
@@ -71,9 +66,15 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
 
     <?php if ($deadline && $deadline->isOccurring() ): ?>
     <div style = "float:right">
-        <a class = "btn btn-cta1" onClick="addEvokationToPortfolio<?= $evokation->id ?>();">
+        <?php if(!$evokation_investment): ?>
+        <a id="evokation_vote_<?= $evokation->id ?>" class = "btn btn-cta1" onClick="addEvokationToPortfolio<?= $evokation->id ?>();">
             <?= Yii::t('MissionsModule.base', 'Add to Portfolio') ?>
         </a>
+        <?php else: ?>
+            <a id="evokation_vote_<?= $evokation->id ?>" class = "btn btn-cta1" onClick="deleteEvokation(<?= $evokation->id ?>);">
+                <?= Yii::t('MissionsModule.base', 'Remove from Portfolio') ?>
+            </a>
+        <?php endif; ?>
     </div>
     <?php else: ?>
         <div style = "float:right">
@@ -117,6 +118,8 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
                             '<?= Url::to(['/missions/evokations/view', 'id' => $evokation->id, 'sguid' => $contentContainer->guid]); ?>', 
                             investment);
                         $('#portfolio_status').hide();
+                        $('#evokation_vote_<?= $evokation->id ?>').html("<?= Yii::t('MissionsModule.base', 'Remove from Portfolio') ?>");
+                        $('#evokation_vote_<?= $evokation->id ?>').attr("onclick", "deleteEvokation(<?= $evokation->id ?>);");
                         showMessage("<?= Yii::t('MissionsModule.base', 'Updated') ?>", "<?= Yii::t('MissionsModule.base', 'Evokation added!') ?>");
                     }else if(data.status == 'error'){
                         $('#portfolio_status').hide();
