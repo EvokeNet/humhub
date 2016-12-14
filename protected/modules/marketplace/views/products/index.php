@@ -22,18 +22,28 @@ $this->pageTitle = Yii::t('MarketplaceModule.base', 'Marketplace');
         <div class="panel panel-default">
           <div class="panel-body">
 
-                <?php foreach ($products as $product): ?>
-                  <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                      <img src='<?php echo  $product->image?>' alt="product image">
+                <?php foreach ($products as $index=>$product): ?>
+                  <?php if ($index == 0): ?>
+                    <div class="row is-flex">
+                  <?php elseif (($index % 3) == 0): ?>
+                    </div>
+                    <div class="row is-flex">
+                  <?php endif; ?>
+
+                  <div class="col-sm-6 col-md-4 product-containe">
+                    <div class="thumbnail product">
+                      <div class="product-image" style="background-image: url('<?php echo  $product->image?>')"></div>
                       <div class="caption">
-                        <h3><?php echo $product->name; ?></h3>
+                        <h3 class="product-name"><?php echo $product->name; ?></h3>
                         <p><?php echo $product->description; ?></p>
                         <p><?php echo Yii::t('MarketplaceModule.base', 'Quantity') . ': ' .  $product->quantity; ?></p>
-                        <p><a href="#" class="btn btn-primary" role="button"><?php echo Yii::t('MarketplaceModule.base', 'Buy') ?></a> <?php echo $product->price; ?> evocoin</p>
                       </div>
+                      <div class="purchase"><a href="#" class="btn btn-primary" role="button"><?php echo Yii::t('MarketplaceModule.base', 'Buy') ?></a> <?php echo $product->price; ?> evocoin</div>
                     </div>
                   </div>
+                  <?php if ($index == (count($products) - 1)): ?>
+                    </div>
+                  <?php endif; ?>
                 <?php endforeach; ?>
 
           </div>
