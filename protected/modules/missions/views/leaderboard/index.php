@@ -164,6 +164,44 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                     <?php endif; ?>
                 </div>
 
+                <!-- Top Agents By Average Score -->
+                <div class="panel-heading">
+                    <h4><?php echo Yii::t('MissionsModule.leaderboard', 'Top Agents By Average Score') ?></h4>
+                    <h5><?php echo Yii::t('MissionsModule.leaderboard', 'Reviews by Mentors') ?></h5>
+                </div>
+
+                <div class="panel-body">
+                    <div class="row">
+                        <?php foreach($ranking['rank_agents_score'] as $key => $r): ?>
+
+                        <div class="col-sm-6">
+                            <div class = "grey-box" style = "padding: 15px 20px; margin-bottom:15px">
+
+                                <div class="row">
+                                    <div class="col-sm-9">
+                                        <span style = "font-size: 14pt; font-weight: 700; color: #254054;"><?php echo $key + 1; ?>.</span>&nbsp;&nbsp;
+                                        <?= Html::a($r['username'], ['/user/profile', 'uguid' => $r['guid']], ['style' => 'font-size: 14pt; font-weight: 700; color: #2273AC;']) ?>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <span style = "float:right; font-size: 14pt; color: #3399E1; font-weight: 700;"><?php echo number_format($r['average'],2); ?></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <?php endforeach; ?>
+                    </div>
+                    <?php if (Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
+                      <?php if($ranking['my_score']['position'] == -1): ?>
+                          <span style = "font-size: 12pt; font-weight: 700; color: #254054;"><?php echo Yii::t('MissionsModule.leaderboard', 'My Position: Not Ranked'); ?></span><br>
+                      <?php else: ?>
+                          <span style = "font-size: 12pt; font-weight: 700; color: #254054;"><?php echo Yii::t('MissionsModule.leaderboard', 'My Position: {position}', array('position' => $ranking['my_score']['position'] + 1)); ?></span><br>
+                          <span style = "font-size: 12pt; font-weight: 700; color: #254054;"><?php echo Yii::t('MissionsModule.leaderboard', 'My Score: {average}', array('average' => number_format($ranking['my_score']['average'],2))); ?></span>
+                      <?php endif; ?>
+                    <?php endif; ?>
+                </div>
+
                 <!-- Top Mentors By Reviews Given -->
                 <div class="panel-heading">
                     <h4><?php echo Yii::t('MissionsModule.leaderboard', 'Top Mentors By Reviews Given') ?></h4>
