@@ -22,20 +22,20 @@
 // Colors and fonts variables
 // --------------------------------------------------
 @import 'https://fonts.googleapis.com/css?family=Ubuntu|Vollkorn|Roboto|Open+Sans|Noto+Serif|PT+Serif|Lora';
-@heading_font: 'Ubuntu', sans-serif;
+@heading_font: 'Roboto', sans-serif;
 // @text_font: 'Roboto', sans-serif; //'Noto Serif', serif; //'Vollkorn', serif;
 @text_font: 'Lora', serif;
 
-@primary1: #254054;
-@primary2: #3399E1;
-@primary3: #1ECCCC;
+@primary1: #263238;
+@primary2: #2196F3;
+@primary3: #00BCD4; /*#26C6DA;*/
 
-@secondary1: #9013FE;
-@secondary2: #FB656F;
-@secondary3: #ECE046;
+@secondary1: #673AB7;
+@secondary2: #FF5252;
+@secondary3: #FFC107;
 
-@tertiary1: #28C503;
-@tertiary2: #E831BE;
+@tertiary1: #43A047;
+@tertiary2: #D81B60;
 
 @background_grey1: #8E99A2;
 @background_grey2: #F6F7F9;
@@ -784,23 +784,19 @@ input[type=select] {
     text-decoration: none;
     text-shadow: none;
     font-weight: 600;
-    font-size: 10pt;
-    // text-transform: uppercase;
+    font-size: 8pt;
+    text-transform: uppercase;
     text-align: center;
     min-height: 49px;
-    color: darken(@background_grey2, 10%); //@primary1;
-    // padding: 13px 16px;
-    padding: 14px 10px 10px;
+    color: #FFFFFF;
     &:hover,
     &:active,
     &:focus {
-      .topbar-second-icons;
+      background-color: @primary1;
       text-decoration: none;
     }
     i {
-      // font-size: 14px;
-      font-size: 14pt;
-      margin-bottom: 5px;
+      font-size: 12pt;
     }
     .caret {
       border-top-color: @font2;
@@ -808,8 +804,8 @@ input[type=select] {
   }
 
   .nav > li > ul > li > a {
-    border-bottom: 3px solid #fff;
-    .topbar-second-icons;
+    /*border-bottom: 3px solid #fff;
+    .topbar-second-icons;*/
   }
 
   .nav > li > ul > li > a:hover, .nav > li > ul > li > a.active {
@@ -1577,302 +1573,31 @@ input[type=select] {
 // Buttons
 // --------------------------------------------------
 .btn {
-  float: none;
-  border: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  -moz-box-shadow: none;
-  background-image: none;
-  text-shadow: none;
-  border-radius: 3px;
-  outline: none !important;
-  margin-bottom: 0;
+  background: @primary3;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  color: #FFFFFF;
+  height: 36px;
+  line-height: 36px;
+  width: 100%;
+  position: relative;
+  opacity: 1;
   font-size: 14px;
-  font-weight: 600;
-  padding: 8px 16px;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin: 0px;
+  padding: 0 16px;
+  &:hover,
+  &:focus {
+    background: lighten(@primary3, 5%);
+    color: #FFFFFF;
+  }
 }
 
 .input.btn {
   outline: none;
-}
-
-.btn-lg {
-  padding: 16px 28px;
-}
-
-.btn-sm {
-  padding: 4px 8px;
-  font-size: 12px;
-  i {
-    font-size: 14px;
-  }
-}
-
-.btn-xs {
-  padding: 1px 5px;
-  font-size: 12px;
-}
-
-.btn-cta1 {
-  background: @primary2;
-  color: white !important;
-  // width: 140px;
-  border-radius: 2px;
-  border-bottom: 2px solid @primary1;
-  &:hover,
-  &:focus {
-    background: darken(@primary2, 5%);
-    text-decoration: none;
-  }
-  &:active,
-  &.active {
-    outline: 0;
-    background: darken(@primary2, 5%) !important;
-  }
-}
-
-.btn-cta1[disabled],
-.btn-cta1.disabled {
-  background: lighten(@primary2, 5%);
-  &:hover,
-  &:focus {
-    background: lighten(@primary2, 5%);
-  }
-  &:active,
-  &.active {
-    background: lighten(@primary2, 5%) !important;
-  }
-}
-
-.btn-cta2 {
-  background: @primary3;
-  color: white !important;
-  // width: 140px;
-  border-radius: 2px;
-  border-bottom: 2px solid @primary1;
-  &:hover,
-  &:focus {
-    background: darken(@primary3, 5%);
-    text-decoration: none;
-  }
-  &:active,
-  &.active {
-    outline: 0;
-    background: darken(@primary3, 5%) !important;
-  }
-}
-
-.btn-cta2[disabled],
-.btn-cta2.disabled {
-  background: lighten(@primary3, 5%);
-  &:hover,
-  &:focus {
-    background: lighten(@primary3, 5%);
-  }
-  &:active,
-  &.active {
-    background: lighten(@primary3, 5%) !important;
-  }
-}
-
-.btn-cta3 {
-  background: @success;
-  color: white !important;
-  // width: 140px;
-  border-radius: 2px;
-  border-bottom: 2px solid @primary1;
-  &:hover,
-  &:focus {
-    background: darken(@success, 5%);
-    text-decoration: none;
-  }
-  &:active,
-  &.active {
-    outline: 0;
-    background: darken(@success, 5%) !important;
-  }
-}
-
-.btn-cta3[disabled],
-.btn-cta3.disabled {
-  background: lighten(@success, 5%);
-  &:hover,
-  &:focus {
-    background: lighten(@success, 5%);
-  }
-  &:active,
-  &.active {
-    background: lighten(@success, 5%) !important;
-  }
-}
-
-.btn-default {
-  background: @background2;
-  color: @font2 !important;
-  &:hover,
-  &:focus {
-    background: darken(@background2, 2%);
-    text-decoration: none;
-    color: @font2;
-  }
-  &:active,
-  &.active {
-    outline: 0;
-    background: darken(@background2, 5%);
-  }
-}
-
-.btn-default[disabled],
-.btn-default.disabled {
-  background: lighten(@background2, 2%);
-  &:hover,
-  &:focus {
-    background: lighten(@background2, 2%);
-  }
-  &:active,
-  &.active {
-    background: lighten(@background2, 2%);
-  }
-}
-
-.btn-primary {
-  background: @info; //@primary;
-  color: white !important;
-  &:hover,
-  &:focus {
-    background: darken(@primary, 5%);
-    text-decoration: none;
-  }
-  &:active,
-  &.active {
-    outline: 0;
-    background: darken(@primary, 5%) !important;
-  }
-}
-
-.btn-primary[disabled],
-.btn-primary.disabled {
-  background: lighten(@primary, 5%);
-  &:hover,
-  &:focus {
-    background: lighten(@primary, 5%);
-  }
-  &:active,
-  &.active {
-    background: lighten(@primary, 5%) !important;
-  }
-}
-
-.btn-info {
-  background: @btn_info;
-  color: white !important;
-  &:hover,
-  &:focus {
-    background: darken(@btn_info, 5%) !important;
-    text-decoration: none;
-  }
-  &:active,
-  &.active {
-    outline: 0;
-    background: darken(@btn_info, 5%);
-  }
-}
-
-.btn-info[disabled],
-.btn-info.disabled {
-  background: lighten(@btn_info, 5%);
-  &:hover,
-  &:focus {
-    background: lighten(@btn_info, 5%);
-  }
-  &:active,
-  &.active {
-    background: lighten(@btn_info, 5%) !important;
-  }
-}
-
-.btn-danger {
-  background: @danger;
-  color: white !important;
-  &:hover,
-  &:focus {
-    background: darken(@danger, 5%);
-    text-decoration: none;
-  }
-  &:active,
-  &.active {
-    outline: 0;
-    background: darken(@danger, 5%) !important;
-  }
-}
-
-.btn-danger[disabled],
-.btn-danger.disabled {
-  background: lighten(@danger, 5%);
-  &:hover,
-  &:focus {
-    background: lighten(@danger, 5%);
-  }
-  &:active,
-  &.active {
-    background: lighten(@danger, 5%) !important;
-  }
-}
-
-.btn-success {
-  background: @success;
-  color: white !important;
-  &:hover,
-  &:focus {
-    background: darken(@success, 5%);
-    text-decoration: none;
-  }
-  &:active,
-  &.active {
-    outline: 0;
-    background: darken(@success, 5%) !important;
-  }
-}
-
-.btn-success[disabled],
-.btn-success.disabled {
-  background: lighten(@success, 5%);
-  &:hover,
-  &:focus {
-    background: lighten(@success, 5%);
-  }
-  &:active,
-  &.active {
-    background: lighten(@success, 5%) !important;
-  }
-}
-
-.btn-warning {
-  background: @warning;
-  color: white !important;
-  &:hover,
-  &:focus {
-    background: darken(@warning, 2%);
-    text-decoration: none;
-  }
-  &:active,
-  &.active {
-    outline: 0;
-    background: darken(@warning, 2%) !important;
-  }
-}
-
-.btn-warning[disabled],
-.btn-warning.disabled {
-  background: lighten(@warning, 5%);
-  &:hover,
-  &:focus {
-    background: lighten(@warning, 5%);
-  }
-  &:active,
-  &.active {
-    background: lighten(@warning, 5%) !important;
-  }
 }
 
 //
