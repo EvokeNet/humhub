@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\prize\controllers;
+namespace app\modules\marketplace\controllers;
 
 use yii\web\Controller;
 

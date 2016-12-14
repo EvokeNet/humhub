@@ -1,8 +1,8 @@
 <?php
 
-namespace app\modules\prize;
+namespace app\modules\marketplace;
 
-use app\modules\prize\models\prize
+use app\modules\marketplace\models\marketplace
 /**
  * Prize Module Definition Class
  */
@@ -12,7 +12,7 @@ use app\modules\prize\models\prize
    /**
     * @inheritdoc
     */
-   public $controllerNamespace = 'app\modules\prize\controllers';
+   public $controllerNamespace = 'app\modules\marketplace\controllers';
 
    public function init()
    {

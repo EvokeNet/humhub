@@ -1,10 +1,9 @@
 <?php
 
-namespace humhub\modules\prize\controllers;
+namespace humhub\modules\marketplace\controllers;
 
 use Yii;
-use app\modules\prize\models\Prize;
-use app\modules\prize\models\WonPrize;
+use app\modules\marketplace\models\Product;
 use humhub\modules\user\models\User;
 use app\models\UploadForm;
 use yii\web\UploadedFile;
@@ -19,14 +18,14 @@ class AdminController extends \humhub\modules\admin\components\Controller
 
     public function actionIndex()
     {
-        $prizes = Prize::find()->all();
+        $products = Product::find()->all();
 
-        return $this->render('prize/index', array('prizes' => $prizes));
+        return $this->render('products/index', array('products' => $products));
     }
 
     public function actionCreate()
     {
-      $model = new Prize();
+      $model = new Product();
 
       if ($model->load(Yii::$app->request->post())) {
         $uploadedFile = UploadedFile::getInstance($model, 'image');
@@ -44,7 +43,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
             return $this->redirect(['index']);
       }
 
-      return $this->render('prize/create', array('model' => $model));
+      return $this->render('products/create', array('model' => $model));
     }
 
     public function actionUpdate($id)

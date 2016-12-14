@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\marketpalce\models;
+namespace app\modules\marketplace\models;
 
 use Yii;
 
@@ -29,8 +29,7 @@ use Yii;
          ['name', 'required'],
          ['name', 'string', 'max' => 256],
          ['quantity', 'integer'],
-         ['week_of', 'date', 'format' => 'yyyy-MM-dd'],
-         ['weight', 'integer', 'min' => 0],
+         ['price', 'integer', 'min' => 0],
          ['description', 'string'],
          ['image', 'string', 'max' => 256]
        ];
@@ -42,13 +41,13 @@ use Yii;
       public function attributeLabels()
       {
         return [
-          'id' => Yii::t('PrizeModule.base', 'ID'),
-          'name' => Yii::t('PrizeModule.base', 'Name'),
-          'week_of' => Yii::t('PrizeModule.base', 'Week of'),
-          'weight' => Yii::t('PrizeModule.base', 'Weight'),
-          'quantity' => Yii::t('PrizeModule.base', 'Quantity'),
-          'description' => Yii::t('PrizeModule.base', 'Description'),
-          'image' => Yii::t('PrizeModule.base', "Image"),
+          'id' => Yii::t('MarketplaceModule.base', 'ID'),
+          'name' => Yii::t('MarketplaceModule.base', 'Name'),
+          'week_of' => Yii::t('MarketplaceModule.base', 'Week of'),
+          'price' => Yii::t('MarketplaceModule.base', 'Price'),
+          'quantity' => Yii::t('MarketplaceModule.base', 'Quantity'),
+          'description' => Yii::t('MarketplaceModule.base', 'Description'),
+          'image' => Yii::t('MarketplaceModule.base', "Image"),
         ];
       }
 

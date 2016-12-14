@@ -6,12 +6,19 @@ class m161214_000246_products extends Migration
 {
     public function up()
     {
-
+      $this->createTable('products', [
+          'id' => $this->primaryKey(),
+          'name' => $this->string()->notNull(),
+          'description' => $this->string(),
+          'created_at' => $this->dateTime()->notNull(),
+          'price' => $this->integer() . ' UNSIGNED NOT NULL',
+          'quantity' => $this->integer()->defaultValue(0),
+      ]);
     }
 
     public function down()
     {
-        echo "m161214_000246_products cannot be reverted.\n";
+        $this->dropTable('products');
 
         return false;
     }
