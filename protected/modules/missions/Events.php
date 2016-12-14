@@ -17,6 +17,7 @@ use humhub\modules\missions\widgets\CTAPostEvidence;
 use humhub\modules\missions\widgets\PopUpWidget;
 use humhub\modules\missions\widgets\PlayerStats;
 use humhub\modules\missions\widgets\PortfolioWidget;
+use humhub\modules\missions\widgets\GiftEvocoinWidget;
 use humhub\modules\missions\widgets\CreateATeamWidget;
 
 use humhub\modules\space\models\Space;
@@ -96,7 +97,6 @@ class Events
                 $portfolio = Portfolio::getUserPortfolio($user->id);
                 $event->sender->addWidget(PortfolioWidget::className(), ['portfolio' => $portfolio], array('sortOrder' => 8));    
             }
-
         }
 
     }
@@ -612,6 +612,7 @@ class Events
             if(Yii::$app->user->getIdentity()->id != $event->sender->user->id){
                 $userPowers = UserPowers::getUserPowers(Yii::$app->user->getIdentity()->id);
                 $event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers], array('sortOrder' => 9));
+                $event->sender->addWidget(GiftEvocoinWidget::className(), ['user' => $event->sender->user], array('sortOrder' => 7));    
             }
 
             $event->sender->addWidget(PopUpWidget::className(), []);    
