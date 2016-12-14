@@ -75,28 +75,26 @@ if($team_id){
 
                 <!-- show username with link and creation time-->
                 <h4 class="media-heading" style = "margin-bottom:5px">
-                    <a href="<?php echo $user->getUrl(); ?>">
-                        <?php if($team): ?>
-                            <?php echo Yii::t('ContentModule.views_wallLayout', '{name} @ {team} {date}', array('name' => $user->displayName, 'team' => $team->name, 'date' => date('F j, Y', strtotime($object->content->created_at)))); ?>
-                        <?php else: ?>
-                            <?php echo Yii::t('ContentModule.views_wallLayout', '{name} {date}', array('name' => $user->displayName, 'date' => date('F j, Y', strtotime($object->content->created_at)))); ?>
-                        <?php endif ?> 
-                    </a>
+                    <?php if (!$object instanceof \humhub\modules\post\models\Post) : ?>
+                        <!-- <span class="label label-border pull-right"><?php //echo $object->getContentName(); ?></span> -->
+                        <a href="<?php echo $user->getUrl(); ?>">
+                            <?php //echo Yii::t('ContentModule.views_wallLayout', '{name} created a new <span class="label label-border">{content}</span>', array('name' => $user->displayName, 'content' => $object->getContentName())); ?>
+                            <?php echo Yii::t('ContentModule.views_wallLayout', '{name} created a new {content}', array('name' => $user->displayName, 'content' => $object->getContentName())); ?>
+                        </a>
+                    <?php else: ?>
+                        <a href="<?php echo $user->getUrl(); ?>">
+                            <?php echo Yii::t('ContentModule.views_wallLayout', '{name}', array('name' => $user->displayName)); ?>
+                        </a>
+                    <?php endif; ?>
                 </h4>
                 
                 <span>
-                        <?php //echo \humhub\widgets\TimeAgo::widget(['timestamp' => $object->content->created_at]); ?>
 
-                        <?php if ($object->content->created_at !== $object->content->updated_at && $object->content->updated_at != ''): ?>
-                            (<?php echo Yii::t('ContentModule.views_wallLayout', 'Updated :timeago', array(':timeago' => \humhub\widgets\TimeAgo::widget(['timestamp' => $object->content->updated_at]))); ?>)
-                        <?php endif; ?>
+                    <?php if (!Yii::$app->controller instanceof ContentContainerController && $container instanceof Space): ?>
+                        <?php echo Yii::t('ContentModule.views_wallLayout', '{date} in', array('date' => date('F j, Y', strtotime($object->content->created_at)))); ?> <strong><a href="<?php echo $container->getUrl(); ?>"><?php echo Html::encode($container->name); ?></a></strong>&nbsp;
+                    <?php endif; ?>
 
-                        <?php if (!Yii::$app->controller instanceof ContentContainerController && $container instanceof Space): ?>
-                            <?php echo Yii::t('ContentModule.views_wallLayout', 'in'); ?> <strong><a
-                                    href="<?php echo $container->getUrl(); ?>"><?php echo Html::encode($container->name); ?></a></strong>&nbsp;
-                        <?php endif; ?>
-
-                        <?php //echo \humhub\modules\content\widgets\WallEntryLabels::widget(['object' => $object]); ?>
+                    <?php //echo \humhub\modules\content\widgets\WallEntryLabels::widget(['object' => $object]); ?>
                    
                 </span>
                 <!--<h5><?php //echo Html::encode($user->profile->title); ?></h5>-->
@@ -105,9 +103,6 @@ if($team_id){
             <hr/>
 
             <div class="content" id="wall_content_<?php echo $object->getUniqueId(); ?>">
-                <?php if (!$object instanceof \humhub\modules\post\models\Post) : ?>
-                    <span class="label label-border pull-right"><?php echo $object->getContentName(); ?></span>
-                <?php endif; ?>
                 <?php echo $content; ?>
             </div>
 

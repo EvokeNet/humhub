@@ -34,8 +34,13 @@
 @secondary2: #FF5252;
 @secondary3: #FFC107;
 
-@tertiary1: #43A047;
+@tertiary1: #8BC34A;
 @tertiary2: #D81B60;
+
+@body_color: #FAFAFA;
+
+@primary-gray: #F4F4F4;
+@secondary-gray: #C2C2C2;
 
 @background_grey1: #8E99A2;
 @background_grey2: #F6F7F9;
@@ -103,7 +108,7 @@ p{
 
 body {
   padding-top: 130px;
-  background-color: @background_grey2;
+  background-color: @body_color;
   color: @primary1;
   font-family: @heading_font;
   a,
@@ -321,18 +326,21 @@ textarea {
 // Mixins
 .heading {
   // font-size: 16px;
-  font-weight: 700;
+  /*font-weight: 700;*/
   font-family: @heading_font;
-  color: @primary1;
-  background-color:  #ADBCFF; //lighten(@primary3, 30%); //@heading-color; //darken(@primary3, 5%); //@secondary2; //white;
+  color: #FFFFFF!important;
+  background-color:  @primary3;
   border: none;
+  text-transform: uppercase;
   // padding: 10px;
   // padding: 12px 12px 10px;
-  padding: 12px 20px 9px;
+  /*padding: 12px 20px 9px;*/
   // padding: 15px 10px;
-  font-size: 12pt;
+  /*font-size: 12pt;*/
   // margin: 5px 10px;
-  border-bottom: 2px solid darken(#ADBCFF, 10%); //2px solid darken(@heading-color, 10%); //2px solid darken(@primary3, 10%); //darken(@secondary2, 5%); //#EDEDED;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 2px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 2px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 2px;
 }
 
 .text-center {
@@ -440,6 +448,10 @@ input[type=select] {
   font-weight:700;
 }
 
+.breadcrumb > li.active, .breadcrumb > li > a{
+  font-size: 9pt;
+}
+
 .display-inline{
   display:inline;
 }
@@ -509,10 +521,14 @@ input[type=select] {
   ul.nav > li > a {
     padding-top: 15px;
     padding-bottom: 15px;
-    line-height: 20px;
+    line-height: 19px;
   }
   .dropdown-footer {
-    margin: 10px;
+    margin: 7px 14px;
+
+    a.btn{
+      margin-bottom:10px;
+    }
   }
   .dropdown-header {
     font-size: 16px;
@@ -735,7 +751,7 @@ input[type=select] {
 
 #topbar-second {
   top: 50px;
-  background-color: lighten(@primary1, 10%); //darken(@primary3, 5%); //#1CEEEE; //@white; //#2B2C31;
+  background-color: lighten(@primary1, 5%); //darken(@primary3, 5%); //#1CEEEE; //@white; //#2B2C31;
   z-index: 1029;
   background-image: none;
   -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
@@ -814,7 +830,8 @@ input[type=select] {
 
   .nav > li.active > a {
     min-height: 46px;
-    color: @primary1;
+    background-color: lighten(@primary1, 2%);
+    color: #FFFFFF;
   }
   .nav > li > a#space-menu {
     padding-right: 13px;
@@ -827,7 +844,8 @@ input[type=select] {
   .nav > li > a:hover,
   .nav .open > a,
   .nav > li.active {
-    .topbar-second-icons;
+    background-color: lighten(@primary1, 2%);
+    color: #FFFFFF;
   }
   .nav > li.active > a:hover {
     border-bottom: none;
@@ -884,15 +902,13 @@ input[type=select] {
 // --------------------------------------------------
 .media-list {
   li {
-    padding: 10px;
-    // border-bottom: 1px solid #eee;
+    padding: 10px 15px;
     position: relative;
     // border-left: 3px solid white;
     // font-size: 12px;
 
-    border: 1px solid #EDEDED;
-    font-size: 9pt;
-    margin: 5px;
+    /*border-bottom: 1px solid #EDEDED;*/
+    
     font-family: @heading_font;
     a {
       color: @font3;
@@ -914,7 +930,7 @@ input[type=select] {
   li:hover,
   li.selected {
     background-color: @background1;
-    border-left: 3px solid @info;
+    /*border-left: 3px solid @info;*/
   }
 }
 
@@ -1043,10 +1059,10 @@ input[type=select] {
 .panel {
   border: none;
   background-color: #fff;
-  box-shadow: 0 0 3px #dadada;
-  -webkit-box-shadow: 0 0 3px #dadada;
-  -moz-box-shadow: 0 0 3px #dadada;
-  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  /*border-radius: 4px;*/
   position: relative;
   // h1 {
   //   font-size: 16px;
@@ -1054,7 +1070,15 @@ input[type=select] {
   //   margin-top: 0;
   //   color: @font3;
   // }
-  h1{
+  h1, h2, h3, h4, h5, h6{
+    color: #FFFFFF;
+  }
+  
+  h1, h2, h3, h4, h5, h6, p{
+    .header-font
+  }
+
+  /*h1{
     font-family: @heading_font;
     font-size: 30pt;
     font-weight: 700;
@@ -1089,23 +1113,24 @@ input[type=select] {
     font-family: @text_font;
     font-weight: 400;
     font-size: 12pt;
-  }
+  }*/
   .panel-heading {
     // font-family:@heading_font;
     // text-transform: uppercase;
     // font-size: 14pt;
     .heading;
-    border-radius: 4px;
+    /*border-radius: 4px;*/
   }
   .panel-body {
-    // padding: 10px;
-    padding: 15px 25px;
+    /*padding: 10px;*/
+    /*padding: 15px 25px;*/
+    padding: 10px 20px;
     // font-size: 13px;
     // p {
     //   color: @font3;
     //   font-size: 16px;
     // }
-    h1{
+    /*h1{
       font-family: @heading_font;
       font-size: 30pt;
       font-weight: 700;
@@ -1134,7 +1159,7 @@ input[type=select] {
     h6{
       font-size: 14pt;
       .header-font
-    }
+    }*/
 
     p{
       font-family: @text_font;
@@ -1143,14 +1168,15 @@ input[type=select] {
     }
   }
   .statistics {
+    /*text-align: center;*/
     .entry {
       margin-left: 20px;
       // font-size: 12px;
-      font-size: 12pt;
+      font-size: 8pt;
       .count {
         color: @info;
         font-weight: 600;
-        font-size: 20px;
+        font-size: 12pt;
         line-height: 0.8em;
       }
     }
@@ -1373,11 +1399,11 @@ input[type=select] {
 .well {
   border: none;
   box-shadow: none;
-  background-color: @background2;
+  background-color: @primary-gray;
   margin-bottom: 1px;
   hr {
     margin: 15px 0 10px;
-    border-top: 1px solid darken(@background2, 8%);
+    border-top: 1px solid @secondary-gray;
   }
   table > thead {
     font-size: 11px;
@@ -1388,9 +1414,9 @@ input[type=select] {
 // Thumbnails
 // --------------------------------------------------
 .img-rounded {
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
 }
 
 //
@@ -1580,7 +1606,6 @@ input[type=select] {
   color: #FFFFFF;
   height: 36px;
   line-height: 36px;
-  width: 100%;
   position: relative;
   opacity: 1;
   font-size: 14px;
@@ -1589,6 +1614,7 @@ input[type=select] {
   font-weight: 500;
   margin: 0px;
   padding: 0 16px;
+  border-color: transparent!important;
   &:hover,
   &:focus {
     background: lighten(@primary3, 5%);
@@ -3182,7 +3208,7 @@ img.bounceIn {
 }
 
 .grey-box{
-  background-color: #F6F7F9;
+  background-color: @primary-gray;
   &.formatted{
     padding: 15px;
   }
@@ -3194,10 +3220,10 @@ img.bounceIn {
 
 .members{
   img#space-members{
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    border: 3px solid @primary1;
+    /*border: 3px solid @primary1;*/
     margin-right: 5px;
   }
 }
@@ -3233,20 +3259,22 @@ img.bounceIn {
 }
 
 .activity-number{
-    padding: 3px 5px 5px 10px;
-    border: 2px solid @secondary2;
+    padding: 4px 6px 4px 12px;
+    background-color: @secondary2;
     border-radius: 50%;
     margin-right: 10px;
-    color: @secondary2;
+    font-weight: 700;
 }
 
 .mission-number{
-    padding: 6px 15px 8px;
-    border: 2px solid @secondary2;
+    padding: 8px 16px;
+    /*border: 2px solid @secondary2;*/
+    background-color: @secondary2;
     border-radius: 50%;
     margin-right: 10px;
-    color: @secondary2;
-    line-height: 40pt
+    font-size: 14pt;
+    color: @primary1;
+    font-weight: 700;
 }
 
 .blue-border{
@@ -3254,9 +3282,13 @@ img.bounceIn {
   margin: 50px 200px;
 }
 
+.fuchsia-border{
+  border-bottom: 3px solid @tertiary2;
+  margin: 50px 200px 0px;
+}
+
 .evidence_area{
-    padding: 15px;
-    border-radius: 4px
+    padding: 5px;
 }
 
 .blur{
@@ -3270,25 +3302,43 @@ img.bounceIn {
 }
 
 .evidence-mission-box{
-  padding: 0px 15px 5px;
-  background: lighten(@primary1, 70%); //transparent;
-  color: #2A2E32 !important;
-  border: 3px solid #254054;
+  padding: 5px 15px 15px;
+  background-color: #EAEDF1; //transparent;
+  border: 3px solid #A0A8B2;
   margin-top: 30px;
 }
 
 /* Start of Achievements */
+
+.achievements-box{
+  background-color: #EAEDF1;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 5px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 5px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 5px;
+}
 
 .trophy{
 	line-height: 82px; margin-bottom:20px;
 }
 
 .t-icon{
-	float: left; background-color: #19B8B8; padding: 25px; border-radius: 50%; line-height: 10px; opacity: 0.99; color: #F8F8F8;
+	display: inline-block;
+  background-color: @tertiary2;
+  padding: 22px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  line-height: 10px;
+  opacity: 0.99;
+  color: @body_color;
+  margin: 10px;
 }
 
 .trophy-1{
-	line-height: 82px; margin-bottom:20px; background-color: #34DADA;     padding: 10px 15px 5px;
+	line-height: 82px; 
+  margin-bottom:20px; 
+  background-color: @tertiary1; 
+  padding: 10px 15px 5px;
 }
 
 .t-titles{
@@ -3298,12 +3348,13 @@ img.bounceIn {
     display: inline-block;
     width: 55%;
     vertical-align: middle;
-    text-align: right;
+    /*text-align: right;*/
+    margin-top: -15px;
 }
 
 .t-titles span{
-	font-size: 13pt;
-	margin-left:50px;
+	font-size: 12pt;
+	margin-left:20px;
 }
 
 .trophy-title{
@@ -3581,10 +3632,10 @@ img.bounceIn {
 /* missions\views\admin\review\index */
 
 .statistics{
-    font-size: 12px;
+    /*font-size: 12px;
     text-align: right;
-    margin-right: 2%;
-    padding-top: 10px;
+    margin-right: 2%;*/
+    margin-top: 3px;
 }
 
 .activity_area{
@@ -3681,10 +3732,10 @@ https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
 }
 
 .panel .evidence-mission-box h5 {
-  text-transform: uppercase;
+  /*text-transform: uppercase;
   text-align: center;
   margin: 0;
-  text-decoration: underline;
+  text-decoration: underline;*/
 }
 
 .panel .evidence-mission-box h5 a {
@@ -3716,7 +3767,7 @@ https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
 .panel .evidence-mission-box .agent-votes {
   text-align: right;
   float: right;
-  border-left: 2px solid #254054;
+  border-left: 3px solid @tertiary2;
 }
 
 .panel .evidence-mission-box .agent-votes p {

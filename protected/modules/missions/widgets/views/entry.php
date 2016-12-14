@@ -17,11 +17,14 @@ echo Html::beginForm();
 
 <!-- EVIDENCE -->
 <?php if($evidence->content->visibility >= 1): ?>
-    <h5><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h5>
+
+    <h4 style="margin-top:15px"><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h4>
+
     <?php if (Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
-      <h6><?php echo Yii::t('MissionsModule.base', 'By'); ?> <?php echo $name ?></h4>
+      <!-- <h6><?php //echo Yii::t('MissionsModule.base', 'By'); ?> <?php echo $name ?></h6> -->
     <?php endif; ?>
-    <p><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]);?></p>
+
+    <p style="margin:15px 0 30px"><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]);?></p>
 
     <hr>
 
@@ -67,55 +70,57 @@ echo Html::beginForm();
     </ul>
     <?php endif; ?>
 
-    <hr>
-
     <div class = "evidence-mission-box">
-      <h6 style="margin-bottom:10px"><?= Yii::t('MissionsModule.base', 'Mission {mission}, Activity {activity}:', array('mission' => $activity->mission->position, 'activity' => $activity->position)); ?></h6>
-      <h5><?php echo Html::a(
-              (isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title),
-              ['/missions/evidence/show', 'activityId' => $activity->id, 'sguid' => $contentContainer->guid], array('class' => '')); ?></h5>
+      <div style="text-align: center">
+        <span style="margin-bottom: 10px; display: inline-block; margin-top: 10px; font-weight: 700; font-size: 13pt;">
+          <?= Yii::t('MissionsModule.base', 'Mission {mission}, Activity {activity}:', array('mission' => $activity->mission->position, 'activity' => $activity->position)); ?>
+          <?php echo Html::a(
+                (isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title),
+                ['/missions/evidence/show', 'activityId' => $activity->id, 'sguid' => $contentContainer->guid], array('class' => '', 'style' => 'text-decoration: underline')); ?>
+        </span>
+      </div>
 
       <div class="votes-container row" style="margin-top:10px">
 
-        <div class="mentor-votes col-sm-4" style="margin-top:10px; border-right: 2px solid #254054;">
-          <em><?php echo Yii::t('MissionsModule.base', 'Mentor Reviews'); ?></em>
+        <div class="mentor-votes col-xs-6">
+
+          <div class="stars">
+            <?php for ($i = 0; $i < 5; $i++): ?>
+              <?php if ($mentor_average_votes > $i): ?>
+                <?php if (($mentor_average_votes - $i) < 1): ?>
+                  <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                <?php else: ?>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                <?php endif; ?>
+              <?php else: ?>
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+              <?php endif; ?>
+            <?php endfor; ?>
+            <p>
+              <?php echo Yii::t('MissionsModule.base', 'Avg Mentor Rating'); ?>
+            </p>
+          </div>
+
+        </div>
+
+        <div class="agent-votes col-xs-6" style="margin-top:10px; text-align:center">
 
           <div class="rating no-padding-left">
-            <em>
+            <span style="font-size: 9pt; font-weight:700">
               <?php echo Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $mentor_average_votes? number_format((float)$mentor_average_votes, 1, '.', '') : "-")); ?>
-            </em>
-            <em>
+            </span>
+            <span style="font-size: 9pt; font-weight:700">
               <?php echo Yii::t('MissionsModule.base', 'Mentor Reviews: {votes}', array('votes' => $evidence->getVoteCount('Mentors')? $evidence->getVoteCount('Mentors') : "0")) ?>
-            </em>
+            </span>
           </div>
-        </div>
 
-        <div class="stars col-sm-4">
-          <?php for ($i = 0; $i < 5; $i++): ?>
-            <?php if ($mentor_average_votes > $i): ?>
-              <?php if (($mentor_average_votes - $i) < 1): ?>
-                <i class="fa fa-star-half-o" aria-hidden="true"></i>
-              <?php else: ?>
-                <i class="fa fa-star" aria-hidden="true"></i>
-              <?php endif; ?>
-            <?php else: ?>
-              <i class="fa fa-star-o" aria-hidden="true"></i>
-            <?php endif; ?>
-          <?php endfor; ?>
-          <p>
-            <?php echo Yii::t('MissionsModule.base', 'Avg Mentor Rating'); ?>
-          </p>
-        </div>
-        
-        <div class="agent-votes col-sm-4" style="margin-top:10px">
-          <em><?php echo Yii::t('MissionsModule.base', 'Agent Reviews'); ?></em>
           <div class="rating">
-            <em>
+            <span style="font-size: 9pt; font-weight:700">
               <?php echo Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $user_average_votes? number_format((float)$user_average_votes, 1, '.', '') : "-")); ?>
-            </em>
-            <em>
+            </span>
+            <span style="font-size: 9pt; font-weight:700">
               <?php echo Yii::t('MissionsModule.base', 'Agent Reviews: {votes}', array('votes' => $agent_vote_count)) ?>
-            </em>
+            </span>
           </div>
         </div>
 
@@ -144,7 +149,6 @@ echo Html::beginForm();
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h6 class="panel-title">
-
                     <a  style="color:#254054; cursor: default" aria-expanded="false" class="collapsed">
                         <?= Yii::t('MissionsModule.base', 'Mentor Reviews') ?>
                     </a>

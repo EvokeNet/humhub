@@ -15,7 +15,7 @@ $userPowers = UserPowers::getUserPowers($user->id);
             <?php //if($user->group->name != "Mentors"): ?>
             <div class="panel-group">
                 <?php
-                echo \humhub\modules\missions\widgets\HomePageStats::widget();
+                //echo \humhub\modules\missions\widgets\HomePageStats::widget();
 
                 // echo "<br>";
                 // echo \humhub\modules\missions\widgets\SuperPowerStats::widget(['powers' => $userPowers]);

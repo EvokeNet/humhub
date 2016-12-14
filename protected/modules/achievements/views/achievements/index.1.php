@@ -43,28 +43,17 @@
 
                             if($is_there): ?>
 
-                                <!-- <div class="achievements-box row" style="line-height: 82px;">
-                                    <div class="col-sm-3"><div class="t-icon"><i class="fa fa-trophy fa-2x" aria-hidden="true"></i></div></div>
-                                    <div class="col-sm-9">
-                                        <span data-toggle="tooltip" data-placement="top" title="<?php echo $a_desc; ?>"><?php echo $a_title; ?></span>
-                                        <span><?php echo $a_desc; ?></span>
-                                    </div>
-                                    
-
-                                    
-                                </div> -->
-
-                                <div class="achievements-box" style="line-height: 82px;" style="margin-top:15px">
+                                <div class="trophy-1">
                                     <div class="t-icon"><i class="fa fa-trophy fa-2x" aria-hidden="true"></i></div>
-                                    <div class="t-titles"><span data-toggle="tooltip" data-placement="top"  title="<?php echo $a_desc; ?>"><?php echo $a_title; ?></span></div>
-                                </div><br />
+                                    <div class="t-titles"><span data-toggle="tooltip" data-placement="top" title="<?php echo $a_desc; ?>"><?php echo $a_title; ?></span></div>
+                                </div>
 
 				    		<?php else: ?>
 	
-				    			<div class="achievements-box t-opaque" style="line-height: 82px;" style="margin-top:15px">
+				    			<div class="trophy-1 t-opaque">
 				    				<div class="t-icon"><i class="fa fa-trophy fa-2x" aria-hidden="true"></i></div>
 				    				<div class="t-titles"><span data-toggle="tooltip" data-placement="top"  title="<?php echo $a_desc; ?>"><?php echo $a_title; ?></span></div>
-				    			</div><br />
+				    			</div>
 
 				    		<?php endif; ?>
 				    		

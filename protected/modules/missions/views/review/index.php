@@ -29,8 +29,18 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
             <p><?php echo nl2br(isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description) ?></p>
         </div>
 
-        <div class="grey-box evidence_area">
-            <h4><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h4>
+        <div class="evidence-mission-box evidence_area">
+            <h5 style="color:#263238"><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h5>
+
+            <?php if(Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
+                    <?php //echo \humhub\widgets\TimeAgo::widget(['timestamp' => $evidence->created_at]); ?>
+                    <span style="font-size:10pt"><?php echo Yii::t('MissionsModule.base', 'By Anonymous in {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $evidence->created_at]))); ?></span><br />
+                <?php else: ?>
+                    <span style="font-size:10pt"><?php echo Yii::t('MissionsModule.base', 'By {user} in {time}', array(
+                    'user' => Html::a($evidence->content->user->username, ['/user/profile', 'uguid' => $evidence->content->user->guid]),
+                    'time' => date('F j, Y', strtotime($evidence->created_at)))); ?></span><br />
+                <?php endif; ?>
+
             <br />
             <p><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]); ?></p>
 
@@ -49,16 +59,8 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
             </div>
             <?php endif;?>
 
-            <div class="statistics">
-                <?php if(Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
-                    <?php //echo \humhub\widgets\TimeAgo::widget(['timestamp' => $evidence->created_at]); ?>
-                    <p><?php echo Yii::t('MissionsModule.base', 'By Anonymous, {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $evidence->created_at]))); ?></p>
-                <?php else: ?>
-                    <p><?php echo Yii::t('MissionsModule.base', 'By'); ?></p>
-                    <a href="<?= ($evidence->content->user->getUrl()) ?>">
-                        <?= ($evidence->content->user->username) ?>
-                    </a>,
-                    <?php echo \humhub\widgets\TimeAgo::widget(['timestamp' => $evidence->created_at]); ?>
+            <div style="font-size:9pt">
+                <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
                     <br>
                     <?= Yii::t('MissionsModule.base', 'Votes: {votes}', array('votes' => $evidence->getVoteCount() ? $evidence->getVoteCount() : "0")) ?>
                     <br>
@@ -71,9 +73,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
         <!-- REVIEWS SECTION -->
         <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
 
-            <div class = "text-center"><div class = "blue-border"></div></div>
-
-            <div class="panel-group">
+            <div class="panel-group" style="margin-top:40px">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h6 class="panel-title">
@@ -117,7 +117,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
 
         <?php endif; ?>
 
-        <div class = "text-center"><div class = "blue-border"></div></div>
+        <div class = "text-center"><div class = "fuchsia-border"></div></div>
 
         <div class="review evidence_area">
         <?php if($evidence->content->user_id != Yii::$app->user->getIdentity()->id): ?>
@@ -166,8 +166,8 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                         <?php echo Html::textArea("text", $comment , array('id' => 'review_comment', 'class' => 'text-margin form-control count-chars ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "140 characters required"))); ?>
                         <br>
                         
-                        <button type="submit" id="post_submit_review" class="btn btn-cta2" style = "padding: 8px 16px 6px;">
-                        <?= Yii::t('MissionsModule.base', 'Submit Review') ?>
+                        <button type="submit" id="post_submit_review" class="btn btn-cta2">
+                            <?= Yii::t('MissionsModule.base', 'Submit Review') ?>
                         </button>
                             
                 </div>

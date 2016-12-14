@@ -5,7 +5,7 @@ namespace humhub\modules\missions\widgets;
 use Yii;
 use \yii\base\Widget;
 
-class HomePageStatsWidget extends \yii\base\Widget
+class EvocoinsReview extends \yii\base\Widget
 {
 
 	public $powers;
@@ -15,7 +15,7 @@ class HomePageStatsWidget extends \yii\base\Widget
      */
     public function run()
     {
-        return $this->render('home_page_stats', []);
+        return $this->render('evocoins_review', []);
     }
 
 }

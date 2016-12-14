@@ -47,20 +47,21 @@ $user = Yii::$app->user->getIdentity();
              <li class="with-sub-list">
                   <?php $space = Space::findOne($team->id) ?>
 
-                  <!-- Evidence Count -->
-                  <div class="pull-right">
-                      <strong><?php echo Yii::t('MissionsModule.base', 'Reviewed'); ?>:</strong>
-                      <?php echo $team->getReviewedEvidenceCount($user->id); ?>
-                      &nbsp;/&nbsp;
-                      <?php echo $team->getEvidenceCount();?>
-                  </div>
-
                   <div class="media">
+
+                      <!-- Evidence Count -->
+                      <div class="pull-right">
+                          <strong><?php echo Yii::t('MissionsModule.base', 'Reviewed'); ?>:</strong>
+                          <?php echo $team->getReviewedEvidenceCount($user->id); ?>
+                          &nbsp;/&nbsp;
+                          <?php echo $team->getEvidenceCount();?>
+                      </div>
+
                       <?php echo \humhub\modules\space\widgets\Image::widget([
                           'space' => $space,
-                          'width' => 50,
+                          'width' => 40,
                           'htmlOptions' => [
-                              'class' => 'media-object',
+                              'class' => 'media-object img-rounded',
                           ],
                           'link' => 'true',
                           'linkOptions' => [
@@ -69,14 +70,13 @@ $user = Yii::$app->user->getIdentity();
                       ]); ?>
 
                       <div class="media-body">
-                          <h4 class="media-heading"><a
-                                  href="<?php echo $team->getUrl(); ?>" class="link-text"><?php echo Html::encode($team->name); ?></a>
-                          </h4>
-                          <h5><?php echo Html::encode(humhub\libs\Helpers::truncateText($team->description, 100)); ?></h5>
+                          <h4 class="media-heading"><a href="<?php echo $team->getUrl(); ?>" class="link-text"><?php echo Html::encode($team->name); ?></a></h4>
+                          <span><?php echo Yii::t('MissionsModule.base', 'Description: {description}', array('description' => Html::encode(humhub\libs\Helpers::truncateText($team->description, 100)))); ?></span>
                       </div>
                   </div>
 
                   <?php $team_members = $team->getTeamMembers(); ?>
+                  <br />
                   <ul class="media-list">
                     <?php foreach ($team_members as $team_member): ?>
                       <a href="<?php echo $team_member->getUrl(); ?>">

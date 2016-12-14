@@ -188,10 +188,8 @@ if ($isProfileOwner) {
                     <div class="statistics pull-left">
 
                         <div class="pull-left entry">
-                            <span class="count"><?php echo $user->getFollowerCount(); ?></span></a>
-                            <br>
-                            <span
-                                class="title"><?php echo Yii::t('StatsModule.widgets_views_profileHeader', 'Followers'); ?></span>
+                            <span class="count"><?php echo $user->getFollowerCount(); ?></span>&nbsp;&nbsp;
+                            <span class="title"><?php echo Yii::t('StatsModule.widgets_views_profileHeader', 'Followers'); ?></span>
                         </div>
 
                         <div class="pull-left entry">
