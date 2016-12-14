@@ -8,6 +8,8 @@ use app\modules\marketplace\models\Product;
 use humhub\modules\user\models\User;
 use app\models\UploadForm;
 use yii\web\UploadedFile;
+use app\modules\coin\models\Coin;
+use app\modules\coin\models\Wallet;
 
 
 /**
@@ -18,8 +20,10 @@ class ProductsController extends Controller
 {
   public function actionIndex(){
     $products = Product::find()->all();
+    $coin_id = Coin::find()->where(['name' => 'EvoCoin'])->one()->id;
+    $wallet = Wallet::find()->where(['owner_id' => Yii::$app->user->id, 'coin_id' => $coin_id])->one();
 
-    return $this->render('index', array('products' => $products));
+    return $this->render('index', array('products' => $products, 'wallet' => $wallet));
   }
 }
 
