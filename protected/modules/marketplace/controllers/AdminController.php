@@ -48,7 +48,8 @@ class AdminController extends \humhub\modules\admin\components\Controller
 
     public function actionUpdate($id)
     {
-        $model = Prize::findOne(['id' => Yii::$app->request->get('id')]);
+        $model = Product::findOne(['id' => Yii::$app->request->get('id')]);
+        $old_image = $model->image;
 
         if ($model->load(Yii::$app->request->post())) {
           $uploadedFile = UploadedFile::getInstance($model, 'image');
@@ -58,6 +59,8 @@ class AdminController extends \humhub\modules\admin\components\Controller
             $model->image = UploadedFile::getInstance($model, 'image');
             $model->image->saveAs('uploads/' . $model->image->baseName . '.' . $model->image->extension);
             $model->image = 'uploads/' . $model->image->baseName . '.' . $model->image->extension;
+          } else {
+            $model->image = $old_image;
           }
 
           if ($model->save()) {
@@ -65,7 +68,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
           }
         }
 
-        return $this->render('prize/update', array('model' => $model));
+        return $this->render('products/update', array('model' => $model));
     }
 
     public function actionDelete()

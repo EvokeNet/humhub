@@ -6,12 +6,12 @@ use yii\widgets\Breadcrumbs;
 /* @var $this yii\web\View */
 /* @var $model app\modules\powers\models\Powers */
 
-$this->title = Yii::t('PrizeModule.base', 'Edit ', [
+$this->title = Yii::t('MarketplaceModule.base', 'Edit ', [
     'modelClass' => 'Powers',
 ]) . $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('PrizeModule.base', 'Powers'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('MarketplaceModule.base', 'Powers'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('PrizeModule.base', 'Edit');
+$this->params['breadcrumbs'][] = Yii::t('MarketplaceModule.base', 'Edit');
 
 echo Breadcrumbs::widget([
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],

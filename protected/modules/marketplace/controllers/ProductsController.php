@@ -19,11 +19,12 @@ use app\modules\coin\models\Wallet;
 class ProductsController extends Controller
 {
   public function actionIndex(){
+    $user = Yii::$app->user->getIdentity();
     $products = Product::find()->all();
     $coin_id = Coin::find()->where(['name' => 'EvoCoin'])->one()->id;
-    $wallet = Wallet::find()->where(['owner_id' => Yii::$app->user->id, 'coin_id' => $coin_id])->one();
+    $wallet = Wallet::find()->where(['owner_id' => $user->id, 'coin_id' => $coin_id])->one();
 
-    return $this->render('index', array('products' => $products, 'wallet' => $wallet));
+    return $this->render('index', array('products' => $products, 'wallet' => $wallet, 'user' => $user));
   }
 }
 

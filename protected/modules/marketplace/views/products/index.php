@@ -10,25 +10,32 @@ $this->pageTitle = Yii::t('MarketplaceModule.base', 'Marketplace');
   <div class="row">
     <div class="col-sm-8 layout-content-container">
       <div class="panel-group">
+        <?php if ($user->group->name == "Mentors"):?>
+
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <h3>Offer your time!</h3>
+            </div>
+          </div>
+
+        <?php endif; ?>
         <div class="panel panel-default">
           <div class="panel-body">
-            <table class="table">
-                <tr>
-                    <th><?php echo Yii::t('MarketplaceModule.base', 'Name'); ?></th>
-                    <th><?php echo Yii::t('MarketplaceModule.base', 'Quantity') ?></th>
-                    <th><?php echo Yii::t('MarketplaceModule.base', 'Price') ?></th>
-                    <th><?php echo Yii::t('MarketplaceModule.base', 'Description') ?></th>
-                </tr>
+
                 <?php foreach ($products as $product): ?>
-                    <tr>
-                        <!--<td><?php //echo $coin->id_code; ?></td>-->
-                        <td><?php echo $product->name; ?></td>
-                        <td><?php echo $product->quantity; ?></td>
-                        <td><?php echo $product->price; ?></td>
-                        <td><?php echo $product->description; ?></td>
-                    </tr>
+                  <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                      <img src='<?php echo  $product->image?>' alt="product image">
+                      <div class="caption">
+                        <h3><?php echo $product->name; ?></h3>
+                        <p><?php echo $product->description; ?></p>
+                        <p><?php echo Yii::t('MarketplaceModule.base', 'Quantity') . ': ' .  $product->quantity; ?></p>
+                        <p><a href="#" class="btn btn-primary" role="button"><?php echo Yii::t('MarketplaceModule.base', 'Buy') ?></a> <?php echo $product->price; ?> evocoin</p>
+                      </div>
+                    </div>
+                  </div>
                 <?php endforeach; ?>
-            </table>
+
           </div>
         </div>
       </div>
