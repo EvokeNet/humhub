@@ -25,32 +25,32 @@
 
 <script type="text/javascript">
 
-// var popUpWatcher = setInterval(function() {
-//
-//     if(! $("#popup-message").is(':visible') ){
-//       loadPopUps();
-//     }
-//
-// }, 1000);
-//
-// function loadPopUps(){
-//     var xhttp = new XMLHttpRequest();
-//     xhttp.onreadystatechange = function() {
-//         if (xhttp.readyState == 4 && xhttp.status == 200) {
-//             if(xhttp.responseText){
-//               var message = JSON.parse(xhttp.responseText);
-//               showMessage(message['title'], message['message']);
-//             }
-//         }
-//     };
-//     xhttp.open("GET", "<?= Url::toRoute('/missions/alert/alert'); ?>" , true);
-//     xhttp.send();
-// }
-//
-// function showMessage(title, message){
-//   document.getElementById("message-title").innerHTML = title;
-//   document.getElementById("message-content").innerHTML = message;
-//   $("#popup-message").modal("show");
-// }
+var popUpWatcher = setInterval(function() {
+
+    if(! $("#popup-message").is(':visible') ){
+      loadPopUps();
+    }
+
+}, 1000);
+
+function loadPopUps(){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            if(xhttp.responseText){
+              var message = JSON.parse(xhttp.responseText);
+              showMessage(message['title'], message['message']);
+            }
+        }
+    };
+    xhttp.open("GET", "<?= Url::toRoute('/missions/alert/alert'); ?>" , true);
+    xhttp.send();
+}
+
+function showMessage(title, message){
+  document.getElementById("message-title").innerHTML = title;
+  document.getElementById("message-content").innerHTML = message;
+  $("#popup-message").modal("show");
+}
 
 </script>
