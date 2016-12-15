@@ -55,6 +55,13 @@ class ProductsController extends Controller
       $product->save();
       $bought_product->save();
 
+      // give evocoin to seller if the product has one
+      if ($product->seller_id > 0) {
+        $seller_wallet = Wallet::find()->where(['owner_id' => $product->seller_id, 'coin_id' => $coin_id])->one();
+        $seller_wallet->amount += $product->price;
+        $seller_wallet->save();
+      }
+
       if ($product->quantity < 1) {
         $sold_out_message = Yii::t('MarketplaceModule.base', 'Sold Out');
       } else {

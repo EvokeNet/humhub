@@ -42,4 +42,5 @@ return [
     'As a mentor you can offer your time to the agents to help with their projects, activities, or offer guidance.' => '',
     'Time' => '',
     'in minutes' => '',
+    'Please describe the nature of the mentoring offered:' => '',
 ];

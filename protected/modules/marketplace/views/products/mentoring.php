@@ -25,7 +25,7 @@ $this->title = Yii::t('MarketplaceModule.base', 'Mentoring');
                     </div>
                     <?php echo $form->field($model, 'quantity')->input('number') ?>
                     <?php echo $form->field($model, 'price')->input('number') ?>
-                    <?php echo $form->field($model, 'description')->textArea(['rows' => 3]); ?>
+                    <?php echo $form->field($model, 'description')->textArea(['rows' => 3])->label(Yii::t('MarketplaceModule.base', 'Please describe the nature of the mentoring offered:')); ?>
 
                     <div class="form-group">
                         <?= Html::submitButton($model->isNewRecord ? Yii::t('MarketplaceModule.base', 'Create') : Yii::t('MarketplaceModule.base', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
