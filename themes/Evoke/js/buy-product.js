@@ -49,6 +49,7 @@ function initBuyButton() {
   }
 
   // extend jquery to animate counts
+  // from: http://codepen.io/jakubtursky/pen/vEwZop
   $.fn.jQuerySimpleCounter = function( options ) {
       var settings = $.extend({
           start:  0,
