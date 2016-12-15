@@ -31,7 +31,7 @@ var popUpWatcher = setInterval(function() {
       loadPopUps();
     }
 
-}, 1000); 
+}, 1000);
 
 function loadPopUps(){
     var xhttp = new XMLHttpRequest();
