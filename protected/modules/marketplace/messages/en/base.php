@@ -43,4 +43,8 @@ return [
     'Time' => '',
     'in minutes' => '',
     'Please describe the nature of the mentoring offered:' => '',
+    'Click to mark as fulfilled' => '',
+    'Fulfilled' => '',
+    'User' => '',
+    
 ];

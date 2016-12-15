@@ -32,6 +32,16 @@ class Events extends \yii\base\Object
         Yii::$app->controller->module && Yii::$app->controller->module->id == 'marketplace'
       )
     ));
+    $event->sender->addItem(array(
+      'label' => Yii::t('MarketplaceModule.base', 'Bought Products'),
+      'url' => Url::to(['/marketplace/admin/bought-products']),
+      'group' => 'manage',
+      'sortOrder' => 1300,
+      'icon' => '<i class="fa fa-shopping-cart"></i>',
+      'isActive' => (
+        Yii::$app->controller->module && Yii::$app->controller->module->id == 'marketplace'
+      )
+    ));
   }
 
   public static function onTopMenuInit($event)

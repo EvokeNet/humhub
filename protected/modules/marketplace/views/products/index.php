@@ -36,8 +36,16 @@ $this->pageTitle = Yii::t('MarketplaceModule.base', 'Marketplace');
                     <div class="row is-flex">
                   <?php endif; ?>
 
+                  <?php
+                    if ($product->quantity < 1) {
+                      $is_sold_out = ' sold-out';
+                    } else {
+                      $is_sold_out = '';
+                    }
+                  ?>
+
                   <div class="col-sm-6 col-md-4 product-containe">
-                    <div class="thumbnail product">
+                    <div class='thumbnail product<?php echo $is_sold_out ?>'>
                       <div class="product-image" style="background-image: url('<?php echo  $product->image?>')"></div>
                       <div class="caption">
                         <h3 class="product-name"><?php echo $product->name; ?></h3>

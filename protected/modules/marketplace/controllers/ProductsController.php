@@ -21,7 +21,7 @@ class ProductsController extends Controller
 {
   public function actionIndex(){
     $user = Yii::$app->user->getIdentity();
-    $products = Product::find()->all();
+    $products = Product::find()->orderBy('quantity DESC')->all();
     $coin_id = Coin::find()->where(['name' => 'EvoCoin'])->one()->id;
     $wallet = Wallet::find()->where(['owner_id' => $user->id, 'coin_id' => $coin_id])->one();
 

@@ -3551,3 +3551,52 @@ img.bounceIn {
   border: 3px solid #254054;
   margin-top: 30px;
 }
+
+.thumbnail .product-image {
+  width: 100%;
+  padding-bottom: 14em;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0 auto;;
+}
+
+h3.product-name {
+  font-size: 2em;
+}
+
+.row.is-flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+.row.is-flex > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+}
+
+.thumbnail.product {
+  position: relative;
+  height: 100%;
+}
+
+.thumbnail.product .purchase {
+  position: absolute;
+  bottom: 1em;
+  left: 1em;
+}
+
+.thumbnail.product .caption {
+  padding-bottom: 4em;
+}
+
+.thumbnail.product.sold-out:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.2);
+}

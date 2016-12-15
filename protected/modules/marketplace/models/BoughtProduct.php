@@ -56,6 +56,10 @@ use app\modules\marketplace\models\Product;
         return User::find()->where(['id' => $this->user_id])->one();
       }
 
+      public function getUserName() {
+        return User::find()->where(['id' => $this->user_id])->one()->getName();
+      }
+
       public function getProduct() {
         return Product::find()->where(['id' => $this->product_id])->one();
       }
