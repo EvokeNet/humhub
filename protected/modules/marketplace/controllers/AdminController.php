@@ -85,7 +85,10 @@ class AdminController extends \humhub\modules\admin\components\Controller
     }
 
     public function actionBoughtProducts() {
-      $bought_products = BoughtProduct::find()->all();
+      $bought_products = BoughtProduct::find()
+                         ->joinWith('product')
+                         ->where(['products.seller_id' => -1])
+                         ->all();
 
       return $this->render('bought_products/index', array('bought_products' => $bought_products));
     }

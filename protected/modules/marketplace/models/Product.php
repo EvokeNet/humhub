@@ -67,4 +67,8 @@ use Yii;
            return false;
          }
        }
+
+       public function getBoughtProducts() {
+         return $this->hasMany(BoughtProduct::className(), ['product_id' => 'id']);
+       }
  }

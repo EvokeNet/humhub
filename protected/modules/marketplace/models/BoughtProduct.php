@@ -61,7 +61,7 @@ use app\modules\marketplace\models\Product;
       }
 
       public function getProduct() {
-        return Product::find()->where(['id' => $this->product_id])->one();
+        return $this->hasOne(Product::className(), ['id' => 'product_id']);
       }
 
       public function getProductName() {
