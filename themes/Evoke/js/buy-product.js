@@ -16,7 +16,7 @@ function setBuyButtonListeners($buyButton) {
             $userEvocoins = $('#userEvocoins');
             $productQuantity = $('#product' + productID + 'Quantity');
 
-            $userEvocoins.text(response.wallet_amount);
+            $userEvocoins.jQuerySimpleCounter({start: $userEvocoins.text(),end: response.wallet_amount});
             $productQuantity.text(response.product_quantity);
 
             if (response.product_quantity < 1) {
@@ -47,6 +47,29 @@ function initBuyButton() {
      }, 10);  // Try again every 10 ms..
      return;
   }
+
+  // extend jquery to animate counts
+  $.fn.jQuerySimpleCounter = function( options ) {
+      var settings = $.extend({
+          start:  0,
+          end:    100,
+          easing: 'swing',
+          duration: 400,
+          complete: ''
+      }, options );
+
+      var thisElement = $(this);
+
+      $({count: settings.start}).animate({count: settings.end}, {
+      duration: settings.duration,
+      easing: settings.easing,
+      step: function() {
+        var mathCount = Math.ceil(this.count);
+        thisElement.text(mathCount);
+      },
+      complete: settings.complete
+    });
+  };
 
   $(document).ready(function(){
     $('.purchase').each(function(index, element){
