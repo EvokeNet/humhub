@@ -28,6 +28,7 @@ class ProductsController extends Controller
     return $this->render('index', ['products' => $products, 'wallet' => $wallet, 'user' => $user]);
   }
 
+  // action for buying products on the marketplace page
   public function actionBuy() {
     $product_id = Yii::$app->request->get('product_id');
     $product = Product::findOne(['id' => $product_id]);
@@ -67,6 +68,25 @@ class ProductsController extends Controller
 
 
     return $response;
+  }
+
+  // action to create a product for mentoring on marketplace page
+  public function actionMentoring() {
+    $model = new Product();
+    $user = Yii::$app->user->getIdentity();
+
+    if ($model->load(Yii::$app->request->post())) {
+      $model->name = Yii::$app->request->post()['time'] . ' - ' . $user->getName();
+      $model->seller_id = $user->id;
+      $model->image = $user->getProfileImage()->getUrl();
+
+      $model->created_at = date("Y-m-d H:i:s");
+
+      if($model->save())
+          return $this->redirect(['index']);
+    }
+
+    return $this->render('mentoring', ['user' => $user, 'model' => $model]);
   }
 }
 

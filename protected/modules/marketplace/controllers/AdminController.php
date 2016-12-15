@@ -38,6 +38,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
         }
 
         $model->created_at = date("Y-m-d H:i:s");
+        $model->seller_id = -1;
 
         if($model->save())
             return $this->redirect(['index']);
