@@ -36,16 +36,19 @@ $this->pageTitle = Yii::t('MarketplaceModule.base', 'Marketplace');
                       <div class="caption">
                         <h3 class="product-name"><?php echo $product->name; ?></h3>
                         <p><?php echo $product->description; ?></p>
-                        <p><?php echo Yii::t('MarketplaceModule.base', 'Quantity') . ': ' .  $product->quantity; ?></p>
+                        <p><?php echo Yii::t('MarketplaceModule.base', 'Quantity') . ': '; ?><span id='<?php echo "product" . $product->id . "Quantity" ?>'><?php echo $product->quantity; ?></span></p>
                       </div>
-                      <div class="purchase"><a href="#" class="btn btn-primary" role="button"><?php echo Yii::t('MarketplaceModule.base', 'Buy') ?></a> <?php echo $product->price; ?> evocoin</div>
+                      <?php if($product->quantity >= 1): ?>
+                        <div id='purchaseProduct<?php echo $product->id ?>' class="purchase"><a class="buy-button btn btn-success" id="buy-<?php echo $product->id ?>" href="#" role="button"><?php echo Yii::t('MarketplaceModule.base', 'Buy') ?></a> <?php echo $product->price; ?> evocoin</div>
+                      <?php else: ?>
+                        <p><?php echo Yii::t('MarketplaceModule.base', 'Sold Out'); ?></p>
+                      <?php endif; ?>
                     </div>
                   </div>
                   <?php if ($index == (count($products) - 1)): ?>
                     </div>
                   <?php endif; ?>
                 <?php endforeach; ?>
-
           </div>
         </div>
       </div>

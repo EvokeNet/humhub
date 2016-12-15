@@ -58,4 +58,13 @@ use Yii;
        {
          return $this->name;
        }
+
+       public function buyOne() {
+         if ($this->quantity > 0) {
+           $this->quantity--;
+           return true;
+         } else {
+           return false;
+         }
+       }
  }
