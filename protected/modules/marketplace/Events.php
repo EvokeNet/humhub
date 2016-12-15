@@ -29,7 +29,7 @@ class Events extends \yii\base\Object
       'sortOrder' => 1300,
       'icon' => '<i class="fa fa-shopping-cart"></i>',
       'isActive' => (
-        Yii::$app->controller->module && Yii::$app->controller->module->id == 'marketplace'
+        Yii::$app->controller->module && Yii::$app->controller->module->id == 'marketplace' && Yii::$app->controller->action->id != 'bought-products'
       )
     ));
     $event->sender->addItem(array(
@@ -39,7 +39,7 @@ class Events extends \yii\base\Object
       'sortOrder' => 1300,
       'icon' => '<i class="fa fa-shopping-cart"></i>',
       'isActive' => (
-        Yii::$app->controller->module && Yii::$app->controller->module->id == 'marketplace'
+        Yii::$app->controller->module && Yii::$app->controller->module->id == 'marketplace' && Yii::$app->controller->action->id == 'bought-products'
       )
     ));
   }
