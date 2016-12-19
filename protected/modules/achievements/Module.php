@@ -6,7 +6,7 @@ use Yii;
 use humhub\models\Setting;
 use yii\helpers\Url;
 
-use app\modules\achievements\models\Languages;
+use app\modules\languages\models\Languages;
 
 class Module extends \humhub\components\Module
 {
