@@ -20,8 +20,6 @@ protected/runtime/*
 
 protected/runtime/searchdb/*
 !protected/runtime/searchdb/.gitignore
-
-uploads/*
 ​
 protected/modules/books
 protected/modules/cfiles
