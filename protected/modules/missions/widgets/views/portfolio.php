@@ -56,6 +56,7 @@ $deadline = EvokationDeadline::getVotingDeadline();
                         <div class="input-group spinner">
                             <input id = "evokation_<?= $evokation_investment->evokation_id ?>" type="text" class="form-control investment_input" value="<?= $evokation_investment->investment ?>">
                             <input id = "oldvalue" type="hidden" value="<?= $evokation_investment->investment ?>">
+                            <!--
                             <div class="input-group-btn-vertical">
                                 <button class="btn btn-default" type="button">
                                     <i class="fa fa-caret-up"></i>
@@ -64,6 +65,7 @@ $deadline = EvokationDeadline::getVotingDeadline();
                                     <i class="fa fa-caret-down"></i>
                                 </button>
                             </div>
+                            -->
                         </div>
                         <a href='#' onclick="deleteEvokation(<?= $evokation_investment->evokation_id ?>);">
                             <span class="glyphicon glyphicon-trash" style ="color: #FB656F; top:15px; left:5px"></span>
@@ -184,14 +186,14 @@ $deadline = EvokationDeadline::getVotingDeadline();
                         html += "<div class='input-group spinner'>";
                             html += "<input id = 'evokation_"+id+"' type='text' class='form-control investment_input' value='"+investment+"''>";
                             html += "<input id = 'oldvalue' type='hidden' value='"+investment+"'>";
-                            html += "<div class='input-group-btn-vertical'>";
-                                html += "<button class='btn btn-default' type='button'>";
-                                    html += "<i class='fa fa-caret-up'></i>"
-                                html += "</button>";
-                                html += "<button class='btn btn-default' type='button'>";
-                                    html += "<i class='fa fa-caret-down'></i>"
-                                html += "</button>";
-                            html += "</div>";
+                            // html += "<div class='input-group-btn-vertical'>";
+                            //     html += "<button class='btn btn-default' type='button'>";
+                            //         html += "<i class='fa fa-caret-up'></i>"
+                            //     html += "</button>";
+                            //     html += "<button class='btn btn-default' type='button'>";
+                            //         html += "<i class='fa fa-caret-down'></i>"
+                            //     html += "</button>";
+                            // html += "</div>";
                         html += "</div>";
                     html += "<a href='#' onclick='deleteEvokation("+ id + ");'>";
                         html += "<span class='glyphicon glyphicon-trash' style ='color: #FB656F; top:15px; left:5px'></span>";

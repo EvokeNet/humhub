@@ -116,7 +116,7 @@ class EvokationVotingStream extends \yii\base\Widget
     {
         $params = [
             $this->streamAction,
-            'limit' => '-limit-',
+            'limit' => '100000',
             'filters' => '-filter-',
             'sort' => '-sort-',
             'from' => '-from-',

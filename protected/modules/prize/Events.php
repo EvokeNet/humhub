@@ -30,7 +30,7 @@ class Events extends \yii\base\Object
       'sortOrder' => 1300,
       'icon' => '<i class="fa fa-gift"></i>',
       'isActive' => (
-        Yii::$app->controller->module && Yii::$app->controller->module->id == 'prize'
+        Yii::$app->controller->module && Yii::$app->controller->module->id == 'prize' && Yii::$app->controller->action->id != 'won-prizes'
       )
     ));
 
