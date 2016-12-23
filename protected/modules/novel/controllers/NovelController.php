@@ -38,6 +38,10 @@ class NovelController extends Controller
 
       $page = NovelPage::find()->where(['page_number' => $page, 'language_id' => $language->id])->one();
 
+      if($page->chapter && $page->chapter->mission->locked){
+        return $this->redirect(['transformation']);
+      }
+
       return $this->render('novel/page', array('page' => $page));
     }
 
