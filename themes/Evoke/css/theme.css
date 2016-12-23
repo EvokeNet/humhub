@@ -3321,3 +3321,7 @@ h3.product-name {
   z-index: 10;
   background-color: rgba(0, 0, 0, 0.2);
 }
+.carousel-control.left,
+.carousel-control.right {
+  background-image: none;
+}

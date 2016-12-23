@@ -34,7 +34,7 @@ echo Breadcrumbs::widget([
               <tr>
                   <td><?php echo $page->page_image; ?></td>
                   <td><?php echo $page->page_number; ?></td>
-                  <td><?php echo $page->chapter->number; ?></td>
+                  <td><?php echo (isset($page->chapter)) ? $page->chapter->number : ''; ?></td>
                   <td>
                     <?php if(isset($language)): ?>
                       <?php echo $language->language ?>
