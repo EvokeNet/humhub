@@ -33,20 +33,19 @@ $firstSecondary = true;
 
         <?php if(!empty($previous_mission)): ?>
         <span><?php echo Html::a(
-            Yii::t('MissionsModule.base', '<i class="fa fa-arrow-circle-o-left fa-2x" aria-hidden="true"></i>'),
+            Yii::t('MissionsModule.base', '{icon} Previous Chapter', array('icon' => '<i class="fa fa-arrow-circle-o-left fa-lg" aria-hidden="true"></i>')),
             ['activities', 'missionId' => $previous_mission->id, 'sguid' => $contentContainer->guid], array('style' => 'float:left')); ?></span>
         <?php else: ?>
-            <i class="fa fa-arrow-circle-o-left fa-2x" aria-hidden="true"></i>
+            <span><?php echo Yii::t('MissionsModule.base', '{icon} Previous Chapter', array('icon' => '<i class="fa fa-arrow-circle-o-left fa-lg" aria-hidden="true"></i>')); ?></span>
         <?php endif; ?>
 
         <?php if(!empty($next_mission)): ?>
         <span><?php echo Html::a(
-            Yii::t('MissionsModule.base', '<i class="fa fa-arrow-circle-o-right fa-2x" aria-hidden="true"></i>'),
+            Yii::t('MissionsModule.base', 'Next Chapter {icon}', array('icon' => '<i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i>')),
             ['activities', 'missionId' => $next_mission->id, 'sguid' => $contentContainer->guid], array('style' => 'float:right')); ?></span>
         <?php else: ?>
-            <i class="fa fa-arrow-circle-o-right fa-2x" aria-hidden="true"></i>
+            <span><?php echo Yii::t('MissionsModule.base', '{icon} Previous Chapter', array('icon' => '<i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i>')); ?></span>
         <?php endif; ?>
-
         <?php if(!empty($pages)): ?>
 
         <div id="myCarousel" class="carousel">
@@ -65,7 +64,7 @@ $firstSecondary = true;
           <div class="carousel-inner" role="listbox">
 
                 <div class="item active">
-                  <h6 style="background-color: white; text-align: center; padding: 10px 0;"><?php echo Yii::t('MissionsModule.model', 'Chapter #{chapter} - Page #{page}', array('chapter' => $mission->position, 'page' => 0)); ?></h6>
+                  <h6 style="background-color: white; text-align: center; padding: 10px 0;"><?php echo Yii::t('MissionsModule.model', 'Chapter #{chapter} - Page #{page}', array('chapter' => $mission->position, 'page' => 1)); ?></h6>
                   <img src="<?php echo $pages[0]->page_image; ?>" alt="?php echo $pages[0]->page_image; ?">
                 </div>
 
@@ -73,7 +72,7 @@ $firstSecondary = true;
 
                     <?php if(isset($page->chapter->number)): ?>
                         <div class="item">
-                          <h6 style="background-color: white; text-align: center; padding: 10px 0;"><?php echo Yii::t('MissionsModule.model', 'Chapter #{chapter} - Page #{page}', array('chapter' => $mission->position, 'page' => $key)); ?></h6>
+                          <h6 style="background-color: white; text-align: center; padding: 10px 0;"><?php echo Yii::t('MissionsModule.model', 'Chapter #{chapter} - Page #{page}', array('chapter' => $mission->position, 'page' => $key+1)); ?></h6>
                           <img src="<?php echo $page->page_image; ?>" alt="<?php echo $page->page_image; ?>">
                         </div>
 

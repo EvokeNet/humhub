@@ -6,7 +6,7 @@ use yii\widgets\Breadcrumbs;
 /* @var $this yii\web\View */
 
 $this->title = Yii::t('NovelModule.base', 'Create Chapter');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('NovelModule.base', 'Pages'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('NovelModule.base', 'Chapters'), 'url' => ['admin/chapter']];
 $this->params['breadcrumbs'][] = $this->title;
 
 echo Breadcrumbs::widget([
