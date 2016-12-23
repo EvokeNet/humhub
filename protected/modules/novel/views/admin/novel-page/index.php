@@ -6,7 +6,7 @@ use app\modules\languages\models\Languages;
 
 use yii\widgets\Breadcrumbs;
 
-$this->title = Yii::t('NovelModule.base', 'Graphic Novel');
+$this->title = Yii::t('NovelModule.base', 'Graphic Novels');
 $this->params['breadcrumbs'][] = $this->title;
 
 echo Breadcrumbs::widget([

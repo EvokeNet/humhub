@@ -9,8 +9,8 @@ use yii\widgets\Breadcrumbs;
 $this->title = Yii::t('NovelModule.base', 'Edit ', [
     'modelClass' => 'Graphic Novel',
 ]) . $model->page_number;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('NovelModule.base', 'Graphic Novel'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->page_number, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('NovelModule.base', 'Graphic Novels'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = Yii::t('NovelModule.base', 'Novel #{number}', array('number' => $model->page_number));
 $this->params['breadcrumbs'][] = Yii::t('NovelModule.base', 'Edit');
 
 echo Breadcrumbs::widget([

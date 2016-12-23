@@ -5,8 +5,8 @@ use yii\widgets\Breadcrumbs;
 
 /* @var $this yii\web\View */
 
-$this->title = Yii::t('NovelModule.base', 'Create Page');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('NovelModule.base', 'Pages'), 'url' => ['index']];
+$this->title = Yii::t('NovelModule.base', 'Create New Novel');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('NovelModule.base', 'Graphic Novels'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 echo Breadcrumbs::widget([
