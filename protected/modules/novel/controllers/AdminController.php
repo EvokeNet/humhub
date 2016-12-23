@@ -31,6 +31,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
         $mission = Missions::findOne($model->mission_id);
 
         if($mission->getChapter() != null){
+          Yii::$app->session->setFlash('fail', Yii::t('NovelModule.base', 'This mission is already associated to a chapter, choose another one.'));
           return $this->render('chapter/create', array('model' => $model));
         }
 
@@ -52,6 +53,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
           $mission = Missions::findOne($model->mission_id);
 
           if($mission->getChapter() != null && $mission->getChapter()->id != $model->id){
+            Yii::$app->session->setFlash('fail', Yii::t('NovelModule.base', 'This mission is already associated to a chapter, choose another one.'));
             return $this->render('chapter/create', array('model' => $model));
           }
 
