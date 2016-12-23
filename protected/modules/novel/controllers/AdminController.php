@@ -5,6 +5,7 @@ namespace humhub\modules\novel\controllers;
 use Yii;
 use app\modules\novel\models\NovelPage;
 use app\modules\novel\models\Chapter;
+use app\modules\missions\models\Missions;
 use app\models\UploadForm;
 use yii\web\UploadedFile;
 
@@ -27,6 +28,12 @@ class AdminController extends \humhub\modules\admin\components\Controller
 
       if ($model->load(Yii::$app->request->post())) {
 
+        $mission = Missions::findOne($model->mission_id);
+
+        if($mission->getChapter() != null){
+          return $this->render('chapter/create', array('model' => $model));
+        }
+
         if($model->save())
             return $this->redirect(['chapter']);
 
@@ -41,6 +48,12 @@ class AdminController extends \humhub\modules\admin\components\Controller
         $model = Chapter::findOne(['id' => Yii::$app->request->get('id')]);
 
         if ($model->load(Yii::$app->request->post())) {
+
+          $mission = Missions::findOne($model->mission_id);
+
+          if($mission->getChapter() != null && $mission->getChapter()->id != $model->id){
+            return $this->render('chapter/create', array('model' => $model));
+          }
 
           if($model->save())
               return $this->redirect(['chapter']);
