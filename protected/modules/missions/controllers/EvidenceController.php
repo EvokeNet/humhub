@@ -61,7 +61,7 @@ class EvidenceController extends ContentContainerController
 
 
     public function actionActivities($missionId)
-    {
+    {   
         $mission = Missions::find()
         ->where(['=', 'id', $missionId])
         ->with([
@@ -86,7 +86,8 @@ class EvidenceController extends ContentContainerController
         ])->one();
 
         $previous_mission = Missions::find()
-        ->where(['=', 'position', $mission->position - 1])
+        ->andWhere(['=', 'position', $mission->position - 1])
+        ->andWhere(['=', 'locked', 0])
         ->with([
             'missionTranslations' => function ($query) {
                 $lang = Languages::findOne(['code' => Yii::$app->language]);
@@ -109,7 +110,8 @@ class EvidenceController extends ContentContainerController
         ])->one();
 
         $next_mission = Missions::find()
-        ->where(['=', 'position', $mission->position + 1])
+        ->andWhere(['=', 'position', $mission->position + 1])
+        ->andWhere(['=', 'locked', 0])
         ->with([
             'missionTranslations' => function ($query) {
                 $lang = Languages::findOne(['code' => Yii::$app->language]);
@@ -138,7 +140,7 @@ class EvidenceController extends ContentContainerController
 
         $pages = NovelPage::find()
         ->joinWith('chapter')
-        ->where(['chapter.mission_id' => $mission->position])
+        ->where(['chapter.mission_id' => $mission->id])
         ->orderBy('page_number ASC')
         ->all();
 
