@@ -209,7 +209,7 @@ if ($isProfileOwner) {
                         </div>
 
                         <div class="pull-left entry">
-                            <span class="count"><?php echo $wallet->amount; ?></span><br>
+                            <span class="count user-evocoins"><?php echo $wallet->amount; ?></span><br>
                             <span
                                 class="title"><?php echo Yii::t('StatsModule.widgets_views_profileHeader', 'Evocoins'); ?></span>
                         </div>

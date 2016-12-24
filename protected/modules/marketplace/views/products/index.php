@@ -26,7 +26,13 @@ $this->pageTitle = Yii::t('MarketplaceModule.base', 'Marketplace');
 
         <?php endif; ?>
         <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4><?php echo Yii::t('MarketplaceModule.base', 'Offered Products'); ?></h4>
+          </div>
           <div class="panel-body">
+            <div class="prompt">
+              <span><?php echo Yii::t('MarketplaceModule.base', 'You can view your bought products'); ?></span> <a href='<?php echo $user->createUrl('/user/profile'); ?>'><?php echo Yii::t('MarketplaceModule.base', 'on your profile'); ?></a>
+            </div>
 
                 <?php foreach ($products as $index=>$product): ?>
                   <?php if ($index == 0): ?>
@@ -68,7 +74,6 @@ $this->pageTitle = Yii::t('MarketplaceModule.base', 'Marketplace');
       </div>
     </div>
     <div class="col-sm-4 layout-sidebar-container">
-      <?php echo \app\modules\coin\widgets\UserWallet::widget() ?>
       <?php
       echo \humhub\modules\dashboard\widgets\Sidebar::widget(['widgets' => [
               [\humhub\modules\activity\widgets\Stream::className(), ['streamAction' => '/dashboard/dashboard/stream'], ['sortOrder' => 150]]

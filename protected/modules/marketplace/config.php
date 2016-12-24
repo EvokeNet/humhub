@@ -12,6 +12,7 @@
         'namespace' => 'humhub\modules\marketplace',
         'events' => [
             ['class' => \humhub\modules\admin\widgets\AdminMenu::className(), 'event' => AdminMenu::EVENT_INIT, 'callback' => ['humhub\modules\marketplace\Events', 'onAdminMenuInit']],
+            ['class' => \humhub\modules\user\widgets\ProfileSidebar::className(), 'event' => ProfileSidebar::EVENT_INIT, 'callback' => ['\humhub\modules\marketplace\Events', 'onProfileSidebarInit']],
             ['class' => \humhub\widgets\TopMenu::className(), 'event' => TopMenu::EVENT_INIT, 'callback' => ['\humhub\modules\marketplace\Events', 'onTopMenuInit']],
         ],
         'urlManagerRules' => [

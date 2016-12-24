@@ -77,6 +77,43 @@ class ProductsController extends Controller
     return $response;
   }
 
+  public function actionReturn() {
+    $bought_product_id = Yii::$app->request->get('bought_product_id');
+    $bought_product = BoughtProduct::findOne(['id' => $bought_product_id]);
+
+    // can't return a product if it's been fulfilled
+    if ($bought_product->fulfilled) {
+      return false;
+    }
+
+    $user = Yii::$app->user->getIdentity();
+    $coin_id = Coin::find()->where(['name' => 'EvoCoin'])->one()->id;
+    $wallet = Wallet::find()->where(['owner_id' => $user->id, 'coin_id' => $coin_id])->one();
+
+    $product_price = $bought_product->product->price;
+    $product_seller_id = $bought_product->product->seller_id;
+    $product_name = $bought_product->product->name;
+
+    if ($bought_product->returnProduct()) {
+      // refund user
+      $wallet->amount += $product_price;
+      $wallet->save();
+
+      // remove evocoin from seller if the product has one
+      if ($product_seller_id > 0) {
+        $seller_wallet = Wallet::find()->where(['owner_id' => $product_seller_id, 'coin_id' => $coin_id])->one();
+        $seller_wallet->amount -= $product_price;
+        $seller_wallet->save();
+      }
+
+      $response = json_encode(['success' => true, 'wallet_amount' => $wallet->amount, 'message' => Yii::t('MarketplaceModule.base', "You successfully returned {product}!", ['product' => $product_name])]);
+    } else {
+      $response = json_encode(['success' => false, 'message' => Yii::t('MarketplaceModule.base', 'Sorry, something went wrong with your return')]);
+    }
+
+    return $response;
+  }
+
   // action to create a product for mentoring on marketplace page
   public function actionMentoring() {
     $model = new Product();
@@ -94,6 +131,17 @@ class ProductsController extends Controller
     }
 
     return $this->render('mentoring', ['user' => $user, 'model' => $model]);
+  }
+
+  public function actionFulfillMentoring() {
+    $bought_time_id = Yii::$app->request->get('bought_time_id');
+    $bought_time = BoughtProduct::findOne(['id' => $bought_time_id]);
+
+    $bought_time->fulfill();
+
+    $response = json_encode(['success' => true, 'message' => Yii::t('MarketplaceModule.base', "You successfully fulfilled time for {username}!", ['username' => $bought_time->getUsername()])]);
+
+    return $response;
   }
 }
 
