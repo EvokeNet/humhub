@@ -16,13 +16,6 @@ use yii\helpers\ArrayHelper;
 ?>
 </div>
 
-<style type="text/css">
-
-.text-margin{
-    margin-top: 5px;
-}
-</style>
-
 <!-- REMOVE FILE UPLOAD -->
 <script>
 	$( document ).ready(function() {

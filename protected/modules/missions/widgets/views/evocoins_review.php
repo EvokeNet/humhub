@@ -27,34 +27,27 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
 
 <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
 <div class="panel panel-default">
-    <div class="panel-body">
-        <div class = "grey_box">
-                <div class = "row">
-                    
-                    <div class = "col-sm-7">
-                        <h4><?= Yii::t('MissionsModule.base', 'Your Evocoins') ?></h4>
-                        <p style = "font-size:12pt"><?= Yii::t('MissionsModule.base', 'Earn Evocoins by reviewing evidence.') ?></p>
-                    </div>
+    <div class="panel-heading">
+        <?= Yii::t('MissionsModule.base', 'Your Evocoins') ?>
+    </div>
+    <div class="panel-body text-center">
+        <p style = "font-size:12pt"><?= Yii::t('MissionsModule.base', 'Earn Evocoins by reviewing evidence.') ?></p>
 
-                    <div class = "col-sm-5 text-center">
-                        <div class = "home-widget-evocoins" style = "margin-left:30px">
-                            <img src="<?php echo Url::to('@web/themes/Evoke/img/evocoin_bg.png') ?>" width = "120px">
-                            <div><p style = "font-size:15pt"><?= $wallet->amount ?></p></div>
-                        </div>
-                        
-                        <br>
-                        <?php if($space): ?>
-                        <div style = "margin-top:20px">
-                            <a class = "btn btn-cta1" href='<?= Url::to(['/missions/review/index', 'sguid' => $space->guid]) ?>'>
-                                    <?= Yii::t('MissionsModule.base', 'Review Evidence') ?>
-                            </a>
-                        </div>
-                        <?php endif; ?>
-                
-                    </div>
+        <div class = "home-widget-evocoins" style = "margin-left:30px">
+            <img src="<?php echo Url::to('@web/themes/Evoke/img/evocoin_bg.png') ?>" width = "120px">
+            <div><p style = "font-size:15pt"><?= $wallet->amount ?></p></div>
+        </div>
+        
+        <br>
 
-                </div>
-         </div>
+        <?php if($space): ?>
+        <div style = "margin-top:20px">
+            <a class = "btn btn-cta1" href='<?= Url::to(['/missions/review/index', 'sguid' => $space->guid]) ?>'>
+                    <?= Yii::t('MissionsModule.base', 'Review Evidence') ?>
+            </a>
+        </div>
+        <?php endif; ?>
+
     </div>
 </div>
 

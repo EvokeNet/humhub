@@ -33,7 +33,7 @@ use humhub\compat\CActiveForm;
           $comment = $vote->comment;
         }
       ?>
-      <div>
+      <div style="padding: 5px 20px 20px">
         <?php
           $primaryPowerTitle = $activity->getPrimaryPowers()[0]->getPower()->title;
 

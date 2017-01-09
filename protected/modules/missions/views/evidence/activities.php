@@ -24,8 +24,12 @@ $firstSecondary = true;
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
+ 
+        <!-- <span class = "mission-number"><?= $mission->position ?></span> -->
 
-        <h4 class = "bold"><span class = "mission-number"><?= $mission->position ?></span><?php echo Yii::t('MissionsModule.base', 'Mission:'); ?>&nbsp;<?= $mission_title ?></h4>
+        <h5 style="display: inline-block; font-weight:700">
+            <?php echo Yii::t('MissionsModule.base', 'Mission {position}: {title}', array('position' => $mission->position, 'title' => $mission_title)); ?>
+        </h5>
 
     </div>
     <div class="panel-body">
@@ -147,19 +151,3 @@ $firstSecondary = true;
         <?php endif; ?>
     </div>
 </div>
-
-<style type="text/css">
-
-.description{
-    text-align: justify;
-}
-
-.member-img{
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    border: 3px solid #254054;
-    margin-right: 5px;
-}
-
-</style>
