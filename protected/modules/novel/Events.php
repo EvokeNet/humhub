@@ -67,8 +67,8 @@ class Events extends \yii\base\Object
     public static function onTopMenuInit($event)
     {
       $event->sender->addItem(array(
-          'label' => Yii::t('NovelModule.base', 'Graphic Novel'),
-          'id' => 'Graphic Novel',
+          'label' => Yii::t('NovelModule.base', 'Novel'),
+          'id' => 'Novel',
           'icon' => '<i class="fa fa-book"></i>',
           'url' => Url::toRoute(['/novel/novel/graphic-novel', 'page' => 1]),
           'sortOrder' => 800,
