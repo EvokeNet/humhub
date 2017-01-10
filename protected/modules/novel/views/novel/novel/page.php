@@ -54,6 +54,7 @@ use app\modules\novel\models\NovelPage;
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
     
+    <?php if($page->chapter): ?>
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="alchemy">
@@ -64,6 +65,7 @@ use app\modules\novel\models\NovelPage;
           </b>
         </div>
       </div>
+    <?php endif; ?>
     
 
     <div class="panel panel-default">
