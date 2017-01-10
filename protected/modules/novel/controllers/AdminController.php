@@ -4,6 +4,7 @@ namespace humhub\modules\novel\controllers;
 
 use Yii;
 use app\modules\novel\models\NovelPage;
+use app\modules\novel\models\Chapter;
 use app\models\UploadForm;
 use yii\web\UploadedFile;
 
@@ -13,6 +14,51 @@ use yii\web\UploadedFile;
  */
 class AdminController extends \humhub\modules\admin\components\Controller
 {
+
+    public function actionChapter()
+    {
+        $chapters = Chapter::find()->orderBy('number ASC')->all();
+
+        return $this->render('chapter/index', array('chapters' => $chapters));
+    }
+
+    public function actionChapterCreate(){
+      $model = new Chapter();
+
+      if ($model->load(Yii::$app->request->post())) {
+
+        if($model->save())
+            return $this->redirect(['chapter']);
+
+      }
+
+      return $this->render('chapter/create', array('model' => $model));
+
+    }
+
+    public function actionChapterUpdate($id)
+    {
+        $model = Chapter::findOne(['id' => Yii::$app->request->get('id')]);
+
+        if ($model->load(Yii::$app->request->post())) {
+
+          if($model->save())
+              return $this->redirect(['chapter']);
+        }
+
+        return $this->render('chapter/update', array('model' => $model));
+    }
+
+    public function actionChapterDelete()
+    {
+        $model = Chapter::findOne(['id' => Yii::$app->request->get('id')]);
+
+        if ($model !== null) {
+            $model->delete();
+        }
+
+        return $this->redirect(['chapter']);
+    }
 
     public function actionIndex()
     {

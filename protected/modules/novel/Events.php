@@ -47,6 +47,19 @@ class Events extends \yii\base\Object
             'icon' => '<i class="fa fa-book"></i>',
             'isActive' => (
                 Yii::$app->controller->module && Yii::$app->controller->module->id == 'novel'
+                && Yii::$app->controller->action->id == 'index'
+            ),
+        ));
+
+        $event->sender->addItem(array(
+            'label' => Yii::t('NovelModule.base', 'Chapter'),
+            'url' => Url::to(['/novel/admin/chapter']),
+            'group' => 'manage',
+            'sortOrder' => 1350,
+            'icon' => '<i class="fa fa-book"></i>',
+            'isActive' => (
+                Yii::$app->controller->module && Yii::$app->controller->module->id == 'novel'
+                && Yii::$app->controller->action->id == 'chapter'
             ),
         ));
     }
