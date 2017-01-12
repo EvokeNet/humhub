@@ -63,6 +63,30 @@ function setReturnButtonListeners($returnButton) {
   });
 }
 
+function setFulfillTimeButtonListeners($fulfillTimeButton) {
+  $fulfillTimeButton.on('click', function(e){
+    e.preventDefault();
+    var boughtTimeID  = $fulfillTimeButton.attr('id').replace('fulfill-', '');
+
+    $.ajax({
+        url: 'index.php?r=marketplace%2Fproducts%2Ffulfill-mentoring&bought_time_id='+boughtTimeID,
+        type: 'get',
+        dataType: 'json',
+        success: function (response) {
+          if (response.success) {
+            $('#time-' + boughtTimeID).remove();
+
+            console.log($('#time-' + boughtTimeID));
+
+            showReturnMessage('', response.message);
+          } else {
+            showReturnMessage('', response.message);
+          }
+        }
+    });
+  });
+}
+
 function showPurchaseMessage(title, message){
   document.getElementById("message-title").innerHTML = title;
   document.getElementById("message-content").innerHTML = message;
@@ -110,8 +134,9 @@ function initProductButtons() {
   };
 
   $(document).ready(function(){
-    var $purchases = $('.purchase'),
-        $returns  = $('.returns');
+    var $purchases  = $('.purchase'),
+        $returns    = $('.returns'),
+        $mentorTime = $('.mentor-time');
 
     if ($purchases.length > 0) {
       $purchases.each(function(index, element){
@@ -126,6 +151,14 @@ function initProductButtons() {
         var $returnButton = $(element).find('.return-button');
 
         setReturnButtonListeners($returnButton);
+      });
+    }
+
+    if ($mentorTime.length > 0) {
+      $mentorTime.each(function(index, element){
+        var $fulfillTimeButton = $(element).find('.fulfill-button');
+
+        setFulfillTimeButtonListeners($fulfillTimeButton);
       });
     }
 

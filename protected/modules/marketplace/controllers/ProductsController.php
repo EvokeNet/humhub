@@ -132,6 +132,17 @@ class ProductsController extends Controller
 
     return $this->render('mentoring', ['user' => $user, 'model' => $model]);
   }
+
+  public function actionFulfillMentoring() {
+    $bought_time_id = Yii::$app->request->get('bought_time_id');
+    $bought_time = BoughtProduct::findOne(['id' => $bought_time_id]);
+
+    $bought_time->fulfill();
+
+    $response = json_encode(['success' => true, 'message' => Yii::t('MarketplaceModule.base', "You successfully fulfilled time for {username}!", ['username' => $bought_time->getUsername()])]);
+
+    return $response;
+  }
 }
 
 ?>

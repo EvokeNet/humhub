@@ -15,6 +15,7 @@ use app\modules\coin\models\Coin;
 use humhub\modules\user\models\User;
 use app\modules\teams\models\Team;
 use app\modules\marketplace\widgets\BoughtProductsWidget;
+use app\modules\marketplace\widgets\BoughtTimeWidget;
 
 
 /**
@@ -69,6 +70,11 @@ class Events extends \yii\base\Object
 
     if ($user->isCurrentUser()) {
       $event->sender->addWidget(BoughtProductsWidget::className(), array('user' => $user), array('sortOrder' => 20));
+
+      // show mentors their time that has been bought
+      if ($user->group->name == "Mentors") {
+        $event->sender->addWidget(BoughtTimeWidget::className(), array('user' => $user), array('sortOrder' => 19));
+      }
     }
   }
 
