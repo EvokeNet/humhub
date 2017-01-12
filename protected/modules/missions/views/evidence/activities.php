@@ -65,7 +65,7 @@ $firstSecondary = true;
 
                 <div class="item active">
                   <h6 style="background-color: white; text-align: center; padding: 10px 0;"><?php echo Yii::t('MissionsModule.model', 'Chapter #{chapter} - Page #{page}', array('chapter' => $mission->position, 'page' => 1)); ?></h6>
-                  <img src="<?php echo $pages[0]->page_image; ?>" alt="?php echo $pages[0]->page_image; ?">
+                  <img src="<?php echo $pages[0]->page_image; ?>" alt="?php echo $pages[0]->page_image; ?" width="100%">
                 </div>
 
                 <?php unset($pages[0]); foreach ($pages as $key => $page): ?>
@@ -73,7 +73,7 @@ $firstSecondary = true;
                     <?php if(isset($page->chapter->number)): ?>
                         <div class="item">
                           <h6 style="background-color: white; text-align: center; padding: 10px 0;"><?php echo Yii::t('MissionsModule.model', 'Chapter #{chapter} - Page #{page}', array('chapter' => $mission->position, 'page' => $key+1)); ?></h6>
-                          <img src="<?php echo $page->page_image; ?>" alt="<?php echo $page->page_image; ?>">
+                          <img src="<?php echo $page->page_image; ?>" alt="<?php echo $page->page_image; ?>" width="100%">
                         </div>
 
                     <?php endif; ?>
