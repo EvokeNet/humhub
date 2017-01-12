@@ -77,6 +77,45 @@ class ProductsController extends Controller
     return $response;
   }
 
+  public function actionReturn() {
+    $product_id = Yii::$app->request->get('product_id');
+    $product = Product::findOne(['id' => $product_id]);
+
+    $user = Yii::$app->user->getIdentity();
+    $coin_id = Coin::find()->where(['name' => 'EvoCoin'])->one()->id;
+    $wallet = Wallet::find()->where(['owner_id' => $user->id, 'coin_id' => $coin_id])->one();
+
+    $bought_product = BoughtProduct::findOne(['product_id' => $product_id, 'user_id' => $user->id]);
+
+    // can't return a product if it's been fulfilled
+    if ($bought_product->fulfilled) {
+      return false;
+    }
+
+    if ($bought_product->returnProduct()) {
+      // add back quantity to product
+      $product->quantity++;
+      $product->save();
+
+      // refund user
+      $wallet->amount += $product->price;
+      $wallet->save();
+
+      // remove evocoin from seller if the product has one
+      if ($product->seller_id > 0) {
+        $seller_wallet = Wallet::find()->where(['owner_id' => $product->seller_id, 'coin_id' => $coin_id])->one();
+        $seller_wallet->amount -= $product->price;
+        $seller_wallet->save();
+      }
+
+      $response = json_encode(['success' => true, 'wallet_amount' => $wallet->amount, 'message' => Yii::t('MarketplaceModule.base', "You successfully returned {product}!", ['product' => $product->name])]);
+    } else {
+      $response = json_encode(['success' => false, 'message' => Yii::t('MarketplaceModule.base', 'Sorry, something went wrong with your return')]);
+    }
+
+
+  }
+
   // action to create a product for mentoring on marketplace page
   public function actionMentoring() {
     $model = new Product();

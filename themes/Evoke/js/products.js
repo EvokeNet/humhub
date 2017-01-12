@@ -32,18 +32,49 @@ function setBuyButtonListeners($buyButton) {
   });
 }
 
+function setReturnButtonListeners($returnButton) {
+  $returnButton.on('click', function(e){
+    e.preventDefault();
+    var productID  = $returnButton.attr('id').replace('return-', '');
+
+    $.ajax({
+        url: 'index.php?r=marketplace%2Fproducts%2Freturn&product_id='+productID,
+        type: 'get',
+        dataType: 'json',
+        success: function (response) {
+          if (response.success) {
+            $userEvocoins = $('.user-evocoins');
+            $productQuantity = $('#product' + productID + 'Quantity');
+
+            $userEvocoins.jQuerySimpleCounter({start: $userEvocoins.text(),end: response.wallet_amount});
+
+            showReturnMessage('', response.message);
+          } else {
+            showReturnMessage('', response.message);
+          }
+        }
+    });
+  });
+}
+
 function showPurchaseMessage(title, message){
   document.getElementById("message-title").innerHTML = title;
   document.getElementById("message-content").innerHTML = message;
   $("#popup-message").modal("show");
 }
 
-function initBuyButton() {
+function showReturnMessage(title, message){
+  document.getElementById("message-title").innerHTML = title;
+  document.getElementById("message-content").innerHTML = message;
+  $("#popup-message").modal("show");
+}
+
+function initProductButtons() {
   // wait until jquery is loeaded
   if (!(typeof jQuery === 'function')) {
      window.setTimeout(function () {
          //console.log(count++);
-         initBuyButton();
+         initProductButtons();
      }, 10);  // Try again every 10 ms..
      return;
   }
@@ -73,13 +104,26 @@ function initBuyButton() {
   };
 
   $(document).ready(function(){
-    $('.purchase').each(function(index, element){
-      var $buyButton = $(element).find('.buy-button');
+    var $purchases = $('.purchase'),
+        $returns  = $('.returns');
 
-      setBuyButtonListeners($buyButton);
-    });
+    if ($purchases.length > 0) {
+      $purchases.each(function(index, element){
+        var $buyButton = $(element).find('.buy-button');
+
+        setBuyButtonListeners($buyButton);
+      });
+    }
+
+    if ($returns.length > 0) {
+      $returns.each(function(index, element){
+        var $returnButton = $(element).find('.return-button');
+
+        setReturnButtonListeners($returnButton);
+      });
+    }
 
   });
 }
 
-initBuyButton();
+initProductButtons();

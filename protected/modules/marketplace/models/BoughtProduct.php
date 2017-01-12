@@ -72,4 +72,12 @@ use app\modules\marketplace\models\Product;
         return Product::find()->where(['id' => $this->product_id])->one()->fulfilled;
       }
 
+      public function returnProduct() {
+        if ($this->fulfilled) {
+          return false;
+        } else {
+          $this->delete();
+          return true;
+        }
+      }
  }

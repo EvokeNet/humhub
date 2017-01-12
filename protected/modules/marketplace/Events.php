@@ -14,6 +14,8 @@ use app\modules\coin\models\Wallet;
 use app\modules\coin\models\Coin;
 use humhub\modules\user\models\User;
 use app\modules\teams\models\Team;
+use app\modules\marketplace\widgets\BoughtProductsWidget;
+
 
 /**
  * Description of Events
@@ -58,6 +60,16 @@ class Events extends \yii\base\Object
         ),
     ));
 
+  }
+
+  // show bought products
+  public static function onProfileSidebarInit($event)
+  {
+    $user = $event->sender->user;
+
+    if ($user->isCurrentUser()) {
+      $event->sender->addWidget(BoughtProductsWidget::className(), array('user' => $user), array('sortOrder' => 20));
+    }
   }
 
 }
