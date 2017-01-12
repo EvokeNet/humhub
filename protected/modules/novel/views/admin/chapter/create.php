@@ -18,7 +18,7 @@ echo Breadcrumbs::widget([
 <div class="panel panel-default">
     <div class="panel-heading"><strong><?php echo $this->title; ?></strong></div>
     <div class="panel-body">
-
+    	<p style="color: red;"><?= Yii::$app->session->getFlash('fail') ?></p>
         <div class="matching-questions-create">
 
             <?= $this->render('_form', [
