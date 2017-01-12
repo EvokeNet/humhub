@@ -202,24 +202,24 @@ if ($isProfileOwner) {
 
                         <div class="pull-left entry">
                             <span class="count"><?php echo count($user->spaces); ?></span><br>
-                            <span 
+                            <span
                                 class="title"><?php echo Yii::t('StatsModule.widgets_views_profileHeader', 'Spaces'); ?></span>
                         </div>
-                        
+
                         <div class="pull-left entry">
                             <span class="count"><?php echo $evidences; ?></span><br>
                             <span
                                 class="title"><?php echo Yii::t('StatsModule.widgets_views_profileHeader', 'Evidences'); ?></span>
                         </div>
-                        
+
                         <div class="pull-left entry">
                             <span class="count"><?php echo isset($avg_rating) ? number_format((float) $avg_rating, 1, '.', '') : '0'; ?></span><br>
                             <span
                                 class="title"><?php echo Yii::t('StatsModule.widgets_views_profileHeader', 'Avg Rating'); ?></span>
                         </div>
-                        
+
                         <div class="pull-left entry">
-                            <span class="count"><?php echo $wallet->amount; ?></span><br>
+                            <span class="count user-evocoins"><?php echo $wallet->amount; ?></span><br>
                             <span
                                 class="title"><?php echo Yii::t('StatsModule.widgets_views_profileHeader', 'Evocoins'); ?></span>
                         </div>
