@@ -28,6 +28,9 @@ use humhub\modules\user\models\User;
 use humhub\modules\missions\components\ContentContainerController;
 use humhub\modules\admin\models\forms\MailingSettingsForm;
 
+use app\modules\novel\models\NovelPage;
+use app\modules\novel\models\Chapter;
+
 class EvidenceController extends ContentContainerController
 {
 
@@ -82,12 +85,71 @@ class EvidenceController extends ContentContainerController
             },
         ])->one();
 
+        $previous_mission = Missions::find()
+        ->where(['=', 'position', $mission->position - 1])
+        ->with([
+            'missionTranslations' => function ($query) {
+                $lang = Languages::findOne(['code' => Yii::$app->language]);
+                if(isset($lang))
+                    $query->andWhere(['language_id' => $lang->id]);
+                else{
+                    $lang = Languages::findOne(['code' => 'en-US']);
+                    $query->andWhere(['language_id' => $lang->id]);
+                }
+            },
+            'activities.activityTranslations' => function ($query) {
+                $lang = Languages::findOne(['code' => Yii::$app->language]);
+                if(isset($lang))
+                    $query->andWhere(['language_id' => $lang->id]);
+                else{
+                    $lang = Languages::findOne(['code' => 'en-US']);
+                    $query->andWhere(['language_id' => $lang->id]);
+                }
+            },
+        ])->one();
+
+        $next_mission = Missions::find()
+        ->where(['=', 'position', $mission->position + 1])
+        ->with([
+            'missionTranslations' => function ($query) {
+                $lang = Languages::findOne(['code' => Yii::$app->language]);
+                if(isset($lang))
+                    $query->andWhere(['language_id' => $lang->id]);
+                else{
+                    $lang = Languages::findOne(['code' => 'en-US']);
+                    $query->andWhere(['language_id' => $lang->id]);
+                }
+            },
+            'activities.activityTranslations' => function ($query) {
+                $lang = Languages::findOne(['code' => Yii::$app->language]);
+                if(isset($lang))
+                    $query->andWhere(['language_id' => $lang->id]);
+                else{
+                    $lang = Languages::findOne(['code' => 'en-US']);
+                    $query->andWhere(['language_id' => $lang->id]);
+                }
+            },
+        ])->one();
+
         $members = Membership::find()
         ->joinWith('user')
         ->where(['space_id' => $this->contentContainer->id, 'user.status' => \humhub\modules\user\models\User::STATUS_ENABLED])
         ->all();
 
-        return $this->render('activities', array('mission' => $mission, 'contentContainer' => $this->contentContainer, 'members' => $members));
+        $pages = NovelPage::find()
+        ->joinWith('chapter')
+        ->where(['chapter.mission_id' => $mission->position])
+        ->orderBy('page_number ASC')
+        ->all();
+
+        // $pages =  (new \yii\db\Query())
+        // ->select(['n.*'])
+        // ->from('novel_page as n')
+        // ->join('INNER JOIN', 'chapters as c', 'n.chapter_id = `c`.`id`')
+        // ->orderBy('s.page_number ASC')
+        // ->all();
+
+        return $this->render('activities', array('mission' => $mission, 'previous_mission' => $previous_mission, 'next_mission' => $next_mission, 'contentContainer' => $this->contentContainer, 'members' => $members, 'pages' => $pages));
     }
 
     public function actionMissions()

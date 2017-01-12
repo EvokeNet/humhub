@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\modules\languages\models\Languages;
+use app\modules\novel\models\Chapter;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\novel\models\NovelPage */
@@ -32,6 +33,11 @@ use app\modules\languages\models\Languages;
     <?php endif; ?>
 
     <?= $form->field($model, 'page_number')->input('number') ?>
+
+    <?= $form->field($model, 'chapter_id')->dropdownList(
+            ArrayHelper::map(Chapter::find()->all(), 'id', 'number'),
+            ['prompt' => Yii::t('NovelModule.base', 'Select Chapter')]
+        ) ?>
 
     <?= $form->field($model, 'language_id')->dropdownList(
             ArrayHelper::map(Languages::find()->all(), 'id', 'language'),
