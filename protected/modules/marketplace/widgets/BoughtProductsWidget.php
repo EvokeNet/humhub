@@ -15,17 +15,17 @@ class BoughtProductsWidget extends \yii\base\Widget
      */
     public function run()
     {
-      $bought_product_records = BoughtProduct::find()->select('product_id')->where(['user_id' => $this->user->id])->all();
+      $bought_product_records = BoughtProduct::find()->where(['user_id' => $this->user->id])->all();
       $fulfilled_products = [];
       $unfulfilled_products = [];
 
       foreach($bought_product_records as $bought_product_record) {
         if ($bought_product_record->fulfilled == true) {
           $product = Product::find()->where(['id' => $bought_product_record->product_id])->one();
-          $fulfilled_products[] = $product;
+          $fulfilled_products[] = $bought_product_record;
         } else {
           $product = Product::find()->where(['id' => $bought_product_record->product_id])->one();
-          $unfulfilled_products[] = $product;
+          $unfulfilled_products[] = $bought_product_record;
         }
 
       }

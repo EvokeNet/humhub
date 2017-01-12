@@ -12,7 +12,9 @@ function setBuyButtonListeners($buyButton) {
         type: 'get',
         dataType: 'json',
         success: function (response) {
+          console.log('response');
           if (response.success) {
+            console.log('success!');
             $userEvocoins = $('#userEvocoins');
             $productQuantity = $('#product' + productID + 'Quantity');
 
@@ -25,6 +27,7 @@ function setBuyButtonListeners($buyButton) {
 
             showPurchaseMessage('', response.message);
           } else {
+            console.log('failure!');
             showPurchaseMessage('', response.message);
           }
         }
@@ -35,18 +38,21 @@ function setBuyButtonListeners($buyButton) {
 function setReturnButtonListeners($returnButton) {
   $returnButton.on('click', function(e){
     e.preventDefault();
-    var productID  = $returnButton.attr('id').replace('return-', '');
+    var boughtProductID  = $returnButton.attr('id').replace('return-', '');
 
     $.ajax({
-        url: 'index.php?r=marketplace%2Fproducts%2Freturn&product_id='+productID,
+        url: 'index.php?r=marketplace%2Fproducts%2Freturn&bought_product_id='+boughtProductID,
         type: 'get',
         dataType: 'json',
         success: function (response) {
           if (response.success) {
             $userEvocoins = $('.user-evocoins');
-            $productQuantity = $('#product' + productID + 'Quantity');
 
             $userEvocoins.jQuerySimpleCounter({start: $userEvocoins.text(),end: response.wallet_amount});
+
+            console.log($('#product-' + boughtProductID));
+
+            $('#product-' + boughtProductID).remove();
 
             showReturnMessage('', response.message);
           } else {

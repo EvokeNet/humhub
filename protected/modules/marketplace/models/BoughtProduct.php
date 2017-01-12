@@ -76,6 +76,10 @@ use app\modules\marketplace\models\Product;
         if ($this->fulfilled) {
           return false;
         } else {
+          // add back quantity to product
+          $product = $this->product;
+          $product->quantity++;
+          $product->save();
           $this->delete();
           return true;
         }
