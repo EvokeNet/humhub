@@ -2980,8 +2980,8 @@ h6 {
 .submitted-review {
   word-wrap: break-word;
 }
-/* 
-Reference: 
+/*
+Reference:
 https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
 */
 .rating {
@@ -3320,4 +3320,19 @@ h3.product-name {
   width: 100%;
   z-index: 10;
   background-color: rgba(0, 0, 0, 0.2);
+}
+
+.product-list {
+  max-height:350px;
+  overflow-y:scroll;
+}
+
+.product-list ul {
+  padding-left: 0;
+}
+
+.product-list li {
+  list-style: none;
+  padding: 1em;
+  border-bottom: 1px dashed;
 }

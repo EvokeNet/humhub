@@ -46,5 +46,13 @@ return [
     'Click to mark as fulfilled' => '',
     'Fulfilled' => '',
     'User' => '',
-    
+    'Fulfill' => '',
+    'Bought Time' => '',
+    'Bought Products' => '',
+    'Unfulfilled Products' => '',
+    'Fulfilled Products' => '',
+    'return' => '',
+    "You successfully returned {product}!" => '',
+    'Sorry, something went wrong with your return' => '',
+    'You successfully fulfilled time for {username}!' => '',
 ];
