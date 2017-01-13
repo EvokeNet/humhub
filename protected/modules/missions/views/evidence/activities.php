@@ -31,8 +31,9 @@ $firstSecondary = true;
 <div class="tab-content clearfix">
     <div class="tab-pane <?php echo (Yii::$app->request->get('flag') && Yii::$app->request->get('flag') == 1) ? '' : 'active'; ?>" id="tab-novel">
 
+    <div>
         <?php if(!empty($previous_mission)): ?>
-        <span><?php echo Html::a(
+            <span><?php echo Html::a(
             Yii::t('MissionsModule.base', '{icon} Previous Chapter', array('icon' => '<i class="fa fa-arrow-circle-o-left fa-lg" aria-hidden="true"></i>')),
             ['activities', 'missionId' => $previous_mission->id, 'sguid' => $contentContainer->guid], array('style' => 'float:left')); ?></span>
         <?php else: ?>
@@ -40,12 +41,14 @@ $firstSecondary = true;
         <?php endif; ?>
 
         <?php if(!empty($next_mission)): ?>
-        <span><?php echo Html::a(
+            <span><?php echo Html::a(
             Yii::t('MissionsModule.base', 'Next Chapter {icon}', array('icon' => '<i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i>')),
             ['activities', 'missionId' => $next_mission->id, 'sguid' => $contentContainer->guid], array('style' => 'float:right')); ?></span>
         <?php else: ?>
             <span style="float:right"><?php echo Yii::t('MissionsModule.base', 'Next Chapter {icon}', array('icon' => '<i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i>')); ?></span>
         <?php endif; ?>
+    </div>
+    <br /><br />
 
         <?php if(!empty($pages)): ?>
 
