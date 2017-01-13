@@ -53,4 +53,7 @@
      "You successfully returned {product}!" => 'Devolviste {prodcuts}!',
      'Sorry, something went wrong with your return' => '',
      'You successfully fulfilled time for {username}!' => 'Cumpliste tiempo por {username}!',
+     'Offered Products' => 'Productos Ofrecidos',
+     'You can view your bought products' => 'Puede ver sus productos comprados',
+     'on your profile' => 'en su perfil',
  ];
