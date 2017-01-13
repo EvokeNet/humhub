@@ -3321,22 +3321,18 @@ h3.product-name {
   z-index: 10;
   background-color: rgba(0, 0, 0, 0.2);
 }
-
 .product-list {
-  max-height:350px;
-  overflow-y:scroll;
+  max-height: 350px;
+  overflow-y: scroll;
 }
-
 .product-list ul {
   padding-left: 0;
 }
-
 .product-list li {
   list-style: none;
   padding: 1em;
   border-bottom: 1px dashed;
 }
-
 .carousel-control.left,
 .carousel-control.right {
   background-image: none;

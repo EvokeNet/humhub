@@ -28,7 +28,6 @@ class NovelController extends Controller
 
     public function actionGraphicNovel($page)
     {
-
       $language = Languages::find()->where(['code' => Yii::$app->language])->one();
 
       if(!$language){
