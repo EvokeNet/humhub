@@ -28,7 +28,12 @@ class NovelController extends Controller
 
     public function actionGraphicNovel($page)
     {
-      $language = Languages::find()->where(['code' => Yii::$app->language])->one();
+
+      if(isset(Yii::$app->language)){
+        $language = Languages::find()->where(['code' => Yii::$app->language])->one();
+      } else{
+        $language = Languages::find()->where(['code' => 'en-US'])->one();
+      }
 
       $page_count = count(NovelPage::find()->where(['language_id' => $language->id])->all());
 
@@ -37,6 +42,10 @@ class NovelController extends Controller
       }
 
       $page = NovelPage::find()->where(['page_number' => $page, 'language_id' => $language->id])->one();
+
+      if($page->chapter && $page->chapter->mission->locked){
+        return $this->redirect(['transformation']);
+      }
 
       return $this->render('novel/page', array('page' => $page));
     }

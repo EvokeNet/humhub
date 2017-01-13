@@ -6,6 +6,7 @@ use Yii;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
 use yii\behaviors\TimestampBehavior;
+use app\modules\novel\models\Chapter;
 
 /**
  * This is the model class for table "missions".
@@ -92,5 +93,9 @@ class Missions extends \yii\db\ActiveRecord
     public function getMissionTranslations()
     {
         return $this->hasMany(MissionTranslations::className(), ['mission_id' => 'id']);
+    }
+
+    public function getChapter(){
+        return Chapter::findOne(['mission_id' => $this->id]);
     }
 }

@@ -17,6 +17,16 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Chapter' => 'Capítulo',
+    'Chapter ID' => 'ID de Capítulo',
+    'Chapter Number' => 'Número del Capítulo',
+    'Create Chapter' => 'Crear Capítulo',
+    'Language' => 'Idioma',
+    'Mission' => 'Misión',
+    'Novel' => 'Novela Gráfica',
+    'Select Chapter' => 'Seleccionar Capítulo',
+    'Select Language' => 'Seleccionar Idioma',
+    'Select Mission' => 'Seleccionar Misión',
     'As you see, Marta\'s story continues. She, like you, is committed to transforming her community. That\'s why you have {points} points in the power of Transformation.<br><br>You have always had this power. Now it is time to discover your other hidden powers.' => 'Como ves, la historia de Marta continúa. Ella, al igual que tú, está comprometida con la creación de un cambio en su comunidad. Es por eso que tienes {points} puntos en el poder de la Transformación.<br><br>Este poder ha sido evidente en ti desde que la red te encontró. Ahora descubramos los otros poderes que tienes y que hasta ahora no han sido tan evidentes.',
     'Create' => 'Crear',
     'Create Page' => 'Crear Página',
@@ -33,5 +43,4 @@ return [
     'Pages' => 'Páginas',
     'Update' => 'Actualizado',
     'Uploaded Image: {file}' => 'Imagen subida: {file}',
-    'novel intro' => 'antes de empezar tu recorrido, quiero compartirte la historia de Marta. Su caso es muy valioso para entender las problemáticas que está viviendo tu comunidad. Ella será su guía y estará disponible para ayudarlos en las misiones, actividades y evokaciones.',
 ];

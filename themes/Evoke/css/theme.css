@@ -3336,3 +3336,8 @@ h3.product-name {
   padding: 1em;
   border-bottom: 1px dashed;
 }
+
+.carousel-control.left,
+.carousel-control.right {
+  background-image: none;
+}

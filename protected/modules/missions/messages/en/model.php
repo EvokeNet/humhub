@@ -48,6 +48,7 @@ return [
     'Mission Translations' => '',
     'Modified At' => '',
     'No, it does not meet the activity\'s requirement' => '',
+    'Novel Chapter #{number}' => '',
     'Points' => '',
     'Position' => '',
     'Power ID' => '',

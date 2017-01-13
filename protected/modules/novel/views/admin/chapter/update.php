@@ -7,10 +7,10 @@ use yii\widgets\Breadcrumbs;
 /* @var $model app\modules\novel\models\NovelPage */
 
 $this->title = Yii::t('NovelModule.base', 'Edit ', [
-    'modelClass' => 'Graphic Novel',
-]) . $model->page_number;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('NovelModule.base', 'Graphic Novels'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = Yii::t('NovelModule.base', 'Novel #{number}', array('number' => $model->page_number));
+    'modelClass' => 'Chapter',
+]) . $model->number;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('NovelModule.base', 'Chapters'), 'url' => ['admin/chapter']];
+$this->params['breadcrumbs'][] = Yii::t('NovelModule.base', 'Chapter #{number}', array('number' => $model->number));
 $this->params['breadcrumbs'][] = Yii::t('NovelModule.base', 'Edit');
 
 echo Breadcrumbs::widget([

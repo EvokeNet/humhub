@@ -19,9 +19,11 @@
 return [
     'Leaderboard' => '',
     'My Evidences Submitted: {evidences}' => '',
+    'My Evidences Submitted:: {evidences}' => '',
     'My Position: Not Ranked' => '',
     'My Position: {position}' => '',
     'My Reviews Submitted: {evidences}' => '',
+    'My Reviews Submitted:: {evidences}' => '',
     'My Team\'s Evidences Submitted: {evidences}' => '',
     'My Team\'s Position: Not Ranked' => '',
     'My Team\'s Position: {position}' => '',
