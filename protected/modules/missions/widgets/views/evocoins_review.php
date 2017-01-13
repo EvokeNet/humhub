@@ -35,9 +35,9 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
 
         <div class = "home-widget-evocoins" style = "margin-left:30px">
             <img src="<?php echo Url::to('@web/themes/Evoke/img/evocoin_bg.png') ?>" width = "120px">
-            <div><p style = "font-size:15pt"><?= $wallet->amount ?></p></div>
+            <div><p id="userEvocoins" style = "font-size:15pt"><?= $wallet->amount ?></p></div>
         </div>
-        
+
         <br>
 
         <?php if($space): ?>
@@ -62,9 +62,9 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
 
         <div class = "home-widget-evocoins" style = "margin-left:30px">
             <img src="<?php echo Url::to('@web/themes/Evoke/img/evocoin_bg.png') ?>" width = "120px">
-            <div><p style = "font-size:15pt"><?= $wallet->amount ?></p></div>
+            <div><p id="userEvocoins" style = "font-size:15pt"><?= $wallet->amount ?></p></div>
         </div>
-        
+
         <br>
 
         <?php if($space): ?>

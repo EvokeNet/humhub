@@ -12,9 +12,7 @@ function setBuyButtonListeners($buyButton) {
         type: 'get',
         dataType: 'json',
         success: function (response) {
-          console.log('response');
           if (response.success) {
-            console.log('success!');
             $userEvocoins = $('#userEvocoins');
             $productQuantity = $('#product' + productID + 'Quantity');
 
@@ -27,7 +25,6 @@ function setBuyButtonListeners($buyButton) {
 
             showPurchaseMessage('', response.message);
           } else {
-            console.log('failure!');
             showPurchaseMessage('', response.message);
           }
         }
