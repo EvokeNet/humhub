@@ -74,7 +74,6 @@ $this->pageTitle = Yii::t('MarketplaceModule.base', 'Marketplace');
       </div>
     </div>
     <div class="col-sm-4 layout-sidebar-container">
-      <?php echo \app\modules\coin\widgets\UserWallet::widget() ?>
       <?php
       echo \humhub\modules\dashboard\widgets\Sidebar::widget(['widgets' => [
               [\humhub\modules\activity\widgets\Stream::className(), ['streamAction' => '/dashboard/dashboard/stream'], ['sortOrder' => 150]]
