@@ -89,37 +89,8 @@ use app\modules\missions\models\Evidence;
 
 <style type="text/css">
 
-.evokecoin {
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    padding: 6px 0;
-    font-size: 12px;
-    line-height: 1.42;
-    border-radius: 20px;
-    display: inline-block;
-    font-size: 26px;
-}
-
 .power{
     margin-bottom: 20px;
 }
-
-.power .level{
-    float: left;
-}
-
-.power .points{
-    float: right;
-}
-
-.unavailable-power{
-    opacity: 0.5;
-}
-
-.unavailable-power span, h6{
-    color: gray !important;
-}
-
 
 </style>

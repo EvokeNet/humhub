@@ -29,17 +29,17 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
 
                             <div class="col-sm-6">
                                 <div class = "grey-box" style = "padding: 15px 20px; margin-bottom:15px">
-                                    
+
                                     <div class="row">
-                                        <div class="col-sm-9">
+                                        <div class="col-sm-10" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
                                             <span style = "font-size: 14pt; font-weight: 700; color: #254054;"><?php echo $key + 1; ?>.</span>&nbsp;&nbsp;
                                             <?= Html::a($r['name'], ['/space/space', 'sguid' => $r['guid']], ['style' => 'font-size: 14pt; font-weight: 700; color: #2273AC;']) ?>
                                         </div>
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-2">
                                             <span style = "float:right; font-size: 14pt; color: #3399E1; font-weight: 700;"><?php echo $r['evidences']; ?></span>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </div>
 
@@ -65,7 +65,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
 
                             <div class="col-sm-6">
                                 <div class = "grey-box" style = "padding: 15px 20px; margin-bottom:15px">
-                                    
+
                                     <div class="row">
                                         <div class="col-sm-9">
                                             <span style = "font-size: 14pt; font-weight: 700; color: #254054;"><?php echo $key + 1; ?>.</span>&nbsp;&nbsp;
@@ -75,7 +75,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                                             <span style = "float:right; font-size: 14pt; color: #3399E1; font-weight: 700;"><?php echo $r['reviews']; ?></span>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </div>
 
@@ -101,7 +101,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
 
                         <div class="col-sm-6">
                             <div class = "grey-box" style = "padding: 15px 20px; margin-bottom:15px">
-                                
+
                                 <div class="row">
                                     <div class="col-sm-9">
                                         <span style = "font-size: 14pt; font-weight: 700; color: #254054;"><?php echo $key + 1; ?>.</span>&nbsp;&nbsp;
@@ -111,7 +111,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                                         <span style = "float:right; font-size: 14pt; color: #3399E1; font-weight: 700;"><?php echo $r['evidences']; ?></span>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
 
@@ -137,7 +137,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
 
                         <div class="col-sm-6">
                             <div class = "grey-box" style = "padding: 15px 20px; margin-bottom:15px">
-                                
+
                                 <div class="row">
                                     <div class="col-sm-9">
                                         <span style = "font-size: 14pt; font-weight: 700; color: #254054;"><?php echo $key + 1; ?>.</span>&nbsp;&nbsp;
@@ -147,7 +147,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                                         <span style = "float:right; font-size: 14pt; color: #3399E1; font-weight: 700;"><?php echo $r['reviews']; ?></span>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
 
@@ -175,7 +175,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
 
                         <div class="col-sm-6">
                             <div class = "grey-box" style = "padding: 15px 20px; margin-bottom:15px">
-                                
+
                                 <div class="row">
                                     <div class="col-sm-9">
                                         <span style = "font-size: 14pt; font-weight: 700; color: #254054;"><?php echo $key + 1; ?>.</span>&nbsp;&nbsp;
@@ -185,7 +185,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                                         <span style = "float:right; font-size: 14pt; color: #3399E1; font-weight: 700;"><?php echo $r['reviews']; ?></span>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
 

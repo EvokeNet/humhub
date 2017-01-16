@@ -30,13 +30,22 @@ class NovelController extends Controller
     {
       $language = Languages::find()->where(['code' => Yii::$app->language])->one();
 
-      $page_count = count(NovelPage::find()->where(['language_id' => $language->id])->all());
+      if(!$language){
+        $language = Languages::find()->where(['code' => 'en-US'])->one();
+      } 
+
+      $novel_pages = NovelPage::find()->where(['language_id' => $language->id])->all();
+      $page_count = count($novel_pages);
 
       if ($page > $page_count) {
         return $this->redirect(['transformation']);
       }
 
       $page = NovelPage::find()->where(['page_number' => $page, 'language_id' => $language->id])->one();
+
+      if($page->chapter && $page->chapter->mission->locked){
+        return $this->redirect(['transformation']);
+      }
 
       return $this->render('novel/page', array('page' => $page));
     }

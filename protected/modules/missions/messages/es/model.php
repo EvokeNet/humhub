@@ -17,6 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Chapter #{chapter} - Page #{page}' => '',
     'Activities' => 'Actividades',
     'Activities ID' => 'Identificación de Actividades',
     'Activity ID' => 'Identificación de Actividad',
@@ -48,6 +49,7 @@ return [
     'Mission Translations' => 'Traducciones de misión',
     'Modified At' => 'Modificado en',
     'No, it does not meet the activity\'s requirement' => 'No, no cumple con el requisito de la actividad',
+    'Novel Chapter #{number}' => 'Capítulo #{number}',
     'Points' => 'Puntos',
     'Position' => 'Posición',
     'Power ID' => 'Identificación de poder',

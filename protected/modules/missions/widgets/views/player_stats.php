@@ -35,7 +35,7 @@ $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
         <?php
             $unavailable_power = $userQuality[0]->getUserQuality() == null || $userQuality[0]->getUserQuality()->getLevel() <= 0 ? true : false;
         ?>
-            <div class="power text-center">
+            <div class="player-power text-center">
                 <img src = "<?php echo $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->image; ?>" width="100px" class = "power-border"></img>
 
                 <h6>
@@ -48,28 +48,3 @@ $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
         <?php endforeach; ?>
     </div>
 </div>
-
-<style type="text/css">
-
-.power{
-    padding-bottom: 25px;
-}
-
-.power .level{
-    float: left;
-}
-
-.power .points{
-    float: right;
-}
-
-.unavailable-power{
-    opacity: 0.5;
-}
-
-.unavailable-power span, h6{
-    color: gray !important;
-}
-
-
-</style>

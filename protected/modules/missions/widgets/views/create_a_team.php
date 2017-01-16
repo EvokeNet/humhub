@@ -31,9 +31,3 @@ use yii\helpers\Url;
     </div>
 
 </div>
-
-<style>
-.uppercase{
-    text-transform: uppercase;
-}
-</style>

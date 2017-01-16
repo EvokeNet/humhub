@@ -147,20 +147,3 @@ $('textarea[name=text]#contentForm_question').keyup(function() {
 })
 
 </script>
-
-<style type="text/css">
-
-.btn-draft{
-    background: #FB656F; 
-    border: 3px solid #a9040f;
-}
-
-.btn-draft:hover{
-    background: #e42a37 !important; 
-    border: 3px solid #7f030b !important;
-}
-
-.text-margin{
-    margin-top: 5px;
-}
-</style>

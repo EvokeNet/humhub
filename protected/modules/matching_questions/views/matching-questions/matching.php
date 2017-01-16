@@ -11,7 +11,7 @@ use app\modules\matching_questions\models\MatchingQuestions;
     <div class="col-xs-8 col-xs-offset-2">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 style = "text-align:center; line-height:40px; padding: 10px 30px">
+                <h3 class="matching-header">
                     <?php// Yii::t('MatchingModule.base', 'Congratulations! You have ventured further than most by answering this call.
                     //Now, it is time to find out what type of Evoke agent are you. What do you know?
                     //What are the strengths, passions, and abilities you will bring to the Evoke network?
@@ -36,7 +36,7 @@ use app\modules\matching_questions\models\MatchingQuestions;
 
                 <?php foreach($questions as $question): ?>
 
-                    <h5 style = "line-height:30px; border-left: 3px solid #28C503; padding: 0 20px"><?= isset($question->matchingQuestionTranslations[0]) ? $question->matchingQuestionTranslations[0]->description : $question->description ?></h5>
+                    <h5 class="question-description"><?= isset($question->matchingQuestionTranslations[0]) ? $question->matchingQuestionTranslations[0]->description : $question->description ?></h5>
 
                     <br>
 
@@ -46,13 +46,13 @@ use app\modules\matching_questions\models\MatchingQuestions;
                             <?php $maxValue = count($question->matchingAnswers); ?>
                             <!-- MULTIPLE CHOICE -->
                             <?php if($maxValue > 2) :  ?>
-                                <label style = "font-size:12pt">
+                                <label class="multiple-choice-answer">
                                     <input type="text" pattern="[1-<?= $maxValue ?>]*" class= "number_input" min="1" max=<?= $maxValue ?> name="matching_answer_<?= $answer->id ?>_matching_question_<?= $question->id ?>" value = "" >
                                         <?= isset($answer->matchingAnswerTranslations[0]) ? $answer->matchingAnswerTranslations[0]->description : $answer->description ?>
                                 </label>   <br>
                             <!-- SINGLE CHOICE -->
                             <?php else: ?>
-                                <label style = "margin-right:20px; font-size:12pt">
+                                <label class="single-choice-answer">
                                     <input type="radio" name="matching_question_<?= $question->id ?>" value = <?= $answer->id ?> >
                                         <?= isset($answer->matchingAnswerTranslations[0]) ? $answer->matchingAnswerTranslations[0]->description : $answer->description ?>
                                 </label>
@@ -80,38 +80,10 @@ use app\modules\matching_questions\models\MatchingQuestions;
 
 <style type="text/css">
 
-.number_input{
-    width: 60px;
-}
-
-.intro{
-    /*margin-left: 20px;*/
-    font-size: 22px;
-    text-align: center;
-    /*margin: auto;*/
-    /*width: 75%;*/
-    padding-top:20px;
-}
-
-.warning{
-    padding-top: 10px;
-    color: red!important;
-    font-size: 12px!important;
-}
-
 form{
     margin-left: 20px;
 }
-.question{
-    font-size: 20pt;
-}
 
-.questionnaire{
-    margin: auto;
-    /*width: 75%;*/
-    /*padding-top: 30px;*/
-    padding: 20px 50px 0px;
-}
 .topbar, .footer {
   display: none;
 }

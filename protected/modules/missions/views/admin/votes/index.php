@@ -128,16 +128,4 @@ echo Breadcrumbs::widget([
     </div>
 </div>
 
-<style>
-
-.text_min{
-    text-overflow: ellipsis;
-    max-width: 300px;
-    max-height: 100px;
-    white-space: nowrap;
-    overflow: hidden !important;
-}
-
-</style>
-
 
