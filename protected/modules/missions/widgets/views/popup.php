@@ -25,13 +25,15 @@
 
 <script type="text/javascript">
 
-var popUpWatcher = setInterval(function() {
+/*var popUpWatcher = setInterval(function() {
 
     if(! $("#popup-message").is(':visible') ){
       loadPopUps();
     }
 
-}, 1000);
+<<<<<<< HEAD
+}, 1000); 
+*/
 
 function loadPopUps(){
     var xhttp = new XMLHttpRequest();
@@ -40,6 +42,8 @@ function loadPopUps(){
             if(xhttp.responseText){
               var message = JSON.parse(xhttp.responseText);
               showMessage(message['title'], message['message']);
+              //while has an alert to show
+              loadPopUps();
             }
         }
     };
