@@ -32,7 +32,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Missions');
                         <div class="panel-body grey-box blur">
                             
                             <h4>
-                                <strong><?= isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title ?></strong>
+                                <strong><?= Yii::t('MissionsModule.base', 'Mission {position}: {text}', array('position' => $mission->position, 'text' => isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title)) ?></strong>
                                 &nbsp;<i class="fa fa-lock" aria-hidden="true"></i>
                             </h4>
                             
@@ -53,7 +53,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Missions');
                         <div class="panel-body grey-box">
                             
                             <h4>
-                                <strong><?= isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title ?></strong>
+                                <strong><?= Yii::t('MissionsModule.base', 'Mission {position}: {text}', array('position' => $mission->position, 'text' => isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title)) ?></strong>
                             </h4>
                             
                             <p class="description">

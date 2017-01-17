@@ -17,8 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Next Chapter {icon}' => 'Próximo Capítulo {icon}',
-    '{icon} Previous Chapter' => '{icon} Capítulo Anterior',
+    'Mission {position}: {text}' => 'Misión {position}: {text}',
+    'Next {icon}' => 'Próximo {icon}',
+    '{icon} Previous' => '{icon} Anterior',
     '140 characters required' => '140 caracteres requeridos',
     '<strong>Activity Difficulty Level:</strong> {level}' => '<strong>Nivel de dificultad de la evidencía:</strong> {level}',
     '<strong>Activity Rubric:</strong> {rubric}' => '<strong>Rúbrica de Actividad:</strong> {rubric}',
