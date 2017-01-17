@@ -28,10 +28,42 @@
   </div>
 </div>
 
-<div id="animated-popup" style="display: none">
-  <h2 id="animated-popup-title"></h2>
-  <h2 id="animated-popup-content"></h2>
+<div id="animated-popup" class="animate-submit-evidence">
+  <h2 id="animated-popup-title">Congratulations!</h2>
+  <br />
+  <h5 id="animated-popup-content">You just won 20 points for leadership</h5>
+  <br />
+  <span><i class="fa fa-trophy" aria-hidden="true"></i></span>
 </div>
+
+<style>
+
+.animate-submit-evidence{
+  position: fixed;
+  top: 25%;
+  left: 25%;
+  padding: 100px 50px;
+  background-color: #304047;
+  color: #fff;
+  text-align: center;
+  z-index:100;
+  border-radius:10px;
+  /*box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;*/
+  -webkit-box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow:    0px 0px 30px 0px rgba(50, 50, 50, 0.75);
+  box-shadow:         0px 0px 30px 0px rgba(50, 50, 50, 0.75);
+  opacity: 0.8;
+}
+
+.animate-submit-evidence h2, .animate-submit-evidence h5{
+  color: #fff;
+}
+
+.animate-submit-evidence i{
+  font-size: 10em;
+}
+
+</style>
 
 <script type="text/javascript">
 
@@ -72,15 +104,15 @@ function animatePopUp(title, message){
   document.getElementById("animated-popup-title").innerHTML = title;
   document.getElementById("animated-popup-content").innerHTML = message;
   $("#animated-popup").show();
-  $("#animated-popup").addClass('animated slideInUp').one(animationEnd, function() {
-      removeAnimation('slideInUp');
+  $("#animated-popup").addClass('animated fadeInUp').one(animationEnd, function() {
+      removeAnimation('fadeOutDown');
       slideOutPopUp();
   });
 }
 
 function slideOutPopUp(){
-  $("#animated-popup").addClass('animated slideOutUp').one(animationEnd, function() {
-      removeAnimation('slideOutUp');
+  $("#animated-popup").addClass('animated fadeInUp').one(animationEnd, function() {
+      removeAnimation('fadeOutDown');
       $("#animated-popup").hide();
   });
 }

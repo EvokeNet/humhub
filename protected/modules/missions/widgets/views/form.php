@@ -70,7 +70,8 @@ $firstSecondary = true;
 
         </div>
 
-        <span style="margin-top:30px; padding: 0 10px"><?= Yii::t('MissionsModule.widgets_views_evidenceForm', "<strong>Rubric:</strong> {rubric}", array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></span>
+        <br /><br />
+        <span style="font-size:12pt"><?= Yii::t('MissionsModule.widgets_views_evidenceForm', "<strong>Rubric:</strong> {rubric}", array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></span>
     </div>    
 </div>
 
