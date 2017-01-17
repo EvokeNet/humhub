@@ -1313,7 +1313,7 @@ input[type=select] {
   box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
   -moz-box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
-  color: #FFFFFF;
+  color: #FFFFFF!important;
   height: 36px;
   line-height: 36px;
   position: relative;
@@ -3336,4 +3336,12 @@ h3.product-name {
 .carousel-control.left,
 .carousel-control.right {
   background-image: none;
+}
+.carousel-control .glyphicon-chevron-right,
+.carousel-control .icon-next {
+  margin-right: -100px;
+}
+.carousel-control .glyphicon-chevron-left,
+.carousel-control .icon-prev {
+  margin-left: -100px;
 }

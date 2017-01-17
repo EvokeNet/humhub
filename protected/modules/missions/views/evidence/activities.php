@@ -34,18 +34,18 @@ $firstSecondary = true;
     <div>
         <?php if(!empty($previous_mission)): ?>
             <span><?php echo Html::a(
-            Yii::t('MissionsModule.base', '{icon} Previous Chapter', array('icon' => '<i class="fa fa-arrow-circle-o-left fa-lg" aria-hidden="true"></i>')),
+            Yii::t('MissionsModule.base', '{icon} Previous', array('icon' => '<i class="fa fa-arrow-circle-o-left fa-lg" aria-hidden="true"></i>')),
             ['activities', 'missionId' => $previous_mission->id, 'sguid' => $contentContainer->guid], array('style' => 'float:left')); ?></span>
         <?php else: ?>
-            <span style="float:left"><?php echo Yii::t('MissionsModule.base', '{icon} Previous Chapter', array('icon' => '<i class="fa fa-arrow-circle-o-left fa-lg" aria-hidden="true"></i>')); ?></span>
+            <span style="float:left"><?php echo Yii::t('MissionsModule.base', '{icon} Previous', array('icon' => '<i class="fa fa-arrow-circle-o-left fa-lg" aria-hidden="true"></i>')); ?></span>
         <?php endif; ?>
 
         <?php if(!empty($next_mission)): ?>
             <span><?php echo Html::a(
-            Yii::t('MissionsModule.base', 'Next Chapter {icon}', array('icon' => '<i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i>')),
+            Yii::t('MissionsModule.base', 'Next {icon}', array('icon' => '<i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i>')),
             ['activities', 'missionId' => $next_mission->id, 'sguid' => $contentContainer->guid], array('style' => 'float:right')); ?></span>
         <?php else: ?>
-            <span style="float:right"><?php echo Yii::t('MissionsModule.base', 'Next Chapter {icon}', array('icon' => '<i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i>')); ?></span>
+            <span style="float:right"><?php echo Yii::t('MissionsModule.base', 'Next {icon}', array('icon' => '<i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i>')); ?></span>
         <?php endif; ?>
     </div>
     <br /><br />
@@ -104,18 +104,18 @@ $firstSecondary = true;
 
         <?php if(!empty($previous_mission)): ?>
         <span><?php echo Html::a(
-            Yii::t('MissionsModule.base', '{icon} Previous Chapter', array('icon' => '<i class="fa fa-arrow-circle-o-left fa-lg" aria-hidden="true"></i>')),
+            Yii::t('MissionsModule.base', '{icon} Previous', array('icon' => '<i class="fa fa-arrow-circle-o-left fa-lg" aria-hidden="true"></i>')),
             ['activities', 'missionId' => $previous_mission->id, 'sguid' => $contentContainer->guid, 'flag' => 1], array('style' => 'float:left')); ?></span>
         <?php else: ?>
-            <span style="float:left"><?php echo Yii::t('MissionsModule.base', '{icon} Previous Chapter', array('icon' => '<i class="fa fa-arrow-circle-o-left fa-lg" aria-hidden="true"></i>')); ?></span>
+            <span style="float:left"><?php echo Yii::t('MissionsModule.base', '{icon} Previous', array('icon' => '<i class="fa fa-arrow-circle-o-left fa-lg" aria-hidden="true"></i>')); ?></span>
         <?php endif; ?>
 
         <?php if(!empty($next_mission)): ?>
         <span><?php echo Html::a(
-            Yii::t('MissionsModule.base', 'Next Chapter {icon}', array('icon' => '<i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i>')),
+            Yii::t('MissionsModule.base', 'Next {icon}', array('icon' => '<i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i>')),
             ['activities', 'missionId' => $next_mission->id, 'sguid' => $contentContainer->guid, 'flag' => 1], array('style' => 'float:right')); ?></span>
         <?php else: ?>
-            <span style="float:right"><?php echo Yii::t('MissionsModule.base', 'Next Chapter {icon}', array('icon' => '<i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i>')); ?></span>
+            <span style="float:right"><?php echo Yii::t('MissionsModule.base', 'Next {icon}', array('icon' => '<i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i>')); ?></span>
         <?php endif; ?>
 
         <br /><br />
@@ -224,7 +224,7 @@ $firstSecondary = true;
 
                                     <?php echo Html::a(
                                         Yii::t('MissionsModule.base', 'Enter Activity'),
-                                        ['show', 'activityId' => $activity->id, 'sguid' => $contentContainer->guid], array('class' => 'btn btn-cta1', 'style' => 'color:white')); ?>
+                                        ['show', 'activityId' => $activity->id, 'sguid' => $contentContainer->guid], array('class' => 'btn btn-cta1')); ?>
 
                                     <?php if(!$activity->is_group): ?>
 
@@ -252,3 +252,13 @@ $firstSecondary = true;
 
     </div>
 </div>    
+
+<script>
+
+$('.carousel-inner').each(function() {
+
+    if ($(this).children('div').length === 1) $(this).siblings('.carousel-control, .carousel-indicators').hide();
+
+});
+
+</script>
