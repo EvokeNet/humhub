@@ -33,16 +33,16 @@
   <br />
   <h5 id="animated-popup-content">You just won 20 points for leadership</h5>
   <br />
-  <span><i class="fa fa-trophy" aria-hidden="true"></i></span>
+  <div class="animated-trophy"><i class="fa fa-trophy" aria-hidden="true"></i></div>
 </div>
 
 <style>
 
 .animate-submit-evidence{
   position: fixed;
-  top: 25%;
+  top: 45%;
   left: 25%;
-  padding: 100px 50px;
+  padding: 90px 50px;
   background-color: #304047;
   color: #fff;
   text-align: center;
@@ -55,7 +55,21 @@
   opacity: 0.8;
 }
 
-.animate-submit-evidence h2, .animate-submit-evidence h5{
+.animated-trophy{
+    position: absolute;
+    top: -100px;
+    left: 27%;
+    border: 10px solid #304047;
+    background-color: #FFC107;
+    padding: 20px 25px;
+    border-radius: 50%;
+}
+
+.animate-submit-evidence h2{
+  color:#FFC107!important;
+}
+
+.animate-submit-evidence h5{
   color: #fff;
 }
 
