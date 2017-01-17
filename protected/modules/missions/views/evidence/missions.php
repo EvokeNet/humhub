@@ -32,8 +32,10 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Missions');
                         <div class="panel-body grey-box blur">
                             
                             <h4>
-                                <strong><?= Yii::t('MissionsModule.base', 'Mission {position}: {text}', array('position' => $mission->position, 'text' => isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title)) ?></strong>
-                                &nbsp;<i class="fa fa-lock" aria-hidden="true"></i>
+                                <span class = "activity-number">
+                                    <?php echo $mission->position >= 1 ?$mission->position : "#" ?>
+                                </span>
+                                <?= isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title ?>
                             </h4>
                             
                             <p class="description">
@@ -53,7 +55,11 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Missions');
                         <div class="panel-body grey-box">
                             
                             <h4>
-                                <strong><?= Yii::t('MissionsModule.base', 'Mission {position}: {text}', array('position' => $mission->position, 'text' => isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title)) ?></strong>
+                                <span class = "activity-number">
+                                    <?php echo $mission->position >= 1 ?$mission->position : "#" ?>
+                                </span>
+                                <?= isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title ?>
+                                <!-- <strong><?php // Yii::t('MissionsModule.base', 'Mission {position}: {text}', array('position' => $mission->position, 'text' => isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title)) ?></strong> -->
                             </h4>
                             
                             <p class="description">
