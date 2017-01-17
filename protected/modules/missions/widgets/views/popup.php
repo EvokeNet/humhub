@@ -1,4 +1,9 @@
-<?php use yii\helpers\Url; ?>
+<?php 
+  
+  use yii\helpers\Url; 
+  $this->registerCssFile("css/animate.min.css"); 
+
+?>
 <!-- POPUP -->
 
 <div id="popup-message" class="modal fade" role="dialog">
@@ -23,23 +28,39 @@
   </div>
 </div>
 
+<div id="animated-popup" style="display: none">
+  <h2 id="animated-popup-title"></h2>
+  <h2 id="animated-popup-content"></h2>
+</div>
+
 <script type="text/javascript">
 
-var popUpWatcher = setInterval(function() {
+var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+
+/*var popUpWatcher = setInterval(function() {
 
     if(! $("#popup-message").is(':visible') ){
       loadPopUps();
     }
 
-}, 1000);
+}, 1000); 
+*/
 
-function loadPopUps(){
+function loadPopUps(animatedPopUp){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             if(xhttp.responseText){
               var message = JSON.parse(xhttp.responseText);
-              showMessage(message['title'], message['message']);
+              if(animatedPopUp){
+                animatePopUp(message['title'], message['message']);  
+              }else{
+                showMessage(message['title'], message['message']);  
+              }
+              
+
+              //while has an alert to show
+              loadPopUps(animatedPopUp);
             }
         }
     };
@@ -47,10 +68,33 @@ function loadPopUps(){
     xhttp.send();
 }
 
+function animatePopUp(title, message){
+  document.getElementById("animated-popup-title").innerHTML = title;
+  document.getElementById("animated-popup-content").innerHTML = message;
+  $("#animated-popup").show();
+  $("#animated-popup").addClass('animated slideInUp').one(animationEnd, function() {
+      removeAnimation('slideInUp');
+      slideOutPopUp();
+  });
+}
+
+function slideOutPopUp(){
+  $("#animated-popup").addClass('animated slideOutUp').one(animationEnd, function() {
+      removeAnimation('slideOutUp');
+      $("#animated-popup").hide();
+  });
+}
+
+function removeAnimation(animationName){
+  $("#animated-popup").removeClass('animated ' + animationName);
+}
+
 function showMessage(title, message){
   document.getElementById("message-title").innerHTML = title;
   document.getElementById("message-content").innerHTML = message;
   $("#popup-message").modal("show");
 }
+
+
 
 </script>

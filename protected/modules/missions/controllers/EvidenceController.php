@@ -296,6 +296,8 @@ class EvidenceController extends ContentContainerController
     }
 
     public function actionPublish(){
+        Yii::$app->response->format = 'json';
+
         $user = Yii::$app->user->getIdentity();
         $id = Yii::$app->request->get('id');
         $evidence = Evidence::findOne($id);
@@ -351,20 +353,21 @@ class EvidenceController extends ContentContainerController
 
                         $message = $this->getEvidenceCreatedMessage($activityPowers);
                         AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), $message);
-
-                        $this->redirect($evidence->content->getUrl());
+                        return array('wallEntryId' => $evidence->content->getFirstWallEntryId());
 
                     } else {
                         $evidence->content->visibility = 0;
                         $evidence->content->save();
 
                         AlertController::createAlert(Yii::t('MissionsModule.base', 'Error'),Yii::t('MissionsModule.base', 'Something went wrong.'));
+                        return "error";
                     }
                 }
             }
 
         }else{
             AlertController::createAlert(Yii::t('MissionsModule.base', 'Error!'), "Something's wrong");
+            return "error";
         }
     }
 

@@ -229,6 +229,7 @@ echo Html::beginForm();
                                               $("#btn-enable-module-' . $vote->id . '").addClass("hidden");
                                               $("#btn-disable-module-' . $vote->id . '").removeClass("hidden");
                                               $("#btn-disables-module-' . $vote->id . '").removeClass("hidden");
+                                              loadPopUps(true);
                                               }'),
                                                   'url' => Url::to(['admin/update-quality-reviews', 'id' => $vote->id, 'mark' => 1, 'user_id' => $vote->user_id]),
                                               ],
@@ -251,6 +252,7 @@ echo Html::beginForm();
                                               $("#btn-enable-module-' . $vote->id . '").removeClass("hidden");
                                               $("#btn-disable-module-' . $vote->id . '").addClass("hidden");
                                               $("#btn-disables-module-' . $vote->id . '").addClass("hidden");
+                                              loadPopUps(true);
                                                }'),
                                                   'url' => Url::to(['admin/update-quality-reviews', 'id' => $vote->id, 'mark' => 0, 'user_id' => $vote->user_id]),
                                               ],
@@ -351,6 +353,7 @@ echo Html::beginForm();
             'ajaxOptions' => [
                 'dataType' => 'json',
                 'type' => 'POST',
+                'success' => "loadPopUps(true)",
                 'url' => $evidence->content->container->createUrl('/missions/evidence/update', ['id' => $evidence->id]),
             ],
             'htmlOptions' => [
@@ -365,6 +368,8 @@ echo Html::beginForm();
             'ajaxOptions' => [
                 'dataType' => 'json',
                 'type' => 'POST',
+                'beforeSend' => "function() { validateDraft($evidence->id); }",
+                'success' => "function(response) { handleResponse(response); loadPopUps(true);}",
                 'url' => $evidence->content->container->createUrl('/missions/evidence/publish', ['id' => $evidence->id]),
             ],
             'htmlOptions' => [
@@ -459,6 +464,14 @@ $('#evidence_input_text_<?= $evidence->id ?>').keyup(function() {
 
 })
 
+function validateDraft(draft_id){
+  text = $('#evidence_input_text_' + draft_id);
+  if(text.val().length < 140){
+    showMessage("Error", "<?= Yii::t('MissionsModule.base', 'Post too short.') ?>");
+  }
+}
+
+
 function review(id, comment, opt, grade){
     grade = grade? grade : 0;
     var xhttp = new XMLHttpRequest();
@@ -471,6 +484,7 @@ function review(id, comment, opt, grade){
                 $("#review_tab_" + id).replaceWith(xhttp.responseText);
               }
             }
+            loadPopUps(true);
         }
     };
     xhttp.open("GET", "<?= $contentContainer->createUrl('/missions/evidence/review'); ?>&opt="+opt+"&grade="+grade+"&evidenceId="+id+"&comment="+comment , true);
