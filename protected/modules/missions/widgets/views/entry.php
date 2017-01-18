@@ -368,7 +368,8 @@ echo Html::beginForm();
             'ajaxOptions' => [
                 'dataType' => 'json',
                 'type' => 'POST',
-                'success' => "loadPopUps()",
+                'beforeSend' => "function() { validateDraft($evidence->id); }",
+                'success' => "function(response) { handleResponse(response); loadPopUps();}",
                 'url' => $evidence->content->container->createUrl('/missions/evidence/publish', ['id' => $evidence->id]),
             ],
             'htmlOptions' => [
@@ -462,6 +463,14 @@ $('#evidence_input_text_<?= $evidence->id ?>').keyup(function() {
     }
 
 })
+
+function validateDraft(draft_id){
+  text = $('#evidence_input_text_' + draft_id);
+  if(text.val().length < 140){
+    showMessage("Error", "<?= Yii::t('MissionsModule.base', 'Post too short.') ?>");
+  }
+}
+
 
 function review(id, comment, opt, grade){
     grade = grade? grade : 0;
