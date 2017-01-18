@@ -229,7 +229,7 @@ echo Html::beginForm();
                                               $("#btn-enable-module-' . $vote->id . '").addClass("hidden");
                                               $("#btn-disable-module-' . $vote->id . '").removeClass("hidden");
                                               $("#btn-disables-module-' . $vote->id . '").removeClass("hidden");
-                                              loadPopUps();
+                                              loadPopUps(true);
                                               }'),
                                                   'url' => Url::to(['admin/update-quality-reviews', 'id' => $vote->id, 'mark' => 1, 'user_id' => $vote->user_id]),
                                               ],
@@ -252,7 +252,7 @@ echo Html::beginForm();
                                               $("#btn-enable-module-' . $vote->id . '").removeClass("hidden");
                                               $("#btn-disable-module-' . $vote->id . '").addClass("hidden");
                                               $("#btn-disables-module-' . $vote->id . '").addClass("hidden");
-                                              loadPopUps();
+                                              loadPopUps(true);
                                                }'),
                                                   'url' => Url::to(['admin/update-quality-reviews', 'id' => $vote->id, 'mark' => 0, 'user_id' => $vote->user_id]),
                                               ],
@@ -353,7 +353,7 @@ echo Html::beginForm();
             'ajaxOptions' => [
                 'dataType' => 'json',
                 'type' => 'POST',
-                'success' => "loadPopUps()",
+                'success' => "loadPopUps(true)",
                 'url' => $evidence->content->container->createUrl('/missions/evidence/update', ['id' => $evidence->id]),
             ],
             'htmlOptions' => [
@@ -369,7 +369,7 @@ echo Html::beginForm();
                 'dataType' => 'json',
                 'type' => 'POST',
                 'beforeSend' => "function() { validateDraft($evidence->id); }",
-                'success' => "function(response) { handleResponse(response); loadPopUps();}",
+                'success' => "function(response) { handleResponse(response); loadPopUps(true);}",
                 'url' => $evidence->content->container->createUrl('/missions/evidence/publish', ['id' => $evidence->id]),
             ],
             'htmlOptions' => [
@@ -484,7 +484,7 @@ function review(id, comment, opt, grade){
                 $("#review_tab_" + id).replaceWith(xhttp.responseText);
               }
             }
-            loadPopUps();
+            loadPopUps(true);
         }
     };
     xhttp.open("GET", "<?= $contentContainer->createUrl('/missions/evidence/review'); ?>&opt="+opt+"&grade="+grade+"&evidenceId="+id+"&comment="+comment , true);
