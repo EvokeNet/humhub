@@ -368,7 +368,7 @@ echo Html::beginForm();
             'ajaxOptions' => [
                 'dataType' => 'json',
                 'type' => 'POST',
-                'success' => "loadPopUps()",
+                'success' => "function(response) { handleResponse(response); loadPopUps();}",
                 'url' => $evidence->content->container->createUrl('/missions/evidence/publish', ['id' => $evidence->id]),
             ],
             'htmlOptions' => [
@@ -462,6 +462,7 @@ $('#evidence_input_text_<?= $evidence->id ?>').keyup(function() {
     }
 
 })
+
 
 function review(id, comment, opt, grade){
     grade = grade? grade : 0;
