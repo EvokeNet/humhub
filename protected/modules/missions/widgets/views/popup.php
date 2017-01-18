@@ -1,4 +1,9 @@
-<?php use yii\helpers\Url; ?>
+<?php 
+  
+  use yii\helpers\Url; 
+  $this->registerCssFile("css/animate.min.css"); 
+
+?>
 <!-- POPUP -->
 
 <div id="popup-message" class="modal fade" role="dialog">
