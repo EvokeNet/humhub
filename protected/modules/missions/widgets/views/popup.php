@@ -28,10 +28,12 @@
   </div>
 </div>
 
-<div id="animated-popup" class="animate-submit-evidence">
-  <h2 id="animated-popup-title">Congratulations!</h2>
+<div id="animated-popup" class="animate-submit-evidence" style="display:none">
+  <h2 id="animated-popup-header"><?= Yii::t('MissionsModule.base', "Congratulations!") ?></h2>
+  <br /><br />
+  <h5><?= Yii::t('MissionsModule.base', "You've just won") ?></h5>&nbsp;<h5 id="animated-popup-quantity"></h5>&nbsp;<h5><?= Yii::t('MissionsModule.base', "points in") ?></h5>&nbsp;<h5 id="animated-popup-power"></h5>
   <br />
-  <h5 id="animated-popup-content">You just won 20 points for leadership</h5>
+  <div id="animated-popup-content"></div>
   <br />
   <div class="animated-trophy"><i class="fa fa-trophy" aria-hidden="true"></i></div>
 </div>
@@ -40,9 +42,10 @@
 
 .animate-submit-evidence{
   position: fixed;
-  top: 45%;
-  left: 25%;
-  padding: 90px 50px;
+  top: 30%;
+  left: 32%;
+  width: 500px;
+  padding: 90px 50px 70px;
   background-color: #304047;
   color: #fff;
   text-align: center;
@@ -58,11 +61,21 @@
 .animated-trophy{
     position: absolute;
     top: -100px;
-    left: 27%;
+    left: 30%;
     border: 10px solid #304047;
     background-color: #FFC107;
     padding: 20px 25px;
     border-radius: 50%;
+}
+
+#animated-popup-content{
+  margin-top:50px;
+}
+
+#animated-popup-content img{
+  width:90px;
+  border: 5px solid #00BCD4;
+  border-radius: 50%;
 }
 
 .animate-submit-evidence h2{
@@ -71,6 +84,7 @@
 
 .animate-submit-evidence h5{
   color: #fff;
+  display:inline;
 }
 
 .animate-submit-evidence i{
@@ -100,6 +114,7 @@ function loadPopUps(animatedPopUp){
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             if(xhttp.responseText){
               var message = JSON.parse(xhttp.responseText);
+              
               if(animatedPopUp){
                 animatePopUp(message['title'], message['message'], message['image_url']);  
               }else{
@@ -127,18 +142,28 @@ function loadPopUps(animatedPopUp){
 }
 
 function animatePopUp(title, message, image_url){
-  document.getElementById("animated-popup-title").innerHTML = title;
-  document.getElementById("animated-popup-content").innerHTML = message;
+  document.getElementById("animated-popup-power").innerHTML = title;
+  document.getElementById("animated-popup-quantity").innerHTML = message;
+
+  var img = new Image();
+  var div = document.getElementById('animated-popup-content');
+
+  img.onload = function() {
+    div.appendChild(img);
+  };
+
+  img.src = image_url;
+
   $("#animated-popup").show();
   $("#animated-popup").addClass('animated fadeInUp').one(animationEnd, function() {
-      removeAnimation('fadeOutDown');
+      removeAnimation('fadeInUp');
       slideOutPopUp();
   });
 }
 
 function slideOutPopUp(){
   $("#animated-popup").addClass('animated fadeInUp').one(animationEnd, function() {
-      removeAnimation('fadeOutDown');
+      removeAnimation('fadeInUp');
       $("#animated-popup").hide();
   });
 }
