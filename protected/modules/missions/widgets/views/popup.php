@@ -46,6 +46,8 @@ var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimation
 }, 1000); 
 */
 
+var popUpWatcher = null;
+
 function loadPopUps(animatedPopUp){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -53,14 +55,24 @@ function loadPopUps(animatedPopUp){
             if(xhttp.responseText){
               var message = JSON.parse(xhttp.responseText);
               if(animatedPopUp){
-                animatePopUp(message['title'], message['message']);  
+                animatePopUp(message['title'], message['message'], message['image_url']);  
               }else{
                 showMessage(message['title'], message['message']);  
               }
               
+              //while has an alert to show 
+              if(popUpWatcher == null){
+                popUpWatcher = setInterval(function() {
 
-              //while has an alert to show
-              loadPopUps(animatedPopUp);
+                  if(! $("#popup-message").is(':visible') ){
+                    loadPopUps(animatedPopUp);
+                  }
+
+                }, 1000); 
+              }
+            }else{
+                window.clearInterval(popUpWatcher);
+                popUpWatcher = null;
             }
         }
     };
@@ -68,7 +80,7 @@ function loadPopUps(animatedPopUp){
     xhttp.send();
 }
 
-function animatePopUp(title, message){
+function animatePopUp(title, message, image_url){
   document.getElementById("animated-popup-title").innerHTML = title;
   document.getElementById("animated-popup-content").innerHTML = message;
   $("#animated-popup").show();

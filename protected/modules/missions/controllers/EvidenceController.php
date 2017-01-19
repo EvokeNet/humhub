@@ -182,6 +182,16 @@ class EvidenceController extends ContentContainerController
         return $this->render('missions', array('missions' => $missions, 'contentContainer' => $this->contentContainer));
     }
 
+    public function createAnimatedMessagesForPowers($activityPowers){
+        foreach($activityPowers as $activity_power){
+            $name = $activity_power->getPower()->title;
+            if(Yii::$app->language == 'es' && isset($activity_power->getPower()->powerTranslations[0]))
+                $name = $activity_power->getPower()->powerTranslations[0]->title;
+
+            AlertController::createAlert($name, $activity_power->value, $activity_power->getPower()->image);
+        }
+    }
+
     public function getEvidenceCreatedMessage($activityPowers){
 
         $message_initial = "";
@@ -351,8 +361,12 @@ class EvidenceController extends ContentContainerController
 
                         $evidence->content->save();
 
-                        $message = $this->getEvidenceCreatedMessage($activityPowers);
-                        AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), $message);
+                        //old popup
+                        //$message = $this->getEvidenceCreatedMessage($activityPowers);
+                        //AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), $message);
+
+                        $this->createAnimatedMessagesForPowers($activityPowers);
+
                         return array('wallEntryId' => $evidence->content->getFirstWallEntryId());
 
                     } else {
@@ -447,9 +461,11 @@ class EvidenceController extends ContentContainerController
                   UserPowers::addPowerPoint($activity_power->getPower(), $user, $activity_power->value);
               }
             }
+            //old popup
+            //$message = $this->getEvidenceCreatedMessage($activityPowers);
+            //AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), $message);
 
-            $message = $this->getEvidenceCreatedMessage($activityPowers);
-            AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), $message);
+            $this->createAnimatedMessagesForPowers($activityPowers);
 
         }
 
