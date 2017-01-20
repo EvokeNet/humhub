@@ -326,7 +326,7 @@ class EvidenceController extends ContentContainerController
             if ($model->load($request->post())) {
 
                 if (mb_strlen(Yii::$app->request->post('Evidence')['text']) < 140) {
-                    AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
+                    //AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
                 } else {
 
                     $evidence->content->visibility = 1;
