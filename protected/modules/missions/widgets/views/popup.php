@@ -116,17 +116,46 @@ var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimation
 var popUpWatcher = null;
 var animated_popup_image = null;
 var animated_popup_content = document.getElementById('animated-popup-content');
-var lastMessage = null;
+var messages = [];
+var activatedPopUp = false;
+
+function addToMessagesArray(currentMessage){
+  messages.push(currentMessage);
+  if(messages.length >= 5){
+    messages.shift();
+  }
+}
+
+function checkDuplication(currentMessage){
+  for (msg in messages) {
+    // console.log(currentMessage);
+    // console.log(messages[msg]);
+    if(currentMessage === messages[msg]){
+      return true;
+    }
+  }
+  return false;
+}
 
 function loadPopUps(){
+
+  if(!activatedPopUp){
+    activatedPopUp = true;
+  }else{
+    return;
+  }
+
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
+          
+            activatedPopUp = false;
+
             if(xhttp.responseText){
               var message = JSON.parse(xhttp.responseText);
 
               //if duplicated messages
-              if(lastMessage === xhttp.responseText){
+              if(checkDuplication(xhttp.responseText)){
                 // do nothing
               }else if(message['type'] == 'animated'){
                 console.log("animate");
@@ -135,8 +164,8 @@ function loadPopUps(){
                 showMessage(message['title'], message['message']);  
               }
 
-              //update old message
-              lastMessage = xhttp.responseText;
+              //update last message
+              addToMessagesArray(xhttp.responseText);
               
               //while has an alert to show 
               if(popUpWatcher == null){
@@ -160,6 +189,7 @@ function loadPopUps(){
 }
 
 function animatePopUp(title, message, image_url){
+  animated_popup_content.innerHTML = "";
   document.getElementById("animated-popup-power").innerHTML = title;
   document.getElementById("animated-popup-quantity").innerHTML = message;
 
@@ -185,8 +215,11 @@ function slideInPopUp(){
 
 function slideOutPopUp(){
   $("#animated-popup").addClass('animated fadeInUp').one(animationEnd, function() {
-      animated_popup_content.removeChild(animated_popup_image);
+      //remove animation
       removeAnimation('fadeInUp');
+      //remove content
+      animated_popup_content.innerHTML = "";
+      //hide
       $("#animated-popup").hide();
   });
 }

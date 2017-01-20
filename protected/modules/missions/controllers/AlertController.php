@@ -17,7 +17,7 @@ class AlertController extends Controller
         $popup['message'] = $message;
         $popup['image_url'] = $image_url;
         $popup['type'] = $type;
-        $popup['random'] = rand();
+        $popup['random'] = mt_rand();
 
         $popup_array = Yii::$app->session->getFlash('popup');
 
