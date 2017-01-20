@@ -8,12 +8,14 @@ use yii\web\NotFoundHttpException;
 
 class AlertController extends Controller
 {
+    const ANIMATED = 'animated';
 
-    public static function createAlert($title, $message, $image_url = null){
-        $popup = array_fill_keys(array('title', 'message', 'image_url'),"");
+    public static function createAlert($title, $message, $type = null, $image_url = null){
+        $popup = array_fill_keys(array('title', 'message', 'image_url', 'type'),"");
         $popup['title'] = $title;
         $popup['message'] = $message;
         $popup['image_url'] = $image_url;
+        $popup['type'] = $type;
 
         $popup_array = Yii::$app->session->getFlash('popup');
 

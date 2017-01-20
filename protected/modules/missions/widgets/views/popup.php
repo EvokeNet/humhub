@@ -70,6 +70,11 @@
     border-radius: 50%;
 }
 
+#animated-popup{
+  -webkit-animation-duration: 3s;
+  -webkit-animation-delay: 0s;
+}
+
 #animated-popup-content{
   margin-top:50px;
 }
@@ -109,15 +114,18 @@ var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimation
 */
 
 var popUpWatcher = null;
+var animated_popup_image = null;
+var animated_popup_content = document.getElementById('animated-popup-content');
 
-function loadPopUps(animatedPopUp){
+function loadPopUps(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             if(xhttp.responseText){
               var message = JSON.parse(xhttp.responseText);
               
-              if(animatedPopUp){
+              if(message['type'] == 'animated'){
+                console.log("animate");
                 animatePopUp(message['title'], message['message'], message['image_url']);  
               }else{
                 showMessage(message['title'], message['message']);  
@@ -127,8 +135,9 @@ function loadPopUps(animatedPopUp){
               if(popUpWatcher == null){
                 popUpWatcher = setInterval(function() {
 
-                  if(! $("#popup-message").is(':visible') ){
-                    loadPopUps(animatedPopUp);
+                  if(!$("#popup-message").is(':visible') && !$("#animated-popup").is(':visible')){
+                    console.log("load another");
+                    loadPopUps();
                   }
 
                 }, 1000); 
@@ -147,24 +156,30 @@ function animatePopUp(title, message, image_url){
   document.getElementById("animated-popup-power").innerHTML = title;
   document.getElementById("animated-popup-quantity").innerHTML = message;
 
-  var img = new Image();
-  var div = document.getElementById('animated-popup-content');
+  animated_popup_image = new Image();
+  
 
-  img.onload = function() {
-    div.appendChild(img);
+  animated_popup_image.onload = function() {
+    animated_popup_content.appendChild(animated_popup_image);
   };
 
-  img.src = image_url;
+  animated_popup_image.src = image_url;
 
   $("#animated-popup").show();
+  slideOutPopUp();
+}
+
+// not working
+function slideInPopUp(){
   $("#animated-popup").addClass('animated fadeInUp').one(animationEnd, function() {
-      removeAnimation('fadeInUp');
-      slideOutPopUp();
-  });
+       //removeAnimation('fadeInUp');
+       slideOutPopUp();
+   });
 }
 
 function slideOutPopUp(){
   $("#animated-popup").addClass('animated fadeInUp').one(animationEnd, function() {
+      animated_popup_content.removeChild(animated_popup_image);
       removeAnimation('fadeInUp');
       $("#animated-popup").hide();
   });

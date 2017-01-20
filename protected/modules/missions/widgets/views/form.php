@@ -126,7 +126,7 @@ $( document ).ready(function() {
             window.location.hash = "";
             window.location.hash = "wallEntry_" + response.wallEntryId;
       }
-      loadPopUps(true);
+      loadPopUps();
     }
 
 });
