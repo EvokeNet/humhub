@@ -122,10 +122,6 @@ $firstSecondary = true;
 
         <div class="panel panel-default">
             <div class="panel-heading">
-         
-                <!-- <span class = "mission-number"><?= $mission->position ?></span> -->
-
-               
 
                 <h5 style="line-height:30px; display: inline-block; font-weight:700">
                     <span class = "activity-number">

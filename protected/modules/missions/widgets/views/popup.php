@@ -31,9 +31,11 @@
 <div id="animated-popup" class="animate-submit-evidence" style="display:none">
   <h2 id="animated-popup-header"><?= Yii::t('MissionsModule.base', "Congratulations!") ?></h2>
   <br /><br />
-  <h5><?= Yii::t('MissionsModule.base', "You've just won") ?></h5>&nbsp;<h5 id="animated-popup-quantity"></h5>&nbsp;<h5><?= Yii::t('MissionsModule.base', "points in") ?></h5>&nbsp;<h5 id="animated-popup-power"></h5>
+  <h5><?= Yii::t('MissionsModule.base', "You've just won") ?></h5>&nbsp;<h5 id="animated-popup-quantity"></h5>&nbsp;<h5><?= Yii::t('MissionsModule.base', "points in") ?></h5>
   <br />
   <div id="animated-popup-content"></div>
+  <br />
+  <h5 id="animated-popup-power"></h5>
   <br />
   <div class="animated-trophy"><i class="fa fa-trophy" aria-hidden="true"></i></div>
 </div>
