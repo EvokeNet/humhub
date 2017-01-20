@@ -10,12 +10,14 @@ class AlertController extends Controller
 {
     const ANIMATED = 'animated';
 
+    // random number exists to prevent duplicated pop up messages on frontend
     public static function createAlert($title, $message, $type = null, $image_url = null){
-        $popup = array_fill_keys(array('title', 'message', 'image_url', 'type'),"");
+        $popup = array_fill_keys(array('title', 'message', 'image_url', 'type', 'random'),"");
         $popup['title'] = $title;
         $popup['message'] = $message;
         $popup['image_url'] = $image_url;
         $popup['type'] = $type;
+        $popup['random'] = rand();
 
         $popup_array = Yii::$app->session->getFlash('popup');
 
