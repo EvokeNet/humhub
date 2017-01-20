@@ -116,6 +116,7 @@ var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimation
 var popUpWatcher = null;
 var animated_popup_image = null;
 var animated_popup_content = document.getElementById('animated-popup-content');
+var lastMessage = null;
 
 function loadPopUps(){
     var xhttp = new XMLHttpRequest();
@@ -123,13 +124,19 @@ function loadPopUps(){
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             if(xhttp.responseText){
               var message = JSON.parse(xhttp.responseText);
-              
-              if(message['type'] == 'animated'){
+
+              //if duplicated messages
+              if(lastMessage === xhttp.responseText){
+                // do nothing
+              }else if(message['type'] == 'animated'){
                 console.log("animate");
                 animatePopUp(message['title'], message['message'], message['image_url']);  
               }else{
                 showMessage(message['title'], message['message']);  
               }
+
+              //update old message
+              lastMessage = xhttp.responseText;
               
               //while has an alert to show 
               if(popUpWatcher == null){
@@ -157,7 +164,6 @@ function animatePopUp(title, message, image_url){
   document.getElementById("animated-popup-quantity").innerHTML = message;
 
   animated_popup_image = new Image();
-  
 
   animated_popup_image.onload = function() {
     animated_popup_content.appendChild(animated_popup_image);
@@ -194,7 +200,5 @@ function showMessage(title, message){
   document.getElementById("message-content").innerHTML = message;
   $("#popup-message").modal("show");
 }
-
-
 
 </script>
