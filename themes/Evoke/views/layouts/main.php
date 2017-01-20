@@ -62,6 +62,11 @@ AppAsset::register($this);
         <meta charset="<?= Yii::$app->charset ?>">
         <!-- end: Favicon and Touch Icons -->
 
+        <!-- Include stylesheet -->
+        <link href="https://cdn.quilljs.com/1.1.10/quill.snow.css" rel="stylesheet">
+        <!-- Include the Quill library -->
+        <script src="https://cdn.quilljs.com/1.1.10/quill.js"></script>
+
     </head>
 
     <body>
@@ -137,7 +142,7 @@ AppAsset::register($this);
     
     <footer class="footer">
       <div class="container">
-        <p class="text-muted"><i class="fa fa-copyright" aria-hidden="true"></i> Copyright 2016 - World Bank</p>
+        <p class="text-muted"><i class="fa fa-copyright" aria-hidden="true"></i> Copyright 2017 - World Bank</p>
         <p class = "right">
         <?php //echo Html::a(
             //Yii::t('StaticsModule.base', 'About'), 

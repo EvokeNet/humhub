@@ -19,7 +19,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Missions');
         <h4 style="margin-top:10px"><strong><?php echo Yii::t('MissionsModule.base', 'Missions'); ?></strong></h4>
     </div>
     <div class="panel-body">
-
+        <br />
         <?php 
             $x = 0;
             if (count($missions) != 0): ?>
@@ -31,21 +31,13 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Missions');
                     <div class="panel panel-default">
                         <div class="panel-body grey-box blur">
                             
-                            <h4>
+                            <h6 style="line-height:30px">
                                 <span class = "activity-number">
-                                    <?php echo $mission->position >= 1 ?$mission->position : "#" ?>
+                                        <?php echo $mission->position >= 1 ?$mission->position : "#" ?>
                                 </span>
                                 <?= isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title ?>
-                            </h4>
-                            
-                            <p class="description">
-                                <?= isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->description : $mission->description ?>
-                            </p>
-                            
-                            <br>
-                            <?php echo Html::a(
-                                Yii::t('MissionsModule.base', 'Enter Mission'),
-                                ['activities', 'missionId' => $mission->id, 'sguid' => $contentContainer->guid], array('class' => 'btn btn-cta1 disabled')); ?>
+                            </h6>
+
                         </div>
                     </div>
                     
@@ -53,23 +45,16 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Missions');
                     
                     <div class="panel panel-default">
                         <div class="panel-body grey-box">
-                            
-                            <h4>
+
+                            <h6 style="line-height:30px">
                                 <span class = "activity-number">
-                                    <?php echo $mission->position >= 1 ?$mission->position : "#" ?>
+                                        <?php echo $mission->position >= 1 ?$mission->position : "#" ?>
                                 </span>
-                                <?= isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title ?>
-                                <!-- <strong><?php // Yii::t('MissionsModule.base', 'Mission {position}: {text}', array('position' => $mission->position, 'text' => isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title)) ?></strong> -->
-                            </h4>
-                            
-                            <p class="description">
-                                <?= isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->description : $mission->description ?>
-                            </p>
-                            
-                            <br>
-                            <?php echo Html::a(
-                                Yii::t('MissionsModule.base', 'Enter Mission'),
-                                ['activities', 'missionId' => $mission->id, 'sguid' => $contentContainer->guid], array('class' => 'btn btn-cta1')); ?>
+                                <?php echo Html::a(
+                                    Yii::t('MissionsModule.base', '{mission}', array('mission' => isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title)),
+                                    ['activities', 'missionId' => $mission->id, 'sguid' => $contentContainer->guid]); ?>
+                            </h6>
+
                         </div>
                     </div>
                 

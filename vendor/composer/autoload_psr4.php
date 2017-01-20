@@ -10,6 +10,8 @@ return array(
     'yii\\jui\\' => array($vendorDir . '/yiisoft/yii2-jui'),
     'yii\\composer\\' => array($vendorDir . '/yiisoft/yii2-composer'),
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
+    'rmrevin\\yii\\fontawesome\\' => array($vendorDir . '/rmrevin/yii2-fontawesome'),
     'janisto\\timepicker\\' => array($vendorDir . '/janisto/yii2-timepicker/src'),
+    'froala\\froalaeditor\\' => array($vendorDir . '/froala/yii2-froala-editor'),
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
 );

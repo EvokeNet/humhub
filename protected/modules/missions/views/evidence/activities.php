@@ -122,11 +122,12 @@ $firstSecondary = true;
 
         <div class="panel panel-default">
             <div class="panel-heading">
-         
-                <!-- <span class = "mission-number"><?= $mission->position ?></span> -->
 
-                <h5 style="display: inline-block; font-weight:700">
-                    <?php echo Yii::t('MissionsModule.base', 'Mission {position}: {title}', array('position' => $mission->position, 'title' => $mission_title)); ?>
+                <h5 style="line-height:30px; display: inline-block; font-weight:700">
+                    <span class = "activity-number">
+                            <?php echo $mission->position >= 1 ?$mission->position : "#" ?>
+                    </span>
+                    <strong><?= $mission_title ?></strong>
                 </h5>
 
             </div>
