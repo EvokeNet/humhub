@@ -29,7 +29,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
             <p><?php echo nl2br(isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description) ?></p>
         </div>
 
-        <div class="evidence-mission-box evidence_area">
+        <div class="review-box evidence_area">
             <h5 style="color:#263238"><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h5>
 
             <?php if(Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
@@ -100,6 +100,11 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                                     <div class="submitted-review" style = "padding: 10px 10px 3px; margin-bottom: 20px; border: 3px solid #9013FE;">
                                         <p><?php echo Yii::t('MissionsModule.base', 'Comment: {comment}', array('comment' => $vote->comment)); ?></p>
                                         <p><?php echo Yii::t('MissionsModule.base', 'Rating: {rating}', array('rating' => $vote->value)); ?></p>
+
+                                        <img class="media-object img-rounded user-image user-<?php echo $vote->user->guid; ?>" alt="40x40"
+                                         data-src="holder.js/40x40" style="width: 40px; height: 40px;"
+                                         src="<?php echo $vote->user->getProfileImage()->getUrl(); ?>"
+                                         width="40" height="40"/>
 
                                         <p><?php echo Yii::t('MissionsModule.base', 'By'); ?>
                                         <a href="<?= ($vote->user->getUrl()) ?>">

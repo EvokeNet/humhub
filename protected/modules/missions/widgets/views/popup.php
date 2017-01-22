@@ -34,66 +34,11 @@
   <h5><?= Yii::t('MissionsModule.base', "You've just won") ?></h5>&nbsp;<h5 id="animated-popup-quantity"></h5>&nbsp;<h5><?= Yii::t('MissionsModule.base', "points in") ?></h5>
   <br />
   <div id="animated-popup-content"></div>
-  <br />
+  <br /><br />
   <h5 id="animated-popup-power"></h5>
   <br />
   <div class="animated-trophy"><i class="fa fa-trophy" aria-hidden="true"></i></div>
 </div>
-
-<style>
-
-.animate-submit-evidence{
-  position: fixed;
-  top: 30%;
-  left: 32%;
-  width: 500px;
-  padding: 90px 50px 70px;
-  background-color: #304047;
-  color: #fff;
-  text-align: center;
-  z-index:100;
-  border-radius:10px;
-  /*box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;*/
-  -webkit-box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.75);
-  -moz-box-shadow:    0px 0px 30px 0px rgba(50, 50, 50, 0.75);
-  box-shadow:         0px 0px 30px 0px rgba(50, 50, 50, 0.75);
-  opacity: 0.8;
-}
-
-.animated-trophy{
-    position: absolute;
-    top: -100px;
-    left: 30%;
-    border: 10px solid #304047;
-    background-color: #FFC107;
-    padding: 20px 25px;
-    border-radius: 50%;
-}
-
-#animated-popup-content{
-  margin-top:50px;
-}
-
-#animated-popup-content img{
-  width:90px;
-  border: 5px solid #00BCD4;
-  border-radius: 50%;
-}
-
-.animate-submit-evidence h2{
-  color:#FFC107!important;
-}
-
-.animate-submit-evidence h5{
-  color: #fff;
-  display:inline;
-}
-
-.animate-submit-evidence i{
-  font-size: 10em;
-}
-
-</style>
 
 <script type="text/javascript">
 

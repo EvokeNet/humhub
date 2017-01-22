@@ -18,15 +18,13 @@ echo Html::beginForm();
 <!-- EVIDENCE -->
 <?php if($evidence->content->visibility >= 1): ?>
 
-    <h4 style="margin-top:15px"><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h4>
+    <h4 style="margin-top:30px; color: #FEAE1B;"><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h4>
 
     <?php if (Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
       <!-- <h6><?php //echo Yii::t('MissionsModule.base', 'By'); ?> <?php echo $name ?></h6> -->
     <?php endif; ?>
 
-    <p style="margin:15px 0 30px"><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]);?></p>
-
-    <hr>
+    <p style="margin:25px 0 35px"><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]);?></p>
 
     <!-- SHOW FILES -->
 
@@ -149,7 +147,7 @@ echo Html::beginForm();
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h6 class="panel-title">
-                    <a  style="color:#254054; cursor: default" aria-expanded="false" class="collapsed">
+                    <a  style="cursor: default" aria-expanded="false" class="collapsed">
                         <?= Yii::t('MissionsModule.base', 'Mentor Reviews') ?>
                     </a>
                 </h6>
@@ -169,8 +167,27 @@ echo Html::beginForm();
                         <?php endif; ?>
 
                         <?php foreach($votes as $vote): ?>
-                            <div style = "padding: 10px 10px 3px; margin-bottom: 20px; border: 3px solid #9013FE; word-wrap: break-word;">
-                                <p><?php echo Yii::t('MissionsModule.base', 'Comment: {comment}', array('comment' => $vote->comment)); ?></p>
+                            <div class="review-box">
+
+                                <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors" || $vote->user->group->name == "Mentors"): ?>
+                                    <img class="media-object img-rounded user-image user-<?php echo $vote->user->guid; ?>" alt="40x40"
+                                         data-src="holder.js/40x40" style="display: inline-block;"
+                                         src="<?php echo $vote->user->getProfileImage()->getUrl(); ?>"
+                                         width="40" height="40"/>
+
+                                    &nbsp;<a href="<?= ($vote->user->getUrl()) ?>">
+                                        <?= ($vote->user->username) ?>
+                                    </a>
+
+                                    <?php echo Yii::t('MissionsModule.base', 'in {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]))); ?>
+
+                                <?php else: ?>
+                                  
+                                    <?php echo Yii::t('MissionsModule.base', 'Anonymous in {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]))); ?>
+
+                                <?php endif; ?>
+
+                                <p style="margin:20px 0"><?php echo $vote->comment; ?></p>
 
                                 <?php if($vote->value > 0 ): ?>
                                     <div class="stars" style="text-align:left;">
@@ -187,38 +204,30 @@ echo Html::beginForm();
                                       <?php endfor; ?>
                                     </div>
                                 <?php else: ?>
-                                  <p style="color:red"><?php echo Yii::t('MissionsModule.base', 'Does not meet rubric'); ?></p>
-                                <?php endif; ?>
-
-                                <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors" || $vote->user->group->name == "Mentors"): ?>
-                                    <p><?php echo Yii::t('MissionsModule.base', 'By'); ?>
-                                    <a href="<?= ($vote->user->getUrl()) ?>">
-                                        <?= ($vote->user->username) ?>
-                                    </a>,
-                                    <?php echo \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]); ?></p>
-                                <?php else: ?>
-                                    <p><?php echo Yii::t('MissionsModule.base', 'By Anonymous, {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]))); ?></p>
+                                  <div class="label-danger">
+                                    <p style="color:#F4F4F4; text-align: center;"><?php echo Yii::t('MissionsModule.base', 'Does not meet rubric'); ?></p>
+                                  </div>
                                 <?php endif; ?>
 
                                 <?php echo \humhub\modules\comment\widgets\CommentLink::widget(['object' => $vote, 'mode' => \humhub\modules\comment\widgets\CommentLink::MODE_INLINE]); ?>
                                 <?php echo \humhub\modules\comment\widgets\Comments::widget(array('object' => $vote)); ?>
 
-                                <div style="margin:20px 0 10px">
+                                <div style="text-align: right">
                                   <?php 
                                     $enable = "";
-                                          $disable = "hidden";
-                                          $disables = "hidden";
+                                    $disable = "hidden";
+                                    $disables = "hidden";
 
-                                          if ($vote->quality == 1) {
-                                              $enable = "hidden";
-                                              $disable = "";
-                                              $disables = "";
+                                    if ($vote->quality == 1) {
+                                        $enable = "hidden";
+                                        $disable = "";
+                                        $disables = "";
 
-                                          } 
+                                    } 
                                   ?>
+
                                     <?php if(Yii::$app->user->isAdmin()): ?>
                                         <?php
-
 
                                           echo \humhub\widgets\AjaxButton::widget([
                                               'label' => Yii::t('MissionsModule.base', 'Mark as quality review'),
@@ -262,6 +271,7 @@ echo Html::beginForm();
                                               ]
                                           ]);
                                           ?>
+
                                       <div class="trophy-icon <?= $disables ?>" id="btn-disables-module-<?php echo $vote->id; ?>"><i class="fa fa-trophy fa-lg" aria-hidden="true"></i></div>
 
                                     <?php else: ?>
@@ -288,7 +298,7 @@ echo Html::beginForm();
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h6 class="panel-title">
-                    <a style="color:#254054; cursor: default" aria-expanded="false" class="collapsed">
+                    <a style="cursor: default" aria-expanded="false" class="collapsed">
                         <?= Yii::t('MissionsModule.base', 'Agent Reviews') ?>
                     </a>
                 </h6>
@@ -312,10 +322,11 @@ echo Html::beginForm();
                     </div>
                 </div>
 
+            <br />
             <?php if($agent_vote_count > 1): ?>
-            <a href="#collapseAgentEvidenceReviews<?= $evidence->id ?>"  class="btn btn-sm btn-primary " data-toggle="collapse">
-               <?= Yii::t('MissionsModule.base', 'Show {total_reviews} agent reviews', ['total_reviews' => $agent_vote_count - 1]) ?>
-            </a>      
+              <a href="#collapseAgentEvidenceReviews<?= $evidence->id ?>"  class="btn btn-sm btn-primary " data-toggle="collapse">
+                 <?= Yii::t('MissionsModule.base', 'Show {total_reviews} agent reviews', ['total_reviews' => $agent_vote_count - 1]) ?>
+              </a>      
             <?php elseif($agent_vote_count == 0): ?>
               <p>
                 <?= Yii::t('MissionsModule.base', 'No agent reviews') ?>
@@ -412,17 +423,6 @@ echo Html::beginForm();
 
 .activity_area{
   font-size: 12px;
-}
-
-.trophy-icon{
-    float: right;
-    color: #DED017;
-}
-
-.trophy-icon.agent{
-  position: absolute;
-  right: 40px;
-  bottom: 50px;
 }
 
 </style>
