@@ -156,6 +156,8 @@ class EvokationsController extends ContentContainerController //extends Controll
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'YouTube URL cannot be blank.'));
         }
 
+        AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', 'You\'ve submitted your evokation.'));
+
         return \humhub\modules\missions\widgets\WallCreateEvokationForm::create($evokation, $this->contentContainer);
     }
 

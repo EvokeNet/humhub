@@ -183,6 +183,9 @@ class EvidenceController extends ContentContainerController
     }
 
     public function createAnimatedMessagesForPowers($activityPowers){
+        if(!is_array($activityPowers)){
+            $activityPowers = array($activityPowers);
+        }
         foreach($activityPowers as $activity_power){
             $name = $activity_power->getPower()->title;
             if(Yii::$app->language == 'es' && isset($activity_power->getPower()->powerTranslations[0]))
@@ -702,6 +705,7 @@ class EvidenceController extends ContentContainerController
                 $message = Yii::t('MissionsModule.base', 'You just gained {message} evocoins!', array('message' => $evocoin_earned));
 
                 AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', '{message}. <BR>Thank you for your review.', array('message' => $message)));
+                $this->createAnimatedMessagesForPowers($activityPower);
                 echo $this->renderPartial('..\..\widgets\views\user_vote_view.php', array('vote' => $vote, 'contentContainer' => $this->contentContainer));
             }
         } else{
