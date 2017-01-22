@@ -191,6 +191,7 @@ textarea {
   background-color: #00BCD4;
   border: none;
   text-transform: uppercase;
+  text-align: center;
   color: #FFFFFF!important;
   /*padding: 12px 20px 9px;*/
   /*font-size: 12pt;*/
@@ -885,6 +886,7 @@ input[type=select] {
   background-color: #00BCD4;
   border: none;
   text-transform: uppercase;
+  text-align: center;
   color: #FFFFFF!important;
   /*padding: 12px 20px 9px;*/
   /*font-size: 12pt;*/
