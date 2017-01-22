@@ -10,8 +10,8 @@ use app\modules\missions\models\Evidence;
 <div class="panel panel-default">
 
     <div class="panel-heading">
-        <h4 class = "display-inline"><?php echo Yii::t('MissionsModule.base', 'Super Powers'); ?></h4>
-        <p style = "display:inline; margin-left:10px"><?php echo Yii::t('MissionsModule.base', 'Earn points to increase powers'); ?></p>
+        <h5 class = "display-inline"><?php echo Yii::t('MissionsModule.base', 'Super Powers'); ?></h5><br />
+        <span style = "font-size:8pt"><?php echo Yii::t('MissionsModule.base', 'Earn points to increase powers'); ?></span>
     </div>
 
     <div class="panel-body row">

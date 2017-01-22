@@ -16,19 +16,19 @@ $user = $this->context->getUser();
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-2 layout-nav-container">
+        <div class="col-xs-2 layout-nav-container">
             <?= \humhub\modules\user\widgets\ProfileMenu::widget(['user' => $this->context->user]); ?>
         </div>
 
         <?php if (isset($this->context->hideSidebar) && $this->context->hideSidebar) : ?>
-            <div class="col-sm-10 layout-content-container">
+            <div class="col-xs-10 layout-content-container">
                 <?php echo $content; ?>
             </div>
         <?php else: ?>
-            <div class="col-sm-7 layout-content-container">
+            <div class="col-xs-7 layout-content-container">
                 <?php echo $content; ?>
             </div>
-            <div class="col-sm-3 layout-sidebar-container">
+            <div class="col-xs-3 layout-sidebar-container">
                 <?php
                 echo \humhub\modules\user\widgets\ProfileSidebar::widget([
                     'user' => $this->context->user,
