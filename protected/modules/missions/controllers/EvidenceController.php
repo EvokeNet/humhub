@@ -188,7 +188,7 @@ class EvidenceController extends ContentContainerController
             if(Yii::$app->language == 'es' && isset($activity_power->getPower()->powerTranslations[0]))
                 $name = $activity_power->getPower()->powerTranslations[0]->title;
 
-            AlertController::createAlert($name, $activity_power->value, $activity_power->getPower()->image);
+            AlertController::createAlert($name, $activity_power->value, AlertController::ANIMATED, $activity_power->getPower()->image);
         }
     }
 
@@ -326,7 +326,7 @@ class EvidenceController extends ContentContainerController
             if ($model->load($request->post())) {
 
                 if (mb_strlen(Yii::$app->request->post('Evidence')['text']) < 140) {
-                    AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
+                    //AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
                 } else {
 
                     $evidence->content->visibility = 1;
