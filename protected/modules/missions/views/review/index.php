@@ -97,20 +97,21 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                                 <?php endif; ?>
 
                                 <?php foreach($votes as $vote): ?>
-                                    <div class="submitted-review" style = "padding: 10px 10px 3px; margin-bottom: 20px; border: 3px solid #9013FE;">
-                                        <p><?php echo Yii::t('MissionsModule.base', 'Comment: {comment}', array('comment' => $vote->comment)); ?></p>
-                                        <p><?php echo Yii::t('MissionsModule.base', 'Rating: {rating}', array('rating' => $vote->value)); ?></p>
-
-                                        <img class="media-object img-rounded user-image user-<?php echo $vote->user->guid; ?>" alt="40x40"
-                                         data-src="holder.js/40x40" style="width: 40px; height: 40px;"
+                                    <div class="submitted-review review-box">
+                                         <img class="media-object img-rounded user-image user-<?php echo $vote->user->guid; ?>" alt="40x40"
+                                         data-src="holder.js/40x40" style="display: inline-block;"
                                          src="<?php echo $vote->user->getProfileImage()->getUrl(); ?>"
                                          width="40" height="40"/>
 
-                                        <p><?php echo Yii::t('MissionsModule.base', 'By'); ?>
-                                        <a href="<?= ($vote->user->getUrl()) ?>">
+                                         &nbsp;<a href="<?= ($vote->user->getUrl()) ?>">
                                             <?= ($vote->user->username) ?>
-                                        </a>,
-                                        <?php echo \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]); ?></p>
+                                        </a>
+
+                                        <?php echo Yii::t('MissionsModule.base', 'in {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]))); ?>
+
+                                        <p style="margin:20px 0"><?php echo $vote->comment; ?></p>
+                                        <p><?php echo Yii::t('MissionsModule.base', 'Rating: {rating}', array('rating' => $vote->value)); ?></p>
+
                                     </div>
                                 <?php endforeach; ?>
                             </div>

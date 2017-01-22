@@ -1,5 +1,4 @@
 @import 'https://fonts.googleapis.com/css?family=Ubuntu|Vollkorn|Roboto|Open+Sans|Noto+Serif|PT+Serif|Lora|Raleway';
-/*#26C6DA;*/
 h1 {
   font-family: 'Roboto', sans-serif;
   font-size: 30pt;
@@ -223,7 +222,7 @@ textarea {
   font-style: italic;
 }
 .grey_box {
-  background-color: #F6F7F9;
+  background-color: #F4F4F4;
   padding: 10px;
 }
 .evocoins {
@@ -624,7 +623,7 @@ input[type=select] {
 #topbar-second .nav > li > ul > li > a:hover,
 #topbar-second .nav > li > ul > li > a.active {
   border-bottom: 3px solid #2196F3;
-  background-color: #F8F8F8;
+  background-color: #F4F4F4;
   color: #01070F;
 }
 #topbar-second .nav > li.active > a {
@@ -2672,7 +2671,7 @@ img.bounceIn {
 }
 .fuchsia-border {
   border-bottom: 3px solid #D81B60;
-  margin: 50px 200px 0px;
+  margin: 50px 200px 30px;
 }
 .evidence_area {
   padding: 5px;
