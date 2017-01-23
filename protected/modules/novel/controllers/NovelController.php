@@ -34,16 +34,18 @@ class NovelController extends Controller
         $language = Languages::find()->where(['code' => 'en-US'])->one();
       } 
 
-      $novel_pages = NovelPage::find()->where(['language_id' => $language->id])->all();
+      /*$novel_pages = NovelPage::find()->where(['language_id' => $language->id])->all();
       $page_count = count($novel_pages);
 
       if ($page > $page_count) {
         return $this->redirect(['transformation']);
       }
+      */
 
       $page = NovelPage::find()->where(['page_number' => $page, 'language_id' => $language->id])->one();
 
-      if($page->chapter && $page->chapter->mission->locked){
+      //page doesn't exist or mission is locked
+      if(!$page || ($page->chapter && $page->chapter->mission->locked)){
         return $this->redirect(['transformation']);
       }
 
