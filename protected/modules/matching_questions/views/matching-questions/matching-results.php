@@ -5,6 +5,8 @@
   use app\modules\powers\models\UserPowers;
   use app\modules\powers\models\QualityPowers;
   use humhub\modules\space\models\Space;
+  use humhub\models\Setting;
+  use app\modules\missions\models\forms\EvokeSettingsForm;
 
   $user = Yii::$app->user->getIdentity();
 
@@ -120,9 +122,15 @@
                   <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', '{agent}: Congratulations, you are already an Evoke agent!', array('agent' => $user->username)) ?></p>
 
                   <br>
-                  <div class = "text-center"><?php echo Html::a(
+                  <?php if(Setting::Get('novel_order') == EvokeSettingsForm::FIRST_NOVEL): ?>
+                      <div class = "text-center"><?php echo Html::a(
                           Yii::t('MatchingModule.base', 'Continue to Base Operations'),
                           ['/space/space', 'sguid' => $welcome_space->guid], array('class' => 'btn btn-cta1')); ?></div>
+                  <?php else: ?>
+                      <div class = "text-center"><?php echo Html::a(
+                          Yii::t('MatchingModule.base', 'Continue to Novel'),
+                          ['/novel/novel/graphic-novel', 'page' => 1], array('class' => 'btn btn-cta1')); ?></div>
+                  <?php endif; ?>
                   <br>
                 </div>
 

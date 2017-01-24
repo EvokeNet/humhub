@@ -11,6 +11,8 @@ use app\modules\powers\models\UserPowers;
 use app\modules\powers\models\Powers;
 use app\modules\matching_questions\controllers\MatchingQuestionsController;
 use app\modules\languages\models\Languages;
+use humhub\models\Setting;
+use app\modules\missions\models\forms\EvokeSettingsForm;
 
 
 /**
@@ -28,6 +30,8 @@ class NovelController extends Controller
 
     public function actionGraphicNovel($page)
     {
+      $novel_order = Setting::Get('novel_order');
+
       $language = Languages::find()->where(['code' => Yii::$app->language])->one();
 
       if(!$language){
@@ -46,7 +50,14 @@ class NovelController extends Controller
 
       //page doesn't exist or mission is locked
       if(!$page || ($page->chapter && $page->chapter->mission->locked)){
-        return $this->redirect(['transformation']);
+        if($novel_order == EvokeSettingsForm::FIRST_NOVEL){
+          return $this->redirect(['transformation']);
+        }else{
+          $user = Yii::$app->user->getIdentity();
+          $user->has_read_novel = true;
+          $user->save();
+          return $this->redirect(['/']);
+        }
       }
 
       return $this->render('novel/page', array('page' => $page));
