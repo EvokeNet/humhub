@@ -176,7 +176,7 @@ function loadPopUps(){
                     loadPopUps();
                   }
 
-                }, 1000); 
+                }, 50); 
               }
             }else{
                 window.clearInterval(popUpWatcher);
