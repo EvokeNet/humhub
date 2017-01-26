@@ -31,6 +31,7 @@ use yii\helpers\ArrayHelper;
                 $('#evokation_form').parent().parent().remove();
                 window.location.hash = "";
                 window.location.hash = "wallEntry_" + response.wallEntryId;
+                loadPopUps();
           }
         }
 
