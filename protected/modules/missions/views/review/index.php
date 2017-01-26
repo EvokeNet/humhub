@@ -205,6 +205,7 @@ function review(id, comment, opt, grade){
             next_element.removeAttribute("disabled");
             next_element.removeAttribute("onClick");
             document.getElementById("post_submit_review").innerHTML = "<?php echo Yii::t('MissionsModule.base', 'Update Review'); ?>";
+            loadPopUps();            
         }
     };
     xhttp.open("GET", "<?= $contentContainer->createUrl('/missions/evidence/review'); ?>&opt="+opt+"&grade="+grade+"&evidenceId="+id+"&comment="+comment , true);
