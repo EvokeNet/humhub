@@ -30,7 +30,8 @@
 				    </div>
 				    <div class="panel-body">
 
-				    	<?php foreach($achievements as $a): ?>
+                        <div style="display: flex; flex-wrap: wrap;">
+				    	<?php foreach($achievements as $key => $a): ?>
 
                             <?php $is_there = false; 
                                 foreach($user_achievements as $u): 
@@ -41,34 +42,15 @@
 
                             $a_desc = (isset($a->achievementTranslations[0]) && Yii::$app->language == 'es') ? $a->achievementTranslations[0]->description : $a->description;
 
-                            if($is_there): ?>
+                        ?>
 
-                                <!-- <div class="achievements-box row" style="line-height: 82px;">
-                                    <div class="col-sm-3"><div class="t-icon"><i class="fa fa-trophy fa-2x" aria-hidden="true"></i></div></div>
-                                    <div class="col-sm-9">
-                                        <span data-toggle="tooltip" data-placement="top" title="<?php echo $a_desc; ?>"><?php echo $a_title; ?></span>
-                                        <span><?php echo $a_desc; ?></span>
-                                    </div>
-                                    
-
-                                    
-                                </div> -->
-
-                                <div class="achievements-box" style="line-height: 82px;" style="margin-top:15px">
-                                    <div class="t-icon"><i class="fa fa-trophy fa-2x" aria-hidden="true"></i></div>
-                                    <div class="t-titles"><span data-toggle="tooltip" data-placement="top"  title="<?php echo $a_desc; ?>"><?php echo $a_title; ?></span></div>
-                                </div><br />
-
-				    		<?php else: ?>
-	
-				    			<div class="achievements-box t-opaque" style="line-height: 82px;" style="margin-top:15px">
-				    				<div class="t-icon"><i class="fa fa-trophy fa-2x" aria-hidden="true"></i></div>
-				    				<div class="t-titles"><span data-toggle="tooltip" data-placement="top"  title="<?php echo $a_desc; ?>"><?php echo $a_title; ?></span></div>
-				    			</div><br />
-
-				    		<?php endif; ?>
+                           <div class="achievements-box <?= !($is_there) ? 't-opaque' : '' ?>">
+                                <div class="t-icon"><i class="fa fa-trophy fa-2x" aria-hidden="true"></i></div>
+                                <div class="t-titles"><span data-toggle="tooltip" data-placement="top"  title="<?php echo $a_desc; ?>"><?php echo $a_title; ?></span></div>
+                            </div><br />
 				    		
 				    	<?php endforeach; ?>
+                        </div>
 
 				    </div>
 			    </div>

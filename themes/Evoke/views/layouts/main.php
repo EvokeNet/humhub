@@ -67,6 +67,11 @@ AppAsset::register($this);
         <!-- Include the Quill library -->
         <script src="https://cdn.quilljs.com/1.1.10/quill.js"></script>
 
+        <!-- Green Sock library -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenLite.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/CSSPlugin.min.js"></script>
+
     </head>
 
     <body>
