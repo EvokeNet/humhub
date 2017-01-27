@@ -32,7 +32,7 @@ $this->pageTitle = Yii::t('UserModule.views_auth_login', 'Login');
               x.parentNode.insertBefore(s, x);
           }
         } else {
-          window.alert('nope');
+          // do not load animation
         }
 
       </script>
