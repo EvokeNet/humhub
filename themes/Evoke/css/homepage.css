@@ -1,0 +1,103 @@
+.home-animation {
+  position: absolute;
+  width: 100%;
+}
+
+.left-side, .right-side {
+  width: 250px;
+  display: inlin-block;
+}
+
+.left-side {
+  float: left;
+}
+
+.right-side {
+  float: right;
+}
+
+.super-power {
+  display: inline;
+}
+
+.super-power svg {
+display: none;
+}
+
+.draw svg {
+  max-width: 95%;
+  max-height: 95%;
+  display: inline;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.draw svg path,
+.draw svg rect,
+.draw svg circle,
+.draw svg ellipse {
+  fill-opacity: 0;
+  stroke: #fff;
+  stroke-width: 3;
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  animation: draw 5s forwards linear;
+  -webkit-animation: draw 5s forwards linear;
+}
+
+#systemsThinker path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
+
+#empatheticActivist path {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@-webkit-keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.super-power-name {
+  color: #fff;
+  opacity: 0;
+  text-align: center;
+}
+
+.super-power-name.show {
+  opacity: 1;
+  transition: opacity 500ms ease-in-out;
+  transition-dealy: 200ms;
+  -webkit-transition: opacity 500ms ease-in-out;
+  -webkit-transition-dealy: 200ms;
+}
+
+.power-group .power-name {
+  color: #fff;
+  display: inherit;
+}
+
+.power-group {
+  max-width: 200px;
+  display: inline-block;
+  position: relative;
+}
+
+.power-group .power {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  float: left;
+  position: relative;
+}

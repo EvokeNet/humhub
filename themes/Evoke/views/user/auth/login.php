@@ -6,99 +6,32 @@ use \humhub\compat\CHtml;
 
 $this->pageTitle = Yii::t('UserModule.views_auth_login', 'Login');
 ?>
+<link href="<?php echo $this->theme->getBaseUrl() . '/css/homepage.css'; ?>" rel="stylesheet">
 
-<style>
-
-  .home-animation {
-    position: absolute;
-    width: 100%;
-  }
-
-  .left-side, .right-side {
-    width: 250px;
-    display: inlin-block;
-  }
-
-  .left-side {
-    float: left;
-  }
-
-  .right-side {
-    float: right;
-  }
-
-</style>
-
-<style media="screen">
-.super-power svg {
-  display: none;
-}
-
-.draw svg {
-  max-width: 95%;
-  max-height: 95%;
-  display: inline;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-}
-.draw svg path,
-.draw svg rect,
-.draw svg circle,
-.draw svg ellipse {
-  fill-opacity: 0;
-  stroke: #fff;
-  stroke-width: 3;
-  stroke-dasharray: 500;
-  stroke-dashoffset: 500;
-  animation: draw 5s forwards linear;
-  -webkit-animation: draw 5s forwards linear;
-}
-
-#systemsThinker path {
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-}
-
-#empatheticActivist path {
-  stroke-dasharray: 300;
-  stroke-dashoffset: 300;
-}
-
-@keyframes draw {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-@-webkit-keyframes draw {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-.super-power-name {
-  color: #fff;
-  opacity: 0;
-}
-
-.draw .super-power-name {
-  opacity: 1;
-  transition: opacity 500ms ease-in-out;
-  transition-dealy: 200ms;
-  -webkit-transition: opacity 500ms ease-in-out;
-  -webkit-transition-dealy: 200ms;
-}
-</style>
 
 <div class="container" style="text-align: center; position:relative;">
     <?= humhub\widgets\SiteLogo::widget(['place' => 'login']); ?>
 
     <div id="homeAnimation" class="">
       <div class="top">
-        <img width='50em' height='50em' src="<?php echo $this->theme->getBaseUrl() . '/img/powers/aggregation.svg'; ?>" alt="" />
+        <div id="creativeVisionaryPowers" class="power-group">
+          <span class="power">
+            <img width='50em' height='50em' src="<?php echo $this->theme->getBaseUrl() . '/img/powers/courage.svg'; ?>" alt="courage" />
+            <span class="power-name">Courage</span>
+          </span>
+          <span class="power">
+            <img width='50em' height='50em' src="<?php echo $this->theme->getBaseUrl() . '/img/powers/ideation.svg'; ?>" alt="ideation" />
+            <span class="power-name">Ideation</span>
+          </span>
+          <span class="power">
+            <img width='50em' height='50em' src="<?php echo $this->theme->getBaseUrl() . '/img/powers/imagination.svg'; ?>" alt="imagination" />
+            <span class="power-name">Imagination</span>
+          </span>
+          <span class="power">
+            <img width='50em' height='50em' src="<?php echo $this->theme->getBaseUrl() . '/img/powers/vision.svg'; ?>" alt="vision" />
+            <span class="power-name">Vision</span>
+          </span>
+        </div>
       </div>
       <div class="left-side">
         <span id="creativeVisionary" class="super-power">
@@ -134,7 +67,7 @@ $this->pageTitle = Yii::t('UserModule.views_auth_login', 'Login');
                 </g>
             </g>
           </svg>
-          <span class="super-power-name">Creative Vissionary</span>
+          <span class="super-power-name">Creative Visionary</span>
         </span>
         <span id="deepCollaborator" class="super-power">
           <svg id="svg" version="1.1" width="200px" height="200px" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -208,9 +141,6 @@ $this->pageTitle = Yii::t('UserModule.views_auth_login', 'Login');
         </span>
       </div>
     </div>
-    <br><br>
-
-    <br><br>
 
     <div class="panel panel-default animated bounceIn" id="login-form"
          style="max-width: 300px; margin: 0 auto 20px; text-align: left;">
