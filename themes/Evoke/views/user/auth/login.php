@@ -9,10 +9,13 @@ $this->pageTitle = Yii::t('UserModule.views_auth_login', 'Login');
 
 <div class="container" style="text-align: center;">
     <?= humhub\widgets\SiteLogo::widget(['place' => 'login']); ?>
+    <div id="homeAnimation">
+
+    </div>
     <br><br>
-    
+
     <br><br>
-    
+
     <div class="panel panel-default animated bounceIn" id="login-form"
          style="max-width: 300px; margin: 0 auto 20px; text-align: left;">
 
@@ -23,7 +26,7 @@ $this->pageTitle = Yii::t('UserModule.views_auth_login', 'Login');
             <?php $form = ActiveForm::begin(['id' => 'account-login-form', 'enableClientValidation'=>false]); ?>
 
             <p><?php echo Yii::t('UserModule.views_auth_login', "If you're already a member, please login with your username/email and password."); ?></p>
-            
+
             <?php echo $form->field($model, 'username')->textInput(['id' => 'login_username', 'placeholder' => $model->getAttributeLabel('username')])->label(false); ?>
             <?php echo $form->field($model, 'password')->passwordInput(['id' => 'login_password', 'placeholder' => $model->getAttributeLabel('password')])->label(false); ?>
             <?php echo $form->field($model, 'rememberMe')->checkbox(); ?>
@@ -98,6 +101,13 @@ $this->pageTitle = Yii::t('UserModule.views_auth_login', 'Login');
         $('#app-title').removeClass('fadeIn');
 <?php } ?>
 
+window.onload = function() {
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.async = true;
+    s.src = '<?php echo $this->theme->getBaseUrl() . '/js/home-animation.js'; ?>';
+    var x = document.getElementsByTagName('script')[0];
+    x.parentNode.insertBefore(s, x);
+}
+
 </script>
-
-
