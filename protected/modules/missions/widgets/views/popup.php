@@ -142,14 +142,13 @@ function loadPopUps(){
   if(!activatedPopUp){
     activatedPopUp = true;
   }else{
+    console.log("activated pop up");
     return;
   }
 
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
-          
-            activatedPopUp = false;
 
             if(xhttp.responseText){
               var message = JSON.parse(xhttp.responseText);
@@ -176,7 +175,7 @@ function loadPopUps(){
                     loadPopUps();
                   }
 
-                }, 50); 
+                }, 200); 
               }
             }else{
                 window.clearInterval(popUpWatcher);
@@ -203,6 +202,7 @@ function animatePopUp(title, message, image_url){
 
   $("#animated-popup").show();
   slideOutPopUp();
+  activatedPopUp = false;
 }
 
 // not working
@@ -232,6 +232,7 @@ function showMessage(title, message){
   document.getElementById("message-title").innerHTML = title;
   document.getElementById("message-content").innerHTML = message;
   $("#popup-message").modal("show");
+  activatedPopUp = false;
 }
 
 </script>
