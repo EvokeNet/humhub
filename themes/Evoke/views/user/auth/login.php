@@ -7,17 +7,17 @@ use \humhub\compat\CHtml;
 $this->pageTitle = Yii::t('UserModule.views_auth_login', 'Login');
 ?>
 
-<div class="container" style="text-align: center;">
+<div class="container" style="text-align: center; position:relative;">
     <?= humhub\widgets\SiteLogo::widget(['place' => 'login']); ?>
 
     <div id="homeAnimation" class="">
       <div class="left-side">
-        <img src="<?php echo $this->theme->getBaseUrl() . '/img/super_powers/creative_visionary_white.svg'; ?>" alt="" />
-        <img src="<?php echo $this->theme->getBaseUrl() . '/img/super_powers/deep_collaborator_white.svg'; ?>" alt="" />
+        <img width='200em' height='200em' src="<?php echo $this->theme->getBaseUrl() . '/img/super_powers/creative_visionary_white.svg'; ?>" alt="" />
+        <img width='200em' height='200em' src="<?php echo $this->theme->getBaseUrl() . '/img/super_powers/deep_collaborator_white.svg'; ?>" alt="" />
       </div>
       <div class="right-side">
-        <img src="<?php echo $this->theme->getBaseUrl() . '/img/super_powers/empathetic_activist_white.svg'; ?>" alt="" />
-        <img src="<?php echo $this->theme->getBaseUrl() . '/img/super_powers/systems_thinker_white.svg'; ?>" alt="" />
+        <img width='200em' height='200em' src="<?php echo $this->theme->getBaseUrl() . '/img/super_powers/empathetic_activist_white.svg'; ?>" alt="" />
+        <img width='200em' height='200em' src="<?php echo $this->theme->getBaseUrl() . '/img/super_powers/systems_thinker_white.svg'; ?>" alt="" />
       </div>
     </div>
     <br><br>
@@ -119,3 +119,26 @@ window.onload = function() {
 }
 
 </script>
+
+
+<style>
+
+  .home-animation {
+    position: absolute;
+    width: 100%;
+  }
+
+  .left-side, .right-side {
+    width: 250px;
+    display: inlin-block;
+  }
+
+  .left-side {
+    float: left;
+  }
+
+  .right-side {
+    float: right;
+  }
+
+</style>
