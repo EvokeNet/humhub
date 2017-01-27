@@ -18,6 +18,9 @@ $creativeVisionaryPowers.each(function(index, element){
 
 
 //start the timeline
+//remove mask
+tl.set('#animationMask', {opacity: 0});
+
 tl.to('#animationTitle', 1, {text: "You have the power to change the world.", ease: Linear.easeNone});
 
 // creative visionary powers
