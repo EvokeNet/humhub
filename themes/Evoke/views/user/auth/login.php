@@ -24,6 +24,24 @@ $this->pageTitle = Yii::t('UserModule.views_auth_login', 'Login');
             <span class="power-name">Ideation</span>
           </span>
           <span class="power">
+            <img width='50em' height='50em' src="<?php echo $this->theme->getBaseUrl() . '/img/powers/leadership.svg'; ?>" alt="leadership" />
+            <span class="power-name">Leadership</span>
+          </span>
+          <span class="power">
+            <img width='50em' height='50em' src="<?php echo $this->theme->getBaseUrl() . '/img/powers/transformation.svg'; ?>" alt="transformation" />
+            <span class="power-name">Transformation</span>
+          </span>
+        </div>
+        <div id="empatheticActivistPowers" class="power-group">
+          <span class="power">
+            <img width='50em' height='50em' src="<?php echo $this->theme->getBaseUrl() . '/img/powers/curiosity.svg'; ?>" alt="curiosity" />
+            <span class="power-name">Curiousity</span>
+          </span>
+          <span class="power">
+            <img width='50em' height='50em' src="<?php echo $this->theme->getBaseUrl() . '/img/powers/empathy.svg'; ?>" alt="empathy" />
+            <span class="power-name">Empathy</span>
+          </span>
+          <span class="power">
             <img width='50em' height='50em' src="<?php echo $this->theme->getBaseUrl() . '/img/powers/imagination.svg'; ?>" alt="imagination" />
             <span class="power-name">Imagination</span>
           </span>
