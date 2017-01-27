@@ -50,6 +50,42 @@ $this->pageTitle = Yii::t('UserModule.views_auth_login', 'Login');
             <span class="power-name">Transformation</span>
           </span>
         </div>
+        <div id="deepCollaboratorPowers" class="power-group">
+          <span class="power">
+            <img width='50em' height='50em' src="<?php echo $this->theme->getBaseUrl() . '/img/powers/communication.svg'; ?>" alt="communication" />
+            <span class="power-name">Communication</span>
+          </span>
+          <span class="power">
+            <img width='50em' height='50em' src="<?php echo $this->theme->getBaseUrl() . '/img/powers/generosity.svg'; ?>" alt="generosity" />
+            <span class="power-name">Generosity of Spirit</span>
+          </span>
+          <span class="power">
+            <img width='50em' height='50em' src="<?php echo $this->theme->getBaseUrl() . '/img/powers/networking.svg'; ?>" alt="networking" />
+            <span class="power-name">Networking</span>
+          </span>
+          <span class="power">
+            <img width='50em' height='50em' src="<?php echo $this->theme->getBaseUrl() . '/img/powers/teamwork.svg'; ?>" alt="teamwork" />
+            <span class="power-name">Teamwork</span>
+          </span>
+        </div>
+        <div id="systemsThinkerPowers" class="power-group">
+          <span class="power">
+            <img width='50em' height='50em' src="<?php echo $this->theme->getBaseUrl() . '/img/powers/aggregation.svg'; ?>" alt="aggregation" />
+            <span class="power-name">Aggregation</span>
+          </span>
+          <span class="power">
+            <img width='50em' height='50em' src="<?php echo $this->theme->getBaseUrl() . '/img/powers/analysis.svg'; ?>" alt="analysis" />
+            <span class="power-name">Analysis</span>
+          </span>
+          <span class="power">
+            <img width='50em' height='50em' src="<?php echo $this->theme->getBaseUrl() . '/img/powers/critical_reflection.svg'; ?>" alt="critical_reflection" />
+            <span class="power-name">Critical Reflection</span>
+          </span>
+          <span class="power">
+            <img width='50em' height='50em' src="<?php echo $this->theme->getBaseUrl() . '/img/powers/problem_solver.svg'; ?>" alt="problem_solver" />
+            <span class="power-name">Problem Solver</span>
+          </span>
+        </div>
       </div>
       <div class="left-side">
         <span id="creativeVisionary" class="super-power">

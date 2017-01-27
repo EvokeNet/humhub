@@ -4,6 +4,10 @@ var $creativeVisionaryPowers = $("#creativeVisionaryPowers .power"),
     $creativeVisionary = $('#creativeVisionary'),
     $empatheticActivistPowers = $('#empatheticActivistPowers .power'),
     $empatheticActivist = $('#empatheticActivist'),
+    $deepCollaboratorPowers = $('#deepCollaboratorPowers .power'),
+    $deepCollaborator = $('#deepCollaborator'),
+    $systemsThinkerPowers = $('#systemsThinkerPowers .power'),
+    $systemsThinker = $('#systemsThinker'),
     powerOffsets = [];
 
 // only need one set since they all "start" in the same position
@@ -29,6 +33,7 @@ tl.staggerTo($creativeVisionaryPowers, 4, {
     x: findPowerEndX(powerOffsets, $creativeVisionary.offset())
   }
 }, 0.5);
+tl.to('#creativeVisionaryPowers .power-name', 1, {opacity: 0}, '-=1');
 
 // empathetic activist powers
 tl.staggerFrom($empatheticActivistPowers, 5, {
@@ -46,7 +51,43 @@ tl.staggerTo($empatheticActivistPowers, 4, {
     x: findPowerEndX(powerOffsets, $empatheticActivist.offset())
   }
 }, 0.5);
+tl.to('#empatheticActivistPowers .power-name', 1, {opacity: 0}, '-=1');
 
+// deep collaborator powers
+tl.staggerFrom($deepCollaboratorPowers, 5, {
+  cycle: {
+    x: [-1000, 1000]
+  },
+  opacity: 0,
+  ease:Power4.easeInOut
+}, 1);
+tl.to("#deepCollaborator", 2, {className: '+=draw'}, '-=2');
+tl.set("#deepCollaborator .super-power-name", {className: '+=show'});
+tl.staggerTo($deepCollaboratorPowers, 4, {
+  cycle: {
+    y: findPowerEndY(powerOffsets, $deepCollaborator.offset()),
+    x: findPowerEndX(powerOffsets, $deepCollaborator.offset())
+  }
+}, 0.5);
+tl.to('#deepCollaboratorPowers .power-name', 1, {opacity: 0}, '-=1');
+
+// systems thinker powers
+tl.staggerFrom($systemsThinkerPowers, 5, {
+  cycle: {
+    x: [-1000, 1000]
+  },
+  opacity: 0,
+  ease:Power4.easeInOut
+}, 1);
+tl.to("#systemsThinker", 2, {className: '+=draw'}, '-=2');
+tl.set("#systemsThinker .super-power-name", {className: '+=show'});
+tl.staggerTo($systemsThinkerPowers, 4, {
+  cycle: {
+    y: findPowerEndY(powerOffsets, $systemsThinker.offset()),
+    x: findPowerEndX(powerOffsets, $systemsThinker.offset())
+  }
+}, 0.5);
+tl.to('#systemsThinkerPowers .power-name', 1, {opacity: 0}, '-=1');
 
 
 
@@ -60,8 +101,8 @@ function findPowerEndY(powerOffsets, targetOffset){
 
   //place the rest
   yCoords.push(yCoords[0]);
-  yCoords.push(yCoords[0] + 50);
-  yCoords.push(yCoords[0] +50);
+  yCoords.push(yCoords[0]);
+  yCoords.push(yCoords[0]);
 
 
   // for (var i = 0; i < powerOffsets.length; i++) {
