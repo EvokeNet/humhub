@@ -11,6 +11,9 @@ $this->pageTitle = Yii::t('UserModule.views_auth_login', 'Login');
     <?= humhub\widgets\SiteLogo::widget(['place' => 'login']); ?>
 
     <div id="homeAnimation" class="">
+      <div class="top">
+        <img width='50em' height='50em' src="<?php echo $this->theme->getBaseUrl() . '/img/powers/aggregation.svg'; ?>" alt="" />
+      </div>
       <div class="left-side">
         <img width='200em' height='200em' src="<?php echo $this->theme->getBaseUrl() . '/img/super_powers/creative_visionary_white.svg'; ?>" alt="" />
         <img width='200em' height='200em' src="<?php echo $this->theme->getBaseUrl() . '/img/super_powers/deep_collaborator_white.svg'; ?>" alt="" />
