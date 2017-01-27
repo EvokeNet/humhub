@@ -8,7 +8,8 @@ var $creativeVisionaryPowers = $("#creativeVisionaryPowers .power"),
     $deepCollaborator = $('#deepCollaborator'),
     $systemsThinkerPowers = $('#systemsThinkerPowers .power'),
     $systemsThinker = $('#systemsThinker'),
-    powerOffsets = [];
+    powerOffsets = [],
+    screenWidth = screen.width;
 
 // only need one set since they all "start" in the same position
 $creativeVisionaryPowers.each(function(index, element){
@@ -17,14 +18,16 @@ $creativeVisionaryPowers.each(function(index, element){
 
 
 //start the timeline
+tl.to('#animationTitle', 1, {text: "You have the power to change the world.", ease: Linear.easeNone});
+
 // creative visionary powers
 tl.staggerFrom($creativeVisionaryPowers, 5, {
   cycle: {
-    x: [-1000, 1000]
+    x: [-screenWidth/2, screenWidth/2]
   },
   opacity: 0,
   ease:Power4.easeInOut
-}, 1);
+}, 0.5);
 tl.to("#creativeVisionary", 2, {className: '+=draw'}, '-=2');
 tl.set("#creativeVisionary .super-power-name", {className: '+=show'});
 tl.staggerTo($creativeVisionaryPowers, 4, {
@@ -32,35 +35,35 @@ tl.staggerTo($creativeVisionaryPowers, 4, {
     y: findPowerEndY(powerOffsets, $creativeVisionary.offset()),
     x: findPowerEndX(powerOffsets, $creativeVisionary.offset())
   }
-}, 0.5);
-tl.to('#creativeVisionaryPowers .power-name', 1, {opacity: 0}, '-=1');
+}, 0.1);
+tl.to('#creativeVisionaryPowers .power-name', 1, {opacity: 0}, '-=4');
 
 // empathetic activist powers
 tl.staggerFrom($empatheticActivistPowers, 5, {
   cycle: {
-    x: [-1000, 1000]
+    x: [-screenWidth/3, screenWidth/3]
   },
   opacity: 0,
   ease:Power4.easeInOut
-}, 1);
-tl.to("#empatheticActivist", 2, {className: '+=draw'}, '-=2');
+}, 0.5);
+tl.to("#empatheticActivist", 3, {className: '+=draw'}, '-=2');
 tl.set("#empatheticActivist .super-power-name", {className: '+=show'});
 tl.staggerTo($empatheticActivistPowers, 4, {
   cycle: {
     y: findPowerEndY(powerOffsets, $empatheticActivist.offset()),
     x: findPowerEndX(powerOffsets, $empatheticActivist.offset())
   }
-}, 0.5);
-tl.to('#empatheticActivistPowers .power-name', 1, {opacity: 0}, '-=1');
+}, 0.1);
+tl.to('#empatheticActivistPowers .power-name', 1, {opacity: 0}, '-=4');
 
 // deep collaborator powers
 tl.staggerFrom($deepCollaboratorPowers, 5, {
   cycle: {
-    x: [-1000, 1000]
+    x: [-screenWidth/3, screenWidth/3]
   },
   opacity: 0,
   ease:Power4.easeInOut
-}, 1);
+}, 0.5);
 tl.to("#deepCollaborator", 2, {className: '+=draw'}, '-=2');
 tl.set("#deepCollaborator .super-power-name", {className: '+=show'});
 tl.staggerTo($deepCollaboratorPowers, 4, {
@@ -68,17 +71,17 @@ tl.staggerTo($deepCollaboratorPowers, 4, {
     y: findPowerEndY(powerOffsets, $deepCollaborator.offset()),
     x: findPowerEndX(powerOffsets, $deepCollaborator.offset())
   }
-}, 0.5);
-tl.to('#deepCollaboratorPowers .power-name', 1, {opacity: 0}, '-=1');
+}, 0.1);
+tl.to('#deepCollaboratorPowers .power-name', 1, {opacity: 0}, '-=4');
 
 // systems thinker powers
 tl.staggerFrom($systemsThinkerPowers, 5, {
   cycle: {
-    x: [-1000, 1000]
+    x: [-screenWidth/3, screenWidth/3]
   },
   opacity: 0,
   ease:Power4.easeInOut
-}, 1);
+}, 0.5);
 tl.to("#systemsThinker", 2, {className: '+=draw'}, '-=2');
 tl.set("#systemsThinker .super-power-name", {className: '+=show'});
 tl.staggerTo($systemsThinkerPowers, 4, {
@@ -86,12 +89,12 @@ tl.staggerTo($systemsThinkerPowers, 4, {
     y: findPowerEndY(powerOffsets, $systemsThinker.offset()),
     x: findPowerEndX(powerOffsets, $systemsThinker.offset())
   }
-}, 0.5);
-tl.to('#systemsThinkerPowers .power-name', 1, {opacity: 0}, '-=1');
+}, 0.1);
+tl.to('#systemsThinkerPowers .power-name', 1, {opacity: 0}, '-=4');
 
+tl.to('#animationTitle', 1, {text: "Your adventure starts now.", ease: Linear.easeNone });
 
-
-
+tl.to('#loginForms', 1, {y: '-200px', ease:Power3.easeInOut});
 
 // helper functions
 function findPowerEndY(powerOffsets, targetOffset){

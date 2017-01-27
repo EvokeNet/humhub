@@ -1,6 +1,5 @@
-.home-animation {
-  position: absolute;
-  width: 100%;
+#homeAnimation {
+  min-height: 200px;
 }
 
 #homeAnimation .top {
@@ -8,6 +7,11 @@
   width: 100%;
   display: inline-block;
   position: relative;
+}
+
+#animationTitle {
+  color: #fff;
+  font-size: 2em;
 }
 
 .left-side, .right-side {
