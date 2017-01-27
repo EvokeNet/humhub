@@ -24,12 +24,12 @@ $this->pageTitle = Yii::t('UserModule.views_auth_login', 'Login');
             <span class="power-name">Ideation</span>
           </span>
           <span class="power">
-            <img width='50em' height='50em' src="<?php echo $this->theme->getBaseUrl() . '/img/powers/leadership.svg'; ?>" alt="leadership" />
-            <span class="power-name">Leadership</span>
+            <img width='50em' height='50em' src="<?php echo $this->theme->getBaseUrl() . '/img/powers/imagination.svg'; ?>" alt="imagination" />
+            <span class="power-name">Imagination</span>
           </span>
           <span class="power">
-            <img width='50em' height='50em' src="<?php echo $this->theme->getBaseUrl() . '/img/powers/transformation.svg'; ?>" alt="transformation" />
-            <span class="power-name">Transformation</span>
+            <img width='50em' height='50em' src="<?php echo $this->theme->getBaseUrl() . '/img/powers/vision.svg'; ?>" alt="vision" />
+            <span class="power-name">Vision</span>
           </span>
         </div>
         <div id="empatheticActivistPowers" class="power-group">
@@ -42,12 +42,12 @@ $this->pageTitle = Yii::t('UserModule.views_auth_login', 'Login');
             <span class="power-name">Empathy</span>
           </span>
           <span class="power">
-            <img width='50em' height='50em' src="<?php echo $this->theme->getBaseUrl() . '/img/powers/imagination.svg'; ?>" alt="imagination" />
-            <span class="power-name">Imagination</span>
+            <img width='50em' height='50em' src="<?php echo $this->theme->getBaseUrl() . '/img/powers/leadership.svg'; ?>" alt="leadership" />
+            <span class="power-name">Leadership</span>
           </span>
           <span class="power">
-            <img width='50em' height='50em' src="<?php echo $this->theme->getBaseUrl() . '/img/powers/vision.svg'; ?>" alt="vision" />
-            <span class="power-name">Vision</span>
+            <img width='50em' height='50em' src="<?php echo $this->theme->getBaseUrl() . '/img/powers/transformation.svg'; ?>" alt="transformation" />
+            <span class="power-name">Transformation</span>
           </span>
         </div>
       </div>

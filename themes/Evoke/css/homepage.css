@@ -3,6 +3,13 @@
   width: 100%;
 }
 
+#homeAnimation .top {
+  min-height: 200px;
+  width: 100%;
+  display: inline-block;
+  position: relative;
+}
+
 .left-side, .right-side {
   width: 250px;
   display: inlin-block;
@@ -91,9 +98,11 @@ display: none;
 }
 
 .power-group {
-  max-width: 200px;
+  width: 200px;
   display: inline-block;
-  position: relative;
+  position: absolute;
+  margin-left: -100px;
+  left: 50%;
 }
 
 .power-group .power {

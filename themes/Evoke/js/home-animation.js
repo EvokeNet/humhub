@@ -2,12 +2,18 @@ var tl = new TimelineLite();
 
 var $creativeVisionaryPowers = $("#creativeVisionaryPowers .power"),
     $creativeVisionary = $('#creativeVisionary'),
+    $empatheticActivistPowers = $('#empatheticActivistPowers .power'),
+    $empatheticActivist = $('#empatheticActivist'),
     powerOffsets = [];
 
+// only need one set since they all "start" in the same position
 $creativeVisionaryPowers.each(function(index, element){
   powerOffsets.push($(element).offset());
 });
 
+
+//start the timeline
+// creative visionary powers
 tl.staggerFrom($creativeVisionaryPowers, 5, {
   cycle: {
     x: [-1000, 1000]
@@ -24,7 +30,29 @@ tl.staggerTo($creativeVisionaryPowers, 4, {
   }
 }, 0.5);
 
+// empathetic activist powers
+tl.staggerFrom($empatheticActivistPowers, 5, {
+  cycle: {
+    x: [-1000, 1000]
+  },
+  opacity: 0,
+  ease:Power4.easeInOut
+}, 1);
+tl.to("#empatheticActivist", 2, {className: '+=draw'}, '-=2');
+tl.set("#empatheticActivist .super-power-name", {className: '+=show'});
+tl.staggerTo($empatheticActivistPowers, 4, {
+  cycle: {
+    y: findPowerEndY(powerOffsets, $empatheticActivist.offset()),
+    x: findPowerEndX(powerOffsets, $empatheticActivist.offset())
+  }
+}, 0.5);
 
+
+
+
+
+
+// helper functions
 function findPowerEndY(powerOffsets, targetOffset){
   var yCoords = [];
   //find starting point
