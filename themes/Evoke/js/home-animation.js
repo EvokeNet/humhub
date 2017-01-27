@@ -24,14 +24,14 @@ tl.set('#animationMask', {opacity: 0});
 tl.to('#animationTitle', 1, {text: "You have the power to change the world.", ease: Linear.easeNone});
 
 // creative visionary powers
-tl.staggerFrom($creativeVisionaryPowers, 5, {
+tl.staggerFrom($creativeVisionaryPowers, 4, {
   cycle: {
     x: [-screenWidth/2, screenWidth/2]
   },
   opacity: 0,
   ease:Power1.easeInOut
 }, 0.5);
-tl.to("#creativeVisionary", 2, {className: '+=draw'}, '-=2');
+tl.to("#creativeVisionary", 3, {className: '+=draw'}, '-=2');
 tl.set("#creativeVisionary .super-power-name", {className: '+=show'});
 tl.staggerTo($creativeVisionaryPowers, 4, {
   cycle: {
@@ -43,13 +43,13 @@ tl.staggerTo($creativeVisionaryPowers, 4, {
 tl.to('#creativeVisionaryPowers .power-name', 1, {opacity: 0}, '-=4');
 
 // empathetic activist powers
-tl.staggerFrom($empatheticActivistPowers, 5, {
+tl.staggerFrom($empatheticActivistPowers, 4, {
   cycle: {
     x: [-screenWidth/3, screenWidth/3]
   },
   opacity: 0,
   ease:Power1.easeInOut
-}, 0.5);
+}, 0.5, '-=1');
 tl.to("#empatheticActivist", 3, {className: '+=draw'}, '-=2');
 tl.set("#empatheticActivist .super-power-name", {className: '+=show'});
 tl.staggerTo($empatheticActivistPowers, 4, {
@@ -62,14 +62,14 @@ tl.staggerTo($empatheticActivistPowers, 4, {
 tl.to('#empatheticActivistPowers .power-name', 1, {opacity: 0}, '-=4');
 
 // deep collaborator powers
-tl.staggerFrom($deepCollaboratorPowers, 5, {
+tl.staggerFrom($deepCollaboratorPowers, 4, {
   cycle: {
     x: [-screenWidth/3, screenWidth/3]
   },
   opacity: 0,
   ease:Power1.easeInOut
-}, 0.5);
-tl.to("#deepCollaborator", 2, {className: '+=draw'}, '-=2');
+}, 0.5, '-=1');
+tl.to("#deepCollaborator", 3, {className: '+=draw'}, '-=2');
 tl.set("#deepCollaborator .super-power-name", {className: '+=show'});
 tl.staggerTo($deepCollaboratorPowers, 4, {
   cycle: {
@@ -81,14 +81,14 @@ tl.staggerTo($deepCollaboratorPowers, 4, {
 tl.to('#deepCollaboratorPowers .power-name', 1, {opacity: 0}, '-=4');
 
 // systems thinker powers
-tl.staggerFrom($systemsThinkerPowers, 5, {
+tl.staggerFrom($systemsThinkerPowers, 4, {
   cycle: {
     x: [-screenWidth/3, screenWidth/3]
   },
   opacity: 0,
   ease:Power1.easeInOut
-}, 0.5);
-tl.to("#systemsThinker", 2, {className: '+=draw'}, '-=2');
+}, 0.5, '-=1');
+tl.to("#systemsThinker", 3, {className: '+=draw'}, '-=2');
 tl.set("#systemsThinker .super-power-name", {className: '+=show'});
 tl.staggerTo($systemsThinkerPowers, 4, {
   cycle: {
