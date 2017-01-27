@@ -20,9 +20,8 @@ $this->pageTitle = Yii::t('UserModule.views_auth_login', 'Login');
           window.onload = function() {
               // load html and images only if not mobile
               var div = document.createElement('div');
+              div.setAttribute('id', 'loadedBody');
               div.innerHTML = document.getElementById('animationBody').innerHTML;
-              console.log(div);
-              console.log(document.getElementById('homeAnimation'));
               document.getElementById('homeAnimation').appendChild(div);
               // load script
               var s = document.createElement('script');
