@@ -36,7 +36,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                                             <div class="col-sm-10">
 
                                                 <span class="l-name"><?php echo $key + 1; ?>.</span>&nbsp;&nbsp;
-                                                <?= Html::a($r['name'], ['/space/space', 'sguid' => $r['guid']], ['style' => 'font-size: 11pt; font-weight: 700; color: #5aa2c6;']) ?>
+                                                <?= Html::a($r['name'], ['/space/space', 'sguid' => $r['guid']], ['style' => 'font-size: 11pt; font-weight: 700; color: #A6AAB2;']) ?>
 
                                             </div>
                                             <div class="col-sm-2">
@@ -76,7 +76,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                                         <div class="row">
                                             <div class="col-sm-10" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
                                                 <span class="l-name"><?php echo $key + 1; ?>.</span>&nbsp;&nbsp;
-                                                <?= Html::a($r['name'], ['/space/space', 'sguid' => $r['guid']], ['style' => 'font-size: 11pt; font-weight: 700; color: #5aa2c6;']) ?>
+                                                <?= Html::a($r['name'], ['/space/space', 'sguid' => $r['guid']], ['style' => 'font-size: 11pt; font-weight: 700; color: #A6AAB2;']) ?>
                                             </div>
                                             <div class="col-sm-2">
                                                 <span class="l-number"><?php echo $r['reviews']; ?></span>
@@ -113,7 +113,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                                         <div class="row">
                                             <div class="col-sm-10" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
                                                 <span class="l-name"><?php echo $key + 1; ?>.</span>&nbsp;&nbsp;
-                                                <?= Html::a($r['username'], ['/user/profile', 'uguid' => $r['guid']], ['style' => 'font-size: 11pt; font-weight: 700; color: #5aa2c6;']) ?>
+                                                <?= Html::a($r['username'], ['/user/profile', 'uguid' => $r['guid']], ['style' => 'font-size: 11pt; font-weight: 700; color: #A6AAB2;']) ?>
                                             </div>
                                             <div class="col-sm-2">
                                                 <span class="l-number"><?php echo $r['evidences']; ?></span>
@@ -152,7 +152,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                                         <div class="row">
                                             <div class="col-sm-10" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
                                                 <span class="l-name"><?php echo $key + 1; ?>.</span>&nbsp;&nbsp;
-                                                <?= Html::a($r['username'], ['/user/profile', 'uguid' => $r['guid']], ['style' => 'font-size: 11pt; font-weight: 700; color: #5aa2c6;']) ?>
+                                                <?= Html::a($r['username'], ['/user/profile', 'uguid' => $r['guid']], ['style' => 'font-size: 11pt; font-weight: 700; color: #A6AAB2;']) ?>
                                             </div>
                                             <div class="col-sm-2">
                                                 <span class="l-number"><?php echo $r['reviews']; ?></span>
@@ -194,7 +194,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                                     <div class="row">
                                         <div class="col-sm-9">
                                             <span class="l-name"><?php echo $key + 1; ?>.</span>&nbsp;&nbsp;
-                                            <?= Html::a($r['username'], ['/user/profile', 'uguid' => $r['guid']], ['style' => 'font-size: 11pt; font-weight: 700; color: #5aa2c6;']) ?>
+                                            <?= Html::a($r['username'], ['/user/profile', 'uguid' => $r['guid']], ['style' => 'font-size: 11pt; font-weight: 700; color: #A6AAB2;']) ?>
                                         </div>
                                         <div class="col-sm-3">
                                             <span class="l-number"><?php echo number_format($r['average'],2); ?></span>
@@ -233,7 +233,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                                         <div class="row">
                                             <div class="col-sm-10" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
                                                 <span class="l-name"><?php echo $key + 1; ?>.</span>&nbsp;&nbsp;
-                                                <?= Html::a($r['username'], ['/user/profile', 'uguid' => $r['guid']], ['style' => 'font-size: 11pt; font-weight: 700; color: #5aa2c6;']) ?>
+                                                <?= Html::a($r['username'], ['/user/profile', 'uguid' => $r['guid']], ['style' => 'font-size: 11pt; font-weight: 700; color: #A6AAB2;']) ?>
                                             </div>
                                             <div class="col-sm-2">
                                                 <span class="l-number"><?php echo $r['reviews']; ?></span>

@@ -18,20 +18,20 @@ echo Html::beginForm();
 <!-- EVIDENCE -->
 <?php if($evidence->content->visibility >= 1): ?>
 
-    <h4 style="margin-top:30px; color: #FEAE1B;"><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h4>
+    <h4 style="margin-top:30px; color: #FEAE1B; padding: 0 20px"><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h4>
 
     <?php if (Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
       <!-- <h6><?php //echo Yii::t('MissionsModule.base', 'By'); ?> <?php echo $name ?></h6> -->
     <?php endif; ?>
 
-    <p style="margin:25px 0 35px"><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]);?></p>
+    <p style="margin:25px 0 50px; padding: 0 20px"><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]);?></p>
 
     <!-- SHOW FILES -->
 
     <?php $files = \humhub\modules\file\models\File::getFilesOfObject($evidence); ?>
 
     <?php if(!empty($files)): ?>
-    <ul class="files" style="list-style: none; margin: 0;" id="files-<?php echo $evidence->getPrimaryKey(); ?>">
+    <ul class="files" style="list-style: none; margin: 0; padding: 0 20px" id="files-<?php echo $evidence->getPrimaryKey(); ?>">
         <?php foreach ($files as $file) : ?>
             <?php
             if ($file->getMimeBaseType() == "image" && Setting::Get('hideImageFileInfo', 'file'))
@@ -59,7 +59,7 @@ echo Html::beginForm();
 
                   <br /><br />
 
-                  <a href="<?php echo $file->getPreviewImageUrl(); ?>"><img src="<?php echo $file->getPreviewImageUrl(); ?>" width="200"/></a>
+                  <a href="<?php echo $file->getPreviewImageUrl(); ?>"><img src="<?php echo $file->getPreviewImageUrl(); ?>" width="150"/></a>
 
                 <?php endif; ?>
 

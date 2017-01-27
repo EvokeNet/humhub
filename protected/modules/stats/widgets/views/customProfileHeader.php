@@ -188,38 +188,36 @@ if ($isProfileOwner) {
                     <div class="statistics pull-left">
 
                         <div class="pull-left entry">
-                            <span class="count"><?php echo $user->getFollowerCount(); ?></span>&nbsp;&nbsp;
+                            <span class="count"><?php echo $user->getFollowerCount(); ?></span>&nbsp;&nbsp;<br />
                             <span class="title"><?php echo Yii::t('StatsModule.widgets_views_profileHeader', 'Followers'); ?></span>
                         </div>
 
                         <div class="pull-left entry">
-                            <span
-                                class="count"><?php echo $user->getFollowingCount(User::className()) + $user->getFollowingCount(Space::className()); ?></span>
-                            <br>
+                            <span class="count"><?php echo $user->getFollowingCount(User::className()) + $user->getFollowingCount(Space::className()); ?></span><br />
                             <span
                                 class="title"><?php echo Yii::t('StatsModule.widgets_views_profileHeader', 'Following'); ?></span>
                         </div>
 
                         <div class="pull-left entry">
-                            <span class="count"><?php echo count($user->spaces); ?></span><br>
+                            <span class="count"><?php echo count($user->spaces); ?></span><br />
                             <span
                                 class="title"><?php echo Yii::t('StatsModule.widgets_views_profileHeader', 'Spaces'); ?></span>
                         </div>
 
                         <div class="pull-left entry">
-                            <span class="count"><?php echo $evidences; ?></span><br>
+                            <span class="count"><?php echo $evidences; ?></span><br />
                             <span
                                 class="title"><?php echo Yii::t('StatsModule.widgets_views_profileHeader', 'Evidences'); ?></span>
                         </div>
 
                         <div class="pull-left entry">
-                            <span class="count"><?php echo isset($avg_rating) ? number_format((float) $avg_rating, 1, '.', '') : '0'; ?></span><br>
+                            <span class="count"><?php echo isset($avg_rating) ? number_format((float) $avg_rating, 1, '.', '') : '0'; ?></span><br />
                             <span
                                 class="title"><?php echo Yii::t('StatsModule.widgets_views_profileHeader', 'Avg Rating'); ?></span>
                         </div>
 
                         <div class="pull-left entry">
-                            <span class="count user-evocoins"><?php echo $wallet->amount; ?></span><br>
+                            <span class="count user-evocoins"><?php echo $wallet->amount; ?></span><br />
                             <span
                                 class="title"><?php echo Yii::t('StatsModule.widgets_views_profileHeader', 'Evocoins'); ?></span>
                         </div>

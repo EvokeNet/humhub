@@ -188,28 +188,25 @@ if ($isProfileOwner) {
                     <div class="statistics pull-left">
 
                         <div class="pull-left entry">
-                            <span class="count"><?php echo $user->getFollowerCount(); ?></span></a>
-                            <br>
+                            <span class="count"><?php echo $user->getFollowerCount(); ?></span><br />
                             <span
                                 class="title"><?php echo Yii::t('UserModule.widgets_views_profileHeader', 'Followers'); ?></span>
                         </div>
 
                         <div class="pull-left entry">
-                            <span
-                                class="count"><?php echo $user->getFollowingCount(User::className()) + $user->getFollowingCount(Space::className()); ?></span>
-                            <br>
+                            <span class="count"><?php echo $user->getFollowingCount(User::className()) + $user->getFollowingCount(Space::className()); ?></span><br />
                             <span
                                 class="title"><?php echo Yii::t('UserModule.widgets_views_profileHeader', 'Following'); ?></span>
                         </div>
 
                         <div class="pull-left entry">
-                            <span class="count"><?php echo count($user->spaces); ?></span><br>
+                            <span class="count"><?php echo count($user->spaces); ?></span><br />
                             <span
                                 class="title"><?php echo Yii::t('UserModule.widgets_views_profileHeader', 'Spaces'); ?></span>
                         </div>
 
                         <div class="pull-left entry">
-                            <span class="count user-evocoins"><?php echo $wallet->amount; ?></span><br>
+                            <span class="count user-evocoins"><?php echo $wallet->amount; ?></span><br />
                             <span
                                 class="title"><?php echo Yii::t('StatsModule.widgets_views_profileHeader', 'Evocoins'); ?></span>
                         </div>

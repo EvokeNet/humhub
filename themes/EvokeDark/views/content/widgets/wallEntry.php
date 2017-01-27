@@ -31,7 +31,7 @@ if($team_id){
 <div class="panel panel-default wall_<?php echo $object->getUniqueId(); ?>">
     <div class="panel-body">
 
-        <div class="media">
+        <div class="media" style="margin-top: 5px">
 
             <!-- start: show wall entry options -->
             <ul class="nav nav-pills preferences">
@@ -47,9 +47,9 @@ if($team_id){
 
             <a href="<?php echo $user->getUrl(); ?>" class="pull-left">
                 <img class="media-object img-rounded user-image user-<?php echo $user->guid; ?>" alt="40x40"
-                     data-src="holder.js/40x40" style="width: 40px; height: 40px;"
+                     data-src="holder.js/40x40"
                      src="<?php echo $user->getProfileImage()->getUrl(); ?>"
-                     width="40" height="40"/>
+                     width="45" height="45"/>
             </a>
 
             <!-- Show space image, if you are outside from a space -->
@@ -74,7 +74,7 @@ if($team_id){
             <div class="media-body">
 
                 <!-- show username with link and creation time-->
-                <h4 class="media-heading" style = "margin-bottom:5px">
+                <h4 class="media-heading" style = "margin: 5px 0">
                     <?php if (!$object instanceof \humhub\modules\post\models\Post) : ?>
                         <!-- <span class="label label-border pull-right"><?php //echo $object->getContentName(); ?></span> -->
                         <a href="<?php echo $user->getUrl(); ?>">
