@@ -45,7 +45,7 @@ echo Breadcrumbs::widget([
                                 ['update-chapter-pages', 'chapter_id' => $page->chapter_id, 'page_id' => $page->novel_id], array('class' => 'btn btn-primary btn-sm')); ?>
                             &nbsp;&nbsp;
                             <?php echo Html::a(
-                                Yii::t('NovelModule.base', 'Delete'),
+                                Yii::t('NovelModule.base', 'Remove from Chapter'),
                                 ['delete-chapter-pages', 'chapter_id' => $page->chapter_id, 'page_id' => $page->novel_id], array(
                                 'class' => 'btn btn-danger btn-sm',
                                 'data' => [
