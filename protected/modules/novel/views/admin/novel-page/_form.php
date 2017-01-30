@@ -34,11 +34,6 @@ use app\modules\novel\models\Chapter;
 
     <?= $form->field($model, 'page_number')->input('number') ?>
 
-    <?= $form->field($model, 'chapter_id')->dropdownList(
-            ArrayHelper::map(Chapter::find()->all(), 'id', 'number'),
-            ['prompt' => Yii::t('NovelModule.base', 'Select Chapter')]
-        ) ?>
-
     <?= $form->field($model, 'language_id')->dropdownList(
             ArrayHelper::map(Languages::find()->all(), 'id', 'language'),
             ['prompt' => Yii::t('NovelModule.base', 'Select Language')]

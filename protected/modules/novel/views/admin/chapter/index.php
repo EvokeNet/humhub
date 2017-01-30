@@ -25,7 +25,6 @@ echo Breadcrumbs::widget([
               <th><?php echo Yii::t('NovelModule.base', 'Chapter Number'); ?></th>
               <th><?php echo Yii::t('NovelModule.base', 'Mission') ?></th>
               <th>&nbsp;</th>
-              <th>&nbsp;</th>
           </tr>
           <?php foreach ($chapters as $chapter): ?>
               <tr>
@@ -35,8 +34,10 @@ echo Breadcrumbs::widget([
                       <?php echo Html::a(
                           Yii::t('NovelModule.base', 'Edit'),
                           ['chapter-update', 'id' => $chapter->id], array('class' => 'btn btn-primary btn-sm')); ?>
-                  </td>
-                  <td>
+                      <?php echo Html::a(
+                            Yii::t('NovelModule.base', 'View pages'),
+                            ['index-chapter-pages', 'id' => $chapter->id], array('class' => 'btn btn-warning btn-sm')); ?>
+                        &nbsp;&nbsp;
                     <?php echo Html::a(
                         Yii::t('NovelModule.base', 'Delete'),
                         ['chapter-delete', 'id' => $chapter->id], array('class' => 'btn btn-alert btn-sm')); ?>
