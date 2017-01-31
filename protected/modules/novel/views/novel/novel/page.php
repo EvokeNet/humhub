@@ -12,7 +12,7 @@ use app\modules\novel\models\NovelPage;
     background-image:url('<?= $page->page_image ?>');
     background-size:contain;
     background-repeat:no-repeat;
-    background-position:center;
+    background-position:top;
   }
   
   <?php if (!Yii::$app->user->getIdentity()->has_read_novel && Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
