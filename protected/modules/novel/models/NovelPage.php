@@ -31,7 +31,6 @@ use Yii;
          ['page_image', 'string', 'max' => 256],
          ['page_number', 'integer', 'min' => 1],
          [['language_id'], 'exist', 'skipOnError' => true, 'targetClass' => Languages::className(), 'targetAttribute' => ['language_id' => 'id']],
-         [['chapter_id'], 'exist', 'skipOnError' => true, 'targetClass' => Chapter::className(), 'targetAttribute' => ['chapter_id' => 'id']],
        ];
      }
 
@@ -44,16 +43,23 @@ use Yii;
           'id' => Yii::t('NovelModule.base', 'ID'),
           'page_image' => Yii::t('NovelModule.base', 'Image'),
           'page_number' => Yii::t('NovelModule.base', 'Page Number'),
-          'chapter_id' => Yii::t('NovelModule.base', 'Chapter ID'),
         ];
       }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getChapter()
+    public function getChapterPages()
     {
-        return $this->hasOne(Chapter::className(), ['id' => 'chapter_id']);
+        return $this->hasMany(ChapterPages::className(), ['novel_id' => 'id']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getChapters()
+    {
+        return $this->hasMany(Chapter::className(), ['id' => 'chapter_id'])->viaTable('chapter_pages', ['novel_id' => 'id']);
+    }
+    
  }
