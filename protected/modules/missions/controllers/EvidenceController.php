@@ -143,7 +143,8 @@ class EvidenceController extends ContentContainerController
             $lang = Languages::findOne(['code' => 'en-US']);
 
         $pages = NovelPage::find()
-        ->joinWith('chapter')
+        ->join('LEFT JOIN', 'chapter_pages', 'id = novel_id')
+        ->join('LEFT JOIN', 'chapter', 'chapter_id = chapter.id')
         ->andWhere(['chapter.mission_id' => $mission->id])
         ->andWhere(['=', 'language_id', $lang->id])
         ->orderBy('page_number ASC')
