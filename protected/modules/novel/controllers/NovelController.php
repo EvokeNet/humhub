@@ -46,10 +46,15 @@ class NovelController extends Controller
       }
       */
 
-      $page = NovelPage::find()->where(['page_number' => $page, 'language_id' => $language->id])->one();
+      $page = NovelPage::find()
+      ->join('LEFT JOIN', 'chapter_pages', 'id = novel_id')
+      ->where(['language_id' => $language->id])
+      ->andWhere('chapter_id IS NULL and page_number >='.$page)
+      ->orderBy('page_number ASC')
+      ->one();
 
-      //page doesn't exist or mission is locked
-      if(!$page || ($page->chapter && $page->chapter->mission->locked)){
+      //page doesn't exist or it's a chapter page
+      if(!$page || ($page->chapter)){
         if($novel_order == EvokeSettingsForm::FIRST_NOVEL){
           return $this->redirect(['transformation']);
         }else{

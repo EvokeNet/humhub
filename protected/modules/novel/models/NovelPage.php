@@ -61,5 +61,13 @@ use Yii;
     {
         return $this->hasMany(Chapter::className(), ['id' => 'chapter_id'])->viaTable('chapter_pages', ['novel_id' => 'id']);
     }
+
+    public function getChapter(){
+      if(sizeof($this->chapters) > 0){
+        return $this->chapters[0];  
+      }
+      
+      return null;
+    }
     
  }
