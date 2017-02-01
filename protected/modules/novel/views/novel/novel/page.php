@@ -9,7 +9,12 @@ use app\modules\novel\models\NovelPage;
 
   .graphic-novel-page{
     min-height:200vh;
+
+    <?php if($page->markup != ""): ?>
+    <?php else: ?>
     background-image:url('<?= $page->page_image ?>');
+    <?php endif; ?>
+
     background-size:contain;
     background-repeat:no-repeat;
     background-position:top;
@@ -46,6 +51,7 @@ use app\modules\novel\models\NovelPage;
 
     <div class="panel panel-default">
       <div class="panel-body graphic-novel-page" style="">
+        <?= $page->markup ?>
         <?php if ($page->page_number !== 1): ?>
           <?php echo Html::a(
               '<',

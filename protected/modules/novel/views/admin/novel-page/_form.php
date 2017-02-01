@@ -15,7 +15,7 @@ use app\modules\novel\models\Chapter;
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-    <?= $form->field($model, 'markup')->textarea(['rows' => 6])  ?>
+    <?= $form->field($model, 'markup')->textarea(['rows' => 6])->hint(Yii::t('NovelModule.base', 'Leave it empty to use a image instead')) ?>
 
     <?= $form->field($model, 'page_image')->fileInput() ?>
 
