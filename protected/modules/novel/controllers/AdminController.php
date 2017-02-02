@@ -169,13 +169,13 @@ class AdminController extends \humhub\modules\admin\components\Controller
         }
 
         //if save page
-        if($model->load(Yii::$app->request->post()) && $model->save()){
+        if($model->save()){
           $chapter_page = new ChapterPages();
           $chapter_page->chapter_id = $chapter_id;
           $chapter_page->novel_id = $model->id;
 
           if($chapter_page->save()){
-            return $this->redirect(['index-chapter-pages', 'id' => $chapter_id]);          
+            return $this->redirect(['index-chapter-pages', 'id' => $chapter_id]);
           }
         }
             

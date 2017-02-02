@@ -6,6 +6,19 @@ use app\modules\novel\models\NovelPage;
 
 ?>
 <style media="screen">
+
+  .graphic-novel-page{
+    min-height:200vh;
+
+    <?php if($page->markup != ""): ?>
+    <?php else: ?>
+    background-image:url('<?= $page->page_image ?>');
+    <?php endif; ?>
+
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:top;
+  }
   
   <?php if (!Yii::$app->user->getIdentity()->has_read_novel && Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
     .topbar, .footer {
@@ -38,6 +51,7 @@ use app\modules\novel\models\NovelPage;
 
     <div class="panel panel-default">
       <div class="panel-body graphic-novel-page" style="">
+        <?= $page->markup ?>
         <?php if ($page->page_number !== 1): ?>
           <?php echo Html::a(
               '<',
