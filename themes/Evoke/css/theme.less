@@ -382,7 +382,7 @@ textarea {
 
 .evocoins{
   position:relative;
-  margin-bottom: 10px;
+  margin: 10px 0;
   // display: inline-block;
   // padding: 0px 0px 13px 26px;
   // padding: 0px 13px 13px;
@@ -3260,8 +3260,9 @@ img.bounceIn {
 }
 
 .power-border{
-    border: 3px solid @secondary3;
+    border: 2px solid @secondary3;
     border-radius: 50%;
+    margin-top:15px;
 }
 
 .activity2-number{
@@ -3535,7 +3536,22 @@ img.bounceIn {
 }
 
 .player-power{
-    padding-bottom: 25px;
+    padding-bottom: 15px;
+
+    span.text-header{
+      display:inline-block; 
+      font-size:12pt; 
+      margin-top:10px;
+      color:@primary3;
+    }
+
+    span.text-content{
+      // display:inline-block; 
+      font-size:11pt; 
+      // margin-top:5px;
+      color:@tertiary2;
+      font-weight:700;
+    }
 }
 
 /* missions\widgets\views\portfolio */
@@ -4234,4 +4250,20 @@ h3.product-name {
 
 .animate-submit-evidence i{
   font-size: 10em;
+}
+
+.evokation-voting-close{
+  background-color: @primary3;
+  margin-bottom: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
+.user-content-box{
+  padding: 0 20px;
+
+  h4{
+    margin-top:40px; 
+    color: @primary3;
+  }
 }
