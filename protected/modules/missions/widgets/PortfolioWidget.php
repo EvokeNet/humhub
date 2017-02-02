@@ -29,7 +29,12 @@ class PortfolioWidget extends \yii\base\Widget
     		$team = Space::findOne(['name' => 'Mentors']);
     	}
 
-    	$evokations_url = Url::to(['/missions/evokations/voting', 'sguid' => $team->guid]);	
+        if($team == null){
+            $evokations_url = Url::to(['/missions/evokations/voting', 'sguid' => null]); 
+        }else{
+            $evokations_url = Url::to(['/missions/evokations/voting', 'sguid' => $team->guid]); 
+        }
+    	
     	
     	$wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
     	$totalAmount = Portfolio::getTotalInvestment(Yii::$app->user->getIdentity()->id);
