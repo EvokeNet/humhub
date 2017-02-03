@@ -3421,6 +3421,7 @@ h3.product-name {
   background-color: #D81B60;
   width: 150px;
   margin-bottom: 10px;
+  min-height: 105px;
 }
 .power-cards p {
   color: #07111C !important;
