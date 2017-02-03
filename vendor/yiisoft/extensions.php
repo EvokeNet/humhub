@@ -30,4 +30,22 @@ return array (
       '@yii/jui' => $vendorDir . '/yiisoft/yii2-jui',
     ),
   ),
+  'rmrevin/yii2-fontawesome' => 
+  array (
+    'name' => 'rmrevin/yii2-fontawesome',
+    'version' => '2.17.1.0',
+    'alias' => 
+    array (
+      '@rmrevin/yii/fontawesome' => $vendorDir . '/rmrevin/yii2-fontawesome',
+    ),
+  ),
+  'froala/yii2-froala-editor' => 
+  array (
+    'name' => 'froala/yii2-froala-editor',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@froala/froalaeditor' => $vendorDir . '/froala/yii2-froala-editor',
+    ),
+  ),
 );

@@ -2,6 +2,7 @@
 
 namespace app\modules\novel\models;
 use app\modules\languages\models\Languages;
+use app\modules\novel\models\Chapter;
 
 use Yii;
 
@@ -44,4 +45,29 @@ use Yii;
           'page_number' => Yii::t('NovelModule.base', 'Page Number'),
         ];
       }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getChapterPages()
+    {
+        return $this->hasMany(ChapterPages::className(), ['novel_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getChapters()
+    {
+        return $this->hasMany(Chapter::className(), ['id' => 'chapter_id'])->viaTable('chapter_pages', ['novel_id' => 'id']);
+    }
+
+    public function getChapter(){
+      if(sizeof($this->chapters) > 0){
+        return $this->chapters[0];  
+      }
+      
+      return null;
+    }
+    
  }

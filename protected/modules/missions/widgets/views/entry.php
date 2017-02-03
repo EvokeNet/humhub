@@ -17,20 +17,21 @@ echo Html::beginForm();
 
 <!-- EVIDENCE -->
 <?php if($evidence->content->visibility >= 1): ?>
-    <h5><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h5>
-    <?php if (Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
-      <h6><?php echo Yii::t('MissionsModule.base', 'By'); ?> <?php echo $name ?></h4>
-    <?php endif; ?>
-    <p><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]);?></p>
 
-    <hr>
+    <h4 style="margin-top:30px; color: #FEAE1B; padding: 0 20px"><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h4>
+
+    <?php if (Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
+      <!-- <h6><?php //echo Yii::t('MissionsModule.base', 'By'); ?> <?php echo $name ?></h6> -->
+    <?php endif; ?>
+
+    <p style="margin:25px 0 50px; padding: 0 20px"><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]);?></p>
 
     <!-- SHOW FILES -->
 
     <?php $files = \humhub\modules\file\models\File::getFilesOfObject($evidence); ?>
 
     <?php if(!empty($files)): ?>
-    <ul class="files" style="list-style: none; margin: 0;" id="files-<?php echo $evidence->getPrimaryKey(); ?>">
+    <ul class="files" style="list-style: none; margin: 0; padding: 0 20px" id="files-<?php echo $evidence->getPrimaryKey(); ?>">
         <?php foreach ($files as $file) : ?>
             <?php
             if ($file->getMimeBaseType() == "image" && Setting::Get('hideImageFileInfo', 'file'))
@@ -58,7 +59,7 @@ echo Html::beginForm();
 
                   <br /><br />
 
-                  <a href="<?php echo $file->getPreviewImageUrl(); ?>"><img src="<?php echo $file->getPreviewImageUrl(); ?>" width="200"/></a>
+                  <a href="<?php echo $file->getPreviewImageUrl(); ?>"><img src="<?php echo $file->getPreviewImageUrl(); ?>" width="150"/></a>
 
                 <?php endif; ?>
 
@@ -67,55 +68,57 @@ echo Html::beginForm();
     </ul>
     <?php endif; ?>
 
-    <hr>
-
     <div class = "evidence-mission-box">
-      <h6 style="margin-bottom:10px"><?= Yii::t('MissionsModule.base', 'Mission {mission}, Activity {activity}:', array('mission' => $activity->mission->position, 'activity' => $activity->position)); ?></h6>
-      <h5><?php echo Html::a(
-              (isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title),
-              ['/missions/evidence/show', 'activityId' => $activity->id, 'sguid' => $contentContainer->guid], array('class' => '')); ?></h5>
+      <div style="text-align: center">
+        <span style="margin-bottom: 10px; display: inline-block; margin-top: 10px; font-weight: 700; font-size: 13pt;">
+          <?= Yii::t('MissionsModule.base', 'Mission {mission}, Activity {activity}:', array('mission' => $activity->mission->position, 'activity' => $activity->position)); ?>
+          <?php echo Html::a(
+                (isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title),
+                ['/missions/evidence/show', 'activityId' => $activity->id, 'sguid' => $contentContainer->guid], array('class' => '', 'style' => 'text-decoration: underline')); ?>
+        </span>
+      </div>
 
       <div class="votes-container row" style="margin-top:10px">
 
-        <div class="mentor-votes col-sm-4" style="margin-top:10px; border-right: 2px solid #254054;">
-          <em><?php echo Yii::t('MissionsModule.base', 'Mentor Reviews'); ?></em>
+        <div class="mentor-votes col-xs-6">
+
+          <div class="stars">
+            <?php for ($i = 0; $i < 5; $i++): ?>
+              <?php if ($mentor_average_votes > $i): ?>
+                <?php if (($mentor_average_votes - $i) < 1): ?>
+                  <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                <?php else: ?>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                <?php endif; ?>
+              <?php else: ?>
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+              <?php endif; ?>
+            <?php endfor; ?>
+            <p>
+              <?php echo Yii::t('MissionsModule.base', 'Avg Mentor Rating'); ?>
+            </p>
+          </div>
+
+        </div>
+
+        <div class="agent-votes col-xs-6" style="margin-top:10px; text-align:center">
 
           <div class="rating no-padding-left">
-            <em>
+            <span style="font-size: 9pt; font-weight:700">
               <?php echo Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $mentor_average_votes? number_format((float)$mentor_average_votes, 1, '.', '') : "-")); ?>
-            </em>
-            <em>
+            </span>
+            <span style="font-size: 9pt; font-weight:700">
               <?php echo Yii::t('MissionsModule.base', 'Mentor Reviews: {votes}', array('votes' => $evidence->getVoteCount('Mentors')? $evidence->getVoteCount('Mentors') : "0")) ?>
-            </em>
+            </span>
           </div>
-        </div>
 
-        <div class="stars col-sm-4">
-          <?php for ($i = 0; $i < 5; $i++): ?>
-            <?php if ($mentor_average_votes > $i): ?>
-              <?php if (($mentor_average_votes - $i) < 1): ?>
-                <i class="fa fa-star-half-o" aria-hidden="true"></i>
-              <?php else: ?>
-                <i class="fa fa-star" aria-hidden="true"></i>
-              <?php endif; ?>
-            <?php else: ?>
-              <i class="fa fa-star-o" aria-hidden="true"></i>
-            <?php endif; ?>
-          <?php endfor; ?>
-          <p>
-            <?php echo Yii::t('MissionsModule.base', 'Avg Mentor Rating'); ?>
-          </p>
-        </div>
-        
-        <div class="agent-votes col-sm-4" style="margin-top:10px">
-          <em><?php echo Yii::t('MissionsModule.base', 'Agent Reviews'); ?></em>
           <div class="rating">
-            <em>
+            <span style="font-size: 9pt; font-weight:700">
               <?php echo Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $user_average_votes? number_format((float)$user_average_votes, 1, '.', '') : "-")); ?>
-            </em>
-            <em>
+            </span>
+            <span style="font-size: 9pt; font-weight:700">
               <?php echo Yii::t('MissionsModule.base', 'Agent Reviews: {votes}', array('votes' => $agent_vote_count)) ?>
-            </em>
+            </span>
           </div>
         </div>
 
@@ -126,69 +129,6 @@ echo Html::beginForm();
     <?php echo Html::endForm(); ?>
 
     </br>
-
-    <style media="screen">
-      .panel .evidence-mission-box h6 {
-        font-size: 10pt;
-        text-transform: uppercase;
-        text-align: center;
-        margin: 10px 0 0 0;
-      }
-
-      .panel .evidence-mission-box h5 {
-        text-transform: uppercase;
-        text-align: center;
-        margin: 0 0 0.5em 0;
-        text-decoration: underline;
-      }
-
-      .panel .evidence-mission-box h5 a {
-        color: #254054;
-        font-weight: 100;
-      }
-
-      .panel .evidence-mission-box h5 a:hover {
-        color:  #4B667A;
-      }
-
-      .panel .evidence-mission-box em {
-        text-transform: uppercase;
-        font-style: normal;
-        font-size: 0.8em;
-        color: #254054;
-      }
-
-      .stars {
-        text-align: center;
-        font-size: 2em;
-        color: #ece046;
-        /*margin-top: -14px;*/
-      }
-
-      .evidence-mission-box .stars p {
-        text-transform: uppercase;
-        font-size: 8pt;
-        font-weight: bold;
-      }
-
-      .panel .evidence-mission-box p {
-        margin: 0;
-      }
-
-      .panel .evidence-mission-box .agent-votes {
-        text-align: right;
-        float: right;
-        border-left: 2px solid #254054;
-      }
-
-      .panel .evidence-mission-box .agent-votes p {
-        font-size: 0.9em;
-      }
-
-      .no-padding-left {
-        padding-left: 0 !important;
-      }
-    </style>
 
     <?php 
       if($evidence->content->user_id != Yii::$app->user->getIdentity()->id){
@@ -207,8 +147,7 @@ echo Html::beginForm();
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h6 class="panel-title">
-
-                    <a  style="color:#254054; cursor: default" aria-expanded="false" class="collapsed">
+                    <a  style="cursor: default" aria-expanded="false" class="collapsed">
                         <?= Yii::t('MissionsModule.base', 'Mentor Reviews') ?>
                     </a>
                 </h6>
@@ -228,8 +167,27 @@ echo Html::beginForm();
                         <?php endif; ?>
 
                         <?php foreach($votes as $vote): ?>
-                            <div style = "padding: 10px 10px 3px; margin-bottom: 20px; border: 3px solid #9013FE; word-wrap: break-word;">
-                                <p><?php echo Yii::t('MissionsModule.base', 'Comment: {comment}', array('comment' => $vote->comment)); ?></p>
+                            <div class="review-box">
+
+                                <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors" || $vote->user->group->name == "Mentors"): ?>
+                                    <img class="media-object img-rounded user-image user-<?php echo $vote->user->guid; ?>" alt="40x40"
+                                         data-src="holder.js/40x40" style="display: inline-block;"
+                                         src="<?php echo $vote->user->getProfileImage()->getUrl(); ?>"
+                                         width="40" height="40"/>
+
+                                    &nbsp;<a href="<?= ($vote->user->getUrl()) ?>">
+                                        <?= ($vote->user->username) ?>
+                                    </a>
+
+                                    <?php echo Yii::t('MissionsModule.base', 'in {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]))); ?>
+
+                                <?php else: ?>
+                                  
+                                    <?php echo Yii::t('MissionsModule.base', 'Anonymous in {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]))); ?>
+
+                                <?php endif; ?>
+
+                                <p style="margin:20px 0"><?php echo $vote->comment; ?></p>
 
                                 <?php if($vote->value > 0 ): ?>
                                     <div class="stars" style="text-align:left;">
@@ -246,38 +204,30 @@ echo Html::beginForm();
                                       <?php endfor; ?>
                                     </div>
                                 <?php else: ?>
-                                  <p style="color:red"><?php echo Yii::t('MissionsModule.base', 'Does not meet rubric'); ?></p>
-                                <?php endif; ?>
-
-                                <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors" || $vote->user->group->name == "Mentors"): ?>
-                                    <p><?php echo Yii::t('MissionsModule.base', 'By'); ?>
-                                    <a href="<?= ($vote->user->getUrl()) ?>">
-                                        <?= ($vote->user->username) ?>
-                                    </a>,
-                                    <?php echo \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]); ?></p>
-                                <?php else: ?>
-                                    <p><?php echo Yii::t('MissionsModule.base', 'By Anonymous, {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]))); ?></p>
+                                  <div class="label-danger">
+                                    <p style="color:#F4F4F4; text-align: center;"><?php echo Yii::t('MissionsModule.base', 'Does not meet rubric'); ?></p>
+                                  </div>
                                 <?php endif; ?>
 
                                 <?php echo \humhub\modules\comment\widgets\CommentLink::widget(['object' => $vote, 'mode' => \humhub\modules\comment\widgets\CommentLink::MODE_INLINE]); ?>
                                 <?php echo \humhub\modules\comment\widgets\Comments::widget(array('object' => $vote)); ?>
 
-                                <div style="margin:20px 0 10px">
+                                <div style="text-align: right">
                                   <?php 
                                     $enable = "";
-                                          $disable = "hidden";
-                                          $disables = "hidden";
+                                    $disable = "hidden";
+                                    $disables = "hidden";
 
-                                          if ($vote->quality == 1) {
-                                              $enable = "hidden";
-                                              $disable = "";
-                                              $disables = "";
+                                    if ($vote->quality == 1) {
+                                        $enable = "hidden";
+                                        $disable = "";
+                                        $disables = "";
 
-                                          } 
+                                    } 
                                   ?>
+
                                     <?php if(Yii::$app->user->isAdmin()): ?>
                                         <?php
-
 
                                           echo \humhub\widgets\AjaxButton::widget([
                                               'label' => Yii::t('MissionsModule.base', 'Mark as quality review'),
@@ -288,6 +238,7 @@ echo Html::beginForm();
                                               $("#btn-enable-module-' . $vote->id . '").addClass("hidden");
                                               $("#btn-disable-module-' . $vote->id . '").removeClass("hidden");
                                               $("#btn-disables-module-' . $vote->id . '").removeClass("hidden");
+                                              loadPopUps();
                                               }'),
                                                   'url' => Url::to(['admin/update-quality-reviews', 'id' => $vote->id, 'mark' => 1, 'user_id' => $vote->user_id]),
                                               ],
@@ -310,6 +261,7 @@ echo Html::beginForm();
                                               $("#btn-enable-module-' . $vote->id . '").removeClass("hidden");
                                               $("#btn-disable-module-' . $vote->id . '").addClass("hidden");
                                               $("#btn-disables-module-' . $vote->id . '").addClass("hidden");
+                                              loadPopUps();
                                                }'),
                                                   'url' => Url::to(['admin/update-quality-reviews', 'id' => $vote->id, 'mark' => 0, 'user_id' => $vote->user_id]),
                                               ],
@@ -319,6 +271,7 @@ echo Html::beginForm();
                                               ]
                                           ]);
                                           ?>
+
                                       <div class="trophy-icon <?= $disables ?>" id="btn-disables-module-<?php echo $vote->id; ?>"><i class="fa fa-trophy fa-lg" aria-hidden="true"></i></div>
 
                                     <?php else: ?>
@@ -345,7 +298,7 @@ echo Html::beginForm();
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h6 class="panel-title">
-                    <a style="color:#254054; cursor: default" aria-expanded="false" class="collapsed">
+                    <a style="cursor: default" aria-expanded="false" class="collapsed">
                         <?= Yii::t('MissionsModule.base', 'Agent Reviews') ?>
                     </a>
                 </h6>
@@ -369,10 +322,11 @@ echo Html::beginForm();
                     </div>
                 </div>
 
+            <br />
             <?php if($agent_vote_count > 1): ?>
-            <a href="#collapseAgentEvidenceReviews<?= $evidence->id ?>"  class="btn btn-sm btn-primary " data-toggle="collapse">
-               <?= Yii::t('MissionsModule.base', 'Show {total_reviews} agent reviews', ['total_reviews' => $agent_vote_count - 1]) ?>
-            </a>      
+              <a href="#collapseAgentEvidenceReviews<?= $evidence->id ?>"  class="btn btn-sm btn-primary " data-toggle="collapse">
+                 <?= Yii::t('MissionsModule.base', 'Show {total_reviews} agent reviews', ['total_reviews' => $agent_vote_count - 1]) ?>
+              </a>      
             <?php elseif($agent_vote_count == 0): ?>
               <p>
                 <?= Yii::t('MissionsModule.base', 'No agent reviews') ?>
@@ -410,6 +364,7 @@ echo Html::beginForm();
             'ajaxOptions' => [
                 'dataType' => 'json',
                 'type' => 'POST',
+                'success' => "loadPopUps()",
                 'url' => $evidence->content->container->createUrl('/missions/evidence/update', ['id' => $evidence->id]),
             ],
             'htmlOptions' => [
@@ -424,6 +379,8 @@ echo Html::beginForm();
             'ajaxOptions' => [
                 'dataType' => 'json',
                 'type' => 'POST',
+                'beforeSend' => "function() { validateDraft($evidence->id); }",
+                'success' => "function(response) { handleResponse(response); loadPopUps();}",
                 'url' => $evidence->content->container->createUrl('/missions/evidence/publish', ['id' => $evidence->id]),
             ],
             'htmlOptions' => [
@@ -468,17 +425,6 @@ echo Html::beginForm();
   font-size: 12px;
 }
 
-.trophy-icon{
-    float: right;
-    color: #DED017;
-}
-
-.trophy-icon.agent{
-  position: absolute;
-  right: 40px;
-  bottom: 50px;
-}
-
 </style>
 
 <script>
@@ -518,6 +464,14 @@ $('#evidence_input_text_<?= $evidence->id ?>').keyup(function() {
 
 })
 
+function validateDraft(draft_id){
+  text = $('#evidence_input_text_' + draft_id);
+  if(text.val().length < 140){
+    showMessage("Error", "<?= Yii::t('MissionsModule.base', 'Post too short.') ?>");
+  }
+}
+
+
 function review(id, comment, opt, grade){
     grade = grade? grade : 0;
     var xhttp = new XMLHttpRequest();
@@ -530,6 +484,7 @@ function review(id, comment, opt, grade){
                 $("#review_tab_" + id).replaceWith(xhttp.responseText);
               }
             }
+            //loadPopUps();
         }
     };
     xhttp.open("GET", "<?= $contentContainer->createUrl('/missions/evidence/review'); ?>&opt="+opt+"&grade="+grade+"&evidenceId="+id+"&comment="+comment , true);
@@ -620,88 +575,12 @@ https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
     position: relative;
     font-size: 10pt !important;
 }
-.rating-input {
-    float: right;
-    width: 16px;
-    height: 16px;
-    padding: 0;
-    margin: 0 0 0 -16px;
-    opacity: 0;
-}
-.rating:hover .rating-star:hover,
-.rating:hover .rating-star:hover ~ .rating-star,
-.rating-input:checked ~ .rating-star {
-    background-position: 0 0;
-}
-.rating-star,
-.rating:hover .rating-star {
-    position: relative;
-    float: right;
-    display: block;
-    width: 40px;
-    height: 40px;
-    background: url('http://kubyshkin.ru/samples/star-rating/star.png') 0 -40px;
-    background-size: cover;
+
+.stars {
+  text-align: center;
+  font-size: 2em;
+  color: #ece046;
+  /*margin-top: -14px;*/
 }
 
-  .panel .evidence-mission-box h6 {
-    font-size: 10pt;
-    text-transform: uppercase;
-    text-align: center;
-    margin: 10px 0 0 0;
-  }
-
-  .panel .evidence-mission-box h5 {
-    text-transform: uppercase;
-    text-align: center;
-    margin: 0;
-    text-decoration: underline;
-  }
-
-  .panel .evidence-mission-box h5 a {
-    color: #254054;
-    font-weight: 100;
-  }
-
-  .panel .evidence-mission-box h5 a:hover {
-    color:  #4B667A;
-  }
-
-  .panel .evidence-mission-box em {
-    text-transform: uppercase;
-    font-style: normal;
-    font-size: 0.8em;
-    color: #254054;
-  }
-
-  .stars {
-    text-align: center;
-    font-size: 2em;
-    color: #ece046;
-    /*margin-top: -14px;*/
-  }
-
-  .evidence-mission-box .stars p {
-    text-transform: uppercase;
-    font-size: 8pt;
-    font-weight: bold;
-  }
-
-  .panel .evidence-mission-box p {
-    margin: 0;
-  }
-
-  .panel .evidence-mission-box .agent-votes {
-    text-align: right;
-    float: right;
-    border-left: 2px solid #254054;
-  }
-
-  .panel .evidence-mission-box .agent-votes p {
-    font-size: 0.9em;
-  }
-
-  .no-padding-left {
-    padding-left: 0 !important;
-  }
 </style>

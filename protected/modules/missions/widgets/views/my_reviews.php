@@ -18,7 +18,7 @@ $reviews = Votes::find()
 <div class="panel panel-default">
 
     <div class="panel-heading">
-        <h4 class = "display-inline"><?php echo Yii::t('MissionsModule.base', "Evidences I've Reviewed"); ?></h4>
+        <h5 class = "display-inline"><?php echo Yii::t('MissionsModule.base', "Evidences I've Reviewed"); ?></h5>
     </div>
 
     <div class="panel-body row">

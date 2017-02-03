@@ -30,7 +30,7 @@ class CustomProfileHeader extends ProfileHeader
             'evidences' => $evidences,
             'isProfileOwner' => $this->isProfileOwner,
             'avg_rating' => $avg_rating,
-            'wallet' => $wallet
+            'wallet' => $wallet,
         ));
     }
 

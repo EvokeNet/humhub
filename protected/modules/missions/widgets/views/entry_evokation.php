@@ -128,6 +128,7 @@ $youtube_code = $evokation->youtube_url ? $evokation->getYouTubeCode($evokation-
                         $('#portfolio_status').hide();
                         showMessage("<?= Yii::t('MissionsModule.base', 'Error') ?>", "<?= Yii::t('MissionsModule.base', 'You can not invest more than {investment_limit} evocoins total.', ['investment_limit' => intval(humhub\models\Setting::Get('investment_limit'))]) ?>");
                     }
+                    loadPopUps();
                 }
             });      
         }

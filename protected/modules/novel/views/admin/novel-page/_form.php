@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\modules\languages\models\Languages;
+use app\modules\novel\models\Chapter;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\novel\models\NovelPage */

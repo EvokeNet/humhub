@@ -28,6 +28,9 @@ use humhub\modules\user\models\User;
 use humhub\modules\missions\components\ContentContainerController;
 use humhub\modules\admin\models\forms\MailingSettingsForm;
 
+use app\modules\novel\models\NovelPage;
+use app\modules\novel\models\Chapter;
+
 class EvidenceController extends ContentContainerController
 {
 
@@ -58,9 +61,57 @@ class EvidenceController extends ContentContainerController
 
 
     public function actionActivities($missionId)
-    {
+    {   
         $mission = Missions::find()
         ->where(['=', 'id', $missionId])
+        ->with([
+            'missionTranslations' => function ($query) {
+                $lang = Languages::findOne(['code' => Yii::$app->language]);
+                if(isset($lang))
+                    $query->andWhere(['language_id' => $lang->id]);
+                else{
+                    $lang = Languages::findOne(['code' => 'en-US']);
+                    $query->andWhere(['language_id' => $lang->id]);
+                }
+            },
+            'activities.activityTranslations' => function ($query) {
+                $lang = Languages::findOne(['code' => Yii::$app->language]);
+                if(isset($lang))
+                    $query->andWhere(['language_id' => $lang->id]);
+                else{
+                    $lang = Languages::findOne(['code' => 'en-US']);
+                    $query->andWhere(['language_id' => $lang->id]);
+                }
+            },
+        ])->one();
+
+        $previous_mission = Missions::find()
+        ->andWhere(['=', 'position', $mission->position - 1])
+        ->andWhere(['=', 'locked', 0])
+        ->with([
+            'missionTranslations' => function ($query) {
+                $lang = Languages::findOne(['code' => Yii::$app->language]);
+                if(isset($lang))
+                    $query->andWhere(['language_id' => $lang->id]);
+                else{
+                    $lang = Languages::findOne(['code' => 'en-US']);
+                    $query->andWhere(['language_id' => $lang->id]);
+                }
+            },
+            'activities.activityTranslations' => function ($query) {
+                $lang = Languages::findOne(['code' => Yii::$app->language]);
+                if(isset($lang))
+                    $query->andWhere(['language_id' => $lang->id]);
+                else{
+                    $lang = Languages::findOne(['code' => 'en-US']);
+                    $query->andWhere(['language_id' => $lang->id]);
+                }
+            },
+        ])->one();
+
+        $next_mission = Missions::find()
+        ->andWhere(['=', 'position', $mission->position + 1])
+        ->andWhere(['=', 'locked', 0])
         ->with([
             'missionTranslations' => function ($query) {
                 $lang = Languages::findOne(['code' => Yii::$app->language]);
@@ -87,7 +138,26 @@ class EvidenceController extends ContentContainerController
         ->where(['space_id' => $this->contentContainer->id, 'user.status' => \humhub\modules\user\models\User::STATUS_ENABLED])
         ->all();
 
-        return $this->render('activities', array('mission' => $mission, 'contentContainer' => $this->contentContainer, 'members' => $members));
+        $lang = Languages::findOne(['code' => Yii::$app->language]);
+        if(!isset($lang))
+            $lang = Languages::findOne(['code' => 'en-US']);
+
+        $pages = NovelPage::find()
+        ->join('LEFT JOIN', 'chapter_pages', 'id = novel_id')
+        ->join('LEFT JOIN', 'chapter', 'chapter_id = chapter.id')
+        ->andWhere(['chapter.mission_id' => $mission->id])
+        ->andWhere(['=', 'language_id', $lang->id])
+        ->orderBy('page_number ASC')
+        ->all();
+
+        // $pages =  (new \yii\db\Query())
+        // ->select(['n.*'])
+        // ->from('novel_page as n')
+        // ->join('INNER JOIN', 'chapters as c', 'n.chapter_id = `c`.`id`')
+        // ->orderBy('s.page_number ASC')
+        // ->all();
+
+        return $this->render('activities', array('mission' => $mission, 'previous_mission' => $previous_mission, 'next_mission' => $next_mission, 'contentContainer' => $this->contentContainer, 'members' => $members, 'pages' => $pages));
     }
 
     public function actionMissions()
@@ -111,6 +181,19 @@ class EvidenceController extends ContentContainerController
         ->all();
 
         return $this->render('missions', array('missions' => $missions, 'contentContainer' => $this->contentContainer));
+    }
+
+    public function createAnimatedMessagesForPowers($activityPowers){
+        if(!is_array($activityPowers)){
+            $activityPowers = array($activityPowers);
+        }
+        foreach($activityPowers as $activity_power){
+            $name = $activity_power->getPower()->title;
+            if(Yii::$app->language == 'es' && isset($activity_power->getPower()->powerTranslations[0]))
+                $name = $activity_power->getPower()->powerTranslations[0]->title;
+
+            AlertController::createAlert($name, $activity_power->value, AlertController::ANIMATED, $activity_power->getPower()->image);
+        }
     }
 
     public function getEvidenceCreatedMessage($activityPowers){
@@ -227,6 +310,8 @@ class EvidenceController extends ContentContainerController
     }
 
     public function actionPublish(){
+        Yii::$app->response->format = 'json';
+
         $user = Yii::$app->user->getIdentity();
         $id = Yii::$app->request->get('id');
         $evidence = Evidence::findOne($id);
@@ -245,7 +330,7 @@ class EvidenceController extends ContentContainerController
             if ($model->load($request->post())) {
 
                 if (mb_strlen(Yii::$app->request->post('Evidence')['text']) < 140) {
-                    AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
+                    //AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
                 } else {
 
                     $evidence->content->visibility = 1;
@@ -280,22 +365,27 @@ class EvidenceController extends ContentContainerController
 
                         $evidence->content->save();
 
-                        $message = $this->getEvidenceCreatedMessage($activityPowers);
-                        AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), $message);
+                        //old popup
+                        //$message = $this->getEvidenceCreatedMessage($activityPowers);
+                        //AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), $message);
 
-                        $this->redirect($evidence->content->getUrl());
+                        $this->createAnimatedMessagesForPowers($activityPowers);
+
+                        return array('wallEntryId' => $evidence->content->getFirstWallEntryId());
 
                     } else {
                         $evidence->content->visibility = 0;
                         $evidence->content->save();
 
                         AlertController::createAlert(Yii::t('MissionsModule.base', 'Error'),Yii::t('MissionsModule.base', 'Something went wrong.'));
+                        return "error";
                     }
                 }
             }
 
         }else{
             AlertController::createAlert(Yii::t('MissionsModule.base', 'Error!'), "Something's wrong");
+            return "error";
         }
     }
 
@@ -375,9 +465,11 @@ class EvidenceController extends ContentContainerController
                   UserPowers::addPowerPoint($activity_power->getPower(), $user, $activity_power->value);
               }
             }
+            //old popup
+            //$message = $this->getEvidenceCreatedMessage($activityPowers);
+            //AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), $message);
 
-            $message = $this->getEvidenceCreatedMessage($activityPowers);
-            AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), $message);
+            $this->createAnimatedMessagesForPowers($activityPowers);
 
         }
 
@@ -614,6 +706,7 @@ class EvidenceController extends ContentContainerController
                 $message = Yii::t('MissionsModule.base', 'You just gained {message} evocoins!', array('message' => $evocoin_earned));
 
                 AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', '{message}. <BR>Thank you for your review.', array('message' => $message)));
+                $this->createAnimatedMessagesForPowers($activityPower);
                 echo $this->renderPartial('..\..\widgets\views\user_vote_view.php', array('vote' => $vote, 'contentContainer' => $this->contentContainer));
             }
         } else{

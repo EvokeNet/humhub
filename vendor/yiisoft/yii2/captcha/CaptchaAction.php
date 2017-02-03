@@ -142,7 +142,7 @@ class CaptchaAction extends Action
     }
 
     /**
-     * Generates a hash code that can be used for client side validation.
+     * Generates a hash code that can be used for client-side validation.
      * @param string $code the CAPTCHA code
      * @return string a hash code generated from the CAPTCHA code
      */
@@ -348,7 +348,6 @@ class CaptchaAction extends Action
         }
 
         $image->setImageFormat('png');
-        var_dump($image->getImageBlob());
         return $image->getImageBlob();
     }
 

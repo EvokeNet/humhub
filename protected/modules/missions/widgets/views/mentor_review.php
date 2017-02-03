@@ -11,7 +11,7 @@ use humhub\compat\CActiveForm;
   <div class="panel panel-default">
     <div class="panel-heading">
           <h6 class="panel-title">
-            <a data-toggle="collapse" href="#collapseEvidence<?= $evidence->id ?>"  style="color:#254054">
+            <a data-toggle="collapse" href="#collapseEvidence<?= $evidence->id ?>">
               <?= Yii::t('MissionsModule.base', 'Review') ?>
             </a>
           </h6>
@@ -33,18 +33,18 @@ use humhub\compat\CActiveForm;
           $comment = $vote->comment;
         }
       ?>
-      <div>
+      <div class="panel-body">
         <?php
           $primaryPowerTitle = $activity->getPrimaryPowers()[0]->getPower()->title;
 
           if(Yii::$app->language == 'es' && isset($activity->getPrimaryPowers()[0]->getPower()->powerTranslations[0]))
               $primaryPowerTitle = $activity->getPrimaryPowers()[0]->getPower()->powerTranslations[0]->title;
         ?>
-        <h2><?= Yii::t('MissionsModule.base', 'Distribute points for {title}', array('title' => $primaryPowerTitle)) ?></h2>
-        <p>
-          <?php //$activity->rubric ?>
-          <?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric ?>
-        </p>
+
+        <h4 style="color:#FEAE1B"><?= Yii::t('MissionsModule.base', 'Distribute points for {title}', array('title' => $primaryPowerTitle)) ?></h4>
+
+        <p><?= Yii::t('MissionsModule.base', 'Rubric: {text}', array('text' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></p><br />
+
         <form id = "review<?= $evidence->id ?>" class="review">
           <div class="radio">
             <label>

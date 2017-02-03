@@ -120,11 +120,3 @@ endforeach;
         
     </div>
 </div>
-
-<style type="text/css">
-
-.description{
-    text-align: justify;
-}
-
-</style>
