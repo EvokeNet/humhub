@@ -24,7 +24,7 @@ return [
     '<strong>Evoke</strong> settings' => '',
     '<strong>Google Drive URL:</strong>' => '',
     '<strong>Manage</strong> evidences' => '',
-    '<strong>Review:</strong> {points} points' => '',
+    '<strong>Review:</strong> {points} evocoin(s)' => '',
     '<strong>Review:</strong> {vote}' => '',
     'Activity Powers' => '',
     'Activity {activity}' => '',

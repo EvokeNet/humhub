@@ -39,7 +39,7 @@ class StaticsController extends Controller
         return $this->render('privacy_policy');
     }
 
-    public function actionTerms()
+    public function actionTermsConditions()
     {
         return $this->render('terms_conditions');
     }
