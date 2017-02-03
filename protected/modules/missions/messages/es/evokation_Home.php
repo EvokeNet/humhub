@@ -17,6 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Voting\'s Closed' => 'Votación está cerrada',
     '<Strong> This video will be the basis that other agents and mentors will take to know whether or not to invest in your Evokation. </ Strong>' => '<strong>Ese video será la base que tomarán otros agentes y mentores para saber si invierten o no en tu Evokación.</strong>',
     'Agent, here you can check together with your team the draft of your Evokation. Remember that team captains should send the video summary about your proposed solution, or better known as Elevator Pitch.' => 'Agente, aquí puedes revisar en conjunto con tu equipo el borrador de tu Evokación. Recuerda que los capitanes de equipo deberán enviar el video resumen sobre tu propuesta de solución, o mejor conocido como Elevator Pitch (discurso del ascensor).',
     'Error' => 'Error',
@@ -35,7 +36,6 @@ return [
     'Update' => 'Actualizar',
     'Updated' => 'Actualizado',
     'Vote on Evokations' => 'Voto en Evokaciones',
-    'Voting Closed' => 'La votación está cerrada',
     'You can access it through the following link:' => 'Puedes accederlo a través del siguiente enlace:',
     '{name}\'s Evokation' => 'Evokación de {name}',
 ];
