@@ -38,7 +38,7 @@ class Events extends \yii\base\Object
                 //check order
                 if($novel_order == EvokeSettingsForm::FIRST_NOVEL){
                     $event->action->controller->redirect(Url::toRoute(['/novel/novel/graphic-novel', 'page' => 1]));
-                    
+
                 //check if user has superhero id
                 }else if(isset(Yii::$app->user->getIdentity()->superhero_identity_id)){
                     $event->action->controller->redirect(Url::toRoute(['/novel/novel/graphic-novel', 'page' => 1]));

@@ -69,8 +69,7 @@ class Events extends \yii\base\Object
         if(property_exists($event->action, "actionMethod") && (($event->action->actionMethod) && $event->action->actionMethod === 'actionLogin')){
             //Check if user is logged in
             if(null != Yii::$app->user->getIdentity()) {
-
-                // check if user hasn't superhero id yet  and if user isn't a mentor       
+                // check if user hasn't superhero id yet  and if user isn't a mentor
                 if (!isset(Yii::$app->user->getIdentity()->superhero_identity_id) && Yii::$app->user->getIdentity()->group->name != "Mentors"){
                     //Check order
                     if($novel_order == EvokeSettingsForm::FIRST_QUESTIONNAIRE){
@@ -79,8 +78,8 @@ class Events extends \yii\base\Object
                     }else if(Yii::$app->user->getIdentity()->has_read_novel == true){
                         $event->action->controller->redirect(Url::toRoute('/matching_questions/matching-questions/matching'));
                     }
-                }        
-            }    
+                }
+            }
         }
     }
 
