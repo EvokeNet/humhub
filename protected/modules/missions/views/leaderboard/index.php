@@ -132,7 +132,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                                 <span style = "font-weight: 700; color: #5aa2c6;"><?php echo Yii::t('MissionsModule.leaderboard', "My Position: Not Ranked"); ?></span><br>
                             <?php else: ?>
                                 <span style = "font-weight: 700; color: #5aa2c6;"><?php echo Yii::t('MissionsModule.leaderboard', "My Position: {position}", array('position' => $ranking['my_evidences']['position'] + 1)); ?></span><br>
-                                <span style = "font-weight: 700; color: #5aa2c6;"><?php echo Yii::t('MissionsModule.leaderboard', "My Evidences Submitted:: {evidences}", array('evidences' => $ranking['my_evidences']['evidences'])); ?></span>
+                                <span style = "font-weight: 700; color: #5aa2c6;"><?php echo Yii::t('MissionsModule.leaderboard', "My Evidences Submitted: {evidences}", array('evidences' => $ranking['my_evidences']['evidences'])); ?></span>
                             <?php endif; ?>
                         <?php endif; ?>
                     </div>
@@ -171,7 +171,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                                 <span style = "font-weight: 700; color: #5aa2c6;"><?php echo Yii::t('MissionsModule.leaderboard', "My Position: Not Ranked"); ?></span><br>
                             <?php else: ?>
                                 <span style = "font-weight: 700; color: #5aa2c6;"><?php echo Yii::t('MissionsModule.leaderboard', "My Position: {position}", array('position' => $ranking['my_reviews']['position'] + 1)); ?></span><br>
-                                <span style = "font-weight: 700; color: #5aa2c6;"><?php echo Yii::t('MissionsModule.leaderboard', "My Reviews Submitted:: {evidences}", array('evidences' => $ranking['my_reviews']['reviews'])); ?></span>
+                                <span style = "font-weight: 700; color: #5aa2c6;"><?php echo Yii::t('MissionsModule.leaderboard', "My Reviews Submitted: {evidences}", array('evidences' => $ranking['my_reviews']['reviews'])); ?></span>
                             <?php endif; ?>
                         <?php endif; ?>
                     </div>
@@ -252,7 +252,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                                 <span style = "font-weight: 700; color: #5aa2c6;"><?php echo Yii::t('MissionsModule.leaderboard', "My Position: Not Ranked"); ?></span><br>
                             <?php else: ?>
                                 <span style = "font-weight: 700; color: #5aa2c6;"><?php echo Yii::t('MissionsModule.leaderboard', "My Position: {position}", array('position' => $ranking['my_reviews']['position'] + 1)); ?></span><br>
-                                <span style = "font-weight: 700; color: #5aa2c6;"><?php echo Yii::t('MissionsModule.leaderboard', "My Reviews Submitted:: {evidences}", array('evidences' => $ranking['my_reviews']['reviews'])); ?></span>
+                                <span style = "font-weight: 700; color: #5aa2c6;"><?php echo Yii::t('MissionsModule.leaderboard', "My Reviews Submitted: {evidences}", array('evidences' => $ranking['my_reviews']['reviews'])); ?></span>
                             <?php endif; ?>
                         <?php endif; ?>
                     </div>

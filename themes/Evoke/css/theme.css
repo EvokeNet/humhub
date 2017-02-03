@@ -228,7 +228,7 @@ textarea {
 }
 .evocoins {
   position: relative;
-  margin-bottom: 10px;
+  margin: 10px 0;
 }
 .evocoins img {
   width: 100px;
@@ -2642,8 +2642,9 @@ img.bounceIn {
   padding: 10px;
 }
 .power-border {
-  border: 3px solid #FFC107;
+  border: 2px solid #FFC107;
   border-radius: 50%;
+  margin-top: 15px;
 }
 .activity2-number {
   padding: 3px 10px 5px;
@@ -2883,7 +2884,18 @@ h6 {
   color: -y !important;
 }
 .player-power {
-  padding-bottom: 25px;
+  padding-bottom: 15px;
+}
+.player-power span.text-header {
+  display: inline-block;
+  font-size: 12pt;
+  margin-top: 10px;
+  color: #00BCD4;
+}
+.player-power span.text-content {
+  font-size: 11pt;
+  color: #D81B60;
+  font-weight: 700;
 }
 /* missions\widgets\views\portfolio */
 #portfolio_status {
@@ -3473,4 +3485,17 @@ h3.product-name {
 }
 .animate-submit-evidence i {
   font-size: 10em;
+}
+.evokation-voting-close {
+  background-color: #00BCD4;
+  margin-bottom: 20px;
+  padding: 20px;
+  text-align: center;
+}
+.user-content-box {
+  padding: 0 20px;
+}
+.user-content-box h4 {
+  margin-top: 40px;
+  color: #00BCD4;
 }

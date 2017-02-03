@@ -227,7 +227,7 @@ textarea {
 }
 .evocoins {
   position: relative;
-  margin-bottom: 10px;
+  margin: 10px 0;
 }
 .evocoins img {
   width: 100px;
@@ -1241,7 +1241,9 @@ input[type=select] {
 .nav-tabs.nav-justified li {
   font-weight: 600;
   font-size: 12px;
-  background-color: #101C2A;
+  background-color: #0F2441;
+  border-color: #eee #eee #ddd;
+  border-radius: 4px 4px 0 0;
 }
 .nav-tabs li a,
 .nav-tabs.nav-justified li a,
@@ -1253,7 +1255,8 @@ input[type=select] {
 .nav-tabs.nav-justified li a:hover,
 .nav-tabs li a:focus,
 .nav-tabs.nav-justified li a:focus {
-  background-color: #0F2441;
+  background-color: #FEAE1B;
+  color: #07111C;
 }
 .tab-content .tab-pane a {
   color: #03ACC5;
@@ -1268,11 +1271,14 @@ input[type=select] {
 .nav-tabs.tabs-small li > a {
   padding: 5px 7px;
 }
-.nav .caret,
+.nav .caret {
+  border-top-color: #63E9FD;
+  border-bottom-color: #63E9FD;
+}
 .nav .caret:hover,
 .nav .caret:active {
-  border-top-color: #01070F;
-  border-bottom-color: #01070F;
+  border-top-color: #63E9FD;
+  border-bottom-color: #63E9FD;
 }
 .nav li.dropdown > a:hover .caret,
 .nav li.dropdown > a:active .caret {
@@ -1282,8 +1288,8 @@ input[type=select] {
 .nav .open > a .caret,
 .nav .open > a:hover .caret,
 .nav .open > a:focus .caret {
-  border-top-color: #01070F;
-  border-bottom-color: #01070F;
+  border-top-color: #63E9FD;
+  border-bottom-color: #63E9FD;
 }
 .nav .open > a,
 .nav .open > a:hover,
@@ -1294,8 +1300,8 @@ input[type=select] {
 .nav .open > a .caret,
 .nav .open > a:hover .caret,
 .nav .open > a:focus .caret {
-  color: #01070F;
-  border-top-color: #254054 !important;
+  color: #03ACC5;
+  border-top-color: #03ACC5 !important;
 }
 .btn {
   background: #03ACC5;
@@ -2098,7 +2104,7 @@ ul.tag_input.focus {
   font-weight: 600;
 }
 .wallFilterPanel li a {
-  color: #01070F;
+  color: #63E9FD;
 }
 .wallFilterPanel .dropdown-menu li {
   margin-bottom: 0;
@@ -2623,8 +2629,9 @@ img.bounceIn {
   padding: 10px;
 }
 .power-border {
-  border: 3px solid #FEAE1B;
+  border: 2px solid #FEAE1B;
   border-radius: 50%;
+  margin-top: 15px;
 }
 .mission-title {
   color: #FEAE1B;
@@ -2868,7 +2875,18 @@ h6 {
   color: -y !important;
 }
 .player-power {
-  padding-bottom: 25px;
+  padding-bottom: 15px;
+}
+.player-power span.text-header {
+  display: inline-block;
+  font-size: 12pt;
+  margin-top: 10px;
+  color: #00BCD4;
+}
+.player-power span.text-content {
+  font-size: 11pt;
+  color: #D81B60;
+  font-weight: 700;
 }
 /* missions\widgets\views\portfolio */
 #portfolio_status {
@@ -3462,4 +3480,17 @@ h3.product-name {
 legend {
   color: #03ACC5;
   border-bottom: 1px solid #254054;
+}
+.evokation-voting-close {
+  background-color: #0F2441;
+  margin-bottom: 20px;
+  padding: 20px;
+  text-align: center;
+}
+.user-content-box {
+  padding: 0 20px;
+}
+.user-content-box h4 {
+  margin-top: 40px;
+  color: #FEAE1B;
 }

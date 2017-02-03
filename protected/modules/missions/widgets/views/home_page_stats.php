@@ -37,7 +37,7 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
                     </div>
 
                     <div class = "col-sm-5 text-center">
-                        <div class = "home-widget-evocoins" style = "margin-left:30px">
+                        <div class = "home-widget-evocoins" style = "margin: 10px 0 5px 30px;">
                             <img src="<?php echo Url::to('@web/themes/Evoke/img/evocoin_bg.png') ?>" width = "120px">
                             <div><p id="userEvocoins" style = "font-size:15pt"><?= $wallet->amount ?></p></div>
                         </div>
