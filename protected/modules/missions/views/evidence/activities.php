@@ -10,7 +10,7 @@ $mission_title = isset($mission->missionTranslations[0]) ? $mission->missionTran
 $this->title = $mission_title; //Yii::t('MissionsModule.base', 'Activities');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.base', 'Missions'), 'url' => ['missions', 'sguid' => $contentContainer->guid]];
 // $this->params['breadcrumbs'][] = $mission->title;
-$this->params['breadcrumbs'][] = Yii::t('MissionsModule.base', 'Mission {position} - {alias}', array('position' => $mission->position, 'alias' => $this->title)); //Yii::t('MissionsModule.base', 'Mission:').' '.$this->title;
+$this->params['breadcrumbs'][] = Yii::t('MissionsModule.model', 'Mission {position}', array('position' => $mission->position)); //Yii::t('MissionsModule.base', 'Mission {position} - {alias}', array('position' => $mission->position, 'alias' => $this->title)); //Yii::t('MissionsModule.base', 'Mission:').' '.$this->title;
 
 echo Breadcrumbs::widget([
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
@@ -24,31 +24,27 @@ $firstSecondary = true;
 ?>
 
 <ul class="nav nav-tabs nav-justified">
-  <li class="<?php echo (Yii::$app->request->get('flag') && Yii::$app->request->get('flag') == 1) ? '' : 'active'; ?>"><a href="#tab-novel" data-toggle="tab"><?php echo Yii::t('MissionsModule.model', 'Novel Chapter #{number}', array('number' => $mission->position)); ?></a></li>
-  <li class="<?php echo (Yii::$app->request->get('flag') && Yii::$app->request->get('flag') == 1) ? 'active' : ''; ?>"><a href="#tab-mission" data-toggle="tab"><?php echo $this->title; ?></a></li>
+  <li style="text-transform: uppercase" class="<?php echo (Yii::$app->request->get('flag') && Yii::$app->request->get('flag') == 1) ? '' : 'active'; ?>"><a href="#tab-novel" data-toggle="tab"><?php echo Yii::t('MissionsModule.model', 'Introduction'); //Novel Chapter #{number}', array('number' => $mission->position)); ?></a></li>
+  <li style="text-transform: uppercase" class="<?php echo (Yii::$app->request->get('flag') && Yii::$app->request->get('flag') == 1) ? 'active' : ''; ?>"><a href="#tab-mission" data-toggle="tab"><?php echo Yii::t('MissionsModule.model', 'Mission {position}', array('position' => $mission->position)); //$this->title; ?></a></li>
 </ul>
 
 <div class="tab-content clearfix">
     <div class="tab-pane <?php echo (Yii::$app->request->get('flag') && Yii::$app->request->get('flag') == 1) ? '' : 'active'; ?>" id="tab-novel">
 
-    <div>
+    <!--<div>
         <?php if(!empty($previous_mission)): ?>
-            <span><?php echo Html::a(
-            Yii::t('MissionsModule.base', '{icon} Previous', array('icon' => '<i class="fa fa-arrow-circle-o-left fa-lg" aria-hidden="true"></i>')),
-            ['activities', 'missionId' => $previous_mission->id, 'sguid' => $contentContainer->guid], array('style' => 'float:left')); ?></span>
+            <span><?php //echo Html::a(Yii::t('MissionsModule.base', '{icon} Previous', array('icon' => '<i class="fa fa-arrow-circle-o-left fa-lg" aria-hidden="true"></i>')), ['activities', 'missionId' => $previous_mission->id, 'sguid' => $contentContainer->guid], array('style' => 'float:left')); ?></span>
         <?php else: ?>
             <span style="float:left"><?php echo Yii::t('MissionsModule.base', '{icon} Previous', array('icon' => '<i class="fa fa-arrow-circle-o-left fa-lg" aria-hidden="true"></i>')); ?></span>
         <?php endif; ?>
 
         <?php if(!empty($next_mission)): ?>
-            <span><?php echo Html::a(
-            Yii::t('MissionsModule.base', 'Next {icon}', array('icon' => '<i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i>')),
-            ['activities', 'missionId' => $next_mission->id, 'sguid' => $contentContainer->guid], array('style' => 'float:right')); ?></span>
+            <span><?php //echo Html::a(Yii::t('MissionsModule.base', 'Next {icon}', array('icon' => '<i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i>')), ['activities', 'missionId' => $next_mission->id, 'sguid' => $contentContainer->guid], array('style' => 'float:right')); ?></span>
         <?php else: ?>
-            <span style="float:right"><?php echo Yii::t('MissionsModule.base', 'Next {icon}', array('icon' => '<i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i>')); ?></span>
+            <span style="float:right"><?php //echo Yii::t('MissionsModule.base', 'Next {icon}', array('icon' => '<i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i>')); ?></span>
         <?php endif; ?>
     </div>
-    <br /><br />
+    <br /><br />-->
 
         <?php if(!empty($pages)): ?>
 
@@ -68,7 +64,7 @@ $firstSecondary = true;
           <div class="carousel-inner" role="listbox">
 
                 <div class="item active">
-                  <h6 style="background-color: #101C2A; text-align: center; padding: 10px 0; color: #5aa2c6;"><?php echo Yii::t('MissionsModule.model', 'Chapter #{chapter} - Page #{page}', array('chapter' => $mission->position, 'page' => 1)); ?></h6>
+                  <!--<h6 style="background-color: #101C2A; text-align: center; padding: 10px 0; color: #5aa2c6;"><?php //echo Yii::t('MissionsModule.model', 'Chapter #{chapter} - Page #{page}', array('chapter' => $mission->position, 'page' => 1)); ?></h6>-->
                     <?php if($pages[0]->markup != ""): ?>
                         <?= $pages[0]->markup ?>
                     <?php else: ?>
@@ -80,7 +76,7 @@ $firstSecondary = true;
 
                     <?php if(isset($page->chapter->number)): ?>
                         <div class="item">
-                          <h6 style="background-color: #101C2A; text-align: center; padding: 10px 0; color: #5aa2c6;"><?php echo Yii::t('MissionsModule.model', 'Chapter #{chapter} - Page #{page}', array('chapter' => $mission->position, 'page' => $key+1)); ?></h6>
+                          <!--<h6 style="background-color: #101C2A; text-align: center; padding: 10px 0; color: #5aa2c6;"><?php //echo Yii::t('MissionsModule.model', 'Chapter #{chapter} - Page #{page}', array('chapter' => $mission->position, 'page' => $key+1)); ?></h6>-->
                           <img src="<?= $page->page_image; ?>" alt="<?php echo $page->page_image; ?>" width="100%">
                         </div>
 
@@ -106,23 +102,19 @@ $firstSecondary = true;
     </div>
     <div class="tab-pane <?php echo (Yii::$app->request->get('flag') && Yii::$app->request->get('flag') == 1) ? 'active' : ''; ?>" id="tab-mission">
 
-        <?php if(!empty($previous_mission)): ?>
-        <span><?php echo Html::a(
-            Yii::t('MissionsModule.base', '{icon} Previous', array('icon' => '<i class="fa fa-arrow-circle-o-left fa-lg" aria-hidden="true"></i>')),
-            ['activities', 'missionId' => $previous_mission->id, 'sguid' => $contentContainer->guid, 'flag' => 1], array('style' => 'float:left')); ?></span>
+        <!--<?php if(!empty($previous_mission)): ?>
+        <span><?php //echo Html::a(Yii::t('MissionsModule.base', '{icon} Previous', array('icon' => '<i class="fa fa-arrow-circle-o-left fa-lg" aria-hidden="true"></i>')), ['activities', 'missionId' => $previous_mission->id, 'sguid' => $contentContainer->guid, 'flag' => 1], array('style' => 'float:left')); ?></span>
         <?php else: ?>
-            <span style="float:left"><?php echo Yii::t('MissionsModule.base', '{icon} Previous', array('icon' => '<i class="fa fa-arrow-circle-o-left fa-lg" aria-hidden="true"></i>')); ?></span>
+            <span style="float:left"><?php //echo Yii::t('MissionsModule.base', '{icon} Previous', array('icon' => '<i class="fa fa-arrow-circle-o-left fa-lg" aria-hidden="true"></i>')); ?></span>
         <?php endif; ?>
 
         <?php if(!empty($next_mission)): ?>
-        <span><?php echo Html::a(
-            Yii::t('MissionsModule.base', 'Next {icon}', array('icon' => '<i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i>')),
-            ['activities', 'missionId' => $next_mission->id, 'sguid' => $contentContainer->guid, 'flag' => 1], array('style' => 'float:right')); ?></span>
+        <span><?php //echo Html::a(Yii::t('MissionsModule.base', 'Next {icon}', array('icon' => '<i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i>')), ['activities', 'missionId' => $next_mission->id, 'sguid' => $contentContainer->guid, 'flag' => 1], array('style' => 'float:right')); ?></span>
         <?php else: ?>
-            <span style="float:right"><?php echo Yii::t('MissionsModule.base', 'Next {icon}', array('icon' => '<i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i>')); ?></span>
+            <span style="float:right"><?php //echo Yii::t('MissionsModule.base', 'Next {icon}', array('icon' => '<i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i>')); ?></span>
         <?php endif; ?>
 
-        <br /><br />
+        <br /><br />-->
 
         <div class="panel panel-default">
             <div class="panel-heading">

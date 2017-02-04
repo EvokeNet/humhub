@@ -8,7 +8,7 @@ use app\modules\novel\models\NovelPage;
 <style media="screen">
 
   .graphic-novel-page{
-    min-height:200vh;
+    /*min-height:200vh;*/
 
     <?php if($page->markup != ""): ?>
     <?php else: ?>
@@ -18,6 +18,9 @@ use app\modules\novel\models\NovelPage;
     background-size:contain;
     background-repeat:no-repeat;
     background-position:top;
+    width: 100%;
+    height: 0;
+    padding-top: 70%!important;
   }
   
   <?php if (!Yii::$app->user->getIdentity()->has_read_novel && Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>

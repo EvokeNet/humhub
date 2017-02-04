@@ -4068,11 +4068,14 @@ https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
 /* novel\views\novel\novel\page */
 
 .graphic-novel-page{
-  min-height:200vh;
+  // min-height:200vh;
   background-image:url('<?= $page->page_image ?>');
   background-size:contain;
   background-repeat:no-repeat;
   background-position:center;
+  width: 100%;
+  height: 0;
+  padding-top: 66.64%!important;
 }
 
 .graphic-novel-page .page-button{
