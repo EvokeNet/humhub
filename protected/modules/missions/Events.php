@@ -30,6 +30,7 @@ use humhub\modules\user\models\User;
 use app\modules\teams\models\Team;
 use humhub\modules\missions\controllers\MentorController;
 use app\modules\missions\models\EvokationDeadline;
+use app\modules\missions\models\Tags;
 
 /**
  * Description of Events
@@ -190,6 +191,30 @@ class Events
                     || Yii::$app->controller->action->id == 'index-category-translations'
                     || Yii::$app->controller->action->id == 'create-category-translations'
                     || Yii::$app->controller->action->id == 'update-category-translations'
+                    
+                )
+            ),
+        ));
+    }
+
+    public static function onTagsAdminMenuInit($event)
+    {
+        $event->sender->addItem(array(
+            'label' => Yii::t('MissionsModule.event', 'Tags'),
+            'url' => Url::to(['/missions/admin/index-tags']),
+            'group' => 'manage',
+            'sortOrder' => 500,
+            'icon' => '<i class="fa fa-tag"></i>',
+            'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'admin'
+            &&
+                (
+                    Yii::$app->controller->action->id == 'index-tags'
+                    || Yii::$app->controller->action->id == 'create-tags'
+                    || Yii::$app->controller->action->id == 'update-tags'
+
+                    || Yii::$app->controller->action->id == 'index-tag-translations'
+                    || Yii::$app->controller->action->id == 'create-tag-translations'
+                    || Yii::$app->controller->action->id == 'update-tag-translations'
                     
                 )
             ),
