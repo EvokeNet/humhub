@@ -64,6 +64,7 @@ use humhub\compat\CActiveForm;
     <?php endif; ?>
     <?php endfor; ?>
     </div>
+    <label id="star_hint"><?= $vote->getStarHint(); ?></label><BR>
 
   <?php else: ?>
 
@@ -130,3 +131,8 @@ use humhub\compat\CActiveForm;
       <?php endif; ?>
     </div>
   </div>
+
+<script>
+
+
+</script>

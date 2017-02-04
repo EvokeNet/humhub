@@ -168,6 +168,27 @@ class Votes extends ContentActiveRecord
         return $evidence->content->getUrl();
     }
 
+    public function getStarHint(){
+        switch($this->value){
+            case 1:
+                return Yii::t('MissionsModule.base', 'Terrible');
+                break;
+            case 2:
+                return Yii::t('MissionsModule.base', 'Poor');
+                break;
+            case 3:
+                return Yii::t('MissionsModule.base', 'Ok');
+                break;
+            case 4:
+                return Yii::t('MissionsModule.base', 'Good');
+                break;
+            case 5:
+                return Yii::t('MissionsModule.base', 'Excellent');
+                break;
+        }
+        return null;
+    }
+
     public function beforeDelete()
     {
         $notifications = Notification::findAll(['source_pk' => $this->id, 'source_class' => Votes::classname()]);
