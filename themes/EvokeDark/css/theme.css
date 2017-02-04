@@ -3409,11 +3409,11 @@ h3.product-name {
 }
 .carousel-control .glyphicon-chevron-right,
 .carousel-control .icon-next {
-  margin-right: -100px;
+  margin-right: -80px;
 }
 .carousel-control .glyphicon-chevron-left,
 .carousel-control .icon-prev {
-  margin-left: -100px;
+  margin-left: -80px;
 }
 /* Powers */
 .power-cards {
