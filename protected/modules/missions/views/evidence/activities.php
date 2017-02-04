@@ -51,14 +51,14 @@ $firstSecondary = true;
         <div id="myCarousel" class="carousel">
 
           <!-- Indicators -->
-          <ol class="carousel-indicators">
+          <!--<ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 
             <?php foreach($pages as $key => $t): ?>
                 <li data-target="#myCarousel" data-slide-to="<?php echo $key+1; ?>"></li>
             <?php endforeach; ?>
 
-          </ol>
+          </ol>-->
 
           <!-- Wrapper for slides -->
           <div class="carousel-inner" role="listbox">
