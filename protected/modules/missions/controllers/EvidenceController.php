@@ -178,6 +178,7 @@ class EvidenceController extends ContentContainerController
             },
         ])
         // ->where(['locked' => 0])
+        ->orderBy('position asc')
         ->all();
 
         return $this->render('missions', array('missions' => $missions, 'contentContainer' => $this->contentContainer));
@@ -706,7 +707,7 @@ class EvidenceController extends ContentContainerController
                 $message = Yii::t('MissionsModule.base', 'You just gained {message} evocoins!', array('message' => $evocoin_earned));
 
                 AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', '{message}. <BR>Thank you for your review.', array('message' => $message)));
-                $this->createAnimatedMessagesForPowers($activityPower);
+                
                 echo $this->renderPartial('..\..\widgets\views\user_vote_view.php', array('vote' => $vote, 'contentContainer' => $this->contentContainer));
             }
         } else{

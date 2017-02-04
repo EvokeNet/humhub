@@ -17,7 +17,6 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Introduction' => '',
     'Mission {position}' => '',
     'Activities' => 'Actividades',
     'Activities ID' => 'Identificación de Actividades',

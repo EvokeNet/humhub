@@ -41,7 +41,6 @@ return [
     'Group Activity' => '',
     'ID' => '',
     'Id Code' => '',
-    'Introduction' => '',
     'Is a Group Activity' => '',
     'Language ID' => '',
     'Locked' => '',

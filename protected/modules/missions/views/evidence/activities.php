@@ -24,8 +24,8 @@ $firstSecondary = true;
 ?>
 
 <ul class="nav nav-tabs nav-justified">
-  <li style="text-transform: uppercase" class="<?php echo (Yii::$app->request->get('flag') && Yii::$app->request->get('flag') == 1) ? '' : 'active'; ?>"><a href="#tab-novel" data-toggle="tab"><?php echo Yii::t('MissionsModule.model', 'Introduction'); //Novel Chapter #{number}', array('number' => $mission->position)); ?></a></li>
-  <li style="text-transform: uppercase" class="<?php echo (Yii::$app->request->get('flag') && Yii::$app->request->get('flag') == 1) ? 'active' : ''; ?>"><a href="#tab-mission" data-toggle="tab"><?php echo Yii::t('MissionsModule.model', 'Mission {position}', array('position' => $mission->position)); //$this->title; ?></a></li>
+  <li style="text-transform: uppercase" class="<?php echo (Yii::$app->request->get('flag') && Yii::$app->request->get('flag') == 1) ? '' : 'active'; ?>"><a href="#tab-novel" data-toggle="tab"><?php echo Yii::t('MissionsModule.base', 'Introduction'); //Novel Chapter #{number}', array('number' => $mission->position)); ?></a></li>
+  <li style="text-transform: uppercase" class="<?php echo (Yii::$app->request->get('flag') && Yii::$app->request->get('flag') == 1) ? 'active' : ''; ?>"><a href="#tab-mission" data-toggle="tab"><?php echo Yii::t('MissionsModule.base', 'Mission {position}', array('position' => $mission->position)); //$this->title; ?></a></li>
 </ul>
 
 <div class="tab-content clearfix">
