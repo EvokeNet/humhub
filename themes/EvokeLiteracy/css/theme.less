@@ -381,7 +381,7 @@ textarea {
 
 .evocoins{
   position:relative;
-  margin-bottom: 10px;
+  margin: 10px 0;
   // display: inline-block;
   // padding: 0px 0px 13px 26px;
   // padding: 0px 13px 13px;
@@ -1539,12 +1539,15 @@ input[type=select] {
   li {
     font-weight: 600;
     font-size: 12px;
-    background-color: @box-blue;
+    background-color: @headings-blue;
+    border-color: #eee #eee #ddd;
+    border-radius: 4px 4px 0 0;
     a, .active a{
       border-bottom: 2px solid @details-blue!important;
     }
     a:hover, a:focus{
-       background-color: @headings-blue;
+       background-color: @secondary3;
+       color: @body-color;
     }
   }
 }
@@ -1588,11 +1591,15 @@ input[type=select] {
   }
 }
 
-.nav .caret,
+.nav .caret{
+  border-top-color: @evoke-blue;
+  border-bottom-color: @evoke-blue;
+}
+
 .nav .caret:hover,
 .nav .caret:active {
-  border-top-color: @primary-blue;
-  border-bottom-color: @primary-blue;
+  border-top-color: @evoke-blue;
+  border-bottom-color: @evoke-blue;
 }
 
 .nav li.dropdown > a:hover .caret,
@@ -1604,8 +1611,8 @@ input[type=select] {
 .nav .open > a .caret,
 .nav .open > a:hover .caret,
 .nav .open > a:focus .caret {
-  border-top-color: @primary-blue;
-  border-bottom-color: @primary-blue;
+  border-top-color: @evoke-blue;
+  border-bottom-color: @evoke-blue;
 }
 
 .nav .open > a,
@@ -1614,8 +1621,8 @@ input[type=select] {
   border-color: #ededed;
   color: @primary-blue;
   .caret {
-    color: @primary-blue;
-    border-top-color: @details-blue!important;
+    color: @headings-blue-font;
+    border-top-color: @headings-blue-font!important;
   }
 }
 
@@ -2627,7 +2634,7 @@ ul.tag_input.focus {
     font-size: 11px;
     font-weight: 600;
     a {
-      color: @primary-blue;
+      color: @evoke-blue;
     }
   }
   .dropdown-menu {
@@ -3285,8 +3292,9 @@ img.bounceIn {
 }
 
 .power-border{
-    border: 3px solid @secondary3;
+    border: 2px solid @secondary3;
     border-radius: 50%;
+    margin-top:15px;
 }
 
 .mission-title{
@@ -3552,7 +3560,23 @@ img.bounceIn {
 }
 
 .player-power{
-    padding-bottom: 25px;
+    padding-bottom: 15px;
+
+    span.text-header{
+      display:inline-block; 
+      font-size:12pt; 
+      margin-top:10px;
+      color:@primary3;
+    }
+
+    span.text-content{
+      // display:inline-block; 
+      font-size:11pt; 
+      // margin-top:5px;
+      color:@tertiary2;
+      font-weight:700;
+    }
+
 }
 
 /* missions\widgets\views\portfolio */
@@ -4266,6 +4290,22 @@ h3.product-name {
 legend{
   color: @headings-blue-font;
   border-bottom: 1px solid @details-blue;
+}
+
+.evokation-voting-close{
+  background-color: @headings-blue;
+  margin-bottom: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
+.user-content-box{
+  padding: 0 20px;
+
+  h4{
+    margin-top:40px; 
+    color: @secondary3;
+  }
 }
 
 .hints{
