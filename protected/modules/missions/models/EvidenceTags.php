@@ -3,6 +3,12 @@
 namespace app\modules\missions\models;
 
 use Yii;
+use app\modules\missions\models\Tags;
+use app\modules\missions\models\Evidence;
+use app\modules\matching_questions\models\User;
+use yii\db\ActiveRecord;
+use yii\db\Expression;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "evidence_tags".
@@ -13,13 +19,28 @@ use Yii;
  * @property integer $user_id
  * @property string $created_at
  * @property string $updated_at
- *
- * @property User $user
  * @property Evidence $evidence
  * @property Tags $tag
+ * @property User $user
  */
 class EvidenceTags extends \yii\db\ActiveRecord
 {
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+                // if you're using datetime instead of UNIX timestamp:
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
+
     /**
      * @inheritdoc
      */

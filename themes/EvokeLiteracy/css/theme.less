@@ -3352,9 +3352,10 @@ img.bounceIn {
 .glowing-box{
   background-color: @body-color;
   margin-top: 30px;
-  -moz-box-shadow: 0 0 5px #888;
-  -webkit-box-shadow: 0 0 5px #888;
-  box-shadow: 0 0 5px #888;
+  // -moz-box-shadow: 0 0 5px #888;
+  // -webkit-box-shadow: 0 0 5px #888;
+  // box-shadow: 0 0 5px #888;
+  border: 3px solid @details-blue;
 }
 
 .evidence-mission-box{
@@ -4265,4 +4266,29 @@ h3.product-name {
 legend{
   color: @headings-blue-font;
   border-bottom: 1px solid @details-blue;
+}
+
+.hints{
+  margin-bottom: 10px;
+  color: @headings-blue-font;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+#star_hint{
+  display: block;
+  margin-left: -8px;
+  margin-top: -10px;
+  .hints;
+}
+
+.tags_panel{
+  padding: 25px 25px 0;
+  font-size:12pt;
+}
+
+#user_avg_star_hint, #mentors_avg_star_hint{
+  display:block;
+  text-align:center;
+  .hints;
 }

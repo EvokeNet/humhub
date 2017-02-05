@@ -34,7 +34,7 @@ class Tags extends \yii\db\ActiveRecord
             ],
         ];
     }
-    
+
     /**
      * @inheritdoc
      */

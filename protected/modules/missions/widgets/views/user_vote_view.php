@@ -51,20 +51,25 @@ use humhub\compat\CActiveForm;
   
   <?php if($vote->value > 0 ): ?>
 
-    <div class="stars" style="text-align:left;">
-        <?php for ($i = 0; $i < 5; $i++): ?>
-        <?php if ($vote->value > $i): ?>
-        <?php if (($vote->value - $i) < 1): ?>
-        <i class="fa fa-star-half-o" aria-hidden="true"></i>
+    <div style="text-align:right">
+
+      <div class="stars">
+          <?php for ($i = 0; $i < 5; $i++): ?>
+          <?php if ($vote->value > $i): ?>
+          <?php if (($vote->value - $i) < 1): ?>
+          <i class="fa fa-star-half-o" aria-hidden="true"></i>
+        <?php else: ?>
+        <i class="fa fa-star" aria-hidden="true"></i>
+      <?php endif; ?>
       <?php else: ?>
-      <i class="fa fa-star" aria-hidden="true"></i>
-    <?php endif; ?>
-    <?php else: ?>
-      <i class="fa fa-star-o" aria-hidden="true"></i>
-    <?php endif; ?>
-    <?php endfor; ?>
+        <i class="fa fa-star-o" aria-hidden="true"></i>
+      <?php endif; ?>
+      <?php endfor; ?>
+      </div>
+
+      <span id="user_avg_star_hint"><?= $vote->getStarHint(); ?></span>
+
     </div>
-    <label id="star_hint"><?= $vote->getStarHint(); ?></label><BR>
 
   <?php else: ?>
 

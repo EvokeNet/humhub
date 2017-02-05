@@ -608,7 +608,7 @@ class Events
 
 
                 $event->sender->addItem(array(
-                'label' => Yii::t('MissionsModule.event', 'Evidences To Be Reviewed'),
+                'label' => Yii::t('MissionsModule.event', 'Review Evidences'),
                 'id' => 'evidence_reviewed',
                 'icon' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i>',
                 'url' => Url::to(['/missions/review/'.$page, 'sguid' => $team->guid]),

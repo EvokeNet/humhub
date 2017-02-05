@@ -23,27 +23,26 @@ $tags_rows_number =  ceil($tags_count / 3);
 <?php if($activity): ?>
     <div class="panel-body">
 
-        <!--<div class="formatted" style = "margin-bottom:40px">
+        <div class="formatted" style = "margin-bottom:40px">
 
             <h5>
-                <?php //Yii::t('MissionsModule.base', 'Mission {mission}: Activity {activity}', array('mission' => $activity->mission->position, 'activity' => $activity->position)) ?>
+                <?= Yii::t('MissionsModule.base', 'Mission {mission}: Activity {activity}', array('mission' => $activity->mission->position, 'activity' => $activity->position)) ?>
             </h5>
 
-            <p><?php //echo nl2br(isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description) ?></p>
-        </div>-->
+            <p><?php echo nl2br(isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description) ?></p>
+        </div>
 
-        <!--<div class="review-box evidence_area">-->
-        <div class="evidence_area">
-
+        <div class="review-box evidence_area">
             <h5><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h5>
 
             <?php if(Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
-                <p style="font-size:11pt"><?php echo Yii::t('MissionsModule.base', 'By Anonymous in {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $evidence->created_at]))); ?></p>
-            <?php else: ?>
-                <p style="font-size:11pt"><?php echo Yii::t('MissionsModule.base', 'By {user} in {time}', array(
-                'user' => Html::a($evidence->content->user->username, ['/user/profile', 'uguid' => $evidence->content->user->guid]),
-                'time' => date('F j, Y', strtotime($evidence->created_at)))); ?></p><br />
-            <?php endif; ?>
+                    <?php //echo \humhub\widgets\TimeAgo::widget(['timestamp' => $evidence->created_at]); ?>
+                    <span style="font-size:10pt"><?php echo Yii::t('MissionsModule.base', 'By Anonymous in {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $evidence->created_at]))); ?></span><br />
+                <?php else: ?>
+                    <span style="font-size:10pt"><?php echo Yii::t('MissionsModule.base', 'By {user} in {time}', array(
+                    'user' => Html::a($evidence->content->user->username, ['/user/profile', 'uguid' => $evidence->content->user->guid]),
+                    'time' => date('F j, Y', strtotime($evidence->created_at)))); ?></span><br />
+                <?php endif; ?>
 
             <br />
             <p><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]); ?></p>
@@ -151,55 +150,32 @@ $tags_rows_number =  ceil($tags_count / 3);
                   <?php
                     $power = $activity->getPrimaryPowers()[0]->getPower();
                     $primaryPowerTitle = isset($power->powerTranslations[0]) ? $power->powerTranslations[0]->title : $power->title; ?>
-                    
-                    <!--<h4><?php // Yii::t('MissionsModule.base', 'Distribute points for {title}', array('title' => $primaryPowerTitle)) ?></h4>-->
+                    <h4><?= Yii::t('MissionsModule.base', 'Distribute points for {title}', array('title' => $primaryPowerTitle)) ?></h4>
+                    <p style = "margin:20px 0"><?= Yii::t('MissionsModule.base', '<strong>Activity Difficulty Level:</strong> {level}', array('level' => $activity->difficultyLevel->title)) ?></p>
+                    <p style = "margin-bottom:25px"><?= Yii::t('MissionsModule.base', '<strong>Activity Rubric:</strong> {rubric}', array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></p>
 
-                    <h5 style="text-transform:uppercase"><?php echo Yii::t('MissionsModule.base', 'Review this Evidence'); ?></h5>
-
-                    <!--<p style = "margin:20px 0"><?php //Yii::t('MissionsModule.base', '<strong>Activity Difficulty Level:</strong> {level}', array('level' => $activity->difficultyLevel->title)) ?></p>-->
-                    
-                    <p style = "margin:25px 0"><?= Yii::t('MissionsModule.base', 'Choose the keywords that best describe your thoughts on this evidence, both based in your opinion and if it fulfilled the activity rubric. Select the tags and classify with 1 to 5 stars. If you have something to say to your fellow agent, leave a comment.') ?></p>
-
-                    <p style = "margin-bottom:30px"><?= Yii::t('MissionsModule.base', '<strong>Activity Rubric:</strong> {rubric}', array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></p>
-
-                    <form id = "review" class="review">
-
-                    <div class="row">
-           
-                        <?php foreach($tags as $tag): ?>
-                        <div class="col-sm-4">
-                            <input type="checkbox" id="tags" name="tags" value="<?= $tag->id ?>">
-                                <?= $tag->title ?>
-                        </div>
-                        <?php endforeach; ?>
-
-                    </div>
-
-                    <!--<table>
+                <form id = "review" class="review">
+                    <table>
                         <?php for ($x=0; $x < $tags_rows_number ; $x++): ?>
                         <tr>
                             <?php for ($y=0; $y < 3 && ($x * 3 + $y < $tags_count); $y++): ?>
                             <?php
                                 $current_index = $x * 3 + $y;
                             ?>
-                                <td><input type="checkbox" id="tags" name="tags" value="<?= $tags[$current_index]->id ?>">
-                                    <?= $tags[$current_index]->title ?>
-                                </td>
+                                <td><input type="checkbox" id="tags" name="tags" value="<?= $tags[$current_index]->id ?>"><?= $tags[$current_index]->title ?></td>
                             <?php endfor; ?>
                         </tr>
                     <?php endfor; ?>
-                    </table>-->
+                    </table>
 
-                    <div style="text-align:center; margin-top:60px">
-                        <input type="hidden" id="evidence_id" value="<?= $evidence->id ?>">
-                        <span class="rating">
-                            <?php for ($x=5; $x >= 1; $x--): ?>
-                            <input id="grade<?= $x ?>" onClick="setStarHint(<?= $x ?>);$('#yes-input<?= $evidence->id ?>').prop('checked', true)" type="radio" name="grade" class="rating-input" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> />
-                            <label for ="grade<?= $x ?>" class="rating-star"></label>
-                            <?php endfor; ?>
-                        </span>
-                        <label id="star_hint" style="display:block; margin-bottom:10px"></label>
-                    </div>
+                    <input type="hidden" id="evidence_id" value="<?= $evidence->id ?>">
+                    <label id="star_hint"></label><BR>
+                    <span class="rating">
+                        <?php for ($x=5; $x >= 1; $x--): ?>
+                          <input id="grade<?= $x ?>" onClick="setStarHint(<?= $x ?>);$('#yes-input<?= $evidence->id ?>').prop('checked', true)" type="radio" name="grade" class="rating-input" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> />
+                          <label for ="grade<?= $x ?>" class="rating-star"></label>
+                        <?php endfor; ?>
+                    </span>
 
                     </br>
                     </br>
@@ -303,10 +279,10 @@ jQuery(document).ready(function () {
 function setStarHint(value){
   switch(value){
     case 1:
-      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Poor') ?>");
+      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Terrible') ?>");
     break;
     case 2:
-      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Regular') ?>");
+      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Poor') ?>");
     break;
     case 3:
       $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Ok') ?>");
