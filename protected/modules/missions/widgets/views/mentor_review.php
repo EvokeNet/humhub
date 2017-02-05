@@ -51,17 +51,20 @@ use humhub\compat\CActiveForm;
               <input id="yes-input<?= $evidence->id ?>" type="radio" name="yes-no-opt<?= $evidence->id ?>" class="btn-show<?= $evidence->id ?>" value="yes" <?= $yes ?> >
               Yes
             </label >                 
+            <!--<div id="yes-opt<?= $evidence->id ?>" class="radio" style="padding:10px 40px 0">-->
             <div id="yes-opt<?= $evidence->id ?>" class="radio">
-              <span class="rating">
-                  <label id="star_hint"></label><BR>
-                  <?php for ($x=5; $x >= 1; $x--): ?>
-                    <input id="grade<?= $x ?>_<?= $evidence->id ?>" onClick="setStarHint(<?= $x ?>);$('#yes-input<?= $evidence->id ?>').prop('checked', true)" type="radio" name="grade_<?= $evidence->id ?>" class="rating-input" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> />
-                    <label for ="grade<?= $x ?>_<?= $evidence->id ?>" class="rating-star"></label>
-                  <?php endfor; ?>
-              </span>
-              <p>
-                <?= Yii::t('MissionsModule.base', 'How many points will you award this evidence?') ?>
-              </p>
+                            
+              <div style="text-align:center; margin-bottom:10px">
+                <p><?= Yii::t('MissionsModule.base', 'How will you rate this evidence?') ?></p>
+                <span class="rating">
+                    <?php for ($x=5; $x >= 1; $x--): ?>
+                      <input id="grade<?= $x ?>_<?= $evidence->id ?>" onClick="setStarHint(<?= $x ?>);$('#yes-input<?= $evidence->id ?>').prop('checked', true)" type="radio" name="grade_<?= $evidence->id ?>" class="rating-input" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> />
+                      <label for ="grade<?= $x ?>_<?= $evidence->id ?>" class="rating-star"></label>
+                    <?php endfor; ?>
+                </span>
+                <label id="star_hint" style="display:block; margin-bottom:10px"></label>
+              </div>
+
             </div>
           </div>
           <div class="radio">

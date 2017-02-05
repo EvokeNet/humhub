@@ -14,10 +14,10 @@ use humhub\compat\CActiveForm;
   
   <?php // Deactivated if(Yii::$app->user->getIdentity()->group->name == "Mentors" || $vote->user->group->name == "Mentors"): ?>
   <?php if(true): ?>
-    <img class="media-object img-rounded user-image user-<?php echo $vote->user->guid; ?>" alt="35x35"
-         data-src="holder.js/35x35" style="display: inline-block;"
+    <img class="media-object img-rounded user-image user-<?php echo $vote->user->guid; ?>" alt="40x40"
+         data-src="holder.js/40x40" style="display: inline-block;"
          src="<?php echo $vote->user->getProfileImage()->getUrl(); ?>"
-         width="35" height="35"/>
+         width="40" height="40"/>
 
     &nbsp;<a href="<?= ($vote->user->getUrl()) ?>">
         <?= ($vote->user->username) ?>
@@ -44,33 +44,35 @@ use humhub\compat\CActiveForm;
     }
     ?>
 
-    <?php if($vote->value > 0 ): ?>
-
-      <div class="stars" style="display:inline; margin-left:50px">
-        <?php for ($i = 0; $i < 5; $i++): ?>
-          <?php if ($vote->value > $i): ?>
-              <?php if (($vote->value - $i) < 1): ?>
-              <i class="fa fa-star-half-o fa-lg" aria-hidden="true"></i>
-            <?php else: ?>
-            <i class="fa fa-star fa-lg" aria-hidden="true"></i>
-          <?php endif; ?>
-          <?php else: ?>
-            <i class="fa fa-star-o fa-lg" aria-hidden="true"></i>
-          <?php endif; ?>
-        <?php endfor; ?>
-      </div>
-
-      <!--<span id="user_avg_star_hint"><?= $vote->getStarHint(); ?></span>-->
-
-    <?php endif; ?>
-
   <?php else: ?>
     <?php echo Yii::t('MissionsModule.base', 'Anonymous in {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]))); ?>
   <?php endif; ?>
 
-  <p style="padding:5px 10px 5px 45px"><?php echo $vote->comment; ?></p>
+  <p style="margin:20px 0"><?php echo $vote->comment; ?></p>
   
-  <?php if($vote->value == 0 ): ?>
+  <?php if($vote->value > 0 ): ?>
+
+    <div style="text-align:right">
+
+      <div class="stars">
+          <?php for ($i = 0; $i < 5; $i++): ?>
+          <?php if ($vote->value > $i): ?>
+          <?php if (($vote->value - $i) < 1): ?>
+          <i class="fa fa-star-half-o fa-lg" aria-hidden="true"></i>
+        <?php else: ?>
+        <i class="fa fa-star fa-lg" aria-hidden="true"></i>
+      <?php endif; ?>
+      <?php else: ?>
+        <i class="fa fa-star-o fa-lg" aria-hidden="true"></i>
+      <?php endif; ?>
+      <?php endfor; ?>
+      </div>
+
+      <span id="user_avg_star_hint"><?= $vote->getStarHint(); ?></span>
+
+    </div>
+
+  <?php else: ?>
 
     <div class="label-danger">
       <p style="color:#F4F4F4; text-align: center;"><?php echo Yii::t('MissionsModule.base', 'Does not meet rubric'); ?></p>
