@@ -164,7 +164,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                     <div class="row">
            
                         <?php foreach($tags as $tag): ?>
-                        <div class="col-sm-4">
+                        <div class="col-xs-4" style="padding-bottom:10px">
                             <input type="checkbox" id="tags" name="tags" value="<?= $tag->id ?>">
                                 <?= $tag->getTitleTranslation() ?>
                         </div>
@@ -180,7 +180,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                             <label for ="grade<?= $x ?>" class="rating-star"></label>
                             <?php endfor; ?>
                         </span>
-                        <label id="star_hint" style="display:block; margin-bottom:10px"></label>
+                        <label id="star_hint" style="display:block; padding-bottom: 20px; padding-top: 10px;"></label>
                     </div>
 
                     </br>
