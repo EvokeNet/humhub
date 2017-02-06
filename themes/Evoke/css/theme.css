@@ -765,6 +765,7 @@ input[type=select] {
 }
 .content span {
   word-wrap: break-word;
+  font-size: 10pt;
 }
 .module-installed {
   opacity: 0.5;

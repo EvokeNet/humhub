@@ -28,7 +28,8 @@ use app\modules\missions\models\Evidence;
                 $name = $quality->qualityTranslations[0]->name;
             
         ?>
-            <div class="col-xs-6 <?= $unavailable_power ? 'unavailable-power' : '' ?>" style = "margin-bottom:50px">
+            <!--<div class="col-xs-6 <?php // $unavailable_power ? 'unavailable-power' : '' ?>" style = "margin-bottom:50px">-->
+            <div class="col-xs-6" style = "margin-bottom:50px">
                 
                 <div class="row" style = "margin-bottom:20px">
                     <div class="col-sm-4">

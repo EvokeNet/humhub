@@ -25,7 +25,6 @@ return [
     'Evokations' => '',
     'Evoke Errors\' View' => '',
     'Evoke Settings' => '',
-    'Leaderboard' => '',
     'Members' => '',
     'Missions' => '',
     'My Team' => '',

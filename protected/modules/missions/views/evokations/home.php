@@ -23,7 +23,7 @@ echo Breadcrumbs::widget([
 
 $hasTeamSubmittedEvokation = Evokations::hasTeamSubmittedEvokation($contentContainer->id);
 
-$this->pageTitle = Yii::t('MissionsModule.evokation_Home', "{name}'s Evokation", array('name' => $contentContainer->name));
+$this->pageTitle = Yii::t('MissionsModule.page_titles', "{name}'s Evokation", array('name' => $contentContainer->name));
 
 $total = 0;
 $done = 0;

@@ -22,13 +22,13 @@ echo Html::beginForm();
 <?php if($evidence->content->visibility >= 1): ?>
 
     <div class="user-content-box">
-        <h4 style="margin-top:30px; color: #FEAE1B;"><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h4>
+        <h4><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h4>
 
         <?php if (Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
         <!-- <h6><?php //echo Yii::t('MissionsModule.base', 'By'); ?> <?php echo $name ?></h6> -->
         <?php endif; ?>
 
-        <p style="margin:25px 0 50px;"><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]);?></p>
+        <p style="margin:20px 0 50px;"><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]);?></p>
 
         <!-- SHOW FILES -->
 

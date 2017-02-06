@@ -20,7 +20,7 @@ if($evidence){
     $activity = $evidence->getActivities();
 }
 
-$this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
+$this->pageTitle = Yii::t('MissionsModule.page_titles', 'Review Evidence');
 
 ?>
 <div class="panel panel-default">

@@ -11,7 +11,7 @@ $teams_count = count($teams);
 
 $activity = null;
 
-$this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidences');
+$this->pageTitle = Yii::t('MissionsModule.page_titles', 'Review Evidences');
 $user = Yii::$app->user->getIdentity();
 
 ?>

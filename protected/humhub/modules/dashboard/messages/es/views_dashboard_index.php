@@ -17,6 +17,6 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Dashboard' => '',
+    'Dashboard' => 'Dashboard',
     '<b>Your dashboard is empty!</b><br>Post something on your profile or join some spaces!' => '<b>¡Tu Inicio está vacio!</b><br/>¡Escribe algo en tu perfil o únete a algún espacio!',
 ];
