@@ -3519,7 +3519,8 @@ legend {
   text-transform: uppercase;
   font-weight: 700;
 }
-#star_hint {
+#star_hint,
+.star_label {
   display: block;
   margin-left: -5px;
   margin-top: -10px;

@@ -181,7 +181,7 @@ $this->pageTitle = Yii::t('MissionsModule.page_titles', 'Review Evidence');
                             <label for ="grade<?= $x ?>" class="rating-star"></label>
                             <?php endfor; ?>
                         </span>
-                        <label id="star_hint" style="display:block; padding-bottom: 20px; padding-top: 10px;"></label>
+                        <label class="star_label" id="star_hint" style="display:block; padding-bottom: 20px; padding-top: 10px;"></label>
                     </div>
 
                     </br>

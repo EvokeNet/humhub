@@ -62,7 +62,7 @@ use humhub\compat\CActiveForm;
                       <label for ="grade<?= $x ?>_<?= $evidence->id ?>" class="rating-star"></label>
                     <?php endfor; ?>
                 </span>
-                <label id="star_hint<?= $evidence->id ?>" style="display:block; margin-bottom:10px"></label>
+                <label class="star_label" id="star_hint<?= $evidence->id ?>" style="display:block; margin-bottom:10px"></label>
               </div>
 
             </div>
