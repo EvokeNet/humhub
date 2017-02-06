@@ -119,6 +119,7 @@ class ReviewController extends ContentContainerController
 
     public function actionIndex()
     {
+
         $tags = Tags::find()->all();
 
         $user = Yii::$app->user->getIdentity();

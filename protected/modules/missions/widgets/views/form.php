@@ -140,6 +140,7 @@ $( document ).ready(function() {
             window.location.hash = "wallEntry_" + response.wallEntryId;
       }
       loadPopUps();
+      updateEvocoins();
     }
 
 });
