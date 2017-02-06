@@ -155,7 +155,7 @@ endforeach;
                 <div class="panel-heading" role="tab" id="collapseListGroupHeading1">
                     <h4 class="panel-title">
                         <a class="" role="button" data-toggle="collapse" href="#collapseListGroup<?=$x?>" aria-expanded="true" aria-controls="collapseListGroup1">
-                            <?= isset($category->evokationCategoryTranslations[0]) ? $category->evokationCategoryTranslations[0]->title : $category->title ?>
+                            <?= isset($category->evokationCategoryTranslations[0]) && Yii::$app->language == 'es' ? $category->evokationCategoryTranslations[0]->title : $category->title ?>
                         </a>
                     </h4>
                 </div>
@@ -168,7 +168,7 @@ endforeach;
 
                                 <?php
 
-                                $a = isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title;
+                                $a = isset($category->evokationCategoryTranslations[0]) && Yii::$app->language == 'es' ? $activity->activityTranslations[0]->title : $activity->title;
                                 // echo Html::a(
                                 // $a,
                                 // ['evidences', 'activities', 'categoryId' => $mission->id, 'sguid' => $contentContainer->guid]);

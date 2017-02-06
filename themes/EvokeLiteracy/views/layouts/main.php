@@ -47,17 +47,17 @@ AppAsset::register($this);
 
 
         <!-- start: Favicon and Touch Icons -->
-        <link rel="icon" type="image/png" sizes="192x192"
-              href="<?php echo Yii::getAlias("@web"); ?>/ico/evoke-icon-400x.png">
-        <link rel="icon" type="image/png" sizes="32x32"
-              href="<?php echo Yii::getAlias("@web"); ?>/ico/evoke-icon-200x.png">
+        <link rel="icon" type="image/png" sizes="70x70"
+              href="<?php echo Yii::getAlias("@web"); ?>/ico/evoke-literacy-70x70.png">
         <link rel="icon" type="image/png" sizes="96x96"
-              href="<?php echo Yii::getAlias("@web"); ?>/ico/evoke-icon-300x.png">
-        <link rel="icon" type="image/png" sizes="16x16"
-              href="<?php echo Yii::getAlias("@web"); ?>/ico/evoke-icon.png">
+              href="<?php echo Yii::getAlias("@web"); ?>/ico/evoke-literacy-96x96.png">
+        <link rel="icon" type="image/png" sizes="150x150"
+              href="<?php echo Yii::getAlias("@web"); ?>/ico/evoke-literacy-150x150.png">
+        <link rel="icon" type="image/png" sizes="310x310"
+              href="<?php echo Yii::getAlias("@web"); ?>/ico/evoke-literacy-310x310.png">
         <link rel="manifest" href="/manifest.json">
         <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage" content="/evoke-icon-400x.png">
+        <meta name="msapplication-TileImage" content="/310x310.png">
         <meta name="theme-color" content="#ffffff">
         <meta charset="<?= Yii::$app->charset ?>">
         <!-- end: Favicon and Touch Icons -->

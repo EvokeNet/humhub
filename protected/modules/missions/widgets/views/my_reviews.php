@@ -32,7 +32,7 @@ $reviews = Votes::find()
                 <?php 
                 if($review->flag == 1){
                     // echo Yii::t('MissionsModule.base', "<strong>Review:</strong> {vote} with {points} points", array('vote' => Yii::t('MissionsModule.base', "Yes"), 'points' => $review->value));
-                    echo Yii::t('MissionsModule.base', "<strong>Review:</strong> {points} points", array('vote' => Yii::t('MissionsModule.base', "Yes"), 'points' => $review->value));
+                    echo Yii::t('MissionsModule.base', "<strong>Review:</strong> {points} evocoin(s)", array('vote' => Yii::t('MissionsModule.base', "Yes"), 'points' => $review->value));
                 } else {
                     echo Yii::t('MissionsModule.base', "<strong>Review:</strong> {vote}", array('evidence' => $review->evidence->title, 'vote' => Yii::t('MissionsModule.base', "No")));
                 } ?>

@@ -3427,7 +3427,8 @@ h3.product-name {
   text-align: center;
   display: inline-block;
   padding: 10px 15px 0px;
-  background-color: #FF5252;
+  background-color: #D81B60;
+  width: 150px;
 }
 .power-cards p {
   color: #07111C!important;
