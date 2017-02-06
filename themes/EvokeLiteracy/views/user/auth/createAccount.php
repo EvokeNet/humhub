@@ -31,7 +31,7 @@ $this->pageTitle = Yii::t('UserModule.views_auth_createAccount', 'Create Account
                   <li>I will be sure to speak clearly and in a language easily understood by children and adults.</li>
                   <li>I will not make promises that can’t be kept.</li>
                   <li>I will respect the privacy of the children and other populations, always making sure to ask before recording what is spoken or taking pictures/video.</li>
-                  <li>I will keep identities secret and respect the wishes of the participants.</li>
+                  <li>I will keep identities confidential and respect the wishes of the participants.</li>
                   <li>I will act appropriately when working with others, respecting their space, time, and needs.</li>
                   <li>If during my Evoke Literacy work, I come in contact with a child or person who is in need of help-then I will report the issue to the proper authorities.</li>
                 </ul>
