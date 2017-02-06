@@ -706,7 +706,7 @@ class EvidenceController extends ContentContainerController
                 $message = Yii::t('MissionsModule.base', 'You just gained {message} evocoins!', array('message' => $evocoin_earned));
 
                 AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', '{message}. <BR>Thank you for your review.', array('message' => $message)));
-                $this->createAnimatedMessagesForPowers($activityPower);
+                
                 echo $this->renderPartial('..\..\widgets\views\user_vote_view.php', array('vote' => $vote, 'contentContainer' => $this->contentContainer));
             }
         } else{
