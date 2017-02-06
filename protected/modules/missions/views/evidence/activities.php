@@ -188,10 +188,11 @@ $firstSecondary = true;
                                                     $name = $power->getPower()->powerTranslations[0]->title;
                                         ?>
 
-                                        
-                                            <div class="power-cards">
-                                                <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
-                                                <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
+                                            <div style="display: flex; flex-wrap: wrap;">
+                                                <div class="power-cards">
+                                                    <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
+                                                    <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
+                                                </div>
                                             </div>
                                             
                                         <?php endforeach; ?>
