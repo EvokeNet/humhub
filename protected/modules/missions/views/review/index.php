@@ -270,8 +270,8 @@ $firstSecondary = true;
             <hr>
 
             <?php if(Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
-                <p><?php echo Yii::t('MissionsModule.base', 'Evidence Tagged: {reviewed}', array('reviewed' => 1)); ?></p>
-                <p><?php echo Yii::t('MissionsModule.base', 'Next to Evocoin: {reviewed}', array('reviewed' => 1)); ?></p>
+                <p><?php echo Yii::t('MissionsModule.base', 'Evidence Tagged: {reviewed}', array('reviewed' => $tagged_evidences)); ?></p>
+                <p><?php echo Yii::t('MissionsModule.base', 'Next to Evocoin: {reviewed}', array('reviewed' => $next_to_evocoin)); ?></p>
             <?php endif; ?>
 
             <a id="next_evidence" class="btn btn-cta3" disabled="disabled" style="float: right;" onClick="return false" href="<?= $contentContainer->createUrl('/missions/review/index') ?>">
