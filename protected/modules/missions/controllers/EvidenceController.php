@@ -804,7 +804,7 @@ class EvidenceController extends ContentContainerController
                         else
                             $all_tags_used .= ', '.$search_tag;
                     }
-                }
+                } 
 
                 $evocoin_earned = 0;
 

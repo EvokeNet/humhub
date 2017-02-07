@@ -17,9 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Tag Evidences' => 'Etiquetar Evidencías',
-    'Use the message box below to let us know what you were attempting to do and we will resolve it.' => 'Utiliza el cuadro de mensaje de abajo para que sepamos lo que intentaba hacer y lo resolveremos.',
-    'You\'ve received 100 evocoins for completing this mission.' => 'Has ganado 100 evocoins para completar esta misión.',
+    '+{points} {power}' => '+{points} {power}',
     '140 characters required' => '140 caracteres requeridos',
     '<strong>Activity Difficulty Level:</strong> {level}' => '<strong>Nivel de dificultad de la evidencía:</strong> {level}',
     '<strong>Activity Rubric:</strong> {rubric}' => '<strong>Rúbrica de Actividad:</strong> {rubric}',
@@ -207,6 +205,7 @@ return [
     'Submit Review' => 'Enviar opinión',
     'Success!' => '¡Transacción exitosa!',
     'Super Powers' => 'Súper Poderes',
+    'Tag Evidences' => 'Etiquetar Evidencías',
     'Tag Translations' => 'Traducciones de Etíquetas',
     'Tag {tag}' => 'Etíqueta {tag}',
     'Tags' => 'Etíquetas',
@@ -234,6 +233,7 @@ return [
     'Update Translation' => 'Actualizar Traducción',
     'Update {modelClass}: ' => 'Actualizar {modelClass}: ',
     'Updated' => 'Actualizado',
+    'Use the message box below to let us know what you were attempting to do and we will resolve it.' => 'Utiliza el cuadro de mensaje de abajo para que sepamos lo que intentaba hacer y lo resolveremos.',
     'Value' => 'Valor',
     'View' => 'Ver',
     'View Activities' => 'Ver Actividades',
@@ -256,6 +256,7 @@ return [
     'You\'ve completed this activity' => 'Ha completado esta actividad',
     'You\'ve just won' => 'Has ganado',
     'You\'ve received 10 evocoins for this evidence.' => 'Has ganado 10 evocoins por esta evidencía',
+    'You\'ve received 100 evocoins for completing this mission.' => 'Has ganado 100 evocoins para completar esta misión.',
     'You\'ve received an extra evocoin for the last 5 evidences you\'ve tagged' => 'Has ganado 1 evocoin extra por las últimas 5 evidencías que has revisado',
     'You\'ve submitted your evokation.' => 'Has enviado su evokcación',
     'YouTube URL cannot be blank.' => 'URl de Youtube no puede estar en blanco.',

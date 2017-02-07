@@ -17,6 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    '+{points} {power}' => '',
     '140 characters required' => '',
     '<strong>Activity Difficulty Level:</strong> {level}' => '',
     '<strong>Activity Rubric:</strong> {rubric}' => '',
