@@ -21,4 +21,7 @@ return [
     'Sign up' => 'Regístrate aquí',
     'Welcome to %appName%' => 'Bienvenido a %appName%',
     'Welcome to %appName%. Please click on the button below to proceed with your registration.' => 'Bienvenido a %appName%.Por favor, haz clic en el botón de abajo para proceder a registrarte.',
+    'This is Alchemy, and this is an Urgent Evoke. Wherever you are, whoever you are, if you found this message, it\'s your destiny to join us.' => 'Aqui es Alchemy, y esto es un Evokación Urgente. Donde quiera que estés, quienquiera que seas, si encontrases este mensaje, es tu destino unirte a nosotros.',
+    'Evoke is a network of social innovators that use their powers to save the world. And this is an invitation to join us.<br><br>During the next 16 weeks you and your team will complete 8 missions and create with the community an Evokation -- your team project that seeks to solve problems in your community of Soacha.  At the end of this journey, the Evoke network will recognize the best Evokations.<br><br>Evoke is counting on you' => 'Evoke es una red de innovadores sociales que usan sus poderes para salvar al mundo. Y esto es una invitación a unirse a nosotros. Durante las próximas 16 semanas, usted y su equipo completarán 8 misiones y crearán con la comunidad un proyecto Evokation - su equipo que busca resolver problemas en su comunidad de Soacha . Al final de este viaje, la red Evoke reconocerá las mejores evokaciones. <br> <br> Evoke cuenta con usted',
+    'Sign Up' => 'Regístrate aquí',
 ];
