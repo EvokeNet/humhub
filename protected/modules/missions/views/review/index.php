@@ -7,12 +7,23 @@ if($evidence){
     $activity = $evidence->getActivities();
 }
 
-$this->pageTitle = Yii::t('MissionsModule.page_titles', 'Review Evidence');
+$user = Yii::$app->user->getIdentity();
+
+if($user->group->name == "Mentors"){
+  $title = Yii::t('MissionsModule.base', 'Review Evidences');
+} else{
+  $title = Yii::t('MissionsModule.base', 'Tag Evidences');
+}
+
+$this->pageTitle = $title;
+
+$firstPrimary = true;
+$firstSecondary = true;
 
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h4 style="margin-top:10px"><?php echo Yii::t('MissionsModule.base', 'Review Evidence'); ?></h4>
+        <h4 style="margin-top:10px"><?php echo $title; ?></h4>
         <?php if($activity): ?>
             <h6><?php echo Yii::t('MissionsModule.base', '{first} of {total}', array('first' => ($evidence_count - $evidence_to_review_count + 1), 'total' => $evidence_count)); ?></h6>
         <?php endif; ?>
@@ -44,7 +55,58 @@ $this->pageTitle = Yii::t('MissionsModule.page_titles', 'Review Evidence');
 
             <br />
             <p><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]); ?></p>
+            <br />
 
+            <!-- POWERS -->
+
+            <h6 style="margin-bottom:15px; font-size:12pt"><?= Yii::t('MissionsModule.base', 'Primary Power') ?></h6>
+
+            <div style="display: flex; flex-wrap: wrap;">
+            <?php
+                foreach($activity->getPrimaryPowers() as $power):
+                    if($firstPrimary)
+                        $firstPrimary = false;
+
+                    $name = $power->getPower()->title;
+
+                    if(Yii::$app->language == 'es' && isset($power->getPower()->powerTranslations[0]))
+                        $name = $power->getPower()->powerTranslations[0]->title;
+            ?>
+
+                    <div class="power-cards">
+                        <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
+                        <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
+                    </div>
+                
+            <?php endforeach; ?>
+            </div>
+
+            <br />
+
+            <h6 style="margin-bottom:15px; font-size:12pt"><?= Yii::t('MissionsModule.base', 'Secondary Power(s)') ?></h6>
+            <div style="display: flex; flex-wrap: wrap;">
+                <?php
+                    foreach($activity->getSecondaryPowers() as $power):
+                        if($firstSecondary)
+                            $firstSecondary = false;
+
+                        $name = $power->getPower()->title;
+
+                        if(Yii::$app->language == 'es' && isset($power->getPower()->powerTranslations[0]))
+                            $name = $power->getPower()->powerTranslations[0]->title;
+                ?>
+                
+                
+                    <div class="power-cards">
+                        <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
+                        <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
+                    </div>
+                
+                
+                <?php endforeach; ?>
+            </div>
+
+            <!-- POWERS -->
 
             <?php if(sizeof($files) > 0): ?>
             <div class="files_area">

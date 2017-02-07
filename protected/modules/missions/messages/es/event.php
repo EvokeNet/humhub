@@ -17,6 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Review Evidences' => 'Revisar Evidencías',
+    'Tag Evidences' => 'Etiquetar Evidencías',
     'All Evidences' => 'Todas las Evidencias',
     'Evidences' => 'Evidencias',
     'Evokation' => 'Evokación',
@@ -29,8 +31,6 @@ return [
     'Missions' => 'Misiones',
     'My Team' => 'Mi Equipo',
     'My Teams' => 'Mis equipos',
-    'Review Evidence' => 'Evaluar Evidencias',
-    'Review Evidences' => 'Evaluar Evidencias',
     'Reviews' => 'Evaluaciones',
     'Tags' => 'Etíquetas',
 ];

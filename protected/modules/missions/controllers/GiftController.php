@@ -24,7 +24,7 @@ class GiftController extends Controller
 			$wallet->save();
 			$receiver_wallet->amount += $value;
 			$receiver_wallet->save();
-			AlertController::createAlert("Success!", Yii::t('MissionsModule.base', 'You gave {number} evocoins to {name}.', ['number' => $value, 'name' => $receiver->username]));
+			AlertController::createAlert(Yii::t('MissionsModule.base', 'Success!'), Yii::t('MissionsModule.base', 'You gave {number} evocoins to {name}.', ['number' => $value, 'name' => $receiver->username]));
 		}else{
 			AlertController::createAlert("Error", Yii::t('MissionsModule.base', 'No enough Evocoins!'));
 		}

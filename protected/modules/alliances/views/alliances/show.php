@@ -9,8 +9,15 @@ use app\modules\missions\models\Evidence;
 
 $activity = null;
 
-$this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidences');
 $user = Yii::$app->user->getIdentity();
+
+if($user->group->name == "Mentors"){
+  $title = Yii::t('MissionsModule.base', 'Review Evidences');
+} else{
+  $title = Yii::t('MissionsModule.base', 'Tag Evidences');
+}
+
+$this->pageTitle = $title;
 
 ?>
 <div class="panel panel-default">

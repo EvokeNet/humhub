@@ -394,12 +394,15 @@ class Events
 
                 if($user->group->name == "Mentors"){
                     $page = 'list';
-                }else{
+                    $title = Yii::t('MissionsModule.event', 'Review Evidences');
+                } else{
                     $page = 'index';
+                    $title = Yii::t('MissionsModule.event', 'Tag Evidences');
                 }
 
+
                 $event->sender->addItem(array(
-                'label' => Yii::t('MissionsModule.event', 'Review Evidence'),
+                'label' => $title,
                 'id' => 'evidence_reviewed',
                 'icon' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i>',
                 'url' => Url::to(['/missions/review/'.$page, 'sguid' => $space->guid]),
@@ -602,13 +605,15 @@ class Events
 
                 if($user->group->name == "Mentors"){
                     $page = 'list';
-                }else{
+                    $title = Yii::t('MissionsModule.event', 'Review Evidences');
+                } else{
                     $page = 'index';
+                    $title = Yii::t('MissionsModule.event', 'Tag Evidences');
                 }
 
 
                 $event->sender->addItem(array(
-                'label' => Yii::t('MissionsModule.event', 'Review Evidences'),
+                'label' => $title,
                 'id' => 'evidence_reviewed',
                 'icon' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i>',
                 'url' => Url::to(['/missions/review/'.$page, 'sguid' => $team->guid]),

@@ -43,7 +43,18 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
         <?php if($space): ?>
         <div style = "margin-top:20px">
             <a class = "btn btn-cta1" href='<?= Url::to(['/missions/review/index', 'sguid' => $space->guid]) ?>'>
-                    <?= Yii::t('MissionsModule.base', 'Review Evidence') ?>
+                    <?php // Yii::t('MissionsModule.base', 'Review evidences') ?>
+                    <?php
+                    
+                        $user = Yii::$app->user->getIdentity();
+
+                        if($user->group->name == "Mentors"){
+                            echo Yii::t('MissionsModule.base', 'Review Evidences');
+                        } else{
+                            echo Yii::t('MissionsModule.base', 'Tag Evidences');
+                        }
+
+                    ?>
             </a>
         </div>
         <?php endif; ?>
@@ -70,7 +81,18 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
         <?php if($space): ?>
         <div style = "margin-top:20px">
             <a class = "btn btn-cta1" href='<?= Url::to(['/missions/review/index', 'sguid' => $space->guid]) ?>'>
-                    <?= Yii::t('MissionsModule.base', 'Review Evidence') ?>
+                <?php // Yii::t('MissionsModule.base', 'Review evidences') ?>
+                <?php
+                
+                    $user = Yii::$app->user->getIdentity();
+
+                    if($user->group->name == "Mentors"){
+                        echo Yii::t('MissionsModule.base', 'Review Evidences');
+                    } else{
+                        echo Yii::t('MissionsModule.base', 'Tag Evidences');
+                    }
+
+                ?>
             </a>
         </div>
         <?php endif; ?>
