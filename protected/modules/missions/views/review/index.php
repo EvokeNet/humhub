@@ -23,10 +23,13 @@ $firstSecondary = true;
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h4 style="margin-top:10px"><?php echo $title; ?></h4>
-        <?php if($activity): ?>
-            <h6><?php echo Yii::t('MissionsModule.base', '{first} of {total}', array('first' => ($evidence_count - $evidence_to_review_count + 1), 'total' => $evidence_count)); ?></h6>
+        <h5 style="margin-top:10px"><?php echo $title; ?></h5>
+        <?php if(Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
+        <p><?php echo Yii::t('MissionsModule.base', 'Help organize the Evoke Evidence database. Earn 1 Evocoin for every 5 Evidences you tag.'); ?></p>
         <?php endif; ?>
+        <?php //if($activity): ?>
+            <h6><?php //echo Yii::t('MissionsModule.base', '{first} of {total}', array('first' => ($evidence_count - $evidence_to_review_count + 1), 'total' => $evidence_count)); ?></h6>
+        <?php //endif; ?>
     </div>
 <?php if($activity): ?>
     <div class="panel-body">
@@ -231,7 +234,6 @@ $firstSecondary = true;
                                 <?= $tag->getTitleTranslation() ?>
                         </div>
                         <?php endforeach; ?>
-
                     </div>
                     <!-- only allow allies and mentors to rate/comment -->
                     <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors" || $is_ally): ?>
@@ -264,6 +266,12 @@ $firstSecondary = true;
                 </div>
         <?php endif; ?>
             <hr>
+
+            <?php if(Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
+                <p><?php echo Yii::t('MissionsModule.base', 'Evidence Tagged: {reviewed}', array('reviewed' => 1)); ?></p>
+                <p><?php echo Yii::t('MissionsModule.base', 'Next to Evocoin: {reviewed}', array('reviewed' => 1)); ?></p>
+            <?php endif; ?>
+
             <a id="next_evidence" class="btn btn-cta3" disabled="disabled" style="float: right;" onClick="return false" href="<?= $contentContainer->createUrl('/missions/review/index') ?>">
                 <?php echo Yii::t('MissionsModule.base', 'Next Evidence'); ?>
             </a>
