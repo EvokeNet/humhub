@@ -17,7 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    '<strong>Review:</strong> {points} evocoin(s)' => '<strong>Evaluación:</strong> {points} evocoin(s)',
+    'Introduction' => 'Introducción',
+    'Mission {position}' => 'Misión: {position}',
     '140 characters required' => '140 caracteres requeridos',
     '<strong>Activity Difficulty Level:</strong> {level}' => '<strong>Nivel de dificultad de la evidencía:</strong> {level}',
     '<strong>Activity Rubric:</strong> {rubric}' => '<strong>Rúbrica de Actividad:</strong> {rubric}',
@@ -25,6 +26,7 @@ return [
     '<strong>Evoke</strong> settings' => 'Ajustes de <strong>Evoke</strong>',
     '<strong>Google Drive URL:</strong>' => '<strong>URL de Google Drive:</strong>',
     '<strong>Manage</strong> evidences' => '<strong>Administrar</strong> evidencias',
+    '<strong>Review:</strong> {points} evocoin(s)' => '<strong>Evaluación:</strong> {points} evocoin(s)',
     '<strong>Review:</strong> {vote}' => '<strong>Evaluación:</strong> {vote}',
     'Activities' => 'Actividades',
     'Activity' => 'Actividad',
@@ -138,7 +140,6 @@ return [
     'Missions' => 'Misiones',
     'Missions Module Configuration' => 'Configuración del Módulo de Misiones',
     'Next Evidence' => 'Siguiente Evidencia',
-    'Next {icon}' => 'Próximo {icon}',
     'No' => 'No',
     'No activities created yet!' => 'No hay actividades creadas aún!',
     'No activity powers created yet!' => 'No hay poderes de actividad creadas aún!',
