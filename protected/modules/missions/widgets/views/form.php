@@ -40,7 +40,7 @@ $firstSecondary = true;
 
                         <div class="power-cards">
                             <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
-                            <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
+                            <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '+{points} {power}', array('power' => $name, 'points' => $power->value)); ?></p>
                         </div>
                     
                 <?php endforeach; ?>
@@ -64,7 +64,7 @@ $firstSecondary = true;
                         
                             <div class="power-cards">
                                 <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
-                                <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
+                                <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '+{points} {power}', array('power' => $name, 'points' => $power->value)); ?></p>
                             </div>
                         
                         

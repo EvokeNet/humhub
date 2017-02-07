@@ -8,6 +8,7 @@ use yii\web\NotFoundHttpException;
 use humhub\modules\missions\controllers\AlertController;
 use app\modules\coin\models\Wallet;
 use humhub\modules\user\models\User;
+use app\modules\missions\models\EvokeLog;
 
 class GiftController extends Controller
 {
@@ -24,7 +25,19 @@ class GiftController extends Controller
 			$wallet->save();
 			$receiver_wallet->amount += $value;
 			$receiver_wallet->save();
+
+			// AlertController::createAlert(Yii::t('MissionsModule.base', 'Success!'), Yii::t('MissionsModule.base', 'You gave {number} evocoins to {name}.', ['number' => $value, 'name' => $receiver->username]));
+
+			$log['id'] = 'gift_evocoin';
+			$log['user_id'] = $user->id;
+			$log['receiver_id'] = $receiver_id;
+			$log['value'] = $value;
+
+			EvokeLog::log($log);
+
+			Yii::info(json_encode($log));
 			AlertController::createAlert(Yii::t('MissionsModule.base', 'Success!'), Yii::t('MissionsModule.base', 'You gave {number} evocoins to {name}.', ['number' => $value, 'name' => $receiver->username]));
+
 		}else{
 			AlertController::createAlert("Error", Yii::t('MissionsModule.base', 'No enough Evocoins!'));
 		}

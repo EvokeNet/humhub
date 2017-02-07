@@ -32,9 +32,11 @@ use app\modules\novel\models\NovelPage;
 use app\modules\novel\models\Chapter;
 
 use app\modules\missions\models\EvidenceTags;
+use app\modules\missions\models\Tags;
 use yii\db\Expression;
 
 use app\modules\missions\models\TeamMission;
+use app\modules\missions\models\EvokeLog;
 
 class EvidenceController extends ContentContainerController
 {
@@ -547,6 +549,37 @@ class EvidenceController extends ContentContainerController
                 }
             }
 
+            //EvokeLog
+
+                $log['id'] = 'evidence_submitting';
+                $log['user'] = $user->username;
+                $log['user_real_name'] = $user->getName();
+                $log['earned_evocoins_by_author'] = 10;
+                $log['evidence_activity'] = $activity->id_code;
+
+                if($is_group_activity){
+                    $log['team'] = $team->name;
+                    foreach ($team_members as $team_member) {  
+                        foreach($activityPowers as $activity_power){
+                            $log[$activity_power->getPower()->title.'_'.$team_member->username."_points"] = $activity_power->value;
+                        }                      
+                    }
+                }else{
+                    foreach($activityPowers as $activity_power){
+                        $log[$activity_power->getPower()->title."_evidence_author_points"] = $activity_power->value;
+                    }
+                }
+
+                if($isTeamGoingToComplete){
+                    foreach ($team_members as $team_member) {
+                        $log[$activity_power->getPower()->title.'_'.$team_member->username."_earned_extra_evocoins"] = 100;
+                    }
+                }
+
+                EvokeLog::log($log);
+
+            //END EVOKE LOG
+
             //old popup
             //$message = $this->getEvidenceCreatedMessage($activityPowers);
             //AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), $message);
@@ -750,9 +783,12 @@ class EvidenceController extends ContentContainerController
                 $vote->user_type = $user->group->name;
                 $vote->save();
 
-                //Save Tags
+                //SAVE TAGS
+
+                $all_tags_used = ''; //Variable to get all tags used and 
+
                 if($tags){
-                    foreach($tags as $tag_id){
+                    foreach($tags as $key => $tag_id){
                         $tag = new EvidenceTags();    
                         $tag->tag_id = $tag_id;
                         $tag->evidence_id = $evidenceId;
@@ -760,6 +796,13 @@ class EvidenceController extends ContentContainerController
                         $tag->created_at = new Expression('NOW()');
                         $tag->updated_at = new Expression('NOW()');
                         $tag->save();
+
+                        $search_tag = Tags::find()->where(['id' => $tag_id])->one();
+                        
+                        if($key == 0)
+                            $all_tags_used .= $search_tag;
+                        else
+                            $all_tags_used .= ', '.$search_tag;
                     }
                 }
 
@@ -801,6 +844,33 @@ class EvidenceController extends ContentContainerController
                       UserPowers::addPowerPoint($activityPower->getPower(), $author, $grade);
                     }
                 }
+
+
+                //EvokeLog
+
+                $log['id'] = 'review'; 
+                $log['reviewer_username'] = $user->username;
+                $log['reviewer_real_name'] = $user->getName();
+                $log['group'] = $user->group->name;
+                $log['earned_evocoins_by_reviewer'] = $evocoin_earned;
+                $log['evidence_url'] = $evidence->content->getUrl();
+                $log['evidence_activity'] = $evidence->activities->id_code;
+                $log['evidence_author_username'] = $evidence->getAuthor()->username;
+                $log['evidence_author_real_name'] = $evidence->getAuthor()->getName();
+                $log['tags_selected'] = $all_tags_used;
+
+                if($is_group_activity){
+                    $log['team'] = $team->name;
+                    foreach ($team_members as $team_member) {
+                        $log[$activity_power->getPower()->title.'_'.$team_member->username."_points"] = $grade;                        
+                    }
+                }else{
+                    $log[$activity_power->getPower()->title."_evidence_author_points"] = $grade;
+                }
+
+                EvokeLog::log($log);
+
+                //END EVOKE LOG
 
                 $message = Yii::t('MissionsModule.base', 'You just gained {message} evocoins!', array('message' => $evocoin_earned));
 
