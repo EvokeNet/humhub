@@ -24,8 +24,9 @@ $firstSecondary = true;
 <div class="panel panel-default">
     <div class="panel-heading">
         <h5 style="margin-top:10px"><?php echo $title; ?></h5>
+        <input type="hidden" id="evidence_id" value="<?= $evidence->id ?>">
         <?php if(Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
-        <p><?php echo Yii::t('MissionsModule.base', 'Help organize the Evoke Evidence database. Earn 1 Evocoin for every 5 Evidences you tag.'); ?></p>
+        <span><?php echo Yii::t('MissionsModule.base', 'Help organize the Evoke Evidence database. Earn 1 Evocoin for every 5 Evidences you tag.'); ?></span>
         <?php endif; ?>
         <?php //if($activity): ?>
             <h6><?php //echo Yii::t('MissionsModule.base', '{first} of {total}', array('first' => ($evidence_count - $evidence_to_review_count + 1), 'total' => $evidence_count)); ?></h6>
@@ -216,21 +217,22 @@ $firstSecondary = true;
 
                     <!--<h4><?php // Yii::t('MissionsModule.base', 'Distribute points for {title}', array('title' => $primaryPowerTitle)) ?></h4>-->
 
-                    <h5 style="text-transform:uppercase"><?php echo Yii::t('MissionsModule.base', 'Review this Evidence'); ?></h5>
+                    <h5 style="text-transform:uppercase"><?php echo Yii::t('MissionsModule.base', 'Tag this Evidence'); ?></h5>
 
                     <!--<p style = "margin:20px 0"><?php //Yii::t('MissionsModule.base', '<strong>Activity Difficulty Level:</strong> {level}', array('level' => $activity->difficultyLevel->title)) ?></p>-->
 
-                    <p style = "margin:25px 0"><?= Yii::t('MissionsModule.base', 'Choose the keywords that best describe your thoughts on this evidence, both based in your opinion and if it fulfilled the activity rubric. Select the tags and classify with 1 to 5 stars. If you have something to say to your fellow agent, leave a comment.') ?></p>
+                    <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
+                        <p style = "margin:25px 0"><?= Yii::t('MissionsModule.base', 'Choose the keywords that best describe your thoughts on this evidence, both based in your opinion and if it fulfilled the activity rubric. Select the tags and classify with 1 to 5 stars. If you have something to say to your fellow agent, leave a comment.') ?></p>
 
-                    <p style = "margin-bottom:30px"><?= Yii::t('MissionsModule.base', '<strong>Activity Rubric:</strong> {rubric}', array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></p>
-
+                        <p style = "margin-bottom:30px"><?= Yii::t('MissionsModule.base', '<strong>Activity Rubric:</strong> {rubric}', array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></p>
+                    <?php endif; ?>
                     <form id = "review" class="review">
 
                     <div class="row">
 
                         <?php foreach($tags as $tag): ?>
                         <div class="col-xs-4" style="padding-bottom:10px">
-                            <input type="checkbox" id="tags" name="tags" value="<?= $tag->id ?>">
+                            <input type="checkbox" id="tags" name="tags" onClick='unlockNextEvidence()' value="<?= $tag->id ?>">
                                 <?= $tag->getTitleTranslation() ?>
                         </div>
                         <?php endforeach; ?>
@@ -289,6 +291,50 @@ $firstSecondary = true;
 
 <script>
 
+$( document ).ready(function() {
+    loadPopUps();
+});
+
+next_element = document.getElementById("next_evidence");
+
+function unlockNextEvidence(){
+    if($('input[id=tags]').is(':checked')){
+        next_element.removeAttribute("disabled");
+        next_element.removeAttribute("href");
+        next_element.setAttribute("onClick", "tag();");
+    } else {
+        next_element.setAttribute("disabled", "disabled");
+        next_element.removeAttribute("onClick");
+    }
+}
+    
+function tag(){
+
+    var tags = [];
+    var tag_inputs = $("input[name=tags]:checked");
+    var id = document.getElementById("evidence_id").value;
+
+    for(var x = 0; x < tag_inputs.length; x++){
+        tags.push(tag_inputs[x].value);
+    }
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            location.reload();
+        }
+    };
+    xhttp.open(
+        "GET",
+        "<?= $contentContainer->createUrl('/missions/evidence/tag'); ?>"+
+        getTagsArrayUrl(tags)+
+        "&evidenceId="+id,
+        true
+    );
+    xhttp.send();
+
+    return false;
+}
 
 function review(id, comment, opt, grade, tags){
     grade = grade? grade : 0;
