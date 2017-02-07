@@ -17,6 +17,11 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Evidence Tagged: {reviewed}' => 'Evidencía con etiquetas: {reviewed}',
+    'Help organize the Evoke Evidence database. Earn 1 Evocoin for every 5 Evidences you tag.' => 'Ayude a organizar la base Evoke. Gana 1 Evocoin por cada 5 Evidencias que etiquetes.',
+    'Next to Evocoin: {reviewed}' => 'Próximas a ganar evocoins: {reviewed}',
+    'Tag this Evidence' => 'Etiqueta esta evidencía',
+    'Thank you for tagging this evidence' => 'Gracias por etiquetar esta evidencía',
     '+{points} {power}' => '+{points} {power}',
     '140 characters required' => '140 caracteres requeridos',
     '<strong>Activity Difficulty Level:</strong> {level}' => '<strong>Nivel de dificultad de la evidencía:</strong> {level}',
@@ -180,7 +185,6 @@ return [
     'Review' => 'Opinión',
     'Review Evidence' => 'Evalúar evidencias aquí',
     'Review Evidences' => 'Evalua Evidencías',
-    'Review this Evidence' => 'Evalúa esta Evidencía',
     'Reviewed' => 'Evaluado',
     'Reviews' => 'Revisiones',
     'Reward' => 'Recompensa',
