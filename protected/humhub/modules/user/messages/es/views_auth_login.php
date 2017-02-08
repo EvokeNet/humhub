@@ -30,4 +30,6 @@ return [
     'email' => 'correo electrónico',
     'password' => 'contraseña',
     'username or email' => 'Usuario o correo electrónico',
+    'Your adventure starts now.' => 'Su aventura empieza ahora.',
+    'You have the power to change the world.' => 'Tienes el poder de cambiar el mundo',
 ];
