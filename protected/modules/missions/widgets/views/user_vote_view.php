@@ -52,7 +52,6 @@ use humhub\compat\CActiveForm;
   <?php if($vote->value > 0 ): ?>
 
     <div class="stars" style="text-align:left;">
-        <label id="star_hint"></label><BR>
         <?php for ($i = 0; $i < 5; $i++): ?>
         <?php if ($vote->value > $i): ?>
         <?php if (($vote->value - $i) < 1): ?>
@@ -65,6 +64,7 @@ use humhub\compat\CActiveForm;
     <?php endif; ?>
     <?php endfor; ?>
     </div>
+    <label id="star_hint"><?= $vote->getStarHint(); ?></label><BR>
 
   <?php else: ?>
 
