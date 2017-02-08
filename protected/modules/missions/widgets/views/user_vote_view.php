@@ -52,6 +52,7 @@ use humhub\compat\CActiveForm;
   <?php if($vote->value > 0 ): ?>
 
     <div class="stars" style="text-align:left;">
+        <label id="star_hint"></label><BR>
         <?php for ($i = 0; $i < 5; $i++): ?>
         <?php if ($vote->value > $i): ?>
         <?php if (($vote->value - $i) < 1): ?>
@@ -130,3 +131,31 @@ use humhub\compat\CActiveForm;
       <?php endif; ?>
     </div>
   </div>
+
+  <script>
+
+$( document ).ready(function() {
+   setStarHint(<?= $grade ?>);
+});
+
+function setStarHint(value){
+  switch(value){
+    case 1:
+      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Terrible') ?>");
+    break;
+    case 2:
+      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Poor') ?>");
+    break;
+    case 3:
+      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Ok') ?>");
+    break;
+    case 4:
+      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Good') ?>");
+    break;
+    case 5:
+      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Excellent') ?>");
+    break;
+  }
+}
+
+</script>

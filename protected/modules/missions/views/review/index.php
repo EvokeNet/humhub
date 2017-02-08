@@ -154,9 +154,10 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                 <form id = "review" class="review">
 
                     <input type="hidden" id="evidence_id" value="<?= $evidence->id ?>">
+                    <label id="star_hint"></label><BR>
                     <span class="rating">
                         <?php for ($x=5; $x >= 1; $x--): ?>
-                          <input id="grade<?= $x ?>" onClick="$('#yes-input<?= $evidence->id ?>').prop('checked', true)" type="radio" name="grade" class="rating-input" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> />
+                          <input id="grade<?= $x ?>" onClick="setStarHint(<?= $x ?>);$('#yes-input<?= $evidence->id ?>').prop('checked', true)" type="radio" name="grade" class="rating-input" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> />
                           <label for ="grade<?= $x ?>" class="rating-star"></label>
                         <?php endfor; ?>
                     </span>
@@ -240,6 +241,26 @@ jQuery(document).ready(function () {
 
   });
 });
+
+function setStarHint(value){
+  switch(value){
+    case 1:
+      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Terrible') ?>");
+    break;
+    case 2:
+      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Poor') ?>");
+    break;
+    case 3:
+      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Ok') ?>");
+    break;
+    case 4:
+      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Good') ?>");
+    break;
+    case 5:
+      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Excellent') ?>");
+    break;
+  }
+}
 
 </script>
 
