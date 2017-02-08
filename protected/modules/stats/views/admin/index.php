@@ -72,6 +72,12 @@ foreach($evidences as $key => $evidence){
             </ul>
         </ul><br><br>
 
+        <?php
+            //fix division by zero
+            $agents = $agents > 0? $agents : 1;
+            $mentors = $mentors > 0? $mentors : 1;
+        ?>
+
         <h4><?php echo Yii::t('StatsModule.base', 'Content Creation'); ?></h4><br>
         <ul>
             <li><span style="font-size:13pt"><?php echo Yii::t('StatsModule.base', 'Number of Evidences: {list}', array('list' => $num_evidences)); ?></span></li>

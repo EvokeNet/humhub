@@ -10,8 +10,8 @@ use app\modules\missions\models\Evidence;
 <div class="panel panel-default">
 
     <div class="panel-heading">
-        <h4 class = "display-inline"><?php echo Yii::t('MissionsModule.base', 'Super Powers'); ?></h4>
-        <p style = "display:inline; margin-left:10px"><?php echo Yii::t('MissionsModule.base', 'Earn points to increase powers'); ?></p>
+        <h5 class = "display-inline"><?php echo Yii::t('MissionsModule.base', 'Super Powers'); ?></h5><br />
+        <span style = "font-size:8pt"><?php echo Yii::t('MissionsModule.base', 'Earn points to increase powers'); ?></span>
     </div>
 
     <div class="panel-body row">
@@ -89,37 +89,8 @@ use app\modules\missions\models\Evidence;
 
 <style type="text/css">
 
-.evokecoin {
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    padding: 6px 0;
-    font-size: 12px;
-    line-height: 1.42;
-    border-radius: 20px;
-    display: inline-block;
-    font-size: 26px;
-}
-
 .power{
     margin-bottom: 20px;
 }
-
-.power .level{
-    float: left;
-}
-
-.power .points{
-    float: right;
-}
-
-.unavailable-power{
-    opacity: 0.5;
-}
-
-.unavailable-power span, h6{
-    color: gray !important;
-}
-
 
 </style>

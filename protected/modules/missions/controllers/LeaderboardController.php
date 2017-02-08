@@ -89,6 +89,24 @@ class LeaderboardController extends \yii\web\Controller
         ->all();
     }
 
+    public function getRankAgentsScore($limit = ""){
+        return  (new \yii\db\Query())
+        ->select(['u.*, p.firstname, p.lastname, AVG(v.value) as average'])
+        ->from('user as u')
+        ->join('INNER JOIN', 'profile as p', 'u.id = `p`.`user_id`')
+        ->join('INNER JOIN', 'group as g', 'u.group_id = `g`.`id`')
+        ->join('INNER JOIN', 'evidence as e', '`u`.`id` = `e`.`created_by`')
+        ->join('INNER JOIN', 'votes as v', '`v`.`evidence_id` = `e`.`id`')
+        ->join('INNER JOIN', 'user as reviewer', '`reviewer`.`id` = `v`.`user_id`')
+        ->join('INNER JOIN', 'group as reviewerg', 'reviewer.group_id = `reviewerg`.`id`')
+        ->where('g.name != "Mentors"')
+        ->andWhere('reviewerg.name = "Mentors"')
+        ->limit($limit)
+        ->groupBy('u.id')
+        ->orderBy('average desc')
+        ->all();
+    }
+
     public function getRankAgentsReviews($limit = ""){
         return (new \yii\db\Query())
         ->select(['u.*, p.firstname, p.lastname, count(v.id) as reviews'])
@@ -150,6 +168,7 @@ class LeaderboardController extends \yii\web\Controller
         $ranking['my_evidences'] = $this->getRankingObjectPosition($this->getRankAgentsEvidences(), $user_id, User::classname());
         $ranking['rank_agents_reviews'] = $this->getRankAgentsReviews(10);
         $ranking['rank_agents_evocoins'] = $this->getRankAgentsEvocoins(10);
+        $ranking['rank_agents_score'] = $this->getRankAgentsScore(10);
         $ranking['my_evocoins'] = $this->getRankingObjectPosition($this->getRankAgentsEvocoins(), $user_id, User::classname());
         $ranking['rank_mentors_reviews'] = $this->getRankMentorsReviews(10);
 
@@ -157,6 +176,7 @@ class LeaderboardController extends \yii\web\Controller
           $ranking['my_reviews'] = $this->getRankingObjectPosition($this->getRankMentorsReviews(), $user_id, User::classname());
         } else {
           $ranking['my_reviews'] = $this->getRankingObjectPosition($this->getRankAgentsReviews(), $user_id, User::classname());
+          $ranking['my_score'] = $this->getRankingObjectPosition($this->getRankAgentsScore(), $user_id, User::classname());
         }
 
         //debugging

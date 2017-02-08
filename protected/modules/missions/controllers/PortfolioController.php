@@ -45,8 +45,8 @@ class PortfolioController extends \yii\web\Controller
 
                 $evokation = Evokations::findOne($evokation_id);
 
-                // can't add own evokation
-                if($evokation && $evokation->content->user_id != Yii::$app->user->getIdentity()->id){
+                // now can add own evokation
+                //if($evokation && $evokation->content->user_id != Yii::$app->user->getIdentity()->id){
 
                     $evokation_investment = new Portfolio();
                     $evokation_investment->user_id = $user->id;
@@ -62,7 +62,7 @@ class PortfolioController extends \yii\web\Controller
                     $response_array['status'] = 'success'; 
                     echo json_encode($response_array);
                     Yii::$app->end();
-                }
+                //}
             }
         }
 

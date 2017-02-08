@@ -17,6 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'My Score: {average}' => 'Mi puntuación: {average}',
+    'Top Agents By Average Score' => 'Mejores equipos considerando puntuación média',
     'Leaderboard' => 'Clasificación',
     'My Evidences Submitted: {evidences}' => 'Mis Evidencias Publicadas: {evidences}',
     'My Position: Not Ranked' => 'Mi Posición: Sin puntaje',

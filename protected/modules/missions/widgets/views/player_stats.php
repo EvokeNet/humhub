@@ -35,41 +35,13 @@ $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
         <?php
             $unavailable_power = $userQuality[0]->getUserQuality() == null || $userQuality[0]->getUserQuality()->getLevel() <= 0 ? true : false;
         ?>
-            <div class="power text-center">
+            <div class="player-power text-center">
                 <img src = "<?php echo $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->image; ?>" width="100px" class = "power-border"></img>
-
-                <h6>
-                    <?= $name ?>
-                </h6>
-
-                <span class = "bold italic" style = "color: #28C503"><?php echo Yii::t('MissionsModule.base', 'Level {level}', array('level' => null != $userQuality[0]->getUserQuality() ? $userQuality[0]->getUserQuality()->getLevel() : 0)); ?></span>
+                <br />
+                <span class="text-header"><?= $name ?></span><br />
+                <span class="text-content"><?php echo Yii::t('MissionsModule.base', 'Level {level}', array('level' => null != $userQuality[0]->getUserQuality() ? $userQuality[0]->getUserQuality()->getLevel() : 0)); ?></span>
 
             </div>
         <?php endforeach; ?>
     </div>
 </div>
-
-<style type="text/css">
-
-.power{
-    padding-bottom: 25px;
-}
-
-.power .level{
-    float: left;
-}
-
-.power .points{
-    float: right;
-}
-
-.unavailable-power{
-    opacity: 0.5;
-}
-
-.unavailable-power span, h6{
-    color: gray !important;
-}
-
-
-</style>

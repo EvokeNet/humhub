@@ -1,18 +1,18 @@
-HumHub - Social Network Kit
-===========================
+EVOKE:
 
-[![Build Status](https://travis-ci.org/humhub/humhub.svg?branch=master)](https://travis-ci.org/humhub/humhub)
-[![Yii2](https://img.shields.io/badge/Powered_by-Yii_Framework-green.svg?style=flat)](http://www.yiiframework.com/)
+Coding Standards: 
+- https://github.com/EvokeNet/humhub/wiki/Coding-Standards
 
-HumHub is a feature rich and highly flexible OpenSource Social Network Kit written in PHP.
+Installation:
+- https://github.com/EvokeNet/humhub/wiki/Installation
 
-It's perfect for individual:
-- Social Intranets
-- Enterprise Social Networks
-- Private Social Networks
+HumHub Admin Configuration:
+- https://github.com/EvokeNet/humhub/wiki/EVOKE-Admin-Settings---HumHub-Config
+
+
+Evoke is built on the open source social network, HumHub, http://humhub.org
 
 More information:
 - [Homepage & Demo](http://www.humhub.org)
 - [Documentation & Class Reference](http://www.humhub.org/docs)
 - [Licence](http://www.humhub.org/licences)
-
