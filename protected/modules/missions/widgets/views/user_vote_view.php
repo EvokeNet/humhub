@@ -132,30 +132,7 @@ use humhub\compat\CActiveForm;
     </div>
   </div>
 
-  <script>
+<script>
 
-$( document ).ready(function() {
-   setStarHint(<?= $grade ?>);
-});
-
-function setStarHint(value){
-  switch(value){
-    case 1:
-      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Terrible') ?>");
-    break;
-    case 2:
-      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Poor') ?>");
-    break;
-    case 3:
-      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Ok') ?>");
-    break;
-    case 4:
-      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Good') ?>");
-    break;
-    case 5:
-      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Excellent') ?>");
-    break;
-  }
-}
 
 </script>
