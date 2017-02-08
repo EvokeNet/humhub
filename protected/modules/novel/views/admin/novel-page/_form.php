@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\modules\languages\models\Languages;
+use app\modules\novel\models\Chapter;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\novel\models\NovelPage */
@@ -13,6 +14,8 @@ use app\modules\languages\models\Languages;
 <div class="novel-page-form">
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
+
+    <?= $form->field($model, 'markup')->textarea(['rows' => 6])->hint(Yii::t('NovelModule.base', 'Leave it empty to use a image instead')) ?>
 
     <?= $form->field($model, 'page_image')->fileInput() ?>
 

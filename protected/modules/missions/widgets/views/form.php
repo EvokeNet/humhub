@@ -8,109 +8,120 @@ $firstSecondary = true;
 ?>
 
 <div id="evidence_form">
-<div class="panel panel-default">
-    <div class="panel-body panel-body grey-box">
+    <div class="panel panel-default">
+        <div class="panel-body grey-box">
 
-        <h4><span class = "activity2-number"><?= $activity->position ?></span><?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title ?></h4>
-        <br />
-        <p class="description">
-            <?php echo nl2br(isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description) ?>
-        </p>
-        <br />
+            <h4>
+                <span class = "activity2-number"><?= $activity->position ?></span>
+                <span class="mission-title"><?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title ?></span>
+            </h4>
 
-        <div class="row" style="margin-bottom:20px">
-            <div class="col-xs-4"><h6 style = "margin-bottom:15px"><?= Yii::t('MissionsModule.base', 'Primary Power') ?></h6></div>
-            <div class="col-xs-8">
+            <br />
+            <p class="description">
+                <?php echo nl2br(isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description) ?>
+            </p>
+            <br />
 
-                <?php
-                    foreach($activity->getPrimaryPowers() as $power):
-                        if($firstPrimary)
-                            $firstPrimary = false;
+            <div class="row" style="margin-bottom:20px">
+                <div class="col-xs-4">
 
-                        $name = $power->getPower()->title;
-
-                        if(Yii::$app->language == 'es' && isset($power->getPower()->powerTranslations[0]))
-                            $name = $power->getPower()->powerTranslations[0]->title;
-                ?>
-
-                
-                    <div style="text-align: center; display:inline-block">
-                    <img src = "<?php echo $power->getPower()->image; ?>" width=50px>
-                    <span style="font-size:10pt"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></span>
-                </div>
-                    
-                <?php endforeach; ?>
-
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-4"><h6 style = "margin-bottom:15px"><?= Yii::t('MissionsModule.base', 'Secondary Power(s)') ?></h6></div>
-            <div class="col-xs-8">
-
+                    <h6 style="margin-bottom:15px; font-size:12pt"><?= Yii::t('MissionsModule.base', 'Primary Power') ?></h6>
                     <?php
-                        foreach($activity->getSecondaryPowers() as $power):
-                            if($firstSecondary)
-                                $firstSecondary = false;
+                        foreach($activity->getPrimaryPowers() as $power):
+                            if($firstPrimary)
+                                $firstPrimary = false;
 
                             $name = $power->getPower()->title;
 
                             if(Yii::$app->language == 'es' && isset($power->getPower()->powerTranslations[0]))
                                 $name = $power->getPower()->powerTranslations[0]->title;
                     ?>
-                        
-                    <div style="text-align: center; display:inline-block; margin-bottom:10px">
-                        <img src = "<?php echo $power->getPower()->image; ?>" width=50px>
-                        <span style="font-size:10pt"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></span>
-                    </div>
-                    
-                <?php endforeach; ?>
 
+                    
+                        <div class="power-cards">
+                            <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
+                            <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
+                        </div>
+                        
+                    <?php endforeach; ?>
+
+                </div>
+                <div class="col-xs-8">
+
+                    <h6 style="margin-bottom:15px; font-size:12pt"><?= Yii::t('MissionsModule.base', 'Secondary Power(s)') ?></h6>
+                        <?php
+                            foreach($activity->getSecondaryPowers() as $power):
+                                if($firstSecondary)
+                                    $firstSecondary = false;
+
+                                $name = $power->getPower()->title;
+
+                                if(Yii::$app->language == 'es' && isset($power->getPower()->powerTranslations[0]))
+                                    $name = $power->getPower()->powerTranslations[0]->title;
+                        ?>
+                            
+                        <div class="power-cards">
+                            <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
+                            <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
+                        </div>
+                        
+                    <?php endforeach; ?>
+
+                </div>
             </div>
 
+            <!-- <div class="row">
+                <div class="col-xs-4"></div>
+                <div class="col-xs-8">
+
+                </div>
+
+            </div> -->
+
+            <span class="mission-title" style="font-size:11pt; margin:30px 0 10px"><?= Yii::t('MissionsModule.widgets_views_evidenceForm', "<strong>Rubric:</strong> {rubric}", array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></span>
+
+        </div>    
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body grey-box">
+            <span class="mission-title" style = "margin: 10px 0 20px; font-size: 18pt"><?= Yii::t('MissionsModule.base', 'Create an Evidence for this Activity:') ?></span>
+            <?php
+
+                echo Html::hiddenInput('activityId', $activity->id);
+                echo Html::textArea("title", '', array('id' => 'contentForm_question', 'class' => 'form-control autosize contentForm', 'rows' => '1', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.widgets_views_evidenceForm', "Page Title")));
+                echo Html::textArea("text", '', array('id' => 'contentForm_question', 'class' => 'text-margin form-control autosize contentForm', 'rows' => '10', "tabindex" => "2", 'placeholder' => Yii::t('MissionsModule.widgets_views_evidenceForm', "Content"),  'required' => true));
+
+                ?>
+
+                <div id="counter" style="font-weight:bold">
+                    <span id="current">0</span>
+                    <span id="minimun">/ 140</span>
+                </div>
+
+                <?php
+
+                echo "<br>";
+
+                echo \humhub\widgets\AjaxButton::widget([
+                    'label' => Yii::t('MissionsModule.widgets_EvidenceFormWidget', 'Save Draft'),
+                    'ajaxOptions' => [
+                        'url' => $contentContainer->createUrl('/missions/evidence/draft'),
+                        'type' => 'POST',
+                        'dataType' => 'json',
+                        'beforeSend' => "function() { $('.contentForm').removeClass('error'); $('#contentFormError').hide(); $('#contentFormError').empty(); }",
+                        'beforeSend' => 'function(){ $("#contentFormError").hide(); $("#contentFormError li").remove(); $(".contentForm_options .btn").hide(); $("#postform-loader").removeClass("hidden"); }',
+                        'success' => "function(response) { handleResponse(response);}"
+                    ],
+                    'htmlOptions' => [
+                        'id' => "post_draft_button",
+                        'class' => 'btn btn-primary btn-comment-submit',
+                        'type' => 'submit'
+                ]]);
+            ?>
         </div>
+    </div>
 
-        <span style="margin-top:30px; padding: 0 10px"><?= Yii::t('MissionsModule.widgets_views_evidenceForm', "<strong>Rubric:</strong> {rubric}", array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></span>
-    </div>    
-</div>
-
-    <h4 style = "margin-bottom:20px"><?= Yii::t('MissionsModule.base', 'Create an Evidence for this Activity:') ?></h4>
-
-    <?php
-
-        echo Html::hiddenInput('activityId', $activity->id);
-        echo Html::textArea("title", '', array('id' => 'contentForm_question', 'class' => 'form-control autosize contentForm', 'rows' => '1', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.widgets_views_evidenceForm', "Page Title")));
-        echo Html::textArea("text", '', array('id' => 'contentForm_question', 'class' => 'text-margin form-control autosize contentForm', 'rows' => '10', "tabindex" => "2", 'placeholder' => Yii::t('MissionsModule.widgets_views_evidenceForm', "Content"),  'required' => true));
-
-        ?>
-
-        <div id="counter" style="font-weight:bold">
-            <span id="current">0</span>
-            <span id="minimun">/ 140</span>
-        </div>
-
-        <?php
-
-        echo "<br>";
-
-        echo \humhub\widgets\AjaxButton::widget([
-            'label' => Yii::t('MissionsModule.widgets_EvidenceFormWidget', 'Save Draft'),
-            'ajaxOptions' => [
-                'url' => $contentContainer->createUrl('/missions/evidence/draft'),
-                'type' => 'POST',
-                'dataType' => 'json',
-                'beforeSend' => "function() { $('.contentForm').removeClass('error'); $('#contentFormError').hide(); $('#contentFormError').empty(); }",
-                'beforeSend' => 'function(){ $("#contentFormError").hide(); $("#contentFormError li").remove(); $(".contentForm_options .btn").hide(); $("#postform-loader").removeClass("hidden"); }',
-                'success' => "function(response) { handleResponse(response);}"
-            ],
-            'htmlOptions' => [
-                'id' => "post_draft_button",
-                'class' => 'btn btn-primary btn-comment-submit',
-                'type' => 'submit'
-        ]]);
-        
-
-    ?>
 </div>
 
 <script type="text/javascript">
@@ -125,6 +136,7 @@ $( document ).ready(function() {
             window.location.hash = "";
             window.location.hash = "wallEntry_" + response.wallEntryId;
       }
+      loadPopUps();
     }
 
 });
@@ -146,20 +158,3 @@ $('textarea[name=text]#contentForm_question').keyup(function() {
 })
 
 </script>
-
-<style type="text/css">
-
-.btn-draft{
-    background: #FB656F; 
-    border: 3px solid #a9040f;
-}
-
-.btn-draft:hover{
-    background: #e42a37 !important; 
-    border: 3px solid #7f030b !important;
-}
-
-.text-margin{
-    margin-top: 5px;
-}
-</style>

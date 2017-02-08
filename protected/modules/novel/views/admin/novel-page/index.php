@@ -6,7 +6,7 @@ use app\modules\languages\models\Languages;
 
 use yii\widgets\Breadcrumbs;
 
-$this->title = Yii::t('NovelModule.base', 'Graphic Novel');
+$this->title = Yii::t('NovelModule.base', 'Graphic Novels');
 $this->params['breadcrumbs'][] = $this->title;
 
 echo Breadcrumbs::widget([
@@ -24,6 +24,7 @@ echo Breadcrumbs::widget([
           <tr>
               <th><?php echo Yii::t('NovelModule.base', 'Page Image'); ?></th>
               <th><?php echo Yii::t('NovelModule.base', 'Page Number') ?></th>
+              <th><?php echo Yii::t('NovelModule.base', 'Chapter') ?></th>
               <th><?php echo Yii::t('NovelModule.base', 'Language') ?></th>
               <th>&nbsp;</th>
               <th>&nbsp;</th>
@@ -33,6 +34,7 @@ echo Breadcrumbs::widget([
               <tr>
                   <td><?php echo $page->page_image; ?></td>
                   <td><?php echo $page->page_number; ?></td>
+                  <td><?php echo (isset($page->chapter)) ? $page->chapter->number : ''; ?></td>
                   <td>
                     <?php if(isset($language)): ?>
                       <?php echo $language->language ?>

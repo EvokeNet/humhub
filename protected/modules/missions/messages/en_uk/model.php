@@ -46,6 +46,7 @@ return [
     'Locked' => '',
     'Mission ID' => '',
     'Mission Translations' => '',
+    'Mission {position}' => '',
     'Modified At' => '',
     'No, it does not meet the activity\'s requirement' => '',
     'Points' => '',

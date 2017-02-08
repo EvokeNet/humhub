@@ -20,6 +20,8 @@ use yii\widgets\ActiveForm;
         <br>
         <?php echo $form->field($model, 'enabled_evokations')->checkbox(); ?>
         <?php echo $form->field($model, 'enabled_evokation_page_visibility')->checkbox(); ?>
+        <?php echo $form->field($model, 'enabled_novel_read_obligation')->checkbox(); ?>
+        <?php echo $form->field($model, 'novel_order')->checkbox(); ?>
         <hr>
         <?php echo $form->field($model, 'investment_limit')->textInput( ['style' => 'width: 80px;'])->hint(Yii::t('MissionsModule.base', 'Set 0 or empty for unlimited evocoins.')) ; ?>
 

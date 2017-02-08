@@ -111,8 +111,20 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                                 <?php endif; ?>
 
                                 <?php foreach($votes as $vote): ?>
-                                    <div class="submitted-review" style = "padding: 10px 10px 3px; margin-bottom: 20px; border: 3px solid #9013FE;">
-                                        <span><?php echo Yii::t('MissionsModule.base', '<strong>Comment:</strong> {comment}', array('comment' => $vote->comment)); ?></span>
+                                    <div class="submitted-review review-box">
+
+                                        <img class="media-object img-rounded user-image user-<?php echo $vote->user->guid; ?>" alt="40x40"
+                                         data-src="holder.js/40x40" style="display: inline-block;"
+                                         src="<?php echo $vote->user->getProfileImage()->getUrl(); ?>"
+                                         width="40" height="40"/>
+
+                                        &nbsp;<a href="<?= ($vote->user->getUrl()) ?>">
+                                            <?= ($vote->user->username) ?>
+                                        </a>
+
+                                        <?php echo Yii::t('MissionsModule.base', 'in {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]))); ?>
+
+                                        <p style="margin:20px 0"><?php echo $vote->comment; ?></p>
 
                                         <?php if($vote->value == 0): ?>
                                             <div class="alert alert-danger" style="margin:10px 0">
@@ -137,13 +149,6 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                                         <?php endif; ?>
 
                                         <!-- <p><?php //echo Yii::t('MissionsModule.base', 'Rating: {rating}', array('rating' => $vote->value)); ?></p> -->
-
-                                        <span><?php echo Yii::t('MissionsModule.base', 'By'); ?>
-
-                                        <a href="<?= ($vote->user->getUrl()) ?>">
-                                            <?= ($vote->user->username) ?>
-                                        </a>,
-                                        <?php echo \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]); ?></span>
 
                                         <div style="margin:20px 0 10px">
                                             <?php if(Yii::$app->user->isAdmin()): ?>
@@ -299,42 +304,6 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
     </div>
 </div>
 
-
-<style type="text/css">
-
-.trophy-icon{
-    float: right;
-    color: #DED017;
-}
-
-.statistics{
-    font-size: 12px;
-    text-align: right;
-    margin-right: 2%;
-    padding-top: 10px;
-}
-
-.activity_area{
-    background: #e2e2e2;
-    font-size: 12px;
-    padding: 15px;
-    font-weight: bold;
-    border-radius: 4px
-}
-
-.files_area{
-    padding: 15px;
-    background: #e2e2e2;
-    border-radius: 4px;
-    text-align: center;
-}
-
-.submitted-review {
-  word-wrap: break-word;
-}
-
-</style>
-
 <script>
 
 
@@ -379,51 +348,3 @@ jQuery(document).ready(function () {
   });
 });
 </script>
-
-
-
-<style>
-
-/* 
-Reference: 
-https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
-*/
-
-.rating {
-    overflow: hidden;
-    display: inline-block;
-    font-size: 0;
-    position: relative;
-}
-.rating-input {
-    float: right;
-    width: 16px;
-    height: 16px;
-    padding: 0;
-    margin: 0 0 0 -16px;
-    opacity: 0;
-}
-.rating:hover .rating-star:hover,
-.rating:hover .rating-star:hover ~ .rating-star,
-.rating-input:checked ~ .rating-star {
-    background-position: 0 0;
-}
-.rating-star,
-.rating:hover .rating-star {
-    position: relative;
-    float: right;
-    display: block;
-    width: 40px;
-    height: 40px;
-    background: url('http://kubyshkin.ru/samples/star-rating/star.png') 0 -40px;
-    background-size: cover;
-}
-
-.stars {
-    text-align: center;
-    /*font-size: 2em;*/
-    color: #ece046;
-    /*margin-top: -14px;*/
-}
-
-</style>
