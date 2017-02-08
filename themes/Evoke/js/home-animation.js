@@ -9,19 +9,20 @@ var $creativeVisionaryPowers = $("#creativeVisionaryPowers .power"),
     $systemsThinkerPowers = $('#systemsThinkerPowers .power'),
     $systemsThinker = $('#systemsThinker'),
     powerOffsets = [],
-    screenWidth = screen.width;
+    screenWidth = screen.width,
+    title1 = document.getElementById('animationTitle').getAttribute('data-title-1'),
+    title2 = document.getElementById('animationTitle').getAttribute('data-title-2');
 
 // only need one set since they all "start" in the same position
 $creativeVisionaryPowers.each(function(index, element){
   powerOffsets.push($(element).offset());
 });
 
-
 //start the timeline
 //remove mask
 tl.set('#animationMask', {opacity: 0});
 
-tl.to('#animationTitle', 1, {text: "You have the power to change the world.", ease: Linear.easeNone});
+tl.to('#animationTitle', 1, {text: title1, ease: Linear.easeNone});
 
 // creative visionary powers
 tl.staggerFrom($creativeVisionaryPowers, 4, {
@@ -99,7 +100,7 @@ tl.staggerTo($systemsThinkerPowers, 4, {
 }, 0.1);
 tl.to('#systemsThinkerPowers .power-name', 1, {opacity: 0}, '-=4');
 
-tl.to('#animationTitle', 1, {text: "Your adventure starts now.", ease: Linear.easeNone });
+tl.to('#animationTitle', 1, {text: title2, ease: Linear.easeNone });
 
 tl.to('#loginForms', 1, {y: '-200px', ease:Power3.easeInOut});
 tl.to('#loadedBody', 1, {y: '-200px', ease:Power3.easeInOut}, '-=1');

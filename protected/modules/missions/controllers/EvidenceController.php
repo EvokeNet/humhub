@@ -486,7 +486,7 @@ class EvidenceController extends ContentContainerController
         } else{
 
             //ACTIVITY POWER POINTS
-            $activityPowers = ActivityPowers::findAll(['activity_id' => $evidence->activities_id]);
+            $activityPowers = ActivityPowers::find()->where(['activity_id' => $evidence->activities_id])->orderBy('flag ASC')->all();
             $user = Yii::$app->user->getIdentity();
             $activity = Activities::findOne(['id' => $evidence->activities_id]);
 
