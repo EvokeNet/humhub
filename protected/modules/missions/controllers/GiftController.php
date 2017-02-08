@@ -28,7 +28,6 @@ class GiftController extends Controller
 		}else{
 			AlertController::createAlert("Error", Yii::t('MissionsModule.base', 'No enough Evocoins!'));
 		}
-		
 	}
 
 }
