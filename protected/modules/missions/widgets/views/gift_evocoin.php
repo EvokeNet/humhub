@@ -29,6 +29,9 @@ use humhub\compat\CActiveForm;
                       'dataType' => 'json',
                       'type' => 'POST',
                       'url' => Url::to(['/missions/gift/evocoins', 'user_id' => $user->id]),
+                      'complete' => new yii\web\JsExpression('function(){
+                        loadPopUps(); updateEvocoins();
+                      }'),
                   ],
                   'htmlOptions' => [
                         'class' => 'btn btn-cta2',
