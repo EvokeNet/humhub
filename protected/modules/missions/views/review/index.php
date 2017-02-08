@@ -9,6 +9,9 @@ if($evidence){
 
 $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
 
+$tags_count = sizeof($tags);
+$tags_rows_number =  ceil($tags_count / 3);
+
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -152,6 +155,19 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                     <p style = "margin-bottom:25px"><?= Yii::t('MissionsModule.base', '<strong>Activity Rubric:</strong> {rubric}', array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></p>
 
                 <form id = "review" class="review">
+                    <table>
+                        <?php for ($x=0; $x < $tags_rows_number ; $x++): ?>
+                        <tr>
+                            <?php for ($y=0; $y < 3 && ($x * 3 + $y < $tags_count); $y++): ?>
+                            <?php
+                                $current_index = $x * 3 + $y;
+
+                            ?>
+                                <td><input type="checkbox" name="tags" value=""><?= $tags[$current_index]->title ?></td>
+                            <?php endfor; ?>
+                        </tr>
+                    <?php endfor; ?>
+                    </table>
 
                     <input type="hidden" id="evidence_id" value="<?= $evidence->id ?>">
                     <label id="star_hint"></label><BR>
@@ -170,7 +186,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                             <p style="float:right"><?php echo Yii::t('MissionsModule.base', '{user} awarded + {value} {title}', array('user' => '', 'title' => $primaryPowerTitle, 'value' => $activity->getPrimaryPowers()[0]->value)); ?></p>
                         <?php endif; ?>
 
-                        <?php echo Html::textArea("text", $comment , array('id' => 'review_comment', 'class' => 'text-margin form-control count-chars ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "140 characters required"))); ?>
+                        <?php echo Html::textArea("text", $comment , array('id' => 'review_comment', 'class' => 'text-margin form-control count-chars ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Leave a comment (optional, 140 characters required)"))); ?>
                         <br>
                         
                         <button type="submit" id="post_submit_review" class="btn btn-cta2">

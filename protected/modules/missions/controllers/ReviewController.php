@@ -11,6 +11,7 @@ use app\modules\teams\models\Team;
 use humhub\modules\space\models\Membership;
 use humhub\modules\space\models\Space;
 use yii\web\HttpException;
+use app\modules\missions\models\Tags;
 
 class ReviewController extends ContentContainerController
 {
@@ -118,6 +119,8 @@ class ReviewController extends ContentContainerController
 
     public function actionIndex()
     {
+        $tags = Tags::find()->all();
+
         $user = Yii::$app->user->getIdentity();
 
         $nextEvidence = $this->getNextEvidence($this->contentContainer);
@@ -130,7 +133,7 @@ class ReviewController extends ContentContainerController
             $this->redirect($this->contentContainer->createUrl());
         }
 
-        return $this->render('index', array('contentContainer' => $this->contentContainer, 'evidence' => $evidence, 'files' => $files, 'evidence_count' => $totalEvidence, 'evidence_to_review_count' => $evidence_to_review_count));
+        return $this->render('index', array('contentContainer' => $this->contentContainer, 'evidence' => $evidence, 'files' => $files, 'evidence_count' => $totalEvidence, 'evidence_to_review_count' => $evidence_to_review_count, 'tags' => $tags));
     }
 
     public function actionShow($id)
