@@ -161,7 +161,7 @@ echo Html::beginForm();
                 </h6>
             </div>
 
-            <div class="mentors_avg_stars">
+            <div class="mentors_avg_stars" title="<?= number_format((float)$mentor_average_votes, 2, '.', '') ?>">
               <?php for ($i = 0; $i < 5; $i++): ?>
                 <?php if ($mentor_average_votes > $i): ?>
                   <?php if (($mentor_average_votes - $i) < 1): ?>
@@ -348,7 +348,7 @@ echo Html::beginForm();
               </table>  
             </div>
 
-            <div class="users_avg_stars">
+            <div class="users_avg_stars" title="<?= number_format((float)$user_average_votes, 2, '.', '') ?>">
               <?php for ($i = 0; $i < 5; $i++): ?>
                 <?php if ($user_average_votes > $i): ?>
                   <?php if (($user_average_votes - $i) < 1): ?>
