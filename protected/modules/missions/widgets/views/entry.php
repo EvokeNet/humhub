@@ -6,6 +6,7 @@ use humhub\models\Setting;
 use yii\helpers\Url;
 use yii\web\JsExpression;
 use humhub\compat\CActiveForm;
+use app\modules\missions\models\Votes;
 
 echo Html::beginForm();
   $activity = $evidence->getActivities();
@@ -13,6 +14,10 @@ echo Html::beginForm();
   $user_average_votes = $evidence->getAverageRating('Users');
   $agent_vote_count = $evidence->getVoteCount('Users');
   $agent_vote_count = $agent_vote_count ? $agent_vote_count : 0;
+
+  //Tags columns
+  $tags_count = sizeof($tags);
+  $tags_rows_number =  ceil($tags_count / 3);
 ?>
 
 <!-- EVIDENCE -->
@@ -154,6 +159,23 @@ echo Html::beginForm();
                         <?= Yii::t('MissionsModule.base', 'Mentor Reviews') ?>
                     </a>
                 </h6>
+            </div>
+
+            <div class="mentors_avg_stars">
+              <?php for ($i = 0; $i < 5; $i++): ?>
+                <?php if ($mentor_average_votes > $i): ?>
+                  <?php if (($mentor_average_votes - $i) < 1): ?>
+                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                  <?php else: ?>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  <?php endif; ?>
+                <?php else: ?>
+                  <i class="fa fa-star-o" aria-hidden="true"></i>
+                <?php endif; ?>
+              <?php endfor; ?>
+              <label id="mentors_avg_star_hint">
+                <?= Votes::getAverageRatingStarHint($mentor_average_votes); ?>
+              </label>
             </div>
 
             <div class="panel-body">
@@ -306,6 +328,41 @@ echo Html::beginForm();
                         <?= Yii::t('MissionsModule.base', 'Agent Reviews') ?>
                     </a>
                 </h6>
+            </div>
+
+            <div class="tags_panel">
+              <table>
+                <?php for ($x=0; $x < $tags_rows_number ; $x++): ?>
+                  <tr>
+                      <?php for ($y=0; $y < 3 && ($x * 3 + $y < $tags_count); $y++): ?>
+                        <?php
+                          $current_index = $x * 3 + $y;
+                        ?>
+                        <!-- TAG ROW -->
+                        <td>
+                          <?= $tags[$current_index]['title'] ?>   <?= $tags[$current_index]['amount'] ?> 
+                        </td>
+                      <?php endfor; ?>
+                  </tr>
+                <?php endfor; ?>
+              </table>  
+            </div>
+
+            <div class="users_avg_stars">
+              <?php for ($i = 0; $i < 5; $i++): ?>
+                <?php if ($user_average_votes > $i): ?>
+                  <?php if (($user_average_votes - $i) < 1): ?>
+                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                  <?php else: ?>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  <?php endif; ?>
+                <?php else: ?>
+                  <i class="fa fa-star-o" aria-hidden="true"></i>
+                <?php endif; ?>
+              <?php endfor; ?>
+              <label id="user_avg_star_hint">
+                <?= Votes::getAverageRatingStarHint($user_average_votes); ?>
+              </label>
             </div>
 
             <div class="panel-body">

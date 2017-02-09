@@ -173,6 +173,20 @@ class Votes extends ContentActiveRecord
         return $evidence->content->getUrl();
     }
 
+    public static function getAverageRatingStarHint($average){
+        if($average <= 1){
+            return Yii::t('MissionsModule.base', 'Terrible');
+        }elseif($average <= 2){
+            return Yii::t('MissionsModule.base', 'Poor');
+        }elseif($average <= 3){
+            return Yii::t('MissionsModule.base', 'Ok');
+        }elseif($average <= 4){
+            return Yii::t('MissionsModule.base', 'Good');
+        }elseif($average <= 5){
+            return Yii::t('MissionsModule.base', 'Excellent');
+        }
+    }
+
     public function getStarHint(){
         switch($this->value){
             case 1:

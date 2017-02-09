@@ -48,12 +48,6 @@ use humhub\compat\CActiveForm;
   <?php endif; ?>
 
   <p style="margin:20px 0"><?php echo $vote->comment; ?></p>
-
-  <?php foreach($vote->tags as $tag): ?>
-  <div>
-    <?= $tag->tag->title ?><BR>
-  </div>
-  <?php endforeach; ?>
   
   <?php if($vote->value > 0 ): ?>
 
