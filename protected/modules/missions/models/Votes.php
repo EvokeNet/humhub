@@ -99,6 +99,10 @@ class Votes extends ContentActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
+    public function getTags(){
+        return EvidenceTags::find(['user_id' => $this->user_id, 'evidence_id' => $this->evidence_id])->all();
+    }
+
     public function beforeSave($insert){
         $this->content->user_id = $this->user_id;
         $this->content->object_model = Votes::classname();
