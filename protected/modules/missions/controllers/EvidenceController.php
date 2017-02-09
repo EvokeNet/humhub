@@ -31,6 +31,9 @@ use humhub\modules\admin\models\forms\MailingSettingsForm;
 use app\modules\novel\models\NovelPage;
 use app\modules\novel\models\Chapter;
 
+use app\modules\missions\models\EvidenceTags;
+use yii\db\Expression;
+
 class EvidenceController extends ContentContainerController
 {
 
@@ -568,6 +571,7 @@ class EvidenceController extends ContentContainerController
         $grade = Yii::$app->request->get("grade");
         $comment = Yii::$app->request->get("comment");
         $evidenceId = Yii::$app->request->get("evidenceId");
+        $tags = Yii::$app->request->get("tags");
         $evidence = $evidenceId ? Evidence::findOne($evidenceId) : null;
         $evocoin_earned = 0;
 
@@ -579,11 +583,13 @@ class EvidenceController extends ContentContainerController
             return;
         }
 
+        /*
         if (!empty($comment) && mb_strlen($comment) < 140) {
             //comments must be at least 140 characters long
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
             return;
         }
+        */
 
         /*
             Check if review is valid:
@@ -665,6 +671,18 @@ class EvidenceController extends ContentContainerController
                 $vote->value = $grade;
                 $vote->user_type = $user->group->name;
                 $vote->save();
+
+                //Save Tags
+                foreach($tags as $tag_id){
+                    $tag = new EvidenceTags();    
+                    $tag->tag_id = $tag_id;
+                    $tag->evidence_id = $evidenceId;
+                    $tag->user_id = $user->id;
+                    $tag->created_at = new Expression('NOW()');
+                    $tag->updated_at = new Expression('NOW()');
+                    $tag->save();
+                }
+
                 $evocoin_earned = 0;
 
                 //Reward reviewer 1 evocoin

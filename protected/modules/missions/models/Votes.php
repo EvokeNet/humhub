@@ -12,6 +12,7 @@ use app\modules\missions\models\Activities;
 use app\modules\powers\models\UserPowers;
 use humhub\modules\admin\models\forms\MailingSettingsForm;
 use humhub\modules\user\models\Setting;
+use app\modules\missions\models\EvidenceTags;
 
 /**
  * This is the model class for table "votes".
@@ -232,6 +233,12 @@ class Votes extends ContentActiveRecord
                 UserPowers::removePowerPoint($activity_power->getPower(), $user, $value);
             }
 
+        }
+
+        //remove tags
+        $tags = EvidenceTags::find(['user_id' => $this->user_id, 'evidence_id' => $this->evidence_id])->all();
+        foreach($tags as $tag){
+            $tag->delete();
         }
 
         return parent::beforeDelete();

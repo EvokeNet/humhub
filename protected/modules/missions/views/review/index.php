@@ -161,9 +161,8 @@ $tags_rows_number =  ceil($tags_count / 3);
                             <?php for ($y=0; $y < 3 && ($x * 3 + $y < $tags_count); $y++): ?>
                             <?php
                                 $current_index = $x * 3 + $y;
-
                             ?>
-                                <td><input type="checkbox" name="tags" value=""><?= $tags[$current_index]->title ?></td>
+                                <td><input type="checkbox" id="tags" name="tags" value="<?= $tags[$current_index]->id ?>"><?= $tags[$current_index]->title ?></td>
                             <?php endfor; ?>
                         </tr>
                     <?php endfor; ?>
@@ -186,7 +185,7 @@ $tags_rows_number =  ceil($tags_count / 3);
                             <p style="float:right"><?php echo Yii::t('MissionsModule.base', '{user} awarded + {value} {title}', array('user' => '', 'title' => $primaryPowerTitle, 'value' => $activity->getPrimaryPowers()[0]->value)); ?></p>
                         <?php endif; ?>
 
-                        <?php echo Html::textArea("text", $comment , array('id' => 'review_comment', 'class' => 'text-margin form-control count-chars ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Leave a comment (optional, 140 characters required)"))); ?>
+                        <?php echo Html::textArea("text", $comment , array('id' => 'review_comment', 'class' => 'text-margin form-control count-chars ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Leave a comment (optional)"))); ?>
                         <br>
                         
                         <button type="submit" id="post_submit_review" class="btn btn-cta2">
@@ -214,7 +213,7 @@ $tags_rows_number =  ceil($tags_count / 3);
 <script>
 
 
-function review(id, comment, opt, grade){
+function review(id, comment, opt, grade, tags){
     grade = grade? grade : 0;
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -226,22 +225,41 @@ function review(id, comment, opt, grade){
             loadPopUps();            
         }
     };
-    xhttp.open("GET", "<?= $contentContainer->createUrl('/missions/evidence/review'); ?>&opt="+opt+"&grade="+grade+"&evidenceId="+id+"&comment="+comment , true);
+    xhttp.open(
+        "GET", 
+        "<?= $contentContainer->createUrl('/missions/evidence/review'); ?>&opt="+opt+
+        "&grade="+grade+
+        "&evidenceId="+id+
+        "&comment="+comment+
+        getTagsArrayUrl(tags),
+        true
+    );
     xhttp.send();
 
     return false;
 }
 
-function validateReview(id){
+function getTagsArrayUrl(tags){
+    var url = "";
+    for(var x = 0; x < tags.length; x++){
+        url = url + "&tags[]=" + tags[x];
+    }
+    return url;
+}
 
+function validateReview(id){
 
     var opt = 'yes'; //always yes for agents
     var grade = document.querySelector('input[name="grade"]:checked');
-  var comment = document.getElementById("review_comment").value;
+    var comment = document.getElementById("review_comment").value;
+    var tag_inputs = $("input[name=tags]:checked");
+    var tags = [];
+    for(var x = 0; x < tag_inputs.length; x++){
+        tags.push(tag_inputs[x].value);
+    }
     grade = grade? grade.value : null;
-  console.log(grade);
 
-  return review(id, comment, opt, grade);
+  return review(id, comment, opt, grade, tags);
 }
 
 jQuery(document).ready(function () {
