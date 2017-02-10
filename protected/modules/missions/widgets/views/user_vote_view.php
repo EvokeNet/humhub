@@ -12,7 +12,8 @@ use humhub\compat\CActiveForm;
 
 <div class="review-box" id="vote_tab_<?= $vote->id ?>">
   
-  <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors" || $vote->user->group->name == "Mentors"): ?>
+  <?php // Deactivated if(Yii::$app->user->getIdentity()->group->name == "Mentors" || $vote->user->group->name == "Mentors"): ?>
+  <?php if(true): ?>
     <img class="media-object img-rounded user-image user-<?php echo $vote->user->guid; ?>" alt="40x40"
          data-src="holder.js/40x40" style="display: inline-block;"
          src="<?php echo $vote->user->getProfileImage()->getUrl(); ?>"
