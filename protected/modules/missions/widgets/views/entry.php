@@ -12,6 +12,7 @@ echo Html::beginForm();
   $activity = $evidence->getActivities();
   $mentor_average_votes = $evidence->getAverageRating('Mentors');
   $user_average_votes = $evidence->getAverageRating('Users');
+  $mentor_vote_count = $evidence->getVoteCount('Mentors');
   $agent_vote_count = $evidence->getVoteCount('Users');
   $agent_vote_count = $agent_vote_count ? $agent_vote_count : 0;
 
@@ -90,6 +91,8 @@ echo Html::beginForm();
 
         <div class="mentor-votes col-xs-6">
 
+
+
           <div class="stars">
             <?php for ($i = 0; $i < 5; $i++): ?>
               <?php if ($mentor_average_votes > $i): ?>
@@ -161,7 +164,10 @@ echo Html::beginForm();
                 </h6>
             </div>
             
-            <div class="tags_panel">
+            <!-- if there's at  least one review -->
+            <?php if($mentor_vote_count > 0): ?>
+              <div class="tags_panel">
+
               <div class="mentors_avg_stars stars" title="<?= number_format((float)$mentor_average_votes, 2, '.', '') ?>">
                 <?php for ($i = 0; $i < 5; $i++): ?>
                   <?php if ($mentor_average_votes > $i): ?>
@@ -179,6 +185,8 @@ echo Html::beginForm();
               <span id="mentors_avg_star_hint">
                 <?= Votes::getAverageRatingStarHint($mentor_average_votes); ?>
               </span>
+            <?php endif; ?>
+            
 
             </div>
 
@@ -334,7 +342,9 @@ echo Html::beginForm();
                 </h6>
             </div>
 
-            <div class="tags_panel">
+            <!-- if there's at least one review -->
+            <?php if($agent_vote_count > 0): ?>
+              <div class="tags_panel">
             
               <div class="row" style="margin-bottom:50px">
                     <?php foreach($tags as $key => $tag): ?>
@@ -362,6 +372,7 @@ echo Html::beginForm();
               <span id="user_avg_star_hint">
                 <?= Votes::getAverageRatingStarHint($user_average_votes); ?>
               </span>
+            <?php endif; ?>
 
             </div>
 
