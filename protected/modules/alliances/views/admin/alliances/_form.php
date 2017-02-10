@@ -20,3 +20,28 @@ use yii\helpers\ArrayHelper;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+
+<script>
+
+  $(document).on('ready', function(){
+
+    var $team_1_select = $('#alliance-team_1'),
+        $team_2_select = $('#alliance-team_2');
+
+    $team_1_select.on('change', function(e){
+      $team_2_select.find('option:disabled').prop('disabled', false);
+
+      $team_2_select.find('option[value*=' + $team_1_select.val() + ']').prop('disabled', true);
+    });
+
+    $team_2_select.on('change', function(e){
+      $team_1_select.find('option:disabled').prop('disabled', false);
+
+      $team_1_select.find('option[value*=' + $team_2_select.val() + ']').prop('disabled', true);
+    });
+
+
+  });
+
+</script>
