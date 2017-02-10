@@ -12,6 +12,7 @@ use app\modules\missions\models\Activities;
 use app\modules\powers\models\UserPowers;
 use humhub\modules\admin\models\forms\MailingSettingsForm;
 use humhub\modules\user\models\Setting;
+use app\modules\missions\models\EvidenceTags;
 
 /**
  * This is the model class for table "votes".
@@ -98,6 +99,10 @@ class Votes extends ContentActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
+    public function getTags(){
+        return EvidenceTags::find(['user_id' => $this->user_id, 'evidence_id' => $this->evidence_id])->all();
+    }
+
     public function beforeSave($insert){
         $this->content->user_id = $this->user_id;
         $this->content->object_model = Votes::classname();
@@ -168,6 +173,41 @@ class Votes extends ContentActiveRecord
         return $evidence->content->getUrl();
     }
 
+    public static function getAverageRatingStarHint($average){
+        if($average <= 1){
+            return Yii::t('MissionsModule.base', 'Terrible');
+        }elseif($average <= 2){
+            return Yii::t('MissionsModule.base', 'Poor');
+        }elseif($average <= 3){
+            return Yii::t('MissionsModule.base', 'Ok');
+        }elseif($average <= 4){
+            return Yii::t('MissionsModule.base', 'Good');
+        }elseif($average <= 5){
+            return Yii::t('MissionsModule.base', 'Excellent');
+        }
+    }
+
+    public function getStarHint(){
+        switch($this->value){
+            case 1:
+                return Yii::t('MissionsModule.base', 'Terrible');
+                break;
+            case 2:
+                return Yii::t('MissionsModule.base', 'Poor');
+                break;
+            case 3:
+                return Yii::t('MissionsModule.base', 'Ok');
+                break;
+            case 4:
+                return Yii::t('MissionsModule.base', 'Good');
+                break;
+            case 5:
+                return Yii::t('MissionsModule.base', 'Excellent');
+                break;
+        }
+        return null;
+    }
+
     public function beforeDelete()
     {
         $notifications = Notification::findAll(['source_pk' => $this->id, 'source_class' => Votes::classname()]);
@@ -211,6 +251,12 @@ class Votes extends ContentActiveRecord
                 UserPowers::removePowerPoint($activity_power->getPower(), $user, $value);
             }
 
+        }
+
+        //remove tags
+        $tags = EvidenceTags::find(['user_id' => $this->user_id, 'evidence_id' => $this->evidence_id])->all();
+        foreach($tags as $tag){
+            $tag->delete();
         }
 
         return parent::beforeDelete();

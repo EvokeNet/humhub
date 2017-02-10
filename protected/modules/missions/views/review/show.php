@@ -7,7 +7,7 @@ use humhub\compat\CActiveForm;
 
 $this->title = Yii::t('MissionsModule.base', 'Review Evidence');
 
-$this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.base', 'Evidences To Be Reviewed'), 'url' => ['list', 'sguid' => $contentContainer->guid]];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.base', 'Review Evidences'), 'url' => ['list', 'sguid' => $contentContainer->guid]];
 $this->params['breadcrumbs'][] = $this->title;
         
 echo Breadcrumbs::widget([

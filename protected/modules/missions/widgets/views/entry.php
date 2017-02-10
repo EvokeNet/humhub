@@ -6,13 +6,16 @@ use humhub\models\Setting;
 use yii\helpers\Url;
 use yii\web\JsExpression;
 use humhub\compat\CActiveForm;
+use app\modules\missions\models\Votes;
 
 echo Html::beginForm();
   $activity = $evidence->getActivities();
   $mentor_average_votes = $evidence->getAverageRating('Mentors');
   $user_average_votes = $evidence->getAverageRating('Users');
+  $mentor_vote_count = $evidence->getVoteCount('Mentors');
   $agent_vote_count = $evidence->getVoteCount('Users');
   $agent_vote_count = $agent_vote_count ? $agent_vote_count : 0;
+
 ?>
 
 <!-- EVIDENCE -->
@@ -85,6 +88,8 @@ echo Html::beginForm();
 
         <div class="mentor-votes col-xs-6">
 
+
+
           <div class="stars">
             <?php for ($i = 0; $i < 5; $i++): ?>
               <?php if ($mentor_average_votes > $i): ?>
@@ -155,6 +160,32 @@ echo Html::beginForm();
                     </a>
                 </h6>
             </div>
+            
+            <!-- if there's at  least one review -->
+            <?php if($mentor_vote_count > 0): ?>
+              <div class="tags_panel">
+
+              <div class="mentors_avg_stars stars" title="<?= number_format((float)$mentor_average_votes, 2, '.', '') ?>">
+                <?php for ($i = 0; $i < 5; $i++): ?>
+                  <?php if ($mentor_average_votes > $i): ?>
+                    <?php if (($mentor_average_votes - $i) < 1): ?>
+                      <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                    <?php else: ?>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                    <?php endif; ?>
+                  <?php else: ?>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                  <?php endif; ?>
+                <?php endfor; ?>
+              </div>
+
+              <span id="mentors_avg_star_hint">
+                <?= Votes::getAverageRatingStarHint($mentor_average_votes); ?>
+              </span>
+            <?php endif; ?>
+            
+
+            </div>
 
             <div class="panel-body">
                 <div id="collapseMentorEvidenceReviews<?= $evidence->id ?>"  class="panel-collapse" aria-expanded="false">
@@ -206,6 +237,7 @@ echo Html::beginForm();
                                         <?php endif; ?>
                                       <?php endfor; ?>
                                     </div>
+                                    <label id="star_hint"><?= $vote->getStarHint(); ?></label><BR>
                                 <?php else: ?>
                                   <div class="label-danger">
                                     <p style="color:#F4F4F4; text-align: center;"><?php echo Yii::t('MissionsModule.base', 'Does not meet rubric'); ?></p>
@@ -305,6 +337,40 @@ echo Html::beginForm();
                         <?= Yii::t('MissionsModule.base', 'Agent Reviews') ?>
                     </a>
                 </h6>
+            </div>
+
+            <!-- if there's at least one review -->
+            <?php if($agent_vote_count > 0): ?>
+              <div class="tags_panel">
+            
+              <div class="row" style="margin-bottom:50px">
+                    <?php foreach($tags as $key => $tag): ?>
+                    <div class="col-sm-4">
+                        <span><?= empty($tags[$key]['translation']) ? $tags[$key]['title'] : $tags[$key]['translation'] ?></span>
+                        <span style="float:right"><?= $tags[$key]['amount'] ?></span>
+                    </div>
+                    <?php endforeach; ?>
+              </div>
+
+              <div class="users_avg_stars stars" title="<?= number_format((float)$user_average_votes, 2, '.', '') ?>">
+                <?php for ($i = 0; $i < 5; $i++): ?>
+                  <?php if ($user_average_votes > $i): ?>
+                    <?php if (($user_average_votes - $i) < 1): ?>
+                      <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                    <?php else: ?>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                    <?php endif; ?>
+                  <?php else: ?>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                  <?php endif; ?>
+                <?php endfor; ?>
+              </div>
+
+              <span id="user_avg_star_hint">
+                <?= Votes::getAverageRatingStarHint($user_average_votes); ?>
+              </span>
+            <?php endif; ?>
+
             </div>
 
             <div class="panel-body">
