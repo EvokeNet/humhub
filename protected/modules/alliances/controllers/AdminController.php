@@ -32,7 +32,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
         $allied_team_ids[] = $allied_team->team_2;
       }
 
-      $teams = Team::find()->where(['not in', 'id', $allied_team_ids])->all();
+      $teams = Team::find()->where(['not in', 'id', $allied_team_ids])->andWhere(['is_team' => 1])->all();
 
 
       if ($model->load(Yii::$app->request->post())) {
@@ -62,7 +62,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
           $allied_team_ids[] = $allied_team->team_2;
         }
 
-        $teams = Team::find()->where(['not in', 'id', $allied_team_ids])->all();
+        $teams = Team::find()->where(['not in', 'id', $allied_team_ids])->andWhere(['is_team' => 1])->all();
 
         if ($model->load(Yii::$app->request->post())) {
 
