@@ -349,7 +349,7 @@ echo Html::beginForm();
               <div class="row" style="margin-bottom:50px">
                     <?php foreach($tags as $key => $tag): ?>
                     <div class="col-sm-4">
-                        <span><?= $tags[$key]['title'] ?></span>
+                        <span><?= empty($tags[$key]['translation']) ? $tags[$key]['title'] : $tags[$key]['translation'] ?></span>
                         <span style="float:right"><?= $tags[$key]['amount'] ?></span>
                     </div>
                     <?php endforeach; ?>
