@@ -9,9 +9,6 @@ if($evidence){
 
 $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
 
-$tags_count = sizeof($tags);
-$tags_rows_number =  ceil($tags_count / 3);
-
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -169,26 +166,11 @@ $tags_rows_number =  ceil($tags_count / 3);
                         <?php foreach($tags as $tag): ?>
                         <div class="col-sm-4">
                             <input type="checkbox" id="tags" name="tags" value="<?= $tag->id ?>">
-                                <?= $tag->title ?>
+                                <?= $tag->getTitleTranslation() ?>
                         </div>
                         <?php endforeach; ?>
 
                     </div>
-
-                    <!--<table>
-                        <?php for ($x=0; $x < $tags_rows_number ; $x++): ?>
-                        <tr>
-                            <?php for ($y=0; $y < 3 && ($x * 3 + $y < $tags_count); $y++): ?>
-                            <?php
-                                $current_index = $x * 3 + $y;
-                            ?>
-                                <td><input type="checkbox" id="tags" name="tags" value="<?= $tags[$current_index]->id ?>">
-                                    <?= $tags[$current_index]->title ?>
-                                </td>
-                            <?php endfor; ?>
-                        </tr>
-                    <?php endfor; ?>
-                    </table>-->
 
                     <div style="text-align:center; margin-top:60px">
                         <input type="hidden" id="evidence_id" value="<?= $evidence->id ?>">

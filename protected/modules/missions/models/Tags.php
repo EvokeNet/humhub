@@ -6,6 +6,7 @@ use Yii;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
 use yii\behaviors\TimestampBehavior;
+use app\modules\languages\models\Languages;
 
 /**
  * This is the model class for table "tags".
@@ -76,5 +77,14 @@ class Tags extends \yii\db\ActiveRecord
     public function getEvidenceTags()
     {
         return $this->hasMany(EvidenceTags::className(), ['tag_id' => 'id']);
+    }
+
+    public function getTitleTranslation(){
+        $language_id = Languages::getLanguage()->id;
+        $translation = TagTranslations::findOne(['tag_id' => $this->id, 'language_id' => $language_id]);
+        if($translation){
+            return TagTranslations::findOne(['tag_id' => $this->id])->title;    
+        }
+        return $this->title;
     }
 }

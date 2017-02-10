@@ -16,9 +16,6 @@ echo Html::beginForm();
   $agent_vote_count = $evidence->getVoteCount('Users');
   $agent_vote_count = $agent_vote_count ? $agent_vote_count : 0;
 
-  //Tags columns
-  $tags_count = sizeof($tags);
-  $tags_rows_number =  ceil($tags_count / 3);
 ?>
 
 <!-- EVIDENCE -->
