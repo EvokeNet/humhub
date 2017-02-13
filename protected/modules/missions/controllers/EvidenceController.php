@@ -673,14 +673,16 @@ class EvidenceController extends ContentContainerController
                 $vote->save();
 
                 //Save Tags
-                foreach($tags as $tag_id){
-                    $tag = new EvidenceTags();    
-                    $tag->tag_id = $tag_id;
-                    $tag->evidence_id = $evidenceId;
-                    $tag->user_id = $user->id;
-                    $tag->created_at = new Expression('NOW()');
-                    $tag->updated_at = new Expression('NOW()');
-                    $tag->save();
+                if($tags){
+                    foreach($tags as $tag_id){
+                        $tag = new EvidenceTags();    
+                        $tag->tag_id = $tag_id;
+                        $tag->evidence_id = $evidenceId;
+                        $tag->user_id = $user->id;
+                        $tag->created_at = new Expression('NOW()');
+                        $tag->updated_at = new Expression('NOW()');
+                        $tag->save();
+                    }
                 }
 
                 $evocoin_earned = 0;
