@@ -74,66 +74,6 @@ echo Html::beginForm();
 
     </div>
 
-    <div class = "evidence-mission-box">
-      <div style="text-align: center">
-        <span style="margin-bottom: 10px; display: inline-block; margin-top: 10px; font-weight: 700; font-size: 13pt;">
-          <?= Yii::t('MissionsModule.base', 'Mission {mission}, Activity {activity}:', array('mission' => $activity->mission->position, 'activity' => $activity->position)); ?>
-          <?php echo Html::a(
-                (isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title),
-                ['/missions/evidence/show', 'activityId' => $activity->id, 'sguid' => $contentContainer->guid], array('class' => '', 'style' => 'text-decoration: underline')); ?>
-        </span>
-      </div>
-
-      <div class="votes-container row" style="margin-top:10px">
-
-        <div class="mentor-votes col-xs-6">
-
-
-
-          <div class="stars">
-            <?php for ($i = 0; $i < 5; $i++): ?>
-              <?php if ($mentor_average_votes > $i): ?>
-                <?php if (($mentor_average_votes - $i) < 1): ?>
-                  <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                <?php else: ?>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                <?php endif; ?>
-              <?php else: ?>
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-              <?php endif; ?>
-            <?php endfor; ?>
-            <p>
-              <?php echo Yii::t('MissionsModule.base', 'Avg Mentor Rating'); ?>
-            </p>
-          </div>
-
-        </div>
-
-        <div class="agent-votes col-xs-6" style="margin-top:10px; text-align:center">
-
-          <div class="rating no-padding-left">
-            <span style="font-size: 9pt; font-weight:700">
-              <?php echo Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $mentor_average_votes? number_format((float)$mentor_average_votes, 1, '.', '') : "-")); ?>
-            </span>
-            <span style="font-size: 9pt; font-weight:700">
-              <?php echo Yii::t('MissionsModule.base', 'Mentor Reviews: {votes}', array('votes' => $evidence->getVoteCount('Mentors')? $evidence->getVoteCount('Mentors') : "0")) ?>
-            </span>
-          </div>
-
-          <div class="rating">
-            <span style="font-size: 9pt; font-weight:700">
-              <?php echo Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $user_average_votes? number_format((float)$user_average_votes, 1, '.', '') : "-")); ?>
-            </span>
-            <span style="font-size: 9pt; font-weight:700">
-              <?php echo Yii::t('MissionsModule.base', 'Agent Reviews: {votes}', array('votes' => $agent_vote_count)) ?>
-            </span>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-
     <?php echo Html::endForm(); ?>
 
     </br>
@@ -169,12 +109,12 @@ echo Html::beginForm();
                 <?php for ($i = 0; $i < 5; $i++): ?>
                   <?php if ($mentor_average_votes > $i): ?>
                     <?php if (($mentor_average_votes - $i) < 1): ?>
-                      <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                      <i class="fa fa-star-half-o fa-lg" aria-hidden="true"></i>
                     <?php else: ?>
-                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star fa-lg" aria-hidden="true"></i>
                     <?php endif; ?>
                   <?php else: ?>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <i class="fa fa-star-o fa-lg" aria-hidden="true"></i>
                   <?php endif; ?>
                 <?php endfor; ?>
               </div>
@@ -204,10 +144,10 @@ echo Html::beginForm();
                             <div class="review-box">
 
                                 <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors" || $vote->user->group->name == "Mentors"): ?>
-                                    <img class="media-object img-rounded user-image user-<?php echo $vote->user->guid; ?>" alt="40x40"
-                                         data-src="holder.js/40x40" style="display: inline-block;"
+                                    <img class="media-object img-rounded user-image user-<?php echo $vote->user->guid; ?>" alt="35x35"
+                                         data-src="holder.js/35x35" style="display: inline-block;"
                                          src="<?php echo $vote->user->getProfileImage()->getUrl(); ?>"
-                                         width="40" height="40"/>
+                                         width="35" height="35"/>
 
                                     &nbsp;<a href="<?= ($vote->user->getUrl()) ?>">
                                         <?= ($vote->user->username) ?>
@@ -221,19 +161,19 @@ echo Html::beginForm();
 
                                 <?php endif; ?>
 
-                                <p style="margin:20px 0"><?php echo $vote->comment; ?></p>
+                                <p style="padding:5px 10px 5px 45px"><?php echo $vote->comment; ?></p>
 
                                 <?php if($vote->value > 0 ): ?>
                                     <div class="stars" style="text-align:left;">
                                       <?php for ($i = 0; $i < 5; $i++): ?>
                                         <?php if ($vote->value > $i): ?>
                                           <?php if (($vote->value - $i) < 1): ?>
-                                            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-half-o fa-lg" aria-hidden="true"></i>
                                           <?php else: ?>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star fa-lg" aria-hidden="true"></i>
                                           <?php endif; ?>
                                         <?php else: ?>
-                                          <i class="fa fa-star-o" aria-hidden="true"></i>
+                                          <i class="fa fa-star-o fa-lg" aria-hidden="true"></i>
                                         <?php endif; ?>
                                       <?php endfor; ?>
                                     </div>
@@ -356,12 +296,12 @@ echo Html::beginForm();
                 <?php for ($i = 0; $i < 5; $i++): ?>
                   <?php if ($user_average_votes > $i): ?>
                     <?php if (($user_average_votes - $i) < 1): ?>
-                      <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                      <i class="fa fa-star-half-o fa-lg" aria-hidden="true"></i>
                     <?php else: ?>
-                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star fa-lg" aria-hidden="true"></i>
                     <?php endif; ?>
                   <?php else: ?>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <i class="fa fa-star-o fa-lg" aria-hidden="true"></i>
                   <?php endif; ?>
                 <?php endfor; ?>
               </div>
@@ -643,13 +583,6 @@ https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
     display: inline-block;
     position: relative;
     font-size: 10pt !important;
-}
-
-.stars {
-  text-align: center;
-  font-size: 2em;
-  color: #ece046;
-  /*margin-top: -14px;*/
 }
 
 </style>

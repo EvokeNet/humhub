@@ -124,7 +124,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
 
                                         <?php echo Yii::t('MissionsModule.base', 'in {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]))); ?>
 
-                                        <p style="margin:20px 0"><?php echo $vote->comment; ?></p>
+                                        <p style="padding:5px 10px 5px 45px"><?php echo $vote->comment; ?></p>
 
                                         <?php if($vote->value == 0): ?>
                                             <div class="alert alert-danger" style="margin:10px 0">

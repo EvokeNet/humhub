@@ -761,6 +761,7 @@ input[type=select] {
 }
 .media .content a {
   color: #03ACC5;
+  font-size: 11pt;
 }
 .media .content .files a {
   color: #63E9FD;
@@ -1337,7 +1338,6 @@ input[type=select] {
 .checkbox label {
   padding-left: 10px;
   min-height: 20px;
-  line-height: 16px;
   font-size: 12pt;
 }
 .form-control {
@@ -2695,24 +2695,24 @@ img.bounceIn {
 .glowing-box {
   background-color: #07111C;
   margin-top: 30px;
-  border: 3px solid #254054;
+  border: 2px solid #254054;
 }
 .evidence-mission-box {
   background-color: #07111C;
   margin-top: 30px;
-  border: 3px solid #254054;
+  border: 2px solid #254054;
   padding: 5px 0px 15px;
 }
 .review-box {
   background-color: #07111C;
   margin-top: 30px;
-  border: 3px solid #254054;
+  border: 2px solid #254054;
   padding: 15px;
 }
 .leaderboard-box {
   background-color: #07111C;
   margin-top: 30px;
-  border: 3px solid #254054;
+  border: 2px solid #254054;
   padding: 20px;
 }
 .leaderboard-box .l-name {
@@ -2731,7 +2731,7 @@ img.bounceIn {
 .achievements-box {
   background-color: #07111C;
   margin-top: 30px;
-  border: 3px solid #254054;
+  border: 2px solid #254054;
   text-align: center;
   padding: 40px 30px;
   width: 200px;
@@ -3079,7 +3079,7 @@ https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
 .stars {
   text-align: center;
   /*font-size: 2em;*/
-  color: #ece046;
+  color: #FEAE1B;
   /*margin-top: -14px;*/
 }
 /* missions\views\space\members */
@@ -3492,7 +3492,7 @@ legend {
   color: #FEAE1B;
 }
 .hints {
-  margin-bottom: 10px;
+  margin-top: 10px;
   color: #03ACC5;
   text-transform: uppercase;
   font-weight: 700;
@@ -3501,7 +3501,7 @@ legend {
   display: block;
   margin-left: -8px;
   margin-top: -10px;
-  margin-bottom: 10px;
+  margin-top: 10px;
   color: #03ACC5;
   text-transform: uppercase;
   font-weight: 700;
@@ -3514,7 +3514,7 @@ legend {
 #mentors_avg_star_hint {
   display: block;
   text-align: center;
-  margin-bottom: 10px;
+  margin-top: 10px;
   color: #03ACC5;
   text-transform: uppercase;
   font-weight: 700;
