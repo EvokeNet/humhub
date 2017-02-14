@@ -728,6 +728,8 @@ class EvidenceController extends ContentContainerController
 
                 AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', '{message}. <BR>Thank you for your review.', array('message' => $message)));
                 
+                Votes::checkFiveTaggedEvidencesReward();
+
                 echo $this->renderPartial('..\..\widgets\views\user_vote_view.php', array('vote' => $vote, 'contentContainer' => $this->contentContainer));
             }
         } else{

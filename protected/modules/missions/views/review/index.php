@@ -228,7 +228,8 @@ function review(id, comment, opt, grade, tags){
             next_element.removeAttribute("disabled");
             next_element.removeAttribute("onClick");
             document.getElementById("post_submit_review").innerHTML = "<?php echo Yii::t('MissionsModule.base', 'Update Review'); ?>";
-            loadPopUps();            
+            loadPopUps();      
+            updateEvocoins();      
         }
     };
     xhttp.open(
