@@ -3,6 +3,7 @@
 namespace app\modules\alliances\models;
 
 use Yii;
+use app\modules\alliances\models\queries\AllianceQuery;
 
 /**
  * This is the model class for table `library_resources`
@@ -42,6 +43,11 @@ use Yii;
           'team_1' => Yii::t('AlliancesModule.base', 'Team 1'),
           'team_2' => Yii::t('AlliancesModule.base', 'Team 2'),
         ];
+      }
+
+      public static function find()
+      {
+          return new AllianceQuery(get_called_class());
       }
 
       /**
