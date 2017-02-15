@@ -4,6 +4,8 @@ namespace app\modules\alliances\models;
 
 use Yii;
 use app\modules\alliances\models\queries\AllianceQuery;
+use app\modules\teams\models\Team;
+
 
 /**
  * This is the model class for table `library_resources`
@@ -56,6 +58,12 @@ use app\modules\alliances\models\queries\AllianceQuery;
        */
        public function getAlly($team_id)
        {
-         return 'no ally';
+         if ($this->team_1 == $team_id) {
+           return Team::findOne($this->team_2);
+         } elseif ($this->team_2 == $team_id) {
+           return Team::findOne($this->team_1);
+         } else {
+           return false;
+         }
        }
  }
