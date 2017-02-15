@@ -1638,7 +1638,7 @@ a.list-group-item.active:focus {
   border: 3px solid #01070F;
 }
 .progress-bar {
-  background: #9151FF;
+  background: #D81B60;
 }
 .progress-bar-info {
   background-color: #03ACC5;
@@ -3410,15 +3410,14 @@ h3.product-name {
   text-align: center;
   display: inline-block;
   padding: 10px 15px 0px;
-  background-color: #D81B60;
   width: 140px;
   min-width: 140px;
   margin-bottom: 10px;
   margin-left: 10px;
   min-height: 105px;
+  border: 3px solid #03ACC5;
 }
 .power-cards p {
-  color: #07111C !important;
   font-weight: 700!important;
 }
 .trophy-icon {
@@ -3499,7 +3498,7 @@ legend {
 }
 #star_hint {
   display: block;
-  margin-left: -8px;
+  margin-left: -5px;
   margin-top: -10px;
   margin-top: 10px;
   color: #03ACC5;

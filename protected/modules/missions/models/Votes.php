@@ -13,6 +13,7 @@ use app\modules\powers\models\UserPowers;
 use humhub\modules\admin\models\forms\MailingSettingsForm;
 use humhub\modules\user\models\Setting;
 use app\modules\missions\models\EvidenceTags;
+use humhub\modules\missions\controllers\AlertController;
 
 /**
  * This is the model class for table "votes".
@@ -109,6 +110,24 @@ class Votes extends ContentActiveRecord
         $this->content->object_id = $this->id;
         $this->content->visibility = \humhub\modules\content\models\Content::VISIBILITY_PUBLIC;
         return parent::beforeSave($insert);
+    }
+
+    public function checkFiveTaggedEvidencesReward(){
+
+        $user = Yii::$app->user->getIdentity();
+
+        $tag_count =  (new \yii\db\Query())
+        ->select(['count(distinct evidence_id) as evidence_count'])
+        ->from('evidence_tags as et')
+        ->where(['user_id' => $user->id])
+        ->one()['evidence_count'];
+
+        if($tag_count % 5 == 0 && $tag_count >= 5){
+            $wallet = Wallet::find()->where(['owner_id' => $user->id])->one();
+            $wallet->addCoin(1);
+            $wallet->save();
+            AlertController::createAlert(Yii::t('MissionsModule.base', "Reward"), Yii::t('MissionsModule.base', 'You\'ve received an extra evocoin for the last 5 evidences you\'ve tagged'));
+        }
     }
 
     public function afterSave($insert, $changedAttributes)
