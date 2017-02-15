@@ -137,6 +137,11 @@ function checkDuplication(currentMessage){
   return false;
 }
 
+function reLoadPopUps(){
+  messages = [];
+  loadPopUps;
+}
+
 function loadPopUps(){
 
   if(!activatedPopUp){

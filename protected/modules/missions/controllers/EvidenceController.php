@@ -356,6 +356,10 @@ class EvidenceController extends ContentContainerController
                           $team_members = $team->getTeamMembers();
 
                           foreach ($team_members as $team_member) {
+                            $wallet = Wallet::find()->where(['owner_id' => $team_member->id])->one();
+                            $wallet->addCoin(10);
+                            $wallet->save();
+
                             foreach($activityPowers as $activity_power){
                                 UserPowers::addPowerPoint($activity_power->getPower(), $team_member, $activity_power->value);
                             }
@@ -365,7 +369,14 @@ class EvidenceController extends ContentContainerController
                           foreach($activityPowers as $activity_power){
                               UserPowers::addPowerPoint($activity_power->getPower(), $user, $activity_power->value);
                           }
+                          //EVOCOINS
+                            $wallet = Wallet::find()->where(['owner_id' => $user->id])->one();
+                            $wallet->addCoin(10);
+                            $wallet->save();
                         }
+
+                        //evidence evocoin reward
+                        AlertController::createAlert(Yii::t('MissionsModule.base', "Reward"), Yii::t('MissionsModule.base', 'You\'ve received 10 evocoins for this evidence.'));
 
                         $evidence->content->save();
 
@@ -459,6 +470,11 @@ class EvidenceController extends ContentContainerController
               $team_members = $team->getTeamMembers();
 
               foreach ($team_members as $team_member) {
+
+                $wallet = Wallet::find()->where(['owner_id' => $team_member->id])->one();
+                $wallet->addCoin(10);
+                $wallet->save();
+
                 foreach($activityPowers as $activity_power){
                     UserPowers::addPowerPoint($activity_power->getPower(), $team_member, $activity_power->value);
                 }
@@ -468,7 +484,17 @@ class EvidenceController extends ContentContainerController
               foreach($activityPowers as $activity_power){
                   UserPowers::addPowerPoint($activity_power->getPower(), $user, $activity_power->value);
               }
+
+              //EVOCOINS
+                $wallet = Wallet::find()->where(['owner_id' => $user->id])->one();
+                $wallet->addCoin(10);
+                $wallet->save();
             }
+
+            //evidence evocoin reward
+            AlertController::createAlert(Yii::t('MissionsModule.base', "Reward"), Yii::t('MissionsModule.base', 'You\'ve received 10 evocoins for this evidence.'));
+
+
             //old popup
             //$message = $this->getEvidenceCreatedMessage($activityPowers);
             //AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), $message);

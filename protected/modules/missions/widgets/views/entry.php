@@ -389,7 +389,7 @@ echo Html::beginForm();
                 'dataType' => 'json',
                 'type' => 'POST',
                 'beforeSend' => "function() { validateDraft($evidence->id); }",
-                'success' => "function(response) { handleResponse(response); loadPopUps();}",
+                'success' => "function(response) { handleResponse(response); loadPopUps(); updateEvocoins();}",
                 'url' => $evidence->content->container->createUrl('/missions/evidence/publish', ['id' => $evidence->id]),
             ],
             'htmlOptions' => [
