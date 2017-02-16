@@ -31,7 +31,12 @@ class WallEntry extends \humhub\modules\content\widgets\WallEntry
       $current_user = Yii::$app->user->getIdentity();
       $team_id = Team::getUserTeam($current_user->id);
       $ally = Alliance::find()->findByTeam($team_id)->one();
-      $is_ally = $ally->isAlly(Team::getUserTeam($user->id));
+
+      if (isset($ally)) {
+        $is_ally = $ally->isAlly(Team::getUserTeam($user->id));
+      } else {
+        $is_ally = false;
+      }
 
       return $this->render('entry', array('evidence' => $this->contentObject,
                   'user'             => $user,
