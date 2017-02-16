@@ -138,4 +138,14 @@ class MissionsController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    public function actionTest($space_id, $mission_id){
+        $mission = Missions::findOne($mission_id);
+        echo "Completed Activities: ";
+        echo $mission->getCompletedActivities($space_id);
+        echo "<BR>Total Activities: ";
+        echo sizeof($mission->activities);
+        echo "<BR>Completed? ";
+        print_R($mission->checkMissionCompletion($space_id));
+    }
 }

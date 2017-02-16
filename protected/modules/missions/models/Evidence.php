@@ -17,6 +17,7 @@ use app\modules\powers\models\UserPowers;
 use app\modules\teams\models\Team;
 use app\modules\missions\models\Activities;
 use app\modules\coin\models\Wallet;
+use app\modules\missions\models\Missions;
 
 /**
  * This is the model class for table "evidence".

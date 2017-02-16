@@ -459,8 +459,9 @@ class EvidenceController extends ContentContainerController
             //ACTIVITY POWER POINTS
             $activityPowers = ActivityPowers::findAll(['activity_id' => $evidence->activities_id]);
             $user = Yii::$app->user->getIdentity();
+            $activity = Activities::findOne(['id' => $evidence->activities_id]);
 
-            $is_group_activity = Activities::findOne(['id' => $evidence->activities_id])->is_group;
+            $is_group_activity = $activity->is_group;
 
             // if it's a group activity, we need to award points to all team members
             if ($is_group_activity) {
@@ -485,10 +486,17 @@ class EvidenceController extends ContentContainerController
                   UserPowers::addPowerPoint($activity_power->getPower(), $user, $activity_power->value);
               }
 
-              //EVOCOINS
+              //STANDARD EVOCOINS
                 $wallet = Wallet::find()->where(['owner_id' => $user->id])->one();
                 $wallet->addCoin(10);
                 $wallet->save();
+              
+              //MISSION COMPLETION EVOCOINS                
+                $mission = Mission::findOne($activity->mission_id);
+                if($mission->hasTeamCompleted($team)){
+                    
+                }
+
             }
 
             //evidence evocoin reward

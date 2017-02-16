@@ -87,6 +87,26 @@ class Missions extends \yii\db\ActiveRecord
         return $this->hasMany(Activities::className(), ['mission_id' => 'id'])->orderBy('ISNULL(position), position ASC');
     }
 
+    public function getCompletedActivities($space_id){
+        return (new \yii\db\Query())
+        ->select(['count(DISTINCT ac.id) as count'])
+        ->from('activities as ac')
+        ->join('LEFT JOIN', 'missions as m', 'ac.mission_id = `m`.`id`')
+        ->join('LEFT JOIN', 'evidence as e', 'e.activities_id = `ac`.`id`')
+        ->join('LEFT JOIN', 'user as u', 'e.created_by = `u`.`id`')
+        ->join('LEFT JOIN', 'space_membership as sm', 'sm.user_id = `u`.`id`')
+        ->join('LEFT JOIN', 'space as s', 'sm.space_id = `s`.`id`')
+        ->where(['m.id' => $this->id, 's.id' => $space_id])
+        ->one()['count'];
+    }
+
+    public function hasTeamCompleted($space_id){
+        if($this->getCompletedActivities($space_id) >= sizeof($this->activities)){
+            return true;
+        }
+        return false;
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
