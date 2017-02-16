@@ -58,7 +58,7 @@ $user = Yii::$app->user->getIdentity();
               <?php foreach ($ally_members as $ally_member): ?>
                 <a href="<?php echo $ally_member->getUrl(); ?>">
                   <li class="link">
-                      <?php echo $ally_member->getName(); ?>
+                      <?php echo $ally_member->username; ?>
                       <div class="pull-right">
                         <strong><?php echo Yii::t('MissionsModule.base', 'Reviewed'); ?>:</strong>
                         <?php echo Votes::getReviewCountByUsers($user->id, $ally_member->id); ?>

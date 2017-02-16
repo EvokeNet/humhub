@@ -58,7 +58,7 @@ echo Html::beginForm();
                                 'smoothPlayBar' => true,
                             ]
                         ));
-                        ?> 
+                        ?>
                     <?php elseif ($file->canRead() && ($file->getExtension() == "png" || $file->getExtension() == "jpg" || $file->getExtension() == "jpeg")) : ?>
 
                     <br /><br />
@@ -78,15 +78,15 @@ echo Html::beginForm();
 
     </br>
 
-    <?php 
+    <?php
       if($evidence->content->user_id != Yii::$app->user->getIdentity()->id){
         //already voted
         if($vote = $evidence->getUserVote()){
-          echo $this->render('user_vote_view', array('vote' => $vote, 'contentContainer' => $contentContainer));  
-        }elseif( Yii::$app->user->getIdentity()->group->name == "Mentors"){
-          echo $this->render('mentor_review', array('evidence' => $evidence, 'activity' => $activity));  
+          echo $this->render('user_vote_view', array('vote' => $vote, 'contentContainer' => $contentContainer));
+        } elseif( Yii::$app->user->getIdentity()->group->name == "Mentors" || $is_ally){ //allies and mentors can review
+          echo $this->render('mentor_review', array('evidence' => $evidence, 'activity' => $activity));
         }
-      } 
+      }
     ?>
 
     <BR>
@@ -100,7 +100,7 @@ echo Html::beginForm();
                     </a>
                 </h6>
             </div>
-            
+
             <!-- if there's at  least one review -->
             <?php if($mentor_vote_count > 0): ?>
               <div class="tags_panel">
@@ -123,7 +123,7 @@ echo Html::beginForm();
                 <?= Votes::getAverageRatingStarHint($mentor_average_votes); ?>
               </span>
             <?php endif; ?>
-            
+
 
             </div>
 
@@ -156,7 +156,7 @@ echo Html::beginForm();
                                     <?php echo Yii::t('MissionsModule.base', 'in {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]))); ?>
 
                                 <?php else: ?>
-                                  
+
                                     <?php echo Yii::t('MissionsModule.base', 'Anonymous in {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]))); ?>
 
                                 <?php endif; ?>
@@ -188,7 +188,7 @@ echo Html::beginForm();
                                 <?php echo \humhub\modules\comment\widgets\Comments::widget(array('object' => $vote)); ?>
 
                                 <div style="text-align: right">
-                                  <?php 
+                                  <?php
                                     $enable = "";
                                     $disable = "hidden";
                                     $disables = "hidden";
@@ -198,7 +198,7 @@ echo Html::beginForm();
                                         $disable = "";
                                         $disables = "";
 
-                                    } 
+                                    }
                                   ?>
 
                                     <?php if(Yii::$app->user->isAdmin()): ?>
@@ -255,7 +255,7 @@ echo Html::beginForm();
 
                                     <?php endif; ?>
 
-                                    
+
 
                                 </div>
 
@@ -282,7 +282,7 @@ echo Html::beginForm();
             <!-- if there's at least one review -->
             <?php if($agent_vote_count > 0): ?>
               <div class="tags_panel">
-            
+
               <div class="row" style="margin-bottom:50px">
                     <?php foreach($tags as $key => $tag): ?>
                     <div class="col-sm-4">
@@ -323,7 +323,7 @@ echo Html::beginForm();
                 ?>
                 <div id="collapseAgentEvidenceReviews<?= $evidence->id ?>"  class="panel-collapse collapse" aria-expanded="false">
                     <div class="">
-                        <?php 
+                        <?php
                           foreach($votes as $vote){
                             echo $this->render('user_vote_view', array('vote' => $vote, 'contentContainer' => $contentContainer));
                           }
@@ -335,12 +335,12 @@ echo Html::beginForm();
             <?php if($agent_vote_count > 1): ?>
               <a href="#collapseAgentEvidenceReviews<?= $evidence->id ?>"  class="btn btn-sm btn-primary " data-toggle="collapse">
                  <?= Yii::t('MissionsModule.base', 'Show {total_reviews} agent reviews', ['total_reviews' => $agent_vote_count - 1]) ?>
-              </a>      
+              </a>
             <?php elseif($agent_vote_count == 0): ?>
               <p>
                 <?= Yii::t('MissionsModule.base', 'No agent reviews') ?>
               </p>
-            <?php endif; ?>   
+            <?php endif; ?>
             </div>
         </div>
 
@@ -496,7 +496,15 @@ function review(id, comment, opt, grade){
             loadPopUps();
         }
     };
+
+    <?php if ($is_ally): ?>
+    xhttp.open("GET", "<?= $contentContainer->createUrl('/alliances/alliances/review'); ?>&opt="+opt+"&grade="+grade+"&evidenceId="+id+"&comment="+comment , true);
+    <?php else: ?>
+
     xhttp.open("GET", "<?= $contentContainer->createUrl('/missions/evidence/review'); ?>&opt="+opt+"&grade="+grade+"&evidenceId="+id+"&comment="+comment , true);
+
+    <?php endif; ?>
+
     xhttp.send();
 
     return false;
