@@ -5,6 +5,8 @@ namespace humhub\modules\missions\widgets;
 use Yii;
 use \humhub\modules\user\models\Profile;
 use app\modules\missions\models\EvidenceTags;
+use app\modules\alliances\models\Alliance;
+use app\modules\teams\models\Team;
 
 
 class WallEntry extends \humhub\modules\content\widgets\WallEntry
@@ -26,11 +28,17 @@ class WallEntry extends \humhub\modules\content\widgets\WallEntry
                 ->groupBy('t.id')
                 ->all();
 
-        return $this->render('entry', array('evidence' => $this->contentObject,
-                    'user' => $user,
-                    'name' => $user->getName(),
-                    'tags' => $tags,
-                    'contentContainer' => $this->contentObject->content->container));
+      $current_user = Yii::$app->user->getIdentity();
+      $team_id = Team::getUserTeam($current_user->id);
+      $ally = Alliance::find()->findByTeam($team_id)->one();
+      $is_ally = $ally->isAlly(Team::getUserTeam($user->id));
+
+      return $this->render('entry', array('evidence' => $this->contentObject,
+                  'user'             => $user,
+                  'name'             => $user->getName(),
+                  'tags'             => $tags,
+                  'is_ally'          => $is_ally,
+                  'contentContainer' => $this->contentObject->content->container));
     }
 
 }

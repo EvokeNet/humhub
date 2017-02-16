@@ -3,6 +3,9 @@
 namespace app\modules\alliances\models;
 
 use Yii;
+use app\modules\alliances\models\queries\AllianceQuery;
+use app\modules\teams\models\Team;
+
 
 /**
  * This is the model class for table `library_resources`
@@ -44,12 +47,41 @@ use Yii;
         ];
       }
 
+      public static function find()
+      {
+          return new AllianceQuery(get_called_class());
+      }
+
       /**
        *  Gets the ally for a given team
-       * @return string
+       * @return boolean
        */
        public function getAlly($team_id)
        {
-         return 'no ally';
+         if ($this->team_1 == $team_id) {
+           return Team::findOne($this->team_2);
+         } elseif ($this->team_2 == $team_id) {
+           return Team::findOne($this->team_1);
+         } else {
+           return false;
+         }
+       }
+
+       /**
+        *  returns true if the given id is an allied team and not the current user's team
+        *  @return boolean
+        */
+       public function isAlly($team_id)
+       {
+         $current_user = Yii::$app->user->getIdentity();
+         $user_team_id = Team::getUserTeam($current_user->id);
+
+         if ($team_id == $user_team_id) { //this is the user's team
+           return false;
+         } elseif ($this->team_1 == $team_id || $this->team_2 == $team_id) {
+           return true;
+         } else {
+           return false;
+         }
        }
  }
