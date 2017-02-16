@@ -139,13 +139,19 @@ class MissionsController extends Controller
         }
     }
 
-    public function actionTest($space_id, $mission_id){
+    public function actionTest($space_id, $mission_id, $activity_id=null){
         $mission = Missions::findOne($mission_id);
-        echo "Completed Activities: ";
-        echo $mission->getCompletedActivities($space_id);
+        echo "Total Completed Activities: ";
+        echo sizeof($mission->getCompletedActivities($space_id));
         echo "<BR>Total Activities: ";
         echo sizeof($mission->activities);
         echo "<BR>Completed? ";
-        print_R($mission->checkMissionCompletion($space_id));
+        print_r($mission->hasTeamCompleted($space_id));
+        echo "<BR>Completed Activities: ";
+        foreach($mission->getCompletedActivities($space_id) as $activity){
+            echo $activity['id'].", ";
+        }
+        echo "<BR>Is going to complete? ";
+        print_r($mission->isTeamGoingToComplete($space_id, $activity_id));
     }
 }
