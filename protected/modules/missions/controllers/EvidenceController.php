@@ -34,6 +34,8 @@ use app\modules\novel\models\Chapter;
 use app\modules\missions\models\EvidenceTags;
 use yii\db\Expression;
 
+use app\modules\missions\models\TeamMission;
+
 class EvidenceController extends ContentContainerController
 {
 
@@ -384,6 +386,7 @@ class EvidenceController extends ContentContainerController
                         $evidence->content->save();
 
                          //MISSION COMPLETION EVOCOINS                
+                        if(!TeamMission::isMissionCompleted($activity->mission_id, $team->id)){
                             $mission = Missions::findOne($activity->mission_id);
                             $hasTeamCompletedMission = $mission->hasTeamCompleted($team->id);
                             if($hasTeamCompletedMission){
@@ -392,8 +395,17 @@ class EvidenceController extends ContentContainerController
                                     $wallet->addCoin(100);
                                     $wallet->save();
                                 }
+
+                                $team_mission = new TeamMission();
+                                $team_mission->space_id = $team->id;
+                                $team_mission->mission_id = $mission->id;
+                                $team_mission->created_at = new Expression('NOW()');
+                                $team_mission->updated_at = new Expression('NOW()');
+                                $team_mission->save();
+
                                 AlertController::createAlert(Yii::t('MissionsModule.base', "Reward"), Yii::t('MissionsModule.base', 'You\'ve received 100 evocoins for completing this mission.'));
                             }
+                        }
 
                         //old popup
                         //$message = $this->getEvidenceCreatedMessage($activityPowers);
@@ -513,6 +525,8 @@ class EvidenceController extends ContentContainerController
             
 
             //MISSION COMPLETION EVOCOINS                
+
+            if(!TeamMission::isMissionCompleted($activity->mission_id, $team->id)){
                 $mission = Missions::findOne($activity->mission_id);
                 $isTeamGoingToComplete = $mission->isTeamGoingToComplete($team->id, $activity->id);
                 if($isTeamGoingToComplete){
@@ -521,8 +535,17 @@ class EvidenceController extends ContentContainerController
                         $wallet->addCoin(100);
                         $wallet->save();
                     }
+
+                    $team_mission = new TeamMission();
+                    $team_mission->space_id = $team->id;
+                    $team_mission->mission_id = $mission->id;
+                    $team_mission->created_at = new Expression('NOW()');
+                    $team_mission->updated_at = new Expression('NOW()');
+                    $team_mission->save();
+
                     AlertController::createAlert(Yii::t('MissionsModule.base', "Reward"), Yii::t('MissionsModule.base', 'You\'ve received 100 evocoins for completing this mission.'));
                 }
+            }
 
             //old popup
             //$message = $this->getEvidenceCreatedMessage($activityPowers);

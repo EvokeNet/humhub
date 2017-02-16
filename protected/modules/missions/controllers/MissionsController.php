@@ -139,6 +139,7 @@ class MissionsController extends Controller
         }
     }
 
+/* DEBUG
     public function actionTest($space_id, $mission_id, $activity_id=null){
         $mission = Missions::findOne($mission_id);
         echo "Total Completed Activities: ";
@@ -153,5 +154,8 @@ class MissionsController extends Controller
         }
         echo "<BR>Is going to complete? ";
         print_r($mission->isTeamGoingToComplete($space_id, $activity_id));
+        echo "<BR>Is REALLY completed? ";
+        print_r(\app\modules\missions\models\TeamMission::isMissionCompleted($mission_id, $space_id));
     }
+    */
 }

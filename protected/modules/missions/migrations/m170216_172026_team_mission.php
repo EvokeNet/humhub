@@ -13,6 +13,8 @@ class m170216_172026_team_mission extends Migration
             'updated_at' => 'datetime NULL',
                 ), '');
 
+        $this->addPrimaryKey('team_mission_pk', 'team_mission', ['space_id', 'mission_id']);
+
         $this->addForeignKey(
             'fk-team_mission-space_id',
             'team_mission',
@@ -36,8 +38,8 @@ class m170216_172026_team_mission extends Migration
     {
         $this->dropForeignKey('fk-team_mission-space_id', 'team_mission');
         $this->dropForeignKey('fk-team_mission-mission_id', 'team_mission');
+        $this->dropPrimaryKey('team_mission_pk', 'team_mission');
         $this->dropTable('team_mission');
-
         return true;
     }
 
