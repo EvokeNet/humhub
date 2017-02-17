@@ -419,14 +419,14 @@ class EvidenceController extends ContentContainerController
                         $evidence->content->visibility = 0;
                         $evidence->content->save();
 
-                        AlertController::createAlert(Yii::t('MissionsModule.base', 'Error'),Yii::t('MissionsModule.base', 'Something went wrong.'));
+                        AlertController::sendDefaultErrorMessage();
                         return "error";
                     }
                 }
             }
 
         }else{
-            AlertController::createAlert(Yii::t('MissionsModule.base', 'Error!'), "Something's wrong");
+            AlertController::sendDefaultErrorMessage();
             return "error";
         }
     }
@@ -578,7 +578,7 @@ class EvidenceController extends ContentContainerController
                 $model = Evidence::findOne(['id' => $id]);
                 AlertController::createAlert(Yii::t('MissionsModule.base', 'Draft saved!'),Yii::t('MissionsModule.base', 'Your evidence\'s draft has been saved!'));
             } else {
-                AlertController::createAlert(Yii::t('MissionsModule.base', 'Error'),Yii::t('MissionsModule.base', 'Something went wrong.'));
+                AlertController::sendDefaultErrorMessage();
             }
 
         }
@@ -657,7 +657,7 @@ class EvidenceController extends ContentContainerController
 
         if (empty($comment) && $user->group->name == "Mentors") {
             //mentors must comment
-            AlertController::createAlert("Error", "Oops! Something's wrong.");
+            AlertController::sendDefaultErrorMessage();
             return;
         }
 
@@ -811,7 +811,7 @@ class EvidenceController extends ContentContainerController
                 echo $this->renderPartial('..\..\widgets\views\user_vote_view.php', array('vote' => $vote, 'contentContainer' => $this->contentContainer));
             }
         } else{
-            AlertController::createAlert("Error", "Oops! Something's wrong.");
+            AlertController::sendDefaultErrorMessage();
         }
 
     }
