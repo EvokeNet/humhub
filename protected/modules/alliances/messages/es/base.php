@@ -66,4 +66,5 @@ return [
     "You successfully returned {product}!" => 'Devolviste {prodcuts}!',
     'Sorry, something went wrong with your return' => '',
     'You successfully fulfilled time for {username}!' => 'Cumpliste tiempo por {username}!',
+    'Review Ally Evidence' => 'Evaluar Evidencias Aliadas',
 ];
