@@ -3519,7 +3519,8 @@ legend {
   text-transform: uppercase;
   font-weight: 700;
 }
-#star_hint {
+#star_hint,
+.star_label {
   display: block;
   margin-left: -5px;
   margin-top: -10px;
@@ -3540,4 +3541,10 @@ legend {
   color: #03ACC5;
   text-transform: uppercase;
   font-weight: 700;
+}
+.matching-results-box {
+  margin: 30px 10px;
+}
+.matching-results-box h6 {
+  padding-top: 8px;
 }

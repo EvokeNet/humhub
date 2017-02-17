@@ -32,7 +32,7 @@
 
                 <div class="panel-body">
 
-                  <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'The powers that you possess are:') ?></p>
+                  <h6 style = "margin:10px 0; text-align:center"><?php echo Yii::t('MatchingModule.base', 'The powers that you possess are:') ?></h6>
 
                   <div class="relevant-powers text-center">
                     <?php foreach($relevant_powers as $user_power): ?>
@@ -59,8 +59,9 @@
                     <?php endforeach; ?>
                   </div>
                 </div>
+            </div>
 
-                <br>
+            <div class="panel panel-default">
 
                 <!-- additional powers -->
                  <div class="panel-heading">
@@ -68,7 +69,7 @@
                   <h4><?php echo Yii::t('MatchingModule.base', 'Your Super Powers') ?></h4>
                 </div>
                 <div class="panel-body">
-                  <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'Your powers are the reason why I have summoned you. They are the skills that qualify you to be part of the Evoke network. Now it is time to be your best. Over the course of this experience you must develop the four fundamental superpowers of Evoke agents:') ?></p>
+                  <p style = "margin:10px 0; text-align:center"><?php echo Yii::t('MatchingModule.base', 'Your powers are the reason why I have summoned you. They are the skills that qualify you to be part of the Evoke network. Now it is time to be your best. Over the course of this experience you must develop the four fundamental superpowers of Evoke agents:') ?></p>
 
                   <?php
                     foreach ($super_powers as $quality):
@@ -83,17 +84,15 @@
 
                   ?>
 
-                    <div style = "display:flex; margin-top:30px">
+                    <div class="matching-results-box">
                       
                       <div class="row">
-                        <div class="col-sm-3" style = "margin-top:10px">
+                        <div class="col-sm-3">
                           <img src = "<?php echo $quality->image ?>" width=100 class = "power-border">
                         </div>
                         <div class="col-sm-9">
-                          <h6 style = "font-weight:700; color: #9013FE; margin-bottom:5px"><?= $name ?></h6>
-                          <p style = "font-weight:700; color: #254054">
-                            <?= $description ?>
-                          </p>
+                          <h6><?= $name ?></h6>
+                          <p><?= $description ?></p>
                         </div>
                       </div>
                       
@@ -112,7 +111,7 @@
                   <h6 style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'According to the powers that you have, you are closest to achieving:') ?></h6>
 
                   <img src = "<?php echo $super_power_image_url ?>" width=120 class = "power-border" style = "margin-top:30px">
-                  <h6 style = "color: #9013FE; font-weight:700"><?= $quality1_name ?></h6>
+                  <h6 style = "margin-top:20px;text-transform: uppercase;font-weight:700"><?= $quality1_name ?></h6>
 
                   <br>
                   <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'On this platform you can submit evidence to complete activities within each mission. This will develop all of the superpowers.') ?></p>

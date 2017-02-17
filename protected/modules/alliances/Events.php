@@ -24,7 +24,7 @@ class Events extends \yii\base\Object
       'url' => Url::to(['/alliances/admin/']),
       'group' => 'manage',
       'sortOrder' => 1300,
-      'icon' => '<i class="fa fa-handskae-o"></i>',
+      'icon' => '<i class="fa fa-handshake-o"></i>',
       'isActive' => (
         Yii::$app->controller->module && Yii::$app->controller->module->id == 'alliances'
       )
@@ -44,7 +44,7 @@ class Events extends \yii\base\Object
             'label' => Yii::t('AlliancesModule.event', 'Ally'),
             'group' => 'modules',
             'url' => $space->createUrl('/alliances/alliances/show/', ['id' => $alliance->id]),
-            'icon' => '<i class="fa fa-handskae-o"></i>',
+            'icon' => '<i class="fa fa-handshake-o"></i>',
             'sortOrder' => 400,
             'isActive' => (Yii::$app->controller->module
             && Yii::$app->controller->module->id == 'alliances'
