@@ -58,11 +58,11 @@ use humhub\compat\CActiveForm;
                 <p><?= Yii::t('MissionsModule.base', 'How will you rate this evidence?') ?></p>
                 <span class="rating">
                     <?php for ($x=5; $x >= 1; $x--): ?>
-                      <input id="grade<?= $x ?>_<?= $evidence->id ?>" onClick="setStarHint(<?= $x ?>);$('#yes-input<?= $evidence->id ?>').prop('checked', true)" type="radio" name="grade_<?= $evidence->id ?>" class="rating-input" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> />
+                      <input id="grade<?= $x ?>_<?= $evidence->id ?>" onClick="setStarHint(<?= $x ?>,<?= $evidence->id ?>);$('#yes-input<?= $evidence->id ?>').prop('checked', true)" type="radio" name="grade_<?= $evidence->id ?>" class="rating-input" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> />
                       <label for ="grade<?= $x ?>_<?= $evidence->id ?>" class="rating-star"></label>
                     <?php endfor; ?>
                 </span>
-                <label id="star_hint" style="display:block; margin-bottom:10px"></label>
+                <label id="star_hint<?= $evidence->id ?>" style="display:block; margin-bottom:10px"></label>
               </div>
 
             </div>
@@ -93,22 +93,22 @@ $( document ).ready(function() {
    setStarHint(<?= $grade ?>);
 });
 
-function setStarHint(value){
+function setStarHint(value, id){
   switch(value){
     case 1:
-      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Does not comply with the rubric') ?>");
+      $('#star_hint'+id).html("<?= Yii::t('MissionsModule.base', 'Does not comply with the rubric') ?>");
     break;
     case 2:
-      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Meets the required minimum') ?>");
+      $('#star_hint'+id).html("<?= Yii::t('MissionsModule.base', 'Meets the required minimum') ?>");
     break;
     case 3:
-      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Good') ?>");
+      $('#star_hint'+id).html("<?= Yii::t('MissionsModule.base', 'Good') ?>");
     break;
     case 4:
-      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Excellent') ?>");
+      $('#star_hint'+id).html("<?= Yii::t('MissionsModule.base', 'Excellent') ?>");
     break;
     case 5:
-      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Outstanding') ?>");
+      $('#star_hint'+id).html("<?= Yii::t('MissionsModule.base', 'Outstanding') ?>");
     break;
   }
 }

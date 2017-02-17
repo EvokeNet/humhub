@@ -177,7 +177,7 @@ echo Html::beginForm();
                                         <?php endif; ?>
                                       <?php endfor; ?>
                                     </div>
-                                    <label id="star_hint"><?= $vote->getStarHint(); ?></label><BR>
+                                    <label id="star_hint<?= $evidence->id ?>"><?= $vote->getStarHint(); ?></label><BR>
                                 <?php else: ?>
                                   <div class="label-danger">
                                     <p style="color:#F4F4F4; text-align: center;"><?php echo Yii::t('MissionsModule.base', 'Does not meet rubric'); ?></p>
