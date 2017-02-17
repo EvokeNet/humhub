@@ -96,19 +96,19 @@ $( document ).ready(function() {
 function setStarHint(value){
   switch(value){
     case 1:
-      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Terrible') ?>");
+      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Does not comply with the rubric') ?>");
     break;
     case 2:
-      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Poor') ?>");
+      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Meets the required minimum') ?>");
     break;
     case 3:
-      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Ok') ?>");
-    break;
-    case 4:
       $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Good') ?>");
     break;
-    case 5:
+    case 4:
       $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Excellent') ?>");
+    break;
+    case 5:
+      $('#star_hint').html("<?= Yii::t('MissionsModule.base', 'Outstanding') ?>");
     break;
   }
 }

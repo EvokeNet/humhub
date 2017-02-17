@@ -7,7 +7,7 @@ if($evidence){
     $activity = $evidence->getActivities();
 }
 
-$this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
+$this->pageTitle = Yii::t('MissionsModule.page_titles', 'Review Evidence');
 
 $tags_count = sizeof($tags);
 $tags_rows_number =  ceil($tags_count / 3);

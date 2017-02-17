@@ -1,7 +1,8 @@
 <?php 
 
 echo \humhub\modules\post\widgets\Form::widget(['contentContainer' => $space]); 
-$this->pageTitle = Yii::t('SpaceModule.views_space_index', '{group}', array('group' => $space->name));
+
+$this->pageTitle = Yii::t('SpaceModule.base', 'Team {team}', array('team' => $space->name));
 
 ?>
 

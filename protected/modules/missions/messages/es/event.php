@@ -17,7 +17,6 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Tags' => 'Etíquetas',
     'All Evidences' => 'Todas las Evidencias',
     'Evidences' => 'Evidencias',
     'Evokation' => 'Evokación',
@@ -26,7 +25,6 @@ return [
     'Evokations' => 'Evokations',
     'Evoke Errors\' View' => 'Visualización de Errors de Evoke',
     'Evoke Settings' => 'Ajustes de Evoke',
-    'Leaderboard' => 'Clasificación',
     'Members' => 'Miembros',
     'Missions' => 'Misiones',
     'My Team' => 'Mi Equipo',
@@ -34,4 +32,5 @@ return [
     'Review Evidence' => 'Evaluar Evidencias',
     'Review Evidences' => 'Evaluar Evidencias',
     'Reviews' => 'Evaluaciones',
+    'Tags' => 'Etíquetas',
 ];

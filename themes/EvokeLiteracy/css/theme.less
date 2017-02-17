@@ -1023,6 +1023,7 @@ input[type=select] {
 
 .content span {
   word-wrap: break-word;
+  font-size:10pt;
 }
 
 // Modules
@@ -1161,8 +1162,8 @@ input[type=select] {
       // font-size: 12px;
       font-size: 8pt;
       .count {
-        color: @headings-blue-font;
-        font-weight: 600;
+        color: @evoke-blue;
+        font-weight: 700;
         font-size: 12pt;
         line-height: 0.8em;
       }
@@ -1217,12 +1218,42 @@ input[type=select] {
   }
 }
 
+.panel-profile.panel-space{
+  border: 3px solid #fff;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+
+  .panel-body{
+    background-color: darken(@headings-blue-font, 5%);
+    color: white;
+    font-weight: 700;
+    .statistics {
+      .entry {
+        .count {
+          color: @headings-blue;
+        }
+      }
+    }
+  }
+}
+
 .panel-profile {
+  border: 3px solid #fff;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+
+  .panel-body{
+    background-color: darken(@secondary3, 10%);
+    color: white;
+    font-weight: 700;
+  }
+
   .panel-profile-header {
     position: relative;
-    border: 3px solid #fff;
-    border-top-right-radius: 3px;
-    border-top-left-radius: 3px;
+    // border: 3px solid #fff;
+    // border-top-right-radius: 3px;
+    // border-top-left-radius: 3px;
+
     .img-profile-header-background {
       border-radius: 3px;
       min-height: 110px;
@@ -1388,10 +1419,15 @@ input[type=select] {
 }
 
 .well {
-  border: none;
+  // border: none;
   box-shadow: none;
-  background-color: @headings-blue;
+  // background-color: @headings-blue;
   margin-bottom: 1px;
+
+  background-color: @body-color;
+  margin-top: 30px;
+  border: 2px solid @details-blue;
+  padding: 15px;
   hr {
     margin: 15px 0 10px;
     border-top: 2px solid @details-blue;
@@ -4302,11 +4338,11 @@ legend{
 }
 
 .user-content-box{
-  padding: 0 20px;
+  padding: 5px 3px;
 
   h4{
-    margin-top:40px; 
-    color: @secondary3;
+    margin-top:10px; 
+    color: @headings-blue-font;
   }
 }
 

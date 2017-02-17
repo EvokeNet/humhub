@@ -768,6 +768,7 @@ input[type=select] {
 }
 .content span {
   word-wrap: break-word;
+  font-size: 10pt;
 }
 .module-installed {
   opacity: 0.5;
@@ -906,8 +907,8 @@ input[type=select] {
   font-size: 8pt;
 }
 .panel .statistics .entry .count {
-  color: #03ACC5;
-  font-weight: 600;
+  color: #63E9FD;
+  font-weight: 700;
   font-size: 12pt;
   line-height: 0.8em;
 }
@@ -949,11 +950,31 @@ input[type=select] {
 .panel.spaces .panel-body a img {
   margin-bottom: 5px;
 }
-.panel-profile .panel-profile-header {
-  position: relative;
+.panel-profile.panel-space {
   border: 3px solid #fff;
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
+}
+.panel-profile.panel-space .panel-body {
+  background-color: #0396ac;
+  color: white;
+  font-weight: 700;
+}
+.panel-profile.panel-space .panel-body .statistics .entry .count {
+  color: #0F2441;
+}
+.panel-profile {
+  border: 3px solid #fff;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.panel-profile .panel-body {
+  background-color: #e59501;
+  color: white;
+  font-weight: 700;
+}
+.panel-profile .panel-profile-header {
+  position: relative;
 }
 .panel-profile .panel-profile-header .img-profile-header-background {
   border-radius: 3px;
@@ -1097,10 +1118,12 @@ input[type=select] {
   border-radius: 3px;
 }
 .well {
-  border: none;
   box-shadow: none;
-  background-color: #0F2441;
   margin-bottom: 1px;
+  background-color: #07111C;
+  margin-top: 30px;
+  border: 2px solid #254054;
+  padding: 15px;
 }
 .well hr {
   margin: 15px 0 10px;
@@ -3484,11 +3507,11 @@ legend {
   text-align: center;
 }
 .user-content-box {
-  padding: 0 20px;
+  padding: 5px 3px;
 }
 .user-content-box h4 {
-  margin-top: 40px;
-  color: #FEAE1B;
+  margin-top: 10px;
+  color: #03ACC5;
 }
 .hints {
   margin-top: 10px;
