@@ -194,34 +194,34 @@ class Votes extends ContentActiveRecord
 
     public static function getAverageRatingStarHint($average){
         if($average <= 1){
-            return Yii::t('MissionsModule.base', 'Terrible');
+            return Yii::t('MissionsModule.base', 'Does not comply with the rubric');
         }elseif($average <= 2){
-            return Yii::t('MissionsModule.base', 'Poor');
+            return Yii::t('MissionsModule.base', 'Meets the required minimum');
         }elseif($average <= 3){
-            return Yii::t('MissionsModule.base', 'Ok');
-        }elseif($average <= 4){
             return Yii::t('MissionsModule.base', 'Good');
-        }elseif($average <= 5){
+        }elseif($average <= 4){
             return Yii::t('MissionsModule.base', 'Excellent');
+        }elseif($average <= 5){
+            return Yii::t('MissionsModule.base', 'Outstanding');
         }
     }
 
     public function getStarHint(){
         switch($this->value){
             case 1:
-                return Yii::t('MissionsModule.base', 'Terrible');
+                return Yii::t('MissionsModule.base', 'Does not comply with the rubric');
                 break;
             case 2:
-                return Yii::t('MissionsModule.base', 'Poor');
+                return Yii::t('MissionsModule.base', 'Meets the required minimum');
                 break;
             case 3:
-                return Yii::t('MissionsModule.base', 'Ok');
-                break;
-            case 4:
                 return Yii::t('MissionsModule.base', 'Good');
                 break;
-            case 5:
+            case 4:
                 return Yii::t('MissionsModule.base', 'Excellent');
+                break;
+            case 5:
+                return Yii::t('MissionsModule.base', 'Outstanding');
                 break;
         }
         return null;
