@@ -266,6 +266,11 @@ function validateReview(id){
     }
     grade = grade? grade.value : null;
 
+    if(!grade){
+        showMessage("Error", "<?= Yii::t('MissionsModule.base', 'Choose how many points you will award this evidence.') ?>");
+        return false;
+    }
+
   return review(id, comment, opt, grade, tags);
 }
 
