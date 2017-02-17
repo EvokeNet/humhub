@@ -12,6 +12,7 @@ use humhub\modules\space\models\Membership;
 use humhub\modules\space\models\Space;
 use yii\web\HttpException;
 use app\modules\missions\models\Tags;
+use app\modules\alliances\models\Alliance;
 
 class ReviewController extends ContentContainerController
 {
@@ -124,6 +125,16 @@ class ReviewController extends ContentContainerController
 
         $user = Yii::$app->user->getIdentity();
 
+        // check if it's an ally
+        $team_id = Team::getUserTeam($user->id);
+        $ally = Alliance::find()->findByTeam($team_id)->one();
+
+        if (isset($ally)) {
+          $is_ally = $ally->isAlly(Team::getUserTeam($user->id));
+        } else {
+          $is_ally = false;
+        }
+
         $nextEvidence = $this->getNextEvidence($this->contentContainer);
         $evidence = $nextEvidence['evidence'];
         $files = $nextEvidence['files'];
@@ -134,7 +145,7 @@ class ReviewController extends ContentContainerController
             $this->redirect($this->contentContainer->createUrl());
         }
 
-        return $this->render('index', array('contentContainer' => $this->contentContainer, 'evidence' => $evidence, 'files' => $files, 'evidence_count' => $totalEvidence, 'evidence_to_review_count' => $evidence_to_review_count, 'tags' => $tags));
+        return $this->render('index', array('contentContainer' => $this->contentContainer, 'evidence' => $evidence, 'files' => $files, 'evidence_count' => $totalEvidence, 'evidence_to_review_count' => $evidence_to_review_count, 'tags' => $tags, 'is_ally' => $is_ally));
     }
 
     public function actionShow($id)

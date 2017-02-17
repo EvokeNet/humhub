@@ -148,13 +148,13 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                   <?php
                     $power = $activity->getPrimaryPowers()[0]->getPower();
                     $primaryPowerTitle = isset($power->powerTranslations[0]) ? $power->powerTranslations[0]->title : $power->title; ?>
-                    
+
                     <!--<h4><?php // Yii::t('MissionsModule.base', 'Distribute points for {title}', array('title' => $primaryPowerTitle)) ?></h4>-->
 
                     <h5 style="text-transform:uppercase"><?php echo Yii::t('MissionsModule.base', 'Review this Evidence'); ?></h5>
 
                     <!--<p style = "margin:20px 0"><?php //Yii::t('MissionsModule.base', '<strong>Activity Difficulty Level:</strong> {level}', array('level' => $activity->difficultyLevel->title)) ?></p>-->
-                    
+
                     <p style = "margin:25px 0"><?= Yii::t('MissionsModule.base', 'Choose the keywords that best describe your thoughts on this evidence, both based in your opinion and if it fulfilled the activity rubric. Select the tags and classify with 1 to 5 stars. If you have something to say to your fellow agent, leave a comment.') ?></p>
 
                     <p style = "margin-bottom:30px"><?= Yii::t('MissionsModule.base', '<strong>Activity Rubric:</strong> {rubric}', array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></p>
@@ -162,7 +162,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                     <form id = "review" class="review">
 
                     <div class="row">
-           
+
                         <?php foreach($tags as $tag): ?>
                         <div class="col-xs-4" style="padding-bottom:10px">
                             <input type="checkbox" id="tags" name="tags" value="<?= $tag->id ?>">
@@ -171,7 +171,8 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
                         <?php endforeach; ?>
 
                     </div>
-
+                    <!-- only allow allies and mentors to rate/comment -->
+                    <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors" || $is_ally): ?>
                     <div style="text-align:center; margin-top:60px">
                         <input type="hidden" id="evidence_id" value="<?= $evidence->id ?>">
                         <span class="rating">
@@ -193,11 +194,11 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
 
                         <?php echo Html::textArea("text", $comment , array('id' => 'review_comment', 'class' => 'text-margin form-control count-chars ', 'rows' => '5', "tabindex" => "1", 'placeholder' => Yii::t('MissionsModule.base', "Leave a comment (optional)"))); ?>
                         <br>
-                        
+
                         <button type="submit" id="post_submit_review" class="btn btn-cta2">
                             <?= Yii::t('MissionsModule.base', 'Submit Review') ?>
                         </button>
-                            
+                    <?php endif; ?>
                 </div>
         <?php endif; ?>
             <hr>
@@ -206,7 +207,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
             </a>
         </div>
     </div>
-    
+
     <?php else: ?>
         <div class="panel-body">
             <?php echo Yii::t('MissionsModule.base', 'There are no more evidences left to review.'); ?>
@@ -228,12 +229,12 @@ function review(id, comment, opt, grade, tags){
             next_element.removeAttribute("disabled");
             next_element.removeAttribute("onClick");
             document.getElementById("post_submit_review").innerHTML = "<?php echo Yii::t('MissionsModule.base', 'Update Review'); ?>";
-            loadPopUps();      
-            updateEvocoins();      
+            loadPopUps();
+            updateEvocoins();
         }
     };
     xhttp.open(
-        "GET", 
+        "GET",
         "<?= $contentContainer->createUrl('/missions/evidence/review'); ?>&opt="+opt+
         "&grade="+grade+
         "&evidenceId="+id+
@@ -304,4 +305,3 @@ function setStarHint(value){
 }
 
 </script>
-
