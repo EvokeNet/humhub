@@ -26,7 +26,7 @@ use app\modules\languages\models\Languages;
 class AlliancesController extends ContentContainerController
 {
   public function actionShow($id) {
-    $alliance = Alliance::find($id)->one();
+    $alliance = Alliance::findOne($id);
     $user = Yii::$app->user->getIdentity();
     $team_id = Team::getUserTeam($user->id);
     $ally = $alliance->getAlly($team_id);
