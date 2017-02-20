@@ -35,6 +35,7 @@ use app\modules\missions\models\EvidenceTags;
 use yii\db\Expression;
 
 use app\modules\missions\models\TeamMission;
+use app\modules\missions\models\EvokeLog;
 
 class EvidenceController extends ContentContainerController
 {
@@ -801,6 +802,22 @@ class EvidenceController extends ContentContainerController
                       UserPowers::addPowerPoint($activityPower->getPower(), $author, $grade);
                     }
                 }
+
+
+                //EvokeLog
+
+                $log['id'] = 'review';
+                $log['reviewer_username'] = $user->username;
+                $log['reviewer_real_name'] = $user->getName();
+                $log['group'] = $user->group->name;
+                $log['earned_evocoins_by_reviewer'] = $evocoin_earned;
+                $log['evidence_url'] = $evidence->content->getUrl();
+                $log['evidence_activity'] = $evidence->activities->id_code;
+                $log['evidence_author_username'] = $evidence->getAuthor()->username;
+                $log['evidence_author_real_name'] = $evidence->getAuthor()->getName();
+                $log[$activity_power->getPower()->title."_reviewer_points"] = $review_power_points;
+
+                EvokeLog::log($log);
 
                 $message = Yii::t('MissionsModule.base', 'You just gained {message} evocoins!', array('message' => $evocoin_earned));
 

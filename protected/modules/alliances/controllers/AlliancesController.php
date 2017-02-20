@@ -18,6 +18,8 @@ use humhub\modules\user\models\User;
 use app\modules\coin\models\Wallet;
 use app\modules\languages\models\Languages;
 
+use app\modules\missions\models\EvokeLog;
+
 
 /**
  * AdminController
@@ -128,6 +130,21 @@ class AlliancesController extends ContentContainerController
 
           // save vote
           $vote->save();
+
+           //EvokeLog
+
+                $log['id'] = 'review';
+                $log['reviewer_username'] = $user->username;
+                $log['reviewer_real_name'] = $user->getName();
+                $log['group'] = $user->group->name;
+                $log['earned_evocoins_by_reviewer'] = $evocoin_earned;
+                $log['evidence_url'] = $evidence->content->getUrl();
+                $log['evidence_activity'] = $evidence->activities->id_code;
+                $log['evidence_author_username'] = $evidence->getAuthor()->username;
+                $log['evidence_author_real_name'] = $evidence->getAuthor()->getName();
+                $log[$activity_power->getPower()->title."_reviewer_points"] = $review_power_points;
+
+                EvokeLog::log($log);
 
           $message = Yii::t('AlliancesModule.base', 'You just gained {evocoin} evocoins and {power_points} in {power}!', array('evocoin' => $evocoin_earned, 'power_points' => $review_power_points, 'power' => $power_name));
 
