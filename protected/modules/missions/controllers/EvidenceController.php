@@ -815,9 +815,19 @@ class EvidenceController extends ContentContainerController
                 $log['evidence_activity'] = $evidence->activities->id_code;
                 $log['evidence_author_username'] = $evidence->getAuthor()->username;
                 $log['evidence_author_real_name'] = $evidence->getAuthor()->getName();
-                $log[$activity_power->getPower()->title."_reviewer_points"] = $review_power_points;
+
+                if($is_group_activity){
+                    $log['team'] = $team->name;
+                    foreach ($team_members as $team_member) {
+                        $log[$activity_power->getPower()->title.'_'.$team_member->username."_points"] = $grade;                        
+                    }
+                }else{
+                    $log[$activity_power->getPower()->title."_evidence_author_points"] = $grade;
+                }
 
                 EvokeLog::log($log);
+
+                //END EVOKE LOG
 
                 $message = Yii::t('MissionsModule.base', 'You just gained {message} evocoins!', array('message' => $evocoin_earned));
 

@@ -133,6 +133,8 @@ class AlliancesController extends ContentContainerController
 
            //EvokeLog
 
+                //EvokeLog
+
                 $log['id'] = 'review';
                 $log['reviewer_username'] = $user->username;
                 $log['reviewer_real_name'] = $user->getName();
@@ -142,7 +144,15 @@ class AlliancesController extends ContentContainerController
                 $log['evidence_activity'] = $evidence->activities->id_code;
                 $log['evidence_author_username'] = $evidence->getAuthor()->username;
                 $log['evidence_author_real_name'] = $evidence->getAuthor()->getName();
-                $log[$activity_power->getPower()->title."_reviewer_points"] = $review_power_points;
+
+                if($is_group_activity){
+                    $log['team'] = $team->name;
+                    foreach ($team_members as $team_member) {
+                        $log[$activity_power->getPower()->title.'_'.$team_member->username."_points"] = $grade;                        
+                    }
+                }else{
+                    $log[$activity_power->getPower()->title."_evidence_author_points"] = $grade;
+                }
 
                 EvokeLog::log($log);
 
