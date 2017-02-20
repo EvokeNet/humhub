@@ -548,6 +548,37 @@ class EvidenceController extends ContentContainerController
                 }
             }
 
+            //EvokeLog
+
+                $log['id'] = 'evidence_submitting';
+                $log['user'] = $user->username;
+                $log['user_real_name'] = $user->getName();
+                $log['earned_evocoins_by_author'] = 10;
+                $log['evidence_activity'] = $activity->id_code;
+
+                if($is_group_activity){
+                    $log['team'] = $team->name;
+                    foreach ($team_members as $team_member) {  
+                        foreach($activityPowers as $activity_power){
+                            $log[$activity_power->getPower()->title.'_'.$team_member->username."_points"] = $activity_power->value;
+                        }                      
+                    }
+                }else{
+                    foreach($activityPowers as $activity_power){
+                        $log[$activity_power->getPower()->title."_evidence_author_points"] = $activity_power->value;
+                    }
+                }
+
+                if($isTeamGoingToComplete){
+                    foreach ($team_members as $team_member) {
+                        $log[$activity_power->getPower()->title.'_'.$team_member->username."_earned_extra_evocoins"] = 100;
+                    }
+                }
+
+                EvokeLog::log($log);
+
+            //END EVOKE LOG
+
             //old popup
             //$message = $this->getEvidenceCreatedMessage($activityPowers);
             //AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), $message);
