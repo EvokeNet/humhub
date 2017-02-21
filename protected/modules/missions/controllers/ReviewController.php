@@ -75,6 +75,7 @@ class ReviewController extends ContentContainerController
         $team_id = Team::getUserTeam($user_id);
 
         $subquery = '(SELECT v2.evidence_id from votes as v2 where v2.user_id = '.Yii::$app->user->getIdentity()->id.')';
+        $subquery_tags = '(SELECT et.evidence_id from evidence_tags as et where et.user_id = '.Yii::$app->user->getIdentity()->id.')';
 
         $query = (new \yii\db\Query())
         ->select(['e.id as id, count(distinct v.id) as vote_count'])
@@ -84,6 +85,7 @@ class ReviewController extends ContentContainerController
         //->join('LEFT JOIN', 'space_membership s', '`s`.`user_id`=`c`.`user_id`')
         ->where('c.space_id != '.$currentSpace->id)
         ->andWhere('e.id NOT IN  '.$subquery)
+        ->andWhere('e.id NOT IN  '.$subquery_tags)
         ->andWhere('c.user_id != '.$user_id)
         ->andWhere('c.visibility ='. 1)
         ->groupBy('e.id')
