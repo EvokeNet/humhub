@@ -13,6 +13,7 @@ $this->pageTitle = Yii::t('MissionsModule.page_titles', 'Review Evidence');
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4 style="margin-top:10px"><?php echo Yii::t('MissionsModule.base', 'Review Evidence'); ?></h4>
+        <input type="hidden" id="evidence_id" value="<?= $evidence->id ?>">
         <?php if($activity): ?>
             <h6><?php echo Yii::t('MissionsModule.base', '{first} of {total}', array('first' => ($evidence_count - $evidence_to_review_count + 1), 'total' => $evidence_count)); ?></h6>
         <?php endif; ?>
@@ -165,7 +166,7 @@ $this->pageTitle = Yii::t('MissionsModule.page_titles', 'Review Evidence');
 
                         <?php foreach($tags as $tag): ?>
                         <div class="col-xs-4" style="padding-bottom:10px">
-                            <input type="checkbox" id="tags" name="tags" value="<?= $tag->id ?>">
+                            <input type="checkbox" id="tags" name="tags" onClick='unlockNextEvidence()' value="<?= $tag->id ?>">
                                 <?= $tag->getTitleTranslation() ?>
                         </div>
                         <?php endforeach; ?>
@@ -219,6 +220,50 @@ $this->pageTitle = Yii::t('MissionsModule.page_titles', 'Review Evidence');
 
 <script>
 
+$( document ).ready(function() {
+    loadPopUps();
+});
+
+next_element = document.getElementById("next_evidence");
+
+function unlockNextEvidence(){
+    if($('input[id=tags]').is(':checked')){
+        next_element.removeAttribute("disabled");
+        next_element.removeAttribute("href");
+        next_element.setAttribute("onClick", "tag();");
+    } else {
+        next_element.setAttribute("disabled", "disabled");
+        next_element.removeAttribute("onClick");
+    }
+}
+    
+function tag(){
+
+    var tags = [];
+    var tag_inputs = $("input[name=tags]:checked");
+    var id = document.getElementById("evidence_id").value;
+
+    for(var x = 0; x < tag_inputs.length; x++){
+        tags.push(tag_inputs[x].value);
+    }
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            location.reload();
+        }
+    };
+    xhttp.open(
+        "GET",
+        "<?= $contentContainer->createUrl('/missions/evidence/tag'); ?>"+
+        getTagsArrayUrl(tags)+
+        "&evidenceId="+id,
+        true
+    );
+    xhttp.send();
+
+    return false;
+}
 
 function review(id, comment, opt, grade, tags){
     grade = grade? grade : 0;

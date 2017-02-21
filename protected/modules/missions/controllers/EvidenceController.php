@@ -874,6 +874,37 @@ class EvidenceController extends ContentContainerController
 
     }
 
+    public function actionTag(){
+        $user = Yii::$app->user->getIdentity();
+        $evidenceId = Yii::$app->request->get("evidenceId");
+        $tags = Yii::$app->request->get("tags");
+        $evidence = $evidenceId ? Evidence::findOne($evidenceId) : null;
+
+        //Save Tags
+        if($tags){
+            foreach($tags as $tag_id){
+                $tag = new EvidenceTags();    
+                $tag->tag_id = $tag_id;
+                $tag->evidence_id = $evidenceId;
+                $tag->user_id = $user->id;
+                $tag->created_at = new Expression('NOW()');
+                $tag->updated_at = new Expression('NOW()');
+                $tag->save();
+            }
+        }
+
+        $evocoin_earned = 0;
+
+        //Reward reviewer 1 evocoin
+        $wallet = Wallet::find()->where(['owner_id' => $user->id])->one();
+        $wallet->addCoin(1);
+        $evocoin_earned += 1;
+
+        $message = Yii::t('MissionsModule.base', 'You just gained {message} evocoins!', array('message' => $evocoin_earned));
+
+        AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', '{message}. <BR>Thank you for your review.', array('message' => $message)));
+    }
+
     public function actionEdit_review(){
         $evidence_id = Yii::$app->request->get("id");
         $evidence = Evidence::findOne($evidence_id);
