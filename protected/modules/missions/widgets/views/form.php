@@ -22,33 +22,34 @@ $firstSecondary = true;
             </p>
             <br />
 
-            <div class="row" style="margin-bottom:20px">
-                <div class="col-xs-4">
+            <div style="margin:30px 0 20px">
 
-                    <h6 style="margin-bottom:15px; font-size:12pt"><?= Yii::t('MissionsModule.base', 'Primary Power') ?></h6>
-                    <?php
-                        foreach($activity->getPrimaryPowers() as $power):
-                            if($firstPrimary)
-                                $firstPrimary = false;
+                <h6 style="margin-bottom:15px; font-size:12pt"><?= Yii::t('MissionsModule.base', 'Primary Power') ?></h6>
 
-                            $name = $power->getPower()->title;
+                <div style="display: flex; flex-wrap: wrap;">
+                <?php
+                    foreach($activity->getPrimaryPowers() as $power):
+                        if($firstPrimary)
+                            $firstPrimary = false;
 
-                            if(Yii::$app->language == 'es' && isset($power->getPower()->powerTranslations[0]))
-                                $name = $power->getPower()->powerTranslations[0]->title;
-                    ?>
+                        $name = $power->getPower()->title;
 
-                    
+                        if(Yii::$app->language == 'es' && isset($power->getPower()->powerTranslations[0]))
+                            $name = $power->getPower()->powerTranslations[0]->title;
+                ?>
+
                         <div class="power-cards">
                             <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
-                            <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
+                            <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '+{points} {power}', array('power' => $name, 'points' => $power->value)); ?></p>
                         </div>
-                        
-                    <?php endforeach; ?>
-
+                    
+                <?php endforeach; ?>
                 </div>
-                <div class="col-xs-8">
 
-                    <h6 style="margin-bottom:15px; font-size:12pt"><?= Yii::t('MissionsModule.base', 'Secondary Power(s)') ?></h6>
+                <br />
+
+                <h6 style="margin-bottom:15px; font-size:12pt"><?= Yii::t('MissionsModule.base', 'Secondary Power(s)') ?></h6>
+                    <div style="display: flex; flex-wrap: wrap;">
                         <?php
                             foreach($activity->getSecondaryPowers() as $power):
                                 if($firstSecondary)
@@ -59,16 +60,18 @@ $firstSecondary = true;
                                 if(Yii::$app->language == 'es' && isset($power->getPower()->powerTranslations[0]))
                                     $name = $power->getPower()->powerTranslations[0]->title;
                         ?>
-                            
-                        <div class="power-cards">
-                            <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
-                            <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
-                        </div>
                         
-                    <?php endforeach; ?>
+                        
+                            <div class="power-cards">
+                                <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
+                                <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '+{points} {power}', array('power' => $name, 'points' => $power->value)); ?></p>
+                            </div>
+                        
+                        
+                        <?php endforeach; ?>
+                    </div>
 
-                </div>
-            </div>
+        </div>
 
             <!-- <div class="row">
                 <div class="col-xs-4"></div>
@@ -137,6 +140,7 @@ $( document ).ready(function() {
             window.location.hash = "wallEntry_" + response.wallEntryId;
       }
       loadPopUps();
+      updateEvocoins();
     }
 
 });

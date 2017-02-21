@@ -15,6 +15,10 @@ use humhub\modules\content\models\Content;
 use app\modules\missions\models\ActivityPowers;
 use app\modules\powers\models\UserPowers;
 use app\modules\teams\models\Team;
+use app\modules\missions\models\Activities;
+use app\modules\coin\models\Wallet;
+use app\modules\missions\models\Missions;
+use app\modules\missions\models\TeamMission;
 
 /**
  * This is the model class for table "evidence".
@@ -210,7 +214,7 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
         // check if activity is a group activity
         // if so we must look for anyone in the team with a submitted evidence
         if ($activity->is_group) {
-          // find the team and it's members
+          // find the team and its members
           $team_id = Team::getUserTeam($userId);
           $team = Team::findOne($team_id);
 
@@ -362,6 +366,27 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
             foreach($activityPowers as $activity_power){
                 UserPowers::removePowerPoint($activity_power->getPower(), $user, $activity_power->value);
             }
+
+            //Remove evocoins
+            $is_group_activity = Activities::findOne(['id' => $this->activities_id])->is_group;
+
+            if($is_group_activity){
+                $team_id = Team::getUserTeam($this->created_by);
+                $team = Team::findOne($team_id);
+                $team_members = $team->getTeamMembers();
+
+                foreach ($team_members as $team_member) {
+                    $wallet = Wallet::find()->where(['owner_id' => $team_member->id])->one();
+                    $wallet->removeCoin(10);
+                    $wallet->save();
+                }
+
+            }else{
+                $wallet = Wallet::find()->where(['owner_id' => $this->created_by])->one();
+                $wallet->removeCoin(10);
+                $wallet->save();
+            }
+
         }
 
         return parent::beforeDelete();

@@ -16,7 +16,7 @@ $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
     <div class="panel-body text-center">
         <div class = "evocoins">
             <img src="<?php echo Url::to('@web/themes/Evoke/img/evocoin_bg.png') ?>">
-            <div><p><?= $wallet->amount ?></p></div>
+            <div><p id="wallet_amount"><?= $wallet->amount ?></p></div>
         </div>
     </div>
 </div>
@@ -40,8 +40,25 @@ $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
                 <br />
                 <span class="text-header"><?= $name ?></span><br />
                 <span class="text-content"><?php echo Yii::t('MissionsModule.base', 'Level {level}', array('level' => null != $userQuality[0]->getUserQuality() ? $userQuality[0]->getUserQuality()->getLevel() : 0)); ?></span>
-
             </div>
         <?php endforeach; ?>
     </div>
 </div>
+
+<script>
+
+function updateEvocoins(){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            if(xhttp.responseText){
+                $('#wallet_amount').html(xhttp.responseText);
+            }
+        }
+    };
+    xhttp.open("GET", "<?= Url::to(['/coin/wallet/evocoins']); ?>&user_id=<?= Yii::$app->user->getIdentity()->id ?>", true);
+    xhttp.send();
+}
+
+</script>
+

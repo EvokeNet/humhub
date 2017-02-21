@@ -30,6 +30,7 @@ use humhub\modules\user\models\User;
 use app\modules\teams\models\Team;
 use humhub\modules\missions\controllers\MentorController;
 use app\modules\missions\models\EvokationDeadline;
+use app\modules\missions\models\Tags;
 
 /**
  * Description of Events
@@ -190,6 +191,30 @@ class Events
                     || Yii::$app->controller->action->id == 'index-category-translations'
                     || Yii::$app->controller->action->id == 'create-category-translations'
                     || Yii::$app->controller->action->id == 'update-category-translations'
+                    
+                )
+            ),
+        ));
+    }
+
+    public static function onTagsAdminMenuInit($event)
+    {
+        $event->sender->addItem(array(
+            'label' => Yii::t('MissionsModule.event', 'Tags'),
+            'url' => Url::to(['/missions/admin/index-tags']),
+            'group' => 'manage',
+            'sortOrder' => 500,
+            'icon' => '<i class="fa fa-tag"></i>',
+            'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'admin'
+            &&
+                (
+                    Yii::$app->controller->action->id == 'index-tags'
+                    || Yii::$app->controller->action->id == 'create-tags'
+                    || Yii::$app->controller->action->id == 'update-tags'
+
+                    || Yii::$app->controller->action->id == 'index-tag-translations'
+                    || Yii::$app->controller->action->id == 'create-tag-translations'
+                    || Yii::$app->controller->action->id == 'update-tag-translations'
                     
                 )
             ),
@@ -369,12 +394,15 @@ class Events
 
                 if($user->group->name == "Mentors"){
                     $page = 'list';
-                }else{
+                    $title = Yii::t('MissionsModule.event', 'Review Evidences');
+                } else{
                     $page = 'index';
+                    $title = Yii::t('MissionsModule.event', 'Tag Evidences');
                 }
 
+
                 $event->sender->addItem(array(
-                'label' => Yii::t('MissionsModule.event', 'Review Evidence'),
+                'label' => $title,
                 'id' => 'evidence_reviewed',
                 'icon' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i>',
                 'url' => Url::to(['/missions/review/'.$page, 'sguid' => $space->guid]),
@@ -472,16 +500,16 @@ class Events
         if(isset($user)){
 
             // LEADERBOARD
-            $event->sender->addItem(array(
-            'label' => Yii::t('MissionsModule.event', 'Leaderboard'),
-            'id' => 'leaderboard',
-            'icon' => '<i class="fa fa-sort-numeric-asc" aria-hidden="true"></i>',
-            'url' => Url::to(['/missions/leaderboard/index']),
-            'sortOrder' => 700,
-            'isActive' => (Yii::$app->controller->module
-                && Yii::$app->controller->module->id == 'missions'
-                && Yii::$app->controller->id == 'leaderboard'),
-            ));
+            // $event->sender->addItem(array(
+            // 'label' => Yii::t('MissionsModule.event', 'Leaderboard'),
+            // 'id' => 'leaderboard',
+            // 'icon' => '<i class="fa fa-sort-numeric-asc" aria-hidden="true"></i>',
+            // 'url' => Url::to(['/missions/leaderboard/index']),
+            // 'sortOrder' => 700,
+            // 'isActive' => (Yii::$app->controller->module
+            //     && Yii::$app->controller->module->id == 'missions'
+            //     && Yii::$app->controller->id == 'leaderboard'),
+            // ));
 
             // REVIEW EVIDENCE
 
@@ -577,13 +605,15 @@ class Events
 
                 if($user->group->name == "Mentors"){
                     $page = 'list';
-                }else{
+                    $title = Yii::t('MissionsModule.event', 'Review Evidences');
+                } else{
                     $page = 'index';
+                    $title = Yii::t('MissionsModule.event', 'Tag Evidences');
                 }
 
 
                 $event->sender->addItem(array(
-                'label' => Yii::t('MissionsModule.event', 'Review Evidence'),
+                'label' => $title,
                 'id' => 'evidence_reviewed',
                 'icon' => '<i class="fa fa-thumbs-up" aria-hidden="true"></i>',
                 'url' => Url::to(['/missions/review/'.$page, 'sguid' => $team->guid]),

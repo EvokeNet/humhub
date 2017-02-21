@@ -19,7 +19,7 @@ echo Breadcrumbs::widget([
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
 ]);
 
-$this->pageTitle = Yii::t('MissionsModule.base', 'Activity {activity}', array('activity' => $activity_title));
+$this->pageTitle = Yii::t('MissionsModule.page_titles', 'M{mp}A{ap} : {alias}', array('mp' => $activity->mission->position, 'ap' => $activity->position, 'alias' => $activity_title));
 
 $user = Yii::$app->user->getIdentity();
 

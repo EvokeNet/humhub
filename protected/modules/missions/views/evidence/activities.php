@@ -16,7 +16,7 @@ echo Breadcrumbs::widget([
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
 ]);
 
-$this->pageTitle = Yii::t('MissionsModule.base', 'Mission {position} - {alias}', array('position' => $mission->position, 'alias' => $this->title));
+$this->pageTitle = Yii::t('MissionsModule.page_titles', 'Mission {position} : {alias}', array('position' => $mission->position, 'alias' => $this->title));
 
 $firstPrimary = true;
 $firstSecondary = true;
@@ -121,7 +121,7 @@ $firstSecondary = true;
 
                 <h5>
                     <span class = "activity-number">
-                            <?php echo $mission->position >= 1 ?$mission->position : "#" ?>
+                            <?php echo $mission->position >= 1 ? $mission->position : "#" ?>
                     </span>
                     <span class="mission-title"><?= $mission_title ?></span>
                 </h5>
@@ -183,7 +183,7 @@ $firstSecondary = true;
 
                                                 <div class="power-cards">
                                                     <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
-                                                    <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
+                                                    <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '+{points} {power}', array('power' => $name, 'points' => $power->value)); ?></p>
                                                 </div>
                                             
                                         <?php endforeach; ?>
@@ -207,7 +207,7 @@ $firstSecondary = true;
                                                 
                                                     <div class="power-cards">
                                                         <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
-                                                        <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
+                                                        <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '+{points} {power}', array('power' => $name, 'points' => $power->value)); ?></p>
                                                     </div>
                                                 
                                                 

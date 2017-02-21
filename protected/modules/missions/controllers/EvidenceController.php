@@ -31,6 +31,13 @@ use humhub\modules\admin\models\forms\MailingSettingsForm;
 use app\modules\novel\models\NovelPage;
 use app\modules\novel\models\Chapter;
 
+use app\modules\missions\models\EvidenceTags;
+use app\modules\missions\models\Tags;
+use yii\db\Expression;
+
+use app\modules\missions\models\TeamMission;
+use app\modules\missions\models\EvokeLog;
+
 class EvidenceController extends ContentContainerController
 {
 
@@ -343,16 +350,23 @@ class EvidenceController extends ContentContainerController
                         $evidence->content->visibility = 1;
                         //ACTIVITY POWER POINTS
                         $activityPowers = ActivityPowers::findAll(['activity_id' => $evidence->activities_id]);
-                        $is_group_activity = Activities::findOne(['id' => $evidence->activities_id])->is_group;
 
-                        // if it's a group activity, we need to award points to all team members
-                        if ($is_group_activity) {
-                          // find the team and it's members
+                        $activity = Activities::findOne(['id' => $evidence->activities_id]);
+                        $is_group_activity = $activity->is_group;
+
+                        // find the team and its members
                           $team_id = Team::getUserTeam($user->id);
                           $team = Team::findOne($team_id);
                           $team_members = $team->getTeamMembers();
 
+                        // if it's a group activity, we need to award points to all team members
+                        if ($is_group_activity) {
+
                           foreach ($team_members as $team_member) {
+                            $wallet = Wallet::find()->where(['owner_id' => $team_member->id])->one();
+                            $wallet->addCoin(10);
+                            $wallet->save();
+
                             foreach($activityPowers as $activity_power){
                                 UserPowers::addPowerPoint($activity_power->getPower(), $team_member, $activity_power->value);
                             }
@@ -362,9 +376,38 @@ class EvidenceController extends ContentContainerController
                           foreach($activityPowers as $activity_power){
                               UserPowers::addPowerPoint($activity_power->getPower(), $user, $activity_power->value);
                           }
+                          //EVOCOINS
+                            $wallet = Wallet::find()->where(['owner_id' => $user->id])->one();
+                            $wallet->addCoin(10);
+                            $wallet->save();
                         }
 
+                        //evidence evocoin reward
+                        AlertController::createAlert(Yii::t('MissionsModule.base', "Reward"), Yii::t('MissionsModule.base', 'You\'ve received 10 evocoins for this evidence.'));
+
                         $evidence->content->save();
+
+                         //MISSION COMPLETION EVOCOINS                
+                        if(!TeamMission::isMissionCompleted($activity->mission_id, $team->id)){
+                            $mission = Missions::findOne($activity->mission_id);
+                            $hasTeamCompletedMission = $mission->hasTeamCompleted($team->id);
+                            if($hasTeamCompletedMission){
+                                foreach ($team_members as $team_member) {
+                                    $wallet = Wallet::find()->where(['owner_id' => $team_member->id])->one();
+                                    $wallet->addCoin(100);
+                                    $wallet->save();
+                                }
+
+                                $team_mission = new TeamMission();
+                                $team_mission->space_id = $team->id;
+                                $team_mission->mission_id = $mission->id;
+                                $team_mission->created_at = new Expression('NOW()');
+                                $team_mission->updated_at = new Expression('NOW()');
+                                $team_mission->save();
+
+                                AlertController::createAlert(Yii::t('MissionsModule.base', "Reward"), Yii::t('MissionsModule.base', 'You\'ve received 100 evocoins for completing this mission.'));
+                            }
+                        }
 
                         //old popup
                         //$message = $this->getEvidenceCreatedMessage($activityPowers);
@@ -378,14 +421,14 @@ class EvidenceController extends ContentContainerController
                         $evidence->content->visibility = 0;
                         $evidence->content->save();
 
-                        AlertController::createAlert(Yii::t('MissionsModule.base', 'Error'),Yii::t('MissionsModule.base', 'Something went wrong.'));
+                        AlertController::sendDefaultErrorMessage();
                         return "error";
                     }
                 }
             }
 
         }else{
-            AlertController::createAlert(Yii::t('MissionsModule.base', 'Error!'), "Something's wrong");
+            AlertController::sendDefaultErrorMessage();
             return "error";
         }
     }
@@ -443,19 +486,26 @@ class EvidenceController extends ContentContainerController
         } else{
 
             //ACTIVITY POWER POINTS
-            $activityPowers = ActivityPowers::findAll(['activity_id' => $evidence->activities_id]);
+            $activityPowers = ActivityPowers::find()->where(['activity_id' => $evidence->activities_id])->orderBy('flag ASC')->all();
             $user = Yii::$app->user->getIdentity();
+            $activity = Activities::findOne(['id' => $evidence->activities_id]);
 
-            $is_group_activity = Activities::findOne(['id' => $evidence->activities_id])->is_group;
+            $is_group_activity = $activity->is_group;
+
+            // find the team and it's members
+            $team_id = Team::getUserTeam($user->id);
+            $team = Team::findOne($team_id);
+            $team_members = $team->getTeamMembers();
 
             // if it's a group activity, we need to award points to all team members
             if ($is_group_activity) {
-              // find the team and it's members
-              $team_id = Team::getUserTeam($user->id);
-              $team = Team::findOne($team_id);
-              $team_members = $team->getTeamMembers();
 
               foreach ($team_members as $team_member) {
+
+                $wallet = Wallet::find()->where(['owner_id' => $team_member->id])->one();
+                $wallet->addCoin(10);
+                $wallet->save();
+
                 foreach($activityPowers as $activity_power){
                     UserPowers::addPowerPoint($activity_power->getPower(), $team_member, $activity_power->value);
                 }
@@ -465,7 +515,71 @@ class EvidenceController extends ContentContainerController
               foreach($activityPowers as $activity_power){
                   UserPowers::addPowerPoint($activity_power->getPower(), $user, $activity_power->value);
               }
+
+              //STANDARD EVOCOINS
+                $wallet = Wallet::find()->where(['owner_id' => $user->id])->one();
+                $wallet->addCoin(10);
+                $wallet->save();
             }
+
+            //evidence evocoin reward
+            AlertController::createAlert(Yii::t('MissionsModule.base', "Reward"), Yii::t('MissionsModule.base', 'You\'ve received 10 evocoins for this evidence.'));
+            
+
+            //MISSION COMPLETION EVOCOINS                
+
+            if(!TeamMission::isMissionCompleted($activity->mission_id, $team->id)){
+                $mission = Missions::findOne($activity->mission_id);
+                $isTeamGoingToComplete = $mission->isTeamGoingToComplete($team->id, $activity->id);
+                if($isTeamGoingToComplete){
+                    foreach ($team_members as $team_member) {
+                        $wallet = Wallet::find()->where(['owner_id' => $team_member->id])->one();
+                        $wallet->addCoin(100);
+                        $wallet->save();
+                    }
+
+                    $team_mission = new TeamMission();
+                    $team_mission->space_id = $team->id;
+                    $team_mission->mission_id = $mission->id;
+                    $team_mission->created_at = new Expression('NOW()');
+                    $team_mission->updated_at = new Expression('NOW()');
+                    $team_mission->save();
+
+                    AlertController::createAlert(Yii::t('MissionsModule.base', "Reward"), Yii::t('MissionsModule.base', 'You\'ve received 100 evocoins for completing this mission.'));
+                }
+            }
+
+            //EvokeLog
+
+                $log['id'] = 'evidence_submitting';
+                $log['user'] = $user->username;
+                $log['user_real_name'] = $user->getName();
+                $log['earned_evocoins_by_author'] = 10;
+                $log['evidence_activity'] = $activity->id_code;
+
+                if($is_group_activity){
+                    $log['team'] = $team->name;
+                    foreach ($team_members as $team_member) {  
+                        foreach($activityPowers as $activity_power){
+                            $log[$activity_power->getPower()->title.'_'.$team_member->username."_points"] = $activity_power->value;
+                        }                      
+                    }
+                }else{
+                    foreach($activityPowers as $activity_power){
+                        $log[$activity_power->getPower()->title."_evidence_author_points"] = $activity_power->value;
+                    }
+                }
+
+                if($isTeamGoingToComplete){
+                    foreach ($team_members as $team_member) {
+                        $log[$activity_power->getPower()->title.'_'.$team_member->username."_earned_extra_evocoins"] = 100;
+                    }
+                }
+
+                EvokeLog::log($log);
+
+            //END EVOKE LOG
+
             //old popup
             //$message = $this->getEvidenceCreatedMessage($activityPowers);
             //AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), $message);
@@ -497,7 +611,7 @@ class EvidenceController extends ContentContainerController
                 $model = Evidence::findOne(['id' => $id]);
                 AlertController::createAlert(Yii::t('MissionsModule.base', 'Draft saved!'),Yii::t('MissionsModule.base', 'Your evidence\'s draft has been saved!'));
             } else {
-                AlertController::createAlert(Yii::t('MissionsModule.base', 'Error'),Yii::t('MissionsModule.base', 'Something went wrong.'));
+                AlertController::sendDefaultErrorMessage();
             }
 
         }
@@ -568,6 +682,7 @@ class EvidenceController extends ContentContainerController
         $grade = Yii::$app->request->get("grade");
         $comment = Yii::$app->request->get("comment");
         $evidenceId = Yii::$app->request->get("evidenceId");
+        $tags = Yii::$app->request->get("tags");
         $evidence = $evidenceId ? Evidence::findOne($evidenceId) : null;
         $evocoin_earned = 0;
 
@@ -575,15 +690,17 @@ class EvidenceController extends ContentContainerController
 
         if (empty($comment) && $user->group->name == "Mentors") {
             //mentors must comment
-            AlertController::createAlert("Error", "Oops! Something's wrong.");
+            AlertController::sendDefaultErrorMessage();
             return;
         }
 
+        /*
         if (!empty($comment) && mb_strlen($comment) < 140) {
             //comments must be at least 140 characters long
             AlertController::createAlert("Error!", Yii::t('MissionsModule.base', 'Post too short.'));
             return;
         }
+        */
 
         /*
             Check if review is valid:
@@ -665,6 +782,30 @@ class EvidenceController extends ContentContainerController
                 $vote->value = $grade;
                 $vote->user_type = $user->group->name;
                 $vote->save();
+
+                //SAVE TAGS
+
+                $all_tags_used = ''; //Variable to get all tags used and 
+
+                if($tags){
+                    foreach($tags as $key => $tag_id){
+                        $tag = new EvidenceTags();    
+                        $tag->tag_id = $tag_id;
+                        $tag->evidence_id = $evidenceId;
+                        $tag->user_id = $user->id;
+                        $tag->created_at = new Expression('NOW()');
+                        $tag->updated_at = new Expression('NOW()');
+                        $tag->save();
+
+                        $search_tag = Tags::find()->where(['id' => $tag_id])->one()->title;
+                        
+                        if($key == 0)
+                            $all_tags_used .= $search_tag;
+                        else
+                            $all_tags_used .= ', '.$search_tag;
+                    }
+                } 
+
                 $evocoin_earned = 0;
 
                 //Reward reviewer 1 evocoin
@@ -704,16 +845,99 @@ class EvidenceController extends ContentContainerController
                     }
                 }
 
+
+                //EvokeLog
+
+                $log['id'] = 'review'; 
+                $log['reviewer_username'] = $user->username;
+                $log['reviewer_real_name'] = $user->getName();
+                $log['group'] = $user->group->name;
+                $log['earned_evocoins_by_reviewer'] = $evocoin_earned;
+                $log['evidence_url'] = $evidence->content->getUrl();
+                $log['evidence_activity'] = $evidence->activities->id_code;
+                $log['evidence_author_username'] = $evidence->getAuthor()->username;
+                $log['evidence_author_real_name'] = $evidence->getAuthor()->getName();
+                $log['tags_selected'] = $all_tags_used;
+
+                if($is_group_activity){
+                    $log['team'] = $team->name;
+                    foreach ($team_members as $team_member) {
+                        $log[$activity_power->getPower()->title.'_'.$team_member->username."_points"] = $grade;                        
+                    }
+                }else{
+                    $log[$activity_power->getPower()->title."_evidence_author_points"] = $grade;
+                }
+
+                EvokeLog::log($log);
+
+                //END EVOKE LOG
+
                 $message = Yii::t('MissionsModule.base', 'You just gained {message} evocoins!', array('message' => $evocoin_earned));
 
                 AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', '{message}. <BR>Thank you for your review.', array('message' => $message)));
                 
+                Votes::checkFiveTaggedEvidencesReward();
+
                 echo $this->renderPartial('..\..\widgets\views\user_vote_view.php', array('vote' => $vote, 'contentContainer' => $this->contentContainer));
             }
         } else{
-            AlertController::createAlert("Error", "Oops! Something's wrong.");
+            AlertController::sendDefaultErrorMessage();
         }
 
+    }
+
+    public function actionTag(){
+        $user = Yii::$app->user->getIdentity();
+        $evidenceId = Yii::$app->request->get("evidenceId");
+        $tags = Yii::$app->request->get("tags");
+        $evidence = $evidenceId ? Evidence::findOne($evidenceId) : null;
+        $evocoin_earned = 0;
+
+        $all_tags_used = '';
+
+        //Save Tags
+        if($tags){
+            foreach($tags as $key => $tag_id){
+                $tag = new EvidenceTags();    
+                $tag->tag_id = $tag_id;
+                $tag->evidence_id = $evidenceId;
+                $tag->user_id = $user->id;
+                $tag->created_at = new Expression('NOW()');
+                $tag->updated_at = new Expression('NOW()');
+                $tag->save();
+
+                $search_tag = Tags::find()->where(['id' => $tag_id])->one()->title;
+                        
+                if($key == 0)
+                    $all_tags_used .= $search_tag;
+                else
+                    $all_tags_used .= ', '.$search_tag;
+
+            }
+        }
+
+        if(Votes::checkFiveTaggedEvidencesReward()){
+            $evocoin_earned += 1;    
+        }
+
+
+        //EvokeLog
+
+                $log['id'] = 'tagging'; 
+                $log['tagger_username'] = $user->username;
+                $log['tagger_real_name'] = $user->getName();
+                $log['earned_evocoins_by_tagger'] = $evocoin_earned;
+                $log['evidence_url'] = $evidence->content->getUrl();
+                $log['evidence_activity'] = $evidence->activities->id_code;
+                $log['evidence_author_username'] = $evidence->getAuthor()->username;
+                $log['evidence_author_real_name'] = $evidence->getAuthor()->getName();
+                $log['tags_selected'] = $all_tags_used;
+
+                EvokeLog::log($log);
+
+        //END EVOKE LOG
+
+        AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', 'Thank you for tagging this evidence'));
     }
 
     public function actionEdit_review(){
