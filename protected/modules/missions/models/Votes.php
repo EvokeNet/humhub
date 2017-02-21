@@ -127,7 +127,9 @@ class Votes extends ContentActiveRecord
             $wallet->addCoin(1);
             $wallet->save();
             AlertController::createAlert(Yii::t('MissionsModule.base', "Reward"), Yii::t('MissionsModule.base', 'You\'ve received an extra evocoin for the last 5 evidences you\'ve tagged'));
+            return true;
         }
+        return false;
     }
 
     public function afterSave($insert, $changedAttributes)

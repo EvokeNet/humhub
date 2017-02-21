@@ -891,6 +891,7 @@ class EvidenceController extends ContentContainerController
         $evidenceId = Yii::$app->request->get("evidenceId");
         $tags = Yii::$app->request->get("tags");
         $evidence = $evidenceId ? Evidence::findOne($evidenceId) : null;
+        $evocoin_earned = 0;
 
         $all_tags_used = '';
 
@@ -915,12 +916,10 @@ class EvidenceController extends ContentContainerController
             }
         }
 
-        $evocoin_earned = 0;
+        if(Votes::checkFiveTaggedEvidencesReward()){
+            $evocoin_earned += 1;    
+        }
 
-        //Reward reviewer 1 evocoin
-        $wallet = Wallet::find()->where(['owner_id' => $user->id])->one();
-        $wallet->addCoin(1);
-        $evocoin_earned += 1;
 
         //EvokeLog
 
@@ -938,9 +937,7 @@ class EvidenceController extends ContentContainerController
 
         //END EVOKE LOG
 
-        $message = Yii::t('MissionsModule.base', 'You just gained {message} evocoins!', array('message' => $evocoin_earned));
-
-        AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', '{message}. <BR>Thank you for your review.', array('message' => $message)));
+        AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', 'Thank you for tagging this evidence'));
     }
 
     public function actionEdit_review(){
