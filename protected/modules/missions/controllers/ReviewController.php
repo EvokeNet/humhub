@@ -13,6 +13,7 @@ use humhub\modules\space\models\Space;
 use yii\web\HttpException;
 use app\modules\missions\models\Tags;
 use app\modules\alliances\models\Alliance;
+use app\modules\missions\models\Votes;
 
 class ReviewController extends ContentContainerController
 {
@@ -127,6 +128,14 @@ class ReviewController extends ContentContainerController
 
         $user = Yii::$app->user->getIdentity();
 
+        $tagged_evidences = Votes::getTagCount(); 
+        $remaining = $tagged_evidences % 5;
+        if($remaining == 0){
+            $next_to_evocoin = $tagged_evidences + 5;
+        }else{
+            $next_to_evocoin = $tagged_evidences + (5 - $remaining);
+        }
+
         // check if it's an ally
         $team_id = Team::getUserTeam($user->id);
         $ally = Alliance::find()->findByTeam($team_id)->one();
@@ -147,7 +156,17 @@ class ReviewController extends ContentContainerController
             $this->redirect($this->contentContainer->createUrl());
         }
 
-        return $this->render('index', array('contentContainer' => $this->contentContainer, 'evidence' => $evidence, 'files' => $files, 'evidence_count' => $totalEvidence, 'evidence_to_review_count' => $evidence_to_review_count, 'tags' => $tags, 'is_ally' => $is_ally));
+        return $this->render('index', array('contentContainer' => $this->contentContainer, 
+            'evidence' => $evidence, 
+            'files' => $files, 
+            'evidence_count' => $totalEvidence, 
+            'evidence_to_review_count' => $evidence_to_review_count, 
+            'tags' => $tags, 
+            'is_ally' => $is_ally,
+            'tagged_evidences' => $tagged_evidences,
+            'next_to_evocoin' => $next_to_evocoin,
+            )
+        );
     }
 
     public function actionShow($id)

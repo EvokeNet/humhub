@@ -112,15 +112,21 @@ class Votes extends ContentActiveRecord
         return parent::beforeSave($insert);
     }
 
-    public function checkFiveTaggedEvidencesReward(){
-
+    public static function getTagCount(){
         $user = Yii::$app->user->getIdentity();
 
-        $tag_count =  (new \yii\db\Query())
+        return (new \yii\db\Query())
         ->select(['count(distinct evidence_id) as evidence_count'])
         ->from('evidence_tags as et')
         ->where(['user_id' => $user->id])
         ->one()['evidence_count'];
+    }
+
+    public function checkFiveTaggedEvidencesReward(){
+
+        $user = Yii::$app->user->getIdentity();
+
+        $tag_count = Votes::getTagCount();
 
         if($tag_count % 5 == 0 && $tag_count >= 5){
             $wallet = Wallet::find()->where(['owner_id' => $user->id])->one();
