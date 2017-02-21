@@ -152,14 +152,15 @@ $this->pageTitle = Yii::t('MissionsModule.page_titles', 'Review Evidence');
 
                     <!--<h4><?php // Yii::t('MissionsModule.base', 'Distribute points for {title}', array('title' => $primaryPowerTitle)) ?></h4>-->
 
-                    <h5 style="text-transform:uppercase"><?php echo Yii::t('MissionsModule.base', 'Review this Evidence'); ?></h5>
+                    <h5 style="text-transform:uppercase"><?php echo Yii::t('MissionsModule.base', 'Tag this Evidence'); ?></h5>
 
                     <!--<p style = "margin:20px 0"><?php //Yii::t('MissionsModule.base', '<strong>Activity Difficulty Level:</strong> {level}', array('level' => $activity->difficultyLevel->title)) ?></p>-->
 
-                    <p style = "margin:25px 0"><?= Yii::t('MissionsModule.base', 'Choose the keywords that best describe your thoughts on this evidence, both based in your opinion and if it fulfilled the activity rubric. Select the tags and classify with 1 to 5 stars. If you have something to say to your fellow agent, leave a comment.') ?></p>
+                    <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
+                        <p style = "margin:25px 0"><?= Yii::t('MissionsModule.base', 'Choose the keywords that best describe your thoughts on this evidence, both based in your opinion and if it fulfilled the activity rubric. Select the tags and classify with 1 to 5 stars. If you have something to say to your fellow agent, leave a comment.') ?></p>
 
-                    <p style = "margin-bottom:30px"><?= Yii::t('MissionsModule.base', '<strong>Activity Rubric:</strong> {rubric}', array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></p>
-
+                        <p style = "margin-bottom:30px"><?= Yii::t('MissionsModule.base', '<strong>Activity Rubric:</strong> {rubric}', array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></p>
+                    <?php endif; ?>
                     <form id = "review" class="review">
 
                     <div class="row">
