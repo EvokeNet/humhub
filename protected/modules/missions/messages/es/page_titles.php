@@ -17,6 +17,10 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Evokations' => 'Evocaciones',
+    'Leaderboard' => 'Tabla de Clasificación',
+    'Mission {mission}' => 'Misión {mission}',
+    'Space Members' => 'Membros del espacío',
     'Mission {position} : {alias}' => 'Misión {position} : {alias}',
     'Missions' => 'Misiones',
     'M{mp}A{ap} : {alias}' => 'M{mp}A{ap} : {alias}',

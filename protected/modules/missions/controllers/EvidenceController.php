@@ -32,6 +32,7 @@ use app\modules\novel\models\NovelPage;
 use app\modules\novel\models\Chapter;
 
 use app\modules\missions\models\EvidenceTags;
+use app\modules\missions\models\Tags;
 use yii\db\Expression;
 
 use app\modules\missions\models\TeamMission;
@@ -782,9 +783,12 @@ class EvidenceController extends ContentContainerController
                 $vote->user_type = $user->group->name;
                 $vote->save();
 
-                //Save Tags
+                //SAVE TAGS
+
+                $all_tags_used = ''; //Variable to get all tags used and 
+
                 if($tags){
-                    foreach($tags as $tag_id){
+                    foreach($tags as $key => $tag_id){
                         $tag = new EvidenceTags();    
                         $tag->tag_id = $tag_id;
                         $tag->evidence_id = $evidenceId;
@@ -792,8 +796,15 @@ class EvidenceController extends ContentContainerController
                         $tag->created_at = new Expression('NOW()');
                         $tag->updated_at = new Expression('NOW()');
                         $tag->save();
+
+                        $search_tag = Tags::find()->where(['id' => $tag_id])->one()->title;
+                        
+                        if($key == 0)
+                            $all_tags_used .= $search_tag;
+                        else
+                            $all_tags_used .= ', '.$search_tag;
                     }
-                }
+                } 
 
                 $evocoin_earned = 0;
 
@@ -837,7 +848,7 @@ class EvidenceController extends ContentContainerController
 
                 //EvokeLog
 
-                $log['id'] = 'review';
+                $log['id'] = 'review'; 
                 $log['reviewer_username'] = $user->username;
                 $log['reviewer_real_name'] = $user->getName();
                 $log['group'] = $user->group->name;
@@ -846,6 +857,7 @@ class EvidenceController extends ContentContainerController
                 $log['evidence_activity'] = $evidence->activities->id_code;
                 $log['evidence_author_username'] = $evidence->getAuthor()->username;
                 $log['evidence_author_real_name'] = $evidence->getAuthor()->getName();
+                $log['tags_selected'] = $all_tags_used;
 
                 if($is_group_activity){
                     $log['team'] = $team->name;
@@ -879,10 +891,13 @@ class EvidenceController extends ContentContainerController
         $evidenceId = Yii::$app->request->get("evidenceId");
         $tags = Yii::$app->request->get("tags");
         $evidence = $evidenceId ? Evidence::findOne($evidenceId) : null;
+        $evocoin_earned = 0;
+
+        $all_tags_used = '';
 
         //Save Tags
         if($tags){
-            foreach($tags as $tag_id){
+            foreach($tags as $key => $tag_id){
                 $tag = new EvidenceTags();    
                 $tag->tag_id = $tag_id;
                 $tag->evidence_id = $evidenceId;
@@ -890,19 +905,39 @@ class EvidenceController extends ContentContainerController
                 $tag->created_at = new Expression('NOW()');
                 $tag->updated_at = new Expression('NOW()');
                 $tag->save();
+
+                $search_tag = Tags::find()->where(['id' => $tag_id])->one()->title;
+                        
+                if($key == 0)
+                    $all_tags_used .= $search_tag;
+                else
+                    $all_tags_used .= ', '.$search_tag;
+
             }
         }
 
-        $evocoin_earned = 0;
+        if(Votes::checkFiveTaggedEvidencesReward()){
+            $evocoin_earned += 1;    
+        }
 
-        //Reward reviewer 1 evocoin
-        $wallet = Wallet::find()->where(['owner_id' => $user->id])->one();
-        $wallet->addCoin(1);
-        $evocoin_earned += 1;
 
-        $message = Yii::t('MissionsModule.base', 'You just gained {message} evocoins!', array('message' => $evocoin_earned));
+        //EvokeLog
 
-        AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', '{message}. <BR>Thank you for your review.', array('message' => $message)));
+                $log['id'] = 'tagging'; 
+                $log['tagger_username'] = $user->username;
+                $log['tagger_real_name'] = $user->getName();
+                $log['earned_evocoins_by_tagger'] = $evocoin_earned;
+                $log['evidence_url'] = $evidence->content->getUrl();
+                $log['evidence_activity'] = $evidence->activities->id_code;
+                $log['evidence_author_username'] = $evidence->getAuthor()->username;
+                $log['evidence_author_real_name'] = $evidence->getAuthor()->getName();
+                $log['tags_selected'] = $all_tags_used;
+
+                EvokeLog::log($log);
+
+        //END EVOKE LOG
+
+        AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', 'Thank you for tagging this evidence'));
     }
 
     public function actionEdit_review(){

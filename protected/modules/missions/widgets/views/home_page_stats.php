@@ -46,7 +46,18 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
                         <?php if($space): ?>
                         <div style = "margin-top:20px">
                             <a class = "btn btn-cta1" href='<?= Url::to(['/missions/review/index', 'sguid' => $space->guid]) ?>'>
-                                    <?= Yii::t('MissionsModule.base', 'Review Evidence') ?>
+                                    <?php // Yii::t('MissionsModule.base', 'Review evidences') ?>
+                                    <?php
+                                    
+                                        $user = Yii::$app->user->getIdentity();
+
+                                        if($user->group->name == "Mentors"){
+                                            echo Yii::t('MissionsModule.base', 'Review Evidences');
+                                        } else{
+                                            echo Yii::t('MissionsModule.base', 'Tag Evidences');
+                                        }
+
+                                    ?>
                             </a>
                         </div>
                         <?php endif; ?>
@@ -110,7 +121,18 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
                 <?php if($space): ?>
                     <div class = "text-center" style = "margin-top:100px; padding: 0 50px">
                         <a class = "btn btn-cta1" href='<?= Url::to(['/missions/review/index', 'sguid' => $space->guid]) ?>' style = "width: 100%; white-space:normal;">
-                                <?= Yii::t('MissionsModule.base', 'Review Evidence') ?>
+                            <?php // Yii::t('MissionsModule.base', 'Review evidences') ?>
+                            <?php
+                            
+                                $user = Yii::$app->user->getIdentity();
+
+                                if($user->group->name == "Mentors"){
+                                    echo Yii::t('MissionsModule.base', 'Review Evidences');
+                                } else{
+                                    echo Yii::t('MissionsModule.base', 'Tag Evidences');
+                                }
+
+                            ?>
                         </a>
                     </div>
                 <?php endif; ?>

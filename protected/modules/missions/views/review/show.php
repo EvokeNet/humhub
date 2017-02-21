@@ -5,9 +5,17 @@ use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 use humhub\compat\CActiveForm;
 
-$this->title = Yii::t('MissionsModule.base', 'Review Evidence');
+$user = Yii::$app->user->getIdentity();
 
-$this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.base', 'Review Evidences'), 'url' => ['list', 'sguid' => $contentContainer->guid]];
+if($user->group->name == "Mentors"){
+  $title = Yii::t('MissionsModule.base', 'Review Evidences');
+} else{
+  $title = Yii::t('MissionsModule.base', 'Tag Evidences');
+}
+
+$this->pageTitle = $title;
+
+$this->params['breadcrumbs'][] = ['label' => $title, 'url' => ['list', 'sguid' => $contentContainer->guid]];
 $this->params['breadcrumbs'][] = $this->title;
         
 echo Breadcrumbs::widget([
@@ -20,12 +28,10 @@ if($evidence){
     $activity = $evidence->getActivities();
 }
 
-$this->pageTitle = Yii::t('MissionsModule.page_titles', 'Review Evidence');
-
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h4 style="margin-top:10px"><?php echo Yii::t('MissionsModule.base', 'Review Evidence'); ?></h4>
+        <h4 style="margin-top:10px"><?php echo $title; ?></h4>
         <?php if($activity): ?>
             <!-- <h6><?php //echo Yii::t('MissionsModule.base', '{first} of {total}', array('first' => ($evidence_count - $evidence_to_review_count + 1), 'total' => $evidence_count)); ?></h6> -->
         <?php endif; ?>
