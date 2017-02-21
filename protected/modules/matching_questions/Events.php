@@ -65,8 +65,8 @@ class Events extends \yii\base\Object
     public static function onAuthUser($event){
         $novel_order = Setting::Get('novel_order');
 
-        //on login actions
-        if(property_exists($event->action, "actionMethod") && (($event->action->actionMethod) && $event->action->actionMethod === 'actionLogin')){
+        //on login and create account actions
+        if(property_exists($event->action, "actionMethod") && (($event->action->actionMethod) && $event->action->actionMethod === 'actionLogin' || $event->action->actionMethod === 'actionCreateAccount')){
             //Check if user is logged in
             if(null != Yii::$app->user->getIdentity()) {
                 // check if user hasn't superhero id yet  and if user isn't a mentor

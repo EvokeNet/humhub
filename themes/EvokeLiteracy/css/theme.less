@@ -381,7 +381,7 @@ textarea {
 
 .evocoins{
   position:relative;
-  margin-bottom: 10px;
+  margin: 10px 0;
   // display: inline-block;
   // padding: 0px 0px 13px 26px;
   // padding: 0px 13px 13px;
@@ -1013,6 +1013,7 @@ input[type=select] {
   .content {
     a {
       color: @headings-blue-font;
+      font-size: 11pt;
     }
   }
   .content .files a {
@@ -1022,6 +1023,7 @@ input[type=select] {
 
 .content span {
   word-wrap: break-word;
+  font-size:10pt;
 }
 
 // Modules
@@ -1160,8 +1162,8 @@ input[type=select] {
       // font-size: 12px;
       font-size: 8pt;
       .count {
-        color: @headings-blue-font;
-        font-weight: 600;
+        color: @evoke-blue;
+        font-weight: 700;
         font-size: 12pt;
         line-height: 0.8em;
       }
@@ -1216,12 +1218,42 @@ input[type=select] {
   }
 }
 
+.panel-profile.panel-space{
+  border: 3px solid #fff;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+
+  .panel-body{
+    background-color: darken(@headings-blue-font, 5%);
+    color: white;
+    font-weight: 700;
+    .statistics {
+      .entry {
+        .count {
+          color: @headings-blue;
+        }
+      }
+    }
+  }
+}
+
 .panel-profile {
+  border: 3px solid #fff;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+
+  .panel-body{
+    background-color: darken(@secondary3, 10%);
+    color: white;
+    font-weight: 700;
+  }
+
   .panel-profile-header {
     position: relative;
-    border: 3px solid #fff;
-    border-top-right-radius: 3px;
-    border-top-left-radius: 3px;
+    // border: 3px solid #fff;
+    // border-top-right-radius: 3px;
+    // border-top-left-radius: 3px;
+
     .img-profile-header-background {
       border-radius: 3px;
       min-height: 110px;
@@ -1387,10 +1419,15 @@ input[type=select] {
 }
 
 .well {
-  border: none;
+  // border: none;
   box-shadow: none;
-  background-color: @headings-blue;
+  // background-color: @headings-blue;
   margin-bottom: 1px;
+
+  background-color: @body-color;
+  margin-top: 30px;
+  border: 2px solid @details-blue;
+  padding: 15px;
   hr {
     margin: 15px 0 10px;
     border-top: 2px solid @details-blue;
@@ -1539,12 +1576,15 @@ input[type=select] {
   li {
     font-weight: 600;
     font-size: 12px;
-    background-color: @box-blue;
+    background-color: @headings-blue;
+    border-color: #eee #eee #ddd;
+    border-radius: 4px 4px 0 0;
     a, .active a{
       border-bottom: 2px solid @details-blue!important;
     }
     a:hover, a:focus{
-       background-color: @headings-blue;
+       background-color: @secondary3;
+       color: @body-color;
     }
   }
 }
@@ -1588,11 +1628,15 @@ input[type=select] {
   }
 }
 
-.nav .caret,
+.nav .caret{
+  border-top-color: @evoke-blue;
+  border-bottom-color: @evoke-blue;
+}
+
 .nav .caret:hover,
 .nav .caret:active {
-  border-top-color: @primary-blue;
-  border-bottom-color: @primary-blue;
+  border-top-color: @evoke-blue;
+  border-bottom-color: @evoke-blue;
 }
 
 .nav li.dropdown > a:hover .caret,
@@ -1604,8 +1648,8 @@ input[type=select] {
 .nav .open > a .caret,
 .nav .open > a:hover .caret,
 .nav .open > a:focus .caret {
-  border-top-color: @primary-blue;
-  border-bottom-color: @primary-blue;
+  border-top-color: @evoke-blue;
+  border-bottom-color: @evoke-blue;
 }
 
 .nav .open > a,
@@ -1614,8 +1658,8 @@ input[type=select] {
   border-color: #ededed;
   color: @primary-blue;
   .caret {
-    color: @primary-blue;
-    border-top-color: @details-blue!important;
+    color: @headings-blue-font;
+    border-top-color: @headings-blue-font!important;
   }
 }
 
@@ -1663,7 +1707,7 @@ input[type=select] {
 .checkbox label {
   padding-left: 10px;
   min-height: 20px;
-  line-height: 16px;
+  // line-height: 16px;
   font-size: 12pt;
 }
 
@@ -2052,7 +2096,7 @@ a.list-group-item.active:focus {
 }
 
 .progress-bar{
-  background: @secondary1;
+  background: @tertiary2;
 }
 
 .progress-bar-info {
@@ -2627,7 +2671,7 @@ ul.tag_input.focus {
     font-size: 11px;
     font-weight: 600;
     a {
-      color: @primary-blue;
+      color: @evoke-blue;
     }
   }
   .dropdown-menu {
@@ -3285,8 +3329,9 @@ img.bounceIn {
 }
 
 .power-border{
-    border: 3px solid @secondary3;
+    border: 2px solid @secondary3;
     border-radius: 50%;
+    margin-top:15px;
 }
 
 .mission-title{
@@ -3352,9 +3397,10 @@ img.bounceIn {
 .glowing-box{
   background-color: @body-color;
   margin-top: 30px;
-  -moz-box-shadow: 0 0 5px #888;
-  -webkit-box-shadow: 0 0 5px #888;
-  box-shadow: 0 0 5px #888;
+  // -moz-box-shadow: 0 0 5px #888;
+  // -webkit-box-shadow: 0 0 5px #888;
+  // box-shadow: 0 0 5px #888;
+  border: 2px solid @details-blue;
 }
 
 .evidence-mission-box{
@@ -3551,7 +3597,23 @@ img.bounceIn {
 }
 
 .player-power{
-    padding-bottom: 25px;
+    padding-bottom: 15px;
+
+    span.text-header{
+      display:inline-block; 
+      font-size:12pt; 
+      margin-top:10px;
+      color:@primary3;
+    }
+
+    span.text-content{
+      // display:inline-block; 
+      font-size:11pt; 
+      // margin-top:5px;
+      color:@tertiary2;
+      font-weight:700;
+    }
+
 }
 
 /* missions\widgets\views\portfolio */
@@ -3785,7 +3847,7 @@ https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
 .stars {
     text-align: center;
     /*font-size: 2em;*/
-    color: #ece046;
+    color: @secondary3;
     /*margin-top: -14px;*/
 }
 
@@ -4188,14 +4250,15 @@ h3.product-name {
   text-align: center;
   display: inline-block;
   padding: 10px 15px 0px;
-  background-color: @tertiary2;
+  // background-color: @tertiary2;
   width: 140px;
   min-width: 140px;
   margin-bottom: 10px;
   margin-left:10px;
   min-height: 105px;
+  border: 3px solid @headings-blue-font;
   p{
-    color: @body-color!important;
+    // color: @body-color!important;
     font-weight: 700!important;
   }
 }
@@ -4265,4 +4328,52 @@ h3.product-name {
 legend{
   color: @headings-blue-font;
   border-bottom: 1px solid @details-blue;
+}
+
+.evokation-voting-close{
+  background-color: @headings-blue;
+  margin-bottom: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
+.user-content-box{
+  padding: 5px 3px;
+
+  h4{
+    margin-top:10px; 
+    color: @headings-blue-font;
+  }
+}
+
+.hints{
+  margin-top: 10px;
+  color: @headings-blue-font;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+#star_hint, .star_label{
+  display: block;
+  margin-left: -5px;
+  margin-top: -10px;
+  .hints;
+}
+
+.tags_panel{
+  padding: 25px 25px 0;
+  font-size:12pt;
+}
+
+#user_avg_star_hint, #mentors_avg_star_hint{
+  display:block;
+  text-align:center;
+  .hints;
+}
+
+.matching-results-box{
+  margin: 30px 10px;
+  h6{
+    padding-top:8px;
+  }
 }

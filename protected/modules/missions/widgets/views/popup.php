@@ -128,13 +128,18 @@ function addToMessagesArray(currentMessage){
 
 function checkDuplication(currentMessage){
   for (msg in messages) {
-    // console.log(currentMessage);
-    // console.log(messages[msg]);
+     //console.log(currentMessage);
+     //console.log(messages[msg]);
     if(currentMessage === messages[msg]){
       return true;
     }
   }
   return false;
+}
+
+function reLoadPopUps(){
+  messages = [];
+  loadPopUps;
 }
 
 function loadPopUps(){
@@ -156,6 +161,8 @@ function loadPopUps(){
               //if duplicated messages
               if(checkDuplication(xhttp.responseText)){
                 // do nothing
+                console.log("Duplicated message");
+                activatedPopUp = false;
               }else if(message['type'] == 'animated'){
                 console.log("animate");
                 animatePopUp(message['title'], message['message'], message['image_url']);  
@@ -222,6 +229,7 @@ function slideOutPopUp(){
       //hide
       $("#animated-popup").hide();
   });
+  activatedPopUp = false;
 }
 
 function removeAnimation(animationName){
@@ -229,10 +237,12 @@ function removeAnimation(animationName){
 }
 
 function showMessage(title, message){
+  console.log("showing: "+title);
   document.getElementById("message-title").innerHTML = title;
   document.getElementById("message-content").innerHTML = message;
   $("#popup-message").modal("show");
   activatedPopUp = false;
+  console.log("closing message");
 }
 
 </script>

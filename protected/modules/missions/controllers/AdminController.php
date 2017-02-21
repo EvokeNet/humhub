@@ -17,6 +17,9 @@ use app\modules\missions\models\EvidenceSearch;
 use app\modules\teams\models\Team;
 use app\modules\missions\models\Votes;
 use app\modules\missions\models\VotesSearch;
+use app\modules\missions\models\Tags;
+use app\modules\missions\models\TagsSearch;
+use app\modules\missions\models\TagTranslations;
 use humhub\modules\content\models\Content;
 use humhub\modules\user\models\User;
 use app\modules\achievements\models\UserAchievements;
@@ -28,6 +31,88 @@ use app\modules\achievements\models\Achievements;
  */
 class AdminController extends \humhub\modules\admin\components\Controller
 {
+    public function actionIndexTags()
+    {
+        $tags = Tags::find()->all();
+        return $this->render('tags/index', array('tags' => $tags));
+    }
+    
+    public function actionCreateTags()
+    {
+        $model = new Tags();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index-tags']);
+        } 
+        
+        return $this->render('tags/create', array('model' => $model));
+    }
+    
+    public function actionUpdateTags()
+    {
+        $model = Tags::findOne(['id' => Yii::$app->request->get('id')]);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index-tags']);
+        }
+
+        return $this->render('tags/update', array('model' => $model));
+    }
+    
+    public function actionDeleteTags()
+    {
+        $model = Tags::findOne(['id' => Yii::$app->request->get('id')]);
+
+        if ($model !== null) {
+            $model->delete();
+        }
+
+        return $this->redirect(['index-tags']);
+    }
+
+    public function actionIndexTagTranslations($id)
+    {
+        $tags = TagTranslations::find()->all();
+        $tag = Tags::findOne(['id' => Yii::$app->request->get('id')]);
+
+        return $this->render('tag-translations/index', array('tags' => $tags, 'tag' => $tag));
+    }
+    
+    public function actionCreateTagTranslations($id)
+    {
+        $model = new TagTranslations();
+        $model->tag_id = $id;
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index-tag-translations', 'id' => $id]);
+        } 
+        
+        return $this->render('tag-translations/create', array('model' => $model));
+    }
+    
+    public function actionUpdateTagTranslations($id)
+    {
+        $model = TagTranslations::findOne(['id' => Yii::$app->request->get('id')]);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index-tag-translations', 'id' => $id]);
+        }
+
+        return $this->render('tag-translations/update', array('model' => $model));
+    }
+    
+    public function actionDeleteTagTranslations($id)
+    {
+        $model = TagTranslations::findOne(['id' => Yii::$app->request->get('id')]);
+        $redirect_id = $model->tag_id;
+
+        if ($model !== null) {
+            $model->delete();
+        }
+
+        return $this->redirect(['index-tag-translations', 'id' => $redirect_id]);
+    }
+
     public function actionIndexDeadline()
     {
         $evokation_deadline = EvokationDeadline::getEvokationDeadline();

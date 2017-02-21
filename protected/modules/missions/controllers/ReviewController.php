@@ -11,6 +11,9 @@ use app\modules\teams\models\Team;
 use humhub\modules\space\models\Membership;
 use humhub\modules\space\models\Space;
 use yii\web\HttpException;
+use app\modules\missions\models\Tags;
+use app\modules\alliances\models\Alliance;
+use app\modules\missions\models\Votes;
 
 class ReviewController extends ContentContainerController
 {
@@ -73,6 +76,7 @@ class ReviewController extends ContentContainerController
         $team_id = Team::getUserTeam($user_id);
 
         $subquery = '(SELECT v2.evidence_id from votes as v2 where v2.user_id = '.Yii::$app->user->getIdentity()->id.')';
+        $subquery_tags = '(SELECT et.evidence_id from evidence_tags as et where et.user_id = '.Yii::$app->user->getIdentity()->id.')';
 
         $query = (new \yii\db\Query())
         ->select(['e.id as id, count(distinct v.id) as vote_count'])
@@ -82,6 +86,7 @@ class ReviewController extends ContentContainerController
         //->join('LEFT JOIN', 'space_membership s', '`s`.`user_id`=`c`.`user_id`')
         ->where('c.space_id != '.$currentSpace->id)
         ->andWhere('e.id NOT IN  '.$subquery)
+        ->andWhere('e.id NOT IN  '.$subquery_tags)
         ->andWhere('c.user_id != '.$user_id)
         ->andWhere('c.visibility ='. 1)
         ->groupBy('e.id')
@@ -118,7 +123,28 @@ class ReviewController extends ContentContainerController
 
     public function actionIndex()
     {
+
+        $tags = Tags::find()->all();
+
         $user = Yii::$app->user->getIdentity();
+
+        $tagged_evidences = Votes::getTagCount(); 
+        $remaining = $tagged_evidences % 5;
+        if($remaining == 0){
+            $next_to_evocoin = $tagged_evidences + 5;
+        }else{
+            $next_to_evocoin = $tagged_evidences + (5 - $remaining);
+        }
+
+        // check if it's an ally
+        $team_id = Team::getUserTeam($user->id);
+        $ally = Alliance::find()->findByTeam($team_id)->one();
+
+        if (isset($ally)) {
+          $is_ally = $ally->isAlly(Team::getUserTeam($user->id));
+        } else {
+          $is_ally = false;
+        }
 
         $nextEvidence = $this->getNextEvidence($this->contentContainer);
         $evidence = $nextEvidence['evidence'];
@@ -130,7 +156,17 @@ class ReviewController extends ContentContainerController
             $this->redirect($this->contentContainer->createUrl());
         }
 
-        return $this->render('index', array('contentContainer' => $this->contentContainer, 'evidence' => $evidence, 'files' => $files, 'evidence_count' => $totalEvidence, 'evidence_to_review_count' => $evidence_to_review_count));
+        return $this->render('index', array('contentContainer' => $this->contentContainer, 
+            'evidence' => $evidence, 
+            'files' => $files, 
+            'evidence_count' => $totalEvidence, 
+            'evidence_to_review_count' => $evidence_to_review_count, 
+            'tags' => $tags, 
+            'is_ally' => $is_ally,
+            'tagged_evidences' => $tagged_evidences,
+            'next_to_evocoin' => $next_to_evocoin,
+            )
+        );
     }
 
     public function actionShow($id)

@@ -765,6 +765,7 @@ input[type=select] {
 }
 .content span {
   word-wrap: break-word;
+  font-size: 10pt;
 }
 .module-installed {
   opacity: 0.5;
@@ -1354,7 +1355,6 @@ input[type=select] {
 .checkbox label {
   padding-left: 10px;
   min-height: 20px;
-  line-height: 16px;
   font-size: 12pt;
 }
 .form-control {
@@ -3505,4 +3505,36 @@ h3.product-name {
 .user-content-box h4 {
   margin-top: 40px;
   color: #00BCD4;
+}
+.hints {
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+#star_hint,
+.star_label {
+  display: block;
+  margin-left: -8px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.tags_panel {
+  padding: 25px 25px 0;
+  font-size: 12pt;
+}
+#user_avg_star_hint,
+#mentors_avg_star_hint {
+  display: block;
+  text-align: center;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.matching-results-box {
+  margin: 30px 10px;
+}
+.matching-results-box h6 {
+  padding-top: 8px;
 }
