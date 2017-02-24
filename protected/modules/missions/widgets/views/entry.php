@@ -18,6 +18,12 @@ echo Html::beginForm();
 
 ?>
 
+<style media="screen">
+  .tags_panel {
+    display: none;
+  }
+</style>
+
 <!-- EVIDENCE -->
 <?php if($evidence->content->visibility >= 1): ?>
 
