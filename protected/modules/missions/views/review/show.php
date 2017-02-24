@@ -117,7 +117,7 @@ if($evidence){
                                 <?php endif; ?>
 
                                 <?php foreach($votes as $vote): ?>
-                                    <div class="submitted-review review-box">
+                                    <div class="submitted-review review-box" style="position:relative">
 
                                         <img class="media-object img-rounded user-image user-<?php echo $vote->user->guid; ?>" alt="40x40"
                                          data-src="holder.js/40x40" style="display: inline-block;"
@@ -215,7 +215,7 @@ if($evidence){
                                                 ]);
                                                 ?>
 
-                                                <div class="trophy-icon <?= $disables ?>" id="btn-disables-module-<?php echo $vote->id; ?>"><i class="fa fa-trophy fa-lg" aria-hidden="true"></i></div>
+                                                <div class="trophy-icon <?= $disables ?>" id="btn-disables-module-<?php echo $vote->id; ?>" style="position: absolute; top: 0; right: 10px;"><i class="fa fa-trophy fa-lg" aria-hidden="true"></i></div>
 
                                                 <?php 
                                                     // if($vote->quality == 0){

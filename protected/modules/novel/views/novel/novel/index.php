@@ -5,11 +5,13 @@ use app\modules\novel\models\NovelPage;
 
 
 ?>
-<div class="row">
-  <div class="col-xs-8 col-xs-offset-2">
+<div class="container">
+<div class="row justify-content-md-center">
+	<div class="col-9 col-md-auto">
     <div class="panel panel-default">
       <div class="panel-body">
       </div>
     </div>
   </div>
+</div>
 </div>

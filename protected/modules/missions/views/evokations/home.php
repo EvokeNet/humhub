@@ -160,43 +160,45 @@ endforeach;
                     </h4>
                 </div>
 
-                <div id="collapseListGroup<?=$x?>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="true">
-                    <ul class="list-group">
-                        <?php foreach ($category->activities as $activity):
-                            if($activity->mission->locked == 0): ?>
-                            <li class="list-group-item" style="padding-top:10px; padding-bottom:10px">
+                <div class="panel-body">
+                    <div id="collapseListGroup<?=$x?>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="true">
+                        <ul class="list-group">
+                            <?php foreach ($category->activities as $activity):
+                                if($activity->mission->locked == 0): ?>
+                                <li class="list-group-item" style="padding-top:10px; padding-bottom:10px">
 
-                                <?php
+                                    <?php
 
-                                $a = isset($category->evokationCategoryTranslations[0]) && Yii::$app->language == 'es' ? $activity->activityTranslations[0]->title : $activity->title;
-                                // echo Html::a(
-                                // $a,
-                                // ['evidences', 'activities', 'categoryId' => $mission->id, 'sguid' => $contentContainer->guid]);
+                                    $a = isset($category->evokationCategoryTranslations[0]) && Yii::$app->language == 'es' ? $activity->activityTranslations[0]->title : $activity->title;
+                                    // echo Html::a(
+                                    // $a,
+                                    // ['evidences', 'activities', 'categoryId' => $mission->id, 'sguid' => $contentContainer->guid]);
 
-                                echo Html::a($a, ['evidence/show', 'activityId' => $activity->id, 'sguid' => $contentContainer->guid], ['class' => 'profile-link', 'style' => 'font-size:11pt']);
+                                    echo Html::a($a, ['evidence/show', 'activityId' => $activity->id, 'sguid' => $contentContainer->guid], ['class' => 'profile-link', 'style' => 'font-size:11pt']);
 
-                                $is_complete = false;
+                                    $is_complete = false;
 
-                                foreach ($activity->evidences as $evidence):
-                                    if($evidence->content->space_id==$contentContainer->id)
-                                        $is_complete = true;
-                                endforeach;
+                                    foreach ($activity->evidences as $evidence):
+                                        if($evidence->content->space_id==$contentContainer->id)
+                                            $is_complete = true;
+                                    endforeach;
 
-                                if($is_complete): ?>
-                                    <span style = "float:left; margin: 4px 10px 0 0"><i class="fa fa-check-circle-o" aria-hidden="true"></i></span>
-                                <?php else: ?>
-                                    <span style = "float:left; margin: 4px 10px 0 0"><i class="fa fa-circle-o" aria-hidden="true"></i></span>
-                                <?php endif;  ?>
+                                    if($is_complete): ?>
+                                        <span style = "float:left; margin: 4px 10px 0 0"><i class="fa fa-check-circle-o" aria-hidden="true"></i></span>
+                                    <?php else: ?>
+                                        <span style = "float:left; margin: 4px 10px 0 0"><i class="fa fa-circle-o" aria-hidden="true"></i></span>
+                                    <?php endif;  ?>
 
-                                <span class="label label-default" style = "margin-left:10px"><?= isset($activity->mission->missionTranslations[0]) ? $activity->mission->missionTranslations[0]->title : $activity->mission->title ?></span>
+                                    <span class="label label-default" style="font-size: 8pt!important; margin-left: 10px; white-space: pre-wrap;"><?= isset($activity->mission->missionTranslations[0]) ? $activity->mission->missionTranslations[0]->title : $activity->mission->title ?></span>
 
-                            </li>
-                        <?php endif; endforeach; ?>
-                        <!--<li class="list-group-item">Bootply</li>
-                        <li class="list-group-item">One itmus ac facilin</li>
-                        <li class="list-group-item">Second eros</li> -->
-                    </ul>
-                    <!--<div class="panel-footer">Footer</div> -->
+                                </li>
+                            <?php endif; endforeach; ?>
+                            <!--<li class="list-group-item">Bootply</li>
+                            <li class="list-group-item">One itmus ac facilin</li>
+                            <li class="list-group-item">Second eros</li> -->
+                        </ul>
+                        <!--<div class="panel-footer">Footer</div> -->
+                    </div>
                 </div>
 
              </div>

@@ -18,6 +18,12 @@ echo Html::beginForm();
 
 ?>
 
+<style media="screen">
+  .tags_panel {
+    display: none;
+  }
+</style>
+
 <!-- EVIDENCE -->
 <?php if($evidence->content->visibility >= 1): ?>
 
@@ -141,7 +147,7 @@ echo Html::beginForm();
                         <?php endif; ?>
 
                         <?php foreach($votes as $vote): ?>
-                            <div class="review-box">
+                            <div class="review-box" style="position:relative">
 
                                 <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors" || $vote->user->group->name == "Mentors"): ?>
                                     <img class="media-object img-rounded user-image user-<?php echo $vote->user->guid; ?>" alt="35x35"
@@ -247,11 +253,11 @@ echo Html::beginForm();
                                           ]);
                                           ?>
 
-                                      <div class="trophy-icon <?= $disables ?>" id="btn-disables-module-<?php echo $vote->id; ?>"><i class="fa fa-trophy fa-lg" aria-hidden="true"></i></div>
+                                      <div class="trophy-icon <?= $disables ?>" id="btn-disables-module-<?php echo $vote->id; ?>" style="position: absolute; top: 0; right: 10px;"><i class="fa fa-trophy fa-lg" aria-hidden="true"></i></div>
 
                                     <?php else: ?>
 
-                                      <div class="trophy-icon agent <?= $disables ?>" id="btn-disables-module-<?php echo $vote->id; ?>"><i class="fa fa-trophy fa-lg" aria-hidden="true"></i></div>
+                                      <div class="trophy-icon agent <?= $disables ?>" id="btn-disables-module-<?php echo $vote->id; ?>" style="position: absolute; top: 0; right: 10px;"><i class="fa fa-trophy fa-lg" aria-hidden="true"></i></div>
 
                                     <?php endif; ?>
 
@@ -518,6 +524,11 @@ function validateReview(id){
 
   opt = opt? opt.val() : null;
   grade = grade? grade.val() : null;
+
+  if(!comment){
+    showMessage("Error", "<?= Yii::t('MissionsModule.base', 'Comment required') ?>");
+    return false;
+  }
 
   if(opt == "yes"){
 
