@@ -30,6 +30,8 @@ return [
     'email' => 'correo electrónico',
     'password' => 'contraseña',
     'username or email' => 'Usuario o correo electrónico',
+    'Your adventure starts now.' => 'Su aventura empieza ahora.',
+    'You have the power to change the world.' => 'Tienes el poder de cambiar el mundo',
     'Ideation' => 'Ideación',
     'Transformation' => 'Transformación',
     'Imagination' => 'Imaginación',
@@ -51,5 +53,5 @@ return [
     'Systems Thinker' => 'Pensamiento Sistémico',
     'Empathetic Activist' => 'Liderazgo Empático',
     'You have the power to change the world.' => 'Tiene el poder para cambiar el mundo.',
-    'Your adventure starts now.' => 'Su aventura comienza ahora.'
+    'Your adventure starts now.' => 'Su aventura comienza ahora.',
 ];

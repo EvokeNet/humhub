@@ -8,21 +8,11 @@ use app\modules\novel\models\NovelPage;
 <style media="screen">
 
   .graphic-novel-page{
-    /*min-height:200vh;*/
-
-    <?php if($page->markup != ""): ?>
-    <?php else: ?>
-    background-image:url('<?= $page->page_image ?>');
-    <?php endif; ?>
-
-    background-size:cover;
-    background-repeat:no-repeat;
-    background-position: center center; /*background-position:top;*/
-    /*background-attachment: fixed;*/
-    
-    width: 100%;
-    height: 0;
-    padding-top: 70%!important;
+    position: relative;
+  }
+  
+  .graphic-novel-page img{
+    position: absolute; top: 0; width: 100%;
   }
   
   <?php if (!Yii::$app->user->getIdentity()->has_read_novel && Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
@@ -38,8 +28,8 @@ use app\modules\novel\models\NovelPage;
 </style>
 
 <div class="container">
-  <div class="row justify-content-md-center">
-    <div class="col-9 col-md-auto">
+<!--   <div class="row justify-content-md-center">
+    <div class="col-9 col-md-auto"> -->
       
       <?php if($page->chapter): ?>
         <div class="alchemy">
@@ -52,19 +42,27 @@ use app\modules\novel\models\NovelPage;
       
 
 
-        <div class="panel-body graphic-novel-page" style="">
-          <?= $page->markup ?>
-          <?php if ($page->page_number !== 1): ?>
-            <?php echo Html::a(
-                '<',
-                ['graphic-novel', 'page' => ($page->page_number - 1)], array('class' => 'button-back page-button')); ?>
-          <?php endif; ?>
-          <?php echo Html::a(
-              '>',
-              ['graphic-novel', 'page' => ($page->page_number + 1)], array('class' => 'button-next page-button')); ?>
+    <div class="graphic-novel-page" style="">
 
-        </div>
-   
+      
+        <?php if($page->markup != ""): ?>
+          <?= $page->markup ?>
+        <?php else: ?>
+          <img src="<?= $page->page_image ?>" />
+        <?php endif; ?>
+      
+
+      <?php if ($page->page_number !== 1): ?>
+        <?php echo Html::a(
+            '<',
+            ['graphic-novel', 'page' => ($page->page_number - 1)], array('class' => 'button-back page-button')); ?>
+      <?php endif; ?>
+      <?php echo Html::a(
+          '>',
+          ['graphic-novel', 'page' => ($page->page_number + 1)], array('class' => 'button-next page-button')); ?>
+
     </div>
-  </div>
+   
+<!--     </div>
+  </div> -->
 </div>
