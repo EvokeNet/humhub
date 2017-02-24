@@ -10,7 +10,7 @@ use humhub\compat\CActiveForm;
 
 ?>
 
-<div class="review-box" id="vote_tab_<?= $vote->id ?>">
+<div class="review-box" id="vote_tab_<?= $vote->id ?>" style="position:relative">
   
   <?php // Deactivated if(Yii::$app->user->getIdentity()->group->name == "Mentors" || $vote->user->group->name == "Mentors"): ?>
   <?php if(true): ?>
@@ -131,7 +131,7 @@ use humhub\compat\CActiveForm;
         ]);
         ?>
 
-      <div class="trophy-icon <?= $disables ?>" id="btn-disables-module-<?php echo $vote->id; ?>"><i class="fa fa-trophy fa-lg" aria-hidden="true"></i></div>
+      <div class="trophy-icon <?= $disables ?>" id="btn-disables-module-<?php echo $vote->id; ?>" style="position: absolute; top: 0; right: 10px;"><i class="fa fa-trophy fa-lg" aria-hidden="true"></i></div>
       
       <?php endif; ?>
     </div>

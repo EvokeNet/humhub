@@ -862,10 +862,10 @@ class EvidenceController extends ContentContainerController
                 if($is_group_activity){
                     $log['team'] = $team->name;
                     foreach ($team_members as $team_member) {
-                        $log[$activity_power->getPower()->title.'_'.$team_member->username."_points"] = $grade;                        
+                        $log[$activityPower->getPower()->title.'_'.$team_member->username."_points"] = $grade;                        
                     }
                 }else{
-                    $log[$activity_power->getPower()->title."_evidence_author_points"] = $grade;
+                    $log[$activityPower->getPower()->title."_evidence_author_points"] = $grade;
                 }
 
                 EvokeLog::log($log);
