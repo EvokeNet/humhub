@@ -525,6 +525,11 @@ function validateReview(id){
   opt = opt? opt.val() : null;
   grade = grade? grade.val() : null;
 
+  if(!comment){
+    showMessage("Error", "<?= Yii::t('MissionsModule.base', 'Comment required') ?>");
+    return false;
+  }
+
   if(opt == "yes"){
 
     if(grade >= 1){
