@@ -151,7 +151,7 @@ class ReviewController extends ContentContainerController
 
         // redirect to home if nomore evidences
         if (!isset($evidence)) {
-          $this->redirect('/');
+          return $this->redirect('/');
         }
 
         $files = $nextEvidence['files'];
