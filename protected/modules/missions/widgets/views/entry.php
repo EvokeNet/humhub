@@ -84,6 +84,16 @@ echo Html::beginForm();
 
     </br>
 
+    <!-- show activity text -->
+    <div class="activity-text">
+      <h4><?php echo $activity->id_code; ?> - <?php echo isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title; ?></h4>
+      <div class="activity-body">
+        <?php echo isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description; ?>
+      </div>
+    </div>
+
+    </br>
+
     <?php
       if($evidence->content->user_id != Yii::$app->user->getIdentity()->id){
         //already voted
