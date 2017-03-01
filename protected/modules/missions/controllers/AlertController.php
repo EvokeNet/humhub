@@ -58,5 +58,12 @@ class AlertController extends Controller
 
     public function sendDefaultErrorMessage(){
         AlertController::createAlert("Error", Yii::t('MissionsModule.base', 'Use the message box below to let us know what you were attempting to do and we will resolve it.'));
-    }    
+    }   
+
+    public function actionTest(){
+        $notification = new \humhub\modules\missions\notifications\RewardEvocoinGroupActivity();
+        $notification->source = Yii::$app->user->getIdentity();
+        $notification->send(Yii::$app->user->getIdentity());
+    }
+
 }
