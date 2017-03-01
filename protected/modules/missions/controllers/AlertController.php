@@ -61,7 +61,7 @@ class AlertController extends Controller
     }   
 
     public function actionTest(){
-        $notification = new \humhub\modules\missions\notifications\RewardEvocoinGroupActivity();
+        $notification = new \humhub\modules\missions\notifications\RewardEvocoinMissionCompletion();
         $notification->source = Yii::$app->user->getIdentity();
         $notification->send(Yii::$app->user->getIdentity());
     }
