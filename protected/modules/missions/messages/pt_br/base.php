@@ -66,6 +66,7 @@ return [
     'Choose the keywords that best describe your thoughts on this evidence, both based in your opinion and if it fulfilled the activity rubric. Select the tags and classify with 1 to 5 stars. If you have something to say to your fellow agent, leave a comment.' => '',
     'Close' => '',
     'Close Date' => '',
+    'Comment required' => '',
     'Congratulations!' => '',
     'Create' => '',
     'Create Evokation Categories' => '',

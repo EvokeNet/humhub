@@ -53,7 +53,14 @@ use app\modules\missions\models\Evidence;
             <div class="review-box">
 
                 <h5 style="text-align:center"><?php echo Yii::t('MissionsModule.base', 'Mission {position}', array('position' => $m->position)); ?></h5>
-                <h6 style="text-align:center"><?php echo $m->title; ?></h6>
+                <h6 style="text-align:center">
+                    <?php 
+                            if(Yii::$app->language == 'es' && isset($m->missionTranslations[0]))
+                                echo $m->missionTranslations[0]->title;
+                            else
+                                echo $m->title;
+                    ?>
+                </h6>
                 <br />
 
                 <table class="table table-responsive">
@@ -61,13 +68,13 @@ use app\modules\missions\models\Evidence;
                         <tr>
                         <th width="10"></th>
                         <?php foreach($a1 as $member): ?>
-                            <th style="text-align:center">
+                            <th width="20" style="text-align:center">
                                 <a href="<?php echo $member->getUrl(); ?>">
                                     <img src="<?php echo $member->getProfileImage()->getUrl(); ?>" class="img-rounded tt img_margin"
                                         style="width: 50px; height: 50px;" 
                                         data-original-title="<?php echo Html::encode($member->displayName); ?>">
+                                    <p style="margin-bottom: 0; margin-top: 5px; font-size:10pt"><?php echo $member->name; ?></p>
                                 </a>
-                                <p style="margin-bottom: 0; margin-top: 5px; font-size:10pt"><?php echo $member->username; ?></p>
                             </th>
                         <?php endforeach; ?>
                         </tr>
@@ -98,9 +105,11 @@ use app\modules\missions\models\Evidence;
 
                                 <?php foreach($a1 as $user): $status = Evidence::evidenceForActivityStatus($a->id, $user->id); ?>
                                     <td style="text-align:center">
-                                    <div class="powers-box <?php echo $status; ?>">
-                                        <?php echo Activities::getPrimaryPowerPoints($a->id, $user->id); ?>
-                                    </div>
+                                    <a href="<?php echo $contentContainer->createUrl('/missions/evidence/show', ['activityId' => $a->id]); ?>">
+                                        <div class="powers-box <?php echo $status; ?>">
+                                            <?php echo Activities::getPrimaryPowerPoints($a->id, $user->id); ?>
+                                        </div>
+                                    </a>
                                     </td>
                                 <?php endforeach; ?>
 
@@ -108,16 +117,22 @@ use app\modules\missions\models\Evidence;
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-            </div>
-            
-            <div style="margin:20px 0px 40px">
-                <span style="display: inline-block; margin: 0 20px; font-weight: 700; color: #03ACC5;"><?php echo Yii::t('MissionsModule.base', 'Powers'); ?></span>
-                <?php foreach($all_powers as $ap): ?>
-                    <div style="display:inline-block; text-align:center; margin-right:20px">
-                        <img src = "<?php echo $ap->image; ?>" width=40px>
-                        <span style="font-size:9pt; margin-top:5px"><?php echo $ap->name; ?></span>
+
+                <div style="margin:40px 0px 5px">
+                    <span style="display: inline-block; margin-bottom: 10px; font-weight: 700; color: #03ACC5; font-size: 12pt;"><?php echo Yii::t('MissionsModule.base', 'Powers'); ?></span>
+
+                    <div class="row">
+                        <?php foreach($all_powers as $ap): ?>
+                            <div class="col-sm-4">
+                                <img src = "<?php echo $ap->image; ?>" width=40px>
+                                <p style="font-size:9pt; margin-top:5px; display:inline-block"><?php echo $ap->name; ?></p>
+                                <p style="font-size:9pt; margin-top:5px"><?php echo $ap->description; ?></p>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
-                <?php endforeach; ?>
+        
+                </div>
+
             </div>
 
         <?php endforeach; ?>
