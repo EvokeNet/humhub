@@ -18,6 +18,12 @@ echo Html::beginForm();
 
 ?>
 
+<style media="screen">
+  .tags_panel {
+    display: none;
+  }
+</style>
+
 <!-- EVIDENCE -->
 <?php if($evidence->content->visibility >= 1): ?>
 
@@ -75,6 +81,16 @@ echo Html::beginForm();
     </div>
 
     <?php echo Html::endForm(); ?>
+
+    </br>
+
+    <!-- show activity text -->
+    <div class="activity-text">
+      <h4><?php echo $activity->id_code; ?> - <?php echo isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title; ?></h4>
+      <div class="activity-body">
+        <?php echo isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description; ?>
+      </div>
+    </div>
 
     </br>
 
@@ -518,6 +534,11 @@ function validateReview(id){
 
   opt = opt? opt.val() : null;
   grade = grade? grade.val() : null;
+
+  if(!comment){
+    showMessage("Error", "<?= Yii::t('MissionsModule.base', 'Comment required') ?>");
+    return false;
+  }
 
   if(opt == "yes"){
 
