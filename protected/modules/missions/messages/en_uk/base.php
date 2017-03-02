@@ -17,6 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    '+{points}' => '',
     '+{points} {power}' => '',
     '140 characters required' => '',
     '<strong>Activity Difficulty Level:</strong> {level}' => '',
@@ -85,6 +86,7 @@ return [
     'Enter Mission' => '',
     'Error' => '',
     'Every time you submit evidence, your overall rating will improve.' => '',
+    'Evidence Not Submitted' => '',
     'Evidence Tagged: {reviewed}' => '',
     'Evidence: {evidence}' => '',
     'Evidence: {title}' => '',
@@ -153,6 +155,7 @@ return [
     'Portfolio' => '',
     'Portfolio updated successfully!' => '',
     'Post too short.' => '',
+    'Powers' => '',
     'Primary Power' => '',
     'Publish' => '',
     'Rating: {rating}' => '',
@@ -163,6 +166,9 @@ return [
     'Review Evidence' => '',
     'Review Evidences' => '',
     'Reviewed' => '',
+    'Reviewed by Ally' => '',
+    'Reviewed by Both' => '',
+    'Reviewed by Mentor' => '',
     'Reviews' => '',
     'Reward' => '',
     'Rubric: {text}' => '',
