@@ -144,7 +144,7 @@ class EvidenceController extends ContentContainerController
         ->joinWith('user')
         ->where(['space_id' => $this->contentContainer->id, 'user.status' => \humhub\modules\user\models\User::STATUS_ENABLED])
         ->all();
-
+ 
         $lang = Languages::findOne(['code' => Yii::$app->language]);
         if(!isset($lang))
             $lang = Languages::findOne(['code' => 'en-US']);
