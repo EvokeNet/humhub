@@ -218,6 +218,8 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
                 $flag = 'vote_ally';
             } else if(!$vote_ally && $vote_mentor){
                 $flag = 'vote_mentor';
+            } else{
+                $flag = 'submit';
             }
         }
 
