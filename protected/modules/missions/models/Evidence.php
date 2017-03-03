@@ -200,6 +200,32 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
         return true;
     }
 
+    public function evidenceForActivityStatus($activityId = "", $userId = ""){
+
+        $evidence = Evidence::findOne(['activities_id' => $activityId, 'created_by' => $userId]);
+
+        $flag = '';
+
+        if(!$evidence){
+            $flag = 'empty';
+        } else{
+            $vote_ally = Votes::findOne(['evidence_id' => $evidence->id, 'user_type' => 'Users']);
+            $vote_mentor = Votes::findOne(['evidence_id' => $evidence->id, 'user_type' => 'Mentors']);
+
+            if($vote_ally && $vote_mentor){
+                $flag = 'both';
+            } else if($vote_ally && !$vote_mentor){
+                $flag = 'vote_ally';
+            } else if(!$vote_ally && $vote_mentor){
+                $flag = 'vote_mentor';
+            } else{
+                $flag = 'submit';
+            }
+        }
+
+        return $flag;
+    }
+
     public function hasUserSubmittedEvidence($activityId = "", $userId = "")
     {
 
