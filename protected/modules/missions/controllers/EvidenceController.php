@@ -370,6 +370,12 @@ class EvidenceController extends ContentContainerController
                             foreach($activityPowers as $activity_power){
                                 UserPowers::addPowerPoint($activity_power->getPower(), $team_member, $activity_power->value);
                             }
+
+                            //notificate
+                                $notification = new \humhub\modules\missions\notifications\RewardEvocoinGroupActivity();
+                                $notification->source = $team_member;
+                                $notification->send($team_member);
+
                           }
                         } else { // just award the current user
                           //USER POWER POINTS
@@ -396,6 +402,12 @@ class EvidenceController extends ContentContainerController
                                     $wallet = Wallet::find()->where(['owner_id' => $team_member->id])->one();
                                     $wallet->addCoin(100);
                                     $wallet->save();
+
+                                    //notificate
+                                        $notification = new \humhub\modules\missions\notifications\RewardEvocoinMissionCompletion();
+                                        $notification->source = $team_member;
+                                        $notification->send($team_member);
+
                                 }
 
                                 $team_mission = new TeamMission();
@@ -509,6 +521,12 @@ class EvidenceController extends ContentContainerController
                 foreach($activityPowers as $activity_power){
                     UserPowers::addPowerPoint($activity_power->getPower(), $team_member, $activity_power->value);
                 }
+
+                //notificate
+                    $notification = new \humhub\modules\missions\notifications\RewardEvocoinGroupActivity();
+                    $notification->source = $team_member;
+                    $notification->send($team_member);
+
               }
             } else { // just award the current user
               //USER POWER POINTS
@@ -536,6 +554,12 @@ class EvidenceController extends ContentContainerController
                         $wallet = Wallet::find()->where(['owner_id' => $team_member->id])->one();
                         $wallet->addCoin(100);
                         $wallet->save();
+
+                         //notificate
+                            $notification = new \humhub\modules\missions\notifications\RewardEvocoinMissionCompletion();
+                            $notification->source = $team_member;
+                            $notification->send($team_member);
+
                     }
 
                     $team_mission = new TeamMission();
