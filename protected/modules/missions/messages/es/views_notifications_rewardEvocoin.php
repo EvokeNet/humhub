@@ -18,5 +18,5 @@
  */
 return [
     'You\'ve gained 10 evocoins for a group activity submission.' => 'Has ganado 10 evocoins por submeter una actividad en equipo',
-    'You\'ve gained 100 evocoins for a mission completion.' => 'Has ganado 10 evocoins por completar una misión',
+    'You\'ve gained 100 evocoins for a mission completion.' => 'Has ganado 100 evocoins por completar una misión',
 ];
