@@ -128,15 +128,25 @@ use app\modules\missions\models\Evidence;
                 <div style="margin:40px 0px 5px">
                     <span style="display: inline-block; margin-bottom: 10px; font-weight: 700; color: #03ACC5; font-size: 12pt;"><?php echo Yii::t('MissionsModule.base', 'Powers'); ?></span>
 
-                    <div class="row">
+                        <?php $counter = 0 ?>
                         <?php foreach($all_powers as $ap): ?>
-                            <div class="col-sm-4">
-                                <img src = "<?php echo $ap->image; ?>" width=40px>
-                                <p style="font-size:9pt; margin-top:5px; display:inline-block"><?php echo $ap->getName(); ?></p>
-                                <p style="font-size:9pt; margin-top:5px"><?php echo $ap->getDescription(); ?></p>
-                            </div>
+                            <?php 
+                                if($counter%3==0){
+                                    echo "<div class='row'>"; 
+                                }
+                            ?>
+                                <div class="col-sm-4">
+                                    <img src = "<?php echo $ap->image; ?>" width=40px>
+                                    <p style="font-size:9pt; margin-top:5px; display:inline"><?php echo $ap->getName(); ?></p>
+                                    <p style="font-size:9pt; margin-top:5px;"><?php echo $ap->getDescription(); ?></p>
+                                </div>
+                            <?php 
+                                if($counter%3==2 || $counter == sizeof($all_powers)-1){
+                                    echo "</div>"; 
+                                }
+                                $counter++;
+                            ?>
                         <?php endforeach; ?>
-                    </div>
         
                 </div>
 
