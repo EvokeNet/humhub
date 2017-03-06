@@ -97,8 +97,10 @@ use app\modules\missions\models\Evidence;
                                             $name = $power->getPower()->powerTranslations[0]->title;
                                 ?>
                                     <th style="text-align:center">
-                                    <img src = "<?php echo $power->getPower()->image; ?>" width=50px>
-                                    <span><?php echo Yii::t('MissionsModule.base', '+{points}', array('power' => $name, 'points' => $power->value)); ?></span>
+                                    <a href="<?= $contentContainer->createUrl('/missions/evidence/show', ['activityId' => $a->id]) ?>">
+                                        <img src = "<?php echo $power->getPower()->image; ?>" width=50px>
+                                        <span><?php echo Yii::t('MissionsModule.base', '+{points}', array('power' => $name, 'points' => $power->value)); ?></span>
+                                    </a> 
                                     </th>
                                     
                                 <?php endforeach; ?>
@@ -147,11 +149,11 @@ use app\modules\missions\models\Evidence;
 
 <style>
 
-    .disabled {
+
+.disabled {
        pointer-events: none;
        cursor: default;
     }
-
     .powers-box{
         text-align: center;
         display: inline-block;
