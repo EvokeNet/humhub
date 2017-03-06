@@ -97,15 +97,22 @@ use app\modules\missions\models\Evidence;
                                             $name = $power->getPower()->powerTranslations[0]->title;
                                 ?>
                                     <th style="text-align:center">
-                                    <img src = "<?php echo $power->getPower()->image; ?>" width=50px>
-                                    <span><?php echo Yii::t('MissionsModule.base', '+{points}', array('power' => $name, 'points' => $power->value)); ?></span>
+                                    <a href="<?= $contentContainer->createUrl('/missions/evidence/show', ['activityId' => $a->id]) ?>">
+                                        <img src = "<?php echo $power->getPower()->image; ?>" width=50px>
+                                        <span><?php echo Yii::t('MissionsModule.base', '+{points}', array('power' => $name, 'points' => $power->value)); ?></span>
+                                    </a> 
                                     </th>
                                     
                                 <?php endforeach; ?>
 
                                 <?php foreach($a1 as $user): $status = Evidence::evidenceForActivityStatus($a->id, $user->id); ?>
+                                    <?php 
+                                        $evidence = Evidence::getUserEvidence($user->id, $a->id); 
+                                        $url = $evidence ? $contentContainer->createUrl('/space/space', ['wallEntryId' => $evidence->content->getFirstWallEntryId()]) : '';
+                                        $class = $evidence ? '' : 'disabled';
+                                    ?>
                                     <td style="text-align:center">
-                                    <a href="<?php echo $contentContainer->createUrl('/missions/evidence/show', ['activityId' => $a->id]); ?>">
+                                    <a class="<?=$class ?>" href="<?php echo $url ?>">
                                         <div class="powers-box <?php echo $status; ?>">
                                             <?php echo Activities::getPrimaryPowerPoints($a->id, $user->id); ?>
                                         </div>
@@ -121,15 +128,25 @@ use app\modules\missions\models\Evidence;
                 <div style="margin:40px 0px 5px">
                     <span style="display: inline-block; margin-bottom: 10px; font-weight: 700; color: #03ACC5; font-size: 12pt;"><?php echo Yii::t('MissionsModule.base', 'Powers'); ?></span>
 
-                    <div class="row">
+                        <?php $counter = 0 ?>
                         <?php foreach($all_powers as $ap): ?>
-                            <div class="col-sm-4">
-                                <img src = "<?php echo $ap->image; ?>" width=40px>
-                                <p style="font-size:9pt; margin-top:5px; display:inline-block"><?php echo $ap->name; ?></p>
-                                <p style="font-size:9pt; margin-top:5px"><?php echo $ap->description; ?></p>
-                            </div>
+                            <?php 
+                                if($counter%3==0){
+                                    echo "<div class='row'>"; 
+                                }
+                            ?>
+                                <div class="col-sm-4">
+                                    <img src = "<?php echo $ap->image; ?>" width=40px>
+                                    <p style="font-size:9pt; margin-top:5px; display:inline"><?php echo $ap->getName(); ?></p>
+                                    <p style="font-size:9pt; margin-top:5px;"><?php echo $ap->getDescription(); ?></p>
+                                </div>
+                            <?php 
+                                if($counter%3==2 || $counter == sizeof($all_powers)-1){
+                                    echo "</div>"; 
+                                }
+                                $counter++;
+                            ?>
                         <?php endforeach; ?>
-                    </div>
         
                 </div>
 
@@ -142,6 +159,11 @@ use app\modules\missions\models\Evidence;
 
 <style>
 
+
+.disabled {
+       pointer-events: none;
+       cursor: default;
+    }
     .powers-box{
         text-align: center;
         display: inline-block;
