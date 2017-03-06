@@ -132,8 +132,8 @@ use app\modules\missions\models\Evidence;
                         <?php foreach($all_powers as $ap): ?>
                             <div class="col-sm-4">
                                 <img src = "<?php echo $ap->image; ?>" width=40px>
-                                <p style="font-size:9pt; margin-top:5px; display:inline-block"><?php echo $ap->name; ?></p>
-                                <p style="font-size:9pt; margin-top:5px"><?php echo $ap->description; ?></p>
+                                <p style="font-size:9pt; margin-top:5px; display:inline-block"><?php echo $ap->getName(); ?></p>
+                                <p style="font-size:9pt; margin-top:5px"><?php echo $ap->getDescription(); ?></p>
                             </div>
                         <?php endforeach; ?>
                     </div>
