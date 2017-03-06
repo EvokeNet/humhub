@@ -418,4 +418,8 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
         return parent::beforeDelete();
     }
 
+    public static function getUserEvidence($user_id, $activity_id){
+        return Evidence::findOne(['created_by' => $user_id, 'activities_id' => $activity_id]);
+    }
+
 }

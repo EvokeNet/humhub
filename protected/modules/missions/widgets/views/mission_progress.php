@@ -104,8 +104,13 @@ use app\modules\missions\models\Evidence;
                                 <?php endforeach; ?>
 
                                 <?php foreach($a1 as $user): $status = Evidence::evidenceForActivityStatus($a->id, $user->id); ?>
+                                    <?php 
+                                        $evidence = Evidence::getUserEvidence($user->id, $a->id); 
+                                        $url = $evidence ? $contentContainer->createUrl('/space/space', ['wallEntryId' => $evidence->content->getFirstWallEntryId()]) : '';
+                                        $class = $evidence ? '' : 'disabled';
+                                    ?>
                                     <td style="text-align:center">
-                                    <a href="<?php echo $contentContainer->createUrl('/missions/evidence/show', ['activityId' => $a->id]); ?>">
+                                    <a class="<?=$class ?>" href="<?php echo $url ?>">
                                         <div class="powers-box <?php echo $status; ?>">
                                             <?php echo Activities::getPrimaryPowerPoints($a->id, $user->id); ?>
                                         </div>
@@ -141,6 +146,11 @@ use app\modules\missions\models\Evidence;
 </div>
 
 <style>
+
+    .disabled {
+       pointer-events: none;
+       cursor: default;
+    }
 
     .powers-box{
         text-align: center;
