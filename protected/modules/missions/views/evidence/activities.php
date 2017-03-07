@@ -139,7 +139,7 @@ $firstSecondary = true;
                     $x = 0;
                     if (count($mission->activities) != 0): ?>
 
-                    <?php foreach ($mission->activities as $key => $activity): $hasUserSubmittedEvidence = Evidence::hasUserSubmittedEvidence($activity->id);?>
+                    <?php foreach ($mission->activities as $key => $activity): $hasUserSubmittedEvidence = Evidence::hasUserSubmittedEvidence($activity->id);?> 
 
                         <div class="panel panel-default">
                             <div class="panel-body panel-body grey-box">

@@ -17,6 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    '+{points}' => '',
     '+{points} {power}' => '',
     '140 characters required' => '',
     '<strong>Activity Difficulty Level:</strong> {level}' => '',
@@ -60,6 +61,7 @@ return [
     'Choose the keywords that best describe your thoughts on this evidence, both based in your opinion and if it fulfilled the activity rubric. Select the tags and classify with 1 to 5 stars. If you have something to say to your fellow agent, leave a comment.' => '',
     'Close' => '',
     'Close Date' => '',
+    'Comment required' => '',
     'Congratulations!' => '',
     'Create Evokation Categories' => '',
     'Create Evokation Deadline' => '',
@@ -85,6 +87,7 @@ return [
     'Enter Mission' => '',
     'Error' => '',
     'Every time you submit evidence, your overall rating will improve.' => '',
+    'Evidence Not Submitted' => '',
     'Evidence Tagged: {reviewed}' => '',
     'Evidence: {evidence}' => '',
     'Evidence: {title}' => '',
@@ -151,6 +154,7 @@ return [
     'Poor' => '',
     'Portfolio' => '',
     'Portfolio updated successfully!' => '',
+    'Powers' => '',
     'Primary Power' => '',
     'Publish' => '',
     'Rating: {rating}' => '',
@@ -161,6 +165,9 @@ return [
     'Review Evidence' => '',
     'Review Evidences' => '',
     'Reviewed' => '',
+    'Reviewed by Ally' => '',
+    'Reviewed by Both' => '',
+    'Reviewed by Mentor' => '',
     'Reviews' => '',
     'Reward' => '',
     'Rubric: {text}' => '',
