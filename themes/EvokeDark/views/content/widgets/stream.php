@@ -81,8 +81,14 @@ $this->registerJs($jsLoadWall, View::POS_READY);
     <!-- DIV for an single wall entry -->
     <div class="s2_single" style="display: none;">
         <div class="back_button_holder">
-            <a href="<?= $this->context->contentContainer->url ?>"
-               class="btn btn-primary"><?php echo Yii::t('ContentModule.widgets_views_stream', 'Back to stream'); ?></a><br><br>
+            <?php if($this->context->contentContainer): //if it's a space ?>
+                <a href="<?= $this->context->contentContainer->url ?>"
+               class="btn btn-primary"><?php echo Yii::t('ContentModule.widgets_views_stream', 'Back to stream'); ?></a>
+            <?php else: ?>
+                <a href="#"
+               class="singleBackLink btn btn-primary"><?php echo Yii::t('ContentModule.widgets_views_stream', 'Back to stream'); ?></a>
+            <?php endif; ?>
+            <br><br>
         </div>
         <div class="p_border"></div>
 

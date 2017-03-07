@@ -8,16 +8,18 @@ $this->pageTitle = Yii::t('SpaceModule.base', 'Team {team}', array('team' => $sp
 
 <?php
 
-//Check if it's not stream (i.e. it's an entry)
-if (!strpos(Yii::$app->request->url, 'wallEntryId') !== false) {
-    echo humhub\modules\missions\widgets\MissionProgressWidget::widget(array(
-            'contentContainer' => $space,   
-            'streamAction' => '/missions/space/stream',
-            'contentContainer' => $space,
-            'space' => $space,
-    )); 
+//if it's a team
+if($space->is_team){
+    //Check if it's not stream (i.e. it's an entry)
+    if (!strpos(Yii::$app->request->url, 'wallEntryId') !== false) {
+        echo humhub\modules\missions\widgets\MissionProgressWidget::widget(array(
+                'contentContainer' => $space,   
+                'streamAction' => '/missions/space/stream',
+                'contentContainer' => $space,
+                'space' => $space,
+        )); 
+    }
 }
-
 
 
 echo \humhub\modules\content\widgets\Stream::widget(array(
