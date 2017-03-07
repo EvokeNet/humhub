@@ -99,8 +99,10 @@ use app\modules\missions\models\Evidence;
                                     <th style="text-align:center">
                                     <a href="<?= $contentContainer->createUrl('/missions/evidence/show', ['activityId' => $a->id]) ?>">
                                         <img src = "<?php echo $power->getPower()->image; ?>" width=50px>
-                                        <span style="display: inline-block">
-                                            <?php echo Yii::t('MissionsModule.base', '+{points}', array('power' => $name, 'points' => $power->value)); ?> <?php echo $a->is_group ? Yii::t('MissionsModule.base', 'Group') : '' ?>
+                                        <span style='display: inline-flex'>
+                                            <?php echo Yii::t('MissionsModule.base', '+{points}', array('power' => $name, 'points' => $power->value)); ?> 
+                                            <br>
+                                            <?php echo $a->is_group ? Yii::t('MissionsModule.base', 'Group') : '' ?>
                                         </span>
                                     </a> 
                                     </th>
