@@ -20,28 +20,28 @@ use app\modules\missions\models\Evidence;
                 <div style="margin-bottom:30px">
                     <div style="text-align: center; display: inline-table; margin-right:20px">
                         <div class="powers-box empty" style="margin-bottom:5px; height: 40px; min-width: 40px;">
-                        
+
                         </div><br />
                         <span style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', 'Evidence Not Submitted'); ?></span>
                     </div>
 
                     <div style="text-align: center; display: inline-table; margin-right:20px">
                         <div class="powers-box vote_ally" style="margin-bottom:5px; height: 40px; min-width: 40px;">
-                        
+
                         </div><br />
                         <span style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', 'Reviewed by Ally'); ?></span>
                     </div>
 
                     <div style="text-align: center; display: inline-table; margin-right:20px">
                         <div class="powers-box vote_mentor" style="margin-bottom:5px; height: 40px; min-width: 40px;">
-                    
+
                         </div><br />
                         <span style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', 'Reviewed by Mentor'); ?></span>
                     </div>
 
                     <div style="text-align: center; display: inline-table; margin-right:20px">
                         <div class="powers-box both" style="margin-bottom:5px; height: 40px; min-width: 40px;">
-                            
+
                         </div><br />
                         <span style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', 'Reviewed by Both'); ?></span>
                     </div>
@@ -54,7 +54,7 @@ use app\modules\missions\models\Evidence;
 
                 <h5 style="text-align:center"><?php echo Yii::t('MissionsModule.base', 'Mission {position}', array('position' => $m->position)); ?></h5>
                 <h6 style="text-align:center">
-                    <?php 
+                    <?php
                             if(Yii::$app->language == 'es' && isset($m->missionTranslations[0]))
                                 echo $m->missionTranslations[0]->title;
                             else
@@ -71,7 +71,7 @@ use app\modules\missions\models\Evidence;
                             <th width="20" style="text-align:center">
                                 <a href="<?php echo $member->getUrl(); ?>">
                                     <img src="<?php echo $member->getProfileImage()->getUrl(); ?>" class="img-rounded tt img_margin"
-                                        style="width: 50px; height: 50px;" 
+                                        style="width: 50px; height: 50px;"
                                         data-original-title="<?php echo Html::encode($member->displayName); ?>">
                                     <p style="margin-bottom: 0; margin-top: 5px; font-size:10pt"><?php echo $member->name; ?></p>
                                 </a>
@@ -91,7 +91,7 @@ use app\modules\missions\models\Evidence;
                                         if(empty($all_powers[$power->getPower()->id]))
                                             $all_powers[$power->getPower()->id] = $power->getPower();
 
-                                        $name = $power->getPower()->title;  
+                                        $name = $power->getPower()->title;
 
                                         if(Yii::$app->language == 'es' && isset($power->getPower()->powerTranslations[0]))
                                             $name = $power->getPower()->powerTranslations[0]->title;
@@ -104,12 +104,12 @@ use app\modules\missions\models\Evidence;
                                         </span>
                                     </a> 
                                     </th>
-                                    
+
                                 <?php endforeach; ?>
 
                                 <?php foreach($a1 as $user): $status = Evidence::evidenceForActivityStatus($a->id, $user->id); ?>
-                                    <?php 
-                                        $evidence = Evidence::getUserEvidence($user->id, $a->id); 
+                                    <?php
+                                        $evidence = Evidence::getUserEvidence($user->id, $a->id);
                                         $url = $evidence ? $contentContainer->createUrl('/space/space', ['wallEntryId' => $evidence->content->getFirstWallEntryId()]) : '';
                                         $class = $evidence ? '' : 'disabled';
                                     ?>
@@ -132,9 +132,9 @@ use app\modules\missions\models\Evidence;
 
                         <?php $counter = 0 ?>
                         <?php foreach($all_powers as $ap): ?>
-                            <?php 
+                            <?php
                                 if($counter%3==0){
-                                    echo "<div class='row'>"; 
+                                    echo "<div class='row'>";
                                 }
                             ?>
                                 <div class="col-sm-4">
@@ -142,14 +142,14 @@ use app\modules\missions\models\Evidence;
                                     <p style="font-size:9pt; margin-top:5px; display:inline"><?php echo $ap->getName(); ?></p>
                                     <p style="font-size:9pt; margin-top:5px;"><?php echo $ap->getDescription(); ?></p>
                                 </div>
-                            <?php 
+                            <?php
                                 if($counter%3==2 || $counter == sizeof($all_powers)-1){
-                                    echo "</div>"; 
+                                    echo "</div>";
                                 }
                                 $counter++;
                             ?>
                         <?php endforeach; ?>
-        
+
                 </div>
 
             </div>
@@ -210,6 +210,26 @@ use app\modules\missions\models\Evidence;
     .both{
         border: 5px solid white;
         line-height: 42px;
+    }
+
+    @keyframes pulse {
+      from {
+        transform: scale3d(1, 1, 1);
+      }
+
+      50% {
+        transform: scale3d(1.05, 1.05, 1.05);
+      }
+
+      to {
+        transform: scale3d(1, 1, 1);
+      }
+    }
+
+    .pulse {
+      animation-name: pulse;
+      animation-duration: 1000ms;
+      animation-iteration-count: infinite;
     }
 
 </style>
