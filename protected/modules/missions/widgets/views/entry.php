@@ -405,7 +405,7 @@ echo Html::beginForm();
                 'dataType' => 'json',
                 'type' => 'POST',
                 'beforeSend' => "function() { validateDraft($evidence->id); }",
-                'success' => "function(response) { handleResponse(response); loadPopUps(); updateEvocoins();}",
+                'success' => "function(response) { handleResponse(response); loadPopUps(); updateEvocoins(); checkDuplicatedEntry(); }",
                 'url' => $evidence->content->container->createUrl('/missions/evidence/publish', ['id' => $evidence->id]),
             ],
             'htmlOptions' => [
@@ -456,6 +456,18 @@ echo Html::beginForm();
 
 $(document).ready(function(){
 
+    var oldHandleResponse = handleResponse;
+
+    handleResponse = function(response) {
+      oldHandleResponse(response);
+      if (!response.errors) {
+          window.location.hash = "wallEntry_" + response.wallEntryId;
+          checkDuplicatedEntry();
+      }
+      loadPopUps();
+      updateEvocoins();
+    }
+
     current = $('#current<?= $evidence->id ?>');
 
     if(current.text() >= 140){
@@ -488,6 +500,15 @@ $('#evidence_input_text_<?= $evidence->id ?>').keyup(function() {
     }
 
 })
+
+function checkDuplicatedEntry(){
+  var entries = $('[id="wallEntry_<?= $evidence->content->getFirstWallEntryId() ?>"]');
+  if(entries.length >= 1){
+    for(var i=1; i<entries.length; i++){
+      entries[i].remove();
+    }
+  }
+}
 
 function validateDraft(draft_id){
   text = $('#evidence_input_text_' + draft_id);
