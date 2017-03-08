@@ -139,7 +139,8 @@ function checkDuplication(currentMessage){
 
 function reLoadPopUps(){
   messages = [];
-  loadPopUps;
+  deactivatePopUp();
+  loadPopUps();
 }
 
 function loadPopUps(){
@@ -162,7 +163,7 @@ function loadPopUps(){
               if(checkDuplication(xhttp.responseText)){
                 // do nothing
                 console.log("Duplicated message");
-                activatedPopUp = false;
+                deactivatePopUp();
               }else if(message['type'] == 'animated'){
                 console.log("animate");
                 animatePopUp(message['title'], message['message'], message['image_url']);  
@@ -209,7 +210,7 @@ function animatePopUp(title, message, image_url){
 
   $("#animated-popup").show();
   slideOutPopUp();
-  activatedPopUp = false;
+  deactivatePopUp();
 }
 
 // not working
@@ -229,7 +230,7 @@ function slideOutPopUp(){
       //hide
       $("#animated-popup").hide();
   });
-  activatedPopUp = false;
+  deactivatePopUp();
 }
 
 function removeAnimation(animationName){
@@ -241,8 +242,13 @@ function showMessage(title, message){
   document.getElementById("message-title").innerHTML = title;
   document.getElementById("message-content").innerHTML = message;
   $("#popup-message").modal("show");
-  activatedPopUp = false;
+  deactivatePopUp();
   console.log("closing message");
+}
+
+function deactivatePopUp(){
+  activatedPopUp = false;
+  console.log("deactivated current pop up");
 }
 
 </script>
