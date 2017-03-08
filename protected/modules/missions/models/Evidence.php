@@ -19,6 +19,7 @@ use app\modules\missions\models\Activities;
 use app\modules\coin\models\Wallet;
 use app\modules\missions\models\Missions;
 use app\modules\missions\models\TeamMission;
+use app\modules\alliances\models\Alliance;
 
 /**
  * This is the model class for table "evidence".
@@ -205,12 +206,25 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
         $evidence = Evidence::findOne(['activities_id' => $activityId, 'created_by' => $userId]);
 
         $flag = '';
+        $current_user = Yii::$app->user->getIdentity();
+        $author_alliance = Alliance::find()->findByTeam(Team::getUserTeam($userId))->one();
+        $is_ally = false;
+        if($author_alliance){
+            $is_ally = $author_alliance->isAlly(Team::getUserTeam($current_user->id));
+        }
+
+        if ($current_user->group->name == "Mentors" || $is_ally) {
+          $can_review = true;
+        } else {
+          $can_review = false;
+        }
 
         if(!$evidence){
             $flag = 'empty';
         } else{
             $vote_ally = Votes::findOne(['evidence_id' => $evidence->id, 'user_type' => 'Users']);
             $vote_mentor = Votes::findOne(['evidence_id' => $evidence->id, 'user_type' => 'Mentors']);
+            $vote_current_user =Votes::findOne(['evidence_id' => $evidence->id, 'user_id' => $current_user->id]);
 
             if($vote_ally && $vote_mentor){
                 $flag = 'both';
@@ -220,6 +234,10 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
                 $flag = 'vote_mentor';
             } else{
                 $flag = 'submit';
+            }
+
+            if (!$vote_current_user && $can_review) {
+              $flag .= ' pulse';
             }
         }
 

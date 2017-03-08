@@ -119,6 +119,7 @@ return [
     'Give Evocoins' => 'Dar Evocoins',
     'Good' => 'Bueno',
     'Google Drive' => 'Google Drive',
+    'Group' => 'Grupo',
     'Help organize the Evoke Evidence database. Earn 1 Evocoin for every 5 Evidences you tag.' => 'Ayude a organizar la base Evoke. Gana 1 Evocoin por cada 5 Evidencias que etiquetes.',
     'How many evocoins do you want to invest?' => '¿Cuántas evocoins quieres invertir?',
     'How will you rate this evidence?' => '¿Cómo calificaría esta evidencia?',
