@@ -30,8 +30,8 @@ echo Breadcrumbs::widget([
           <?php foreach ($alliances as $alliance): ?>
               <tr>
                   <!--<td><?php //echo $coin->id_code; ?></td>-->
-                  <td><?php echo $alliance->team_1; ?></td>
-                  <td><?php echo $alliance->team_2; ?></td>
+                  <td><?php echo $alliance->getTeam1()->name; ?></td>
+                  <td><?php echo $alliance->getTeam2()->name; ?></td>
                   <td><?php echo $alliance->created_at; ?></td>
                   <td>
                       <?php echo Html::a(
