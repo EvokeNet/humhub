@@ -8,6 +8,8 @@ use yii\web\JsExpression;
 use humhub\compat\CActiveForm;
 use app\modules\missions\models\Votes;
 
+$this->registerJsFile('js/stream.js');
+
 echo Html::beginForm();
   $activity = $evidence->getActivities();
   $mentor_average_votes = $evidence->getAverageRating('Mentors');
@@ -405,7 +407,7 @@ echo Html::beginForm();
                 'dataType' => 'json',
                 'type' => 'POST',
                 'beforeSend' => "function() { validateDraft($evidence->id); }",
-                'success' => "function(response) { handleResponse(response); loadPopUps(); updateEvocoins(); checkDuplicatedEntry(); }",
+                'success' => "function(response) { entryHandleResponse(response);}",
                 'url' => $evidence->content->container->createUrl('/missions/evidence/publish', ['id' => $evidence->id]),
             ],
             'htmlOptions' => [
@@ -456,16 +458,28 @@ echo Html::beginForm();
 
 $(document).ready(function(){
 
-    var oldHandleResponse = handleResponse;
+    console.log("changing entry handleResponse");
 
-    handleResponse = function(response) {
-      oldHandleResponse(response);
+    entryHandleResponse = function(response) {
+      console.log("calling handle response");
+      handleResponse(response);
       if (!response.errors) {
           window.location.hash = "wallEntry_" + response.wallEntryId;
-          checkDuplicatedEntry();
+
+          //wait for handle response
+
+          var timer = setInterval(function() {
+                console.log("check duplicated");
+                checkDuplicatedEntry();
+                reLoadPopUps();
+                updateEvocoins();
+                window.clearInterval(timer);
+                timer = null;
+                }, 
+          500); 
+
+          
       }
-      loadPopUps();
-      updateEvocoins();
     }
 
     current = $('#current<?= $evidence->id ?>');

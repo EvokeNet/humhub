@@ -5,6 +5,8 @@ use yii\helpers\ArrayHelper;
 $firstPrimary = true;
 $firstSecondary = true;
 
+$this->registerJsFile('js/stream.js');
+
 ?>
 
 <div id="evidence_form">
@@ -114,7 +116,7 @@ $firstSecondary = true;
                         'dataType' => 'json',
                         'beforeSend' => "function() { $('.contentForm').removeClass('error'); $('#contentFormError').hide(); $('#contentFormError').empty(); }",
                         'beforeSend' => 'function(){ $("#contentFormError").hide(); $("#contentFormError li").remove(); $(".contentForm_options .btn").hide(); $("#postform-loader").removeClass("hidden"); }',
-                        'success' => "function(response) { handleResponse(response);}"
+                        'success' => "function(response) { formHandleResponse(response);}"
                     ],
                     'htmlOptions' => [
                         'id' => "post_draft_button",
@@ -130,10 +132,9 @@ $firstSecondary = true;
 <script type="text/javascript">
 
 $( document ).ready(function() {
-   var oldHandleResponse = handleResponse;
 
-    handleResponse = function(response) {
-      oldHandleResponse(response);
+    formHandleResponse = function(response) {
+      handleResponse(response);
       if (!response.errors) {
             $('#evidence_form').parent().parent().remove();
             window.location.hash = "";
