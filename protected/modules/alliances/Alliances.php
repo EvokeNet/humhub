@@ -17,4 +17,13 @@ namespace app\modules\alliances;
    {
      parent::init();
    }
+
+   public static function isEnabled(){
+	 return (new \yii\db\Query())
+        ->select(['me.module_id'])
+        ->from('module_enabled as me')
+        ->where(['module_id' => 'alliances'])
+        ->one() ? true : false;   	
+   }
+
  }

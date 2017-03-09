@@ -207,7 +207,13 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
 
         $flag = '';
         $current_user = Yii::$app->user->getIdentity();
-        $author_alliance = Alliance::find()->findByTeam(Team::getUserTeam($userId))->one();
+
+        if(\app\modules\alliances\Alliances::isEnabled()){
+            $author_alliance = Alliance::find()->findByTeam(Team::getUserTeam($userId))->one();
+        }else{
+            $author_alliance = null;
+        }
+        
         $is_ally = false;
         if($author_alliance){
             $is_ally = $author_alliance->isAlly(Team::getUserTeam($current_user->id));
