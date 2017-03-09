@@ -292,7 +292,9 @@ $firstSecondary = true;
 <script>
 
 $( document ).ready(function() {
-    loadPopUps();
+    reLoadPopUps();
+    window.location.hash = "";
+    window.location.hash = "topbar-first";
 });
 
 next_element = document.getElementById("next_evidence");
