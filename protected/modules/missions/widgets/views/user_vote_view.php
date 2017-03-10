@@ -26,8 +26,8 @@ use humhub\compat\CActiveForm;
     <?php echo Yii::t('MissionsModule.base', 'in {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]))); ?>
 
     <?php 
-    // only mentors
-    if($vote->user_id == Yii::$app->user->getIdentity()->id && Yii::$app->user->getIdentity()->group->name == "Mentors"){
+    // deactivated, remove false condition to activate it again
+    if(false && $vote->user_id == Yii::$app->user->getIdentity()->id && Yii::$app->user->getIdentity()->group->name == "Mentors"){
       echo \humhub\widgets\AjaxButton::widget([
       'label' => Yii::t('MissionsModule.base', 'Edit'),
       'ajaxOptions' => [
