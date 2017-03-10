@@ -107,7 +107,7 @@ $this->registerJsFile('js/stream.js');
                 <?php
 
                 echo "<br>";
-
+                echo "<div style='float:right'>";
                 echo \humhub\widgets\AjaxButton::widget([
                     'label' => Yii::t('MissionsModule.widgets_EvidenceFormWidget', 'Save Draft'),
                     'ajaxOptions' => [
@@ -120,9 +120,10 @@ $this->registerJsFile('js/stream.js');
                     ],
                     'htmlOptions' => [
                         'id' => "post_draft_button",
-                        'class' => 'btn btn-primary btn-comment-submit',
+                        'class' => 'save_draft_link',
                         'type' => 'submit'
                 ]]);
+                echo "</div>";
             ?>
         </div>
     </div>
@@ -163,3 +164,19 @@ $('textarea[name=text]#contentForm_question').keyup(function() {
 })
 
 </script>
+
+
+<style>
+.save_draft_link{
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    color: white;
+    text-decoration: underline;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+</style>
