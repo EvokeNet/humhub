@@ -621,11 +621,16 @@ jQuery(document).on('ajaxComplete', function () {
           return false;
         }
       } else {
-        $('#review' + id).submit(function(e){
+        if (confirm("<?php echo Yii::t('MissionsModule.base', 'Are you ready to submit your review? You will not be able to change it after submitting.'); ?>")){
+          $('#review' + id).submit(function(e){
             e.preventDefault();
             return validateReview(id);
           }
-        );
+          );
+        }else{
+          e.preventDefault();
+          return false;
+        }
       }
 
     });
