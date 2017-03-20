@@ -43,7 +43,7 @@ class Events extends \yii\base\Object
         $event->sender->addItem(array(
             'label' => Yii::t('AlliancesModule.event', 'Ally'),
             'group' => 'modules',
-            'url' => $space->createUrl('/alliances/alliances/show/', ['id' => $alliance->id]),
+            'url' => $space->createUrl('/alliances/alliances/index/'),
             'icon' => '<i class="fa fa-handshake-o" aria-hidden="true"></i>',
             'sortOrder' => 400,
             'isActive' => (Yii::$app->controller->module
