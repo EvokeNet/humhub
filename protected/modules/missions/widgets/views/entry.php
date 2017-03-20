@@ -8,6 +8,8 @@ use yii\web\JsExpression;
 use humhub\compat\CActiveForm;
 use app\modules\missions\models\Votes;
 
+$this->registerJsFile('js/stream.js');
+
 echo Html::beginForm();
   $activity = $evidence->getActivities();
   $mentor_average_votes = $evidence->getAverageRating('Mentors');
@@ -405,7 +407,7 @@ echo Html::beginForm();
                 'dataType' => 'json',
                 'type' => 'POST',
                 'beforeSend' => "function() { validateDraft($evidence->id); }",
-                'success' => "function(response) { handleResponse(response); loadPopUps(); updateEvocoins();}",
+                'success' => "function(response) { entryHandleResponse(response);}",
                 'url' => $evidence->content->container->createUrl('/missions/evidence/publish', ['id' => $evidence->id]),
             ],
             'htmlOptions' => [
@@ -456,6 +458,30 @@ echo Html::beginForm();
 
 $(document).ready(function(){
 
+    console.log("changing entry handleResponse");
+
+    entryHandleResponse = function(response) {
+      console.log("calling handle response");
+      handleResponse(response);
+      if (!response.errors) {
+          window.location.hash = "wallEntry_" + response.wallEntryId;
+
+          //wait for handle response
+
+          var timer = setInterval(function() {
+                console.log("check duplicated");
+                checkDuplicatedEntry();
+                reLoadPopUps();
+                updateEvocoins();
+                window.clearInterval(timer);
+                timer = null;
+                }, 
+          500); 
+
+          
+      }
+    }
+
     current = $('#current<?= $evidence->id ?>');
 
     if(current.text() >= 140){
@@ -488,6 +514,15 @@ $('#evidence_input_text_<?= $evidence->id ?>').keyup(function() {
     }
 
 })
+
+function checkDuplicatedEntry(){
+  var entries = $('[id="wallEntry_<?= $evidence->content->getFirstWallEntryId() ?>"]');
+  if(entries.length >= 1){
+    for(var i=1; i<entries.length; i++){
+      entries[i].remove();
+    }
+  }
+}
 
 function validateDraft(draft_id){
   text = $('#evidence_input_text_' + draft_id);
@@ -586,11 +621,16 @@ jQuery(document).on('ajaxComplete', function () {
           return false;
         }
       } else {
-        $('#review' + id).submit(function(e){
+        if (confirm("<?php echo Yii::t('MissionsModule.base', 'Are you ready to submit your review? You will not be able to change it after submitting.'); ?>")){
+          $('#review' + id).submit(function(e){
             e.preventDefault();
             return validateReview(id);
           }
-        );
+          );
+        }else{
+          e.preventDefault();
+          return false;
+        }
       }
 
     });

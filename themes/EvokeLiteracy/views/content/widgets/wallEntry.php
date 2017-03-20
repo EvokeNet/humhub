@@ -78,8 +78,8 @@ if($team_id){
                     <?php if (!$object instanceof \humhub\modules\post\models\Post) : ?>
                         <!-- <span class="label label-border pull-right"><?php //echo $object->getContentName(); ?></span> -->
                         <a href="<?php echo $user->getUrl(); ?>">
-                            <?php //echo Yii::t('ContentModule.views_wallLayout', '{name} created a new <span class="label label-border">{content}</span>', array('name' => $user->displayName, 'content' => $object->getContentName())); ?>
-                            <?php echo Yii::t('ContentModule.views_wallLayout', '{name} created a new {content}', array('name' => $user->displayName, 'content' => $object->getContentName())); ?>
+                            <?php echo Yii::t('ContentModule.views_wallLayout', '{name} created a new <span class="label label-border">{content}</span>', array('name' => $user->displayName, 'content' => $object->getContentName())); ?>
+                            <?php //echo Yii::t('ContentModule.views_wallLayout', '{name} created a new {content}', array('name' => $user->displayName, 'content' => $object->getContentName())); ?>
                         </a>
                     <?php else: ?>
                         <a href="<?php echo $user->getUrl(); ?>">

@@ -24,15 +24,18 @@ class AdminController extends \humhub\modules\admin\components\Controller
     {
       $model = new Alliance();
 
-      $allied_teams = Alliance::find()->select('team_1, team_2')->all();
-      $allied_team_ids = [];
+      // $allied_teams = Alliance::find()->select('team_1, team_2')->all();
+      // $allied_team_ids = [];
+      //
+      // foreach ($allied_teams as $allied_team) {
+      //   $allied_team_ids[] = $allied_team->team_1;
+      //   $allied_team_ids[] = $allied_team->team_2;
+      // }
+      //
+      // $teams = Team::find()->where(['not in', 'id', $allied_team_ids])->andWhere(['is_team' => 1])->all();
+      //
 
-      foreach ($allied_teams as $allied_team) {
-        $allied_team_ids[] = $allied_team->team_1;
-        $allied_team_ids[] = $allied_team->team_2;
-      }
-
-      $teams = Team::find()->where(['not in', 'id', $allied_team_ids])->andWhere(['is_team' => 1])->all();
+      $teams = Team::findAll(['is_team' => 1]);
 
 
       if ($model->load(Yii::$app->request->post())) {
