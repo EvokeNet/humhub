@@ -5,6 +5,8 @@ use yii\helpers\ArrayHelper;
 $firstPrimary = true;
 $firstSecondary = true;
 
+$this->registerJsFile('js/stream.js');
+
 ?>
 
 <div id="evidence_form">
@@ -105,7 +107,7 @@ $firstSecondary = true;
                 <?php
 
                 echo "<br>";
-
+                echo "<div style='float:right'>";
                 echo \humhub\widgets\AjaxButton::widget([
                     'label' => Yii::t('MissionsModule.widgets_EvidenceFormWidget', 'Save Draft'),
                     'ajaxOptions' => [
@@ -114,13 +116,14 @@ $firstSecondary = true;
                         'dataType' => 'json',
                         'beforeSend' => "function() { $('.contentForm').removeClass('error'); $('#contentFormError').hide(); $('#contentFormError').empty(); }",
                         'beforeSend' => 'function(){ $("#contentFormError").hide(); $("#contentFormError li").remove(); $(".contentForm_options .btn").hide(); $("#postform-loader").removeClass("hidden"); }',
-                        'success' => "function(response) { handleResponse(response);}"
+                        'success' => "function(response) { formHandleResponse(response);}"
                     ],
                     'htmlOptions' => [
                         'id' => "post_draft_button",
-                        'class' => 'btn btn-primary btn-comment-submit',
+                        'class' => 'save_draft_link',
                         'type' => 'submit'
                 ]]);
+                echo "</div>";
             ?>
         </div>
     </div>
@@ -130,10 +133,9 @@ $firstSecondary = true;
 <script type="text/javascript">
 
 $( document ).ready(function() {
-   var oldHandleResponse = handleResponse;
 
-    handleResponse = function(response) {
-      oldHandleResponse(response);
+    formHandleResponse = function(response) {
+      handleResponse(response);
       if (!response.errors) {
             $('#evidence_form').parent().parent().remove();
             window.location.hash = "";
@@ -162,3 +164,19 @@ $('textarea[name=text]#contentForm_question').keyup(function() {
 })
 
 </script>
+
+
+<style>
+.save_draft_link{
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    color: white;
+    text-decoration: underline;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+</style>

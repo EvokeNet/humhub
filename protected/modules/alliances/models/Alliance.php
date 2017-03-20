@@ -67,6 +67,14 @@ use app\modules\teams\models\Team;
          }
        }
 
+       public function getTeam1(){
+          return $this->getAlly($this->team_2);
+       }
+
+       public function getTeam2(){
+          return $this->getAlly($this->team_1);
+       }
+
        /**
         *  returns true if the given id is an allied team and not the current user's team
         *  @return boolean

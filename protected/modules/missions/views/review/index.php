@@ -292,7 +292,9 @@ $firstSecondary = true;
 <script>
 
 $( document ).ready(function() {
-    loadPopUps();
+    reLoadPopUps();
+    window.location.hash = "";
+    window.location.hash = "topbar-first";
 });
 
 next_element = document.getElementById("next_evidence");
@@ -372,6 +374,11 @@ function getTagsArrayUrl(tags){
 }
 
 function validateReview(id){
+
+    var a = confirm("<?= Yii::t('MissionsModule.base', 'Are you ready to submit your review? You will not be able to change it after submitting.') ?>");
+    if (!a){
+        return false;
+    }
 
     var opt = 'yes'; //always yes for agents
     var grade = document.querySelector('input[name="grade"]:checked');

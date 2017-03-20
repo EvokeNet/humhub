@@ -60,7 +60,7 @@ return [
     'on your profile' => 'en su perfil',
     'Bought Time' => 'Tiempo Comprado',
     'Bought Products' => 'Productos Comprados',
-    'Unfulfilled Products' => 'Productos no Cumplidos',
+    'Unfulfilled Products' => 'Productos Pendientes',
     'Fulfilled Products' => 'Productos Cumplidos',
     'return' => 'devolver',
     "You successfully returned {product}!" => 'Devolviste {prodcuts}!',

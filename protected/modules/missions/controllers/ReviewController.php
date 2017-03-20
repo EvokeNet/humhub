@@ -138,8 +138,12 @@ class ReviewController extends ContentContainerController
 
         // check if it's an ally
         $team_id = Team::getUserTeam($user->id);
-        $ally = Alliance::find()->findByTeam($team_id)->one();
-
+        if(\app\modules\alliances\Alliances::isEnabled()){
+            $ally = Alliance::find()->findByTeam($team_id)->one();
+        }else{
+            $ally = null;
+        }
+        
         if (isset($ally)) {
           $is_ally = $ally->isAlly(Team::getUserTeam($user->id));
         } else {

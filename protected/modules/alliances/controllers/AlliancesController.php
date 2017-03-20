@@ -27,13 +27,26 @@ use app\modules\missions\models\EvokeLog;
  */
 class AlliancesController extends ContentContainerController
 {
+  public function actionIndex() {
+    $user = Yii::$app->user->getIdentity();
+    $team_id = Team::getUserTeam($user->id);
+    $alliances = Alliance::find()->findByTeam($team_id)->all();
+    $allies = [];
+
+    foreach ($alliances as $alliance) {
+      $allies []= $alliance->getAlly($team_id);
+    }
+
+    return $this->render('index', ['alliances' => $alliances, 'allies' => $allies]);
+  }
+
   public function actionShow($id) {
     $alliance = Alliance::findOne($id);
     $user = Yii::$app->user->getIdentity();
     $team_id = Team::getUserTeam($user->id);
     $ally = $alliance->getAlly($team_id);
 
-    return $this->render('show', ['aliiance' => $alliance, 'ally' => $ally]);
+    return $this->render('show', ['alliance' => $alliance, 'ally' => $ally]);
   }
 
   public function actionReview() {
@@ -148,7 +161,7 @@ class AlliancesController extends ContentContainerController
                 if($is_group_activity){
                     $log['team'] = $team->name;
                     foreach ($team_members as $team_member) {
-                        $log[$activity_power->getPower()->title.'_'.$team_member->username."_points"] = $grade;                        
+                        $log[$activity_power->getPower()->title.'_'.$team_member->username."_points"] = $grade;
                     }
                 }else{
                     $log[$activity_power->getPower()->title."_evidence_author_points"] = $grade;
