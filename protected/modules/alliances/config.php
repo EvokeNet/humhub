@@ -13,6 +13,7 @@
         'events' => [
             ['class' => \humhub\modules\admin\widgets\AdminMenu::className(), 'event' => AdminMenu::EVENT_INIT, 'callback' => ['humhub\modules\alliances\Events', 'onAdminMenuInit']],
             ['class' => Menu::className(), 'event' => Menu::EVENT_INIT, 'callback' => ['\humhub\modules\alliances\Events', 'onSpaceMenuInit']],
+            ['class' => \humhub\widgets\TopMenu::className(), 'event' => TopMenu::EVENT_INIT, 'callback' => ['\humhub\modules\alliances\Events', 'onTopMenuInit']],
         ],
         'urlManagerRules' => [
             'alliances' => 'alliances/'
