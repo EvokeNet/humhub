@@ -14,8 +14,8 @@ class m160510_005047_initial extends Migration
             'updated_at' => 'datetime NOT NULL',
         ), '');
 
-        $this->insert('languages', array('language' => 'English', 'code' => 'en-US', 'created_at' => time()));
-        $this->insert('languages', array('language' => 'Espanol', 'code' => 'es', 'created_at' => time()));
+        $this->insert('languages', array('language' => 'English', 'code' => 'en-US', 'created_at' => time(), 'updated_at' => time()));
+        $this->insert('languages', array('language' => 'Espanol', 'code' => 'es', 'created_at' => time(), 'updated_at' => time()));
     }
 
     public function down()
