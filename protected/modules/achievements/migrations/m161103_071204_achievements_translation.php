@@ -13,7 +13,7 @@ class m161103_071204_achievements_translation extends Migration
             'description' => 'text NULL',
             'language_id' => 'int(16) NOT NULL',
             'created_at' => 'datetime NOT NULL',
-            'updated_at' => 'datetime NOT NULL',
+            'updated_at' => 'datetime',
                 ), '');
 
         $this->addForeignKey(
