@@ -15,7 +15,7 @@ class m160510_005047_initial extends Migration
         ), '');
 
         $this->insert('languages', array('language' => 'English', 'code' => 'en-US', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')));
-        $this->insert('languages', array('language' => 'Espanol', 'code' => 'es', 'created_at' => time(), 'updated_at' => time()));		 +        $this->insert('languages', array('language' => 'Espanol', 'code' => 'es', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')));
+        $this->insert('languages', array('language' => 'Espanol', 'code' => 'es', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')));
     }
 
     public function down()
