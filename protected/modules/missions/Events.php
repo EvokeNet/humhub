@@ -20,6 +20,7 @@ use humhub\modules\missions\widgets\PortfolioWidget;
 use humhub\modules\missions\widgets\GiftEvocoinWidget;
 use humhub\modules\missions\widgets\CreateATeamWidget;
 use humhub\modules\missions\widgets\EvocoinsReview;
+use humhub\modules\missions\widgets\DashboardMissionProgressIndicator;
 
 use humhub\modules\space\models\Space;
 use app\modules\missions\models\Evidence;
@@ -52,6 +53,8 @@ class Events
         // $event->sender->addWidget(CTAPostEvidence::className(), []);
         //$event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers]);
         $event->sender->addWidget(EvocoinsReview::className(), []);
+
+        $event->sender->addWidget(DashboardMissionProgressIndicator::className(), []);
     }
 
     public static function onProfileMenuInit($event){
