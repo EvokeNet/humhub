@@ -47,14 +47,20 @@ class Events
         $team_id = Team::getUserTeam($user->id);
 
         $event->sender->addWidget(PopUpWidget::className(), []);
-        if(!isset($team_id) && $user->group->name != "Mentors" ){
-            $event->sender->addWidget(CreateATeamWidget::className(), [], array('sortOrder' => 0));   
-        }
-        // $event->sender->addWidget(CTAPostEvidence::className(), []);
-        //$event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers]);
+
         $event->sender->addWidget(EvocoinsReview::className(), []);
 
-        $event->sender->addWidget(DashboardMissionProgressIndicator::className(), []);
+        if($user->group->name != "Mentors" ){
+            if(!isset($team_id)){
+                $event->sender->addWidget(CreateATeamWidget::className(), [], array('sortOrder' => 0));   
+            }else{
+                $event->sender->addWidget(DashboardMissionProgressIndicator::className(), []);
+            }
+        }
+
+        // $event->sender->addWidget(CTAPostEvidence::className(), []);
+        //$event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers]);
+        
     }
 
     public static function onProfileMenuInit($event){
