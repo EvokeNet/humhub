@@ -294,4 +294,5 @@ return [
     '{power} - {points} point(s)' => '{power} - {points} punto(s)',
     '{user} awarded + {value} {title}' => '{user} premió + {value} {title}',
     '{user} completed this activity' => '{user} ha completado esta actividad',
+    'Load More' => 'Cargar más',
 ];
