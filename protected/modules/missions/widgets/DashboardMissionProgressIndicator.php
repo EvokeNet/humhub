@@ -6,6 +6,8 @@ use Yii;
 use \yii\base\Widget;
 use app\modules\teams\models\Team;
 
+use app\modules\missions\models\Missions;
+
 class DashboardMissionProgressIndicator extends \yii\base\Widget
 {
 
@@ -17,9 +19,52 @@ class DashboardMissionProgressIndicator extends \yii\base\Widget
     {
     	$progress = DashboardMissionProgressIndicator::getProgress();
 
-    	print_r($progress);	
+    	//print_r($progress);	
 
-        return $this->render('dashboard_mission_progress_indicator', []);
+        $user = Yii::$app->user->getIdentity();
+
+        $mission_progress = array();
+
+        $missions = Missions::find()
+        ->with(['activities', 'activities.evidences', 'activities.activityPowers'])
+        ->where(['missions.locked' => 0])
+        // ->orderBy(['missions.position ASC', 'activities.position ASC'])
+        ->all();
+
+        foreach($missions as $m):
+
+            $total_evidences_group_activity = 0;
+
+            $total_group_activities = (new \yii\db\Query())
+            ->select(['count(a.id) as total_activities'])
+            ->from('activities as a')
+            ->join('LEFT JOIN', 'missions as m', 'a.mission_id = `m`.`id`')
+            ->where(['m.id' => $m->id, 'a.is_group' => 1])
+            ->one()['total_activities'];
+
+            if($total_group_activities >= 1){
+                $team_id = Team::getUserTeam($user->id);
+
+                $total_evidences_group_activity  = (new \yii\db\Query())
+                ->select(['count(e.id) as total_evidences'])
+                ->from('activities as a')
+                ->join('LEFT JOIN', 'missions as m', 'a.mission_id = `m`.`id`')
+                ->join('LEFT JOIN', 'evidence as e', 'e.activities_id = `a`.`id`')
+                ->join('LEFT JOIN', 'content as c', 'c.object_id = `e`.`id` and c.object_model like "%Evidence%"')
+                ->join('LEFT JOIN', 'user as u', 'e.created_by = `u`.`id`')
+                ->join('LEFT JOIN', 'space_membership as sm', 'sm.user_id = `u`.`id`')
+                ->join('LEFT JOIN', 'space as s', 'sm.space_id = `s`.`id`')
+                ->join('INNER JOIN', 'votes as v', 'v.evidence_id = `e`.`id` and v.user_type = "Mentors"')
+                ->where(['m.id' => $m->id, 'c.visibility' => 1, 'a.is_group' => 1, 's.id' => $team_id])
+                ->groupBy('m.id')
+                ->one()['total_evidences'];   
+            }
+
+            $mission_progress[$m->id] = $total_evidences_group_activity;
+
+        endforeach;
+
+        return $this->render('dashboard_mission_progress_indicator', array('missions' => $missions, 'mission_progress' => $mission_progress));
     }
 
     public static function getMissionIds()
