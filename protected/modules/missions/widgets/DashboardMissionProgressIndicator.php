@@ -70,7 +70,7 @@ class DashboardMissionProgressIndicator extends \yii\base\Widget
         $enabled_evokations = Setting::Get('enabled_evokations');
         $will_start_in_one_week = $enabled_evokations && $evokation_deadline->willStartIn(7)? 1 : 0;
 
-        return $this->render('dashboard_mission_progress_indicator', array('missions' => $missions, 'mission_progress' => $mission_progress, '$will_start_in_one_week' => $will_start_in_one_week));
+        return $this->render('dashboard_mission_progress_indicator', array('missions' => $missions, 'mission_progress' => $mission_progress, 'will_start_in_one_week' => $will_start_in_one_week, 'evokation_deadline' => $evokation_deadline));
     }
 
     public static function getMissionIds()
