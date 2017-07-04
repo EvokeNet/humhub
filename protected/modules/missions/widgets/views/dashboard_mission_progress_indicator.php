@@ -23,7 +23,7 @@ use app\modules\missions\models\Evidence;
         	$p = 0;
 
         	if(count($m->activities) > 0)
-        		$p = 3/count($m->activities); 
+        		$p = $mission_progress[$m->id]/count($m->activities); 
 
         	//echo $p;
 
