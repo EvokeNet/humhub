@@ -5,8 +5,10 @@ namespace humhub\modules\missions\widgets;
 use Yii;
 use \yii\base\Widget;
 use app\modules\teams\models\Team;
-
 use app\modules\missions\models\Missions;
+use app\modules\missions\models\EvokationDeadline;
+use app\modules\missions\models\forms\EvokeSettingsForm;
+use humhub\models\Setting;
 
 class DashboardMissionProgressIndicator extends \yii\base\Widget
 {
@@ -64,7 +66,11 @@ class DashboardMissionProgressIndicator extends \yii\base\Widget
 
         endforeach;
 
-        return $this->render('dashboard_mission_progress_indicator', array('missions' => $missions, 'mission_progress' => $mission_progress));
+        $evokation_deadline = EvokationDeadline::getEvokationDeadline();
+        $enabled_evokations = Setting::Get('enabled_evokations');
+        $will_start_in_one_week = $enabled_evokations && $evokation_deadline->willStartIn(7)? 1 : 0;
+
+        return $this->render('dashboard_mission_progress_indicator', array('missions' => $missions, 'mission_progress' => $mission_progress, '$will_start_in_one_week' => $will_start_in_one_week));
     }
 
     public static function getMissionIds()
