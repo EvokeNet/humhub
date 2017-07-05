@@ -4,6 +4,20 @@ use yii\helpers\Html;
 
 ?>
 
+<style media="screen">
+
+  <?php if (!Yii::$app->user->getIdentity()->has_read_novel && Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
+    .topbar, .footer {
+      display: none;
+    }
+
+    body {
+      padding-top: 1em;
+    }
+  <?php endif; ?>
+  
+</style>
+
 <!-- <h4 style="background-color: #101C2A; text-align: center; padding: 10px 0; margin: 0px 350px 20px; color: #5aa2c6;"><?php echo Yii::t('StaticsModule.base', 'ALCHEMY MESSAGE') ?></h4> -->
 
 <h4 style="background-color: #101C2A; text-align: center; padding: 10px 0; margin: 0px 0 20px; color: #5aa2c6;"><?php echo Yii::t('StaticsModule.base', 'ALCHEMY MESSAGE') ?></h4>
