@@ -6,6 +6,7 @@ use Yii;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
 use yii\behaviors\TimestampBehavior;
+use app\modules\missions\models\DateTimeFunctions;
 
 /**
  * This is the model class for table "evokation_deadline".
@@ -34,7 +35,7 @@ class EvokationDeadline extends \yii\db\ActiveRecord
                 // if you're using datetime instead of UNIX timestamp:
                 'value' => new Expression('NOW()'),
             ],
-        ];
+        ];{}
     }
     
     /**
@@ -99,6 +100,31 @@ class EvokationDeadline extends \yii\db\ActiveRecord
 
     public function isOccurring(){
         return ($this->hasStarted() && !$this->hasEnded());
+    }
+
+    public function willStartIn($days){
+        $start_time = date($this->start_date);
+        $second = date('Y-m-d H:i:s');
+
+        $diff = new DateTimeFunctions($start_time, $second);
+
+        if($diff->higher == 0){
+            return true;
+        }
+
+        // sum 1, reason: (time set isn't exact: 59 minutes 59 seconds....)
+        $local_hours = date('H') + 1;
+        $days_diff = $diff->days;
+
+        if($diff->hours + $local_hours >= 24){
+            $days_diff += 1;
+        }
+
+        if($days_diff <= $days){
+            return true;
+        }
+
+        return false;
     }
 
     public static function getEvokationDeadline(){
