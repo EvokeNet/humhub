@@ -37,7 +37,7 @@ use app\modules\missions\models\Evidence;
 
                 <div class="progress" style="height:25px">
                   <div class="progress-bar" role="progressbar"
-                  aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="background:#f0ad4e; width:100%">
+                  aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="background:#A6AAB2; width:100%">
                     <?= Yii::t('MissionsModule.base', 'NOT STARTED') ?>
                   </div>
                 </div><br>

@@ -80,7 +80,7 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
                     </a>
                 <?php endif; ?>
 
-            </div>
+            </div><br><br>
             <div class="panel-body">
                <p><?= Yii::t('MissionsModule.base', 'Every time you submit evidence, your overall rating will improve.') ?><p>
             </div>
