@@ -29,7 +29,7 @@ use yii\helpers\Html;
 <div style="text-align:right; margin: 10px 40px">
 <?php echo Html::a(
     Yii::t('StaticsModule.base', 'Next'),
-    ['/statics/statics/terms-conditions'], array('class' => 'btn btn-lg btn-cta1', 'style' => 'padding: 0 80px')); ?>
+    [$next_page_link], array('class' => 'btn btn-lg btn-cta1', 'style' => 'padding: 0 80px')); ?>
 </div>
 
 <script src="http://www.youtube.com/player_api"></script>
