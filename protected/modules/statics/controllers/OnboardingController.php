@@ -1,6 +1,6 @@
 <?php
 
-namespace humhub\modules\novel\controllers;
+namespace humhub\modules\statics\controllers;
 
 use Yii;
 use yii\web\Controller;
