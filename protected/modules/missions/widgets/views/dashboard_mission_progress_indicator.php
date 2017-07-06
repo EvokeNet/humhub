@@ -38,7 +38,7 @@ use app\modules\missions\models\Evidence;
                 <div class="progress" style="height:25px">
                   <div class="progress-bar" role="progressbar"
                   aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="background:#A6AAB2; width:100%">
-                    <?= Yii::t('MissionsModule.base', 'NOT STARTED') ?>
+                    <span style="color:#101C2A; font-weight:700"><?= Yii::t('MissionsModule.base', 'NOT STARTED') ?></span>
                   </div>
                 </div><br>
 
@@ -47,7 +47,7 @@ use app\modules\missions\models\Evidence;
                 <div class="progress" style="height:25px;">
                   <div class="progress-bar" role="progressbar"
                   aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="background:#28C503; width:100%">
-                    <?= Yii::t('MissionsModule.base', 'COMPLETED') ?>
+                    <span style="color:#101C2A; font-weight:700"><?= Yii::t('MissionsModule.base', 'COMPLETED') ?></span>
                   </div>
                 </div><br>
 
@@ -56,8 +56,7 @@ use app\modules\missions\models\Evidence;
                 <div class="progress" style="height:25px">
                   <div class="progress-bar" role="progressbar"
                   aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:<?= round($p*100) ?>%">
-                    <?php //echo Yii::t('MissionsModule.base', '{number}%', array('number' => round($p*100))); ?>
-                    <?php echo Yii::t('MissionsModule.base', '{current} OUT OF {total}', array('current' => $mission_progress[$m->id], 'total' => $mission_total[$m->id])); ?>
+                    <span style="color:#101C2A; font-weight:700"><?php echo Yii::t('MissionsModule.base', '{current} / {total}', array('current' => $mission_progress[$m->id], 'total' => $mission_total[$m->id])); ?></span>
                   </div>
                 </div><br>
 
@@ -80,7 +79,7 @@ use app\modules\missions\models\Evidence;
             <div class="progress" style="height:25px;">
               <div class="progress-bar" role="progressbar"
               aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="background:#28C503; width:100%">
-                <?= Yii::t('MissionsModule.base', 'STARTING IN {date}', array('date' => date("F j, Y", strtotime($evokation_deadline['start_date'])))) ?>
+                <span style="color:#101C2A; font-weight:700"><?= Yii::t('MissionsModule.base', 'STARTING IN {date}', array('date' => date("F j, Y", strtotime($evokation_deadline['start_date'])))) ?></span>
               </div>
             </div><br>
 
@@ -89,7 +88,7 @@ use app\modules\missions\models\Evidence;
             <div class="progress" style="height:25px">
               <div class="progress-bar" role="progressbar"
               aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="background:#28C503; width:100%">
-                <?= Yii::t('MissionsModule.base', 'OPEN UNTIL {date}', array('date' => date("F j, Y", strtotime($evokation_deadline['finish_date'])))) ?>
+                <span style="color:#101C2A; font-weight:700"><?= Yii::t('MissionsModule.base', 'OPEN UNTIL {date}', array('date' => date("F j, Y", strtotime($evokation_deadline['finish_date'])))) ?></span>
               </div>
             </div><br>
 
@@ -98,7 +97,7 @@ use app\modules\missions\models\Evidence;
             <div class="progress" style="height:25px">
               <div class="progress-bar" role="progressbar"
               aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="background:#FF4351; width:100%">
-                <?= Yii::t('MissionsModule.base', 'CLOSED') ?>
+                <span style="color:#101C2A; font-weight:700"><?= Yii::t('MissionsModule.base', 'CLOSED') ?></span>
               </div>
             </div><br>
 
