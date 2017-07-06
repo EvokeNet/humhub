@@ -32,16 +32,23 @@ class Events extends \yii\base\Object
           {
             //check if users are obligated to see the novel
             if(Setting::Get('enabled_novel_read_obligation')){
-              //Check if user hasn't read the graphic novel yet or if they are a mentor
+              //Check if user hasn't read the graphic novel yet and if he's not a mentor
               if(Yii::$app->user->getIdentity()->has_read_novel == false && Yii::$app->user->getIdentity()->group->name != "Mentors"){
 
-                //check order
-                if($novel_order == EvokeSettingsForm::FIRST_NOVEL){
-                    $event->action->controller->redirect(Url::toRoute(['/novel/novel/graphic-novel', 'page' => 1]));
+                //check if users are obligated to answer the questionnaire
+                if(Setting::Get('enabled_psychometric_questionnaire_obligation')){
 
-                //check if user has superhero id
-                }else if(isset(Yii::$app->user->getIdentity()->superhero_identity_id)){
-                    $event->action->controller->redirect(Url::toRoute(['/novel/novel/graphic-novel', 'page' => 1]));
+                  //check order
+                  if($novel_order == EvokeSettingsForm::FIRST_NOVEL){
+                      $event->action->controller->redirect(Url::toRoute(['/novel/novel/graphic-novel', 'page' => 1]));
+
+                  //check if user has superhero id
+                  }else if(isset(Yii::$app->user->getIdentity()->superhero_identity_id)){
+                      $event->action->controller->redirect(Url::toRoute(['/novel/novel/graphic-novel', 'page' => 1]));
+                  }
+
+                }else{
+                  $event->action->controller->redirect(Url::toRoute(['/novel/novel/graphic-novel', 'page' => 1]));
                 }
 
               }
