@@ -94,7 +94,7 @@ class Events extends \yii\base\Object
           'url' => Url::toRoute(['/novel/novel/graphic-novel', 'page' => 1]),
           'sortOrder' => 800,
           'isActive' => (
-              Yii::$app->controller->module && Yii::$app->controller->module->id == 'novel'
+              Yii::$app->controller->module && Yii::$app->controller->id == 'novel'
           ),
       ));
     }
