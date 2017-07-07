@@ -121,8 +121,40 @@ use yii\helpers\Html;
 
 </p>
 
+<br><br>
+
+<p style="margin:0 150px">
+    <input type="checkbox"  onchange=" enableButton(this.checked); ">
+        I agree
+    </input>
+</p>
+
 <div style="text-align:right; margin: 10px 40px">
 <?php echo Html::a(
     Yii::t('StaticsModule.base', 'Next'),
-    [$next_page_link], array('class' => 'btn btn-lg btn-cta1', 'style' => 'padding: 0 80px')); ?>
+    [$next_page_link], 
+    array('id'=> 'btn_next', 
+    'disabled' => 'true', 
+    'class' => 'disable_a_href btn btn-lg btn-cta1', 
+    'style' => 'padding: 0 80px')); ?>
 </div>
+
+<style>
+.disable_a_href{
+    pointer-events: none;
+}
+</style>
+
+<script>
+
+function enableButton(checked){
+    $('#btn_next').attr('disabled',!checked);
+
+    if(!checked){
+        $('#btn_next').addClass('disable_a_href');
+    }else{
+        $('#btn_next').removeClass('disable_a_href');
+    }
+}
+
+</script>
