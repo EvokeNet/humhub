@@ -59,10 +59,10 @@ class EvocoinsReview extends \yii\base\Widget
         ->one()['count'];
 
         $a = $total = (new \yii\db\Query())
-        ->select(['count(e.id) as count'])
+        ->select(['count(a.id) as count'])
         ->from('activities as a')
         ->join('LEFT JOIN', 'missions as m', 'a.mission_id = `m`.`id`')
-        ->where(['m.id' => $mission_id)
+        ->where(['m.id' => $mission_id])
         // ->andWhere(['c.visibility' => 1])
         ->one()['count'];
 
