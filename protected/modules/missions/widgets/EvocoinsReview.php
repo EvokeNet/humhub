@@ -28,16 +28,17 @@ class EvocoinsReview extends \yii\base\Widget
         ->orderBy('missions.position ASC')
         ->all();
 
-        foreach($missions as $m):
+        $current_mission = end($missions);
+        // foreach($missions as $m):
 
-            $stats = EvocoinsReview::getMissionStats1($m->id);
+        //     $stats = EvocoinsReview::getMissionStats1($m->id);
         	
-        	if($stats['evidences'] != $stats['activities']){
-        		$current_mission = $m;
-        		break;
-        	}
+        // 	if($stats['evidences'] != $stats['activities']){
+        // 		$current_mission = $m;
+        // 		break;
+        // 	}
 
-        endforeach;
+        // endforeach;
 
         return $this->render('evocoins_review', array('missions' => $missions, 'mission_total' => $mission_total,'mission_progress' => $mission_progress, 'current_mission' => $current_mission));
     }

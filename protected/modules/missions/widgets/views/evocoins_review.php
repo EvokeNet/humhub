@@ -59,7 +59,10 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
         <?= Yii::t('MissionsModule.base', 'Mission Progress') ?>
     </div>
     <div class="panel-body text-center">
-        <p><?= Yii::t('MissionsModule.base', "You're currently in Mission #{number} - {title}", array('number' => $current_mission['position'], 'title' => $current_mission['title'])); ?></p>
+
+        <h6 style="margin-top:5px"><?= Yii::t('MissionsModule.base', 'Your average rating: {avg}', array('avg' => $avg)) ?></h6>
+
+        <p style = "font-size:10pt"><?= Yii::t('MissionsModule.base', "Post an evidence for the lastest unlocked mission<br> #{number} - {title}", array('number' => $current_mission['position'], 'title' => $current_mission['title'])); ?></p>
 
         <?php if($member): ?>
             <a id="submit_evidence" class="btn btn-cta1" style="margin-top:5px" href="<?= Url::to(['/missions/evidence/activities', 'missionId' => $current_mission['id'], 'sguid' => $member->space->guid]); ?>">
@@ -67,9 +70,7 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
             </a>
         <?php endif; ?>
 
-        <h6 style="margin-top:15px"><?= Yii::t('MissionsModule.base', 'Your average rating: {avg}', array('avg' => $avg)) ?></h6>
-
-        <p style = "font-size:10pt"><?= Yii::t('MissionsModule.base', 'Every time you submit an evidence, your overall rating will improve.') ?><p>
+        <p style = "font-size:10pt; margin-top:10px"><?= Yii::t('MissionsModule.base', 'Every time you submit an evidence, your overall rating will improve.') ?><p>
 
     </div>
 </div>
@@ -98,6 +99,26 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
 
     </div>
 </div>
+
+<!-- <div class="panel panel-default">
+    <div class="panel-heading">
+        <?= Yii::t('MissionsModule.base', 'Mission Progress') ?>
+    </div>
+    <div class="panel-body text-center">
+        <p><?= Yii::t('MissionsModule.base', "You're currently in Mission #{number} - {title}", array('number' => $current_mission['position'], 'title' => $current_mission['title'])); ?></p>
+
+        <?php if($member): ?>
+            <a id="submit_evidence" class="btn btn-cta1" style="margin-top:5px" href="<?= Url::to(['/missions/evidence/activities', 'missionId' => $current_mission['id'], 'sguid' => $member->space->guid]); ?>">
+                <?php echo Yii::t('MissionsModule.base', 'Submit Evidence'); ?>
+            </a>
+        <?php endif; ?>
+
+        <h6 style="margin-top:15px"><?= Yii::t('MissionsModule.base', 'Your average rating: {avg}', array('avg' => $avg)) ?></h6>
+
+        <p style = "font-size:10pt"><?= Yii::t('MissionsModule.base', 'Every time you submit an evidence, your overall rating will improve.') ?><p>
+
+    </div>
+</div> -->
 
 <!-- <div class="panel panel-default">
     <div class="panel-heading">
