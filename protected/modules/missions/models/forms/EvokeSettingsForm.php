@@ -11,6 +11,7 @@ class EvokeSettingsForm extends \yii\base\Model
     public $enabled_evokation_page_visibility;
     public $enabled_intro_slide;
     public $enabled_intro_video;
+    public $enabled_intro_terms;
     public $enabled_psychometric_questionnaire_obligation;
     public $enabled_novel_read_obligation;
     public $investment_limit;
@@ -28,6 +29,7 @@ class EvokeSettingsForm extends \yii\base\Model
             array(['enabled_evokation_page_visibility'], 'in', 'range' => array(0, 1)),
             array(['enabled_intro_slide'], 'in', 'range' => array(0, 1)),
             array(['enabled_intro_video'], 'in', 'range' => array(0, 1)),
+            array(['enabled_intro_terms'], 'in', 'range' => array(0, 1)),
             array(['enabled_psychometric_questionnaire_obligation'], 'in', 'range' => array(0, 1)),
             array(['enabled_novel_read_obligation'], 'in', 'range' => array(0, 1)),
             array(['investment_limit'], 'number', 'integerOnly' => true),
@@ -47,6 +49,7 @@ class EvokeSettingsForm extends \yii\base\Model
             'enabled_evokation_page_visibility' => Yii::t('MissionsModule.base', 'Show Evokation Page on Team Page'),
             'enabled_intro_slide' => Yii::t('MissionsModule.base', 'Activate Introduction Slide'),
             'enabled_intro_video' => Yii::t('MissionsModule.base', 'Activate Introduction Video'),
+            'enabled_intro_terms' => Yii::t('MissionsModule.base', 'Activate Terms & Conditions Page'),
             'enabled_psychometric_questionnaire_obligation' => Yii::t('MissionsModule.base', 'Obligate users to answer psychometric questionnaire'),
             'enabled_novel_read_obligation' => Yii::t('MissionsModule.base', 'Obligate users to read the Novel'),
             'investment_limit' => Yii::t('MissionsModule.base', 'Set Investment Limit'),

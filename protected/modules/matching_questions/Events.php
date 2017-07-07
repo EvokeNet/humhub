@@ -70,8 +70,14 @@ class Events extends \yii\base\Object
             //Check if user is logged in
             if(null != Yii::$app->user->getIdentity()) {
 
+
+                //check if users are obligated to see the slide or see the video
+                if(Setting::Get('enabled_intro_slide') || Setting::Get('enabled_intro_video') || Setting::Get('enabled_intro_terms')){
+
+                    // do nothing
+
                 //check if users are obligated to answer the questionnaire
-                if(Setting::Get('enabled_psychometric_questionnaire_obligation')){
+                }else if(Setting::Get('enabled_psychometric_questionnaire_obligation')){
 
                     // check if user hasn't superhero id yet  and if user isn't a mentor
                     if (!isset(Yii::$app->user->getIdentity()->superhero_identity_id) && Yii::$app->user->getIdentity()->group->name != "Mentors"){

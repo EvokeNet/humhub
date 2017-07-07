@@ -27,6 +27,7 @@ use yii\widgets\ActiveForm;
 
         <?php echo $form->field($model, 'enabled_intro_slide')->checkbox(); ?>
         <?php echo $form->field($model, 'enabled_intro_video')->checkbox(); ?>
+        <?php echo $form->field($model, 'enabled_intro_terms')->checkbox(); ?>
         <?php echo $form->field($model, 'enabled_psychometric_questionnaire_obligation')->checkbox(); ?>
         <?php echo $form->field($model, 'enabled_novel_read_obligation')->checkbox(); ?>
         <?php 

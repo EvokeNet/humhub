@@ -21,6 +21,7 @@ class SettingsController extends \humhub\modules\admin\components\Controller
         $form->enabled_evokation_page_visibility = Setting::Get('enabled_evokation_page_visibility');
         $form->enabled_intro_slide = Setting::Get('enabled_intro_slide');
         $form->enabled_intro_video = Setting::Get('enabled_intro_video');
+        $form->enabled_intro_terms = Setting::Get('enabled_intro_terms');
         $form->enabled_psychometric_questionnaire_obligation = Setting::Get('enabled_psychometric_questionnaire_obligation');
         $form->enabled_novel_read_obligation = Setting::Get('enabled_novel_read_obligation');
         $form->investment_limit = Setting::Get('investment_limit');
@@ -31,6 +32,7 @@ class SettingsController extends \humhub\modules\admin\components\Controller
             Setting::Set('enabled_evokation_page_visibility', $form->enabled_evokation_page_visibility);
             Setting::Set('enabled_intro_slide', $form->enabled_intro_slide);
             Setting::Set('enabled_intro_video', $form->enabled_intro_video);
+            Setting::Set('enabled_intro_terms', $form->enabled_intro_terms);
             Setting::Set('enabled_psychometric_questionnaire_obligation', $form->enabled_psychometric_questionnaire_obligation);
             Setting::Set('enabled_novel_read_obligation', $form->enabled_novel_read_obligation);
             Setting::Set('investment_limit', $form->investment_limit);

@@ -30,7 +30,7 @@ class Events extends \yii\base\Object
           //make sure user is logged in
           if (null != Yii::$app->user->getIdentity())
           {
-            //check if users are obligated to see the novel
+
             if(Setting::Get('enabled_novel_read_obligation')){
               //Check if user hasn't read the graphic novel yet and if he's not a mentor
               if(Yii::$app->user->getIdentity()->has_read_novel == false && Yii::$app->user->getIdentity()->group->name != "Mentors"){
