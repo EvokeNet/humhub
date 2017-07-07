@@ -19,8 +19,8 @@ class SettingsController extends \humhub\modules\admin\components\Controller
         $form = new EvokeSettingsForm;
         $form->enabled_evokations = Setting::Get('enabled_evokations');
         $form->enabled_evokation_page_visibility = Setting::Get('enabled_evokation_page_visibility');
-        $form->enabled_psychometric_questionnaire_obligation = Setting::Get('enabled_intro_slide');
-        $form->enabled_psychometric_questionnaire_obligation = Setting::Get('enabled_intro_video');
+        $form->enabled_intro_slide = Setting::Get('enabled_intro_slide');
+        $form->enabled_intro_video = Setting::Get('enabled_intro_video');
         $form->enabled_psychometric_questionnaire_obligation = Setting::Get('enabled_psychometric_questionnaire_obligation');
         $form->enabled_novel_read_obligation = Setting::Get('enabled_novel_read_obligation');
         $form->investment_limit = Setting::Get('investment_limit');
