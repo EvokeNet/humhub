@@ -120,3 +120,9 @@ use yii\helpers\Html;
     30. If you have any questions or concerns about these Terms and Conditions or you want to give notice according to Section 21, please contact us at evokenet@gmail.com.
 
 </p>
+
+<div style="text-align:right; margin: 10px 40px">
+<?php echo Html::a(
+    Yii::t('StaticsModule.base', 'Next'),
+    [$next_page_link], array('class' => 'btn btn-lg btn-cta1', 'style' => 'padding: 0 80px')); ?>
+</div>

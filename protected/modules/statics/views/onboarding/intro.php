@@ -27,5 +27,5 @@ use yii\helpers\Html;
 <div style="text-align:right; margin: 10px 40px">
 <?php echo Html::a(
     Yii::t('StaticsModule.base', 'Next'),
-    ['/statics/onboarding/video'], array('class' => 'btn btn-lg btn-cta1', 'style' => 'padding: 0 80px')); ?>
+    [$next_page_link], array('class' => 'btn btn-lg btn-cta1', 'style' => 'padding: 0 80px')); ?>
 </div>
