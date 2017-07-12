@@ -5,6 +5,7 @@ namespace humhub\modules\missions\controllers;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use app\modules\missions\models\Alerts;
 
 class AlertController extends Controller
 {
@@ -56,5 +57,16 @@ class AlertController extends Controller
         }
 
         
-    }        
+    }       
+
+    public function actionTest(){
+        // $alert = new Alerts;
+        // $alert->user_id = Yii::$app->user->getIdentity()->id;
+        // $alert->type = Alerts::REVIEW;
+        // $alert->object_model = "teste";
+        // $alert->object_id = 1;
+        // $alert->save();
+        
+    }
+
 }
