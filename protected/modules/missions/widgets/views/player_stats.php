@@ -35,14 +35,11 @@ $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
         <?php
             $unavailable_power = $userQuality[0]->getUserQuality() == null || $userQuality[0]->getUserQuality()->getLevel() <= 0 ? true : false;
         ?>
-            <div class="player-power text-center">
-                <img src = "<?php echo $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->image; ?>" width="100px" class = "power-border"></img>
+            <div class="player-power text-center" style="margin-bottom:15px">
+                <div style="float:left"><img src = "<?php echo $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->image; ?>" width="70px" class = "power-border"></img></div><br>
 
-                <h6>
-                    <?= $name ?>
-                </h6>
-
-                <span class = "bold italic" style = "color: #63E9FD"><?php echo Yii::t('MissionsModule.base', 'Level {level}', array('level' => null != $userQuality[0]->getUserQuality() ? $userQuality[0]->getUserQuality()->getLevel() : 0)); ?></span>
+                <div style="margin-top:-15px"><span class = "bold italic" style = "color: #63E9FD; margin-top:10px; display:block"><?= $name ?></span>
+                <span class = "bold italic" style = "color: #63E9FD; margin-top:5px; display:block"><?php echo Yii::t('MissionsModule.base', 'Level {level}', array('level' => null != $userQuality[0]->getUserQuality() ? $userQuality[0]->getUserQuality()->getLevel() : 0)); ?></span></div>
 
             </div>
         <?php endforeach; ?>

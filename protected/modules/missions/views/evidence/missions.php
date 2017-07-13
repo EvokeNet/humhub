@@ -26,17 +26,17 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Missions');
         <?php if($mission->locked == 1): ?>
             
             <div class="panel panel-default">
-                <div class="panel-body grey-box blur">
+                <div class="panel-body grey-box grayed-out">
                     
-                    <span class="fa-stack fa-2x" style="color: #FEAE1B;">
+                    <div style="float:right" data-toggle="tooltip" title="<?php echo Yii::t('MissionsModule.base', "This mission is currently locked"); ?>"><i class="fa fa-lock fa-2x" aria-hidden="true"></i></div>
+
+                    <span class="fa-stack fa-2x" style="color: #FEAE1B;">   
                       <i class="fa fa-circle-thin fa-stack-2x"></i>
                       <strong class="fa-stack-1x calendar-text"><?php echo $mission->position >= 1 ?$mission->position : "#" ?></strong>
                     </span>
 
-                    <h6 style="line-height:30px; display: inline; margin-left: 12px;">
-                        <?php echo Html::a(
-                            Yii::t('MissionsModule.base', '{mission}', array('mission' => isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title)),
-                            ['activities', 'missionId' => $mission->id, 'sguid' => $contentContainer->guid]); ?>
+                    <h6 style="line-height:30px; display: inline;">
+                        <?= isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title ?>
                     </h6>
 
                 </div>
@@ -52,7 +52,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Missions');
                       <strong class="fa-stack-1x calendar-text"><?php echo $mission->position >= 1 ?$mission->position : "#" ?></strong>
                     </span>
 
-                    <h6 style="line-height:30px; display: inline; margin-left: 12px;">
+                    <h6 style="line-height:30px; display: inline;">
                         <?php echo Html::a(
                             Yii::t('MissionsModule.base', '{mission}', array('mission' => isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title)),
                             ['activities', 'missionId' => $mission->id, 'sguid' => $contentContainer->guid]); ?>
@@ -70,6 +70,12 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Missions');
 <?php endif; ?>
 
 <style>
+
+.grayed-out{
+    opacity: 0.4;
+    filter: alpha(opacity=30); /* msie */
+    background-color: #000;
+}
 
 .calendar-stack {
     position: relative;
