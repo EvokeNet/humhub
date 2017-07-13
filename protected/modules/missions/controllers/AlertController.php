@@ -67,12 +67,12 @@ class AlertController extends Controller
 
         $alert = Alerts::findOne(['user_id' => $user->id]);
 
-        if($alert){
-            $content = Content::findOne(['object_model' => $alert->object_model, 'object_id' => $alert->object_id]);
-            $url = Url::to(['/content/perma', 'id' => $content->id]);
-            $this->createAlert("Notification", "One of your evidences has been reviewed.<br> <a href='".$url."'>Click here to see.</a>");
-            $alert->delete();
-        }
+        // if($alert){
+        //     $content = Content::findOne(['object_model' => $alert->object_model, 'object_id' => $alert->object_id]);
+        //     $url = Url::to(['/content/perma', 'id' => $content->id]);
+        //     $this->createAlert("Notification", "One of your evidences has been reviewed.<br> <a href='".$url."'>Click here to see.</a>");
+        //     $alert->delete();
+        // }
 
         
     }

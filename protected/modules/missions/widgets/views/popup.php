@@ -106,7 +106,11 @@ var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimation
 
 
 $( document ).ready(function() {
-     reLoadPopUps();
+  // wait 2 seconds before loading popup
+  setTimeout(function () {
+    reLoadPopUps();
+  }, 2000);
+     
 });
 
 
