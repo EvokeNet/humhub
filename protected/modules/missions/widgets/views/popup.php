@@ -104,14 +104,20 @@
 
 var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
 
-/*var popUpWatcher = setInterval(function() {
 
-    if(! $("#popup-message").is(':visible') ){
-      loadPopUps();
-    }
+$( document ).ready(function() {
+     reLoadPopUps();
+});
 
-}, 1000); 
-*/
+
+// var popUpWatcher = setInterval(function() {
+
+//     if(! $("#popup-message").is(':visible') ){
+//       reloadPopUps();
+//     }
+
+// }, 30000); 
+
 
 var popUpWatcher = null;
 var animated_popup_image = null;
@@ -135,6 +141,12 @@ function checkDuplication(currentMessage){
     }
   }
   return false;
+}
+
+function reLoadPopUps(){
+  messages = [];
+  deactivatePopUp();
+  loadPopUps();
 }
 
 function loadPopUps(){
@@ -232,7 +244,14 @@ function showMessage(title, message){
   document.getElementById("message-title").innerHTML = title;
   document.getElementById("message-content").innerHTML = message;
   $("#popup-message").modal("show");
+  deactivatePopUp();
+  console.log("closing message");
+}
+
+
+function deactivatePopUp(){
   activatedPopUp = false;
+  console.log("deactivated current pop up");
 }
 
 </script>

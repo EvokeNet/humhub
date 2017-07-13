@@ -64,7 +64,7 @@ class AlertController extends Controller
     public function actionTest(){
         $user = Yii::$app->user->getIdentity();
         Alerts::createReviewNotification($user->id, 613);
-        
+
         $alert = Alerts::findOne(['user_id' => $user->id]);
 
         if($alert){
