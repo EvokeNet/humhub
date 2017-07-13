@@ -56,12 +56,37 @@ class Alerts extends \yii\db\ActiveRecord
         ];
     }
 
+    public function createReviewNotification($user_id, $object_id){
+        $alert = Alerts::findOne(['user_id' => $user_id]);
+
+        if($alert){
+            $alert->setType(Alerts::REVIEW, $object_id);
+            $alert->save();
+        }else{
+            $alert = new Alerts;
+            $alert->user_id = $user_id;
+            $alert->setType(Alerts::REVIEW, $object_id);
+            $alert->save();
+        }
+
+        return $alert;
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+
+    public function setType($type, $id){
+        if($type == Alerts::REVIEW){
+            $this->type = $type;
+            $this->object_model = "app\modules\missions\models\Evidence"; 
+            $this->object_id = $id;
+        }   
     }
 
 }
