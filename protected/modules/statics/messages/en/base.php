@@ -17,6 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'How To Play' => '',
+    'ALCHEMY MESSAGE' => '',
+    'INTRODUCTION' => '',
+    'Next' => '',
     'Terms and Conditions of Use & Privacy Policy' => '',
 ];

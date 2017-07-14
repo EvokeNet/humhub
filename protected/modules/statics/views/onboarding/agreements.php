@@ -1,3 +1,23 @@
+<?php
+
+use yii\helpers\Html;
+
+?>
+
+<style media="screen">
+
+  <?php if (!Yii::$app->user->getIdentity()->has_read_novel && Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
+    .topbar, .footer {
+      display: none;
+    }
+
+    body {
+      padding-top: 1em;
+    }
+  <?php endif; ?>
+  
+</style>
+
 <h4 style="background-color: #101C2A; text-align: center; padding: 10px 0; margin: 0px 0 20px; color: #5aa2c6;"><?php echo Yii::t('StaticsModule.base', 'Terms and Conditions of Use & Privacy Policy') ?></h4>
 
 <p style="margin:0 150px">
@@ -100,3 +120,41 @@
     30. If you have any questions or concerns about these Terms and Conditions or you want to give notice according to Section 21, please contact us at evokenet@gmail.com.
 
 </p>
+
+<br><br>
+
+<p style="margin:0 150px">
+    <input type="checkbox"  onchange=" enableButton(this.checked); ">
+        I agree
+    </input>
+</p>
+
+<div style="text-align:right; margin: 10px 40px">
+<?php echo Html::a(
+    Yii::t('StaticsModule.base', 'Next'),
+    [$next_page_link], 
+    array('id'=> 'btn_next', 
+    'disabled' => 'true', 
+    'class' => 'disable_a_href btn btn-lg btn-cta1', 
+    'style' => 'padding: 0 80px')); ?>
+</div>
+
+<style>
+.disable_a_href{
+    pointer-events: none;
+}
+</style>
+
+<script>
+
+function enableButton(checked){
+    $('#btn_next').attr('disabled',!checked);
+
+    if(!checked){
+        $('#btn_next').addClass('disable_a_href');
+    }else{
+        $('#btn_next').removeClass('disable_a_href');
+    }
+}
+
+</script>

@@ -106,11 +106,17 @@ p{
   color: @text-gray-font;
 }
 
-body {
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body{
   padding-top: 130px;
   background-color: @body-color;
   color: @text-gray-font;
   font-family: @heading_font;
+  margin: 0 0 70px;
   a,
   a:hover,
   a:focus,
@@ -3204,9 +3210,21 @@ img.bounceIn {
   background-image: url('../img/evocoin_bg.png');
 }
 
+//.container{
+  //position: relative;
+  //min-height: 100%;
+//}
+
 .footer{
   background-color: @primary-blue;
   font-family: @heading_font;
+
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 50px;
+  width: 100%;
+
   .container{
     padding: 15px 0 12px;
 

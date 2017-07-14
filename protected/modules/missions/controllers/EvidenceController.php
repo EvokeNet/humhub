@@ -31,6 +31,8 @@ use humhub\modules\admin\models\forms\MailingSettingsForm;
 use app\modules\novel\models\NovelPage;
 use app\modules\novel\models\Chapter;
 
+use app\modules\missions\models\Alerts;
+
 class EvidenceController extends ContentContainerController
 {
 
@@ -704,6 +706,8 @@ class EvidenceController extends ContentContainerController
                 }
 
                 $message = Yii::t('MissionsModule.base', 'You just gained {message} evocoins!', array('message' => $evocoin_earned));
+
+                Alerts::createReviewNotification($evidence->created_by, $evidence->id);
 
                 AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', '{message}. <BR>Thank you for your review.', array('message' => $message)));
                 $this->createAnimatedMessagesForPowers($activityPower);

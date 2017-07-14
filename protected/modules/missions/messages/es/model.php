@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Chapter #{chapter} - Page #{page}' => '',
+    'Chapter #{chapter} - Page #{page}' => 'Capítulo #{chapter} - Página #{page}',
     'Activities' => 'Actividades',
     'Activities ID' => 'Identificación de Actividades',
     'Activity ID' => 'Identificación de Actividad',

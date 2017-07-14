@@ -19,14 +19,12 @@
 return [
     'All Evidences' => '',
     'Evidences' => '',
-    'Evidences To Be Reviewed' => '',
     'Evokation' => '',
     'Evokation Categories' => '',
     'Evokation Deadline' => '',
     'Evokations' => '',
     'Evoke Errors\' View' => '',
     'Evoke Settings' => '',
-    'Leaderboard' => '',
     'Members' => '',
     'Missions' => '',
     'My Team' => '',
@@ -34,4 +32,6 @@ return [
     'Review Evidence' => '',
     'Review Evidences' => '',
     'Reviews' => '',
+    'Tag Evidences' => '',
+    'Tags' => '',
 ];

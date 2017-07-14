@@ -484,7 +484,7 @@ function review(id, comment, opt, grade){
                 $("#review_tab_" + id).replaceWith(xhttp.responseText);
               }
             }
-            //loadPopUps();
+            reLoadPopUps();
         }
     };
     xhttp.open("GET", "<?= $contentContainer->createUrl('/missions/evidence/review'); ?>&opt="+opt+"&grade="+grade+"&evidenceId="+id+"&comment="+comment , true);
@@ -501,6 +501,11 @@ function validateReview(id){
 
   opt = opt? opt.val() : null;
   grade = grade? grade.val() : null;
+
+  if(!comment){
+    showMessage("Error", "<?= Yii::t('MissionsModule.base', 'Comment required') ?>");
+    return false;
+  }
 
   if(opt == "yes"){
 
@@ -548,11 +553,16 @@ jQuery(document).on('ajaxComplete', function () {
           return false;
         }
       } else {
-        $('#review' + id).submit(function(e){
+        if (confirm("<?php echo Yii::t('MissionsModule.base', 'Are you ready to submit your review? You will not be able to change it after submitting.'); ?>")){
+          $('#review' + id).submit(function(e){
             e.preventDefault();
             return validateReview(id);
           }
-        );
+          );
+        }else{
+          e.preventDefault();
+          return false;
+        }
       }
 
     });

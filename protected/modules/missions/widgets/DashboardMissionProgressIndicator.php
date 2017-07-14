@@ -100,7 +100,8 @@ class DashboardMissionProgressIndicator extends \yii\base\Widget
             ->join('LEFT JOIN', 'evidence as e', 'e.activities_id = `a`.`id` and e.created_by = '.$user->id)
             ->join('LEFT JOIN', 'content as c', 'c.object_id = `e`.`id` and c.object_model like "%Evidence%"')
             ->join('INNER JOIN', 'votes as v', 'v.evidence_id = `e`.`id` and v.user_type = "Mentors"')
-            ->where(['m.id' => $mission_id, 'c.visibility' => 1, 'a.is_group' => 0,'m.locked' => 0])
+            ->where(['m.id' => $mission_id, 'c.visibility' => 1, 'm.locked' => 0])
+            ->andWhere('a.is_group = 0 OR a.is_group is null')
             ->groupBy('e.created_by')
             ->one()['total_evidences'];
 

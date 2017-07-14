@@ -41,11 +41,16 @@ p {
   font-size: 12pt;
   color: #A6AAB2;
 }
+html {
+  position: relative;
+  min-height: 100%;
+}
 body {
   padding-top: 130px;
   background-color: #07111C;
   color: #A6AAB2;
   font-family: 'Roboto', sans-serif;
+  margin: 0 0 70px;
 }
 body a,
 body a:hover,
@@ -2562,6 +2567,11 @@ img.bounceIn {
 .footer {
   background-color: #01070F;
   font-family: 'Roboto', sans-serif;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 50px;
+  width: 100%;
 }
 .footer .container {
   padding: 15px 0 12px;
