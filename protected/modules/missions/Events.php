@@ -55,7 +55,8 @@ class Events
                 if($alert){
                     $content = Content::findOne(['object_model' => $alert->object_model, 'object_id' => $alert->object_id]);
                     $url = Url::to(['/content/perma', 'id' => $content->id]);
-                    AlertController::createAlert("Notification", "One of your evidences has been reviewed.<br> <a href='".$url."'>Click here to see.</a>");
+                    // AlertController::createAlert("Notification", "One of your evidences has been reviewed.<br> <a href='".$url."'>Click here to see.</a>");
+                    AlertController::createAlert(Yii::t('MissionsModule.base', 'Notification'), Yii::t('MissionsModule.base', 'One of your evidences has been reviewed.').'<br> <a href='.$url.'>'.Yii::t('MissionsModule.base', 'Click here to see').'</a>');
                     $alert->delete();
                 } 
             }

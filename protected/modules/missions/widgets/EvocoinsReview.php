@@ -28,14 +28,17 @@ class EvocoinsReview extends \yii\base\Widget
         ->orderBy('missions.position ASC')
         ->all();
 
-        foreach($missions as $m):
+        $current_mission = end($missions);
+        // foreach($missions as $m):
 
-            $stats = EvocoinsReview::getMissionStats1($m->id);
+        //     $stats = EvocoinsReview::getMissionStats1($m->id);
         	
-        	if($stats > 0)
-        		$current_mission = $m;
+        // 	if($stats['evidences'] != $stats['activities']){
+        // 		$current_mission = $m;
+        // 		break;
+        // 	}
 
-        endforeach;
+        // endforeach;
 
         return $this->render('evocoins_review', array('missions' => $missions, 'mission_total' => $mission_total,'mission_progress' => $mission_progress, 'current_mission' => $current_mission));
     }
@@ -46,7 +49,7 @@ class EvocoinsReview extends \yii\base\Widget
 
         $team_id = Team::getUserTeam($user->id);
 
-        $total = (new \yii\db\Query())
+        $e = (new \yii\db\Query())
         ->select(['count(e.id) as count'])
         ->from('evidence as e')
         ->join('LEFT JOIN', 'activities as a', 'e.activities_id = `a`.`id`')
@@ -56,7 +59,18 @@ class EvocoinsReview extends \yii\base\Widget
         // ->andWhere(['c.visibility' => 1])
         ->one()['count'];
 
-        return $total;
+        $a = $total = (new \yii\db\Query())
+        ->select(['count(a.id) as count'])
+        ->from('activities as a')
+        ->join('LEFT JOIN', 'missions as m', 'a.mission_id = `m`.`id`')
+        ->where(['m.id' => $mission_id])
+        // ->andWhere(['c.visibility' => 1])
+        ->one()['count'];
+
+        $stats['evidences'] = $e;
+        $stats['activities'] = $a;
+
+        return $stats;
     }
 
 }
