@@ -28,7 +28,7 @@ class NovelController extends Controller
         return $this->render('novel/index', array('pages' => $pages));
     }
 
-    public function actionGraphicNovel($page)
+    public function actionGraphicNovel($page = 1)
     {
       $novel_order = Setting::Get('novel_order');
 

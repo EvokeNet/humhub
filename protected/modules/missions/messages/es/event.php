@@ -17,16 +17,16 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Evokations' => 'Evokations',
+    'Tag Evidences' => 'Etiquetas de Evidencías',
+    'Tags' => 'Etiquetas',
     'All Evidences' => 'Todas las Evidencias',
     'Evidences' => 'Evidencias',
-    'Evidences To Be Reviewed' => 'Evidencias que evaluar',
     'Evokation' => 'Evokación',
     'Evokation Categories' => 'Categorías de Evokación',
     'Evokation Deadline' => 'Fin de plazo de Evokación',
+    'Evokations' => 'Evokations',
     'Evoke Errors\' View' => 'Visualización de Errors de Evoke',
     'Evoke Settings' => 'Ajustes de Evoke',
-    'Leaderboard' => 'Clasificación',
     'Members' => 'Miembros',
     'Missions' => 'Misiones',
     'My Team' => 'Mi Equipo',

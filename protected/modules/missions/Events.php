@@ -33,12 +33,35 @@ use humhub\modules\missions\controllers\MentorController;
 use app\modules\missions\models\EvokationDeadline;
 use app\modules\missions\models\Tags;
 
+use app\modules\missions\models\Alerts;
+use humhub\modules\content\models\Content;
+use humhub\modules\missions\controllers\AlertController;
 /**
  * Description of Events
  *
  */
 class Events
 {
+
+    public static function onAuthUser($event){
+
+        //on login action
+        if(property_exists($event->action, "actionMethod") && (($event->action->actionMethod) && $event->action->actionMethod === 'actionLogin')){
+            $user = Yii::$app->user->getIdentity();
+
+            if($user){
+                $alert = Alerts::findOne(['user_id' => $user->id]);
+
+                if($alert){
+                    $content = Content::findOne(['object_model' => $alert->object_model, 'object_id' => $alert->object_id]);
+                    $url = Url::to(['/content/perma', 'id' => $content->id]);
+                    // AlertController::createAlert("Notification", "One of your evidences has been reviewed.<br> <a href='".$url."'>Click here to see.</a>");
+                    AlertController::createAlert(Yii::t('MissionsModule.base', 'Notification'), Yii::t('MissionsModule.base', 'One of your evidences has been reviewed.').'<br> <a href='.$url.'>'.Yii::t('MissionsModule.base', 'Click here to see').'</a>');
+                    $alert->delete();
+                } 
+            }
+        }
+    }
 
     public static function onDashboardSidebarInit($event){
         //$userPowers = UserPowers::getUserPowers(Yii::$app->user->getIdentity()->id);
