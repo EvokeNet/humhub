@@ -1,6 +1,8 @@
 <?php
 
 use yii\helpers\Html;
+use humhub\models\Setting;
+use app\modules\missions\models\forms\EvokeSettingsForm;
 
 $this->pageTitle = Yii::t('UserModule.views_auth_createAccount', 'Create Account');
 ?>
@@ -9,7 +11,9 @@ $this->pageTitle = Yii::t('UserModule.views_auth_createAccount', 'Create Account
     <h1 id="app-title" class="animated fadeIn"><?php echo Html::encode(Yii::$app->name); ?></h1>
     <br/>
 
-    <div id="player"></div>
+    <?php if(!Setting::Get('enabled_intro_video')): ?>
+        <div id="player"></div>
+    <?php endif; ?>
     
     <br/>
     <br/>
