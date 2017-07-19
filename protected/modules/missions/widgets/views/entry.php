@@ -101,25 +101,43 @@ echo Html::beginForm();
 
         </div>
 
-        <div class="agent-votes col-xs-6" style="margin-top:10px; text-align:center">
+        <div class="mentor-votes col-xs-6" style="border-left: 2px solid #FF4351;">
 
-          <div class="rating no-padding-left">
+          <div class="stars">
+            <?php for ($i = 0; $i < 5; $i++): ?>
+              <?php if ($user_average_votes > $i): ?>
+                <?php if (($user_average_votes - $i) < 1): ?>
+                  <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                <?php else: ?>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                <?php endif; ?>
+              <?php else: ?>
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+              <?php endif; ?>
+            <?php endfor; ?>
+            <p>
+              <?php echo Yii::t('MissionsModule.base', 'Avg Agents Rating'); ?>
+            </p>
+          </div>
+
+          <!-- <div class="rating no-padding-left">
             <span style="font-size: 9pt; font-weight:700">
               <?php echo Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $mentor_average_votes? number_format((float)$mentor_average_votes, 1, '.', '') : "-")); ?>
             </span>
             <span style="font-size: 9pt; font-weight:700">
               <?php echo Yii::t('MissionsModule.base', 'Mentor Reviews: {votes}', array('votes' => $evidence->getVoteCount('Mentors')? $evidence->getVoteCount('Mentors') : "0")) ?>
             </span>
-          </div>
+          </div> -->
 
-          <div class="rating">
+          <!-- <div class="rating">
             <span style="font-size: 9pt; font-weight:700">
               <?php echo Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $user_average_votes? number_format((float)$user_average_votes, 1, '.', '') : "-")); ?>
             </span>
             <span style="font-size: 9pt; font-weight:700">
               <?php echo Yii::t('MissionsModule.base', 'Agent Reviews: {votes}', array('votes' => $agent_vote_count)) ?>
             </span>
-          </div>
+          </div> -->
+
         </div>
 
       </div>

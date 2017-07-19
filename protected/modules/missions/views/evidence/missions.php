@@ -52,7 +52,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Missions');
                             <div style="display: inline; margin-left: 60px; color: #28C503" data-toggle="tooltip" title="<?php echo Yii::t('MissionsModule.base', "You've completed this mission"); ?>"><i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i></div>
 
                         <?php else: ?>
-                            <p style="display: inline; margin-left: 60px;"><?php echo Yii::t('MissionsModule.base', '{current} / {total} activities', array('current' => $mission_progress[$mission->id], 'total' => $mission_total[$mission->id])); ?></p>
+                            <p style="display: inline; margin-left: 60px; font-size:10pt"><?php echo Yii::t('MissionsModule.base', '{current} / {total} activities completed', array('current' => $mission_progress[$mission->id], 'total' => $mission_total[$mission->id])); ?></p>
                         <?php endif; ?>
 
                     </div>
