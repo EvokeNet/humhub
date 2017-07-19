@@ -33,6 +33,8 @@ use app\modules\novel\models\Chapter;
 
 use app\modules\missions\models\Alerts;
 
+use humhub\modules\missions\widgets\DashboardMissionProgressIndicator;
+
 class EvidenceController extends ContentContainerController
 {
 
@@ -182,7 +184,18 @@ class EvidenceController extends ContentContainerController
         // ->where(['locked' => 0])
         ->all();
 
-        return $this->render('missions', array('missions' => $missions, 'contentContainer' => $this->contentContainer));
+        $mission_progress = array();
+        $mission_total = array();
+        foreach($missions as $m):
+
+            $stats = DashboardMissionProgressIndicator::getMissionStats($m->id);
+
+            $mission_progress[$m->id] = $stats['total_evidences'];
+            $mission_total[$m->id] = $stats['total_activities'];
+
+        endforeach;
+
+        return $this->render('missions', array('missions' => $missions, 'contentContainer' => $this->contentContainer, 'mission_total' => $mission_total,'mission_progress' => $mission_progress));
     }
 
     public function createAnimatedMessagesForPowers($activityPowers){

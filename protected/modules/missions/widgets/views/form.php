@@ -12,7 +12,7 @@ $firstSecondary = true;
         <div class="panel-body grey-box">
 
             <h4>
-                <span class = "activity2-number"><?= $activity->position ?></span>
+                <span><?= '#'.$activity->position ?></span>&nbsp;
                 <span class="mission-title"><?= isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title ?></span>
             </h4>
 
@@ -38,10 +38,10 @@ $firstSecondary = true;
                     ?>
 
                     
-                        <div class="power-cards">
-                            <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
-                            <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
-                        </div>
+                    <div>
+                        <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
+                        <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
+                    </div>
                         
                     <?php endforeach; ?>
 
@@ -60,7 +60,7 @@ $firstSecondary = true;
                                     $name = $power->getPower()->powerTranslations[0]->title;
                         ?>
                             
-                        <div class="power-cards">
+                        <div>
                             <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
                             <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
                         </div>
