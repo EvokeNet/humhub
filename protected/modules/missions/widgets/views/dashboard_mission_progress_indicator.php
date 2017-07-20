@@ -24,12 +24,14 @@ use app\modules\missions\models\Evidence;
         ?>
             <?php if($percentage == 0): ?>
 
+                <span style="text-align:center; display:block; font-weight:700"><?php echo Yii::t('MissionsModule.base', 'MISSION PROGRESS'); ?></span>
+
                 <div class="progress" style="height:25px">
                   <div class="progress-bar" role="progressbar"
                   aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="background:#A6AAB2; width:100%">
                     <span style="color:#101C2A; font-weight:700"><?= Yii::t('MissionsModule.base', 'NOT STARTED') ?></span>
                   </div>
-                </div><br>
+                </div>
 
             <?php elseif($percentage == 100): ?>
 
@@ -38,10 +40,12 @@ use app\modules\missions\models\Evidence;
                   aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="background:#28C503; width:100%">
                     <span style="color:#101C2A; font-weight:700"><?= Yii::t('MissionsModule.base', 'COMPLETED') ?></span>
                   </div>
-                </div><br>
+                </div>
 
             <?php else: ?>
-                
+
+                <span style="text-align:center; display:block; font-weight:700"><?php echo Yii::t('MissionsModule.base', 'Currently on Mission {current}', array('current' => $latest_completed_mission + 1)); ?></span>
+
                 <div class="progress" style="height:25px">
                   <div class="progress-bar" role="progressbar"
                   aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:<?= round($p*100) ?>%">
@@ -50,11 +54,8 @@ use app\modules\missions\models\Evidence;
                     </span>
                   </div>
                 </div>
-                <div style="text-align: center; height: 25px; font-weight:700">
-                  <?php echo Yii::t('MissionsModule.base', 'Currently on Mission {current}', array('current' => $latest_completed_mission + 1)); ?>
-                </div>               
-                <br>
-                <div style="text-align: center; height: 25px;"><?php echo Yii::t('MissionsModule.base', '{missing_activities} activities for next mission.', array('missing_activities' => $missing_activities)); ?> </div>
+
+                <span style="text-align:center; display:block; font-weight:700; font-size:8pt"><?php echo Yii::t('MissionsModule.base', '{missing_activities} activities for next mission.', array('missing_activities' => $missing_activities)); ?></span>  
 
             <?php endif; ?>
 

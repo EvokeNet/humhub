@@ -40,7 +40,7 @@ $wallet = Wallet::findOne(['owner_id' => Yii::$app->user->getIdentity()->id]);
 
                 <div style="margin-top:-15px">
                     <span class = "bold" style = "color: #03ACC5; margin-top:10px; display:block"><?= $name ?></span>
-                    <span class = "bold" style = "color: #63E9FD; margin-top:5px; display:block; font-size:10pt"><?php echo Yii::t('MissionsModule.base', 'Level {level}', array('level' => null != $userQuality[0]->getUserQuality() ? $userQuality[0]->getUserQuality()->getLevel() : 0)); ?></span>
+                    <span class = "bold" style = "color: #A6AAB2; margin-top:5px; display:block; font-size:10pt"><?php echo Yii::t('MissionsModule.base', 'Level {level}', array('level' => null != $userQuality[0]->getUserQuality() ? $userQuality[0]->getUserQuality()->getLevel() : 0)); ?></span>
                 </div>
 
             </div>
