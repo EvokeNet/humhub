@@ -18,29 +18,32 @@ echo Html::beginForm();
 <!-- EVIDENCE -->
 <?php if($evidence->content->visibility >= 1): ?>
 
-    <h4 style="margin-top:30px; color: #FEAE1B; padding: 0 20px"><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h4>
+    <h5 style="margin-top:30px; color: #FEAE1B"><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h5>
 
     <?php if (Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
       <!-- <h6><?php //echo Yii::t('MissionsModule.base', 'By'); ?> <?php echo $name ?></h6> -->
     <?php endif; ?>
 
-    <p style="margin:25px 0 50px; padding: 0 20px"><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]);?></p>
+    <p style="margin:25px 0 50px"><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]);?></p>
 
     <!-- SHOW FILES -->
 
     <?php $files = \humhub\modules\file\models\File::getFilesOfObject($evidence); ?>
 
     <?php if(!empty($files)): ?>
-    <ul class="files" style="list-style: none; margin: 0; padding: 0 20px" id="files-<?php echo $evidence->getPrimaryKey(); ?>">
+    <ul class="files" style="list-style: none; margin: 0" id="files-<?php echo $evidence->getPrimaryKey(); ?>">
         <?php foreach ($files as $file) : ?>
             <?php
             if ($file->getMimeBaseType() == "image" && Setting::Get('hideImageFileInfo', 'file'))
                 continue;
             ?>
-            <li class="mime <?php echo \humhub\libs\MimeHelper::getMimeIconClassByExtension($file->getExtension()); ?>"><a
-                    href="<?php echo $file->getUrl(); ?>" target="_blank"><span
-                        class="filename"><?php echo Html::encode(Helpers::trimText($file->file_name, 40)); ?></span></a>
-                <span class="time" style="padding-right: 20px;"> - <?php echo Yii::$app->formatter->asSize($file->size); ?></span>
+            <li class="mime <?php echo \humhub\libs\MimeHelper::getMimeIconClassByExtension($file->getExtension()); ?>" style="padding: 0">
+
+              <a href="<?php echo $file->getUrl(); ?>" target="_blank" style="font-size:9pt; padding: 1px 0 4px 26px;">
+                <span class="filename"><?php echo Html::encode(Helpers::trimText($file->file_name, 40)); ?></span>
+              </a>
+
+                <!-- <span class="time" style="padding-right: 20px;"> - <?php echo Yii::$app->formatter->asSize($file->size); ?></span> -->
 
                 <?php if ($file->getExtension() == "mp3") : ?>
                     <!-- Integrate jPlayer -->
@@ -57,9 +60,11 @@ echo Html::beginForm();
                     ?> 
                 <?php elseif ($file->canRead() && ($file->getExtension() == "png" || $file->getExtension() == "jpg" || $file->getExtension() == "jpeg")) : ?>
 
-                  <br /><br />
+                  <br>
 
-                  <a href="<?php echo $file->getPreviewImageUrl(); ?>"><img src="<?php echo $file->getPreviewImageUrl(); ?>" width="150"/></a>
+                  <a href="<?php echo $file->getPreviewImageUrl(); ?>">
+                    <img src="<?php echo $file->getPreviewImageUrl(); ?>" width="100" style="margin-top:15px"/>
+                  </a>
 
                 <?php endif; ?>
 
