@@ -25,21 +25,39 @@ class DashboardMissionProgressIndicator extends \yii\base\Widget
 
         $user = Yii::$app->user->getIdentity();
 
-        $mission_progress = array();
-        $mission_total = array();
+        //$mission_progress = array();
+        //$mission_total = array();
 
-        $missions = Missions::find()
-        ->with(['activities', 'activities.evidences', 'activities.activityPowers'])
-        ->where(['missions.locked' => 0])
-        ->orderBy('missions.position ASC')
-        ->all();
+        $mission_progress = DashboardMissionProgressIndicator::getProgress();
+        // $mission_total = Missions::find()
+        //                 ->where(['missions.locked' => 0])
+        //                 ->count();
 
-        foreach($missions as $m):
+        $activities_completed = 0;
+        $total_activities = 0;
+        $missing_activities = 0;
 
+         $missions = Missions::find()
+         ->with(['activities', 'activities.evidences', 'activities.activityPowers'])
+         ->where(['missions.locked' => 0])
+         ->orderBy('missions.position ASC')
+         ->all();
+
+         $i = 0;
+
+         foreach($missions as $m):
+            $i++;
             $stats = DashboardMissionProgressIndicator::getMissionStats($m->id);
 
-            $mission_progress[$m->id] = $stats['total_evidences'];
-            $mission_total[$m->id] = $stats['total_activities'];
+            if($i <= $mission_progress + 1){
+                $activities_completed += $stats['total_evidences'];
+
+                if($i == ($mission_progress+1)){
+                    $missing_activities = $stats['total_activities'] - $stats['total_evidences'];
+                }
+            }
+
+             $total_activities += $stats['total_activities'];
 
         endforeach;
 
@@ -47,7 +65,7 @@ class DashboardMissionProgressIndicator extends \yii\base\Widget
         $enabled_evokations = Setting::Get('enabled_evokations');
         $will_start_in_one_week = $enabled_evokations && $evokation_deadline->willStartIn(7)? 1 : 0;
 
-        return $this->render('dashboard_mission_progress_indicator', array('missions' => $missions, 'mission_total' => $mission_total,'mission_progress' => $mission_progress, 'will_start_in_one_week' => $will_start_in_one_week, 'evokation_deadline' => $evokation_deadline));
+        return $this->render('dashboard_mission_progress_indicator', array('missing_activities' => $missing_activities, 'latest_completed_mission' => $mission_progress, 'total_activities' => $total_activities,'activities_completed' => $activities_completed, 'will_start_in_one_week' => $will_start_in_one_week, 'evokation_deadline' => $evokation_deadline));
     }
 
     public static function getMissionIds()
