@@ -17,7 +17,14 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    '{current} / {total}' => '',
+    'Avg Agents Rating' => 'Evaluación Média de Agentes',
+    'Currently on Mission {current}' => 'Actualmente en Misión {current}',
+    'Everytime you submit an evidence, your overall rating will improve.' => 'Cada vez que presente una evidencía, su calificación geral mejorará',
+    'MISSION PROGRESS' => 'PROGRESO DE LA MISIÓN',
+    'Post an evidence for the lastest unlocked mission<br> #{number} - {title}' => 'Publicar una evidencía para la última misión desbloqueada<br> #{number} - {title}',
+    'You\'ve completed this mission' => 'Has completado esta misión',
+    '{current} / {total} activities completed' => '{current} / {total} actividades completadas',
+    '{missing_activities} activities for next mission.' => '{missing_activities} actividades para la próxima misión',
     '140 characters required' => '140 caracteres requeridos',
     '<strong>Activity Difficulty Level:</strong> {level}' => '<strong>Nivel de dificultad de la evidencía:</strong> {level}',
     '<strong>Activity Rubric:</strong> {rubric}' => '<strong>Rúbrica de Actividad:</strong> {rubric}',
@@ -135,7 +142,6 @@ return [
     'Leaderboard' => 'Líderes',
     'Leave a comment and earn an additional 5 Evocoins.' => 'Deja un comentario y gana un adicional de 5 Evocoins.',
     'Level {level}' => 'Nivel {level}',
-    'MISSION {position}' => 'MISIÓN {position}',
     'MISSIONS' => 'MISIONES',
     'Mark as quality review' => 'Marca como evaluación de calidad',
     'Median Investment:' => 'Inversión media:',

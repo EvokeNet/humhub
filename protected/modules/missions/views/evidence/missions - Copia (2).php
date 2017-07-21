@@ -15,65 +15,61 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Missions');
 
 ?>
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h4><?= Yii::t('MissionsModule.base', 'MISSIONS') ?></h4>
-    </div>
-    <div class="panel-body text-center">
+<h4 style="background-color: #0F2441; text-align: center; padding: 10px 0; margin: 40px 0 20px; color: #5aa2c6;"><?php echo Yii::t('MissionsModule.base', 'MISSIONS'); ?></h4>
 
-        <?php if(isset($missions)): ?>
-
-            <?php foreach ($missions as $mission): ?>
+<?php 
+    $x = 0;
+    if (count($missions) != 0): ?>
+    
+    <?php foreach ($missions as $mission): ?>
         
-                <?php if($mission->locked == 1): ?>
-                    <div class="grey-box" style="height:100px; text-align:initial; padding:7px 10px; margin-bottom: 15px">
-                        <span class="fa-stack fa-lg vertically-align">   
-                          <i class="fa fa-circle-thin fa-stack-2x"></i>
-                          <strong class="fa-stack-1x calendar-text"><?php echo $mission->position >= 1 ?$mission->position : "#" ?></strong>
-                        </span>
+        <?php if($mission->locked == 1): ?>
+            
+            <div class="panel panel-default">
+                <div class="panel-body grey-box grayed-out">
+                    
+                    <div style="float:right" data-toggle="tooltip" title="<?php echo Yii::t('MissionsModule.base', "This mission is currently locked"); ?>"><i class="fa fa-lock fa-2x" aria-hidden="true"></i></div>
 
-                        <p style="display:inline; margin:10px 20px 0"><?= isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title ?></p><br><br>
+                    <span class="fa-stack fa-2x" style="color: #FEAE1B;">   
+                      <i class="fa fa-circle-thin fa-stack-2x"></i>
+                      <strong class="fa-stack-1x calendar-text"><?php echo $mission->position >= 1 ?$mission->position : "#" ?></strong>
+                    </span>
 
-                        <div style="display: inline; margin-left: 60px;" data-toggle="tooltip" title="<?php echo Yii::t('MissionsModule.base', "This mission is currently locked"); ?>"><i class="fa fa-lock fa-2x" aria-hidden="true"></i></div>
-                    </div>
-                <?php else: ?>
-                    <div class="grey-box" style="height:100px; text-align:initial; padding:7px 10px; margin-bottom: 15px">
-                        <span class="fa-stack fa-lg vertically-align" style="color: #FEAE1B;">   
-                          <i class="fa fa-circle-thin fa-stack-2x"></i>
-                          <strong class="fa-stack-1x calendar-text"><?php echo $mission->position >= 1 ?$mission->position : "#" ?></strong>
-                        </span>
+                    <h6 style="line-height:30px; display: inline;">
+                        <?= isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title ?>
+                    </h6>
 
+                </div>
+            </div>
+            
+        <?php else: ?>
+            
+            <div class="panel panel-default">
+                <div class="panel-body grey-box">
+
+                    <span class="fa-stack fa-2x" style="color: #FEAE1B;">
+                      <i class="fa fa-circle-thin fa-stack-2x"></i>
+                      <strong class="fa-stack-1x calendar-text"><?php echo $mission->position >= 1 ?$mission->position : "#" ?></strong>
+                    </span>
+
+                    <h6 style="line-height:30px; display: inline;">
                         <?php echo Html::a(
                             Yii::t('MissionsModule.base', '{mission}', array('mission' => isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title)),
-                            ['activities', 'missionId' => $mission->id, 'sguid' => $contentContainer->guid], ['style' => 'margin: 10px 20px 0; font-size:12pt']); ?><br><br>
-                            
-                        <?php if($mission_progress[$mission->id] == $mission_total[$mission->id] && $mission_total[$mission->id] != 0): ?>
+                            ['activities', 'missionId' => $mission->id, 'sguid' => $contentContainer->guid]); ?>
+                    </h6>
 
-                            <div style="display: inline; margin-left: 60px; color: #28C503" data-toggle="tooltip" title="<?php echo Yii::t('MissionsModule.base', "You've completed this mission"); ?>"><i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i></div>
-
-                        <?php else: ?>
-                            <p style="display: inline; margin-left: 60px; font-size:10pt"><?php echo Yii::t('MissionsModule.base', '{current} / {total} activities completed', array('current' => $mission_progress[$mission->id], 'total' => $mission_total[$mission->id])); ?></p>
-                        <?php endif; ?>
-
-                    </div>
-                <?php endif; ?>
-
-            <?php endforeach; ?>
-
-        <?php else: ?>    
-            <p><?php echo Yii::t('MissionsModule.base', 'No missions created yet!'); ?></p>
+                </div>
+            </div>
+        
         <?php endif; ?>
-
-    </div>
-</div>
+        
+    <?php endforeach; ?>
+    
+<?php else: ?>
+    <p><?php echo Yii::t('MissionsModule.base', 'No missions created yet!'); ?></p>
+<?php endif; ?>
 
 <style>
-
-.vertically-align{
-  position: relative;
-  top: 50%;
-  transform: perspective(1px) translateY(-50%);
-}
 
 .grayed-out{
     opacity: 0.4;

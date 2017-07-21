@@ -124,14 +124,12 @@ $firstSecondary = true;
             <div class="panel-heading">
 
                 <h5>
-                    <span class = "activity-number">
-                            <?php echo $mission->position >= 1 ?$mission->position : "#" ?>
-                    </span>
+                    <span><?php echo $mission->position >= 1 ? '#'.$mission->position : "#" ?></span>&nbsp;
                     <span class="mission-title"><?= $mission_title ?></span>
                 </h5>
 
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="margin-top:15px">
 
                 <p class="description">
                     <?= isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->description : $mission->description ?>
@@ -185,7 +183,7 @@ $firstSecondary = true;
                                         ?>
 
                                         
-                                            <div class="power-cards">
+                                            <div>
                                                 <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
                                                 <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
                                             </div>
@@ -207,7 +205,7 @@ $firstSecondary = true;
                                                         $name = $power->getPower()->powerTranslations[0]->title;
                                             ?>
                                                 
-                                            <div class="power-cards">
+                                            <div>
                                                 <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
                                                 <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
                                             </div>
