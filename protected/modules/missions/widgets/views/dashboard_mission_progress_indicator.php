@@ -48,7 +48,7 @@ use app\modules\missions\models\Evidence;
 
             <?php else: ?>
 
-                <span style="text-align:center; display:block; font-weight:700"><?php echo Yii::t('MissionsModule.base', 'Currently on Mission {current}', array('current' => $latest_completed_mission + 1)); ?></span>
+                <span style="text-align:center; display:block; font-weight:700"><?php echo Yii::t('MissionsModule.base', 'Currently on Mission {current}', array('current' => $latest_completed_mission+1)); ?></span>
 
                 <div class="progress" style="height:25px">
                   <div class="progress-bar" role="progressbar"

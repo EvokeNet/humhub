@@ -52,7 +52,7 @@ class DashboardMissionProgressIndicator extends \yii\base\Widget
             if($i <= $mission_progress + 1 || ($i == 1 && $mission_progress == -1)){
                 $activities_completed += $stats['total_evidences'];
 
-                if($i == ($mission_progress+1)  ||($i == 1 && $mission_progress == -1)){
+                if($i == ($mission_progress + 1)  || ($i == 1 && $mission_progress == -1)){
                     $missing_activities = $stats['total_activities'] - $stats['total_evidences'];
                 }
             }
@@ -100,6 +100,16 @@ class DashboardMissionProgressIndicator extends \yii\base\Widget
         return ($stats['total_activities'] == $stats['total_evidences']) ? true : false;
     }
 
+    public static function getQueryTotal($query){
+        $total = 0;
+        foreach($query as $value){
+            if($value >= 1){
+                $total++;
+            }
+        }
+        return $total;
+    }
+
     public static function getMissionStats($mission_id)
     {
         $user = Yii::$app->user->getIdentity();
@@ -111,6 +121,7 @@ class DashboardMissionProgressIndicator extends \yii\base\Widget
             ->where(['m.id' => $mission_id])
             ->one()['total_activities'];
 
+        //get votes per evidence   
         $total_evidences = (new \yii\db\Query())
             ->select(['count(e.id) as total_evidences'])
             ->from('activities as a')
@@ -120,8 +131,11 @@ class DashboardMissionProgressIndicator extends \yii\base\Widget
             ->join('INNER JOIN', 'votes as v', 'v.evidence_id = `e`.`id` and v.user_type = "Mentors"')
             ->where(['m.id' => $mission_id, 'c.visibility' => 1, 'm.locked' => 0])
             ->andWhere('a.is_group = 0 OR a.is_group is null')
-            ->groupBy('e.created_by')
-            ->one()['total_evidences'];
+            ->groupBy('e.id')
+            ->all();
+
+        //get total
+        $total_evidences = DashboardMissionProgressIndicator::getQueryTotal($total_evidences);
 
         $total_evidences_group_activity = 0;
 
@@ -134,6 +148,7 @@ class DashboardMissionProgressIndicator extends \yii\base\Widget
             ->where(['m.id' => $mission_id, 'a.is_group' => 1,'m.locked' => 0])
             ->one()['total_activities'];
 
+        //get votes per activity evidence  
         if($total_group_activities >= 1){
             $team_id = Team::getUserTeam($user->id);
 
@@ -148,8 +163,11 @@ class DashboardMissionProgressIndicator extends \yii\base\Widget
             ->join('LEFT JOIN', 'space as s', 'sm.space_id = `s`.`id`')
             ->join('INNER JOIN', 'votes as v', 'v.evidence_id = `e`.`id` and v.user_type = "Mentors"')
             ->where(['m.id' => $mission_id, 'c.visibility' => 1, 'a.is_group' => 1, 's.id' => $team_id,'m.locked' => 0])
-            ->groupBy('m.id')
-            ->one()['total_evidences'];   
+            ->groupBy('e.id')
+            ->all();
+
+            //get total
+           $total_evidences_group_activity = DashboardMissionProgressIndicator::getQueryTotal($total_evidences_group_activity);
         }
 
         $total_evidences += $total_evidences_group_activity;
