@@ -49,10 +49,10 @@ class DashboardMissionProgressIndicator extends \yii\base\Widget
             $i++;
             $stats = DashboardMissionProgressIndicator::getMissionStats($m->id);
 
-            if($i <= $mission_progress + 1){
+            if($i <= $mission_progress + 1 || $mission_progress == -1){
                 $activities_completed += $stats['total_evidences'];
 
-                if($i == ($mission_progress+1)){
+                if($i == ($mission_progress+1)  || $mission_progress == -1){
                     $missing_activities = $stats['total_activities'] - $stats['total_evidences'];
                 }
             }
