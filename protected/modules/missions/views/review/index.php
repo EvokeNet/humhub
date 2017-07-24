@@ -30,7 +30,7 @@ $this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidence');
         </div>
 
         <div class="review-box evidence_area">
-            <h5 style="color:#263238"><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h5>
+            <h5><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h5>
 
             <?php if(Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
                     <?php //echo \humhub\widgets\TimeAgo::widget(['timestamp' => $evidence->created_at]); ?>

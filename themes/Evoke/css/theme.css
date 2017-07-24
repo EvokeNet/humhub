@@ -2712,6 +2712,9 @@ img.bounceIn {
   box-shadow: 0 0 5px #888;
   padding: 15px;
 }
+.review-box h5 {
+  color: #263238;
+}
 .review-box a {
   color: #00BCD4 !important;
 }

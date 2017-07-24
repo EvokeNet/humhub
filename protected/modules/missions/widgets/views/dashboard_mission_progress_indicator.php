@@ -11,7 +11,7 @@ use app\modules\missions\models\Evidence;
 <div class="panel panel-default portfolio">
     <div class="panel-heading">
         <strong>
-            <?= Yii::t('MissionsModule.base', 'General Progress Indicator') ?>
+            <?= Yii::t('MissionsModule.base', 'Progress Towards Evokation') ?>
         </strong>
     </div>
     <div class="panel-body">
@@ -24,7 +24,7 @@ use app\modules\missions\models\Evidence;
         ?>
             <?php if($percentage == 0): ?>
 
-                <span style="text-align:center; display:block; font-weight:700"><?php echo Yii::t('MissionsModule.base', 'MISSION PROGRESS'); ?></span>
+                <!-- <span style="text-align:center; display:block; font-weight:700"><?php echo Yii::t('MissionsModule.base', 'MISSION PROGRESS'); ?></span> -->
 
                 <div class="progress" style="height:25px">
                   <div class="progress-bar" role="progressbar"
