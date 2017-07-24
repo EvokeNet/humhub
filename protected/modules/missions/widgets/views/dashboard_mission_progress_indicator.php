@@ -21,6 +21,10 @@ use app\modules\missions\models\Evidence;
         <?php 
           $p = $activities_completed / $total_activities;
           $percentage = round($p*100); 
+          //in case there is no completed mission yet
+          if($latest_completed_mission < 0){
+            $latest_completed_mission = 0;
+          }
         ?>
             <?php if($percentage == 0): ?>
 
@@ -44,7 +48,7 @@ use app\modules\missions\models\Evidence;
 
             <?php else: ?>
 
-                <span style="text-align:center; display:block; font-weight:700"><?php echo Yii::t('MissionsModule.base', 'Currently on Mission {current}', array('current' => $latest_completed_mission + 1)); ?></span>
+                <span style="text-align:center; display:block; font-weight:700"><?php echo Yii::t('MissionsModule.base', 'Currently on Mission {current}', array('current' => $latest_completed_mission+1)); ?></span>
 
                 <div class="progress" style="height:25px">
                   <div class="progress-bar" role="progressbar"
@@ -55,7 +59,11 @@ use app\modules\missions\models\Evidence;
                   </div>
                 </div>
 
-                <span style="text-align:center; display:block; font-weight:700; font-size:8pt"><?php echo Yii::t('MissionsModule.base', '{missing_activities} activities for next mission.', array('missing_activities' => $missing_activities)); ?></span>  
+                <?php if($missing_activities>=2): ?>
+                  <span style="text-align:center; display:block; font-weight:700; font-size:8pt"><?php echo Yii::t('MissionsModule.base', '{missing_activities} activities for next mission.', array('missing_activities' => $missing_activities)); ?></span>  
+                <?php else: ?>
+                  <span style="text-align:center; display:block; font-weight:700; font-size:8pt"><?php echo Yii::t('MissionsModule.base', '{missing_activities} activity for next mission.', array('missing_activities' => $missing_activities)); ?></span>  
+                <?php endif; ?>
 
             <?php endif; ?>
 
