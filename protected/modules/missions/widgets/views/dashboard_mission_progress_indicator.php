@@ -22,8 +22,8 @@ use app\modules\missions\models\Evidence;
           $p = $activities_completed / $total_activities;
           $percentage = round($p*100); 
           //in case there is no completed mission yet
-          if($latest_completed_mission==-1){
-            $latest_completed_mission == 1;
+          if($latest_completed_mission < 0){
+            $latest_completed_mission = 0;
           }
         ?>
             <?php if($percentage == 0): ?>
