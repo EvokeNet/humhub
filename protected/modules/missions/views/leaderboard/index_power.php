@@ -29,37 +29,39 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                         </div>
                     </div>
 
-                    <div style="float:right">
-                        <div class="dropdown">
-                          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                            <?php echo Yii::t('MissionsModule.leaderboard', "SELECT POWER"); ?>
-                            <span class="caret"></span>
-                          </button>
+                    <div class="row" style="margin-right: 50px">
+                        <div class="col-md-2 col-md-offset-5">
+                            <div class="dropdown">
+                              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                <?php echo Yii::t('MissionsModule.leaderboard', "SELECT POWER"); ?>
+                                <span class="caret"></span>
+                              </button>
 
-                          <ul class="dropdown-menu" style="background-color:#101C2A;">
-                            <?php foreach($powers as $power): ?>
-                                <li><?= Html::a($power->title, ['/missions/leaderboard/powers', 'id' => $power->id], ['class' => 'ranking', 'style' => '']) ?> </li>
-                            <?php endforeach; ?>
-                          </ul>
+                              <ul class="dropdown-menu" style="background-color:#101C2A;">
+                                <?php foreach($powers as $power): ?>
+                                    <li><?= Html::a($power->title, ['/missions/leaderboard/powers', 'id' => $power->id], ['class' => 'ranking', 'style' => '']) ?> </li>
+                                <?php endforeach; ?>
+                              </ul>
+                            </div>
                         </div>
                     </div>
 
-                    <br><br>
+                    <br>
 
-                     <!-- Top Power Agents -->
+                    <!-- Top Power Agents -->
                     <?php $user = Yii::$app->user->getIdentity(); ?>
                     <?php if($user->group->name != "Mentors"): ?>
-                    <div class="leaderboard-box">
-                        <div style="text-align: center">
-                            <h5 style="color:#FEAE1B">
-                              <?php echo Yii::t('MissionsModule.leaderboard', 'Top Agents By ').$powers[$id-1]['title'] ?>
+                    <div class="leaderboard-box" style="padding:0; margin-bottom:60px">
+                        <div style="text-align:center; background-color:#0F2441; padding:10px">
+                            <h5 style="color:#FEAE1B; text-transform:uppercase;">
+                              <?php echo Yii::t('MissionsModule.leaderboard', 'Top Agents By {title}', array('title' => $powers[$id-1]['title'])) ?>
                             </h5>
                         </div>
                         <br />
-                        <div class="row">
+                        <div class="row" style="padding:20px 20px 0">
                             <?php foreach($ranking as $key => $r): ?>
                                 <div class="col-sm-6">
-                                    <div style = "padding: 5px 10px 10px; margin-bottom:15px; border-bottom: 2px solid #5aa2c6">
+                                    <div style = "padding: 10px; margin-bottom: 15px; border: 2px solid #5aa2c6;">
 
                                         <div class="row">
                                             <div class="col-sm-10" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
@@ -80,15 +82,15 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                         <br />
                         <?php if (Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
                             <?php if($ranking['my_reviews']['position'] == -1): ?>
-                                <span style = "font-weight: 700; color: #5aa2c6;"><?php echo Yii::t('MissionsModule.leaderboard', "My Position: Not Ranked"); ?></span><br>
+                                <span style = "font-weight: 700; color: #5aa2c6; text-transform: uppercase;"><?php echo Yii::t('MissionsModule.leaderboard', "My Position: Not Ranked"); ?></span><br>
                             <?php else: ?>
-                                <span style = "font-weight: 700; color: #5aa2c6;"><?php echo Yii::t('MissionsModule.leaderboard', "My Position: {position}", array('position' => $ranking['my_reviews']['position'] + 1)); ?></span><br>
-                                <span style = "font-weight: 700; color: #5aa2c6;"><?php echo Yii::t('MissionsModule.leaderboard', "My Reviews Submitted:: {evidences}", array('evidences' => $ranking['my_reviews']['reviews'])); ?></span>
+                                <span style = "font-weight: 700; color: #5aa2c6; text-transform: uppercase;"><?php echo Yii::t('MissionsModule.leaderboard', "My Position: {position}", array('position' => $ranking['my_reviews']['position'] + 1)); ?></span><br>
+                                <!-- <span style = "font-weight: 700; color: #5aa2c6; text-transform: uppercase;"><?php echo Yii::t('MissionsModule.leaderboard', "My Reviews Submitted: {evidences}", array('evidences' => $ranking['my_reviews']['reviews'])); ?></span> -->
                             <?php endif; ?>
                         <?php endif; ?>
                     </div>
                     <?php else: ?>
-                        You are a mentor
+                        <?php echo Yii::t('MissionsModule.leaderboard', 'You are a mentor'); ?>
                     <?php endif; ?>
 
                 </div> <!-- End of col-8 -->
