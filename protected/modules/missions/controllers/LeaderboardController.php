@@ -69,14 +69,14 @@ class LeaderboardController extends \yii\web\Controller
         ->where('s.is_team = 1')
         ->limit($limit)
         ->groupBy('e.id')
-        ->having('avg(v.value) >= 3')
-        ->orderBy('avg(v.value)');
+        ->having('avg(v.value) >= 3');
 
-        $inside_query = "(SELECT s.* FROM `space` `s` INNER JOIN `content` `c` ON s.id = `c`.`space_id`  INNER JOIN `evidence` `e` ON `c`.`object_model`='app\\modules\\missions\\models\\Evidence' AND `c`.`object_id` = `e`.`id` INNER JOIN `votes` `v` ON e.id = `v`.`evidence_id`  WHERE s.is_team = 1  GROUP BY `e`.`id`, s.id HAVING avg(v.value) >= 3)";
+        $inside_query = "(SELECT s.* FROM `space` `s` INNER JOIN `content` `c` ON s.id = `c`.`space_id`  INNER JOIN `evidence` `e` ON `c`.`object_model`='app\\\\modules\\\\missions\\\\models\\\\Evidence' AND `c`.`object_id` = `e`.`id` INNER JOIN `votes` `v` ON e.id = `v`.`evidence_id`  WHERE s.is_team = 1  GROUP BY `e`.`id` HAVING avg(v.value) >= 3)";
 
         $team_evidences =  (new \yii\db\Query())
-        ->select(['total.*', 'count(total.id) as evidences'])
+        ->select('total.*, count(total.id) as evidences')
         ->from($inside_query.' as total')
+        ->limit($limit)
         ->groupBy('total.id')
         ->orderBy('evidences desc')
         ->all();
@@ -91,8 +91,6 @@ class LeaderboardController extends \yii\web\Controller
         ->join('INNER JOIN', 'space_membership as m', 's.id = `m`.`space_id`')
         ->join('INNER JOIN', 'votes as v', 'm.user_id = `v`.`user_id`')
         ->where('s.is_team = 1')
-        ->andWhere('v.quality = 1')
-        ->andWhere('v.value >= 3')
         ->limit($limit)
         ->groupBy('s.id')
         ->orderBy('reviews desc')
@@ -108,6 +106,7 @@ class LeaderboardController extends \yii\web\Controller
         ->join('INNER JOIN', 'space_membership as m', 's.id = `m`.`space_id`')
         ->join('INNER JOIN', 'votes as v', 'm.user_id = `v`.`user_id`')
         ->where('s.is_team = 1')
+        ->andWhere('v.quality = 1')
         ->limit($limit)
         ->groupBy('s.id')
         ->orderBy('reviews desc')
@@ -198,39 +197,43 @@ class LeaderboardController extends \yii\web\Controller
 
         $ranking = [];
 
-        $ranking['rank_teams_evidences'] = $this->getRankTeamsEvidences(10);
+        //deactivated
+        //$ranking['rank_teams_evidences'] = $this->getRankTeamsEvidences(10);
 
         //TODO front
         $ranking['rank_teams_quality_evidences'] = $this->getRankTeamsQualityEvidences(10);
         //---END
 
-        $ranking['rank_teams_reviews'] = $this->getRankTeamsReviews(10);
+        //deactivated
+        //$ranking['rank_teams_reviews'] = $this->getRankTeamsReviews(10);
 
         //TODO front
         $ranking['rank_teams_quality_reviews'] = $this->getRankTeamsQualityReviews(10);
         //---END
 
         if($team_id){
-
-            $ranking['my_team_evidences'] = $this->getRankingObjectPosition($this->getRankTeamsEvidences(), $team_id, Team::classname());
+            //deactivated
+            //$ranking['my_team_evidences'] = $this->getRankingObjectPosition($this->getRankTeamsEvidences(), $team_id, Team::classname());
             $ranking['my_team_quality_evidences'] = $this->getRankingObjectPosition($this->getRankTeamsQualityEvidences(), $team_id, Team::classname());
-            $ranking['my_team_reviews'] = $this->getRankingObjectPosition($this->getRankTeamsReviews(), $team_id, Team::classname());
+            //deactivated
+            //$ranking['my_team_reviews'] = $this->getRankingObjectPosition($this->getRankTeamsReviews(), $team_id, Team::classname());
             $ranking['my_team_quality_reviews'] = $this->getRankingObjectPosition($this->getRankTeamsQualityReviews(), $team_id, Team::classname());
         }
 
-        $ranking['rank_agents_evidences'] = $this->getRankAgentsEvidences(10);
-        $ranking['my_evidences'] = $this->getRankingObjectPosition($this->getRankAgentsEvidences(), $user_id, User::classname());
-        $ranking['rank_agents_reviews'] = $this->getRankAgentsReviews(10);
-        $ranking['rank_agents_evocoins'] = $this->getRankAgentsEvocoins(10);
-        $ranking['rank_agents_score'] = $this->getRankAgentsScore(10);
-        $ranking['my_evocoins'] = $this->getRankingObjectPosition($this->getRankAgentsEvocoins(), $user_id, User::classname());
-        $ranking['rank_mentors_reviews'] = $this->getRankMentorsReviews(10);
+        //deactivated
+        //$ranking['rank_agents_evidences'] = $this->getRankAgentsEvidences(10);
+        //$ranking['my_evidences'] = $this->getRankingObjectPosition($this->getRankAgentsEvidences(), $user_id, User::classname());
+        //$ranking['rank_agents_reviews'] = $this->getRankAgentsReviews(10);
+        //$ranking['rank_agents_evocoins'] = $this->getRankAgentsEvocoins(10);
+        //$ranking['rank_agents_score'] = $this->getRankAgentsScore(10);
+        //$ranking['my_evocoins'] = $this->getRankingObjectPosition($this->getRankAgentsEvocoins(), $user_id, User::classname());
+        //$ranking['rank_mentors_reviews'] = $this->getRankMentorsReviews(10);
 
         if (Yii::$app->user->getIdentity()->group->name == "Mentors") {
-          $ranking['my_reviews'] = $this->getRankingObjectPosition($this->getRankMentorsReviews(), $user_id, User::classname());
+          //$ranking['my_reviews'] = $this->getRankingObjectPosition($this->getRankMentorsReviews(), $user_id, User::classname());
         } else {
-          $ranking['my_reviews'] = $this->getRankingObjectPosition($this->getRankAgentsReviews(), $user_id, User::classname());
-          $ranking['my_score'] = $this->getRankingObjectPosition($this->getRankAgentsScore(), $user_id, User::classname());
+          //$ranking['my_reviews'] = $this->getRankingObjectPosition($this->getRankAgentsReviews(), $user_id, User::classname());
+          //$ranking['my_score'] = $this->getRankingObjectPosition($this->getRankAgentsScore(), $user_id, User::classname());
         }
 
         //debugging
