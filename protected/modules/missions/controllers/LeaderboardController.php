@@ -227,10 +227,10 @@ class LeaderboardController extends \yii\web\Controller
         //$ranking['rank_agents_evocoins'] = $this->getRankAgentsEvocoins(10);
         //$ranking['rank_agents_score'] = $this->getRankAgentsScore(10);
         //$ranking['my_evocoins'] = $this->getRankingObjectPosition($this->getRankAgentsEvocoins(), $user_id, User::classname());
-        //$ranking['rank_mentors_reviews'] = $this->getRankMentorsReviews(10);
+        $ranking['rank_mentors_reviews'] = $this->getRankMentorsReviews(10);
 
         if (Yii::$app->user->getIdentity()->group->name == "Mentors") {
-          //$ranking['my_reviews'] = $this->getRankingObjectPosition($this->getRankMentorsReviews(), $user_id, User::classname());
+          $ranking['my_reviews'] = $this->getRankingObjectPosition($this->getRankMentorsReviews(), $user_id, User::classname());
         } else {
           //$ranking['my_reviews'] = $this->getRankingObjectPosition($this->getRankAgentsReviews(), $user_id, User::classname());
           //$ranking['my_score'] = $this->getRankingObjectPosition($this->getRankAgentsScore(), $user_id, User::classname());
