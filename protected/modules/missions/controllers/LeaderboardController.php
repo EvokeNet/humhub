@@ -6,6 +6,7 @@ use Yii;
 use app\modules\teams\models\Team;
 use app\modules\missions\models\Evidence;
 use humhub\modules\user\models\User;
+use app\modules\missions\models\Missions;
 
 class LeaderboardController extends \yii\web\Controller
 {
@@ -82,6 +83,38 @@ class LeaderboardController extends \yii\web\Controller
         ->all();
 
         return $team_evidences;
+    }
+
+    public function getMissionAverageRatingRanking($limit = "", $mission_id){
+        return  (new \yii\db\Query())
+        ->select(['s.*, avg(v.value) as rating'])
+        ->from('space as s')
+        ->join('INNER JOIN', 'content as c', 's.id = `c`.`space_id`')
+        ->join('INNER JOIN', 'evidence as e', '`c`.`object_model`=\''.str_replace("\\", "\\\\", Evidence::classname()).'\' AND `c`.`object_id` = `e`.`id`')
+        ->join('INNER JOIN', 'votes as v', '`v`.`evidence_id`= `e`.`id`')
+        ->join('INNER JOIN', 'activities as a', 'a.id = `e`.`activities_id`')
+        ->where('s.is_team = 1')
+        ->andWhere('a.mission_id ='.$mission_id)
+        ->limit($limit)
+        ->groupBy('s.id')
+        ->orderBy('s.id asc')
+        ->all();
+    }
+
+    public function getImprovedTeamsRanking($limit = ""){
+        $missions = Missions::find()
+         ->where(['missions.locked' => 0])
+         ->orderBy('missions.position desc')
+         ->all();
+
+        $latest_mission = $missions[0];
+        $second_mission = $missions[1];
+
+        $team_rate_1 = LeaderboardController::getMissionAverageRatingRanking($limit, $latest_mission->id);        
+        $team_rate_2 = LeaderboardController::getMissionAverageRatingRanking($limit, $second_mission->id);        
+
+
+        return $team_rate_1;
     }
 
     public function getRankTeamsReviews($limit = ""){
@@ -200,16 +233,15 @@ class LeaderboardController extends \yii\web\Controller
         //deactivated
         //$ranking['rank_teams_evidences'] = $this->getRankTeamsEvidences(10);
 
-        //TODO front
         $ranking['rank_teams_quality_evidences'] = $this->getRankTeamsQualityEvidences(10);
-        //---END
+        
 
         //deactivated
         //$ranking['rank_teams_reviews'] = $this->getRankTeamsReviews(10);
 
-        //TODO front
         $ranking['rank_teams_quality_reviews'] = $this->getRankTeamsQualityReviews(10);
-        //---END
+
+        $ranking['rank_most_improved_teams'] = $this->getImprovedTeamsRanking(10);
 
         if($team_id){
             //deactivated
@@ -245,3 +277,4 @@ class LeaderboardController extends \yii\web\Controller
     }
 
 }
+
