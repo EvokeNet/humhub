@@ -14,7 +14,15 @@ use app\modules\missions\models\Evidence;
             <?= Yii::t('MissionsModule.base', 'Progress Towards Evokation') ?>
         </strong>
     </div>
-    <div class="panel-body">
+    <div class="panel-body" style="padding:10px 12px">
+
+        <div style="margin:10px 0 15px">
+
+          <?php $width = (100/(count($missions)+1)); foreach ($missions as $key => $m) { ?>
+            <div style="width: <?=$width?>%; display: block; float: left;"><?php echo Yii::t('MissionsModule.base', 'M{position}', array('position' => $m['position'])); ?></div>
+          <?php } ?>
+          <div style="width: <?=$width?>%; display: block; float: left;"><?php echo Yii::t('MissionsModule.base', 'Evokation'); ?></div>
+        </div><br>
 
         <div style="margin-top:10px">
 
@@ -26,6 +34,7 @@ use app\modules\missions\models\Evidence;
             $latest_completed_mission = 0;
           }
         ?>
+
             <?php if($percentage == 0): ?>
 
                 <!-- <span style="text-align:center; display:block; font-weight:700"><?php echo Yii::t('MissionsModule.base', 'MISSION PROGRESS'); ?></span> -->
@@ -77,7 +86,7 @@ use app\modules\missions\models\Evidence;
             // endif; 
         ?>
 
-        <span style="text-align:center; display:block"><?php echo Yii::t('MissionsModule.base', 'EVOKATION'); ?></span>
+        <!-- <span style="text-align:center; display:block"><?php echo Yii::t('MissionsModule.base', 'EVOKATION'); ?></span>
 
         <?php if(strtotime($evokation_deadline['start_date']) > strtotime('today')): ?>
 
@@ -106,7 +115,7 @@ use app\modules\missions\models\Evidence;
               </div>
             </div><br>
 
-        <?php endif; ?>
+        <?php endif; ?> -->
 
         </div>
     </div>
