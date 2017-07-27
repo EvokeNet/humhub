@@ -20,6 +20,15 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
 
                 <div class="panel-body">
 
+                    <div class="row" style="text-align:center; margin:15px 0 45px">
+                        <div class="col-sm-6">
+                            <?= Html::a(Yii::t('MissionsModule.leaderboard', 'TEAMS RANKING'), ['/missions/leaderboard/index'], ['class' => 'ranking current_tab', 'style' => '']) ?>
+                        </div>
+                        <div class="col-sm-6">
+                            <?= Html::a(Yii::t('MissionsModule.leaderboard', 'POWERS RANKING'), ['/missions/leaderboard/powers'], ['class' => 'ranking', 'style' => '']) ?>                            
+                        </div>
+                    </div>
+
                     <!-- Top Teams by Quality Reviews given -->
                     <div class="leaderboard-box">
                         <div style="text-align: center">
@@ -157,3 +166,18 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
         </div>
    </div>
 </div>
+
+<style>
+
+a.ranking{
+    color:#A6AAB2;
+    font-size:12pt;
+}
+
+a.ranking.current_tab, a.ranking:hover{
+    color: #03ACC5;
+    border-bottom: 2px solid;
+    padding-bottom:10px;
+}
+
+</style>

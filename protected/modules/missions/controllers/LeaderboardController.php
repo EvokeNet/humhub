@@ -314,5 +314,20 @@ class LeaderboardController extends \yii\web\Controller
         return $this->render('index', array('ranking' => $ranking));
     }
 
+    public function actionPowers($id = ""){
+
+        $ranking = 'default';
+
+        if($id == 'power'){
+            $ranking = 'power one';
+        } else if($id == 'power_two'){
+            $ranking = 'power two';
+        } else{
+            $ranking = 'default leaderboard';
+        }
+
+        return $this->render('index_power', array('ranking' => $ranking));
+    }
+
 }
 
