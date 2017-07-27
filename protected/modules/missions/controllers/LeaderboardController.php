@@ -101,6 +101,10 @@ class LeaderboardController extends \yii\web\Controller
         ->all();
     }
 
+    public function rating_cmp($a, $b){
+        return strcmp($b['rating'], $a['rating']);
+    }
+
     public function getImprovedTeamsRanking($limit = ""){
         $missions = Missions::find()
          ->where(['missions.locked' => 0])
@@ -110,11 +114,45 @@ class LeaderboardController extends \yii\web\Controller
         $latest_mission = $missions[0];
         $second_mission = $missions[1];
 
-        $team_rate_1 = LeaderboardController::getMissionAverageRatingRanking($limit, $latest_mission->id);        
-        $team_rate_2 = LeaderboardController::getMissionAverageRatingRanking($limit, $second_mission->id);        
+        $team_rate_1 = LeaderboardController::getMissionAverageRatingRanking("", $latest_mission->id);        
+        $team_rate_2 = LeaderboardController::getMissionAverageRatingRanking("", $second_mission->id);        
+        
+        //new array
+        $team_improvement = array();
 
+        $last_id = 0;
 
-        return $team_rate_1;
+        foreach($team_rate_1 as $rate_1){
+           //find id in second array
+           for($x = $last_id; $x < sizeof($team_rate_2); $x++){
+                $rate_2 = $team_rate_2[$x];
+                if($rate_2['id'] == $rate_1['id']){
+                    //if found, update last_id
+                    $last_id = $x+1;
+                    //calc improvement
+                    $improvement = $rate_1['rating'] - $rate_2['rating'];
+
+                    //if negative, skip
+                    if($improvement <= 0){
+                        continue;    
+                    }
+                    
+
+                    //create new object and update rating
+                    $new_rate = $rate_2;
+                    $new_rate['rating'] = $improvement;
+                    //add to array
+                    array_push($team_improvement, $new_rate);
+                }
+           }
+        }
+
+        usort($team_improvement, "humhub\modules\missions\controllers\LeaderboardController::rating_cmp");
+
+        //limit ranking
+        $team_improvement = array_slice($team_improvement, 0, $limit);
+
+        return $team_improvement;
     }
 
     public function getRankTeamsReviews($limit = ""){
