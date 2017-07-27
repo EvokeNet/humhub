@@ -61,11 +61,40 @@ class DashboardMissionProgressIndicator extends \yii\base\Widget
 
         endforeach;
 
+        //add evokation to counter
+        $total_activities++;
+        //verify evokation
+        $evokation = DashboardMissionProgressIndicator::getEvokationCompletion();
+        if($evokation){
+            $activities_completed++;
+        }
+
         $evokation_deadline = EvokationDeadline::getEvokationDeadline();
         $enabled_evokations = Setting::Get('enabled_evokations');
-        $will_start_in_one_week = $enabled_evokations && $evokation_deadline->willStartIn(7)? 1 : 0;
+        //$will_start_in_one_week = $enabled_evokations && $evokation_deadline->willStartIn(7)? 1 : 0;
 
-        return $this->render('dashboard_mission_progress_indicator', array('missions' => $missions, 'missing_activities' => $missing_activities, 'latest_completed_mission' => $mission_progress, 'total_activities' => $total_activities,'activities_completed' => $activities_completed, 'will_start_in_one_week' => $will_start_in_one_week, 'evokation_deadline' => $evokation_deadline));
+        return $this->render('dashboard_mission_progress_indicator', array('missions' => $missions, 
+            'missing_activities' => $missing_activities, 
+            'latest_completed_mission' => $mission_progress, 
+            'total_activities' => $total_activities, 
+            'activities_completed' => $activities_completed, 
+            //'will_start_in_one_week' => $will_start_in_one_week, 
+            'evokation_deadline' => $evokation_deadline));
+    }
+
+    public static function getEvokationCompletion(){
+        $user = Yii::$app->user->getIdentity();
+        $team_id = Team::getUserTeam($user->id);
+
+        $evokation = (new \yii\db\Query())
+            ->select(['count(e.id) as evokations'])
+            ->from('evokations as e')
+            ->join('INNER JOIN', 'user as u', 'u.id = `e`.`created_by`')
+            ->join('INNER JOIN', 'space_membership as sm', 'sm.user_id = `u`.`id`')
+            ->where('sm.space_id = '.$team_id)
+            ->one()['evokations'];
+
+        return $evokation;
     }
 
     public static function getMissionIds()
