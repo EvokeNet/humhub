@@ -7,6 +7,7 @@ use app\modules\teams\models\Team;
 use app\modules\missions\models\Evidence;
 use humhub\modules\user\models\User;
 use app\modules\missions\models\Missions;
+use app\modules\powers\models\Powers;
 
 class LeaderboardController extends \yii\web\Controller
 {
@@ -382,19 +383,26 @@ class LeaderboardController extends \yii\web\Controller
 
     }
 
+    //Index for power rankings
     public function actionPowers($id = ""){
 
-        $ranking = 'default';
+        $powers = Powers::find()->orderBy('id')->all();
 
-        if($id == 'power'){
-            $ranking = 'power one';
-        } else if($id == 'power_two'){
-            $ranking = 'power two';
-        } else{
-            $ranking = 'default leaderboard';
-        }
+        $ranking = $this->getPowerRanking($id, 10);
 
-        return $this->render('index_power', array('ranking' => $ranking));
+        return $this->render('index_power', array('ranking' => $ranking, 'powers' => $powers, 'id' => $id));
+    }
+
+    public function getPowerRanking($power_id, $limit){
+        $power_ranking = (new \yii\db\Query())
+      ->select(['u.*', 'p.value'])
+      ->from('user as u')
+      ->join('INNER JOIN', 'user_powers as p', 'u.id = `p`.`user_id`')
+      ->where('p.power_id ='. $power_id)
+      ->limit($limit)
+      ->orderBy('p.value desc')
+      ->all();
+      return $power_ranking;
     }
 
 }
