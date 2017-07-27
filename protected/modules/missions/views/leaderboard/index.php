@@ -113,6 +113,44 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                         <?php endif; ?>
                     </div>
 
+                    <!-- Most improved teams by mentor ratings -->
+                    <div class="leaderboard-box">
+                        <div style="text-align: center">
+                            <h5 style="color:#FEAE1B">
+                              <?php echo Yii::t('MissionsModule.leaderboard', 'Top Teams By Mentor Review Improvement') ?>
+                            </h5>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <?php foreach($ranking['rank_most_improved_teams'] as $key => $r): ?>
+                                <div class="col-sm-6">
+                                    <div style = "padding: 5px 10px 10px; margin-bottom:15px; border-bottom: 2px solid #5aa2c6">
+
+                                        <div class="row">
+                                            <div class="col-sm-10" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+                                                <span class="l-name"><?php echo $key + 1; ?>.</span>&nbsp;&nbsp;
+                                                <?= Html::a($r['name'], ['/user/profile', 'uguid' => $r['guid']], ['style' => 'font-size: 11pt; font-weight: 700; color: #A6AAB2;']) ?>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <span class="l-number"><?php echo $r['rating']; ?></span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            <?php endforeach; ?>
+                        </div>
+
+                        <br />
+                        <?php if(!isset($ranking['my_team_most_improved_teams']) || $ranking['my_team_most_improved_teams']['position'] == -1): ?>
+                            <span style = "font-weight: 700; color: #5aa2c6;"><?php echo Yii::t('MissionsModule.leaderboard', "My Team's Position: Not Ranked"); ?></span><br>
+                        <?php else: ?>
+                            <span style = "font-weight: 700; color: #5aa2c6;"><?php echo Yii::t('MissionsModule.leaderboard', "My Team's Position: {position}", array('position' => $ranking['my_team_most_improved_teams']['position'] + 1)); ?></span><br>
+                            <span style = "font-weight: 700; color: #5aa2c6;"><?php echo Yii::t('MissionsModule.leaderboard', "My Team's Improvement: {rating}", array('rating' => $ranking['my_team_most_improved_teams']['my_team_most_improved_teams'])); ?></span>
+                        <?php endif; ?>
+                    </div>
+
                     <!-- Top Mentor Reviews -->
                     <div class="leaderboard-box">
                         <div style="text-align: center">
