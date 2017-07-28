@@ -28,6 +28,11 @@ class LeaderboardController extends \yii\web\Controller
 
         //User/team positions
 
+        $ranking['my_team_quality_evidences'] = null;
+        $ranking['my_team_quality_reviews'] = null;
+        $ranking['my_team_most_improved_teams'] = null;
+
+
         if($team_id){
             //deactivated
             //$ranking['my_team_evidences'] = $this->getRankingObjectPosition($this->getRankTeamsEvidences(), $team_id, Team::classname());
