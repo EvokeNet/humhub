@@ -47,6 +47,8 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                     <br><br>
 
                      <!-- Top Power Agents -->
+                    <?php $user = Yii::$app->user->getIdentity(); ?>
+                    <?php if($user->group->name != "Mentors"): ?>
                     <div class="leaderboard-box">
                         <div style="text-align: center">
                             <h5 style="color:#FEAE1B">
@@ -85,6 +87,9 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                             <?php endif; ?>
                         <?php endif; ?>
                     </div>
+                    <?php else: ?>
+                        You are a mentor
+                    <?php endif; ?>
 
                 </div> <!-- End of col-8 -->
             </div>

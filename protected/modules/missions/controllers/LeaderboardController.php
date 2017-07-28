@@ -388,6 +388,14 @@ class LeaderboardController extends \yii\web\Controller
 
         $powers = Powers::find()->orderBy('id')->all();
 
+        if($id==""){
+            if(sizeof($powers)>=1){
+                $id = $powers[0]->id;
+            }else{
+                return;
+            }
+        }
+
         $ranking = $this->getPowerRanking($id, 10);
 
         return $this->render('index_power', array('ranking' => $ranking, 'powers' => $powers, 'id' => $id));
