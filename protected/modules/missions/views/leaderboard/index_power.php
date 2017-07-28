@@ -22,7 +22,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
 
                     <div class="row" style="text-align:center; margin:15px 0 45px">
                         <div class="col-sm-6">
-                            <?= Html::a(Yii::t('MissionsModule.leaderboard', 'TEAMS RANKING'), ['/missions/leaderboard/index'], ['class' => 'ranking', 'style' => '']) ?>
+                            <?= Html::a(Yii::t('MissionsModule.leaderboard', 'GENERAL RANKINGS'), ['/missions/leaderboard/index'], ['class' => 'ranking', 'style' => '']) ?>
                         </div>
                         <div class="col-sm-6">
                             <?= Html::a(Yii::t('MissionsModule.leaderboard', 'POWERS RANKING'), ['/missions/leaderboard/powers'], ['class' => 'ranking current_tab', 'style' => '']) ?>                            

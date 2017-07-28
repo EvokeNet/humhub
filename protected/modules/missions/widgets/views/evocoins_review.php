@@ -32,7 +32,7 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
         <?= Yii::t('MissionsModule.base', 'Your Evocoins') ?>
     </div>
     <div class="panel-body text-center">
-        <p style = "font-size:12pt"><?= Yii::t('MissionsModule.base', 'Earn Evocoins by reviewing evidence.') ?></p>
+        <p><?= Yii::t('MissionsModule.base', 'Earn Evocoins by reviewing evidence.') ?></p>
 
         <div class = "home-widget-evocoins" style = "margin-left:30px">
             <img src="<?php echo Url::to('@web/themes/Evoke/img/evocoin_bg.png') ?>" width = "120px">
@@ -84,7 +84,7 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
         <?= Yii::t('MissionsModule.base', 'Your Evocoins') ?>
     </div>
     <div class="panel-body text-center">
-        <p style = "font-size:12pt"><?= Yii::t('MissionsModule.base', 'Earn Evocoins by reviewing evidence.') ?></p>
+        <p><?= Yii::t('MissionsModule.base', 'Earn Evocoins by reviewing evidence.') ?></p>
 
         <div class = "home-widget-evocoins" style = "margin-left:30px">
             <img src="<?php echo Url::to('@web/themes/Evoke/img/evocoin_bg.png') ?>" width = "120px">
