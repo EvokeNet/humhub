@@ -35,7 +35,11 @@ use humhub\compat\CActiveForm;
       ?>
       <div class="panel-body">
         <?php
+        if($activity->getPrimaryPowers()[0]){
           $primaryPowerTitle = $activity->getPrimaryPowers()[0]->getPower()->title;
+        }else{
+          $primaryPowerTitle = "";
+        }
 
           if(Yii::$app->language == 'es' && isset($activity->getPrimaryPowers()[0]->getPower()->powerTranslations[0]))
               $primaryPowerTitle = $activity->getPrimaryPowers()[0]->getPower()->powerTranslations[0]->title;
