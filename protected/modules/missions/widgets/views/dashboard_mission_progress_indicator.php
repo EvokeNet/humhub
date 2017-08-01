@@ -16,12 +16,12 @@ use app\modules\missions\models\Evidence;
     </div>
     <div class="panel-body" style="padding:10px 12px">
 
-        <div style="margin:10px 0 15px">
+        <div style="margin:20px 0 25px">
 
           <?php $width = (100/(count($missions)+1)); foreach ($missions as $key => $m) { ?>
-            <div style="width: <?=$width?>%; display: block; float: left;"><?php echo Yii::t('MissionsModule.base', 'M{position}', array('position' => $m['position'])); ?></div>
+            <span style="width: <?=$width?>%; display: block; float: left; color:#03ACC5;"><?php echo Yii::t('MissionsModule.base', 'M{position}', array('position' => $m['position'])); ?></span>
           <?php } ?>
-          <div style="width: <?=$width?>%; display: block; float: left;"><?php echo Yii::t('MissionsModule.base', 'Evokation'); ?></div>
+          <span style="width: <?=$width?>%; display: block; float: left; color:#03ACC5;"><?php echo Yii::t('MissionsModule.base', 'Evokation'); ?></span>
         </div><br>
 
         <div style="margin-top:10px">
@@ -66,11 +66,13 @@ use app\modules\missions\models\Evidence;
                   </div>
                 </div>
 
+                <span style="text-align:center; display:block; font-weight:700; margin:10px 0 2px;">
                 <?php if($missing_activities>=1): ?>
-                  <span style="text-align:center; display:block; font-weight:700; margin:5px 0"><?php echo Yii::t('MissionsModule.base', 'Currently on Mission {current}', array('current' => $latest_completed_mission+1)); ?></span>
+                  <?php echo Yii::t('MissionsModule.base', 'Currently on Mission {current}', array('current' => $latest_completed_mission+1)); ?>
                 <?php else: ?>
-                  <span style="text-align:center; display:block; font-weight:700; margin:5px 0"><?php echo Yii::t('MissionsModule.base', 'Currently on Evokation'); ?></span>
+                  <?php echo Yii::t('MissionsModule.base', 'Currently on Evokation'); ?>
                 <?php endif; ?>
+                </span>
 
                 <?php if($missing_activities>=2): ?>
                   <span style="text-align:center; display:block; font-weight:700; font-size:8pt"><?php echo Yii::t('MissionsModule.base', '{missing_activities} activities for next mission.', array('missing_activities' => $missing_activities)); ?></span>  
