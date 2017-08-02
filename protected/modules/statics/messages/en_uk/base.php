@@ -17,8 +17,11 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+<<<<<<< HEAD
     'ALCHEMY MESSAGE' => '',
     'INTRODUCTION' => '',
     'Next' => '',
+=======
+>>>>>>> f5466e1a9a7dcb492a6d8e680f8e5fab835fe9ed
     'Terms and Conditions of Use & Privacy Policy' => '',
 ];

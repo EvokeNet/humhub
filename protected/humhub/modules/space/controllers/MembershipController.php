@@ -66,7 +66,7 @@ class MembershipController extends \humhub\modules\content\components\ContentCon
         $query->andWhere('space_membership.space_id IS NOT NULL');
 
 
-        $query->joinWith('profile');
+        $query->joinWith('profile'); 
         $query->limit(10);
 
         // Build Search Condition

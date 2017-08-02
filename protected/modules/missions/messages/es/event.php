@@ -17,8 +17,13 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+<<<<<<< HEAD
     'Tag Evidences' => 'Etiquetas de Evidencías',
     'Tags' => 'Etiquetas',
+=======
+    'Review Evidences' => 'Revisar Evidencías',
+    'Tag Evidences' => 'Etiquetar Evidencías',
+>>>>>>> f5466e1a9a7dcb492a6d8e680f8e5fab835fe9ed
     'All Evidences' => 'Todas las Evidencias',
     'Evidences' => 'Evidencias',
     'Evokation' => 'Evokación',
@@ -31,7 +36,6 @@ return [
     'Missions' => 'Misiones',
     'My Team' => 'Mi Equipo',
     'My Teams' => 'Mis equipos',
-    'Review Evidence' => 'Evaluar Evidencias',
-    'Review Evidences' => 'Evaluar Evidencias',
     'Reviews' => 'Evaluaciones',
+    'Tags' => 'Etíquetas',
 ];

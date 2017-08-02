@@ -7,6 +7,21 @@ use yii\db\ActiveRecord;
 use yii\db\Expression;
 use yii\behaviors\TimestampBehavior;
 
+use app\modules\missions\models\Missions;
+use app\modules\missions\models\Activities;
+use app\modules\languages\models\Languages;
+use app\modules\powers\models\UserPowers;
+use app\modules\powers\models\Powers;
+use app\modules\missions\models\ActivityPowers;
+use app\modules\missions\models\Votes;
+use app\modules\coin\models\Wallet;
+use app\modules\missions\models\EvokationCategories;
+use app\modules\teams\models\Team;
+
+use humhub\modules\space\models\Membership;
+use humhub\modules\space\models\Space;
+use humhub\modules\user\models\User;
+
 /**
  * This is the model class for table "activities".
  *
@@ -187,4 +202,70 @@ class Activities extends \yii\db\ActiveRecord
     {
         return $this->hasMany(RubricVotes::className(), ['activity_id' => 'id']);
     }
+
+    public static function getPrimaryPowerPoints($activity_id, $user_id){
+
+        // $user = User::find()
+        // ->where(['id' => $user_id])
+        // ->all();
+
+        $evidence_reward = (new \yii\db\Query())
+        ->select(['ap.value'])
+        ->from('evidence as e')
+        ->join('LEFT JOIN', 'activity_powers as ap', 'ap.activity_id = `e`.`activities_id` AND ap.flag=0')
+        ->where(['e.created_by' => $user_id])
+        ->andWhere(['e.activities_id' => $activity_id])
+        ->one()['value'];
+
+        $total_votes = (new \yii\db\Query())
+        ->select(['sum(v.value) as value'])
+        ->from('evidence as e')
+        ->join('LEFT JOIN', 'votes as v', 'v.evidence_id = `e`.`id`')
+        ->where(['e.created_by' => $user_id])
+        ->andWhere(['e.activities_id' => $activity_id])
+        ->one()['value'];
+
+        $total_points = $evidence_reward + $total_votes;
+
+        //if user hasn't submitted any evidence
+        if($total_points == 0){
+
+            //Group activities
+            $is_group_activity = (new \yii\db\Query())
+            ->select(['a.is_group as is_group'])
+            ->from('activities as a')
+            ->where(['a.id' => $activity_id])
+            ->one()['is_group'];
+
+            //check if it's a group activity
+            if($is_group_activity){
+                $team_id = Team::getUserTeam($user_id);
+
+                $evidence_reward = (new \yii\db\Query())
+                ->select(['ap.value'])
+                ->from('evidence as e')
+                ->join('LEFT JOIN', 'activity_powers as ap', 'ap.activity_id = `e`.`activities_id` AND ap.flag=0')
+                ->join('LEFT JOIN', 'space_membership as sm', 'sm.user_id = `e`.`created_by`')
+                ->where(['sm.space_id' => $team_id])
+                ->andWhere(['e.activities_id' => $activity_id])
+                ->one()['value'];
+
+                $total_votes = (new \yii\db\Query())
+                ->select(['sum(v.value) as value'])
+                ->from('evidence as e')
+                ->join('LEFT JOIN', 'votes as v', 'v.evidence_id = `e`.`id`')
+                ->join('LEFT JOIN', 'space_membership as sm', 'sm.user_id = `e`.`created_by`')
+                ->where(['sm.space_id' => $team_id])
+                ->andWhere(['e.activities_id' => $activity_id])
+                ->one()['value'];
+
+                return $evidence_reward + $total_votes;
+            }
+        }
+            
+        return $total_points;
+
+        
+    }
+
 }

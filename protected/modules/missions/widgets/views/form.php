@@ -5,6 +5,8 @@ use yii\helpers\ArrayHelper;
 $firstPrimary = true;
 $firstSecondary = true;
 
+$this->registerJsFile('js/stream.js');
+
 ?>
 
 <div id="evidence_form">
@@ -22,33 +24,34 @@ $firstSecondary = true;
             </p>
             <br />
 
-            <div class="row" style="margin-bottom:20px">
-                <div class="col-xs-4">
+            <div style="margin:30px 0 20px">
 
-                    <h6 style="margin-bottom:15px; font-size:12pt"><?= Yii::t('MissionsModule.base', 'Primary Power') ?></h6>
-                    <?php
-                        foreach($activity->getPrimaryPowers() as $power):
-                            if($firstPrimary)
-                                $firstPrimary = false;
+                <h6 style="margin-bottom:15px; font-size:12pt"><?= Yii::t('MissionsModule.base', 'Primary Power') ?></h6>
 
-                            $name = $power->getPower()->title;
+                <div style="display: flex; flex-wrap: wrap;">
+                <?php
+                    foreach($activity->getPrimaryPowers() as $power):
+                        if($firstPrimary)
+                            $firstPrimary = false;
 
-                            if(Yii::$app->language == 'es' && isset($power->getPower()->powerTranslations[0]))
-                                $name = $power->getPower()->powerTranslations[0]->title;
-                    ?>
+                        $name = $power->getPower()->title;
 
+                        if(Yii::$app->language == 'es' && isset($power->getPower()->powerTranslations[0]))
+                            $name = $power->getPower()->powerTranslations[0]->title;
+                ?>
+
+                        <div class="power-cards">
+                            <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
+                            <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '+{points} {power}', array('power' => $name, 'points' => $power->value)); ?></p>
+                        </div>
                     
-                    <div>
-                        <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
-                        <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
-                    </div>
-                        
-                    <?php endforeach; ?>
-
+                <?php endforeach; ?>
                 </div>
-                <div class="col-xs-8">
 
-                    <h6 style="margin-bottom:15px; font-size:12pt"><?= Yii::t('MissionsModule.base', 'Secondary Power(s)') ?></h6>
+                <br />
+
+                <h6 style="margin-bottom:15px; font-size:12pt"><?= Yii::t('MissionsModule.base', 'Secondary Power(s)') ?></h6>
+                    <div style="display: flex; flex-wrap: wrap;">
                         <?php
                             foreach($activity->getSecondaryPowers() as $power):
                                 if($firstSecondary)
@@ -59,16 +62,24 @@ $firstSecondary = true;
                                 if(Yii::$app->language == 'es' && isset($power->getPower()->powerTranslations[0]))
                                     $name = $power->getPower()->powerTranslations[0]->title;
                         ?>
+
                             
                         <div>
                             <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
                             <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
                         </div>
                         
-                    <?php endforeach; ?>
+                        
+                            <div class="power-cards">
+                                <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
+                                <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '+{points} {power}', array('power' => $name, 'points' => $power->value)); ?></p>
+                            </div>
+                        
+                        
+                        <?php endforeach; ?>
+                    </div>
 
-                </div>
-            </div>
+        </div>
 
             <!-- <div class="row">
                 <div class="col-xs-4"></div>
@@ -102,7 +113,7 @@ $firstSecondary = true;
                 <?php
 
                 echo "<br>";
-
+                echo "<div style='float:right'>";
                 echo \humhub\widgets\AjaxButton::widget([
                     'label' => Yii::t('MissionsModule.widgets_EvidenceFormWidget', 'Save Draft'),
                     'ajaxOptions' => [
@@ -111,13 +122,14 @@ $firstSecondary = true;
                         'dataType' => 'json',
                         'beforeSend' => "function() { $('.contentForm').removeClass('error'); $('#contentFormError').hide(); $('#contentFormError').empty(); }",
                         'beforeSend' => 'function(){ $("#contentFormError").hide(); $("#contentFormError li").remove(); $(".contentForm_options .btn").hide(); $("#postform-loader").removeClass("hidden"); }',
-                        'success' => "function(response) { handleResponse(response);}"
+                        'success' => "function(response) { formHandleResponse(response);}"
                     ],
                     'htmlOptions' => [
                         'id' => "post_draft_button",
-                        'class' => 'btn btn-primary btn-comment-submit',
+                        'class' => 'save_draft_link',
                         'type' => 'submit'
                 ]]);
+                echo "</div>";
             ?>
         </div>
     </div>
@@ -127,16 +139,16 @@ $firstSecondary = true;
 <script type="text/javascript">
 
 $( document ).ready(function() {
-   var oldHandleResponse = handleResponse;
 
-    handleResponse = function(response) {
-      oldHandleResponse(response);
+    formHandleResponse = function(response) {
+      handleResponse(response);
       if (!response.errors) {
             $('#evidence_form').parent().parent().remove();
             window.location.hash = "";
             window.location.hash = "wallEntry_" + response.wallEntryId;
       }
       loadPopUps();
+      updateEvocoins();
     }
 
 });
@@ -158,3 +170,19 @@ $('textarea[name=text]#contentForm_question').keyup(function() {
 })
 
 </script>
+
+
+<style>
+.save_draft_link{
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    color: white;
+    text-decoration: underline;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+</style>

@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 
+$this->pageTitle = Yii::t('MissionsModule.page_titles', 'Space Members');
+
 ?>
 
 <div class="panel panel-default members" id="space-members-panel">

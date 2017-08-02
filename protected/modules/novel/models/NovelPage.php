@@ -29,6 +29,7 @@ use Yii;
      {
        return [
          ['page_image', 'string', 'max' => 256],
+         ['markup', 'string'],
          ['page_number', 'integer', 'min' => 1],
          [['language_id'], 'exist', 'skipOnError' => true, 'targetClass' => Languages::className(), 'targetAttribute' => ['language_id' => 'id']],
        ];
@@ -43,6 +44,7 @@ use Yii;
           'id' => Yii::t('NovelModule.base', 'ID'),
           'page_image' => Yii::t('NovelModule.base', 'Image'),
           'page_number' => Yii::t('NovelModule.base', 'Page Number'),
+          'markup' => Yii::t('NovelModule.base', 'Markup'),
         ];
       }
 

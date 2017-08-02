@@ -7,7 +7,7 @@ use \yii\helpers\Url;
 
 
 
-$this->pageTitle = Yii::t('MissionsModule.base', 'Mission {mission}', array('mission' => $mission ->title));
+$this->pageTitle = Yii::t('MissionsModule.page_titles', 'Mission {mission}', array('mission' => $mission ->title));
 
 ?>
 

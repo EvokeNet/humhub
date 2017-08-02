@@ -17,6 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+<<<<<<< HEAD
     'GENERAL RANKINGS' => 'RANKINGS GENERALES',
     'My Team\'s Evidences Submitted: {reviews}' => 'Evidencias Publicadas de mi equipo: {reviews}',
     'My Team\'s Improvement: {rating}' => 'Mejora de mi equipo: {rating}',
@@ -29,6 +30,12 @@ return [
     'Top Teams By Quality Evidences Given' => 'Mejores equipos por evidencias de calidad',
     'Top Teams By Quality Reviews Given' => 'Mejores equipos por calidad de evaluación',
     'You are a mentor' => 'Eres un mentor',
+=======
+    'My Score: {average}' => 'Mi puntuación: {average}',
+    'Top Agents By Average Score' => 'Mejores equipos considerando puntuación média',
+    'Leaderboard' => 'Clasificación',
+    'My Evidences Submitted: {evidences}' => 'Mis Evidencias Publicadas: {evidences}',
+>>>>>>> f5466e1a9a7dcb492a6d8e680f8e5fab835fe9ed
     'My Position: Not Ranked' => 'Mi Posición: Sin puntaje',
     'My Position: {position}' => 'Mi Posición: {position}',
     'My Reviews Submitted: {evidences}' => 'Mis Revisiones Realizadas: {evidences}',

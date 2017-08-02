@@ -17,21 +17,33 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+<<<<<<< HEAD
     'GENERAL RANKINGS' => '',
+=======
+    'Leaderboard' => '',
+    'My Evidences Submitted: {evidences}' => '',
+>>>>>>> f5466e1a9a7dcb492a6d8e680f8e5fab835fe9ed
     'My Position: Not Ranked' => '',
     'My Position: {position}' => '',
     'My Reviews Submitted: {evidences}' => '',
-    'My Reviews Submitted:: {evidences}' => '',
+    'My Score: {average}' => '',
     'My Team\'s Evidences Submitted: {evidences}' => '',
     'My Team\'s Evidences Submitted: {reviews}' => '',
     'My Team\'s Improvement: {rating}' => '',
     'My Team\'s Position: #{position}' => '',
     'My Team\'s Position: Not Ranked' => '',
     'My Team\'s Position: {position}' => '',
+<<<<<<< HEAD
     'POWERS RANKING' => '',
     'SELECT POWER' => '',
     'TEAMS RANKING' => '',
     'Top Agents By {title}' => '',
+=======
+    'My Team\'s Reviews Submitted: {evidences}' => '',
+    'Top Agents By Average Score' => '',
+    'Top Agents By Evidences Submitted' => '',
+    'Top Agents By Reviews Given' => '',
+>>>>>>> f5466e1a9a7dcb492a6d8e680f8e5fab835fe9ed
     'Top Mentors By Reviews Given' => '',
     'Top Teams By Mentor Review Improvement' => '',
     'Top Teams By Quality Evidences Given' => '',

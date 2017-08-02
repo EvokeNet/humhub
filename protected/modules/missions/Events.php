@@ -532,16 +532,16 @@ class Events
         if(isset($user)){
 
             // LEADERBOARD
-            $event->sender->addItem(array(
-            'label' => Yii::t('MissionsModule.event', 'Leaderboard'),
-            'id' => 'leaderboard',
-            'icon' => '<i class="fa fa-sort-numeric-asc" aria-hidden="true"></i>',
-            'url' => Url::to(['/missions/leaderboard/index']),
-            'sortOrder' => 700,
-            'isActive' => (Yii::$app->controller->module
-                && Yii::$app->controller->module->id == 'missions'
-                && Yii::$app->controller->id == 'leaderboard'),
-            ));
+            // $event->sender->addItem(array(
+            // 'label' => Yii::t('MissionsModule.event', 'Leaderboard'),
+            // 'id' => 'leaderboard',
+            // 'icon' => '<i class="fa fa-sort-numeric-asc" aria-hidden="true"></i>',
+            // 'url' => Url::to(['/missions/leaderboard/index']),
+            // 'sortOrder' => 700,
+            // 'isActive' => (Yii::$app->controller->module
+            //     && Yii::$app->controller->module->id == 'missions'
+            //     && Yii::$app->controller->id == 'leaderboard'),
+            // ));
 
             // REVIEW EVIDENCE
 

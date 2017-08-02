@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="84px" height="84px" viewBox="0 0 84 84" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <title>vision</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="powers" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-751.000000, -184.000000)" id="icons" stroke="#254054">
+            <g transform="translate(109.000000, 186.000000)">
+                <g id="row1" transform="translate(18.000000, 0.000000)">
+                    <g id="vision" transform="translate(626.000000, 0.000000)">
+                        <g>
+                            <g>
+                                <circle id="Oval-44" stroke-width="4" fill="#FFFFFF" cx="40" cy="40" r="40"></circle>
+                                <g transform="translate(15.000000, 26.000000)" stroke-width="2">
+                                    <path d="M21.4327483,14.5 L11.0725356,14.5 C11.0717983,14.5603275 11.0714286,14.6207449 11.0714286,14.68125 C11.0714286,22.5892773 17.3874116,29 25.1785714,29 C32.9697313,29 39.2857143,22.5892773 39.2857143,14.68125 C39.2857143,6.77322274 32.9697313,0.3625 25.1785714,0.3625 C25.1189605,0.3625 25.059436,0.362875279 25,0.363623636 L25,10.8792395 C25.0591755,10.8764237 25.1187097,10.875 25.1785714,10.875 C27.2496392,10.875 28.9285714,12.5791162 28.9285714,14.68125 C28.9285714,16.7833838 27.2496392,18.4875 25.1785714,18.4875 C23.1075036,18.4875 21.4285714,16.7833838 21.4285714,14.68125 C21.4285714,14.6204903 21.4299741,14.5600631 21.4327483,14.5 Z" id="Combined-Shape"></path>
+                                    <path d="M25,29 C42.0050848,29 50,14.5 50,14.5 C50,14.5 40,1.93178806e-15 25,0 C10,-1.28785871e-15 0,14.5 0,14.5 C0,14.5 7.99491518,29 25,29 Z" id="Oval-8"></path>
+                                    <ellipse id="Oval-9-Copy-2" cx="25.1785714" cy="14.68125" rx="14.1071429" ry="14.31875"></ellipse>
+                                    <ellipse id="Oval-9-Copy" cx="25.1785714" cy="14.68125" rx="3.75" ry="3.80625"></ellipse>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

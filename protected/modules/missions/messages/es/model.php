@@ -17,7 +17,11 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+<<<<<<< HEAD
     'Chapter #{chapter} - Page #{page}' => 'Capítulo #{chapter} - Página #{page}',
+=======
+    'Mission {position}' => 'Misión {position}',
+>>>>>>> f5466e1a9a7dcb492a6d8e680f8e5fab835fe9ed
     'Activities' => 'Actividades',
     'Activities ID' => 'Identificación de Actividades',
     'Activity ID' => 'Identificación de Actividad',
@@ -49,7 +53,6 @@ return [
     'Mission Translations' => 'Traducciones de misión',
     'Modified At' => 'Modificado en',
     'No, it does not meet the activity\'s requirement' => 'No, no cumple con el requisito de la actividad',
-    'Novel Chapter #{number}' => 'Capítulo #{number}',
     'Points' => 'Puntos',
     'Position' => 'Posición',
     'Power ID' => 'Identificación de poder',

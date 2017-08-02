@@ -55,16 +55,20 @@ use humhub\compat\CActiveForm;
               <input id="yes-input<?= $evidence->id ?>" type="radio" name="yes-no-opt<?= $evidence->id ?>" class="btn-show<?= $evidence->id ?>" value="yes" <?= $yes ?> >
               Yes
             </label >                 
+            <!--<div id="yes-opt<?= $evidence->id ?>" class="radio" style="padding:10px 40px 0">-->
             <div id="yes-opt<?= $evidence->id ?>" class="radio">
-              <span class="rating">
-                  <?php for ($x=5; $x >= 1; $x--): ?>
-                    <input id="grade<?= $x ?>_<?= $evidence->id ?>" onClick="$('#yes-input<?= $evidence->id ?>').prop('checked', true)" type="radio" name="grade_<?= $evidence->id ?>" class="rating-input" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> />
-                    <label for ="grade<?= $x ?>_<?= $evidence->id ?>" class="rating-star"></label>
-                  <?php endfor; ?>
-              </span>
-              <p>
-                <?= Yii::t('MissionsModule.base', 'How many points will you award this evidence?') ?>
-              </p>
+                            
+              <div style="text-align:center; margin-bottom:10px">
+                <p><?= Yii::t('MissionsModule.base', 'How will you rate this evidence?') ?></p>
+                <span class="rating">
+                    <?php for ($x=5; $x >= 1; $x--): ?>
+                      <input id="grade<?= $x ?>_<?= $evidence->id ?>" onClick="setStarHint(<?= $x ?>,<?= $evidence->id ?>);$('#yes-input<?= $evidence->id ?>').prop('checked', true)" type="radio" name="grade_<?= $evidence->id ?>" class="rating-input" value="<?= $x?>" <?= $x == $grade ? 'checked' : '' ?> />
+                      <label for ="grade<?= $x ?>_<?= $evidence->id ?>" class="rating-star"></label>
+                    <?php endfor; ?>
+                </span>
+                <label class="star_label" id="star_hint<?= $evidence->id ?>" style="display:block; margin-bottom:10px"></label>
+              </div>
+
             </div>
           </div>
           <div class="radio">
@@ -86,3 +90,31 @@ use humhub\compat\CActiveForm;
     </div>
   </div>
 </div>
+
+<script>
+
+$( document ).ready(function() {
+   setStarHint(<?= $grade ?>);
+});
+
+function setStarHint(value, id){
+  switch(value){
+    case 1:
+      $('#star_hint'+id).html("<?= Yii::t('MissionsModule.base', 'Does not comply with the rubric') ?>");
+    break;
+    case 2:
+      $('#star_hint'+id).html("<?= Yii::t('MissionsModule.base', 'Meets the required minimum') ?>");
+    break;
+    case 3:
+      $('#star_hint'+id).html("<?= Yii::t('MissionsModule.base', 'Good') ?>");
+    break;
+    case 4:
+      $('#star_hint'+id).html("<?= Yii::t('MissionsModule.base', 'Excellent') ?>");
+    break;
+    case 5:
+      $('#star_hint'+id).html("<?= Yii::t('MissionsModule.base', 'Outstanding') ?>");
+    break;
+  }
+}
+
+</script>

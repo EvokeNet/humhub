@@ -29,7 +29,6 @@ return [
     'Missions' => '',
     'My Team' => '',
     'My Teams' => '',
-    'Review Evidence' => '',
     'Review Evidences' => '',
     'Reviews' => '',
     'Tag Evidences' => '',

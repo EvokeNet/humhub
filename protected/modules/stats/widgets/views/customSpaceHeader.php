@@ -13,7 +13,7 @@ if ($space->isAdmin()) {
 }
 ?>
 
-<div class="panel panel-default panel-profile">
+<div class="panel panel-default panel-profile panel-space">
 
     <div class="panel-profile-header">
 

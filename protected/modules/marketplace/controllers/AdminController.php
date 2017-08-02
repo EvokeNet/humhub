@@ -75,7 +75,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
 
     public function actionDelete()
     {
-        $model = Prize::findOne(['id' => Yii::$app->request->get('id')]);
+        $model = Product::findOne(['id' => Yii::$app->request->get('id')]);
 
         if ($model !== null) {
             $model->delete();
