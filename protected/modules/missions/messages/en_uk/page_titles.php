@@ -17,9 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-<<<<<<< HEAD
     'Review Evidence' => '',
-=======
     'Evokations' => '',
     'Leaderboard' => '',
     'Mission {mission}' => '',
@@ -29,5 +27,4 @@ return [
     'Review Evidence' => '',
     'Space Members' => '',
     '{name}\'s Evokation' => '',
->>>>>>> f5466e1a9a7dcb492a6d8e680f8e5fab835fe9ed
 ];

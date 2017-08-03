@@ -17,7 +17,6 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-<<<<<<< HEAD
     '+{points}' => '',
     'Are you sure you want to delete this tag?' => '',
     'Create new Tag' => '',
@@ -44,11 +43,9 @@ return [
     'Tags' => '',
     'Terrible' => '',
     '{missing_activities} activity for next mission.' => '',
-=======
     'Comment required' => '',
     '+{points}' => '+{points}',
     '+{points} {power}' => '+{points} {power}',
->>>>>>> f5466e1a9a7dcb492a6d8e680f8e5fab835fe9ed
     '140 characters required' => '140 caracteres requeridos',
     '<strong>Activity Difficulty Level:</strong> {level}' => '<strong>Nivel de dificultad de la evidencía:</strong> {level}',
     '<strong>Activity Rubric:</strong> {rubric}' => '<strong>Rúbrica de Actividad:</strong> {rubric}',
@@ -72,12 +69,8 @@ return [
     'Agent Reviews' => 'Evaluaciones de Agentes',
     'Allow Evokation Submissions' => 'Permitir Envío de Evokaciones',
     'Anonymous in {time}' => 'Anónimo en {time}',
-<<<<<<< HEAD
     'Answer Psychometric Questionnaire before reading the Novel' => 'Responda el cuestionario psicométrico antes de leer la novela gráfica',
     'Are you ready to submit your review? You will not be able to change it after submitting.' => '¿Estás listo para enviar tu evaluación? No puedes cambiarlo después de enviarlo.',
-=======
-    'Answer Psychometric Questionnaire before reading the Novel' => 'Responda a lo cuestionario antes de leer la novela',
->>>>>>> f5466e1a9a7dcb492a6d8e680f8e5fab835fe9ed
     'Are you sure you want to delete this activity?' => '¿Estás seguro que quieres eliminar esta actividad?',
     'Are you sure you want to delete this category?' => '¿Estás seguro que quiere borrar esta categoría?',
     'Are you sure you want to delete this evidence?' => '¿Estás seguro que quieres eliminar esta evidencía?',
@@ -91,12 +84,9 @@ return [
     'Are you sure?' => 'Estas seguro?',
     'Author' => 'Autor',
     'Average Rating: {rating}' => 'Tu clasificación media: {rating}',
-<<<<<<< HEAD
     'Average Rating: {votes}' => 'Tu clasificación media: {votes}',
     'Avg Agents Rating' => 'Evaluación Média de Agentes',
     'Avg Mentor Rating' => 'Evaluación Média del Mentor',
-=======
->>>>>>> f5466e1a9a7dcb492a6d8e680f8e5fab835fe9ed
     'Await the invitation from your captain to join your team.' => 'Deben unirse cuando reciban la invitación de su capitán.',
     'By' => 'Por',
     'By Anonymous in {time}' => 'Por Anónimo en {time}',
@@ -109,16 +99,11 @@ return [
     'Choose a mission' => 'Elija una misión',
     'Choose an Activity:' => 'Elija una actividad:',
     'Choose how many points you will award this evidence.' => 'Elija el número de puntos que premiará esta evidencia',
-<<<<<<< HEAD
     'Click here to see' => 'haga clic aquí para ver',
     'Close' => 'Cerrar',
     'Close Date' => 'Fecha de cierre',
     'Comment required' => 'Comentário requerido',
-=======
     'Choose the keywords that best describe your thoughts on this evidence, both based in your opinion and if it fulfilled the activity rubric. Select the tags and classify with 1 to 5 stars. If you have something to say to your fellow agent, leave a comment.' => 'Elija las palabras clave que mejor describan sus pensamientos sobre esta evidencia, ambas basadas en su opinión y si cumplieron la rúbrica de la actividad. Seleccione las etiquetas y clasifique con 1 a 5 estrellas. Si tiene algo que decirle a su agente compañero, deje un comentario.',
-    'Close' => 'Cerrar',
-    'Close Date' => 'Fecha de cierre',
->>>>>>> f5466e1a9a7dcb492a6d8e680f8e5fab835fe9ed
     'Congratulations!' => '¡Felicitaciones!',
     'Create' => 'Crear',
     'Create Evokation Categories' => 'Crear Categorías de Evokación',
@@ -152,16 +137,12 @@ return [
     'Enter Activity' => 'Entrar en la actividad',
     'Enter Mission' => 'Entrar en la misión',
     'Error' => 'Error',
-<<<<<<< HEAD
     'Error!' => 'Error!',
     'Every time you submit an evidence, your overall rating will improve.' => 'Cada vez que presente una evidencia, su calificación global mejorará.',
     'Every time you submit evidence, your overall rating will improve.' => 'Cada vez que envíes evidencias, tu calificación general mejorará.',
     'Everytime you submit an evidence, your overall rating will improve.' => 'Cada vez que presente una evidencía, su calificación geral mejorará',
-=======
-    'Every time you submit evidence, your overall rating will improve.' => 'Cada vez que envíes evidencias, tu calificación general mejorará.',
     'Evidence Not Submitted' => 'Actividad no completada',
     'Evidence Tagged: {reviewed}' => 'Evidencía con etiquetas: {reviewed}',
->>>>>>> f5466e1a9a7dcb492a6d8e680f8e5fab835fe9ed
     'Evidence: {evidence}' => 'Evidencía: {evidence}',
     'Evidence: {title}' => 'Evidencía: {title}',
     'Evidences' => 'Evidencias',
@@ -211,11 +192,8 @@ return [
     'Missions Module Configuration' => 'Configuración del Módulo de Misiones',
     'NOT STARTED' => 'NO HA EMPEZADO',
     'Next Evidence' => 'Siguiente Evidencia',
-<<<<<<< HEAD
     'Next {icon}' => 'Próximo {icon}',
-=======
     'Next to Evocoin: {reviewed}' => 'Próximas a ganar evocoins: {reviewed}',
->>>>>>> f5466e1a9a7dcb492a6d8e680f8e5fab835fe9ed
     'No' => 'No',
     'No activities created yet!' => 'No hay actividades creadas aún!',
     'No activity powers created yet!' => 'No hay poderes de actividad creadas aún!',
@@ -232,16 +210,13 @@ return [
     'No tags created yet!' => 'No hay etíquetas creadas aún!',
     'No voting deadline defined yet!' => 'No hay fin de plazo de votación creado aún!',
     'Nothing here.' => 'Nada aquí',
-<<<<<<< HEAD
     'Notification' => 'Notificación',
     'OPEN UNTIL {date}' => 'ABIERTO HASTA {date}',
     'Obligate users to answer psychometric questionnaire' => 'Obligar a los usuarios a responder el cuestionario psicométrico',
     'Obligate users to read the Novel' => 'Obligar a los usuarios a leer la novela gráfica',
     'One of your evidences has been reviewed.' => 'Una de sus evidencias ha sido evaluada',
-=======
     'Obligate users to read the Novel' => 'Obligar a los usuarios a leer la novela',
     'Ok' => 'Ok',
->>>>>>> f5466e1a9a7dcb492a6d8e680f8e5fab835fe9ed
     'Options' => 'Opciones',
     'Other Agents' => 'Los demás agentes',
     'Outstanding' => 'Excepcional',
@@ -270,13 +245,9 @@ return [
     'Reviewed by Both' => 'Evaluada por Ambos',
     'Reviewed by Mentor' => 'Evaluada por Mentor',
     'Reviews' => 'Revisiones',
-<<<<<<< HEAD
     'Rubric: {text}' => 'Rubrica: {text}',
     'STARTING IN {date}' => 'EMPEZA EN {date}',
-=======
     'Reward' => 'Recompensa',
-    'Rubric: {text}' => 'Rubrica: {text}',
->>>>>>> f5466e1a9a7dcb492a6d8e680f8e5fab835fe9ed
     'Save' => 'Salvar',
     'Search' => 'Buscar',
     'Secondary Power' => 'Poder Secundario',
@@ -350,17 +321,14 @@ return [
     'You just gained {message} evocoins!' => 'Acabas de ganar {message} evocoins!',
     'You\'re currently in Mission #{number} - {title}' => 'Actualmente estás en la Misión #{number} - {title}',
     'You\'ve completed this activity' => 'Ha completado esta actividad',
-<<<<<<< HEAD
     'You\'ve completed this mission' => 'Has completado esta misión',
     'You\'ve just won' => 'Has ganado',
     'You\'ve submitted your evokation.' => 'Ha postado su evocación',
-=======
     'You\'ve just won' => 'Has ganado',
     'You\'ve received 10 evocoins for this evidence.' => 'Has ganado 10 evocoins por esta evidencía',
     'You\'ve received 100 evocoins for completing this mission.' => 'Has ganado 100 evocoins para completar esta misión.',
     'You\'ve received an extra evocoin for the last 5 evidences you\'ve tagged' => 'Has ganado 1 evocoin extra por las últimas 5 evidencías que has revisado',
     'You\'ve submitted your evokation.' => 'Has enviado su evokcación',
->>>>>>> f5466e1a9a7dcb492a6d8e680f8e5fab835fe9ed
     'YouTube URL cannot be blank.' => 'URl de Youtube no puede estar en blanco.',
     'Your Evocoins' => 'Tus Evocoins',
     'Your Powers' => 'Tus Poderes',
@@ -375,18 +343,15 @@ return [
     'point' => 'punto',
     'points' => 'puntos',
     'points in' => 'puntos en',
-<<<<<<< HEAD
     'register your team on the platform.' => 'registrar el equipo en la plataforma.',
     '{current} / {total} activities completed' => '{current} / {total} actividades completadas',
     '{first} of {total}' => '{first} de {total}',
     '{icon} Previous' => '{icon} Anterior',
     '{message}. <BR>Thank you for your review.' => '{message}. <BR>Gracias por su opinión.',
     '{missing_activities} activities for next mission.' => '{missing_activities} actividades para la próxima misión',
-=======
     '{first} of {total}' => '{first} de {total}',
     '{icon} Previous' => '{icon} Anterior',
     '{message}. <BR>Thank you for your review.' => '{message}. <BR>Gracias por su opinión.',
->>>>>>> f5466e1a9a7dcb492a6d8e680f8e5fab835fe9ed
     '{mission}' => '{mission}',
     '{name}\'s Evokation' => 'Evokación de {name}',
     '{name}\'s Evokation Page' => 'Página de Evokación de {name}',

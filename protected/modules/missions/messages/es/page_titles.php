@@ -17,9 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-<<<<<<< HEAD
     'Review Evidence' => 'Revisar Evidencía',
-=======
     'Evokations' => 'Evocaciones',
     'Leaderboard' => 'Tabla de Clasificación',
     'Mission {mission}' => 'Misión {mission}',
@@ -29,5 +27,4 @@ return [
     'M{mp}A{ap} : {alias}' => 'M{mp}A{ap} : {alias}',
     'Review Evidence' => 'Revisar Evidencía',
     '{name}\'s Evokation' => 'Evokación de {name}',
->>>>>>> f5466e1a9a7dcb492a6d8e680f8e5fab835fe9ed
 ];

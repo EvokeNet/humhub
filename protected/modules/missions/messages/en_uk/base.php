@@ -18,10 +18,7 @@
  */
 return [
     '+{points}' => '',
-<<<<<<< HEAD
-=======
     '+{points} {power}' => '',
->>>>>>> f5466e1a9a7dcb492a6d8e680f8e5fab835fe9ed
     '140 characters required' => '',
     '<strong>Activity Difficulty Level:</strong> {level}' => '',
     '<strong>Activity Rubric:</strong> {rubric}' => '',
@@ -44,10 +41,7 @@ return [
     'Allow Evokation Submissions' => '',
     'Anonymous in {time}' => '',
     'Answer Psychometric Questionnaire before reading the Novel' => '',
-<<<<<<< HEAD
     'Are you ready to submit your review? You will not be able to change it after submitting.' => '',
-=======
->>>>>>> f5466e1a9a7dcb492a6d8e680f8e5fab835fe9ed
     'Are you sure you want to delete this category?' => '',
     'Are you sure you want to delete this evidence?' => '',
     'Are you sure you want to delete this item?' => '',
@@ -58,12 +52,9 @@ return [
     'Are you sure?' => '',
     'Author' => '',
     'Average Rating: {rating}' => '',
-<<<<<<< HEAD
     'Average Rating: {votes}' => '',
     'Avg Agents Rating' => '',
     'Avg Mentor Rating' => '',
-=======
->>>>>>> f5466e1a9a7dcb492a6d8e680f8e5fab835fe9ed
     'Await the invitation from your captain to join your team.' => '',
     'By' => '',
     'By Anonymous in {time}' => '',
@@ -76,11 +67,8 @@ return [
     'Choose a mission' => '',
     'Choose an Activity:' => '',
     'Choose how many points you will award this evidence.' => '',
-<<<<<<< HEAD
     'Click here to see' => '',
-=======
     'Choose the keywords that best describe your thoughts on this evidence, both based in your opinion and if it fulfilled the activity rubric. Select the tags and classify with 1 to 5 stars. If you have something to say to your fellow agent, leave a comment.' => '',
->>>>>>> f5466e1a9a7dcb492a6d8e680f8e5fab835fe9ed
     'Close' => '',
     'Close Date' => '',
     'Comment required' => '',
@@ -111,17 +99,12 @@ return [
     'Enter Activity' => '',
     'Enter Mission' => '',
     'Error' => '',
-<<<<<<< HEAD
     'Error!' => '',
     'Every time you submit an evidence, your overall rating will improve.' => '',
     'Every time you submit evidence, your overall rating will improve.' => '',
     'Everytime you submit an evidence, your overall rating will improve.' => '',
     'Evidence Not Submitted' => '',
-=======
-    'Every time you submit evidence, your overall rating will improve.' => '',
-    'Evidence Not Submitted' => '',
     'Evidence Tagged: {reviewed}' => '',
->>>>>>> f5466e1a9a7dcb492a6d8e680f8e5fab835fe9ed
     'Evidence: {evidence}' => '',
     'Evidence: {title}' => '',
     'Evidences' => '',
@@ -140,11 +123,8 @@ return [
     'Give Evocoins' => '',
     'Good' => '',
     'Google Drive' => '',
-<<<<<<< HEAD
     'Group' => '',
-=======
     'Help organize the Evoke Evidence database. Earn 1 Evocoin for every 5 Evidences you tag.' => '',
->>>>>>> f5466e1a9a7dcb492a6d8e680f8e5fab835fe9ed
     'How many evocoins do you want to invest?' => '',
     'How will you rate this evidence?' => '',
     'Introduction' => '',
@@ -184,17 +164,12 @@ return [
     'No tags created yet!' => '',
     'No voting deadline defined yet!' => '',
     'Nothing here.' => '',
-<<<<<<< HEAD
     'Notification' => '',
     'OPEN UNTIL {date}' => '',
     'Obligate users to answer psychometric questionnaire' => '',
     'Obligate users to read the Novel' => '',
     'Ok' => '',
     'One of your evidences has been reviewed.' => '',
-=======
-    'Obligate users to read the Novel' => '',
-    'Ok' => '',
->>>>>>> f5466e1a9a7dcb492a6d8e680f8e5fab835fe9ed
     'Options' => '',
     'Other Agents' => '',
     'Outstanding' => '',
@@ -223,13 +198,10 @@ return [
     'Reviewed by Both' => '',
     'Reviewed by Mentor' => '',
     'Reviews' => '',
-<<<<<<< HEAD
     'Rubric: {text}' => '',
     'STARTING IN {date}' => '',
-=======
     'Reward' => '',
     'Rubric: {text}' => '',
->>>>>>> f5466e1a9a7dcb492a6d8e680f8e5fab835fe9ed
     'Save' => '',
     'Secondary Power' => '',
     'Secondary Power(s)' => '',
@@ -248,13 +220,10 @@ return [
     'Submit Review' => '',
     'Success!' => '',
     'Super Powers' => '',
-<<<<<<< HEAD
     'Tag Translations' => '',
-=======
     'Tag Evidences' => '',
     'Tag Translations' => '',
     'Tag this Evidence' => '',
->>>>>>> f5466e1a9a7dcb492a6d8e680f8e5fab835fe9ed
     'Tag {tag}' => '',
     'Tags' => '',
     'Team Captains' => '',
@@ -296,15 +265,11 @@ return [
     'You just gained {message} evocoins!' => '',
     'You\'re currently in Mission #{number} - {title}' => '',
     'You\'ve completed this activity' => '',
-<<<<<<< HEAD
     'You\'ve completed this mission' => '',
-    'You\'ve just won' => '',
-=======
     'You\'ve just won' => '',
     'You\'ve received 10 evocoins for this evidence.' => '',
     'You\'ve received 100 evocoins for completing this mission.' => '',
     'You\'ve received an extra evocoin for the last 5 evidences you\'ve tagged' => '',
->>>>>>> f5466e1a9a7dcb492a6d8e680f8e5fab835fe9ed
     'You\'ve submitted your evokation.' => '',
     'YouTube URL cannot be blank.' => '',
     'Your Evocoins' => '',
@@ -320,7 +285,6 @@ return [
     'point' => '',
     'points' => '',
     'points in' => '',
-<<<<<<< HEAD
     'register your team on the platform.' => '',
     '{current} / {total} activities completed' => '',
     '{first} of {total}' => '',
@@ -328,11 +292,9 @@ return [
     '{message}. <BR>Thank you for your review.' => '',
     '{missing_activities} activities for next mission.' => '',
     '{missing_activities} activity for next mission.' => '',
-=======
     '{first} of {total}' => '',
     '{icon} Previous' => '',
     '{message}. <BR>Thank you for your review.' => '',
->>>>>>> f5466e1a9a7dcb492a6d8e680f8e5fab835fe9ed
     '{mission}' => '',
     '{name}\'s Evokation' => '',
     '{name}\'s Evokation Page' => '',
