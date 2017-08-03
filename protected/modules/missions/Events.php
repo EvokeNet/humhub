@@ -532,16 +532,16 @@ class Events
         if(isset($user)){
 
             // LEADERBOARD
-            // $event->sender->addItem(array(
-            // 'label' => Yii::t('MissionsModule.event', 'Leaderboard'),
-            // 'id' => 'leaderboard',
-            // 'icon' => '<i class="fa fa-sort-numeric-asc" aria-hidden="true"></i>',
-            // 'url' => Url::to(['/missions/leaderboard/index']),
-            // 'sortOrder' => 700,
-            // 'isActive' => (Yii::$app->controller->module
-            //     && Yii::$app->controller->module->id == 'missions'
-            //     && Yii::$app->controller->id == 'leaderboard'),
-            // ));
+            $event->sender->addItem(array(
+            'label' => Yii::t('MissionsModule.event', 'Leaderboard'),
+            'id' => 'leaderboard',
+            'icon' => '<i class="fa fa-sort-numeric-asc" aria-hidden="true"></i>',
+            'url' => Url::to(['/missions/leaderboard/index']),
+            'sortOrder' => 700,
+            'isActive' => (Yii::$app->controller->module
+                && Yii::$app->controller->module->id == 'missions'
+                && Yii::$app->controller->id == 'leaderboard'),
+            ));
 
             // REVIEW EVIDENCE
 
@@ -588,18 +588,18 @@ class Events
                 $review_evidence_link = Url::to(['/missions/review/index', 'sguid' => $team->guid]);
 
                 //MY TEAM
-                $event->sender->addItem(array(
-                'label' => Yii::t('MissionsModule.event', 'My Team'),
-                'id' => 'my_team',
-                'icon' => '<i class="fa fa-users" aria-hidden="true"></i>',
-                'url' => Url::to(['/space/space', 'sguid' => $team->guid]),
-                'sortOrder' => 300,
-                'isActive' => (Yii::$app->controller
-                    && Yii::$app->controller->id == 'space'
-                    && property_exists(Yii::$app->controller, "contentContainer")
-                    && Yii::$app->controller->contentContainer->guid == $team->guid
-                    ),
-                ));
+                // $event->sender->addItem(array(
+                // 'label' => Yii::t('MissionsModule.event', 'My Team'),
+                // 'id' => 'my_team',
+                // 'icon' => '<i class="fa fa-users" aria-hidden="true"></i>',
+                // 'url' => Url::to(['/space/space', 'sguid' => $team->guid]),
+                // 'sortOrder' => 300,
+                // 'isActive' => (Yii::$app->controller
+                //     && Yii::$app->controller->id == 'space'
+                //     && property_exists(Yii::$app->controller, "contentContainer")
+                //     && Yii::$app->controller->contentContainer->guid == $team->guid
+                //     ),
+                // ));
 
                 //MISSIONS
 
