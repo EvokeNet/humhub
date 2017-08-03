@@ -150,6 +150,7 @@ function checkDuplication(currentMessage){
 function reLoadPopUps(){
   messages = [];
   deactivatePopUp();
+  console.log("Trying to load pop up");
   loadPopUps();
 }
 
