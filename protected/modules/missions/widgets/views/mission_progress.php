@@ -17,37 +17,38 @@ use app\modules\missions\models\Evidence;
     <div class="panel-body">
 
         <div style="margin:20px 0px 40px">
-                <div style="margin-bottom:30px">
-                    <div style="text-align: center; display: inline-table; margin-right:20px">
-                        <div class="powers-box empty" style="margin-bottom:5px; height: 40px; min-width: 40px;">
+            <div style="margin-bottom:30px; text-align:center">
+                <span style="text-transform:uppercase; margin-right:30px"><?php echo Yii::t('MissionsModule.base', 'Labels:'); ?></span>
+                <div style="text-align: center; display: inline-table; margin-right:20px">
+                    <div class="powers-box empty" style="margin-bottom:5px; height: 30px; min-width: 30px;">
 
-                        </div><br />
-                        <span style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', 'Evidence Not Submitted'); ?></span>
-                    </div>
-
-                    <div style="text-align: center; display: inline-table; margin-right:20px">
-                        <div class="powers-box vote_ally" style="margin-bottom:5px; height: 40px; min-width: 40px;">
-
-                        </div><br />
-                        <span style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', 'Reviewed by Ally'); ?></span>
-                    </div>
-
-                    <div style="text-align: center; display: inline-table; margin-right:20px">
-                        <div class="powers-box vote_mentor" style="margin-bottom:5px; height: 40px; min-width: 40px;">
-
-                        </div><br />
-                        <span style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', 'Reviewed by Mentor'); ?></span>
-                    </div>
-
-                    <div style="text-align: center; display: inline-table; margin-right:20px">
-                        <div class="powers-box both" style="margin-bottom:5px; height: 40px; min-width: 40px;">
-
-                        </div><br />
-                        <span style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', 'Reviewed by Both'); ?></span>
-                    </div>
+                    </div><br />
+                    <span style="font-size:8pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', 'Evidence Not Submitted'); ?></span>
                 </div>
 
+                <div style="text-align: center; display: inline-table; margin-right:20px">
+                    <div class="powers-box vote_ally" style="margin-bottom:5px; height: 30px; min-width: 30px;">
+
+                    </div><br />
+                    <span style="font-size:8pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', 'Reviewed by Ally'); ?></span>
+                </div>
+
+                <div style="text-align: center; display: inline-table; margin-right:20px">
+                    <div class="powers-box vote_mentor" style="margin-bottom:5px; height: 30px; min-width: 30px;">
+
+                    </div><br />
+                    <span style="font-size:8pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', 'Reviewed by Mentor'); ?></span>
+                </div>
+
+                <div style="text-align: center; display: inline-table; margin-right:20px">
+                    <div class="powers-box both" style="margin-bottom:5px; height: 30px; min-width: 30px;">
+
+                    </div><br />
+                    <span style="font-size:8pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', 'Reviewed by Both'); ?></span>
+                </div>
             </div>
+
+        </div>
 
         <?php foreach($missions as $m): $all_powers = array(); ?>
             <div class="review-box">
@@ -66,17 +67,17 @@ use app\modules\missions\models\Evidence;
                 <table class="table table-responsive">
                     <thead>
                         <tr>
-                        <th width="10"></th>
-                        <?php foreach($a1 as $member): ?>
-                            <th width="20" style="text-align:center">
-                                <a href="<?php echo $member->getUrl(); ?>">
-                                    <img src="<?php echo $member->getProfileImage()->getUrl(); ?>" class="img-rounded tt img_margin"
-                                        style="width: 50px; height: 50px;"
-                                        data-original-title="<?php echo Html::encode($member->displayName); ?>">
-                                    <p style="margin-bottom: 0; margin-top: 5px; font-size:10pt"><?php echo $member->name; ?></p>
-                                </a>
-                            </th>
-                        <?php endforeach; ?>
+                            <th width="10"></th>
+                            <?php foreach($a1 as $member): ?>
+                                <th width="20" style="text-align:center">
+                                    <a href="<?php echo $member->getUrl(); ?>">
+                                        <div style="min-height: 60px;"><img src="<?php echo $member->getProfileImage()->getUrl(); ?>" class="img-rounded tt img_margin"
+                                            style="width: 50px; height: 50px;"
+                                            data-original-title="<?php echo Html::encode($member->displayName); ?>"></div>
+                                        <p style="margin-bottom: 0; margin-top: 5px; font-size:10pt"><?php echo $member->name; ?></p>
+                                    </a>
+                                </th>
+                            <?php endforeach; ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -202,7 +203,7 @@ use app\modules\missions\models\Evidence;
     }
 
     .vote_ally{
-        border: 3px solid white;
+        border: 2px solid white;
         line-height: 47px;
     }
 

@@ -24,62 +24,53 @@ $this->registerJsFile('js/stream.js');
             </p>
             <br />
 
-            <div style="margin:30px 0 20px">
+            <div class="row" style="margin:30px 0 20px">
+                                    <div class="col-xs-4">
 
-                <h6 style="margin-bottom:15px; font-size:12pt"><?= Yii::t('MissionsModule.base', 'Primary Power') ?></h6>
+                                        <h6 style="margin-bottom:15px; font-size:12pt"><?= Yii::t('MissionsModule.base', 'Primary Power') ?></h6>
+                                        <?php
+                                            foreach($activity->getPrimaryPowers() as $power):
+                                                if($firstPrimary)
+                                                    $firstPrimary = false;
 
-                <div style="display: flex; flex-wrap: wrap;">
-                <?php
-                    foreach($activity->getPrimaryPowers() as $power):
-                        if($firstPrimary)
-                            $firstPrimary = false;
+                                                $name = $power->getPower()->title;
 
-                        $name = $power->getPower()->title;
+                                                if(Yii::$app->language == 'es' && isset($power->getPower()->powerTranslations[0]))
+                                                    $name = $power->getPower()->powerTranslations[0]->title;
+                                        ?>
 
-                        if(Yii::$app->language == 'es' && isset($power->getPower()->powerTranslations[0]))
-                            $name = $power->getPower()->powerTranslations[0]->title;
-                ?>
+                                        
+                                            <div>
+                                                <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
+                                                <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
+                                            </div>
+                                            
+                                        <?php endforeach; ?>
 
-                        <div class="power-cards">
-                            <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
-                            <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '+{points} {power}', array('power' => $name, 'points' => $power->value)); ?></p>
-                        </div>
-                    
-                <?php endforeach; ?>
-                </div>
+                                    </div>
+                                    <div class="col-xs-8">
 
-                <br />
+                                        <h6 style="margin-bottom:15px; font-size:12pt"><?= Yii::t('MissionsModule.base', 'Secondary Power(s)') ?></h6>
+                                            <?php
+                                                foreach($activity->getSecondaryPowers() as $power):
+                                                    if($firstSecondary)
+                                                        $firstSecondary = false;
 
-                <h6 style="margin-bottom:15px; font-size:12pt"><?= Yii::t('MissionsModule.base', 'Secondary Power(s)') ?></h6>
-                    <div style="display: flex; flex-wrap: wrap;">
-                        <?php
-                            foreach($activity->getSecondaryPowers() as $power):
-                                if($firstSecondary)
-                                    $firstSecondary = false;
+                                                    $name = $power->getPower()->title;
 
-                                $name = $power->getPower()->title;
+                                                    if(Yii::$app->language == 'es' && isset($power->getPower()->powerTranslations[0]))
+                                                        $name = $power->getPower()->powerTranslations[0]->title;
+                                            ?>
+                                                
+                                            <div>
+                                                <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
+                                                <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
+                                            </div>
+                                            
+                                        <?php endforeach; ?>
 
-                                if(Yii::$app->language == 'es' && isset($power->getPower()->powerTranslations[0]))
-                                    $name = $power->getPower()->powerTranslations[0]->title;
-                        ?>
-
-                            
-                        <div>
-                            <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
-                            <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
-                        </div>
-                        
-                        
-                            <div class="power-cards">
-                                <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
-                                <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '+{points} {power}', array('power' => $name, 'points' => $power->value)); ?></p>
-                            </div>
-                        
-                        
-                        <?php endforeach; ?>
-                    </div>
-
-        </div>
+                                    </div>
+                                </div>
 
             <!-- <div class="row">
                 <div class="col-xs-4"></div>
