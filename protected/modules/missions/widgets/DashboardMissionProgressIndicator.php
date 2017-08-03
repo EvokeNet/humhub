@@ -28,7 +28,11 @@ class DashboardMissionProgressIndicator extends \yii\base\Widget
         //$mission_progress = array();
         //$mission_total = array();
 
+        // get latest mission id
         $mission_progress = DashboardMissionProgressIndicator::getProgress();
+        // get position
+        $mission_progress = Missions::findOne($mission_progress)->position;
+
         // $mission_total = Missions::find()
         //                 ->where(['missions.locked' => 0])
         //                 ->count();
@@ -46,7 +50,7 @@ class DashboardMissionProgressIndicator extends \yii\base\Widget
          $i = 0;
 
          foreach($missions as $m):
-            $i++;
+            $i = $m->position;
             $stats = DashboardMissionProgressIndicator::getMissionStats($m->id);
 
             if($i <= $mission_progress + 1 || ($i == 1 && $mission_progress == -1)){
