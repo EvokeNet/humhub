@@ -3,6 +3,7 @@
 namespace app\modules\matching_questions\models;
 
 use Yii;
+use humhub\modules\user\models\Profile;  
 
 /**
  * This is the model class for table "user".
@@ -127,6 +128,13 @@ class User extends \yii\db\ActiveRecord
             ->innerJoin('space_membership as m', '`m`.`space_id` = `space`.`id`')
             ->where('m.status = 3')
             ->andWhere('m.user_id ='. $this->id);
+    }
+
+     public function getName() {
+      $profile = Profile::find()->where(['user_id' => $this->id])->one();
+      $name = $profile->firstname . ' ' . $profile->lastname;
+
+      return $name;
     }
 
 

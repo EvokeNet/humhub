@@ -11,7 +11,7 @@ echo Breadcrumbs::widget([
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
 ]);
 
-$this->pageTitle = Yii::t('MissionsModule.base', 'Missions');
+$this->pageTitle = Yii::t('MissionsModule.page_titles', 'Missions');
 
 ?>
 

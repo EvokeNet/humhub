@@ -20,7 +20,7 @@
  ?>
 <div class="container">
   <div class="row">
-      <div class="col-xs-7 layout-content-container">
+      <div class="col-sm-7">
 
           <div class="panel panel-default">
 
@@ -32,7 +32,7 @@
 
                 <div class="panel-body">
 
-                  <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'The powers that you possess are:') ?></p>
+                  <h6 style = "margin:10px 0; text-align:center"><?php echo Yii::t('MatchingModule.base', 'The powers that you possess are:') ?></h6>
 
                   <div class="relevant-powers text-center">
                     <?php foreach($relevant_powers as $user_power): ?>
@@ -59,8 +59,9 @@
                     <?php endforeach; ?>
                   </div>
                 </div>
+            </div>
 
-                <br>
+            <div class="panel panel-default">
 
                 <!-- additional powers -->
                  <div class="panel-heading">
@@ -68,7 +69,7 @@
                   <h4><?php echo Yii::t('MatchingModule.base', 'Your Super Powers') ?></h4>
                 </div>
                 <div class="panel-body">
-                  <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'Your powers are the reason why I have summoned you. They are the skills that qualify you to be part of the Evoke network. Now it is time to be your best. Over the course of this experience you must develop the four fundamental superpowers of Evoke agents:') ?></p>
+                  <p style = "margin:10px 0; text-align:center"><?php echo Yii::t('MatchingModule.base', 'Your powers are the reason why I have summoned you. They are the skills that qualify you to be part of the Evoke network. Now it is time to be your best. Over the course of this experience you must develop the four fundamental superpowers of Evoke agents:') ?></p>
 
                   <?php
                     foreach ($super_powers as $quality):
@@ -83,17 +84,15 @@
 
                   ?>
 
-                    <div style = "display:flex; margin-top:30px">
+                    <div class="matching-results-box">
                       
                       <div class="row">
-                        <div class="col-sm-3" style = "margin-top:10px">
+                        <div class="col-sm-3">
                           <img src = "<?php echo $quality->image ?>" width=100 class = "power-border">
                         </div>
                         <div class="col-sm-9">
-                          <h6 style = "font-weight:700; color: #9013FE; margin-bottom:5px"><?= $name ?></h6>
-                          <p style = "font-weight:700; color: #254054">
-                            <?= $description ?>
-                          </p>
+                          <h6><?= $name ?></h6>
+                          <p><?= $description ?></p>
                         </div>
                       </div>
                       
@@ -112,7 +111,7 @@
                   <h6 style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'According to the powers that you have, you are closest to achieving:') ?></h6>
 
                   <img src = "<?php echo $super_power_image_url ?>" width=120 class = "power-border" style = "margin-top:30px">
-                  <h6 style = "color: #9013FE; font-weight:700"><?= $quality1_name ?></h6>
+                  <h6 style = "margin-top:20px;text-transform: uppercase;font-weight:700"><?= $quality1_name ?></h6>
 
                   <br>
                   <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', 'On this platform you can submit evidence to complete activities within each mission. This will develop all of the superpowers.') ?></p>
@@ -136,13 +135,23 @@
 
               </div>
       </div>
-      <div class="col-xs-5 layout-sidebar-container">
+      <div class="col-sm-5">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4><?php echo Yii::t('MatchingModule.base', 'Welcome to the Evoke network') ?></h4>
           </div>
           <div class = "panel-body">
-            <span style = "font-size: 12pt;"><?php echo Yii::t('MatchingModule.base', "Over the next 16 weeks you will be asked to respond to the urgent challenge of forced displacement and peace in your country.  You have been selected because of your unique potential to change the world.  You have some powers there is no doubt, but you will need to increase your powers to realize your potential.  I have asked one of our best agents -- Marta -- to share her story and guide you on this journey.<br><br>Over the course of these 16 weeks you will form a team to create your unique world changing idea or as we call it in the Evoke network -- your Evokation.  Your Evokation will be created as you respond to the 8 missions I will give you.  At the end of the journey, the network will invest evocoin in your Evokations. The 10 Evokations with the most investment will be reviewed by experts in my network and the top 3 will receive recognition and reward.  As a team you must complete all 6 activities for each mission to advance to the next mission.  By completing activities, your powers will increase.<br><br>You will also earn Evocoin -- the currency of the Evoke network -- each time you contribute to the quality of our collective thought by giving power to others and commenting on their contributions.  Evocoin will be used at the end of your journey to invest in those world changing ideas that you think will have the greatest impact on your community, your country, the world. <br><br>You will also be given opportunities during the 16 weeks to exchange your Evocoin for assistance in completing your Evokation by accessing Evoke tools - transportation, materials, and other forms of support will be provided....for a cost.<br><br>Good luck agents. I look forward to checking in on your progress and recognizing your final Evokations at the end of this journey.") ?></span>
+
+            <span style = "font-size: 12pt;"><?php echo Yii::t('MatchingModule.base', "Over the next 16 weeks you will be asked to respond to the urgent challenge of forced displacement and peace in your country. You have been selected because of your unique potential to change the world. You have some powers there is no doubt, but you will need to increase your powers to realize your potential. I have asked one of our best agents -- Marta -- to share her story and guide you on this journey.") ?></span><br /><br />
+
+            <span style = "font-size: 12pt;"><?php echo Yii::t('MatchingModule.base', "Over the course of these 16 weeks you will form a team to create your unique world changing idea or as we call it in the Evoke network -- your Evokation. Your Evokation will be created as you respond to the 8 missions I will give you.  At the end of the journey, the network will invest evocoin in your Evokations. The 10 Evokations with the most investment will be reviewed by experts in my network and the top 3 will receive recognition and reward.") ?></span><br /><br />
+
+            <span style = "font-size: 12pt;"><?php echo Yii::t('MatchingModule.base', "As a team you must complete all 6 activities for each mission to advance to the next mission. By completing activities, your powers will increase. You will also earn Evocoin -- the currency of the Evoke network -- each time you contribute to the quality of our collective thought by giving power to others and commenting on their contributions. Evocoin will be used at the end of your journey to invest in those world changing ideas that you think will have the greatest impact on your community, your country, the world.") ?></span><br /><br />
+
+            <span style = "font-size: 12pt;"><?php echo Yii::t('MatchingModule.base', "You will also be given opportunities during the 16 weeks to exchange your Evocoin for assistance in completing your Evokation by accessing Evoke tools - transportation, materials, and other forms of support will be provided....for a cost") ?></span><br /><br />
+
+            <span style = "font-size: 12pt;"><?php echo Yii::t('MatchingModule.base', "Good luck agents. I look forward to checking in on your progress and recognizing your final Evokations at the end of this journey.") ?></span>
+
           </div>
         </div>
       </div>

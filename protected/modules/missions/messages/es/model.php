@@ -17,13 +17,14 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Chapter #{chapter} - Page #{page}' => 'Capítulo #{chapter} - Página #{page}',
+    'Novel Chapter #{number}' => '',
     'Activities' => 'Actividades',
     'Activities ID' => 'Identificación de Actividades',
     'Activity ID' => 'Identificación de Actividad',
     'Activity Powers' => 'Poderes de actividad',
     'Activity Translations' => 'Traducciones de actividad',
     'Are you sure you want to delete this item?' => '¿Está seguro de que desea eliminar este artículo?',
+    'Chapter #{chapter} - Page #{page}' => 'Capítulo #{chapter} - Página #{page}',
     'Comment' => 'Comentario',
     'Create' => 'Crear',
     'Create Activities' => 'Create Actividades',
@@ -49,7 +50,6 @@ return [
     'Mission Translations' => 'Traducciones de misión',
     'Modified At' => 'Modificado en',
     'No, it does not meet the activity\'s requirement' => 'No, no cumple con el requisito de la actividad',
-    'Novel Chapter #{number}' => 'Capítulo #{number}',
     'Points' => 'Puntos',
     'Position' => 'Posición',
     'Power ID' => 'Identificación de poder',

@@ -34,7 +34,7 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
     <div class="panel-body text-center">
         <p><?= Yii::t('MissionsModule.base', 'Earn Evocoins by reviewing evidence.') ?></p>
 
-        <div class = "home-widget-evocoins" style = "margin-left:30px">
+        <div class = "home-widget-evocoins" style = "margin: 10px 0 5px 30px;">
             <img src="<?php echo Url::to('@web/themes/Evoke/img/evocoin_bg.png') ?>" width = "120px">
             <div><p id="userEvocoins" style = "font-size:15pt"><?= $wallet->amount ?></p></div>
         </div>
@@ -44,7 +44,18 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
         <?php if($space): ?>
         <div style = "margin-top:20px">
             <a class = "btn btn-cta1" href='<?= Url::to(['/missions/review/index', 'sguid' => $space->guid]) ?>'>
-                    <?= Yii::t('MissionsModule.base', 'Review Evidence') ?>
+                    <?php // Yii::t('MissionsModule.base', 'Review evidences') ?>
+                    <?php
+                    
+                        $user = Yii::$app->user->getIdentity();
+
+                        if($user->group->name == "Mentors"){
+                            echo Yii::t('MissionsModule.base', 'Review Evidences');
+                        } else{
+                            echo Yii::t('MissionsModule.base', 'Tag Evidences');
+                        }
+
+                    ?>
             </a>
         </div>
         <?php endif; ?>
@@ -86,7 +97,7 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
     <div class="panel-body text-center">
         <p><?= Yii::t('MissionsModule.base', 'Earn Evocoins by reviewing evidence.') ?></p>
 
-        <div class = "home-widget-evocoins" style = "margin-left:30px">
+        <div class = "home-widget-evocoins" style = "margin: 10px 0 5px 30px;">
             <img src="<?php echo Url::to('@web/themes/Evoke/img/evocoin_bg.png') ?>" width = "120px">
             <div><p id="userEvocoins" style = "font-size:15pt"><?= $wallet->amount ?></p></div>
         </div>
@@ -96,7 +107,18 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
         <?php if($space): ?>
         <div style = "margin-top:20px">
             <a class = "btn btn-cta1" href='<?= Url::to(['/missions/review/index', 'sguid' => $space->guid]) ?>'>
-                    <?= Yii::t('MissionsModule.base', 'Review Evidence') ?>
+                <?php // Yii::t('MissionsModule.base', 'Review evidences') ?>
+                <?php
+                
+                    $user = Yii::$app->user->getIdentity();
+
+                    if($user->group->name == "Mentors"){
+                        echo Yii::t('MissionsModule.base', 'Review Evidences');
+                    } else{
+                        echo Yii::t('MissionsModule.base', 'Tag Evidences');
+                    }
+
+                ?>
             </a>
         </div>
         <?php endif; ?>
@@ -132,10 +154,12 @@ $avg = number_format((float) Evidence::getUserAverageRating(Yii::$app->user->get
         <h6><?= Yii::t('MissionsModule.base', 'Your average rating: {avg}', array('avg' => $avg)) ?></h6>
 
         <?php if($member): ?>
-            <a id="submit_evidence" class="btn btn-cta1" style="margin-top:5px" href="<?= Url::to(['/missions/evidence/missions', 'sguid' => $member->space->guid]); ?>">
+            <a id="submit_evidence" class="btn btn-cta1" style="margin: 5px 0 15px" href="<?= Url::to(['/missions/evidence/missions', 'sguid' => $member->space->guid]); ?>">
                 <?php echo Yii::t('MissionsModule.base', 'Submit Evidence'); ?>
             </a>
         <?php endif; ?>
+
+        <br />
 
         <p style = "font-size:10pt"><?= Yii::t('MissionsModule.base', 'Every time you submit evidence, your overall rating will improve.') ?><p>
 

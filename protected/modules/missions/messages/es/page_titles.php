@@ -17,5 +17,11 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Evokations' => 'Evocaciones',
+    'Mission {mission}' => 'Misión {mission}',
+    'Missions' => 'Misiones',
+    'M{mp}A{ap} : {alias}' => 'M{mp}A{ap} : {alias}',
     'Review Evidence' => 'Revisar Evidencía',
+    'Space Members' => 'Membros del espacío',
+    '{name}\'s Evokation' => 'Evokación de {name}',
 ];

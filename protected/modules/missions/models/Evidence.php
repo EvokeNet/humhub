@@ -15,6 +15,11 @@ use humhub\modules\content\models\Content;
 use app\modules\missions\models\ActivityPowers;
 use app\modules\powers\models\UserPowers;
 use app\modules\teams\models\Team;
+use app\modules\missions\models\Activities;
+use app\modules\coin\models\Wallet;
+use app\modules\missions\models\Missions;
+use app\modules\missions\models\TeamMission;
+use app\modules\alliances\models\Alliance;
 
 /**
  * This is the model class for table "evidence".
@@ -196,6 +201,55 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
         return true;
     }
 
+    public function evidenceForActivityStatus($activityId = "", $userId = ""){
+
+        $evidence = Evidence::findOne(['activities_id' => $activityId, 'created_by' => $userId]);
+
+        $flag = '';
+        $current_user = Yii::$app->user->getIdentity();
+
+        if(\app\modules\alliances\Alliances::isEnabled()){
+            $author_alliance = Alliance::find()->findByTeam(Team::getUserTeam($userId))->one();
+        }else{
+            $author_alliance = null;
+        }
+        
+        $is_ally = false;
+        if($author_alliance){
+            $is_ally = $author_alliance->isAlly(Team::getUserTeam($current_user->id));
+        }
+
+        if ($current_user->group->name == "Mentors" || $is_ally) {
+          $can_review = true;
+        } else {
+          $can_review = false;
+        }
+
+        if(!$evidence){
+            $flag = 'empty';
+        } else{
+            $vote_ally = Votes::findOne(['evidence_id' => $evidence->id, 'user_type' => 'Users']);
+            $vote_mentor = Votes::findOne(['evidence_id' => $evidence->id, 'user_type' => 'Mentors']);
+            $vote_current_user =Votes::findOne(['evidence_id' => $evidence->id, 'user_id' => $current_user->id]);
+
+            if($vote_ally && $vote_mentor){
+                $flag = 'both';
+            } else if($vote_ally && !$vote_mentor){
+                $flag = 'vote_ally';
+            } else if(!$vote_ally && $vote_mentor){
+                $flag = 'vote_mentor';
+            } else{
+                $flag = 'submit';
+            }
+
+            if (!$vote_current_user && $can_review) {
+              $flag .= ' pulse';
+            }
+        }
+
+        return $flag;
+    }
+
     public function hasUserSubmittedEvidence($activityId = "", $userId = "")
     {
 
@@ -210,7 +264,7 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
         // check if activity is a group activity
         // if so we must look for anyone in the team with a submitted evidence
         if ($activity->is_group) {
-          // find the team and it's members
+          // find the team and its members
           $team_id = Team::getUserTeam($userId);
           $team = Team::findOne($team_id);
 
@@ -362,9 +416,34 @@ class Evidence extends ContentActiveRecord implements \humhub\modules\search\int
             foreach($activityPowers as $activity_power){
                 UserPowers::removePowerPoint($activity_power->getPower(), $user, $activity_power->value);
             }
+
+            //Remove evocoins
+            $is_group_activity = Activities::findOne(['id' => $this->activities_id])->is_group;
+
+            if($is_group_activity){
+                $team_id = Team::getUserTeam($this->created_by);
+                $team = Team::findOne($team_id);
+                $team_members = $team->getTeamMembers();
+
+                foreach ($team_members as $team_member) {
+                    $wallet = Wallet::find()->where(['owner_id' => $team_member->id])->one();
+                    $wallet->removeCoin(10);
+                    $wallet->save();
+                }
+
+            }else{
+                $wallet = Wallet::find()->where(['owner_id' => $this->created_by])->one();
+                $wallet->removeCoin(10);
+                $wallet->save();
+            }
+
         }
 
         return parent::beforeDelete();
+    }
+
+    public static function getUserEvidence($user_id, $activity_id){
+        return Evidence::findOne(['created_by' => $user_id, 'activities_id' => $activity_id]);
     }
 
 }

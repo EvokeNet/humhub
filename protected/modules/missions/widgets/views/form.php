@@ -5,6 +5,8 @@ use yii\helpers\ArrayHelper;
 $firstPrimary = true;
 $firstSecondary = true;
 
+$this->registerJsFile('js/stream.js');
+
 ?>
 
 <div id="evidence_form">
@@ -22,7 +24,7 @@ $firstSecondary = true;
             </p>
             <br />
 
-            <div class="row" style="margin-bottom:20px">
+            <div class="row" style="margin:30px 0 20px;">
                 <div class="col-xs-4">
 
                     <h6 style="margin-bottom:15px; font-size:12pt"><?= Yii::t('MissionsModule.base', 'Primary Power') ?></h6>
@@ -38,10 +40,10 @@ $firstSecondary = true;
                     ?>
 
                     
-                    <div>
-                        <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
-                        <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
-                    </div>
+                        <div>
+                            <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
+                            <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
+                        </div>
                         
                     <?php endforeach; ?>
 
@@ -70,14 +72,6 @@ $firstSecondary = true;
                 </div>
             </div>
 
-            <!-- <div class="row">
-                <div class="col-xs-4"></div>
-                <div class="col-xs-8">
-
-                </div>
-
-            </div> -->
-
             <span class="mission-title" style="font-size:11pt; margin:30px 0 10px"><?= Yii::t('MissionsModule.widgets_views_evidenceForm', "<strong>Rubric:</strong> {rubric}", array('rubric' => isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->rubric : $activity->rubric)) ?></span>
 
         </div>    
@@ -102,7 +96,7 @@ $firstSecondary = true;
                 <?php
 
                 echo "<br>";
-
+                echo "<div style='float:right'>";
                 echo \humhub\widgets\AjaxButton::widget([
                     'label' => Yii::t('MissionsModule.widgets_EvidenceFormWidget', 'Save Draft'),
                     'ajaxOptions' => [
@@ -115,9 +109,10 @@ $firstSecondary = true;
                     ],
                     'htmlOptions' => [
                         'id' => "post_draft_button",
-                        'class' => 'btn btn-primary btn-comment-submit',
+                        'class' => 'save_draft_link',
                         'type' => 'submit'
                 ]]);
+                echo "</div>";
             ?>
         </div>
     </div>
@@ -127,7 +122,8 @@ $firstSecondary = true;
 <script type="text/javascript">
 
 $( document ).ready(function() {
-   var oldHandleResponse = handleResponse;
+
+    oldHandleResponse = handleResponse;
 
     handleResponse = function(response) {
       oldHandleResponse(response);
@@ -136,7 +132,9 @@ $( document ).ready(function() {
             window.location.hash = "";
             window.location.hash = "wallEntry_" + response.wallEntryId;
       }
-      loadPopUps();
+      console.log("Loading pop up after evidence submission");
+      reLoadPopUps();
+      updateEvocoins();
     }
 
 });
@@ -158,3 +156,19 @@ $('textarea[name=text]#contentForm_question').keyup(function() {
 })
 
 </script>
+
+
+<style>
+.save_draft_link{
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    color: white;
+    text-decoration: underline;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+</style>

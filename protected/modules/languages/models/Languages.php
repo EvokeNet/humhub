@@ -66,4 +66,8 @@ class Languages extends \yii\db\ActiveRecord
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
+
+    public static function getLanguage(){
+        return Languages::findOne(['code' => Yii::$app->language]);
+    }
 }

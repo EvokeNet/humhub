@@ -6,6 +6,8 @@ use Yii;
 use app\modules\powers\models\QualityPowers;
 use app\modules\powers\models\UserPowers;
 use app\modules\powers\models\UserQualities;
+use app\modules\powers\models\PowerTranslations;
+use app\modules\languages\models\Languages;
 
 /**
  * This is the model class for table "powers".
@@ -109,7 +111,7 @@ class Powers extends \yii\db\ActiveRecord
     {
         return $this->hasMany(UserPowers::className(), ['power_id' => 'id']);
     }
-    
+
     public function afterSave($insert, $changedAttributes)
     {
         $user_powers = UserPowers::findAll(['power_id' => $this->id]);
@@ -120,12 +122,36 @@ class Powers extends \yii\db\ActiveRecord
             //update power and quality levels
             foreach($user_powers as $user_power){
                 $user_power->updateLevel();
-                $user_quality = UserQualities::findOne(['quality_id' => $quality->quality_id]);    
+                $user_quality = UserQualities::findOne(['quality_id' => $quality->quality_id]);
                 $user_quality->updateLevel();
             }
         }
         return parent::afterSave($insert, $changedAttributes);
 
     }
-    
+
+    /**
+     *  returns the name of the power in the appropriate language
+     *  @return string
+     */
+    public function getName()
+    {
+      $lang = Languages::findOne(['code' => Yii::$app->language]);
+      if(isset($lang))
+          return $power_name = PowerTranslations::findOne(['power_id' => $this->id])->title;
+      else{
+        return $this->title;
+      }
+    }
+
+    public function getDescription()
+    {
+      $lang = Languages::findOne(['code' => Yii::$app->language]);
+      if(isset($lang))
+          return $power_description = PowerTranslations::findOne(['power_id' => $this->id])->description;
+      else{
+        return $this->description;
+      }
+    }
+
 }

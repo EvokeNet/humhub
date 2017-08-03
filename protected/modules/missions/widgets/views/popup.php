@@ -138,8 +138,8 @@ function addToMessagesArray(currentMessage){
 
 function checkDuplication(currentMessage){
   for (msg in messages) {
-    // console.log(currentMessage);
-    // console.log(messages[msg]);
+     //console.log(currentMessage);
+     //console.log(messages[msg]);
     if(currentMessage === messages[msg]){
       return true;
     }
@@ -150,6 +150,7 @@ function checkDuplication(currentMessage){
 function reLoadPopUps(){
   messages = [];
   deactivatePopUp();
+  console.log("Trying to load pop up");
   loadPopUps();
 }
 
@@ -172,6 +173,8 @@ function loadPopUps(){
               //if duplicated messages
               if(checkDuplication(xhttp.responseText)){
                 // do nothing
+                console.log("Duplicated message");
+                deactivatePopUp();
               }else if(message['type'] == 'animated'){
                 console.log("animate");
                 animatePopUp(message['title'], message['message'], message['image_url']);  
@@ -218,7 +221,7 @@ function animatePopUp(title, message, image_url){
 
   $("#animated-popup").show();
   slideOutPopUp();
-  activatedPopUp = false;
+  deactivatePopUp();
 }
 
 // not working
@@ -238,6 +241,7 @@ function slideOutPopUp(){
       //hide
       $("#animated-popup").hide();
   });
+  deactivatePopUp();
 }
 
 function removeAnimation(animationName){
@@ -245,13 +249,13 @@ function removeAnimation(animationName){
 }
 
 function showMessage(title, message){
+  console.log("showing: "+title);
   document.getElementById("message-title").innerHTML = title;
   document.getElementById("message-content").innerHTML = message;
   $("#popup-message").modal("show");
   deactivatePopUp();
   console.log("closing message");
 }
-
 
 function deactivatePopUp(){
   activatedPopUp = false;

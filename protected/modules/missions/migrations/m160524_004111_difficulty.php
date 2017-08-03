@@ -42,8 +42,8 @@ class m160524_004111_difficulty extends Migration
         $this->insert('difficulty_levels', [
             'title' => 'Hard',
             'points' => 10,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s"),
         ]);
 
     }

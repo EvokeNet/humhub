@@ -11,13 +11,20 @@ $teams_count = count($teams);
 
 $activity = null;
 
-$this->pageTitle = Yii::t('MissionsModule.event', 'Review Evidences');
 $user = Yii::$app->user->getIdentity();
+
+if($user->group->name == "Mentors"){
+  $title = Yii::t('MissionsModule.base', 'Review Evidences');
+} else{
+  $title = Yii::t('MissionsModule.base', 'Tag Evidences');
+}
+
+$this->pageTitle = $title;
 
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h4 style="margin-top:10px"><?php echo Yii::t('MissionsModule.base', 'Review Evidence'); ?></h4>
+        <h4 style="margin-top:10px"><?php echo $title; ?></h4>
         <?php if($activity): ?>
         <h6><?php echo Yii::t('MissionsModule.base', '{first} of {total}', array('first' => ($evidence_count - $evidence_to_review_count + 1), 'total' => $evidence_count)); ?></h6>
         <?php endif; ?>

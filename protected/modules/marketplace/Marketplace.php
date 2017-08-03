@@ -4,9 +4,9 @@ namespace app\modules\marketplace;
 
 use app\modules\marketplace\models\marketplace
 /**
- * Prize Module Definition Class
+ * Marketplace Module Definition Class
  */
- class Prize extends \yii\base\Module
+ class Marketplace extends \yii\base\Module
  {
 
    /**

@@ -124,7 +124,7 @@ $firstSecondary = true;
             <div class="panel-heading">
 
                 <h5>
-                    <span><?php echo $mission->position >= 1 ? '#'.$mission->position : "#" ?></span>&nbsp;
+                    <span style="color:#FEAE1B"><?php echo $mission->position >= 1 ? '#'.$mission->position : "#" ?></span>&nbsp;
                     <span class="mission-title"><?= $mission_title ?></span>
                 </h5>
 

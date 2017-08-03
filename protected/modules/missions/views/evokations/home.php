@@ -23,7 +23,7 @@ echo Breadcrumbs::widget([
 
 $hasTeamSubmittedEvokation = Evokations::hasTeamSubmittedEvokation($contentContainer->id);
 
-$this->pageTitle = Yii::t('MissionsModule.evokation_Home', "{name}'s Evokation", array('name' => $contentContainer->name));
+$this->pageTitle = Yii::t('MissionsModule.page_titles', "{name}'s Evokation", array('name' => $contentContainer->name));
 
 $total = 0;
 $done = 0;
@@ -44,35 +44,38 @@ endforeach;
 
 ?>
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <div style="color: red">
-            <?php if($voting_deadline && $voting_deadline->hasEnded()): ?>
-                <?php echo Yii::t('MissionsModule.evokation_Home', "Voting Closed"); ?>
-            <?php endif; ?>
-        </div>
-        <?php if(Setting::Get('enabled_evokations')): ?>
-            <?php if(!$hasTeamSubmittedEvokation && Yii::$app->user->getIdentity()->id == $contentContainer->created_by && $deadline && $deadline->isOccurring()): ?>
-                <a class = "btn btn-cta2" href='<?= Url::to(['/missions/evokations/submit', 'sguid' => $contentContainer->guid]); ?>' style = "margin-top:10px">
-                    <?= Yii::t('MissionsModule.evokation_Home', 'Submit Elevator Pitch') ?>
-                </a>
-            <?php elseif($hasTeamSubmittedEvokation && $deadline && $deadline->isOccurring()): ?>
-                <a class = "btn btn-cta2" href='<?= Url::to(['/missions/evokations/submit', 'sguid' => $contentContainer->guid]); ?>' style = "margin-top:10px">
-                    <?= Yii::t('MissionsModule.evokation_Home', 'See Elevator Pitch') ?>
-                </a>
-            <?php endif; ?>
-
-            <?php if($voting_deadline && $voting_deadline->isOccurring()): ?>
-                <a class = "btn btn-cta2" href='<?= Url::to(['/missions/evokations/voting', 'sguid' => $contentContainer->guid]); ?>' style = "margin-top:10px">
-                    <?= Yii::t('MissionsModule.evokation_Home', 'Vote on Evokations') ?>
-                </a>
-            <?php elseif($voting_deadline && $voting_deadline->hasEnded()): ?>
-                <a class = "btn btn-cta2" href='<?= Url::to(['/missions/evokations/list', 'sguid' => $contentContainer->guid]); ?>' style = "margin-top:10px">
-                    <?= Yii::t('MissionsModule.evokation_Home', 'See results') ?>
-                </a>
-            <?php endif; ?>
+<div class="evokation-voting-close">
+    <div class="label-danger" style="font-size:12pt; color: #F4F4F4; text-align: center">
+        <?php if($voting_deadline && $voting_deadline->hasEnded()): ?>
+            <?php echo Yii::t('MissionsModule.evokation_Home', "Voting's Closed"); ?>
+        <?php endif; ?>
+    </div><br />
+    <?php if(Setting::Get('enabled_evokations')): ?>
+        <?php if(!$hasTeamSubmittedEvokation && Yii::$app->user->getIdentity()->id == $contentContainer->created_by && $deadline && $deadline->isOccurring()): ?>
+            <a class = "btn btn-cta2" href='<?= Url::to(['/missions/evokations/submit', 'sguid' => $contentContainer->guid]); ?>' style = "margin-top:10px">
+                <?= Yii::t('MissionsModule.evokation_Home', 'Submit Elevator Pitch') ?>
+            </a>
+        <?php elseif($hasTeamSubmittedEvokation && $deadline && $deadline->isOccurring()): ?>
+            <a class = "btn btn-cta2" href='<?= Url::to(['/missions/evokations/submit', 'sguid' => $contentContainer->guid]); ?>' style = "margin-top:10px">
+                <?= Yii::t('MissionsModule.evokation_Home', 'See Elevator Pitch') ?>
+            </a>
         <?php endif; ?>
 
+        <?php if($voting_deadline && $voting_deadline->isOccurring()): ?>
+            <a class = "btn btn-cta2" href='<?= Url::to(['/missions/evokations/voting', 'sguid' => $contentContainer->guid]); ?>' style = "margin-top:10px">
+                <?= Yii::t('MissionsModule.evokation_Home', 'Vote on Evokations') ?>
+            </a>
+        <?php elseif($voting_deadline && $voting_deadline->hasEnded()): ?>
+            <a class = "btn btn-cta2" href='<?= Url::to(['/missions/evokations/list', 'sguid' => $contentContainer->guid]); ?>' style = "margin-top:10px">
+                <?= Yii::t('MissionsModule.evokation_Home', 'See results') ?>
+            </a>
+        <?php endif; ?>
+    <?php endif; ?>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        
         <!--<div style = "margin-top:10px; float:right">
             <div class="progress">
                 <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?= floor(($done/$total)*100) ?>%;">
@@ -152,48 +155,50 @@ endforeach;
                 <div class="panel-heading" role="tab" id="collapseListGroupHeading1">
                     <h4 class="panel-title">
                         <a class="" role="button" data-toggle="collapse" href="#collapseListGroup<?=$x?>" aria-expanded="true" aria-controls="collapseListGroup1">
-                            <?= isset($category->evokationCategoryTranslations[0]) ? $category->evokationCategoryTranslations[0]->title : $category->title ?>
+                            <?= isset($category->evokationCategoryTranslations[0]) && Yii::$app->language == 'es' ? $category->evokationCategoryTranslations[0]->title : $category->title ?>
                         </a>
                     </h4>
                 </div>
 
-                <div id="collapseListGroup<?=$x?>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="true">
-                    <ul class="list-group">
-                        <?php foreach ($category->activities as $activity):
-                            if($activity->mission->locked == 0): ?>
-                            <li class="list-group-item">
+                <div class="panel-body">
+                    <div id="collapseListGroup<?=$x?>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="true">
+                        <ul class="list-group">
+                            <?php foreach ($category->activities as $activity):
+                                if($activity->mission->locked == 0): ?>
+                                <li class="list-group-item" style="padding-top:10px; padding-bottom:10px">
 
-                                <?php
+                                    <?php
 
-                                $a = isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title;
-                                // echo Html::a(
-                                // $a,
-                                // ['evidences', 'activities', 'categoryId' => $mission->id, 'sguid' => $contentContainer->guid]);
+                                    $a = isset($category->evokationCategoryTranslations[0]) && Yii::$app->language == 'es' ? $activity->activityTranslations[0]->title : $activity->title;
+                                    // echo Html::a(
+                                    // $a,
+                                    // ['evidences', 'activities', 'categoryId' => $mission->id, 'sguid' => $contentContainer->guid]);
 
-                                echo Html::a($a, ['evidence/show', 'activityId' => $activity->id, 'sguid' => $contentContainer->guid], ['class' => 'profile-link']);
+                                    echo Html::a($a, ['evidence/show', 'activityId' => $activity->id, 'sguid' => $contentContainer->guid], ['class' => 'profile-link', 'style' => 'font-size:11pt']);
 
-                                $is_complete = false;
+                                    $is_complete = false;
 
-                                foreach ($activity->evidences as $evidence):
-                                    if($evidence->content->space_id==$contentContainer->id)
-                                        $is_complete = true;
-                                endforeach;
+                                    foreach ($activity->evidences as $evidence):
+                                        if($evidence->content->space_id==$contentContainer->id)
+                                            $is_complete = true;
+                                    endforeach;
 
-                                if($is_complete): ?>
-                                    <span style = "float:left; margin-right:10px"><i class="fa fa-check-circle-o" aria-hidden="true"></i></span>
-                                <?php else: ?>
-                                    <span style = "float:left; margin-right:10px"><i class="fa fa-circle-o" aria-hidden="true"></i></span>
-                                <?php endif;  ?>
+                                    if($is_complete): ?>
+                                        <span style = "float:left; margin: 4px 10px 0 0"><i class="fa fa-check-circle-o" aria-hidden="true"></i></span>
+                                    <?php else: ?>
+                                        <span style = "float:left; margin: 4px 10px 0 0"><i class="fa fa-circle-o" aria-hidden="true"></i></span>
+                                    <?php endif;  ?>
 
-                                <span class="label label-default" style = "margin-left:10px"><?= isset($activity->mission->missionTranslations[0]) ? $activity->mission->missionTranslations[0]->title : $activity->mission->title ?></span>
+                                    <span class="label label-default" style="font-size: 8pt!important; margin-left: 10px; white-space: pre-wrap;"><?= isset($activity->mission->missionTranslations[0]) ? $activity->mission->missionTranslations[0]->title : $activity->mission->title ?></span>
 
-                            </li>
-                        <?php endif; endforeach; ?>
-                        <!--<li class="list-group-item">Bootply</li>
-                        <li class="list-group-item">One itmus ac facilin</li>
-                        <li class="list-group-item">Second eros</li> -->
-                    </ul>
-                    <!--<div class="panel-footer">Footer</div> -->
+                                </li>
+                            <?php endif; endforeach; ?>
+                            <!--<li class="list-group-item">Bootply</li>
+                            <li class="list-group-item">One itmus ac facilin</li>
+                            <li class="list-group-item">Second eros</li> -->
+                        </ul>
+                        <!--<div class="panel-footer">Footer</div> -->
+                    </div>
                 </div>
 
              </div>
@@ -276,3 +281,5 @@ function updateInput(id, value){
 }
 
 </script>
+
+

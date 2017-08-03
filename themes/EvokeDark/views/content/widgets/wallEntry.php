@@ -75,12 +75,10 @@ if($team_id){
 
                 <!-- show username with link and creation time-->
                 <h4 class="media-heading" style = "margin: 5px 0">
-                    <?php if (!$object instanceof \humhub\modules\post\models\Post) : ?>
-                        <!-- <span class="label label-border pull-right"><?php //echo $object->getContentName(); ?></span> -->
-                        <a href="<?php echo $user->getUrl(); ?>"><?= $user->displayName ?></a>
-                            <?php //echo Yii::t('ContentModule.views_wallLayout', '{name} created a new <span class="label label-border">{content}</span>', array('name' => $user->displayName, 'content' => $object->getContentName())); ?>
-                            <span style="color:#A6AAB6"><?php echo Yii::t('ContentModule.views_wallLayout', 'posted an {content}', array('name' => $user->displayName, 'content' => $object->getContentName())); ?></span>
-                        
+                <?php if (!$object instanceof \humhub\modules\post\models\Post) : ?>
+                    <a href="<?php echo $user->getUrl(); ?>"><?= $user->displayName ?></a>
+                    <?php //echo Yii::t('ContentModule.views_wallLayout', '{name} created a new <span class="label label-border">{content}</span>', array('name' => $user->displayName, 'content' => $object->getContentName())); ?>
+                    <span style="color:#A6AAB6"><?php echo Yii::t('ContentModule.views_wallLayout', 'posted an {content}', array('name' => $user->displayName, 'content' => $object->getContentName())); ?></span>
                     <?php else: ?>
                         <a href="<?php echo $user->getUrl(); ?>">
                             <?php echo Yii::t('ContentModule.views_wallLayout', '{name}', array('name' => $user->displayName)); ?>

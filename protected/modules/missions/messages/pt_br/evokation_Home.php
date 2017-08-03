@@ -35,7 +35,7 @@ return [
     'Update' => '',
     'Updated' => '',
     'Vote on Evokations' => '',
-    'Voting Closed' => '',
+    'Voting\'s Closed' => '',
     'You can access it through the following link:' => '',
     '{name}\'s Evokation' => '',
 ];

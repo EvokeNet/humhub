@@ -87,6 +87,40 @@ class Missions extends \yii\db\ActiveRecord
         return $this->hasMany(Activities::className(), ['mission_id' => 'id'])->orderBy('ISNULL(position), position ASC');
     }
 
+    public function getCompletedActivities($space_id){
+        return (new \yii\db\Query())
+        ->select(['ac.id'])
+        ->from('activities as ac')
+        ->join('LEFT JOIN', 'missions as m', 'ac.mission_id = `m`.`id`')
+        ->join('LEFT JOIN', 'evidence as e', 'e.activities_id = `ac`.`id`')
+        ->join('LEFT JOIN', 'content as c', 'c.object_id = `e`.`id` AND c.object_model like "%Evidence%"')
+        ->join('LEFT JOIN', 'user as u', 'e.created_by = `u`.`id`')
+        ->join('LEFT JOIN', 'space_membership as sm', 'sm.user_id = `u`.`id`')
+        ->join('LEFT JOIN', 'space as s', 'sm.space_id = `s`.`id`')
+        ->where(['m.id' => $this->id, 's.id' => $space_id, 'c.visibility' => 1])
+        ->all();
+    }
+
+    public function hasTeamCompleted($space_id){
+        if(sizeof($this->getCompletedActivities($space_id)) >= sizeof($this->activities)){
+            return true;
+        }
+        return false;
+    }
+
+    public function isTeamGoingToComplete($space_id, $activity_id){
+        $completed_activities = $this->getCompletedActivities($space_id);
+        if(sizeof($completed_activities) == sizeof($this->activities) - 1){
+            foreach($completed_activities as $activity){
+                if($activity['id'] == $activity_id){
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
