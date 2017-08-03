@@ -31,7 +31,10 @@ class DashboardMissionProgressIndicator extends \yii\base\Widget
         // get latest mission id
         $mission_progress = DashboardMissionProgressIndicator::getProgress();
         // get position
-        $mission_progress = Missions::findOne($mission_progress)->position;
+        $latest_mission = Missions::findOne($mission_progress);
+        if($latest_mission && $latest_mission->position){
+            $mission_progress = Missions::findOne($mission_progress)->position;   
+        }
 
         // $mission_total = Missions::find()
         //                 ->where(['missions.locked' => 0])
