@@ -17,11 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Review Evidence' => '',
     'Evokations' => '',
-    'Leaderboard' => '',
     'Mission {mission}' => '',
-    'Mission {position} : {alias}' => '',
     'Missions' => '',
     'M{mp}A{ap} : {alias}' => '',
     'Review Evidence' => '',
