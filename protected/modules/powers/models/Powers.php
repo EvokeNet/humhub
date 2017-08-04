@@ -151,9 +151,13 @@ class Powers extends \yii\db\ActiveRecord
     public function getDescription()
     {
       $lang = Languages::findOne(['code' => Yii::$app->language]);
-      if(isset($lang))
-          return $power_description = PowerTranslations::findOne(['power_id' => $this->id])->description;
-      else{
+      if(isset($lang)){
+          $power_description = PowerTranslations::findOne(['power_id' => $this->id, 'language_id' => $lang->id]);
+          if(isset($power_description))
+              return $power_description->description;
+          else
+            return $this->description;
+      } else{
         return $this->description;
       }
     }
