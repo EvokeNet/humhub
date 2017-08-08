@@ -394,8 +394,8 @@ class LeaderboardController extends \yii\web\Controller
         $powers_id = Powers::find()->orderBy('id')->all();
 
         if($id==""){
-            if(sizeof($powers)>=1){
-                $id = $powers[0]->id;
+            if(sizeof($powers_title)>=1){
+                $id = $powers_title[0]->id;
             }else{
                 return;
             }
