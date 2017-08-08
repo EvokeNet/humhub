@@ -391,7 +391,8 @@ class LeaderboardController extends \yii\web\Controller
     //Index for power rankings
     public function actionPowers($id = ""){
 
-        $powers = Powers::find()->orderBy('id')->all();
+        $powers_title = Powers::find()->orderBy('title')->all();
+        $powers_id = Powers::find()->orderBy('id')->all();
 
         if($id==""){
             if(sizeof($powers)>=1){
@@ -403,7 +404,7 @@ class LeaderboardController extends \yii\web\Controller
 
         $ranking = $this->getPowerRanking($id, 10);
 
-        return $this->render('index_power', array('ranking' => $ranking, 'powers' => $powers, 'id' => $id));
+        return $this->render('index_power', array('ranking' => $ranking, 'powers_id' => $powers_id, 'powers_title' => $powers_title, 'id' => $id));
     }
 
     public function getPowerRanking($power_id, $limit){
