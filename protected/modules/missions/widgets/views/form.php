@@ -116,7 +116,7 @@ $this->registerJsFile('js/stream.js');
                         'dataType' => 'json',
                         'beforeSend' => "function() { $('.contentForm').removeClass('error'); $('#contentFormError').hide(); $('#contentFormError').empty(); }",
                         'beforeSend' => 'function(){ $("#contentFormError").hide(); $("#contentFormError li").remove(); $(".contentForm_options .btn").hide(); $("#postform-loader").removeClass("hidden"); }',
-                        'success' => "function(response) { formHandleResponse(response);}"
+                        'success' => "function(response) { handleResponse(response);}"
                     ],
                     'htmlOptions' => [
                         'id' => "post_draft_button",
@@ -134,8 +134,10 @@ $this->registerJsFile('js/stream.js');
 
 $( document ).ready(function() {
 
-    formHandleResponse = function(response) {
-      handleResponse(response);
+    oldHandleResponse = handleResponse;
+
+    handleResponse = function(response) {
+      oldHandleResponse(response);
       if (!response.errors) {
             $('#evidence_form').parent().parent().remove();
             window.location.hash = "";
