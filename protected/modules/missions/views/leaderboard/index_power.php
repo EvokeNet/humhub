@@ -38,7 +38,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                               </button>
 
                               <ul class="dropdown-menu" style="background-color:#101C2A;">
-                                <?php foreach($powers as $power): ?>
+                                <?php foreach($powers_title as $power): ?>
                                     <li><?= Html::a($power->title, ['/missions/leaderboard/powers', 'id' => $power->id], ['class' => 'ranking', 'style' => '']) ?> </li>
                                 <?php endforeach; ?>
                               </ul>
@@ -54,7 +54,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                     <div class="leaderboard-box" style="padding:0; margin-bottom:60px">
                         <div style="text-align:center; background-color:#0F2441; padding:10px">
                             <h5 style="color:#FEAE1B; text-transform:uppercase;">
-                              <?php echo Yii::t('MissionsModule.leaderboard', 'Top Agents By {title}', array('title' => $powers[$id-1]['title'])) ?>
+                              <?php echo Yii::t('MissionsModule.leaderboard', 'Top Agents By {title}', array('title' => $powers_id[$id-1]['title'])) ?>
                             </h5>
                         </div>
                         <br />
