@@ -68,6 +68,10 @@ class Languages extends \yii\db\ActiveRecord
     }
 
     public static function getLanguage(){
-        return Languages::findOne(['code' => Yii::$app->language]);
+        $language = Languages::findOne(['code' => Yii::$app->language]);
+        if(!$language){
+            $language = Languages::findOne(['code' => 'en-US']);
+        }
+        return $language;
     }
 }
