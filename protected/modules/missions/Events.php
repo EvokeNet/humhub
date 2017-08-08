@@ -20,6 +20,7 @@ use humhub\modules\missions\widgets\PortfolioWidget;
 use humhub\modules\missions\widgets\GiftEvocoinWidget;
 use humhub\modules\missions\widgets\CreateATeamWidget;
 use humhub\modules\missions\widgets\EvocoinsReview;
+use humhub\modules\missions\widgets\DashboardMissionProgressIndicator;
 
 use humhub\modules\space\models\Space;
 use app\modules\missions\models\Evidence;
@@ -32,12 +33,35 @@ use humhub\modules\missions\controllers\MentorController;
 use app\modules\missions\models\EvokationDeadline;
 use app\modules\missions\models\Tags;
 
+use app\modules\missions\models\Alerts;
+use humhub\modules\content\models\Content;
+use humhub\modules\missions\controllers\AlertController;
 /**
  * Description of Events
  *
  */
 class Events
 {
+
+    public static function onAuthUser($event){
+
+        //on login action
+        if(property_exists($event->action, "actionMethod") && (($event->action->actionMethod) && $event->action->actionMethod === 'actionLogin')){
+            $user = Yii::$app->user->getIdentity();
+
+            if($user){
+                $alert = Alerts::findOne(['user_id' => $user->id]);
+
+                if($alert){
+                    $content = Content::findOne(['object_model' => $alert->object_model, 'object_id' => $alert->object_id]);
+                    $url = Url::to(['/content/perma', 'id' => $content->id]);
+                    // AlertController::createAlert("Notification", "One of your evidences has been reviewed.<br> <a href='".$url."'>Click here to see.</a>");
+                    AlertController::createAlert(Yii::t('MissionsModule.base', 'Notification'), Yii::t('MissionsModule.base', 'One of your evidences has been reviewed.').'<br> <a href='.$url.'>'.Yii::t('MissionsModule.base', 'Click here to see').'</a>');
+                    $alert->delete();
+                } 
+            }
+        }
+    }
 
     public static function onDashboardSidebarInit($event){
         //$userPowers = UserPowers::getUserPowers(Yii::$app->user->getIdentity()->id);
@@ -46,12 +70,20 @@ class Events
         $team_id = Team::getUserTeam($user->id);
 
         $event->sender->addWidget(PopUpWidget::className(), []);
-        if(!isset($team_id) && $user->group->name != "Mentors" ){
-            $event->sender->addWidget(CreateATeamWidget::className(), [], array('sortOrder' => 0));   
+
+        $event->sender->addWidget(EvocoinsReview::className(), []);
+
+        if($user->group->name != "Mentors" ){
+            if(!isset($team_id)){
+                $event->sender->addWidget(CreateATeamWidget::className(), [], array('sortOrder' => 0));   
+            }else{
+                $event->sender->addWidget(DashboardMissionProgressIndicator::className(), []);
+            }
         }
+
         // $event->sender->addWidget(CTAPostEvidence::className(), []);
         //$event->sender->addWidget(PlayerStats::className(), ['powers' => $userPowers]);
-        $event->sender->addWidget(EvocoinsReview::className(), []);
+        
     }
 
     public static function onProfileMenuInit($event){
@@ -500,16 +532,16 @@ class Events
         if(isset($user)){
 
             // LEADERBOARD
-            // $event->sender->addItem(array(
-            // 'label' => Yii::t('MissionsModule.event', 'Leaderboard'),
-            // 'id' => 'leaderboard',
-            // 'icon' => '<i class="fa fa-sort-numeric-asc" aria-hidden="true"></i>',
-            // 'url' => Url::to(['/missions/leaderboard/index']),
-            // 'sortOrder' => 700,
-            // 'isActive' => (Yii::$app->controller->module
-            //     && Yii::$app->controller->module->id == 'missions'
-            //     && Yii::$app->controller->id == 'leaderboard'),
-            // ));
+            $event->sender->addItem(array(
+            'label' => Yii::t('MissionsModule.event', 'Leaderboard'),
+            'id' => 'leaderboard',
+            'icon' => '<i class="fa fa-sort-numeric-asc" aria-hidden="true"></i>',
+            'url' => Url::to(['/missions/leaderboard/index']),
+            'sortOrder' => 700,
+            'isActive' => (Yii::$app->controller->module
+                && Yii::$app->controller->module->id == 'missions'
+                && Yii::$app->controller->id == 'leaderboard'),
+            ));
 
             // REVIEW EVIDENCE
 

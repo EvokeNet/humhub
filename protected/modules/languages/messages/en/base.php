@@ -17,5 +17,10 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Code' => '',
+    'Create' => '',
+    'Delete' => '',
+    'Edit' => '',
+    'Language' => '',
     'Languages' => '',
 ];
