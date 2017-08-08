@@ -391,7 +391,7 @@ class LeaderboardController extends \yii\web\Controller
     //Index for power rankings
     public function actionPowers($id = ""){
 
-        $powers = Powers::find()->orderBy('id')->all();
+        $powers = Powers::find()->orderBy('title')->all();
 
         if($id==""){
             if(sizeof($powers)>=1){
