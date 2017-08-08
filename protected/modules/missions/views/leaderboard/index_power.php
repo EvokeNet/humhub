@@ -61,7 +61,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                         <div class="row" style="padding:20px 20px 0">
                             <?php foreach($ranking as $key => $r): ?>
                                 <div class="col-sm-6">
-                                    <div style = "padding: 10px; margin-bottom: 15px; border: 2px solid #5aa2c6;">
+                                    <div style = "padding: 10px; margin-bottom: 15px; border: 3px solid #0F2441;">
 
                                         <div class="row">
                                             <div class="col-sm-10" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
@@ -80,14 +80,17 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                         </div>
 
                         <br />
-                        <?php if (Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
-                            <?php if($ranking['my_reviews']['position'] == -1): ?>
-                                <span style = "font-weight: 700; color: #5aa2c6; text-transform: uppercase;"><?php echo Yii::t('MissionsModule.leaderboard', "My Position: Not Ranked"); ?></span><br>
-                            <?php else: ?>
-                                <span style = "font-weight: 700; color: #5aa2c6; text-transform: uppercase;"><?php echo Yii::t('MissionsModule.leaderboard', "My Position: {position}", array('position' => $ranking['my_reviews']['position'] + 1)); ?></span><br>
-                                <!-- <span style = "font-weight: 700; color: #5aa2c6; text-transform: uppercase;"><?php echo Yii::t('MissionsModule.leaderboard', "My Reviews Submitted: {evidences}", array('evidences' => $ranking['my_reviews']['reviews'])); ?></span> -->
+                        <div style="padding:0 20px 20px">
+                            <?php if (Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
+                                <?php if($ranking['my_reviews']['position'] == -1): ?>
+                                    <span style = "font-weight: 700; color: #FEAE1B; text-transform: uppercase;"><?php echo Yii::t('MissionsModule.leaderboard', "My Position: Not Ranked"); ?></span><br>
+                                <?php else: ?>
+                                    <span style = "font-weight: 700; color: #FEAE1B; text-transform: uppercase;"><?php echo Yii::t('MissionsModule.leaderboard', "My Position: {position}", array('position' => $ranking['my_reviews']['position'] + 1)); ?></span><br>
+                                    <!-- <span style = "font-weight: 700; color: #5aa2c6; text-transform: uppercase;"><?php echo Yii::t('MissionsModule.leaderboard', "My Reviews Submitted: {evidences}", array('evidences' => $ranking['my_reviews']['reviews'])); ?></span> -->
+                                <?php endif; ?>
                             <?php endif; ?>
-                        <?php endif; ?>
+                        </div>
+                        
                     </div>
                     <?php else: ?>
                         <?php echo Yii::t('MissionsModule.leaderboard', 'You are a mentor'); ?>
