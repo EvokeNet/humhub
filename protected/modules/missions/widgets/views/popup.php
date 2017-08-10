@@ -104,14 +104,24 @@
 
 var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
 
-/*var popUpWatcher = setInterval(function() {
 
-    if(! $("#popup-message").is(':visible') ){
-      loadPopUps();
-    }
+$( document ).ready(function() {
+  // wait 2 seconds before loading popup
+  setTimeout(function () {
+    reLoadPopUps();
+  }, 2000);
+     
+});
 
-}, 1000); 
-*/
+
+// var popUpWatcher = setInterval(function() {
+
+//     if(! $("#popup-message").is(':visible') ){
+//       reloadPopUps();
+//     }
+
+// }, 30000); 
+
 
 var popUpWatcher = null;
 var animated_popup_image = null;
@@ -140,6 +150,7 @@ function checkDuplication(currentMessage){
 function reLoadPopUps(){
   messages = [];
   deactivatePopUp();
+  console.log("Trying to load pop up");
   loadPopUps();
 }
 

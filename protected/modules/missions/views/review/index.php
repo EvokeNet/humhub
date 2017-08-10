@@ -44,9 +44,8 @@ $firstSecondary = true;
             <p><?php //echo nl2br(isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description) ?></p>
         </div>-->
 
-        <!--<div class="review-box evidence_area">-->
-        <div class="evidence_area">
 
+        <div class="review-box evidence_area">
             <h5><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h5>
 
             <?php if(Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>

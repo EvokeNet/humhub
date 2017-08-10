@@ -31,6 +31,9 @@ use humhub\modules\admin\models\forms\MailingSettingsForm;
 use app\modules\novel\models\NovelPage;
 use app\modules\novel\models\Chapter;
 
+
+use app\modules\missions\models\Alerts;
+use humhub\modules\missions\widgets\DashboardMissionProgressIndicator;
 use app\modules\missions\models\EvidenceTags;
 use app\modules\missions\models\Tags;
 use yii\db\Expression;
@@ -188,7 +191,18 @@ class EvidenceController extends ContentContainerController
         ->orderBy('position asc')
         ->all();
 
-        return $this->render('missions', array('missions' => $missions, 'contentContainer' => $this->contentContainer));
+        $mission_progress = array();
+        $mission_total = array();
+        foreach($missions as $m):
+
+            $stats = DashboardMissionProgressIndicator::getMissionStats($m->id);
+
+            $mission_progress[$m->id] = $stats['total_evidences'];
+            $mission_total[$m->id] = $stats['total_activities'];
+
+        endforeach;
+
+        return $this->render('missions', array('missions' => $missions, 'contentContainer' => $this->contentContainer, 'mission_total' => $mission_total,'mission_progress' => $mission_progress));
     }
 
     public function createAnimatedMessagesForPowers($activityPowers){
@@ -546,9 +560,10 @@ class EvidenceController extends ContentContainerController
 
             //MISSION COMPLETION EVOCOINS                
 
+            $mission = Missions::findOne($activity->mission_id);
+            $isTeamGoingToComplete = $mission->isTeamGoingToComplete($team->id, $activity->id);
+
             if(!TeamMission::isMissionCompleted($activity->mission_id, $team->id)){
-                $mission = Missions::findOne($activity->mission_id);
-                $isTeamGoingToComplete = $mission->isTeamGoingToComplete($team->id, $activity->id);
                 if($isTeamGoingToComplete){
                     foreach ($team_members as $team_member) {
                         $wallet = Wallet::find()->where(['owner_id' => $team_member->id])->one();
@@ -897,6 +912,8 @@ class EvidenceController extends ContentContainerController
                 //END EVOKE LOG
 
                 $message = Yii::t('MissionsModule.base', 'You just gained {message} evocoins!', array('message' => $evocoin_earned));
+
+                Alerts::createReviewNotification($evidence->created_by, $evidence->id);
 
                 AlertController::createAlert(Yii::t('MissionsModule.base', 'Congratulations!'), Yii::t('MissionsModule.base', '{message}. <BR>Thank you for your review.', array('message' => $message)));
                 

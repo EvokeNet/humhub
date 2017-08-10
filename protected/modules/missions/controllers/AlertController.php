@@ -5,6 +5,9 @@ namespace humhub\modules\missions\controllers;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use app\modules\missions\models\Alerts;
+use humhub\modules\content\models\Content;
+use yii\helpers\Url; 
 
 class AlertController extends Controller
 {
@@ -58,6 +61,22 @@ class AlertController extends Controller
 
     public function sendDefaultErrorMessage(){
         AlertController::createAlert("Error", Yii::t('MissionsModule.base', 'Use the message box below to let us know what you were attempting to do and we will resolve it.'));
+    }
+
+  
+
+    public function actionTest(){
+        $user = Yii::$app->user->getIdentity();
+        Alerts::createReviewNotification($user->id, 613);
+
+        $alert = Alerts::findOne(['user_id' => $user->id]);
+
+        // if($alert){
+        //     $content = Content::findOne(['object_model' => $alert->object_model, 'object_id' => $alert->object_id]);
+        //     $url = Url::to(['/content/perma', 'id' => $content->id]);
+        //     $this->createAlert("Notification", "One of your evidences has been reviewed.<br> <a href='".$url."'>Click here to see.</a>");
+        //     $alert->delete();
+        // }
     }
 
 }

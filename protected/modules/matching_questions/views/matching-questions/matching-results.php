@@ -121,7 +121,7 @@
                   <p style = "margin-bottom:10px"><?php echo Yii::t('MatchingModule.base', '{agent}: Congratulations, you are already an Evoke agent!', array('agent' => $user->username)) ?></p>
 
                   <br>
-                  <?php if(Setting::Get('novel_order') == EvokeSettingsForm::FIRST_NOVEL): ?>
+                  <?php if(!Setting::get('enabled_novel_read_obligation') || Setting::Get('novel_order') == EvokeSettingsForm::FIRST_NOVEL): ?>
                       <div class = "text-center"><?php echo Html::a(
                           Yii::t('MatchingModule.base', 'Continue to Base Operations'),
                           ['/space/space', 'sguid' => $welcome_space->guid], array('class' => 'btn btn-cta1')); ?></div>
