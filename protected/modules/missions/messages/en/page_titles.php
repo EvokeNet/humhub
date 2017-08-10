@@ -18,9 +18,7 @@
  */
 return [
     'Evokations' => '',
-    'Leaderboard' => '',
     'Mission {mission}' => '',
-    'Mission {position} : {alias}' => '',
     'Missions' => '',
     'M{mp}A{ap} : {alias}' => '',
     'Review Evidence' => '',

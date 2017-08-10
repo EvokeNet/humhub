@@ -4,6 +4,7 @@
     use humhub\modules\admin\widgets\AdminMenu;
     use humhub\widgets\BaseMenu;
     use humhub\widgets\TopMenu;
+    use humhub\modules\user\controllers\AuthController;
 
     return [
         'id' => 'statics',
@@ -17,6 +18,7 @@
             //['class' => \humhub\modules\admin\widgets\AdminMenu::className(), 'event' => AdminMenu::EVENT_INIT, 'callback' => ['humhub\modules\languages\Events', 'onAdminMenuInit']],
             //['class' => TopMenu::className(), 'event' => TopMenu::EVENT_INIT, 'callback' => ['humhub\modules\custom_pages\Events', 'onTopMenuInit']],
             //['class' => \humhub\widgets\TopMenu::className(), 'event' => TopMenu::EVENT_INIT, 'callback' => ['\humhub\modules\statics\Events', 'onAboutTopMenuInit']],
+            ['class' => AuthController::className(), 'event' => AuthController::EVENT_AFTER_ACTION, 'callback' => ['humhub\modules\statics\Events', 'onAuthUser']],
             ['class' => \humhub\widgets\TopMenu::className(), 'event' => TopMenu::EVENT_INIT, 'callback' => ['\humhub\modules\statics\Events', 'onHowToTopMenuInit']],
             //['class' => \humhub\widgets\TopMenu::className(), 'event' => TopMenu::EVENT_INIT, 'callback' => ['\humhub\modules\statics\Events', 'onPrivacyPolicyTopMenuInit']],
             //['class' => \humhub\widgets\TopMenu::className(), 'event' => TopMenu::EVENT_INIT, 'callback' => ['\humhub\modules\statics\Events', 'onTermsTopMenuInit']],

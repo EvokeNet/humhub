@@ -4,7 +4,6 @@ namespace humhub\modules\languages;
 
 use Yii;
 use yii\helpers\Url;
-// use humhub\modules\matching_questions\models\MatchingQuestions;
 
 /**
  * Description of Events
@@ -19,9 +18,9 @@ class Events extends \yii\base\Object
             'label' => Yii::t('LanguagesModule.base', 'Languages'),
             'url' => Url::to(['/languages/admin']),
             'group' => 'manage',
-            'icon' => '<i class="fa fa-th"></i>',
+            'icon' => '<i class="fa fa-gift"></i>',
             'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'languages' && Yii::$app->controller->id == 'admin'),
-            'sortOrder' => 300,
+            'sortOrder' => 1000,
         ));
     }
     

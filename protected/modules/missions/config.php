@@ -8,12 +8,14 @@
     use humhub\widgets\TopMenu;
     use humhub\modules\space\widgets\Menu;
     use humhub\modules\user\widgets\ProfileSidebar;
+    use humhub\modules\user\controllers\AuthController;
     
     return [
         'id' => 'missions',
         'class' => 'humhub\modules\missions\Module',
         'namespace' => 'humhub\modules\missions',
         'events' => [
+            ['class' => AuthController::className(), 'event' => AuthController::EVENT_AFTER_ACTION, 'callback' => ['humhub\modules\missions\Events', 'onAuthUser']],
             ['class' => \humhub\modules\user\widgets\AccountMenu::className(), 'event' => AccountMenu::EVENT_INIT, 'callback' => ['humhub\modules\missions\Events', 'onAccountMenuInit']],
             ['class' => \humhub\modules\admin\widgets\AdminMenu::className(), 'event' => AdminMenu::EVENT_INIT, 'callback' => ['humhub\modules\missions\Events', 'onAdminMenuInit']],
             ['class' => \humhub\modules\admin\widgets\AdminMenu::className(), 'event' => AdminMenu::EVENT_INIT, 'callback' => ['humhub\modules\missions\Events', 'onCategoriesAdminMenuInit']],

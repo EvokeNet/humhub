@@ -18,12 +18,10 @@
  */
 return [
     'Evokations' => 'Evocaciones',
-    'Leaderboard' => 'Tabla de Clasificación',
     'Mission {mission}' => 'Misión {mission}',
-    'Space Members' => 'Membros del espacío',
-    'Mission {position} : {alias}' => 'Misión {position} : {alias}',
     'Missions' => 'Misiones',
     'M{mp}A{ap} : {alias}' => 'M{mp}A{ap} : {alias}',
     'Review Evidence' => 'Revisar Evidencía',
+    'Space Members' => 'Membros del espacío',
     '{name}\'s Evokation' => 'Evokación de {name}',
 ];

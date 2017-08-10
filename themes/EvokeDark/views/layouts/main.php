@@ -147,7 +147,7 @@ AppAsset::register($this);
     
     <footer class="footer">
       <div class="container">
-        <p class="text-muted"><i class="fa fa-copyright" aria-hidden="true"></i> Copyright 2017 - World Bank</p>
+        <p><i class="fa fa-copyright" aria-hidden="true"></i> Copyright 2017 - World Bank</p>
         <p class = "right">
         <?php //echo Html::a(
             //Yii::t('StaticsModule.base', 'About'), 

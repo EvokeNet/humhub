@@ -4,6 +4,8 @@ namespace humhub\modules\statics;
 
 use Yii;
 use yii\helpers\Url;
+use humhub\models\Setting;
+use app\modules\missions\models\forms\EvokeSettingsForm;
 // use humhub\modules\matching_questions\models\MatchingQuestions;
 
 /**
@@ -42,6 +44,36 @@ class Events extends \yii\base\Object
     //     }
 
     // }
+
+
+    public static function onAuthUser($event){
+        $novel_order = Setting::Get('novel_order');
+
+        //on login and create account actions
+        if(property_exists($event->action, "actionMethod") && (($event->action->actionMethod) && $event->action->actionMethod === 'actionLogin' || $event->action->actionMethod === 'actionCreateAccount')){
+            //Check if user is logged in
+            if(null != Yii::$app->user->getIdentity()) {
+
+                //check if users are obligated to see the slide
+                if(Setting::Get('enabled_intro_slide')){
+
+                    // check if user hasn't superhero id yet  and if user isn't a mentor
+                    if (!isset(Yii::$app->user->getIdentity()->superhero_identity_id) && Yii::$app->user->getIdentity()->group->name != "Mentors"){
+
+                       $event->action->controller->redirect(Url::toRoute('/statics/onboarding/introduction'));
+
+                    }
+
+                //check if users are obligated to see the video   
+                }else if(Setting::Get('enabled_intro_video')){
+                  $event->action->controller->redirect(Url::toRoute('/statics/onboarding/video'));
+                }else if(Setting::Get('enabled_intro_terms')){
+                  $event->action->controller->redirect(Url::toRoute('/statics/onboarding/agreements'));
+                }
+
+            }
+        }
+    }
 
     public static function onHowToTopMenuInit($event)
     {

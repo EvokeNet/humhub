@@ -6,79 +6,146 @@ use humhub\models\Setting;
 use yii\helpers\Url;
 use yii\web\JsExpression;
 use humhub\compat\CActiveForm;
-use app\modules\missions\models\Votes;
-
-$this->registerJsFile('js/stream.js');
 
 echo Html::beginForm();
   $activity = $evidence->getActivities();
   $mentor_average_votes = $evidence->getAverageRating('Mentors');
   $user_average_votes = $evidence->getAverageRating('Users');
-  $mentor_vote_count = $evidence->getVoteCount('Mentors');
   $agent_vote_count = $evidence->getVoteCount('Users');
   $agent_vote_count = $agent_vote_count ? $agent_vote_count : 0;
-
 ?>
-
-<style media="screen">
-  .tags_panel {
-    display: none;
-  }
-</style>
 
 <!-- EVIDENCE -->
 <?php if($evidence->content->visibility >= 1): ?>
 
-    <div class="user-content-box">
-        <h4><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h4>
+    <h5 style="margin-top:30px; color: #FEAE1B"><?php print humhub\widgets\RichText::widget(['text' => $evidence->title]); ?></h5>
 
-        <?php if (Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
-        <!-- <h6><?php //echo Yii::t('MissionsModule.base', 'By'); ?> <?php echo $name ?></h6> -->
-        <?php endif; ?>
+    <?php if (Yii::$app->user->getIdentity()->group->name == "Mentors"): ?>
+      <!-- <h6><?php //echo Yii::t('MissionsModule.base', 'By'); ?> <?php echo $name ?></h6> -->
+    <?php endif; ?>
 
-        <p style="margin:20px 0 50px;"><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]);?></p>
+    <p style="margin:25px 0 50px"><?php print humhub\widgets\RichText::widget(['text' => $evidence->text]);?></p>
 
-        <!-- SHOW FILES -->
+    <!-- SHOW FILES -->
 
-        <?php $files = \humhub\modules\file\models\File::getFilesOfObject($evidence); ?>
+    <?php $files = \humhub\modules\file\models\File::getFilesOfObject($evidence); ?>
 
-        <?php if(!empty($files)): ?>
-        <ul class="files" style="list-style: none; margin: 0;" id="files-<?php echo $evidence->getPrimaryKey(); ?>">
-            <?php foreach ($files as $file) : ?>
-                <?php
-                if ($file->getMimeBaseType() == "image" && Setting::Get('hideImageFileInfo', 'file'))
-                    continue;
-                ?>
-                <li class="mime <?php echo \humhub\libs\MimeHelper::getMimeIconClassByExtension($file->getExtension()); ?>"><a
-                        href="<?php echo $file->getUrl(); ?>" target="_blank"><span
-                            class="filename"><?php echo Html::encode(Helpers::trimText($file->file_name, 40)); ?></span></a>
-                    <span class="time" style="padding-right: 20px;"> - <?php echo Yii::$app->formatter->asSize($file->size); ?></span>
+    <?php if(!empty($files)): ?>
+    <ul class="files" style="list-style: none; margin: 0" id="files-<?php echo $evidence->getPrimaryKey(); ?>">
+        <?php foreach ($files as $file) : ?>
+            <?php
+            if ($file->getMimeBaseType() == "image" && Setting::Get('hideImageFileInfo', 'file'))
+                continue;
+            ?>
+            <li class="mime <?php echo \humhub\libs\MimeHelper::getMimeIconClassByExtension($file->getExtension()); ?>" style="padding: 0">
 
-                    <?php if ($file->getExtension() == "mp3") : ?>
-                        <!-- Integrate jPlayer -->
-                        <?php
-                        echo xj\jplayer\AudioWidget::widget(array(
-                            'id' => $file->id,
-                            'mediaOptions' => [
-                                'mp3' => $file->getUrl(),
-                            ],
-                            'jsOptions' => [
-                                'smoothPlayBar' => true,
-                            ]
-                        ));
-                        ?>
-                    <?php elseif ($file->canRead() && ($file->getExtension() == "png" || $file->getExtension() == "jpg" || $file->getExtension() == "jpeg")) : ?>
+              <a href="<?php echo $file->getUrl(); ?>" target="_blank" style="font-size:9pt; padding: 1px 0 4px 26px;">
+                <span class="filename"><?php echo Html::encode(Helpers::trimText($file->file_name, 40)); ?></span>
+              </a>
 
-                    <br /><br />
+                <!-- <span class="time" style="padding-right: 20px;"> - <?php echo Yii::$app->formatter->asSize($file->size); ?></span> -->
 
-                    <a href="<?php echo $file->getPreviewImageUrl(); ?>"><img src="<?php echo $file->getPreviewImageUrl(); ?>" width="150"/></a>
+                <?php if ($file->getExtension() == "mp3") : ?>
+                    <!-- Integrate jPlayer -->
+                    <?php
+                    echo xj\jplayer\AudioWidget::widget(array(
+                        'id' => $file->id,
+                        'mediaOptions' => [
+                            'mp3' => $file->getUrl(),
+                        ],
+                        'jsOptions' => [
+                            'smoothPlayBar' => true,
+                        ]
+                    ));
+                    ?> 
+                <?php elseif ($file->canRead() && ($file->getExtension() == "png" || $file->getExtension() == "jpg" || $file->getExtension() == "jpeg")) : ?>
 
-                    <?php endif; ?>
+                  <br>
 
-                </li>
-            <?php endforeach; ?>
-        </ul>
-        <?php endif; ?>
+                  <a href="<?php echo $file->getPreviewImageUrl(); ?>">
+                    <img src="<?php echo $file->getPreviewImageUrl(); ?>" width="100" style="margin-top:15px"/>
+                  </a>
+
+                <?php endif; ?>
+
+            </li>
+        <?php endforeach; ?>
+    </ul>
+    <?php endif; ?>
+
+    <div class = "evidence-mission-box">
+      <div style="text-align: center">
+        <span style="margin-bottom: 10px; display: inline-block; margin-top: 10px; font-weight: 700; font-size: 13pt;">
+          <?= Yii::t('MissionsModule.base', 'Mission {mission}, Activity {activity}:', array('mission' => $activity->mission->position, 'activity' => $activity->position)); ?>
+          <?php echo Html::a(
+                (isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title),
+                ['/missions/evidence/show', 'activityId' => $activity->id, 'sguid' => $contentContainer->guid], array('class' => '', 'style' => 'text-decoration: underline')); ?>
+        </span>
+      </div>
+
+      <div class="votes-container row" style="margin-top:10px">
+
+        <div class="mentor-votes col-xs-6">
+
+          <div class="stars">
+            <?php for ($i = 0; $i < 5; $i++): ?>
+              <?php if ($mentor_average_votes > $i): ?>
+                <?php if (($mentor_average_votes - $i) < 1): ?>
+                  <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                <?php else: ?>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                <?php endif; ?>
+              <?php else: ?>
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+              <?php endif; ?>
+            <?php endfor; ?>
+            <p>
+              <?php echo Yii::t('MissionsModule.base', 'Avg Mentor Rating'); ?>
+            </p>
+          </div>
+
+        </div>
+
+        <div class="mentor-votes col-xs-6" style="border-left: 2px solid #FF4351;">
+
+          <div class="stars">
+            <?php for ($i = 0; $i < 5; $i++): ?>
+              <?php if ($user_average_votes > $i): ?>
+                <?php if (($user_average_votes - $i) < 1): ?>
+                  <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                <?php else: ?>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                <?php endif; ?>
+              <?php else: ?>
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+              <?php endif; ?>
+            <?php endfor; ?>
+            <p>
+              <?php echo Yii::t('MissionsModule.base', 'Avg Agents Rating'); ?>
+            </p>
+          </div>
+
+          <!-- <div class="rating no-padding-left">
+            <span style="font-size: 9pt; font-weight:700">
+              <?php echo Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $mentor_average_votes? number_format((float)$mentor_average_votes, 1, '.', '') : "-")); ?>
+            </span>
+            <span style="font-size: 9pt; font-weight:700">
+              <?php echo Yii::t('MissionsModule.base', 'Mentor Reviews: {votes}', array('votes' => $evidence->getVoteCount('Mentors')? $evidence->getVoteCount('Mentors') : "0")) ?>
+            </span>
+          </div> -->
+
+          <!-- <div class="rating">
+            <span style="font-size: 9pt; font-weight:700">
+              <?php echo Yii::t('MissionsModule.base', 'Average Rating: {votes}', array('votes' => $user_average_votes? number_format((float)$user_average_votes, 1, '.', '') : "-")); ?>
+            </span>
+            <span style="font-size: 9pt; font-weight:700">
+              <?php echo Yii::t('MissionsModule.base', 'Agent Reviews: {votes}', array('votes' => $agent_vote_count)) ?>
+            </span>
+          </div> -->
+
+        </div>
+
+      </div>
 
     </div>
 
@@ -86,25 +153,15 @@ echo Html::beginForm();
 
     </br>
 
-    <!-- show activity text -->
-    <div class="activity-text">
-      <h4><?php echo $activity->id_code; ?> - <?php echo isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->title : $activity->title; ?></h4>
-      <div class="activity-body">
-        <?php echo isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description; ?>
-      </div>
-    </div>
-
-    </br>
-
-    <?php
+    <?php 
       if($evidence->content->user_id != Yii::$app->user->getIdentity()->id){
         //already voted
         if($vote = $evidence->getUserVote()){
-          echo $this->render('user_vote_view', array('vote' => $vote, 'contentContainer' => $contentContainer));
-        } elseif( Yii::$app->user->getIdentity()->group->name == "Mentors" || $is_ally){ //allies and mentors can review
-          echo $this->render('mentor_review', array('evidence' => $evidence, 'activity' => $activity));
+          echo $this->render('user_vote_view', array('vote' => $vote, 'contentContainer' => $contentContainer));  
+        }elseif( Yii::$app->user->getIdentity()->group->name == "Mentors"){
+          echo $this->render('mentor_review', array('evidence' => $evidence, 'activity' => $activity));  
         }
-      }
+      } 
     ?>
 
     <BR>
@@ -117,32 +174,6 @@ echo Html::beginForm();
                         <?= Yii::t('MissionsModule.base', 'Mentor Reviews') ?>
                     </a>
                 </h6>
-            </div>
-
-            <!-- if there's at  least one review -->
-            <?php if($mentor_vote_count > 0): ?>
-              <div class="tags_panel">
-
-              <div class="mentors_avg_stars stars" title="<?= number_format((float)$mentor_average_votes, 2, '.', '') ?>">
-                <?php for ($i = 0; $i < 5; $i++): ?>
-                  <?php if ($mentor_average_votes > $i): ?>
-                    <?php if (($mentor_average_votes - $i) < 1): ?>
-                      <i class="fa fa-star-half-o fa-lg" aria-hidden="true"></i>
-                    <?php else: ?>
-                      <i class="fa fa-star fa-lg" aria-hidden="true"></i>
-                    <?php endif; ?>
-                  <?php else: ?>
-                    <i class="fa fa-star-o fa-lg" aria-hidden="true"></i>
-                  <?php endif; ?>
-                <?php endfor; ?>
-              </div>
-
-              <span id="mentors_avg_star_hint">
-                <?= Votes::getAverageRatingStarHint($mentor_average_votes); ?>
-              </span>
-            <?php endif; ?>
-
-
             </div>
 
             <div class="panel-body">
@@ -159,13 +190,13 @@ echo Html::beginForm();
                         <?php endif; ?>
 
                         <?php foreach($votes as $vote): ?>
-                            <div class="review-box" style="position:relative">
+                            <div class="review-box">
 
                                 <?php if(Yii::$app->user->getIdentity()->group->name == "Mentors" || $vote->user->group->name == "Mentors"): ?>
-                                    <img class="media-object img-rounded user-image user-<?php echo $vote->user->guid; ?>" alt="35x35"
-                                         data-src="holder.js/35x35" style="display: inline-block;"
+                                    <img class="media-object img-rounded user-image user-<?php echo $vote->user->guid; ?>" alt="40x40"
+                                         data-src="holder.js/40x40" style="display: inline-block;"
                                          src="<?php echo $vote->user->getProfileImage()->getUrl(); ?>"
-                                         width="35" height="35"/>
+                                         width="40" height="40"/>
 
                                     &nbsp;<a href="<?= ($vote->user->getUrl()) ?>">
                                         <?= ($vote->user->username) ?>
@@ -174,28 +205,27 @@ echo Html::beginForm();
                                     <?php echo Yii::t('MissionsModule.base', 'in {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]))); ?>
 
                                 <?php else: ?>
-
+                                  
                                     <?php echo Yii::t('MissionsModule.base', 'Anonymous in {time}', array('time' => \humhub\widgets\TimeAgo::widget(['timestamp' => $vote->created_at]))); ?>
 
                                 <?php endif; ?>
 
-                                <p style="padding:5px 10px 5px 45px"><?php echo $vote->comment; ?></p>
+                                <p style="margin:20px 0"><?php echo $vote->comment; ?></p>
 
                                 <?php if($vote->value > 0 ): ?>
                                     <div class="stars" style="text-align:left;">
                                       <?php for ($i = 0; $i < 5; $i++): ?>
                                         <?php if ($vote->value > $i): ?>
                                           <?php if (($vote->value - $i) < 1): ?>
-                                            <i class="fa fa-star-half-o fa-lg" aria-hidden="true"></i>
+                                            <i class="fa fa-star-half-o" aria-hidden="true"></i>
                                           <?php else: ?>
-                                            <i class="fa fa-star fa-lg" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
                                           <?php endif; ?>
                                         <?php else: ?>
-                                          <i class="fa fa-star-o fa-lg" aria-hidden="true"></i>
+                                          <i class="fa fa-star-o" aria-hidden="true"></i>
                                         <?php endif; ?>
                                       <?php endfor; ?>
                                     </div>
-                                    <label class="star_label" id="star_hint<?= $evidence->id ?>"><?= $vote->getStarHint(); ?></label><BR>
                                 <?php else: ?>
                                   <div class="label-danger">
                                     <p style="color:#F4F4F4; text-align: center;"><?php echo Yii::t('MissionsModule.base', 'Does not meet rubric'); ?></p>
@@ -206,7 +236,7 @@ echo Html::beginForm();
                                 <?php echo \humhub\modules\comment\widgets\Comments::widget(array('object' => $vote)); ?>
 
                                 <div style="text-align: right">
-                                  <?php
+                                  <?php 
                                     $enable = "";
                                     $disable = "hidden";
                                     $disables = "hidden";
@@ -216,7 +246,7 @@ echo Html::beginForm();
                                         $disable = "";
                                         $disables = "";
 
-                                    }
+                                    } 
                                   ?>
 
                                     <?php if(Yii::$app->user->isAdmin()): ?>
@@ -265,15 +295,15 @@ echo Html::beginForm();
                                           ]);
                                           ?>
 
-                                      <div class="trophy-icon <?= $disables ?>" id="btn-disables-module-<?php echo $vote->id; ?>" style="position: absolute; top: 0; right: 10px;"><i class="fa fa-trophy fa-lg" aria-hidden="true"></i></div>
+                                      <div class="trophy-icon <?= $disables ?>" id="btn-disables-module-<?php echo $vote->id; ?>"><i class="fa fa-trophy fa-lg" aria-hidden="true"></i></div>
 
                                     <?php else: ?>
 
-                                      <div class="trophy-icon agent <?= $disables ?>" id="btn-disables-module-<?php echo $vote->id; ?>" style="position: absolute; top: 0; right: 10px;"><i class="fa fa-trophy fa-lg" aria-hidden="true"></i></div>
+                                      <div class="trophy-icon agent <?= $disables ?>" id="btn-disables-module-<?php echo $vote->id; ?>"><i class="fa fa-trophy fa-lg" aria-hidden="true"></i></div>
 
                                     <?php endif; ?>
 
-
+                                    
 
                                 </div>
 
@@ -297,40 +327,6 @@ echo Html::beginForm();
                 </h6>
             </div>
 
-            <!-- if there's at least one review -->
-            <?php if($agent_vote_count > 0): ?>
-              <div class="tags_panel">
-
-              <div class="row" style="margin-bottom:50px">
-                    <?php foreach($tags as $key => $tag): ?>
-                    <div class="col-sm-4">
-                        <span><?= empty($tags[$key]['translation']) ? $tags[$key]['title'] : $tags[$key]['translation'] ?></span>
-                        <span style="float:right"><?= $tags[$key]['amount'] ?></span>
-                    </div>
-                    <?php endforeach; ?>
-              </div>
-
-              <div class="users_avg_stars stars" title="<?= number_format((float)$user_average_votes, 2, '.', '') ?>">
-                <?php for ($i = 0; $i < 5; $i++): ?>
-                  <?php if ($user_average_votes > $i): ?>
-                    <?php if (($user_average_votes - $i) < 1): ?>
-                      <i class="fa fa-star-half-o fa-lg" aria-hidden="true"></i>
-                    <?php else: ?>
-                      <i class="fa fa-star fa-lg" aria-hidden="true"></i>
-                    <?php endif; ?>
-                  <?php else: ?>
-                    <i class="fa fa-star-o fa-lg" aria-hidden="true"></i>
-                  <?php endif; ?>
-                <?php endfor; ?>
-              </div>
-
-              <span id="user_avg_star_hint">
-                <?= Votes::getAverageRatingStarHint($user_average_votes); ?>
-              </span>
-            <?php endif; ?>
-
-            </div>
-
             <div class="panel-body">
                 <?php
                     $votes = $evidence->getVotes('Users');
@@ -341,7 +337,7 @@ echo Html::beginForm();
                 ?>
                 <div id="collapseAgentEvidenceReviews<?= $evidence->id ?>"  class="panel-collapse collapse" aria-expanded="false">
                     <div class="">
-                        <?php
+                        <?php 
                           foreach($votes as $vote){
                             echo $this->render('user_vote_view', array('vote' => $vote, 'contentContainer' => $contentContainer));
                           }
@@ -353,12 +349,12 @@ echo Html::beginForm();
             <?php if($agent_vote_count > 1): ?>
               <a href="#collapseAgentEvidenceReviews<?= $evidence->id ?>"  class="btn btn-sm btn-primary " data-toggle="collapse">
                  <?= Yii::t('MissionsModule.base', 'Show {total_reviews} agent reviews', ['total_reviews' => $agent_vote_count - 1]) ?>
-              </a>
+              </a>      
             <?php elseif($agent_vote_count == 0): ?>
               <p>
                 <?= Yii::t('MissionsModule.base', 'No agent reviews') ?>
               </p>
-            <?php endif; ?>
+            <?php endif; ?>   
             </div>
         </div>
 
@@ -407,7 +403,7 @@ echo Html::beginForm();
                 'dataType' => 'json',
                 'type' => 'POST',
                 'beforeSend' => "function() { validateDraft($evidence->id); }",
-                'success' => "function(response) { entryHandleResponse(response);}",
+                'success' => "function(response) { handleResponse(response); loadPopUps();}",
                 'url' => $evidence->content->container->createUrl('/missions/evidence/publish', ['id' => $evidence->id]),
             ],
             'htmlOptions' => [
@@ -458,30 +454,6 @@ echo Html::beginForm();
 
 $(document).ready(function(){
 
-    console.log("changing entry handleResponse");
-
-    entryHandleResponse = function(response) {
-      console.log("calling handle response");
-      handleResponse(response);
-      if (!response.errors) {
-          window.location.hash = "wallEntry_" + response.wallEntryId;
-
-          //wait for handle response
-
-          var timer = setInterval(function() {
-                console.log("check duplicated");
-                checkDuplicatedEntry();
-                reLoadPopUps();
-                updateEvocoins();
-                window.clearInterval(timer);
-                timer = null;
-                }, 
-          500); 
-
-          
-      }
-    }
-
     current = $('#current<?= $evidence->id ?>');
 
     if(current.text() >= 140){
@@ -515,15 +487,6 @@ $('#evidence_input_text_<?= $evidence->id ?>').keyup(function() {
 
 })
 
-function checkDuplicatedEntry(){
-  var entries = $('[id="wallEntry_<?= $evidence->content->getFirstWallEntryId() ?>"]');
-  if(entries.length >= 1){
-    for(var i=1; i<entries.length; i++){
-      entries[i].remove();
-    }
-  }
-}
-
 function validateDraft(draft_id){
   text = $('#evidence_input_text_' + draft_id);
   if(text.val().length < 140){
@@ -544,18 +507,10 @@ function review(id, comment, opt, grade){
                 $("#review_tab_" + id).replaceWith(xhttp.responseText);
               }
             }
-            loadPopUps();
+            reLoadPopUps();
         }
     };
-
-    <?php if ($is_ally): ?>
-    xhttp.open("GET", "<?= $contentContainer->createUrl('/alliances/alliances/review'); ?>&opt="+opt+"&grade="+grade+"&evidenceId="+id+"&comment="+comment , true);
-    <?php else: ?>
-
     xhttp.open("GET", "<?= $contentContainer->createUrl('/missions/evidence/review'); ?>&opt="+opt+"&grade="+grade+"&evidenceId="+id+"&comment="+comment , true);
-
-    <?php endif; ?>
-
     xhttp.send();
 
     return false;
@@ -652,6 +607,13 @@ https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
     display: inline-block;
     position: relative;
     font-size: 10pt !important;
+}
+
+.stars {
+  text-align: center;
+  font-size: 2em;
+  color: #ece046;
+  /*margin-top: -14px;*/
 }
 
 </style>
