@@ -69,7 +69,11 @@ $firstSecondary = true;
 
                 <div class="item active">
                   <h6 style="background-color: #101C2A; text-align: center; padding: 10px 0; color: #5aa2c6;"><?php echo Yii::t('MissionsModule.model', 'Chapter #{chapter} - Page #{page}', array('chapter' => $mission->position, 'page' => 1)); ?></h6>
-                  <img src="<?php echo $pages[0]->page_image; ?>" alt="<?php echo $pages[0]->page_image; ?>" width="100%">
+                    <?php if($pages[0]->markup != ""): ?>
+                        <?= $pages[0]->markup ?>
+                    <?php else: ?>
+                        <img src="<?php echo $pages[0]->page_image; ?>" alt="<?php echo $pages[0]->page_image; ?>" width="100%">
+                  <?php endif; ?>
                 </div>
 
                 <?php unset($pages[0]); foreach ($pages as $key => $page): ?>
