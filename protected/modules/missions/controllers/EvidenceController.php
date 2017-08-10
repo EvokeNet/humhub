@@ -560,9 +560,10 @@ class EvidenceController extends ContentContainerController
 
             //MISSION COMPLETION EVOCOINS                
 
+            $mission = Missions::findOne($activity->mission_id);
+            $isTeamGoingToComplete = $mission->isTeamGoingToComplete($team->id, $activity->id);
+
             if(!TeamMission::isMissionCompleted($activity->mission_id, $team->id)){
-                $mission = Missions::findOne($activity->mission_id);
-                $isTeamGoingToComplete = $mission->isTeamGoingToComplete($team->id, $activity->id);
                 if($isTeamGoingToComplete){
                     foreach ($team_members as $team_member) {
                         $wallet = Wallet::find()->where(['owner_id' => $team_member->id])->one();
