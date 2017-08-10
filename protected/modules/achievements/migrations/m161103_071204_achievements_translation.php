@@ -23,7 +23,7 @@ class m161103_071204_achievements_translation extends Migration
             'achievements',
             'id',
             'CASCADE'
-        ); 
+        );
     }
 
     public function down()

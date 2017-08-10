@@ -17,43 +17,44 @@ use app\modules\missions\models\Evidence;
     <div class="panel-body">
 
         <div style="margin:20px 0px 40px">
-                <div style="margin-bottom:30px">
-                    <div style="text-align: center; display: inline-table; margin-right:20px">
-                        <div class="powers-box empty" style="margin-bottom:5px; height: 40px; min-width: 40px;">
+            <div style="margin-bottom:30px; text-align:center">
+                <span style="text-transform:uppercase; margin-right:30px"><?php echo Yii::t('MissionsModule.base', 'Labels:'); ?></span>
+                <div style="text-align: center; display: inline-table; margin-right:20px">
+                    <div class="powers-box empty" style="margin-bottom:5px; height: 30px; min-width: 30px;">
 
-                        </div><br />
-                        <span style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', 'Evidence Not Submitted'); ?></span>
-                    </div>
-
-                    <div style="text-align: center; display: inline-table; margin-right:20px">
-                        <div class="powers-box vote_ally" style="margin-bottom:5px; height: 40px; min-width: 40px;">
-
-                        </div><br />
-                        <span style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', 'Reviewed by Ally'); ?></span>
-                    </div>
-
-                    <div style="text-align: center; display: inline-table; margin-right:20px">
-                        <div class="powers-box vote_mentor" style="margin-bottom:5px; height: 40px; min-width: 40px;">
-
-                        </div><br />
-                        <span style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', 'Reviewed by Mentor'); ?></span>
-                    </div>
-
-                    <div style="text-align: center; display: inline-table; margin-right:20px">
-                        <div class="powers-box both" style="margin-bottom:5px; height: 40px; min-width: 40px;">
-
-                        </div><br />
-                        <span style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', 'Reviewed by Both'); ?></span>
-                    </div>
+                    </div><br />
+                    <span style="font-size:8pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', 'Evidence Not Submitted'); ?></span>
                 </div>
 
+                <div style="text-align: center; display: inline-table; margin-right:20px">
+                    <div class="powers-box vote_ally" style="margin-bottom:5px; height: 30px; min-width: 30px;">
+
+                    </div><br />
+                    <span style="font-size:8pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', 'Reviewed by Ally'); ?></span>
+                </div>
+
+                <div style="text-align: center; display: inline-table; margin-right:20px">
+                    <div class="powers-box vote_mentor" style="margin-bottom:5px; height: 30px; min-width: 30px;">
+
+                    </div><br />
+                    <span style="font-size:8pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', 'Reviewed by Mentor'); ?></span>
+                </div>
+
+                <div style="text-align: center; display: inline-table; margin-right:20px">
+                    <div class="powers-box both" style="margin-bottom:5px; height: 30px; min-width: 30px;">
+
+                    </div><br />
+                    <span style="font-size:8pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', 'Reviewed by Both'); ?></span>
+                </div>
             </div>
+
+        </div>
 
         <?php foreach($missions as $m): $all_powers = array(); ?>
             <div class="review-box">
 
-                <h5 style="text-align:center"><?php echo Yii::t('MissionsModule.base', 'Mission {position}', array('position' => $m->position)); ?></h5>
-                <h6 style="text-align:center">
+                <h5 style="text-align:center; text-transform: uppercase; color: #FEAE1B; font-weight: 700"><?php echo Yii::t('MissionsModule.base', 'Mission {position}', array('position' => $m->position)); ?></h5>
+                <h6 style="text-align:center; text-transform: uppercase;">
                     <?php
                             if(Yii::$app->language == 'es' && isset($m->missionTranslations[0]))
                                 echo $m->missionTranslations[0]->title;
@@ -66,17 +67,17 @@ use app\modules\missions\models\Evidence;
                 <table class="table table-responsive">
                     <thead>
                         <tr>
-                        <th width="10"></th>
-                        <?php foreach($a1 as $member): ?>
-                            <th width="20" style="text-align:center">
-                                <a href="<?php echo $member->getUrl(); ?>">
-                                    <img src="<?php echo $member->getProfileImage()->getUrl(); ?>" class="img-rounded tt img_margin"
-                                        style="width: 50px; height: 50px;"
-                                        data-original-title="<?php echo Html::encode($member->displayName); ?>">
-                                    <p style="margin-bottom: 0; margin-top: 5px; font-size:10pt"><?php echo $member->name; ?></p>
-                                </a>
-                            </th>
-                        <?php endforeach; ?>
+                            <th width="10"></th>
+                            <?php foreach($a1 as $member): ?>
+                                <th width="20" style="text-align:center">
+                                    <a href="<?php echo $member->getUrl(); ?>">
+                                        <div style="min-height: 60px;"><img src="<?php echo $member->getProfileImage()->getUrl(); ?>" class="img-rounded tt img_margin"
+                                            style="width: 50px; height: 50px;"
+                                            data-original-title="<?php echo Html::encode($member->displayName); ?>"></div>
+                                        <p style="margin-bottom: 0; margin-top: 5px; font-size:10pt"><?php echo $member->name; ?></p>
+                                    </a>
+                                </th>
+                            <?php endforeach; ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -98,7 +99,7 @@ use app\modules\missions\models\Evidence;
                                 ?>
                                     <th style="text-align:center">
                                     <a href="<?= $contentContainer->createUrl('/missions/evidence/show', ['activityId' => $a->id]) ?>">
-                                        <img src = "<?php echo $power->getPower()->image; ?>" width=50px>
+                                        <div style="margin-top: 4px"><img src = "<?php echo $power->getPower()->image; ?>" width=50px></div>
                                         <span style='display: inline-flex'>
                                             <?php echo Yii::t('MissionsModule.base', '+{points}', array('power' => $name, 'points' => $power->value)); ?> 
                                             <br>
@@ -129,14 +130,14 @@ use app\modules\missions\models\Evidence;
                     </tbody>
                 </table>
 
-                <div style="margin:40px 0px 5px">
-                    <span style="display: inline-block; margin-bottom: 10px; font-weight: 700; color: #03ACC5; font-size: 12pt;"><?php echo Yii::t('MissionsModule.base', 'Powers'); ?></span>
+                <div style="margin:40px 0px 5px; text-align: center;">
+                    <span style="display: inline-block; margin: 20px 0; font-weight: 700; color: #03ACC5; font-size: 13pt; text-transform: uppercase;"><?php echo Yii::t('MissionsModule.base', 'Powers'); ?></span>
 
                         <?php $counter = 0 ?>
                         <?php foreach($all_powers as $ap): ?>
                             <?php
                                 if($counter%3==0){
-                                    echo "<div class='row'>";
+                                    echo "<div class='row' style='margin-bottom:10px'>";
                                 }
                             ?>
                                 <div class="col-sm-4">
@@ -151,7 +152,9 @@ use app\modules\missions\models\Evidence;
                                 $counter++;
                             ?>
                         <?php endforeach; ?>
-
+                        <?php if(empty($all_powers)): ?>
+                            <span style="display: block; font-weight: 700; font-size: 11pt; text-transform: uppercase;"><?php echo Yii::t('MissionsModule.base', 'No powers were assigned to this mission yet'); ?></span>
+                        <?php endif; ?>
                 </div>
 
             </div>
@@ -200,7 +203,7 @@ use app\modules\missions\models\Evidence;
     }
 
     .vote_ally{
-        border: 3px solid white;
+        border: 2px solid white;
         line-height: 47px;
     }
 

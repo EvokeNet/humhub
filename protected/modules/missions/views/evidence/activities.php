@@ -10,13 +10,13 @@ $mission_title = isset($mission->missionTranslations[0]) ? $mission->missionTran
 $this->title = $mission_title; //Yii::t('MissionsModule.base', 'Activities');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('MissionsModule.base', 'Missions'), 'url' => ['missions', 'sguid' => $contentContainer->guid]];
 // $this->params['breadcrumbs'][] = $mission->title;
-$this->params['breadcrumbs'][] = Yii::t('MissionsModule.model', 'Mission {position}', array('position' => $mission->position)); //Yii::t('MissionsModule.base', 'Mission {position} - {alias}', array('position' => $mission->position, 'alias' => $this->title)); //Yii::t('MissionsModule.base', 'Mission:').' '.$this->title;
+$this->params['breadcrumbs'][] = Yii::t('MissionsModule.base', 'Mission {position} - {alias}', array('position' => $mission->position, 'alias' => $this->title)); //Yii::t('MissionsModule.base', 'Mission:').' '.$this->title;
 
 echo Breadcrumbs::widget([
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
 ]);
 
-$this->pageTitle = Yii::t('MissionsModule.page_titles', 'Mission {position} : {alias}', array('position' => $mission->position, 'alias' => $this->title));
+$this->pageTitle = Yii::t('MissionsModule.base', 'Mission {position} - {alias}', array('position' => $mission->position, 'alias' => $this->title));
 
 $firstPrimary = true;
 $firstSecondary = true;
@@ -24,60 +24,60 @@ $firstSecondary = true;
 ?>
 
 <ul class="nav nav-tabs nav-justified">
-  <li style="text-transform: uppercase" class="<?php echo (Yii::$app->request->get('flag') && Yii::$app->request->get('flag') == 1) ? '' : 'active'; ?>"><a href="#tab-novel" data-toggle="tab"><?php echo Yii::t('MissionsModule.base', 'Introduction'); //Novel Chapter #{number}', array('number' => $mission->position)); ?></a></li>
-  <li style="text-transform: uppercase" class="<?php echo (Yii::$app->request->get('flag') && Yii::$app->request->get('flag') == 1) ? 'active' : ''; ?>"><a href="#tab-mission" data-toggle="tab"><?php echo Yii::t('MissionsModule.base', 'Mission {position}', array('position' => $mission->position)); //$this->title; ?></a></li>
+  <li class="<?php echo (Yii::$app->request->get('flag') && Yii::$app->request->get('flag') == 1) ? '' : 'active'; ?>"><a href="#tab-novel" data-toggle="tab"><?php echo Yii::t('MissionsModule.model', 'Novel Chapter #{number}', array('number' => $mission->position)); ?></a></li>
+  <li class="<?php echo (Yii::$app->request->get('flag') && Yii::$app->request->get('flag') == 1) ? 'active' : ''; ?>"><a href="#tab-mission" data-toggle="tab"><?php echo $this->title; ?></a></li>
 </ul>
 
 <div class="tab-content clearfix">
     <div class="tab-pane <?php echo (Yii::$app->request->get('flag') && Yii::$app->request->get('flag') == 1) ? '' : 'active'; ?>" id="tab-novel">
 
-    <!--<div>
+    <div>
         <?php if(!empty($previous_mission)): ?>
-            <span><?php //echo Html::a(Yii::t('MissionsModule.base', '{icon} Previous', array('icon' => '<i class="fa fa-arrow-circle-o-left fa-lg" aria-hidden="true"></i>')), ['activities', 'missionId' => $previous_mission->id, 'sguid' => $contentContainer->guid], array('style' => 'float:left')); ?></span>
+            <span><?php echo Html::a(
+            Yii::t('MissionsModule.base', '{icon} Previous', array('icon' => '<i class="fa fa-arrow-circle-o-left fa-lg" aria-hidden="true"></i>')),
+            ['activities', 'missionId' => $previous_mission->id, 'sguid' => $contentContainer->guid], array('style' => 'float:left')); ?></span>
         <?php else: ?>
             <span style="float:left"><?php echo Yii::t('MissionsModule.base', '{icon} Previous', array('icon' => '<i class="fa fa-arrow-circle-o-left fa-lg" aria-hidden="true"></i>')); ?></span>
         <?php endif; ?>
 
         <?php if(!empty($next_mission)): ?>
-            <span><?php //echo Html::a(Yii::t('MissionsModule.base', 'Next {icon}', array('icon' => '<i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i>')), ['activities', 'missionId' => $next_mission->id, 'sguid' => $contentContainer->guid], array('style' => 'float:right')); ?></span>
+            <span><?php echo Html::a(
+            Yii::t('MissionsModule.base', 'Next {icon}', array('icon' => '<i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i>')),
+            ['activities', 'missionId' => $next_mission->id, 'sguid' => $contentContainer->guid], array('style' => 'float:right')); ?></span>
         <?php else: ?>
-            <span style="float:right"><?php //echo Yii::t('MissionsModule.base', 'Next {icon}', array('icon' => '<i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i>')); ?></span>
+            <span style="float:right"><?php echo Yii::t('MissionsModule.base', 'Next {icon}', array('icon' => '<i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i>')); ?></span>
         <?php endif; ?>
     </div>
-    <br /><br />-->
+    <br /><br />
 
         <?php if(!empty($pages)): ?>
 
         <div id="myCarousel" class="carousel">
 
           <!-- Indicators -->
-          <!--<ol class="carousel-indicators">
+          <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 
             <?php foreach($pages as $key => $t): ?>
                 <li data-target="#myCarousel" data-slide-to="<?php echo $key+1; ?>"></li>
             <?php endforeach; ?>
 
-          </ol>-->
+          </ol>
 
           <!-- Wrapper for slides -->
           <div class="carousel-inner" role="listbox">
 
                 <div class="item active">
-                  <!--<h6 style="background-color: #101C2A; text-align: center; padding: 10px 0; color: #5aa2c6;"><?php //echo Yii::t('MissionsModule.model', 'Chapter #{chapter} - Page #{page}', array('chapter' => $mission->position, 'page' => 1)); ?></h6>-->
-                    <?php if($pages[0]->markup != ""): ?>
-                        <?= $pages[0]->markup ?>
-                    <?php else: ?>
-                        <img src="<?php echo $pages[0]->page_image; ?>" alt="<?php echo $pages[0]->page_image; ?>" width="100%">
-                  <?php endif; ?>
+                  <h6 style="background-color: #101C2A; text-align: center; padding: 10px 0; color: #5aa2c6;"><?php echo Yii::t('MissionsModule.model', 'Chapter #{chapter} - Page #{page}', array('chapter' => $mission->position, 'page' => 1)); ?></h6>
+                  <img src="<?php echo $pages[0]->page_image; ?>" alt="?php echo $pages[0]->page_image; ?" width="100%">
                 </div>
 
                 <?php unset($pages[0]); foreach ($pages as $key => $page): ?>
 
                     <?php if(isset($page->chapter->number)): ?>
                         <div class="item">
-                          <!--<h6 style="background-color: #101C2A; text-align: center; padding: 10px 0; color: #5aa2c6;"><?php //echo Yii::t('MissionsModule.model', 'Chapter #{chapter} - Page #{page}', array('chapter' => $mission->position, 'page' => $key+1)); ?></h6>-->
-                          <img src="<?= $page->page_image; ?>" alt="<?php echo $page->page_image; ?>" width="100%">
+                          <h6 style="background-color: #101C2A; text-align: center; padding: 10px 0; color: #5aa2c6;"><?php echo Yii::t('MissionsModule.model', 'Chapter #{chapter} - Page #{page}', array('chapter' => $mission->position, 'page' => $key+1)); ?></h6>
+                          <img src="<?php echo $page->page_image; ?>" alt="<?php echo $page->page_image; ?>" width="100%">
                         </div>
 
                     <?php endif; ?>
@@ -102,32 +102,34 @@ $firstSecondary = true;
     </div>
     <div class="tab-pane <?php echo (Yii::$app->request->get('flag') && Yii::$app->request->get('flag') == 1) ? 'active' : ''; ?>" id="tab-mission">
 
-        <!--<?php if(!empty($previous_mission)): ?>
-        <span><?php //echo Html::a(Yii::t('MissionsModule.base', '{icon} Previous', array('icon' => '<i class="fa fa-arrow-circle-o-left fa-lg" aria-hidden="true"></i>')), ['activities', 'missionId' => $previous_mission->id, 'sguid' => $contentContainer->guid, 'flag' => 1], array('style' => 'float:left')); ?></span>
+        <?php if(!empty($previous_mission)): ?>
+        <span><?php echo Html::a(
+            Yii::t('MissionsModule.base', '{icon} Previous', array('icon' => '<i class="fa fa-arrow-circle-o-left fa-lg" aria-hidden="true"></i>')),
+            ['activities', 'missionId' => $previous_mission->id, 'sguid' => $contentContainer->guid, 'flag' => 1], array('style' => 'float:left')); ?></span>
         <?php else: ?>
-            <span style="float:left"><?php //echo Yii::t('MissionsModule.base', '{icon} Previous', array('icon' => '<i class="fa fa-arrow-circle-o-left fa-lg" aria-hidden="true"></i>')); ?></span>
+            <span style="float:left"><?php echo Yii::t('MissionsModule.base', '{icon} Previous', array('icon' => '<i class="fa fa-arrow-circle-o-left fa-lg" aria-hidden="true"></i>')); ?></span>
         <?php endif; ?>
 
         <?php if(!empty($next_mission)): ?>
-        <span><?php //echo Html::a(Yii::t('MissionsModule.base', 'Next {icon}', array('icon' => '<i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i>')), ['activities', 'missionId' => $next_mission->id, 'sguid' => $contentContainer->guid, 'flag' => 1], array('style' => 'float:right')); ?></span>
+        <span><?php echo Html::a(
+            Yii::t('MissionsModule.base', 'Next {icon}', array('icon' => '<i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i>')),
+            ['activities', 'missionId' => $next_mission->id, 'sguid' => $contentContainer->guid, 'flag' => 1], array('style' => 'float:right')); ?></span>
         <?php else: ?>
-            <span style="float:right"><?php //echo Yii::t('MissionsModule.base', 'Next {icon}', array('icon' => '<i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i>')); ?></span>
+            <span style="float:right"><?php echo Yii::t('MissionsModule.base', 'Next {icon}', array('icon' => '<i class="fa fa-arrow-circle-o-right fa-lg" aria-hidden="true"></i>')); ?></span>
         <?php endif; ?>
 
-        <br /><br />-->
+        <br /><br />
 
         <div class="panel panel-default">
             <div class="panel-heading">
 
                 <h5>
-                    <span class = "activity-number">
-                            <?php echo $mission->position >= 1 ? $mission->position : "#" ?>
-                    </span>
+                    <span style="color:#FEAE1B"><?php echo $mission->position >= 1 ? '#'.$mission->position : "#" ?></span>&nbsp;
                     <span class="mission-title"><?= $mission_title ?></span>
                 </h5>
 
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="margin-top:15px">
 
                 <p class="description">
                     <?= isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->description : $mission->description ?>
@@ -139,7 +141,7 @@ $firstSecondary = true;
                     $x = 0;
                     if (count($mission->activities) != 0): ?>
 
-                    <?php foreach ($mission->activities as $key => $activity): $hasUserSubmittedEvidence = Evidence::hasUserSubmittedEvidence($activity->id);?> 
+                    <?php foreach ($mission->activities as $key => $activity): $hasUserSubmittedEvidence = Evidence::hasUserSubmittedEvidence($activity->id);?>
 
                         <div class="panel panel-default">
                             <div class="panel-body panel-body grey-box">
@@ -165,11 +167,10 @@ $firstSecondary = true;
                                     <?php echo nl2br(isset($activity->activityTranslations[0]) ? $activity->activityTranslations[0]->description : $activity->description) ?>
                                 </p>
 
-                                <div style="margin:30px 0 20px">
+                                <div class="row" style="margin:30px 0 20px">
+                                    <div class="col-xs-4">
 
                                         <h6 style="margin-bottom:15px; font-size:12pt"><?= Yii::t('MissionsModule.base', 'Primary Power') ?></h6>
-
-                                        <div style="display: flex; flex-wrap: wrap;">
                                         <?php
                                             foreach($activity->getPrimaryPowers() as $power):
                                                 if($firstPrimary)
@@ -181,39 +182,37 @@ $firstSecondary = true;
                                                     $name = $power->getPower()->powerTranslations[0]->title;
                                         ?>
 
-                                                <div class="power-cards">
-                                                    <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
-                                                    <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '+{points} {power}', array('power' => $name, 'points' => $power->value)); ?></p>
-                                                </div>
+                                        
+                                            <div>
+                                                <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
+                                                <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
+                                            </div>
                                             
                                         <?php endforeach; ?>
-                                        </div>
 
-                                        <br />
+                                    </div>
+                                    <div class="col-xs-8">
 
                                         <h6 style="margin-bottom:15px; font-size:12pt"><?= Yii::t('MissionsModule.base', 'Secondary Power(s)') ?></h6>
-                                            <div style="display: flex; flex-wrap: wrap;">
-                                                <?php
-                                                    foreach($activity->getSecondaryPowers() as $power):
-                                                        if($firstSecondary)
-                                                            $firstSecondary = false;
+                                            <?php
+                                                foreach($activity->getSecondaryPowers() as $power):
+                                                    if($firstSecondary)
+                                                        $firstSecondary = false;
 
-                                                        $name = $power->getPower()->title;
+                                                    $name = $power->getPower()->title;
 
-                                                        if(Yii::$app->language == 'es' && isset($power->getPower()->powerTranslations[0]))
-                                                            $name = $power->getPower()->powerTranslations[0]->title;
-                                                ?>
+                                                    if(Yii::$app->language == 'es' && isset($power->getPower()->powerTranslations[0]))
+                                                        $name = $power->getPower()->powerTranslations[0]->title;
+                                            ?>
                                                 
-                                                
-                                                    <div class="power-cards">
-                                                        <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
-                                                        <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '+{points} {power}', array('power' => $name, 'points' => $power->value)); ?></p>
-                                                    </div>
-                                                
-                                                
-                                                <?php endforeach; ?>
+                                            <div>
+                                                <img src = "<?php echo $power->getPower()->image; ?>" width=40px>
+                                                <p style="font-size:9pt; margin-top:5px"><?php echo Yii::t('MissionsModule.base', '{power} - {points} point(s)', array('power' => $name, 'points' => $power->value)); ?></p>
                                             </div>
+                                            
+                                        <?php endforeach; ?>
 
+                                    </div>
                                 </div>
 
                                     <br />

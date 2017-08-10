@@ -69,16 +69,36 @@ class Events extends \yii\base\Object
         if(property_exists($event->action, "actionMethod") && (($event->action->actionMethod) && $event->action->actionMethod === 'actionLogin' || $event->action->actionMethod === 'actionCreateAccount')){
             //Check if user is logged in
             if(null != Yii::$app->user->getIdentity()) {
-                // check if user hasn't superhero id yet  and if user isn't a mentor
-                if (!isset(Yii::$app->user->getIdentity()->superhero_identity_id) && Yii::$app->user->getIdentity()->group->name != "Mentors"){
-                    //Check order
-                    if($novel_order == EvokeSettingsForm::FIRST_QUESTIONNAIRE){
-                        $event->action->controller->redirect(Url::toRoute('/matching_questions/matching-questions/matching'));
-                    //check if user has already read the novel
-                    }else if(Yii::$app->user->getIdentity()->has_read_novel == true){
-                        $event->action->controller->redirect(Url::toRoute('/matching_questions/matching-questions/matching'));
+
+
+                //check if users are obligated to see the slide or see the video
+                if(Setting::Get('enabled_intro_slide') || Setting::Get('enabled_intro_video') || Setting::Get('enabled_intro_terms')){
+
+                    // do nothing
+
+                //check if users are obligated to answer the questionnaire
+                }else if(Setting::Get('enabled_psychometric_questionnaire_obligation')){
+
+                    // check if user hasn't superhero id yet  and if user isn't a mentor
+                    if (!isset(Yii::$app->user->getIdentity()->superhero_identity_id) && Yii::$app->user->getIdentity()->group->name != "Mentors"){
+
+                        //check if users are obligated to see the novel
+                        if(Setting::Get('enabled_novel_read_obligation')){
+                            //Check order
+                            if($novel_order == EvokeSettingsForm::FIRST_QUESTIONNAIRE){
+                                $event->action->controller->redirect(Url::toRoute('/matching_questions/matching-questions/matching'));
+                            //check if user has already read the novel
+                            }else if(Yii::$app->user->getIdentity()->has_read_novel == true){
+                                $event->action->controller->redirect(Url::toRoute('/matching_questions/matching-questions/matching'));
+                            }
+                        }else{
+                             $event->action->controller->redirect(Url::toRoute('/matching_questions/matching-questions/matching'));
+                         }
+
                     }
+
                 }
+
             }
         }
     }

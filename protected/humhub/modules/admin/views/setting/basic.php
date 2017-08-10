@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
         <?php $form = ActiveForm::begin(); ?>
 
 
-        <?php echo $form->field($model, 'name'); ?>
+        <?php echo $form->field($model, 'name'); ?> 
 
         <?php echo $form->field($model, 'baseUrl'); ?>
         <p class="help-block"><?php echo Yii::t('AdminModule.views_setting_index', 'E.g. http://example.com/humhub'); ?></p>

@@ -19,7 +19,7 @@ echo Breadcrumbs::widget([
     </div>
     <div class="panel-body">
 
-        <?php echo Html::a(Yii::t('PowersModule.base', 'Create new Power'), ['create'], array('class' => 'btn btn-success')); ?>
+        <div style="position: absolute; top: 10px; right: 10px;"><?php echo Html::a(Yii::t('PowersModule.base', 'Create new Power'), ['create'], array('class' => 'btn btn-success')); ?></div>
         
         <br><br>
         

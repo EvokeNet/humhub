@@ -49,7 +49,10 @@ class AdminController extends \humhub\modules\admin\components\Controller
 
         if ($model->load(Yii::$app->request->post())) {
 
-            if(isset($model->image)){
+            $uploadedFile = UploadedFile::getInstance($model, 'image');
+
+            // only upload a file if it was attached
+            if ($uploadedFile !== null) {
                 $model->image = UploadedFile::getInstance($model, 'image');
                 $model->image->saveAs('uploads/' . $model->image->baseName . '.' . $model->image->extension);
                 $model->image = 'uploads/' . $model->image->baseName . '.' . $model->image->extension;
