@@ -106,17 +106,11 @@ p{
   color: @text-gray-font;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body{
+body {
   padding-top: 130px;
   background-color: @body-color;
   color: @text-gray-font;
   font-family: @heading_font;
-  margin: 0 0 70px;
   a,
   a:hover,
   a:focus,
@@ -1123,7 +1117,6 @@ input[type=select] {
     // font-size: 13px;
     p {
       color: @text-gray-font;
-      font-family:@text_font;
     }
     /*h1{
       font-family: @heading_font;
@@ -1159,7 +1152,7 @@ input[type=select] {
     p{
       font-family: @text_font;
       font-weight: 400;
-      font-size:10pt;
+      font-size:12pt;
     }
   }
   .statistics {
@@ -1435,7 +1428,6 @@ input[type=select] {
   margin-top: 30px;
   border: 2px solid @details-blue;
   padding: 15px;
-
   hr {
     margin: 15px 0 10px;
     border-top: 2px solid @details-blue;
@@ -3256,21 +3248,9 @@ img.bounceIn {
   background-image: url('../img/evocoin_bg.png');
 }
 
-//.container{
-  //position: relative;
-  //min-height: 100%;
-//}
-
 .footer{
   background-color: @primary-blue;
   font-family: @heading_font;
-
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 50px;
-  width: 100%;
-
   .container{
     padding: 15px 0 12px;
 
@@ -3309,9 +3289,9 @@ img.bounceIn {
   // -moz-box-shadow: 0 0 5px #888;
   // -webkit-box-shadow: 0 0 5px #888;
   // box-shadow: 0 0 5px #888;
-  -webkit-box-shadow: 0px 0px 9px 2px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 9px 2px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 9px 2px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0 1px 4px rgba(128, 128, 128, 0.3), 0 0 20px rgba(128, 128, 128, 0.1) inset;
+  -webkit-box-shadow: 0 1px 4px rgba(128, 128, 128, 0.3), 0 0 20px rgba(128, 128, 128, 0.1) inset;
+  box-shadow: 0 1px 4px rgba(128, 128, 128, 0.3), 0 0 20px rgba(128, 128, 128, 0.1) inset;
   &.formatted{
     padding: 15px;
   }
@@ -3418,9 +3398,10 @@ img.bounceIn {
 .glowing-box{
   background-color: @body-color;
   margin-top: 30px;
-  -webkit-box-shadow: 0px 0px 9px 2px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 9px 2px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 9px 2px rgba(0,0,0,0.75);
+  // -moz-box-shadow: 0 0 5px #888;
+  // -webkit-box-shadow: 0 0 5px #888;
+  // box-shadow: 0 0 5px #888;
+  border: 2px solid @details-blue;
 }
 
 .evidence-mission-box{
@@ -3617,9 +3598,6 @@ img.bounceIn {
 }
 
 .player-power{
-
-    padding-bottom: 20px;
-/*
     padding-bottom: 15px;
 
     span.text-header{
@@ -3636,7 +3614,7 @@ img.bounceIn {
       color:@tertiary2;
       font-weight:700;
     }
-*/
+
 }
 
 /* missions\widgets\views\portfolio */
@@ -4132,7 +4110,7 @@ https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html
 .graphic-novel-page{
   // min-height:200vh;
   background-image:url('<?= $page->page_image ?>');
-  background-size:cover;
+  background-size:contain;
   background-repeat:no-repeat;
   background-position:center;
   width: 100%;
@@ -4397,12 +4375,8 @@ legend{
 
 .matching-results-box{
   margin: 30px 10px;
-  text-align: center;  
+  text-align: center;
   h6{
     padding-top:8px;
   }
-}
-
-.img-rounded{
-  border-radius: 0!important;
 }

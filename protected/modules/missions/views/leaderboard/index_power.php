@@ -61,7 +61,7 @@ $this->pageTitle = Yii::t('MissionsModule.base', 'Leaderboard');
                         <div class="row" style="padding:20px 20px 0">
                             <?php foreach($ranking as $key => $r): ?>
                                 <div class="col-sm-6">
-                                    <div style = "padding: 10px; margin-bottom: 15px; border: 2px solid #5aa2c6;">
+                                    <div style = "padding: 10px; margin-bottom: 15px; border: 3px solid #0F2441;">
 
                                         <div class="row">
                                             <div class="col-sm-10" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
