@@ -3577,4 +3577,6 @@ legend {
 .navbar-brand .img-rounded {
   border-radius: 0!important;
   width: 300px;
+  background-color: white;
+  padding: 3px;
 }
