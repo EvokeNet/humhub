@@ -9,7 +9,7 @@ $this->pageTitle = Yii::t('UserModule.views_auth_login', 'Login');
 <link href="<?php echo $this->theme->getBaseUrl() . '/css/homepage.css'; ?>" rel="stylesheet">
 
 
-<div class="container" style="text-align: center; position:relative;">
+<div class="container login-logo" style="text-align: center; position:relative;">
     <?= humhub\widgets\SiteLogo::widget(['place' => 'login']); ?>
 
     <div id="homeAnimation" class="hidden-xs">

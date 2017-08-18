@@ -3574,7 +3574,8 @@ legend {
 .matching-results-box h6 {
   padding-top: 8px;
 }
-.navbar-brand .img-rounded {
+.navbar-brand .img-rounded,
+.login-logo .img-rounded {
   border-radius: 0!important;
   width: 300px;
   background-color: white;
