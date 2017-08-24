@@ -12,7 +12,8 @@ use app\modules\novel\models\NovelPage;
   }
   
   .graphic-novel-page img{
-    position: absolute; top: 0; width: 100%;
+    /*position: absolute; top: 0; */
+    width: 100%;
   }
   
   <?php if (!Yii::$app->user->getIdentity()->has_read_novel && Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
