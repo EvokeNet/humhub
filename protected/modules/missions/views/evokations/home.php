@@ -13,6 +13,7 @@ $user = Yii::$app->user->getIdentity();
 
 $voting_deadline = EvokationDeadline::getVotingDeadline();
 $deadline = EvokationDeadline::getEvokationDeadline();
+$enabled_evokations = Setting::Get('enabled_evokations');
 
 $this->title = Yii::t('MissionsModule.evokation_Home', 'Evokations');
 $this->params['breadcrumbs'][] = Yii::t('MissionsModule.evokation_Home', "{name}'s Evokation", array('name' => $contentContainer->name));
@@ -46,11 +47,11 @@ endforeach;
 
 <div class="evokation-voting-close">
     <div class="label-danger" style="font-size:12pt; color: #F4F4F4; text-align: center">
-        <?php if($voting_deadline && $voting_deadline->hasEnded()): ?>
+        <?php if($voting_deadline && $voting_deadline->hasEnded() && $enabled_evokations): ?>
             <?php echo Yii::t('MissionsModule.evokation_Home', "Voting's Closed"); ?>
         <?php endif; ?>
     </div><br />
-    <?php if(Setting::Get('enabled_evokations')): ?>
+    <?php if($enabled_evokations): ?>
         <?php if(!$hasTeamSubmittedEvokation && Yii::$app->user->getIdentity()->id == $contentContainer->created_by && $deadline && $deadline->isOccurring()): ?>
             <a class = "btn btn-cta2" href='<?= Url::to(['/missions/evokations/submit', 'sguid' => $contentContainer->guid]); ?>' style = "margin-top:10px">
                 <?= Yii::t('MissionsModule.evokation_Home', 'Submit Elevator Pitch') ?>
