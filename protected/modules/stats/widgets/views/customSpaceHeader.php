@@ -13,7 +13,7 @@ if ($space->isAdmin()) {
 }
 ?>
 
-<div class="panel panel-default panel-profile">
+<div class="panel panel-default panel-profile panel-space">
 
     <div class="panel-profile-header">
 
@@ -192,14 +192,13 @@ if ($space->isAdmin()) {
                         </div>-->
 
                         <div class="pull-left entry">
-                            <span class="count"><?php echo count($space->memberships); ?></span>
-                            <br>
+                            <span class="count"><?php echo count($space->memberships); ?></span><br />
                             <span
                                 class="title"><?php echo Yii::t('StatsModule.widgets_views_spaceHeader', 'Members'); ?></span>
                         </div>
 
                         <div class="pull-left entry">
-                            <span class="count"><?php echo $space->getFollowerCount(); ?></span><br>
+                            <span class="count"><?php echo $space->getFollowerCount(); ?></span><br />
                             <span
                                 class="title"><?php echo Yii::t('StatsModule.widgets_views_spaceHeader', 'Followers'); ?></span>
                         </div>
@@ -208,13 +207,13 @@ if ($space->isAdmin()) {
                         <?php if ($space->is_team): ?>
 
                         <div class="pull-left entry">
-                            <span class="count"><?php echo $evidencesTotal; ?></span><br>
+                            <span class="count"><?php echo $evidencesTotal; ?></span><br />
                             <span
                                 class="title"><?php echo Yii::t('StatsModule.widgets_views_spaceHeader', '# Evidences'); ?></span>
                         </div>
 
                         <div class="pull-left entry">
-                            <span class="count"><?php echo $done.'/'.$total; ?></span><br>
+                            <span class="count"><?php echo $done.'/'.$total; ?></span><br />
                             <span
                                 class="title"><?php echo Yii::t('StatsModule.widgets_views_spaceHeader', 'Activities Completed'); ?></span>
                         </div>

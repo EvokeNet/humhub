@@ -13,15 +13,15 @@ class m160510_005047_initial extends Migration
             'created_at' => 'datetime NOT NULL',
             'updated_at' => 'datetime NOT NULL',
         ), '');
-                
-        $this->insert('languages', array('language' => 'English', 'code' => 'en-US'));
-        $this->insert('languages', array('language' => 'Espanol', 'code' => 'es'));
+
+        $this->insert('languages', array('language' => 'English', 'code' => 'en-US', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')));
+        $this->insert('languages', array('language' => 'Espanol', 'code' => 'es', 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')));
     }
 
     public function down()
     {
         // echo "m160510_005047_initial cannot be reverted.\n";
-        
+
         $this->dropTable('languages');
 
         return true;

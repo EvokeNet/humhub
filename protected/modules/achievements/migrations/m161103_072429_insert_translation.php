@@ -12,6 +12,7 @@ class m161103_072429_insert_translation extends Migration
             'title' => 'Enviadas 6 evidencias',
             'description' => 'Tienes que presentar 6 evidencias para desbloquear esta realización',
             'language_id' => 2,
+            'created_at'  => date('Y-m-d H:i:s')
         ]);
 
         $this->insert('achievement_translations', [
@@ -20,6 +21,7 @@ class m161103_072429_insert_translation extends Migration
             'title' => 'Enviadas 12 evidencias',
             'description' => 'Tienes que presentar 12 evidencias para desbloquear esta realización',
             'language_id' => 2,
+            'created_at'  => date('Y-m-d H:i:s')
         ]);
 
         $this->insert('achievement_translations', [
@@ -28,6 +30,7 @@ class m161103_072429_insert_translation extends Migration
             'title' => 'Enviadas 24 evidencias',
             'description' => 'Tienes que presentar 24 evidencias para desbloquear esta realización',
             'language_id' => 2,
+            'created_at'  => date('Y-m-d H:i:s')
         ]);
 
         $this->insert('achievement_translations', [
@@ -36,6 +39,7 @@ class m161103_072429_insert_translation extends Migration
             'title' => 'Enviadas 48 evidencias',
             'description' => 'Tienes que presentar 48 evidencias para desbloquear esta realización',
             'language_id' => 2,
+            'created_at'  => date('Y-m-d H:i:s')
         ]);
 
         $this->insert('achievement_translations', [
@@ -44,6 +48,7 @@ class m161103_072429_insert_translation extends Migration
             'title' => 'Votar en una evokation',
             'description' => 'Tienes que votar en una Evokation para desbloquear esta realización',
             'language_id' => 2,
+            'created_at'  => date('Y-m-d H:i:s')
         ]);
 
         $this->insert('achievement_translations', [
@@ -52,6 +57,7 @@ class m161103_072429_insert_translation extends Migration
             'title' => 'Hacer una evaluación de calidad',
             'description' => 'Tienes que hacer una evaluación de calidad para desbloquear esta realización',
             'language_id' => 2,
+            'created_at'  => date('Y-m-d H:i:s')
         ]);
     }
 

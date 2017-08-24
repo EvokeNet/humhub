@@ -14,7 +14,7 @@ echo Breadcrumbs::widget([
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
 ]);
 
-$this->pageTitle = Yii::t('MissionsModule.base', "{name}'s Evokation", array('name' => $contentContainer->name));
+$this->pageTitle = Yii::t('MissionsModule.page_titles', "{name}'s Evokation", array('name' => $contentContainer->name));
 
 ?>
 
@@ -76,11 +76,3 @@ $this->pageTitle = Yii::t('MissionsModule.base', "{name}'s Evokation", array('na
         
     </div>
 </div>
-
-<style type="text/css">
-
-.description{
-    text-align: justify;
-}
-
-</style>

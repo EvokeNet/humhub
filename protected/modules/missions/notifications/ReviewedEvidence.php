@@ -42,7 +42,7 @@ class ReviewedEvidence extends \humhub\modules\notification\components\BaseNotif
         }
 
     }
-    
+
 
 }
 

@@ -72,4 +72,26 @@ use app\modules\marketplace\models\Product;
         return Product::find()->where(['id' => $this->product_id])->one()->fulfilled;
       }
 
+      public function fulfill() {
+        if ($this->fulfilled) {
+          return;
+        } else {
+          $this->fulfilled = true;
+          $this->save();
+          return;
+        }
+      }
+
+      public function returnProduct() {
+        if ($this->fulfilled) {
+          return false;
+        } else {
+          // add back quantity to product
+          $product = $this->product;
+          $product->quantity++;
+          $product->save();
+          $this->delete();
+          return true;
+        }
+      }
  }

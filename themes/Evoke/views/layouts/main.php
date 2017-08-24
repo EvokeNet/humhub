@@ -62,6 +62,16 @@ AppAsset::register($this);
         <meta charset="<?= Yii::$app->charset ?>">
         <!-- end: Favicon and Touch Icons -->
 
+        <!-- Include stylesheet -->
+        <link href="https://cdn.quilljs.com/1.1.10/quill.snow.css" rel="stylesheet">
+        <!-- Include the Quill library -->
+        <script src="https://cdn.quilljs.com/1.1.10/quill.js"></script>
+
+        <!-- Green Sock library -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenLite.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/CSSPlugin.min.js"></script>
+
     </head>
 
     <body>
@@ -137,7 +147,7 @@ AppAsset::register($this);
     
     <footer class="footer">
       <div class="container">
-        <p class="text-muted"><i class="fa fa-copyright" aria-hidden="true"></i> Copyright 2016 - World Bank</p>
+        <p class="text-muted"><i class="fa fa-copyright" aria-hidden="true"></i> Copyright 2017 - World Bank</p>
         <p class = "right">
         <?php //echo Html::a(
             //Yii::t('StaticsModule.base', 'About'), 

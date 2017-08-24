@@ -16,13 +16,6 @@ use yii\helpers\ArrayHelper;
 ?>
 </div>
 
-<style type="text/css">
-
-.text-margin{
-    margin-top: 5px;
-}
-</style>
-
 <!-- REMOVE FILE UPLOAD -->
 <script>
 	$( document ).ready(function() {
@@ -38,6 +31,7 @@ use yii\helpers\ArrayHelper;
                 $('#evokation_form').parent().parent().remove();
                 window.location.hash = "";
                 window.location.hash = "wallEntry_" + response.wallEntryId;
+                reLoadPopUps();
           }
         }
 

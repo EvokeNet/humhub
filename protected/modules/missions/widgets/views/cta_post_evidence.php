@@ -17,22 +17,20 @@ use yii\helpers\Url;
             		<?= Yii::t('MissionsModule.base', 'Choose a mission') ?>
             	</a>
                 <a class = "btn btn-primary" href='<?= Url::to(['/missions/review/index', 'sguid' => $member->space->guid]) ?>'>
-            		<?= Yii::t('MissionsModule.base', 'Review evidences') ?>
+            		<?php // Yii::t('MissionsModule.base', 'Review evidences') ?>
+                    <?php
+                    
+                        $user = Yii::$app->user->getIdentity();
+
+                        if($user->group->name == "Mentors"){
+                            echo Yii::t('MissionsModule.base', 'Review Evidences');
+                        } else{
+                            echo Yii::t('MissionsModule.base', 'Tag Evidences');
+                        }
+
+                    ?>
             	</a>
             <?php endif; ?>
         </div>
     </div>
 </div>
-
-<style type="text/css">
-
-.unavailable{
-    color: white;
-    text-shadow: -0.5px 0 gray, 0 0.5px gray, 2px 0 gray, 0 -0.5px gray;
-}
-
-.unavailable:hover{
-    color: white;
-}
-
-</style>

@@ -7,7 +7,7 @@ return [
     'class' => \humhub\modules\directory\Module::className(),
     'isCoreModule' => true,
     'events' => array(
-        array('class' => TopMenu::className(), 'event' => TopMenu::EVENT_INIT, 'callback' => array(humhub\modules\directory\Module::className(), 'onTopMenuInit')),
+        // array('class' => TopMenu::className(), 'event' => TopMenu::EVENT_INIT, 'callback' => array(humhub\modules\directory\Module::className(), 'onTopMenuInit')),
     ),
     'urlManagerRules' => [
         'directory/members' => 'directory/directory/members',

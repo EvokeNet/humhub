@@ -13,11 +13,7 @@ use humhub\modules\space\activities\MemberAdded;
             <?php if ($originator !== null) : ?>
                 <!-- Show user image -->
                 <img class="media-object img-rounded pull-left" data-src="holder.js/32x32" alt="32x32"
-                     style="    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 3px solid #254054;
-    margin-right: 10px;"
+                     style="width: 35px; height: 35px; border-radius: 50%; margin-right: 10px;"
                      src="<?php echo $originator->getProfileImage()->getUrl(); ?>">
             <?php endif; ?>
 

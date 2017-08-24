@@ -11,7 +11,7 @@ echo Breadcrumbs::widget([
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
 ]);
 
-$this->pageTitle = Yii::t('MissionsModule.base', 'Evokations');
+$this->pageTitle = Yii::t('MissionsModule.page_titles', 'Evokations');
 
 $total = 0;
 $done = 0;
@@ -120,11 +120,3 @@ endforeach;
         
     </div>
 </div>
-
-<style type="text/css">
-
-.description{
-    text-align: justify;
-}
-
-</style>

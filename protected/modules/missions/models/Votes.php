@@ -12,6 +12,8 @@ use app\modules\missions\models\Activities;
 use app\modules\powers\models\UserPowers;
 use humhub\modules\admin\models\forms\MailingSettingsForm;
 use humhub\modules\user\models\Setting;
+use app\modules\missions\models\EvidenceTags;
+use humhub\modules\missions\controllers\AlertController;
 
 /**
  * This is the model class for table "votes".
@@ -98,12 +100,42 @@ class Votes extends ContentActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
+    public function getTags(){
+        return EvidenceTags::find(['user_id' => $this->user_id, 'evidence_id' => $this->evidence_id])->all();
+    }
+
     public function beforeSave($insert){
         $this->content->user_id = $this->user_id;
         $this->content->object_model = Votes::classname();
         $this->content->object_id = $this->id;
         $this->content->visibility = \humhub\modules\content\models\Content::VISIBILITY_PUBLIC;
         return parent::beforeSave($insert);
+    }
+
+    public static function getTagCount(){
+        $user = Yii::$app->user->getIdentity();
+
+        return (new \yii\db\Query())
+        ->select(['count(distinct evidence_id) as evidence_count'])
+        ->from('evidence_tags as et')
+        ->where(['user_id' => $user->id])
+        ->one()['evidence_count'];
+    }
+
+    public function checkFiveTaggedEvidencesReward(){
+
+        $user = Yii::$app->user->getIdentity();
+
+        $tag_count = Votes::getTagCount();
+
+        if($tag_count % 5 == 0 && $tag_count >= 5){
+            $wallet = Wallet::find()->where(['owner_id' => $user->id])->one();
+            $wallet->addCoin(1);
+            $wallet->save();
+            AlertController::createAlert(Yii::t('MissionsModule.base', "Reward"), Yii::t('MissionsModule.base', 'You\'ve received an extra evocoin for the last 5 evidences you\'ve tagged'));
+            return true;
+        }
+        return false;
     }
 
     public function afterSave($insert, $changedAttributes)
@@ -168,6 +200,41 @@ class Votes extends ContentActiveRecord
         return $evidence->content->getUrl();
     }
 
+    public static function getAverageRatingStarHint($average){
+        if($average <= 1){
+            return Yii::t('MissionsModule.base', 'Does not comply with the rubric');
+        }elseif($average <= 2){
+            return Yii::t('MissionsModule.base', 'Meets the required minimum');
+        }elseif($average <= 3){
+            return Yii::t('MissionsModule.base', 'Good');
+        }elseif($average <= 4){
+            return Yii::t('MissionsModule.base', 'Excellent');
+        }elseif($average <= 5){
+            return Yii::t('MissionsModule.base', 'Outstanding');
+        }
+    }
+
+    public function getStarHint(){
+        switch($this->value){
+            case 1:
+                return Yii::t('MissionsModule.base', 'Does not comply with the rubric');
+                break;
+            case 2:
+                return Yii::t('MissionsModule.base', 'Meets the required minimum');
+                break;
+            case 3:
+                return Yii::t('MissionsModule.base', 'Good');
+                break;
+            case 4:
+                return Yii::t('MissionsModule.base', 'Excellent');
+                break;
+            case 5:
+                return Yii::t('MissionsModule.base', 'Outstanding');
+                break;
+        }
+        return null;
+    }
+
     public function beforeDelete()
     {
         $notifications = Notification::findAll(['source_pk' => $this->id, 'source_class' => Votes::classname()]);
@@ -211,6 +278,12 @@ class Votes extends ContentActiveRecord
                 UserPowers::removePowerPoint($activity_power->getPower(), $user, $value);
             }
 
+        }
+
+        //remove tags
+        $tags = EvidenceTags::find(['user_id' => $this->user_id, 'evidence_id' => $this->evidence_id])->all();
+        foreach($tags as $tag){
+            $tag->delete();
         }
 
         return parent::beforeDelete();

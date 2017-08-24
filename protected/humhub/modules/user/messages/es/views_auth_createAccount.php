@@ -19,4 +19,6 @@
 return [
     '<strong>Account</strong> registration' => '',
     'Create Account' => 'Crear Cuenta',
+    'This is Alchemy, and this is an Urgent Evoke. Wherever you are, whoever you are, if you found this message, it\'s your destiny to join us.' => 'Aqui es Alchemy, y esto es un Evokación Urgente. Donde quiera que estés, quienquiera que seas, si encontrases este mensaje, es tu destino unirte a nosotros.',
+    'You have demonstrated your courage, and your commitment is unquestionable. The first thing we need is to update the Evoke database Evoke with the following fields:' => 'Usted ha demostrado su coraje, y su compromiso es incuestionable. Lo primero que necesitamos es actualizar la base Evoke con los siguientes campos:',
 ];

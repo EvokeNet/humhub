@@ -19,7 +19,6 @@
 return [
     'All Evidences' => '',
     'Evidences' => '',
-    'Evidences To Be Reviewed' => '',
     'Evokation' => '',
     'Evokation Categories' => '',
     'Evokation Deadline' => '',
@@ -29,9 +28,9 @@ return [
     'Leaderboard' => '',
     'Members' => '',
     'Missions' => '',
-    'My Team' => '',
     'My Teams' => '',
-    'Review Evidence' => '',
     'Review Evidences' => '',
     'Reviews' => '',
+    'Tag Evidences' => '',
+    'Tags' => '',
 ];

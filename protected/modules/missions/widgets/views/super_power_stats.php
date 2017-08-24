@@ -10,8 +10,8 @@ use app\modules\missions\models\Evidence;
 <div class="panel panel-default">
 
     <div class="panel-heading">
-        <h4 class = "display-inline"><?php echo Yii::t('MissionsModule.base', 'Super Powers'); ?></h4>
-        <p style = "display:inline; margin-left:10px"><?php echo Yii::t('MissionsModule.base', 'Earn points to increase powers'); ?></p>
+        <h5 class = "display-inline"><?php echo Yii::t('MissionsModule.base', 'Super Powers'); ?></h5><br />
+        <span style = "font-size:8pt"><?php echo Yii::t('MissionsModule.base', 'Earn points to increase powers'); ?></span>
     </div>
 
     <div class="panel-body row">
@@ -28,15 +28,16 @@ use app\modules\missions\models\Evidence;
                 $name = $quality->qualityTranslations[0]->name;
             
         ?>
-            <div class="col-xs-6 <?= $unavailable_power ? 'unavailable-power' : '' ?>" style = "margin-bottom:50px">
+            <!--<div class="col-xs-6 <?php // $unavailable_power ? 'unavailable-power' : '' ?>" style = "margin-bottom:50px">-->
+            <div class="col-xs-6" style = "margin-bottom:50px">
                 
                 <div class="row" style = "margin-bottom:20px">
                     <div class="col-sm-4">
                         <img src = "<?php echo $userQuality[0]->getPower()->getQualityPowersArray()[0]->getQualityObject()->image; ?>" width=90 class = "power-border"></img>
                     </div>
                     <div class="col-sm-8">
-                        <h5 style = "margin-left:5px; min-height: 40px;"><?= $name; ?></h5>
-                        <span style = "color: #28C503; margin-left:5px"><?php echo Yii::t('MissionsModule.base', 'Level {level}', array('level' => null != $userQuality[0]->getUserQuality() ? $userQuality[0]->getUserQuality()->getLevel() : 0)); ?></span>
+                        <h6 style = "margin-left:5px; min-height: 40px; margin-top: 20px"><?= $name; ?></h6>
+                        <span style = "color: #D81B60; margin-left:5px"><?php echo Yii::t('MissionsModule.base', 'Level {level}', array('level' => null != $userQuality[0]->getUserQuality() ? $userQuality[0]->getUserQuality()->getLevel() : 0)); ?></span>
                     </div>
                 </div>
                 
@@ -58,7 +59,7 @@ use app\modules\missions\models\Evidence;
                 
                         <div class="row">
                             <div class="col-xs-2">
-                                <h1 style = "font-size: 40pt; margin-top:0"><?= $userPower->getLevel() ?></h1>
+                                <span style="color: #03ACC5;">LV</span><h2 style = "font-size: 40pt; margin-top:0"><?= $userPower->getLevel() ?></h2>
                             </div>
                             <div class="col-xs-10" style = "margin-top:5px">
                         
@@ -89,37 +90,8 @@ use app\modules\missions\models\Evidence;
 
 <style type="text/css">
 
-.evokecoin {
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    padding: 6px 0;
-    font-size: 12px;
-    line-height: 1.42;
-    border-radius: 20px;
-    display: inline-block;
-    font-size: 26px;
-}
-
 .power{
     margin-bottom: 20px;
 }
-
-.power .level{
-    float: left;
-}
-
-.power .points{
-    float: right;
-}
-
-.unavailable-power{
-    opacity: 0.5;
-}
-
-.unavailable-power span, h6{
-    color: gray !important;
-}
-
 
 </style>

@@ -94,7 +94,7 @@ $this->registerJs($jsLoadWall, View::POS_READY);
 </div>
 
 <!-- show "Load More" button on mobile devices -->
-<div class="col-xs-12 text-center visible-xs visible-sm">
-    <button id="btn-load-more" class="btn btn-primary btn-lg ">Load more</button>
+<div style="float:none;" class="col-xs-12 text-center">
+    <button id="btn-load-more" class="btn btn-primary btn-lg "><?php echo Yii::t('MissionsModule.base', 'Load More'); ?></button>
     <br/><br/>
 </div>

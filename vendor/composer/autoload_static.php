@@ -18,9 +18,17 @@ class ComposerStaticInite8a3c8ec52dcbcf03d05fe8700c96ef3
             'yii\\composer\\' => 13,
             'yii\\' => 4,
         ),
+        'r' => 
+        array (
+            'rmrevin\\yii\\fontawesome\\' => 24,
+        ),
         'j' => 
         array (
             'janisto\\timepicker\\' => 19,
+        ),
+        'f' => 
+        array (
+            'froala\\froalaeditor\\' => 20,
         ),
         'c' => 
         array (
@@ -45,9 +53,17 @@ class ComposerStaticInite8a3c8ec52dcbcf03d05fe8700c96ef3
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
         ),
+        'rmrevin\\yii\\fontawesome\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rmrevin/yii2-fontawesome',
+        ),
         'janisto\\timepicker\\' => 
         array (
             0 => __DIR__ . '/..' . '/janisto/yii2-timepicker/src',
+        ),
+        'froala\\froalaeditor\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/froala/yii2-froala-editor',
         ),
         'cebe\\markdown\\' => 
         array (

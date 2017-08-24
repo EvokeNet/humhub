@@ -123,6 +123,12 @@ class DateValidator extends Validator
      *
      * This can be the same attribute as the one being validated. If this is the case,
      * the original value will be overwritten with the timestamp value after successful validation.
+     *
+     * Note, that when using this property, the input value will be converted to a unix timestamp,
+     * which by definition is in UTC, so a conversion from the [[$timeZone|input time zone]] to UTC
+     * will be performed. When defining [[$timestampAttributeFormat]] you can control the conversion by
+     * setting [[$timestampAttributeTimeZone]] to a different value than `'UTC'`.
+     *
      * @see timestampAttributeFormat
      * @see timestampAttributeTimeZone
      */
@@ -346,6 +352,7 @@ class DateValidator extends Validator
      * @param string $value string representing date
      * @param string $format the expected date format
      * @return integer|boolean a UNIX timestamp or `false` on failure.
+     * @throws InvalidConfigException
      */
     private function parseDateValueIntl($value, $format)
     {

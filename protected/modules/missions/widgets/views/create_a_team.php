@@ -17,12 +17,12 @@ use yii\helpers\Url;
             <!--English-->
             <img src="<?php echo Url::to('@web/themes/Evoke/img/alchemy.png') ?>" width = "120px" style = "border-radius: 50%; border: 3px solid #254054; margin-bottom:10px">
             <h6 class="uppercase" style = "font-weight:700"><?= Yii::t('MissionsModule.base', 'Team Captains') ?></h6>
-            <p>
-                <?= Yii::t('MissionsModule.base', 'Your first mission is') ?> 
-                <a href="<?= Url::to(['/teams/create/create_team']) ?>" data-target = "#globalModal">
-                    <?= Yii::t('MissionsModule.base', 'register your team on the platform.') ?>
-                </a>
-            </p><br>
+            <p><?= Yii::t('MissionsModule.base', 'Your first mission is to register your team on the platform.') ?></p>
+            
+            <a href="<?= Url::to(['/teams/create/create_team']) ?>" data-target = "#globalModal" class="btn btn-primary">
+                <?= Yii::t('MissionsModule.base', 'Create Team') ?>
+            </a><br /><br />
+
             <h6 class="uppercase" style = "font-weight:700"><?= Yii::t('MissionsModule.base', 'Other Agents') ?></h6>
             <p>
                 <?= Yii::t('MissionsModule.base', 'Await the invitation from your captain to join your team.') ?>
@@ -31,9 +31,3 @@ use yii\helpers\Url;
     </div>
 
 </div>
-
-<style>
-.uppercase{
-    text-transform: uppercase;
-}
-</style>
