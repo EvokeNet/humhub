@@ -77,6 +77,8 @@ AppAsset::register($this);
     <body>
     <?php $this->beginBody() ?>
 
+    <?php include_once("analyticstracking.php") ?>
+
     <!-- start: first top navigation bar -->
     <div id="topbar-first" class="topbar">
         <div class="container">
