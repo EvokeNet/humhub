@@ -24,7 +24,11 @@ $firstSecondary = true;
 ?>
 
 <ul class="nav nav-tabs nav-justified">
-  <li class="<?php echo (Yii::$app->request->get('flag') && Yii::$app->request->get('flag') == 1) ? '' : 'active'; ?>"><a href="#tab-novel" data-toggle="tab"><?php echo Yii::t('MissionsModule.model', 'Novel Chapter #{number}', array('number' => $mission->position)); ?></a></li>
+  <?php if($mission->position == 1): ?>
+    <li class="<?php echo (Yii::$app->request->get('flag') && Yii::$app->request->get('flag') == 1) ? '' : 'active'; ?>"><a href="#tab-novel" data-toggle="tab"><?php echo Yii::t('MissionsModule.model', 'Mission {number}', array('number' => $mission->position)); ?></a></li>
+  <?php else: ?>
+    <li class="<?php echo (Yii::$app->request->get('flag') && Yii::$app->request->get('flag') == 1) ? '' : 'active'; ?>"><a href="#tab-novel" data-toggle="tab"><?php echo Yii::t('MissionsModule.model', 'Novel Chapter #{number}', array('number' => $mission->position)); ?></a></li>
+  <?php endif; ?>
   <li class="<?php echo (Yii::$app->request->get('flag') && Yii::$app->request->get('flag') == 1) ? 'active' : ''; ?>"><a href="#tab-mission" data-toggle="tab"><?php echo $this->title; ?></a></li>
 </ul>
 
@@ -68,7 +72,12 @@ $firstSecondary = true;
           <div class="carousel-inner" role="listbox">
 
                 <div class="item active">
-                  <h6 style="background-color: #101C2A; text-align: center; padding: 10px 0; color: #5aa2c6;"><?php echo Yii::t('MissionsModule.model', 'Chapter #{chapter} - Page #{page}', array('chapter' => $mission->position, 'page' => 1)); ?></h6>
+                    <?php if($mission->position == 1): ?>
+                        <h6 style="background-color: #101C2A; text-align: center; padding: 10px 0; color: #5aa2c6;"><?= isset($mission->missionTranslations[0]) ? $mission->missionTranslations[0]->title : $mission->title ?></h6>
+                    <?php else: ?>
+                        <h6 style="background-color: #101C2A; text-align: center; padding: 10px 0; color: #5aa2c6;"><?php echo Yii::t('MissionsModule.model', 'Chapter #{chapter} - Page #{page}', array('chapter' => $mission->position, 'page' => 1)); ?></h6>
+                    <?php endif; ?>
+                    
                     <?php if($pages[0]->markup != ""): ?>
                         <?= $pages[0]->markup ?>
                     <?php else: ?>
