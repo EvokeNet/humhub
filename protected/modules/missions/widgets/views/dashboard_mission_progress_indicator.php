@@ -21,7 +21,7 @@ use app\modules\missions\models\Evidence;
           <?php $width = (100/(count($missions)+1)); foreach ($missions as $key => $m) { ?>
             <span style="width: <?=$width?>%; display: block; float: left; color:#03ACC5;"><?php echo Yii::t('MissionsModule.base', 'M{position}', array('position' => $m['position'])); ?></span>
           <?php } ?>
-          <span style="width: <?=$width?>%; display: block; float: left; color:#03ACC5;"><?php echo Yii::t('MissionsModule.base', 'Evokation'); ?></span>
+          <span style="width: <?=$width?>%; display: block; float: left; color:#03ACC5; font-size: 8.5pt; font-weight: 700"><?php echo Yii::t('MissionsModule.base', 'Evokation'); ?></span>
         </div><br>
 
         <div style="margin-top:10px">
