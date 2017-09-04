@@ -241,14 +241,12 @@ class AdminController extends \humhub\modules\admin\components\Controller
     public function actionEvocoinStats(){
       $coin = Wallet::find()->sum('amount');
       $total_coin_created = Coin::find()->where(['name' => 'evocoin'])->one()->total_created;
-      $slot_machine_stats = SlotMachineStats::find()->where(['id' => 1])->one();
       $evocoin_from_reviews = Votes::find()->count() * 5;
       $evocoin_from_comments = Votes::find()->where(['comment' => 'NOT NULL'])->count() * 5;
 
       return $this->render('evocoin-stats', [
         'total_coin' => $coin,
         'total_coin_created' => $total_coin_created,
-        'slot_machine_stats' => $slot_machine_stats,
         'evocoin_from_reviews' => $evocoin_from_reviews,
         'evocoin_from_comments' => $evocoin_from_comments
       ]);
