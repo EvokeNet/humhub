@@ -46,8 +46,26 @@ class AdminController extends \humhub\modules\admin\components\Controller
 
         $model->created_at = date("Y-m-d H:i:s");
 
-        if($model->save())
-            return $this->redirect(['index']);
+        //try to find team_1 and team_2 if they are inversely ordered
+        $model2 = new Alliance();
+        $model2->load(Yii::$app->request->post());
+        $model2->team_1 = $model->team_2;
+        $model2->team_2 = $model->team_1;
+
+        $valid = true;
+
+        if(!$model2->validate()){
+          $valid = false;
+        }else if($model->save()){
+          return $this->redirect(['index']);
+        }
+
+        //show errors if it's not valid
+        if(!$valid){
+          $model = $model2;
+          $model2->validate();
+        }
+        
       }
 
       return $this->render('alliances/create', array('teams' => $teams, 'model' => $model));

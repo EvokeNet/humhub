@@ -30,9 +30,8 @@ use app\modules\teams\models\Team;
      {
        return [
          ['team_1', 'required'],
-         ['team_1', 'unique', 'targetAttribute' => 'team_2'],
          ['team_2', 'required'],
-         ['team_2', 'unique', 'targetAttribute' => 'team_1']
+         [array('team_2', 'team_1'), 'unique', 'targetAttribute' => array('team_1', 'team_2')],
        ];
      }
 
