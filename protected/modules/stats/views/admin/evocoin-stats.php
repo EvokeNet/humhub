@@ -25,10 +25,5 @@ echo Breadcrumbs::widget([
         <li><span style="font-size:13pt"><?php echo Yii::t('StatsModule.base', 'Evocoin from Comments: {list}', array('list' => $evocoin_from_comments)); ?></span></li>
     </ul>
     </br>
-    <h4><?php echo Yii::t('StatsModule.base', 'Slot Machine'); ?></h4></br>
-    <ul>
-      <li><span style="font-size:13pt"><?php echo Yii::t('StatsModule.base', 'Slot Machine Uses: {list}', array('list' => $slot_machine_stats->uses)); ?></span></li>
-      <li><span style="font-size:13pt"><?php echo Yii::t('StatsModule.base', 'Slot Machine Evocoin Created: {list}', array('list' => $slot_machine_stats->evocoin_created)); ?></span></li>
-    </ul>
   </div>
 </div>
