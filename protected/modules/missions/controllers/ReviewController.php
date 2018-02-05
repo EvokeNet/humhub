@@ -148,7 +148,7 @@ class ReviewController extends ContentContainerController
           $is_ally = $ally->isAlly(Team::getUserTeam($user->id));
         } else {
           $is_ally = false;
-        }
+        } 
 
         $nextEvidence = $this->getNextEvidence($this->contentContainer);
         $evidence = $nextEvidence['evidence'];

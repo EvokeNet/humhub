@@ -72,7 +72,11 @@ class AdminController extends \humhub\modules\admin\components\Controller
 
     public function actionIndexTagTranslations($id)
     {
-        $tags = TagTranslations::find()->all();
+        $tags = TagTranslations::find()
+        ->where(['tag_id' => Yii::$app->request->get('id')])
+        ->with('language')
+        ->all();
+
         $tag = Tags::findOne(['id' => Yii::$app->request->get('id')]);
 
         return $this->render('tag-translations/index', array('tags' => $tags, 'tag' => $tag));
@@ -209,7 +213,7 @@ class AdminController extends \humhub\modules\admin\components\Controller
 
     }
     
-    public function actionViewReviews($id)
+    public function actionViewReviews($id) 
     {
         $model = Votes::findOne(['id' => Yii::$app->request->get('id')]);
         $evidence = Evidence::findOne(['id' => $model->evidence_id]);
