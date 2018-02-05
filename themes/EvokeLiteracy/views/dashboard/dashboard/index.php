@@ -32,7 +32,7 @@ $this->pageTitle = Yii::t('DashboardModule.base', 'Dashboard');
             ?>
 
             <?php
-            echo \humhub\modules\content\widgets\Stream::widget([
+            echo \humhub\modules\missions\widgets\DashboardStream::widget([
                 'streamAction' => '//missions/dashboard/stream',
                 'showFilters' => false,
                 'messageStreamEmpty' => Yii::t('DashboardModule.views_dashboard_index', '<b>Your dashboard is empty!</b><br>Post something on your profile or join some spaces!'),
