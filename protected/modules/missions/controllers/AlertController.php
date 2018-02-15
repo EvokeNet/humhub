@@ -8,6 +8,8 @@ use yii\web\NotFoundHttpException;
 use app\modules\missions\models\Alerts;
 use humhub\modules\content\models\Content;
 use yii\helpers\Url; 
+use app\modules\missions\models\QuizQuestions;
+use app\modules\missions\models\QuizQuestionAnswers;
 
 class AlertController extends Controller
 {
@@ -33,31 +35,40 @@ class AlertController extends Controller
         Yii::$app->session->setFlash('popup', $popup_array);
     }
 
-    public function createQuiz(){
+    public function createQuiz($power_id){
         $popup_array = Yii::$app->session->getFlash('popup');
-        //create quiz only if there's no other quiz to show
         
-        $quiz = array('question', 'answers', 'type');
-        $quiz['type'] = 'quiz';
-        $quiz['question'] = "Pergunta";
-        $quiz['answers'] = array("Resposta 1", "Resposta 2", "Resposta 3", "Resposta 4", "Resposta 5");
+        //initiate variables
+        $quiz_question = QuizQuestions::findOne(['power_id' => $power_id]);
+        $quiz_answers = null;
+        $quiz = null;
 
-         if($popup_array){
-            $add = true;
+        //if there is a question
+        if($quiz_question)
+            $quiz_answers = QuizQuestionAnswers::findAll(['quiz_question_id' => $quiz_question->id]);
 
-            foreach($popup_array as $popup){
-                if($popup['type'] == 'quiz')
-                    $add = false;
+        //if there are options
+        if($quiz_answers){
+            $quiz = array('question', 'answers', 'type');
+            $quiz['type'] = 'quiz';
+            $quiz['question'] = $quiz_question->question_headline;
+            $answers = array();
+            foreach($quiz_answers as $quiz_answer){
+                array_push($answers, $quiz_answer->answer_headline);
             }
-
-            //just one quiz
-            if($add)
-                array_push($popup_array, $quiz);
-        }else{
-            $popup_array = array($quiz);
+            $quiz['answers'] = $answers;
         }
-        
-        Yii::$app->session->setFlash('popup', $popup_array);
+
+        //if quiz was created
+        if($quiz){
+            if($popup_array){
+                array_push($popup_array, $quiz);
+            }else{
+                $popup_array = array($quiz);
+            }
+            
+            Yii::$app->session->setFlash('popup', $popup_array);
+        }
     }
 
     public function actionAlert(){
@@ -94,7 +105,7 @@ class AlertController extends Controller
 
     public function actionTest(){
 
-        $this->createQuiz();
+        $this->createQuiz(1);
 
         /*$user = Yii::$app->user->getIdentity();
         Alerts::createReviewNotification($user->id, 613);
