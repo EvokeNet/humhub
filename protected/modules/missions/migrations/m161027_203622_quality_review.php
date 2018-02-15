@@ -15,7 +15,7 @@ class m161027_203622_quality_review extends Migration
 
         $this->dropColumn('votes', 'quality');
 
-        return false;
+        return true;
     }
 
     /*

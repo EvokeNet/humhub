@@ -33,6 +33,33 @@ class AlertController extends Controller
         Yii::$app->session->setFlash('popup', $popup_array);
     }
 
+    public function createQuiz(){
+        $popup_array = Yii::$app->session->getFlash('popup');
+        //create quiz only if there's no other quiz to show
+        
+        $quiz = array('question', 'answers', 'type');
+        $quiz['type'] = 'quiz';
+        $quiz['question'] = "Pergunta";
+        $quiz['answers'] = array("Resposta 1", "Resposta 2", "Resposta 3", "Resposta 4", "Resposta 5");
+
+         if($popup_array){
+            $add = true;
+
+            foreach($popup_array as $popup){
+                if($popup['type'] == 'quiz')
+                    $add = false;
+            }
+
+            //just one quiz
+            if($add)
+                array_push($popup_array, $quiz);
+        }else{
+            $popup_array = array($quiz);
+        }
+        
+        Yii::$app->session->setFlash('popup', $popup_array);
+    }
+
     public function actionAlert(){
         $popup = null;
 
@@ -66,11 +93,14 @@ class AlertController extends Controller
   
 
     public function actionTest(){
-        $user = Yii::$app->user->getIdentity();
+
+        $this->createQuiz();
+
+        /*$user = Yii::$app->user->getIdentity();
         Alerts::createReviewNotification($user->id, 613);
 
         $alert = Alerts::findOne(['user_id' => $user->id]);
-
+*/
         // if($alert){
         //     $content = Content::findOne(['object_model' => $alert->object_model, 'object_id' => $alert->object_id]);
         //     $url = Url::to(['/content/perma', 'id' => $content->id]);

@@ -28,6 +28,27 @@
   </div>
 </div>
 
+<div id="quiz-popup" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 id="message-question" class="modal-title" style = "font-weight:bold">
+        </h2>
+      </div>
+      <div id="message-answers" class="modal-body" style = "text-align:center">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+            <?= Yii::t('MissionsModule.base', 'Submit') ?>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <div id="animated-popup" class="animate-submit-evidence" style="display:none">
   <h2 id="animated-popup-header"><?= Yii::t('MissionsModule.base', "Congratulations!") ?></h2>
   <br /><br />
@@ -178,6 +199,9 @@ function loadPopUps(){
               }else if(message['type'] == 'animated'){
                 console.log("animate");
                 animatePopUp(message['title'], message['message'], message['image_url']);  
+              }else if(message['type'] == 'quiz'){
+                console.log("quiz");
+                quizPopUp(message['question'], message['answers']);
               }else{
                 showMessage(message['title'], message['message']);  
               }
@@ -189,7 +213,11 @@ function loadPopUps(){
               if(popUpWatcher == null){
                 popUpWatcher = setInterval(function() {
 
-                  if(!$("#popup-message").is(':visible') && !$("#animated-popup").is(':visible')){
+                  if(
+                      !$("#popup-message").is(':visible') 
+                      && !$("#animated-popup").is(':visible') 
+                      && !$("#quiz-popup").is(':visible')
+                    ){
                     console.log("load another");
                     loadPopUps();
                   }
@@ -222,6 +250,21 @@ function animatePopUp(title, message, image_url){
   $("#animated-popup").show();
   slideOutPopUp();
   deactivatePopUp();
+}
+
+//QUIZ POPUP
+function quizPopUp(question, answers){
+  document.getElementById("message-question").innerHTML = question;
+  answersHTML = '<form>';
+  for(i = 0; i < answers.length; i++){
+    answer = answers[i];
+    answersHTML = answersHTML + "<input type='radio' name='answer' value='1'>"+answer+"<br>";
+  }
+  answersHTML = answersHTML + "</form>";
+  document.getElementById("message-answers").innerHTML = answersHTML;
+  $("#quiz-popup").modal("show");
+  deactivatePopUp();
+  console.log("closing message");
 }
 
 // not working

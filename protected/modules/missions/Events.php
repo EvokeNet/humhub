@@ -36,6 +36,7 @@ use app\modules\missions\models\Tags;
 use app\modules\missions\models\Alerts;
 use humhub\modules\content\models\Content;
 use humhub\modules\missions\controllers\AlertController;
+use app\modules\missions\models\Votes;
 /**
  * Description of Events
  *
@@ -50,15 +51,32 @@ class Events
             $user = Yii::$app->user->getIdentity();
 
             if($user){
-                $alert = Alerts::findOne(['user_id' => $user->id]);
+                    $alert = Alerts::findOne(['user_id' => $user->id]);
 
-                if($alert){
-                    $content = Content::findOne(['object_model' => $alert->object_model, 'object_id' => $alert->object_id]);
-                    $url = Url::to(['/content/perma', 'id' => $content->id]);
-                    // AlertController::createAlert("Notification", "One of your evidences has been reviewed.<br> <a href='".$url."'>Click here to see.</a>");
-                    AlertController::createAlert(Yii::t('MissionsModule.base', 'Notification'), Yii::t('MissionsModule.base', 'One of your evidences has been reviewed.').'<br> <a href='.$url.'>'.Yii::t('MissionsModule.base', 'Click here to see').'</a>');
-                    $alert->delete();
-                } 
+                    if($alert){
+                        $content = Content::findOne(['object_model' => $alert->object_model, 'object_id' => $alert->object_id]);
+                        $url = Url::to(['/content/perma', 'id' => $content->id]);
+                        // AlertController::createAlert("Notification", "One of your evidences has been reviewed.<br> <a href='".$url."'>Click here to see.</a>");
+                        AlertController::createAlert(Yii::t('MissionsModule.base', 'Notification'), Yii::t('MissionsModule.base', 'One of your evidences has been reviewed.').'<br> <a href='.$url.'>'.Yii::t('MissionsModule.base', 'Click here to see').'</a>');
+                        $alert->delete();
+                    }else{
+                        //check for first not seen review
+                        $review = Votes::find(['viewed_flag' => false])
+                            ->join('LEFT JOIN', 'evidence', 'evidence.id = evidence_id')
+                                ->andWhere(['evidence.created_by' => $user->id])
+                                ->one();
+                                
+                        //if found
+                        if($review){
+                            $content = Content::findOne(['object_model' => Evidence::classname(), 
+                                'object_id' => $review->evidence_id]);
+
+                            $url = Url::to(['/content/perma', 'id' => $content->id]);
+
+                            //create alert
+                            AlertController::createAlert(Yii::t('MissionsModule.base', 'Notification'), Yii::t('MissionsModule.base', 'One of your evidences has been reviewed.').'<br> <a href='.$url.'>'.Yii::t('MissionsModule.base', 'Click here to see').'</a>');
+                        }
+                    } 
             }
         }
     }
@@ -530,6 +548,20 @@ class Events
         $user = Yii::$app->user->getIdentity();
 
         if(isset($user)){
+
+
+            //Mentors posts
+            $event->sender->addItem(array(
+            'label' => Yii::t('MissionsModule.event', 'Mentors Posts'),
+            'id' => 'mentor_posts',
+            'icon' => '<i class="fa fa-graduation-cap" aria-hidden="true"></i>',
+            'url' => Url::to(['/missions/mentor/dashboard']),
+            'sortOrder' => 101,
+            'isActive' => (Yii::$app->controller->module
+                && Yii::$app->controller->module->id == 'missions'
+                && Yii::$app->controller->id == 'mentor')
+                && Yii::$app->controller->action->id == 'dashboard',
+            ));
 
             // LEADERBOARD
             $event->sender->addItem(array(

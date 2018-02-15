@@ -12,5 +12,6 @@ class m161026_202557_add_group_flag_to_activities extends Migration
     public function down()
     {
       $this->removeColumn('activities', 'is_group');
+      return true;
     }
 }

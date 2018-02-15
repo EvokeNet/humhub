@@ -42,7 +42,6 @@ class FixedStream extends \yii\base\Action
      */
     const SORT_CREATED_AT = 'c';
     const SORT_UPDATED_AT = 'u';
-    const NO_SORTING = '';
 
     /**
      * Modes
@@ -166,9 +165,7 @@ class FixedStream extends \yii\base\Action
         /**
          * Setup Sorting
          */
-        if($this->sort == self::NO_SORTING){
-            //do nothing 
-        }else if ($this->sort == self::SORT_UPDATED_AT) {
+        if ($this->sort == self::SORT_UPDATED_AT) {
             $this->activeQuery->orderBy('wall_entry.updated_at DESC');
             if ($this->from != "")
                 $this->activeQuery->andWhere("wall_entry.updated_at < (SELECT updated_at FROM wall_entry wd WHERE wd.id=" . $this->from . ")");
