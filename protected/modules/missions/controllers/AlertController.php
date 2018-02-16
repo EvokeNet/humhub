@@ -51,10 +51,14 @@ class AlertController extends Controller
         if($quiz_answers){
             $quiz = array('question', 'answers', 'type');
             $quiz['type'] = 'quiz';
-            $quiz['question'] = $quiz_question->question_headline;
+            $quiz['question']['id'] = $quiz_question->id;
+            $quiz['question']['headline'] = $quiz_question->question_headline;
             $answers = array();
             foreach($quiz_answers as $quiz_answer){
-                array_push($answers, $quiz_answer->answer_headline);
+                $answer['headline'] = $quiz_answer->answer_headline;
+                $answer['id'] = $quiz_answer->id;
+
+                array_push($answers, $answer);
             }
             $quiz['answers'] = $answers;
         }

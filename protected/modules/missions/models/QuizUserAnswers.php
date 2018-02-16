@@ -3,6 +3,9 @@
 namespace app\modules\missions\models;
 
 use Yii;
+use humhub\modules\user\models\User;
+use app\modules\missions\models\QuizQuestions;
+use app\modules\missions\models\QuizQuestionAnswers;
 
 /**
  * This is the model class for table "quiz_user_answers".
