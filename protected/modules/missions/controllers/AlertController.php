@@ -57,7 +57,7 @@ class AlertController extends Controller
             foreach($quiz_answers as $quiz_answer){
                 $answer['headline'] = $quiz_answer->answer_headline;
                 $answer['id'] = $quiz_answer->id;
-
+                
                 array_push($answers, $answer);
             }
             $quiz['answers'] = $answers;

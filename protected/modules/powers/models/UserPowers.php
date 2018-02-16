@@ -9,6 +9,7 @@ use yii\behaviors\TimestampBehavior;
 use humhub\modules\user\models\User;
 use app\modules\powers\models\QualityPowers;
 use app\modules\powers\models\Powers;
+use humhub\modules\missions\controllers\AlertController;
 
 /**
  * This is the model class for table "user_powers".
@@ -218,6 +219,8 @@ class UserPowers extends \yii\db\ActiveRecord
 
         if($this->level != $old_level){
             $this->save();
+
+            AlertController::createQuiz($this->power_id);
 
             $quality_power = QualityPowers::findOne(['power_id' => $this->power_id]);
             if($quality_power){
