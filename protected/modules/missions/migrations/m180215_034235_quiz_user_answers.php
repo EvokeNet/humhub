@@ -51,7 +51,7 @@ class m180215_034235_quiz_user_answers extends Migration
         
         $this->dropTable('quiz_user_answers');
 
-        return true;
+        return false;
 
     }
 

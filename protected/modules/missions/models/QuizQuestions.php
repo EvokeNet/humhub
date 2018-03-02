@@ -1,6 +1,7 @@
 <?php
 
 namespace app\modules\missions\models;
+use app\modules\matching_questions\models\Qualities;
 
 use Yii;
 
@@ -9,11 +10,11 @@ use Yii;
  *
  * @property integer $id
  * @property string $question_headline
- * @property integer $power_id
+ * @property integer $quality_id
  * @property integer $level_id
  *
  * @property QuizQuestionAnswers[] $quizQuestionAnswers
- * @property Powers $power
+ * @property Qualities $quality
  * @property QuizUserAnswers[] $quizUserAnswers
  */
 class QuizQuestions extends \yii\db\ActiveRecord
@@ -32,10 +33,10 @@ class QuizQuestions extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['question_headline', 'power_id', 'level_id'], 'required'],
+            [['question_headline', 'quality_id', 'level_id'], 'required'],
             [['question_headline'], 'string'],
-            [['power_id', 'level_id'], 'integer'],
-            [['power_id'], 'exist', 'skipOnError' => true, 'targetClass' => Powers::className(), 'targetAttribute' => ['power_id' => 'id']],
+            [['quality_id', 'level_id'], 'integer'],
+            [['quality_id'], 'exist', 'skipOnError' => true, 'targetClass' => Qualities::className(), 'targetAttribute' => ['quality_id' => 'id']],
         ];
     }
 
@@ -47,7 +48,7 @@ class QuizQuestions extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'question_headline' => 'Question Headline',
-            'power_id' => 'Power ID',
+            'quality_id' => 'Quality ID',
             'level_id' => 'Level ID',
         ];
     }
@@ -60,12 +61,20 @@ class QuizQuestions extends \yii\db\ActiveRecord
         return $this->hasMany(QuizQuestionAnswers::className(), ['quiz_question_id' => 'id']);
     }
 
+    // /**
+    //  * @return \yii\db\ActiveQuery
+    //  */
+    // public function getPower()
+    // {
+    //     return $this->hasOne(Powers::className(), ['id' => 'power_id']);
+    // }
+
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPower()
+    public function getQuality()
     {
-        return $this->hasOne(Powers::className(), ['id' => 'power_id']);
+        return $this->hasOne(Qualities::className(), ['id' => 'quality_id']);
     }
 
     /**

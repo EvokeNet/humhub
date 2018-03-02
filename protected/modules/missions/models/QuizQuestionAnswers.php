@@ -18,7 +18,7 @@ class QuizQuestionAnswers extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
-     */
+     */ 
     public static function tableName()
     {
         return 'quiz_question_answers';
@@ -33,6 +33,7 @@ class QuizQuestionAnswers extends \yii\db\ActiveRecord
             [['answer_headline', 'quiz_question_id'], 'required'],
             [['answer_headline'], 'string'],
             [['quiz_question_id'], 'integer'],
+            [['right_answer'], 'integer'],
             [['quiz_question_id'], 'exist', 'skipOnError' => true, 'targetClass' => QuizQuestions::className(), 'targetAttribute' => ['quiz_question_id' => 'id']],
         ];
     }
@@ -46,6 +47,7 @@ class QuizQuestionAnswers extends \yii\db\ActiveRecord
             'id' => 'ID',
             'answer_headline' => 'Answer Headline',
             'quiz_question_id' => 'Quiz Question ID',
+            'right_answer' => 'Right Answer',
         ];
     }
 

@@ -223,6 +223,32 @@ class Events
 
     }
 
+    //quiz admin entry
+
+    public static function onQuizAdminMenuInit($event)
+    {
+        $event->sender->addItem(array(
+            'label' => Yii::t('MissionsModule.event', 'Quiz'),
+            'url' => Url::to(['/missions/admin/index-quiz']),
+            'group' => 'manage',
+            'sortOrder' => 1100,
+            'icon' => '<i class="fa fa-sort-amount-asc"></i>',
+            'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'missions' && Yii::$app->controller->id == 'admin'
+            &&
+                (
+                    Yii::$app->controller->action->id == 'index-quiz'
+                    || Yii::$app->controller->action->id == 'create-quiz'
+                    || Yii::$app->controller->action->id == 'update-quiz'
+
+                    || Yii::$app->controller->action->id == 'index-quiz-translations'
+                    || Yii::$app->controller->action->id == 'create-quiz-translations'
+                    || Yii::$app->controller->action->id == 'update-quiz-translations'
+                    
+                )
+            ),
+        ));
+    }
+
     public static function onCategoriesAdminMenuInit($event)
     {
         $event->sender->addItem(array(

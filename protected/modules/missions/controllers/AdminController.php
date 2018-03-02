@@ -14,12 +14,17 @@ use app\modules\missions\models\EvokationCategoryTranslations;
 use app\modules\missions\models\EvokationDeadline;
 use app\modules\missions\models\Evidence;
 use app\modules\missions\models\EvidenceSearch;
-use app\modules\teams\models\Team;
 use app\modules\missions\models\Votes;
 use app\modules\missions\models\VotesSearch;
 use app\modules\missions\models\Tags;
 use app\modules\missions\models\TagsSearch;
 use app\modules\missions\models\TagTranslations;
+
+use app\modules\missions\models\QuizQuestionAnswers;
+use app\modules\missions\models\QuizQuestions;
+use app\modules\missions\models\QuizUserAnswers;
+
+use app\modules\teams\models\Team;
 use humhub\modules\content\models\Content;
 use humhub\modules\user\models\User;
 use app\modules\achievements\models\UserAchievements;
@@ -31,6 +36,90 @@ use app\modules\achievements\models\Achievements;
  */
 class AdminController extends \humhub\modules\admin\components\Controller
 {
+    public function actionIndexQuiz()
+    {
+        $questions = QuizQuestions::find()->all();
+        return $this->render('quiz-questions/index', array('questions' => $questions));
+    }
+
+    public function actionCreateQuiz()
+    {
+        $model = new QuizQuestions();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index-quiz']);
+        } 
+        
+        return $this->render('quiz-questions/create', array('model' => $model));
+    }
+
+    public function actionUpdateQuiz()
+    {
+        $model = QuizQuestions::findOne(['id' => Yii::$app->request->get('id')]);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index-quiz']);
+        }
+
+        return $this->render('quiz-questions//update', array('model' => $model));
+    }
+
+    public function actionDeleteQuiz()
+    {
+        $model = QuizQuestions::findOne(['id' => Yii::$app->request->get('id')]);
+
+        if ($model !== null) {
+            $model->delete();
+        }
+
+        return $this->redirect(['index-quiz']);
+    }
+
+    public function actionIndexQuizAnswers()
+    {
+        $question = QuizQuestions::findOne(['id' => Yii::$app->request->get('id')]);
+
+        $answers = QuizQuestionAnswers::find()->all();
+        return $this->render('quiz-answers/index', array('question' => $question, 'answers' => $answers));
+    }
+
+    public function actionCreateQuizAnswer()
+    {
+        $model = new QuizQuestionAnswers();
+        $model->quiz_question_id = Yii::$app->request->get('id');
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index-quiz-answers', 'id' => Yii::$app->request->get('id')]);
+        } 
+        
+        return $this->render('quiz-answers/create', array('model' => $model));
+    }
+
+    public function actionUpdateQuizAnswer()
+    {
+        $model = QuizQuestionAnswers::findOne(['id' => Yii::$app->request->get('id')]);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index-quiz-answers', 'id' => $model->quiz_question_id]);
+        }
+
+        return $this->render('quiz-answers/update', array('model' => $model));
+    }
+
+    public function actionDeleteQuizAnswer()
+    {
+        $model = QuizQuestionAnswers::findOne(['id' => Yii::$app->request->get('id')]);
+
+        $question_id = $model->quiz_question_id;
+
+        if ($model !== null) {
+            $model->delete();
+        }
+
+        return $this->redirect(['index-quiz-answers', 'id' => $question_id]);
+    }
+    
+
     public function actionIndexTags()
     {
         $tags = Tags::find()->all();

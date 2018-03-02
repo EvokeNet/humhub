@@ -10,6 +10,7 @@ class m180215_034128_quiz_question_answers extends Migration
             'id' => 'pk',
             'answer_headline' => 'text NOT NULL',
             'quiz_question_id' => 'int(11) NOT NULL',
+            'right_answer' => 'int(3) NOT NULL',
                 ), '');
 
         $this->addForeignKey(
@@ -29,7 +30,7 @@ class m180215_034128_quiz_question_answers extends Migration
 
         $this->dropTable('quiz_question_answers');
 
-        return true;
+        return false;
 
     }
 
