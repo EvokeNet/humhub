@@ -24,13 +24,13 @@ class m180215_034128_quiz_question_answers extends Migration
 
     public function down()
     {
-        echo "m180215_034128_quiz_question_answers cannot be reverted.\n";
 
         $this->dropForeignKey('fk-quiz_question_answers-quiz_question_id', 'quiz_question_answers');
-        
+
         $this->dropTable('quiz_question_answers');
 
-        return false;
+        return true;
+
     }
 
     /*

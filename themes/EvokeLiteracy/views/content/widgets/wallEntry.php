@@ -5,8 +5,23 @@ use humhub\modules\space\models\Space;
 use humhub\modules\user\models\User;
 use humhub\modules\content\components\ContentContainerController;
 use app\modules\teams\models\Team;
+use app\modules\missions\models\Evidence;
+use app\modules\missions\models\Votes;
 
 $user = $object->content->user;
+$current_user = Yii::$app->user->getIdentity();
+
+if($user->id == $current_user->id){
+    //if it's an evidence
+    if($object->content->object_model == Evidence::classname()){
+        $reviews = Votes::findAll(['evidence_id' => $object->content->object_id]);
+        foreach ($reviews as $review) {
+            $review->viewed_flag = true;
+            $review->save();
+        }
+    }
+
+}
 
 try {
     $container = $object->content->container;

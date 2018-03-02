@@ -25,8 +25,16 @@ class MentorController extends Controller
      */
     public function actions()
     {
-        return array(
-        );
+         return [
+            'stream' => [
+                'class' => \humhub\modules\missions\components\actions\MentorDashboardStream::className(),
+            ],
+        ];
+    }
+
+
+    public function actionDashboard(){
+        return $this->render('dashboard');
     }
 
     public function actionMyteams()

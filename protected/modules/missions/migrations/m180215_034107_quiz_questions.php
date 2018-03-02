@@ -25,13 +25,13 @@ class m180215_034107_quiz_questions extends Migration
 
     public function down()
     {
-        echo "m180215_034107_quiz_questions cannot be reverted.\n";
 
         $this->dropForeignKey('fk-quiz_questions-power_id', 'quiz_questions');
         
         $this->dropTable('quiz_questions');
 
-        return false;
+        return true;
+
     }
 
     /*

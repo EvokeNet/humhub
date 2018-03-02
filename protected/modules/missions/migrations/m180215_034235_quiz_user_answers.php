@@ -50,8 +50,9 @@ class m180215_034235_quiz_user_answers extends Migration
         $this->dropForeignKey('fk-quiz_user_answers-quiz_question_answer_id', 'quiz_user_answers');
         
         $this->dropTable('quiz_user_answers');
-        
-        return false;
+
+        return true;
+
     }
 
     /*
