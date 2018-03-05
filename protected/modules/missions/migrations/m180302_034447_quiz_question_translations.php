@@ -42,7 +42,7 @@ class m180302_034447_quiz_question_translations extends Migration
         
         $this->dropTable('quiz_question_translations');
 
-        return false;
+        return true;
     }
 
     /*

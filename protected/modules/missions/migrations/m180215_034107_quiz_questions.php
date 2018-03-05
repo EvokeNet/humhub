@@ -14,7 +14,7 @@ class m180215_034107_quiz_questions extends Migration
                 ), '');
 
         $this->addForeignKey(
-            'fk-quiz_questions-power_id',
+            'fk-quiz_questions-quality_id',
             'quiz_questions',
             'quality_id',
             'qualities',
