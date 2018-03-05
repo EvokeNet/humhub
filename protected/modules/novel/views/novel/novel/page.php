@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use app\modules\novel\models\NovelPage;
+use humhub\models\Setting;
 
 ?>
 <style media="screen">
@@ -15,7 +16,7 @@ use app\modules\novel\models\NovelPage;
     position: absolute; top: 0; width: 100%;
   }
   
-  <?php if (!Yii::$app->user->getIdentity()->has_read_novel && Yii::$app->user->getIdentity()->group->name != "Mentors"): ?>
+  <?php if (!Yii::$app->user->getIdentity()->has_read_novel && Yii::$app->user->getIdentity()->group->name != "Mentors" && Setting::Get('enabled_novel_read_obligation')): ?>
     .topbar, .footer {
       display: none;
     }

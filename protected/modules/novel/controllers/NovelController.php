@@ -55,7 +55,7 @@ class NovelController extends Controller
 
       //page doesn't exist or it's a chapter page
       if(!$page || ($page->chapter)){
-        if($novel_order == EvokeSettingsForm::FIRST_NOVEL){
+        if($novel_order == EvokeSettingsForm::FIRST_NOVEL && Setting::Get('enabled_novel_read_obligation')){
           return $this->redirect(['transformation']);
         }else{
           $user = Yii::$app->user->getIdentity();
