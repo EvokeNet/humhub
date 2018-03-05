@@ -118,6 +118,82 @@ class AdminController extends \humhub\modules\admin\components\Controller
 
         return $this->redirect(['index-quiz-answers', 'id' => $question_id]);
     }
+
+    public function actionExportsUserQuizAnswers($id = null) {
+
+		$filename = "user_quiz_answers_".date("Y-m-d").".csv";
+		$csv_file = fopen('php://output', 'w');
+
+		header('Content-type: text/csv; charset=utf-8');
+		header('Content-Disposition: attachment; filename="'.$filename.'"');
+
+        $user_answers = QuizUserAnswers::find()
+        ->where(['quiz_question_id' => $id])
+        ->with([
+            'user' => function ($query) { 
+                $query->joinWith('profile', function ($query2) { 
+                    $query2->andWhere(['profile.user_id' => 'user.id']);
+                });
+            },
+            'quizQuestionAnswer' => function ($query) { 
+                // $query->joinWith('profile');
+                // $query->andWhere(['user_id' => 'user.id']);
+            },
+        ])->all();
+
+        $answers = QuizQuestionAnswers::find()
+        ->where(['quiz_question_id' => $id])
+        ->joinWith('quizQuestion') // ensure table junction
+        ->all();
+
+        $header_row = array('QUESTIONS: ', $answers[0]['quizQuestion']['question_headline']);
+
+        // $header_row2 = array('Answer Headline: '.$answers[0]['quizQuestion']['question_headline']);
+
+        fputcsv($csv_file, ['QUESTION HEADLINE']);
+        fputcsv($csv_file, [$answers[0]['quizQuestion']['question_headline']]);
+        fputcsv($csv_file, array());
+        fputcsv($csv_file, array('ANSWER OPTIONS'));
+
+        foreach($answers as $answer):
+            
+            $row = array();
+            array_push($row, $answer['answer_headline']);
+            array_push($row, ($answer['right_answer'] == 0) ? 'True' : 'False');
+            fputcsv($csv_file, $row);
+
+        endforeach;
+
+        // print user answers
+
+        fputcsv($csv_file, []);
+        
+        $header_row = array(
+            'username',
+            'First Name',
+            'Last Name',
+            'Answer',
+        );
+
+		fputcsv($csv_file, $header_row);
+
+        foreach($user_answers as $user_answer):
+
+            $row2 = array();    
+
+            array_push($row2, $user_answer['user']['username']);
+            array_push($row2, $user_answer['user']['profile']['firstname']);
+            array_push($row2, $user_answer['user']['profile']['lastname']);
+            array_push($row2, $user_answer['quizQuestionAnswer']['answer_headline']);
+
+            fputcsv($csv_file, $row2);
+
+        endforeach;
+
+		fclose($csv_file);
+
+        exit();
+	}
     
 
     public function actionIndexTags()

@@ -35,7 +35,7 @@ echo Breadcrumbs::widget([
                     <tr>
                         <!--<td><?php //echo $tag->id_code; ?></td>-->
                         <td><?php echo $answer->answer_headline; ?></td>
-                        <td><?php echo ($answer->answer_headline == 0) ? Yii::t('MissionsModule.base', 'True') : Yii::t('MissionsModule.base', 'False'); ?></td>
+                        <td><?php echo ($answer->right_answer == 0) ? Yii::t('MissionsModule.base', 'True') : Yii::t('MissionsModule.base', 'False'); ?></td>
                         <td>
                             <?php echo Html::a(
                                 Yii::t('MissionsModule.base', 'Update'),

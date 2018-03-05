@@ -43,7 +43,7 @@ echo Breadcrumbs::widget([
                         <td>
                             <?php echo Html::a(
                                 Yii::t('MissionsModule.base', 'Download User Answers'), 
-                                ['exports-user-quiz-answers', 'id' => $question->id], array('class' => 'btn btn-success btn-sm')); ?>
+                                ['export-user-quiz-answers', 'id' => $question->id], array('class' => 'btn btn-success btn-sm')); ?>
                             &nbsp;&nbsp;
                             <?php echo Html::a(
                                 Yii::t('MissionsModule.base', 'View Answers'), 
