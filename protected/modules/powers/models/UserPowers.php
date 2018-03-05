@@ -220,8 +220,6 @@ class UserPowers extends \yii\db\ActiveRecord
         if($this->level != $old_level){
             $this->save();
 
-            AlertController::createQuiz($this->power_id);
-
             $quality_power = QualityPowers::findOne(['power_id' => $this->power_id]);
             if($quality_power){
                 UserQualities::updateQualityLevel($quality_power->quality_id, $this->user_id);

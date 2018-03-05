@@ -156,6 +156,8 @@ class UserQualities extends \yii\db\ActiveRecord
             AlertController::createAlert($title, $message);
         }
 
+        AlertController::createQuiz($this->quality_id);
+
         $userQuality->level = $level;
         $userQuality->save();
 
