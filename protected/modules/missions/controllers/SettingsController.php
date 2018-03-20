@@ -24,6 +24,7 @@ class SettingsController extends \humhub\modules\admin\components\Controller
         $form->enabled_intro_terms = Setting::Get('enabled_intro_terms');
         $form->enabled_psychometric_questionnaire_obligation = Setting::Get('enabled_psychometric_questionnaire_obligation');
         $form->enabled_novel_read_obligation = Setting::Get('enabled_novel_read_obligation');
+        $form->enabled_skill_growth_popup = Setting::Get('enabled_skill_growth_popup');
         $form->investment_limit = Setting::Get('investment_limit');
         $form->novel_order = Setting::Get('novel_order');
 
@@ -35,6 +36,7 @@ class SettingsController extends \humhub\modules\admin\components\Controller
             Setting::Set('enabled_intro_terms', $form->enabled_intro_terms);
             Setting::Set('enabled_psychometric_questionnaire_obligation', $form->enabled_psychometric_questionnaire_obligation);
             Setting::Set('enabled_novel_read_obligation', $form->enabled_novel_read_obligation);
+            Setting::Set('enabled_skill_growth_popup', $form->enabled_skill_growth_popup);
             Setting::Set('investment_limit', $form->investment_limit);
             Setting::Set('novel_order', $form->novel_order);
 

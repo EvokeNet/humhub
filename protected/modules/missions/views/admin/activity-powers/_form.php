@@ -23,7 +23,7 @@ use app\modules\powers\models\Powers;
             0 => Yii::t('MissionsModule.base', 'Primary Power'), 
             1 => Yii::t('MissionsModule.base', 'Secondary Power')
             ], ['prompt'=> Yii::t('MissionsModule.base', 'Select Option')]
-        ) ?>
+        ) ?> 
             
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('MissionsModule.model', 'Create') : Yii::t('MissionsModule.model', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

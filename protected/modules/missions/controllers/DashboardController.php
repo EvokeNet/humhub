@@ -35,7 +35,7 @@ class DashboardController extends Controller
     {
         return [
             'stream' => [
-                'class' => \humhub\modules\missions\components\actions\DashboardStream::className(),
+                'class' => \humhub\modules\missions\components\actions\MentorDashboardStream::className(),
             ],
         ];
     }

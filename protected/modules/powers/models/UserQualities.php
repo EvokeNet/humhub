@@ -6,6 +6,7 @@ use Yii;
 use humhub\modules\user\models\User;
 use app\modules\matching_questions\models\Qualities;
 use humhub\modules\missions\controllers\AlertController;
+use humhub\models\Setting;
 
 /**
  * This is the model class for table "user_qualities".
@@ -128,6 +129,8 @@ class UserQualities extends \yii\db\ActiveRecord
 
         }else if( ( (isset($userQuality->level) && $userQuality->level < 1) || (!isset($userQuality->level)) ) && $level >= 1)  {
             $new_power = true;
+        }else if(isset($userQuality->level)){
+            $old_level = $userQuality->level;
         }
         
         $name = $userQuality->getQualityObject()->name;
@@ -143,6 +146,14 @@ class UserQualities extends \yii\db\ActiveRecord
                     array('super_power_name' => $name)
                 )
             );
+        }else if(isset($old_level) && $old_level < $level && Setting::Get('enabled_skill_growth_popup')){
+            //alert user
+            $title = Yii::t('PowersModule.base', "Level Up");
+            $message = Yii::t(
+                    'PowersModule.base', 'Congratulations, you have just achieved level {level} for {name}!', 
+                    array('level' => $level, 'name' => $name)
+                );
+            AlertController::createAlert($title, $message);
         }
 
         $userQuality->level = $level;

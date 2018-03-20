@@ -608,7 +608,7 @@ class EvidenceController extends ContentContainerController
                     }
                 }
 
-                if($isTeamGoingToComplete){
+                if(isset($isTeamGoingToComplete) && $isTeamGoingToComplete){
                     foreach ($team_members as $team_member) {
                         $log[$activity_power->getPower()->title.'_'.$team_member->username."_earned_extra_evocoins"] = 100;
                     }

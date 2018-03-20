@@ -529,6 +529,6 @@ class AdminController extends \humhub\modules\admin\components\Controller
 		fclose($csv_file);
 
         exit();
-	}
+    }
 
 }

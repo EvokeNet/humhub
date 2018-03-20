@@ -15,13 +15,14 @@ use yii\widgets\ActiveForm;
 
         <?php $form = ActiveForm::begin(); ?>
 
-        <strong><?php echo Yii::t('AdminModule.views_setting_index', 'Dashboard'); ?></strong>
+        <strong style="text-transform: uppercase;"><?php echo Yii::t('AdminModule.views_setting_index', 'Dashboard'); ?></strong>
         <br>
         <br>
         <?php echo $form->field($model, 'enabled_evokations')->checkbox(); ?>
         <?php echo $form->field($model, 'enabled_evokation_page_visibility')->checkbox(); ?>
+        <br>
 
-        <strong><?php echo Yii::t('AdminModule.views_setting_index', 'Onboarding Options'); ?></strong>
+        <strong style="text-transform: uppercase;"><?php echo Yii::t('AdminModule.views_setting_index', 'Onboarding Options'); ?></strong>
         <br>
         <br>
 
@@ -37,6 +38,13 @@ use yii\widgets\ActiveForm;
             }
             
         ?>
+        <br>
+        
+        <strong style="text-transform: uppercase;"><?php echo Yii::t('AdminModule.views_setting_index', 'Notification'); ?></strong>
+        <br>
+        <br>
+        <?php echo $form->field($model, 'enabled_skill_growth_popup')->checkbox(); ?>
+
         <hr>
         <?php echo $form->field($model, 'investment_limit')->textInput( ['style' => 'width: 80px;'])->hint(Yii::t('MissionsModule.base', 'Set 0 or empty for unlimited evocoins.')) ; ?>
 

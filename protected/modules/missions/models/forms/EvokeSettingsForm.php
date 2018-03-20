@@ -14,6 +14,7 @@ class EvokeSettingsForm extends \yii\base\Model
     public $enabled_intro_terms;
     public $enabled_psychometric_questionnaire_obligation;
     public $enabled_novel_read_obligation;
+    public $enabled_skill_growth_popup; // Enable superpower level up pop-up
     public $investment_limit;
     public $novel_order;
     const FIRST_NOVEL = 0;
@@ -32,6 +33,7 @@ class EvokeSettingsForm extends \yii\base\Model
             array(['enabled_intro_terms'], 'in', 'range' => array(0, 1)),
             array(['enabled_psychometric_questionnaire_obligation'], 'in', 'range' => array(0, 1)),
             array(['enabled_novel_read_obligation'], 'in', 'range' => array(0, 1)),
+            array(['enabled_skill_growth_popup'], 'in', 'range' => array(0, 1)),
             array(['investment_limit'], 'number', 'integerOnly' => true),
             array(['novel_order'], 'in', 'range' => array(0, 1)),
         );
@@ -52,6 +54,7 @@ class EvokeSettingsForm extends \yii\base\Model
             'enabled_intro_terms' => Yii::t('MissionsModule.base', 'Activate Terms & Conditions Page'),
             'enabled_psychometric_questionnaire_obligation' => Yii::t('MissionsModule.base', 'Obligate users to answer psychometric questionnaire'),
             'enabled_novel_read_obligation' => Yii::t('MissionsModule.base', 'Obligate users to read the Novel'),
+            'enabled_skill_growth_popup' => Yii::t('MissionsModule.base', 'Enable superpower level up notification'),
             'investment_limit' => Yii::t('MissionsModule.base', 'Set Investment Limit'),
             'novel_order' => Yii::t('MissionsModule.base', 'Answer Psychometric Questionnaire before reading the Novel'),
         );

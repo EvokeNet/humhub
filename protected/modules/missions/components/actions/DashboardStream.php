@@ -104,6 +104,7 @@ class DashboardStream extends FixedStream
             $condition .= ' (content.object_model =:postModel AND content.visibility = 1 OR content.visibility IS NULL) OR';
             $condition .= ' (content.object_model =:evidenceModel AND (content.visibility = 1 OR content.user_id= :userId) ) ';
             $this->activeQuery->andWhere($condition, [':postModel' => Post::className(), ':evidenceModel' => Evidence::className(), ':userId' => $this->user->id, ':spaceModel' => \humhub\modules\space\models\Space::className(), ':userModel' => \humhub\modules\user\models\User::className()]);
+
         }
     }
 

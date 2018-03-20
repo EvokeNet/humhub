@@ -23,7 +23,7 @@ use humhub\modules\user\models\Profile;
  * @property integer $wall_id
  * @property integer $group_id
  * @property integer $status
- * @property integer $super_admin
+ * @property integer $ 
  * @property string $username
  * @property string $email
  * @property string $auth_mode
