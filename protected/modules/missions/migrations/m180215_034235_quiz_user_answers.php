@@ -43,7 +43,6 @@ class m180215_034235_quiz_user_answers extends Migration
 
     public function down()
     {
-        echo "m180215_034235_quiz_user_answers cannot be reverted.\n";
 
         $this->dropForeignKey('fk-quiz_user_answers-user_id', 'quiz_user_answers');
         $this->dropForeignKey('fk-quiz_user_answers-quiz_question_id', 'quiz_user_answers');
@@ -51,7 +50,7 @@ class m180215_034235_quiz_user_answers extends Migration
         
         $this->dropTable('quiz_user_answers');
 
-        return false;
+        return true;
 
     }
 

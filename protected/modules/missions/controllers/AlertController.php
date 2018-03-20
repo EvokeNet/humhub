@@ -35,11 +35,11 @@ class AlertController extends Controller
         Yii::$app->session->setFlash('popup', $popup_array);
     }
 
-    public function createQuiz($power_id){
+    public function createQuiz($quality_id, $level){
         $popup_array = Yii::$app->session->getFlash('popup');
         
         //initiate variables
-        $quiz_question = QuizQuestions::findOne(['power_id' => $power_id]);
+        $quiz_question = QuizQuestions::findOne(['quality_id' => $quality_id, 'level_id' => $level]);
         $quiz_answers = null;
         $quiz = null;
 
